@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { demoCharges } from "@/lib/demo";
 import { formatMoney, outstanding, summarize } from "@/lib/finance";
-export default function Home() {
+export default async function Home({ searchParams }: { searchParams: Promise<{ view?: string }> }) {
+  const company = (await searchParams).view === "company";
   const totals = summarize(demoCharges, "2026-10-26");
   const rate = Math.round(totals.collectedKurus / totals.totalKurus * 100);
   return <div className="shell">
@@ -12,7 +13,9 @@ export default function Home() {
       <p className="aside-note">Daha düzenli bir site,<br/>daha kolay bir yönetim.</p>
     </aside>
     <main id="main"><header><span>Yönetim / Genel bakış</span><span className="badge">Örnek veri</span></header>
-      <section className="heading"><div><p className="eyebrow">SİTENİZ BİR BAKIŞTA</p><h1>Genel bakış</h1><p>Aidatları ve tahsilatları tek yerden takip edin.</p></div><span className="period">Ekim 2026</span></section>
+      <section className="heading"><div><p className="eyebrow">SİTENİZ BİR BAKIŞTA</p><h1>{company ? "Şirket yönetimi" : "Bireysel yönetici"}</h1><p>Aidatları ve tahsilatları tek yerden takip edin.</p></div><span className="period">Ekim 2026</span></section>
+      <div className="view-switch"><Link href="/">Bireysel yönetici</Link><Link href="/?view=company">Yönetim şirketi</Link></div>
+      {company && <section className="panel"><h2>Organizasyon portföyü</h2><p>Örnek Yönetim A.Ş. · Örnek organizasyon</p><div className="block"><b>Örnek Yaşam Sitesi</b><span>2 blok · 4 daire</span></div><p>Bu görünüm örnek portföyü gösterir. Gerçek organizasyon seçimi oturum entegrasyonundan sonra açılacaktır.</p></section>}
       <div className="notice">Bu panel bir başlangıç demosudur. Veriler örnektir; giriş ve gerçek veri kaydı henüz bağlı değildir.</div>
       <section className="stats" aria-label="Finansal özet">{[
         ["Toplam aidat", totals.totalKurus, "4 daire için tahakkuk"], ["Tahsil edilen", totals.collectedKurus, `%${rate} tahsilat oranı`],

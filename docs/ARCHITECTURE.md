@@ -6,7 +6,7 @@
 
 Aidat tutarı ve ödemeler tam sayı kuruş olarak saklanır. Bakiye, aidattan ödemelerin toplamı çıkarılarak hesaplanmalıdır; ikinci bir bakiye alanı tutulmaz. `period` için servis katmanında YYYY-MM doğrulaması gerekir. Her daire/dönem için tek aidat vardır. Ek tahakkuklar için bu model genişletilmelidir. Ödemede siteye özgü idempotency anahtarı mükerrer kayıtları engeller. Finansal kayıtlarda kademeli silme yoktur.
 
-Migration, pozitif aidat ve ödeme tutarlarını CHECK kısıtlarıyla korur. Toplam ödemenin borcu aşmaması servis katmanında transaction ve satır kilidiyle uygulanmalıdır. Mevcut saf hesap fonksiyonu yalnızca girdi bakiyesini doğrular; henüz bir ödeme yazma servisi yoktur.
+Migration, pozitif aidat ve ödeme tutarlarını CHECK kısıtlarıyla korur. Toplam ödemenin borcu aşmaması servis katmanında transaction ve satır kilidiyle uygulanmalıdır. Mevcut saf hesap fonksiyonu yalnızca girdi bakiyesini doğrular; `src/lib/management.ts` artık transaction ve satır kilidiyle tahsilat yazar.
 
 ## Sonraki geliştirme adımları
 
@@ -22,3 +22,14 @@ Migration, pozitif aidat ve ödeme tutarlarını CHECK kısıtlarıyla korur. To
 ## Bağımlılık notu
 
 Prisma 6'nın transitif `deepmerge-ts` bağımlılığı, GHSA-ggr8-5vv4-36mx nedeniyle npm `overrides` ile 8.x sürümüne yükseltilmiştir. Şema doğrulama, istemci üretimi ve PostgreSQL migration uygulaması bu sürümle doğrulanmıştır. Prisma güncellenirken override gereksinimi yeniden değerlendirilmelidir.
+
+
+## S00–S01 uygulanan temel
+
+`Organization` bireysel yönetici veya şirket türündedir. Organizasyon ADMIN/MANAGER üyeleri bağlı siteleri yönetebilir; mevcut site bazlı ADMIN/MANAGER üyelikleri de korunur. RESIDENT yönetim servisine erişemez. Tüm mevcut servis metotları sunucunun doğruladığı oturum callback'ini kullanır. Bu callback bir kimlik doğrulama sağlayıcısı değildir; güvenilir oturum entegrasyonu yapılmadan HTTP isteklerindeki kullanıcı kimliğiyle doldurulmamalıdır.
+
+Eski siteleri bozmamak için `organizationId` nullable bırakılmıştır. Mevcut verinin organizasyonlara atanması ayrı bir geçiş işidir. Yeni `createSite` servisi organizasyon üyeliği ister. `Occupancy` malik ve kiracı bilgilerini daireye site kapsamındaki bileşik yabancı anahtarla bağlar; bu kişiler otomatik olarak kullanıcı hesabı veya erişim hakkı kazanmaz.
+
+Tahsilat servisi borcu `FOR UPDATE` ile kilitler, bakiyeyi transaction içinde hesaplar, fazla ödemeyi reddeder ve aynı idempotency anahtarının farklı içerikle tekrarını engeller. Doğrudan SQL yazımları bu servis korumasını aşabilir; uygulama veritabanı erişimi yalnızca sunucuda tutulmalıdır. Finansal düzeltme/ters kayıt ve denetim izi henüz yoktur. Her daire/dönem tek tahakkuk sınırı sürer.
+
+Önceki geliştirme sırasındaki organizasyon, kayıt ve tahsilat servisleri kısmen tamamlandı. Sonraki adım gerçek oturum doğrulayıcısı, CSRF korumalı form/HTTP entegrasyonu ve tarayıcı uçtan uca testleridir. Demo panel bu servise bağlı değildir.

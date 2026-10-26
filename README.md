@@ -4,12 +4,13 @@ Site ve apartman yönetimi için Next.js App Router, TypeScript, Prisma ve Postg
 
 ## Mevcut kapsam
 
-- Türkçe, mobil uyumlu örnek yönetim paneli: daireler, aidatlar, tahsilatlar ve duyuru.
+- Türkçe, mobil uyumlu bireysel yönetici ve şirket portföyü örnek görünümleri (`/`, `/?view=company`).
+- Organizasyon/üyelik, malik/kiracı modelleri ve yetkili PostgreSQL servisleri; bkz. `docs/S00-S01-REPORT.md`.
 - Site üyelikleri ve roller, bloklar, daireler, dönemsel aidatlar, ödemeler ve duyurular için ilişkisel veri modeli ve ilk migration.
 - Kuruş üzerinden hesaplama, kısmi ödeme ve gecikme hesapları; birim testleri.
 - ESLint, TypeScript, derleme ve PostgreSQL migration kontrolü için GitHub Actions; Dependabot.
 
-**Bu bir başlangıç sürümüdür.** Panel `src/lib/demo.ts` dosyasındaki örnek verileri gösterir; tarih Ekim 2026 olarak sabittir. Veritabanına bağlı değildir. Kullanıcı girişi, yetkilendirme, gerçek CRUD işlemleri ve ödeme entegrasyonu henüz uygulanmamıştır. Panelde gerçek kişisel veri kullanmayın. Hazır bir üretim SaaS ürünü olarak değerlendirmeyin.
+**Bu bir başlangıç sürümüdür.** Panel `src/lib/demo.ts` dosyasındaki örnek verileri gösterir; tarih Ekim 2026 olarak sabittir. Veritabanına bağlı değildir. Kullanıcı girişi ve arayüzden gerçek kayıt henüz uygulanmamıştır. Sunucu servisinde üyelik/rol kontrolü ve kayıt işlemleri PostgreSQL entegrasyon testleriyle doğrulanmıştır; HTTP uçları henüz açılmamıştır. Panelde gerçek kişisel veri kullanmayın. Hazır bir üretim SaaS ürünü olarak değerlendirmeyin.
 
 ## Hızlı başlangıç
 
@@ -55,3 +56,11 @@ npm start
 - `SECURITY.md`: güvenlik bildirimi ve üretim gereksinimleri
 
 Kod için henüz açık kaynak lisansı seçilmemiştir.
+
+Entegrasyon testleri yalnızca ayrı bir yerel `siteyonetim_test` veritabanını kabul eder:
+
+```bash
+TEST_DATABASE_URL=postgresql://USER:PASSWORD@127.0.0.1:PORT/siteyonetim_test npm run test:integration
+```
+
+Bu veritabanına önce migration uygulanmalıdır. Üretim URL’si kullanmayın.

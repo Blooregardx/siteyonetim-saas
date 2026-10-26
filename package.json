@@ -1,7 +1,7 @@
 {
   "name": "siteyonetim-saas",
   "version": "0.1.0",
-  "description": "Site ve apartman yönetimi SaaS başlangıç projesi",
+  "description": "Site ve apartman y\u00f6netimi SaaS ba\u015flang\u0131\u00e7 projesi",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -14,7 +14,8 @@
     "db:validate": "prisma validate",
     "db:migrate": "prisma migrate dev",
     "db:deploy": "prisma migrate deploy",
-    "db:studio": "prisma studio"
+    "db:studio": "prisma studio",
+    "test:integration": "tsx --test tests/*.integration.ts"
   },
   "repository": {
     "type": "git",
