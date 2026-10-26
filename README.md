@@ -1,66 +1,21 @@
-# SiteYönetim SaaS
+# SiteYönetim
 
-Site ve apartman yönetimi için Next.js App Router, TypeScript, Prisma ve PostgreSQL tabanlı başlangıç projesi.
+Next.js App Router, React, strict TypeScript, PostgreSQL ve Prisma 6 ile Türkçe yönetim uygulaması. Gerçek oturum ve PostgreSQL kayıt formları uygulanmıştır; S00–S01 eksikleri için [raporu](docs/S00-S01-REPORT.md) okuyun. Üretime hazır olarak işaretlenmemiştir.
 
-## Mevcut kapsam
+## Bulut geliştirme
 
-- Türkçe, mobil uyumlu bireysel yönetici ve şirket portföyü örnek görünümleri (`/`, `/?view=company`).
-- Organizasyon/üyelik, malik/kiracı modelleri ve yetkili PostgreSQL servisleri; bkz. `docs/S00-S01-REPORT.md`.
-- Site üyelikleri ve roller, bloklar, daireler, dönemsel aidatlar, ödemeler ve duyurular için ilişkisel veri modeli ve ilk migration.
-- Kuruş üzerinden hesaplama, kısmi ödeme ve gecikme hesapları; birim testleri.
-- ESLint, TypeScript, derleme ve PostgreSQL migration kontrolü için GitHub Actions; Dependabot.
+Node 24 ortamında `npm ci`, `npm run db:generate` çalıştırın. Bulut secret ayarlarında DATABASE_URL tanımlayın. `.env.example` değişkenleri belgeler; gerçek erişim bilgilerini Git'e eklemeyin. Onaylı geliştirme veritabanında `npm run db:deploy` sonrası `npm run dev` veya `npm run build && npm start` kullanın. Kullanıcının bilgisayarında servis çalıştırılması gerekmez. Üretimde HTTPS zorunludur.
 
-**Bu bir başlangıç sürümüdür.** Panel `src/lib/demo.ts` dosyasındaki örnek verileri gösterir; tarih Ekim 2026 olarak sabittir. Veritabanına bağlı değildir. Kullanıcı girişi ve arayüzden gerçek kayıt henüz uygulanmamıştır. Sunucu servisinde üyelik/rol kontrolü ve kayıt işlemleri PostgreSQL entegrasyon testleriyle doğrulanmıştır; HTTP uçları henüz açılmamıştır. Panelde gerçek kişisel veri kullanmayın. Hazır bir üretim SaaS ürünü olarak değerlendirmeyin.
+`/kayit`, `/giris`, `/sifre-sifirla` genel sayfalardır. `/panel` gerçek oturum ister; organizasyon oluşturma ile ilk kurulum başlar. `/demo` ve `/demo?view=company` veritabanından bağımsız örneklerdir. Otomatik demo kullanıcı/seed yoktur.
 
-## Hızlı başlangıç
-
-Node.js 24 ve npm kullanın:
-
-```bash
-npm ci
-cp .env.example .env
-npm run dev
-```
-
-`http://localhost:3000` adresini açın. Demo panel için veritabanı gerekmez.
-
-### Yerel PostgreSQL ve veri modeli
-
-Docker Compose kurulu olmalıdır. Compose parolası yalnızca yerel geliştirme içindir; port sadece localhost'a açılır.
-
-```bash
-docker compose up -d db
-npm run db:generate
-npm run db:deploy
-```
-
-Şema değişikliği için `npm run db:migrate -- --name aciklayici_ad`, modeli incelemek için `npm run db:studio` kullanın. `.env` dosyasını Git'e eklemeyin. Uzak PostgreSQL kullanırken sağlayıcının TLS ve bağlantı gereksinimlerini uygulayın.
+Parola kurtarma için SMTP_URL, MAIL_FROM, HTTPS APP_URL gerekir. Posta sağlayıcısı olmayan ortamda eksik yapılandırma açıkça bildirilir.
 
 ## Kontroller
 
-```bash
-npm run db:validate
-npm run check
-npm run build
-npm start
-```
+`npm run db:validate`, `npm run db:generate`, `npm run check`, `npm run build`.
 
-`db:validate` için `.env` veya `DATABASE_URL` gerekir. CI geçici PostgreSQL üzerinde migration uygular; uygulamanın PostgreSQL bağlantılı bir iş akışı henüz yoktur.
+Entegrasyon: yalnızca izole localhost/127.0.0.1 `siteyonetim_test` DB üzerinde migration uygulayın. `TEST_DATABASE_URL=... npm run test:integration` çalıştırın. Tarayıcı: `npx playwright install chromium`, aynı test DB adresini DATABASE_URL ve TEST_DATABASE_URL olarak tanımlayıp `npm run test:e2e` çalıştırın. Production build önceden hazır olmalıdır. Playwright test DB'de sentetik fixture bırakır; yalnızca bu test veritabanı gerektiğinde sıfırlanabilir. Üretim üzerinde çalıştırmayın.
 
-## Yapı
+CI PostgreSQL servisi, migration, birim/entegrasyon/build ve Playwright kontrollerini içerir. Uzak CI sonucu yerel test sonucundan ayrıdır.
 
-- `src/app`: panel, görünüm ve temel güvenlik başlıkları
-- `src/lib`: örnek veri, para hesaplamaları ve testler
-- `prisma`: şema ve migration
-- `docs/ARCHITECTURE.md`: veri modeli sınırları ve geliştirme sırası
-- `SECURITY.md`: güvenlik bildirimi ve üretim gereksinimleri
-
-Kod için henüz açık kaynak lisansı seçilmemiştir.
-
-Entegrasyon testleri yalnızca ayrı bir yerel `siteyonetim_test` veritabanını kabul eder:
-
-```bash
-TEST_DATABASE_URL=postgresql://USER:PASSWORD@127.0.0.1:PORT/siteyonetim_test npm run test:integration
-```
-
-Bu veritabanına önce migration uygulanmalıdır. Üretim URL’si kullanmayın.
+[Veri modeli ve geçiş](docs/DATABASE.md), [güvenlik](docs/SECURITY.md), [özellikler](docs/FEATURES.md), [kararlar](docs/DECISIONS.md), [yol haritası](docs/ROADMAP.md).

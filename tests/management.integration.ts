@@ -26,6 +26,7 @@ test('organizasyon ayrımı, yetki, kayıtlar ve eşzamanlı tahsilat', async ()
     await api.recordOccupant(site.id, unit.id, 'Örnek Malik', 'OWNER', new Date('2026-10-01'));
     await api.recordOccupant(site.id, unit.id, 'Örnek Kiracı', 'TENANT', new Date('2026-10-01'));
     await assert.rejects(api.createCharge(site.id, unit.id, '2026-13', 10000, new Date()), /INVALID_CHARGE/);
+    await assert.rejects(management(db, async () => ({ userId: 'forged-user' })).createCharge(site.id, unit.id, '2026-10', 10000, new Date()), /FORBIDDEN/);
     const charge = await api.createCharge(site.id, unit.id, '2026-10', 10000, new Date('2026-10-01'));
     await assert.rejects(api.createCharge(site.id, unit.id, '2026-10', 10000, new Date()));
     const results = await Promise.allSettled([api.collect(site.id, charge.id, 6000, 'one'), api.collect(site.id, charge.id, 6000, 'two')]);
@@ -36,6 +37,7 @@ test('organizasyon ayrımı, yetki, kayıtlar ve eşzamanlı tahsilat', async ()
     await assert.rejects(api.collect(site.id, charge.id, 1, receipt.idempotencyKey), /IDEMPOTENCY_CONFLICT/);
     await db.membership.create({ data: { siteId: other.id, userId: user.id, role: 'RESIDENT' } });
     await assert.rejects(api.createBlock(other.id, 'X'), /FORBIDDEN/);
+    await assert.rejects(api.createCharge(other.id, unit.id, '2026-11', 100, new Date()), /FORBIDDEN/);
     const retries = await Promise.all([api.collect(site.id, charge.id, 4000, 'final'), api.collect(site.id, charge.id, 4000, 'final')]);
     assert.equal(retries[0].id, retries[1].id);
     const data = await api.dashboard(site.id);

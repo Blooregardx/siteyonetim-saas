@@ -18,6 +18,9 @@ model User {
   email       String       @unique
   name        String
   createdAt   DateTime     @default(now())
+  passwordHash String?
+  sessions Session[]
+  resets PasswordReset[]
   memberships Membership[]
   organizations OrganizationMembership[]
 }
@@ -97,6 +100,7 @@ model Payment {
   amountKurus    Int
   paidAt         DateTime @default(now())
   idempotencyKey String
+  method         String @default("CASH")
   reference      String?
   site           Site     @relation(fields: [siteId], references: [id], onDelete: Restrict)
   charge         Charge   @relation(fields: [siteId, chargeId], references: [siteId, id], onDelete: Restrict)
@@ -155,4 +159,24 @@ model Occupancy {
   endedAt DateTime? @db.Date
   unit Unit @relation(fields: [siteId, unitId], references: [siteId, id], onDelete: Restrict)
   @@index([siteId, unitId])
+}
+
+model Session {
+  tokenHash String @id
+  userId String
+  expiresAt DateTime
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId])
+}
+model PasswordReset {
+  tokenHash String @id
+  userId String
+  expiresAt DateTime
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId])
+}
+model AuthAttempt {
+  key String @id
+  count Int
+  expiresAt DateTime
 }

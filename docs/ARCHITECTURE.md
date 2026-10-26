@@ -33,3 +33,7 @@ Eski siteleri bozmamak için `organizationId` nullable bırakılmıştır. Mevcu
 Tahsilat servisi borcu `FOR UPDATE` ile kilitler, bakiyeyi transaction içinde hesaplar, fazla ödemeyi reddeder ve aynı idempotency anahtarının farklı içerikle tekrarını engeller. Doğrudan SQL yazımları bu servis korumasını aşabilir; uygulama veritabanı erişimi yalnızca sunucuda tutulmalıdır. Finansal düzeltme/ters kayıt ve denetim izi henüz yoktur. Her daire/dönem tek tahakkuk sınırı sürer.
 
 Önceki geliştirme sırasındaki organizasyon, kayıt ve tahsilat servisleri kısmen tamamlandı. Sonraki adım gerçek oturum doğrulayıcısı, CSRF korumalı form/HTTP entegrasyonu ve tarayıcı uçtan uca testleridir. Demo panel bu servise bağlı değildir.
+
+## Güncel oturum ve arayüz entegrasyonu
+
+Önceki bölümde ertelenmiş olan gerçek oturum ve Server Actions katmanı artık uygulanmıştır. `session.ts` PostgreSQL Session tablosundaki token özetini ve süreyi doğrular; `management(db, verifySession)` gerçek kullanıcıyı kullanır. `panel/actions.ts` Zod doğrulamalı tüm yazımları aynı yetkili servise yönlendirir. `/panel` organizasyon üyeliğiyle gerçek sayaç, liste ve bakiye üretir. `/demo` bağımsız örnek paneldir. Geçiş ve kişi tasarımı DATABASE.md içinde, güncel sınırlar SECURITY.md ve FEATURES.md içindedir.

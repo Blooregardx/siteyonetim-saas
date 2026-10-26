@@ -1,0 +1,35 @@
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { db } from "@/lib/db";
+import { requireSession, verifySession } from "@/lib/session";
+import { management } from "@/lib/management";
+import { logout } from "@/app/auth-actions";
+import { DataForm } from "@/components/data-form";
+import { formatMoney } from "@/lib/finance";
+export const dynamic = "force-dynamic";
+export default async function Panel({ searchParams }: { searchParams: Promise<{ org?: string; site?: string }> }) {
+ const session = await requireSession();
+ const params = await searchParams;
+ const memberships = await db.organizationMembership.findMany({ where: { userId: session.userId, role: { in: ["ADMIN","MANAGER"] } }, include: { organization: true } });
+ const selected = memberships.find(m => m.organizationId === (params.org ?? memberships[0]?.organizationId));
+ if (params.org && !selected) notFound();
+ const api = management(db, verifySession);
+ const portfolio = selected ? await api.portfolio(selected.organizationId) : null;
+ if (params.site && !portfolio?.sites.some(s => s.id === params.site)) notFound();
+ const sites = portfolio ? await Promise.all(portfolio.sites.map(s => api.dashboard(s.id))) : [];
+ const current = sites.find(s => s.id === params.site) ?? sites[0];
+ const charges = sites.flatMap(s => s.charges);
+ const total = charges.reduce((s,c) => s+c.amountKurus,0);
+ const paid = charges.flatMap(c => c.payments).reduce((s,p) => s+p.amountKurus,0);
+ const scope: Record<string,string> = current ? { siteId: current.id } : {};
+ return <div className="shell"><aside><Link className="brand" href="/panel">▦ SiteYönetim<span>YÖNETİM PLATFORMU</span></Link><nav><a href="#summary">Genel bakış</a><a href="#organization">Organizasyon / ilk kurulum</a><a href="#sites">Apartmanlar</a><a href="#units">Blok ve daireler</a><a href="#people">Malik ve kiracılar</a><a href="#finance">Aidat ve tahsilat</a><Link href="/demo">Örnek demo</Link></nav></aside>
+ <main><header><span>Gerçek veriler · PostgreSQL</span><form action={logout}><button>Çıkış yap</button></form></header><section className="heading"><div><p className="eyebrow">YÖNETİM PANELİ</p><h1>{portfolio?.kind === "COMPANY" ? "Şirket portföyü" : "Bireysel yönetici"}</h1><p>{portfolio?.name ?? "İlk organizasyonunuzu oluşturun"}</p></div></section>
+ <section id="summary" className="stats">{[["Apartman", sites.length], ["Daire", sites.reduce((s,x)=>s+x.units.length,0)], ["Tahakkuk",formatMoney(total)], ["Tahsilat",formatMoney(paid)], ["Kalan borç",formatMoney(total-paid)]].map(([k,v])=><article key={k}><p>{k}</p><strong>{v}</strong></article>)}</section>
+ <section id="organization" className="panel"><h2>Organizasyon seçimi ve ilk kurulum</h2><div className="view-switch">{memberships.map(m=><Link key={m.organizationId} href={`/panel?org=${m.organizationId}`}>{m.organization.name}</Link>)}</div><p>1. Organizasyon oluşturun. 2. Apartman ekleyin. 3. Blok ve daireleri kaydedin.</p><DataForm operation="organization"><label>Organizasyon adı<input name="name" required maxLength={200}/></label><label>Tür<select name="kind"><option value="INDIVIDUAL">Bireysel yönetici</option><option value="COMPANY">Profesyonel şirket</option></select></label></DataForm></section>
+ {portfolio && <section id="sites" className="panel"><h2>Apartmanlar ve siteler</h2>{sites.map(s=><div className="block" key={s.id}><Link href={`/panel?org=${portfolio.id}&site=${s.id}`}>{s.name}</Link><span>{s.blocks.length} blok · {s.units.length} daire</span></div>)}{!sites.length && <p>Henüz apartman yok.</p>}<DataForm operation="site" values={{ organizationId: portfolio.id }}><label>Apartman adı<input name="name" required maxLength={200}/></label></DataForm></section>}
+ {current && <><h2>{current.name}</h2><section id="units" className="panel"><h2>Blok ve daire yönetimi</h2><div className="bottom"><DataForm operation="block" values={scope}><label>Blok adı<input name="name" required maxLength={100}/></label></DataForm><DataForm operation="unit" values={scope}><label>Blok<select name="blockId" required><option value="">Seçiniz</option>{current.blocks.map(b=><option key={b.id} value={b.id}>{b.name}</option>)}</select></label><label>Daire numarası<input name="number" required maxLength={30}/></label></DataForm></div>{current.units.map(u=><div className="block" key={u.id}><b>{current.blocks.find(b=>b.id===u.blockId)?.name} / {u.number}</b></div>)}</section>
+ <section id="people" className="panel"><h2>Malik ve kiracı kayıtları</h2><DataForm operation="occupant" values={scope}><UnitSelect units={current.units}/><label>Ad soyad<input name="name" required maxLength={200}/></label><label>İlişki<select name="kind"><option value="OWNER">Malik</option><option value="TENANT">Kiracı</option></select></label><label>Başlangıç<input type="date" name="startedAt" required/></label></DataForm>{current.units.flatMap(u=>u.occupants.map(o=><div className="block" key={o.id}><span>Daire {u.number} · {o.name} · {o.kind === "OWNER" ? "Malik" : "Kiracı"}</span><span>{o.startedAt.toLocaleDateString("tr-TR")}</span></div>))}</section>
+ <section id="finance" className="panel"><h2>Aidat oluştur</h2><DataForm operation="charge" values={scope}><UnitSelect units={current.units}/><label>Dönem<input type="month" name="period" required/></label><label>Tutar (TL)<input name="amount" inputMode="decimal" required/></label><label>Son ödeme<input type="date" name="dueDate" required/></label></DataForm><h2>Aidatlar ve tahsilatlar</h2>{!current.charges.length && <p>Henüz aidat yok.</p>}{current.charges.map(c=>{const collected=c.payments.reduce((s,p)=>s+p.amountKurus,0);return <article className="panel" key={c.id}><h3>Daire {current.units.find(u=>u.id===c.unitId)?.number} · {c.period}</h3><p>Tahakkuk: {formatMoney(c.amountKurus)} · Tahsilat: {formatMoney(collected)} · Kalan: {formatMoney(c.amountKurus-collected)} · {collected===c.amountKurus ? "Ödendi" : collected ? "Kısmi ödeme" : "Ödenmedi"}</p>{collected<c.amountKurus && <DataForm operation="payment" values={{...scope,chargeId:c.id,idempotencyKey:crypto.randomUUID()}}><label>Tahsilat (TL)<input name="amount" inputMode="decimal" required/></label><label>Yöntem<select name="method"><option value="CASH">Nakit</option><option value="TRANSFER">Havale/EFT</option></select></label></DataForm>}{c.payments.map(p=><p key={p.id}>{p.paidAt.toLocaleDateString("tr-TR")} · {formatMoney(p.amountKurus)} · {p.method === "CASH" ? "Nakit" : "Havale/EFT"}</p>)}</article>;})}</section></>}
+ <footer>Gelir-gider, raporlar, personel ve gelişmiş üyelik yönetimi geliştirme aşamasındadır.</footer></main></div>;
+}
+function UnitSelect({ units }: { units: { id:string; number:string }[] }) { return <label>Daire<select name="unitId" required><option value="">Seçiniz</option>{units.map(u=><option key={u.id} value={u.id}>{u.number}</option>)}</select></label>; }

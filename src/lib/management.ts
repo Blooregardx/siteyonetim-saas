@@ -59,8 +59,8 @@ export function management(db: PrismaClient, verifySession: SessionVerifier) {
       if (!/^\d{4}-(0[1-9]|1[0-2])$/.test(period) || !Number.isInteger(amountKurus) || amountKurus <= 0 || amountKurus > 2147483647 || !Number.isFinite(dueDate.getTime())) throw new Error("INVALID_CHARGE");
       return db.$transaction(async tx => { await authorize(tx, siteId); return tx.charge.create({ data: { siteId, unitId, period, amountKurus, dueDate } }); });
     },
-    async collect(siteId: string, chargeId: string, amountKurus: number, idempotencyKey: string) {
-      if (!Number.isInteger(amountKurus) || amountKurus <= 0 || amountKurus > 2147483647 || !idempotencyKey.trim() || idempotencyKey.length > 128) throw new Error("INVALID_PAYMENT");
+    async collect(siteId: string, chargeId: string, amountKurus: number, idempotencyKey: string, method: "CASH" | "TRANSFER" = "CASH") {
+      if (!["CASH", "TRANSFER"].includes(method) || !Number.isInteger(amountKurus) || amountKurus <= 0 || amountKurus > 2147483647 || !idempotencyKey.trim() || idempotencyKey.length > 128) throw new Error("INVALID_PAYMENT");
       return db.$transaction(async tx => {
         await authorize(tx, siteId);
         // Serialize all receipts for this charge, including concurrent partial payments.
@@ -68,12 +68,12 @@ export function management(db: PrismaClient, verifySession: SessionVerifier) {
         if (!rows.length) throw new Error("CHARGE_NOT_FOUND");
         const previous = await tx.payment.findUnique({ where: { siteId_idempotencyKey: { siteId, idempotencyKey } } });
         if (previous) {
-          if (previous.chargeId !== chargeId || previous.amountKurus !== amountKurus) throw new Error("IDEMPOTENCY_CONFLICT");
+          if (previous.chargeId !== chargeId || previous.amountKurus !== amountKurus || previous.method !== method) throw new Error("IDEMPOTENCY_CONFLICT");
           return previous;
         }
         const sum = await tx.payment.aggregate({ where: { siteId, chargeId }, _sum: { amountKurus: true } });
         if ((sum._sum.amountKurus ?? 0) + amountKurus > rows[0].amountKurus) throw new Error("OVERPAYMENT");
-        return tx.payment.create({ data: { siteId, chargeId, amountKurus, idempotencyKey } });
+        return tx.payment.create({ data: { siteId, chargeId, amountKurus, idempotencyKey, method } });
       });
     },
   };

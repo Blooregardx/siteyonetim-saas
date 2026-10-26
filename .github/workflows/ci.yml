@@ -36,3 +36,7 @@ jobs:
           TEST_DATABASE_URL: postgresql://siteyonetim:localdev@localhost:5432/siteyonetim_test
       - run: npm run check
       - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+        env:
+          TEST_DATABASE_URL: postgresql://siteyonetim:localdev@localhost:5432/siteyonetim_test?schema=public
