@@ -15,3 +15,7 @@
 - Audit başarısızlığı kritik iş transaction'ını geri alır; audit operasyon kimliği ile entity kimliği ayrı tutulur. Snapshot kimlik referansları geçmişin silinmemesi için audit FK/cascade bağı değildir.
 - Global giriş limiti kaldırıldı; edge koruma eksikliği açıkça belgelenir.
 - Ters kayıt, net bakiye ve concurrency kuralını birlikte değiştireceği için ayrı finans güvenliği görevi olarak tasarlandı; mevcut Payment değişmez.
+
+## S01-D
+
+Özgün Payment korunur; tek tam ters kayıt ayrı PaymentReversal satırıdır. Tutar eşitliği uygulama kuralına ek olarak site/ödeme/tutar FK'siyle zorlanır. Satır kilitleri aynı borçtaki tahsilat ve ters kaydı sıraya koyar. Audit idempotent tekrarlarla çoğalmaz. Yeni ters kayıt anahtarı UUID'dir; eski collect anahtarları geriye uyumluluk için değiştirilmedi. Immutable trigger sebebiyle testler finans fixture'larını silmez. Prisma'nın bileşik bire bir ilişki gereksinimi ayrı eklemeli indeks migration'ıyla karşılandı.

@@ -13,3 +13,7 @@ MFA, e-posta sahiplik doğrulaması, üyelik davetleri, audit log, finansal ters
 ## S01-C güncel durum (önceki eksik listesine düzeltme)
 
 E-posta sahipliği doğrulaması, davetler, üyelik/rol yönetimi, son aktif admin koruması, transaction içi audit ve güvenlik kaydı temizliği artık uygulanmıştır. Eski global giriş limiti kaldırılmıştır; e-posta/kullanıcı bazlı limitler sürer. SMTP TLS ve HTTPS APP_URL doğrulaması zorunludur; yalnız açıkça izole loopback test ortamına istisna vardır. Ayrıntılı güncel politika ve kalan riskler [SECURITY-S01C.md](SECURITY-S01C.md) içindedir. MFA, gerçek edge saldırı koruması, gerçek bulut rol kurulumu ve ters kayıt servisi hâlâ eksiktir.
+
+## S01-D
+
+Tam tahsilat ters kaydı uygulanmıştır; yalnız doğrulanmış organizasyon ADMIN'i erişebilir. Payment/Reversal geçmişi immutable trigger ve runtime izinleriyle korunur; reversal/audit aynı transaction'dadır. İzole ortamda ayrı migration/runtime LOGIN rolleriyle gerçek izin kısıtları test edilir. Bu, gerçek bulut rol kurulumunu tamamlanmış saydırmaz. Güncel ayrıntılar PAYMENT-REVERSALS.md ve SECURITY-S01C.md içindedir.

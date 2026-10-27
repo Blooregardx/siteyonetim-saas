@@ -41,3 +41,7 @@ Tahsilat servisi borcu `FOR UPDATE` ile kilitler, bakiyeyi transaction içinde h
 ## S01-C güvenlik sınırı
 
 `accounts.ts` e-posta doğrulama ve davet/üyelik servisidir. `security.ts` doğrulanmış actor, organizasyon kilidi ve audit yardımcılarını içerir. `management.ts` bütün veri erişimlerinde güncel doğrulama/üyelik kontrolünü uygular. Yetki kaybı açık oturumdan bağımsız olarak sonraki işlemde geçerlidir. Kullanıcı satırı kilidi adres değişimini, organizasyon satırı kilidi yetki değişimini işlemlerle sıraya koyar; tahsilatta buna Charge FOR UPDATE kilidi eklenir. `mail.ts` gerçek ortamda HTTPS ve TLS'yi zorunlu kılar. `cleanup.ts` sabit güvenlik tablolarında sınırlı süre-aşımı temizliği sunar; audit ve finans geçmişine dokunmaz.
+
+## S01-D finans merkezi
+
+PaymentReversal, immutable ödeme geçmişine bağlı ayrı tam ters kayıttır. `finance.ts` içindeki paymentTotals/chargeBalance/financialSummary canlı finans hesaplarının ortak kaynağıdır. collect ve reversePayment organizasyon→Charge kilidini paylaşır; reversePayment ayrıca Payment kilidi alır. ADMIN doğrulaması ve audit yazımı reversal ile tek transaction'dadır. Dashboard, aidat, daire borcu ve yeni ödeme sınırı brütten reversal çıkarılarak hesaplanır. Ayrıntılı model, yarış davranışı ve test haritası PAYMENT-REVERSALS.md içindedir.

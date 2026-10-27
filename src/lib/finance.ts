@@ -18,3 +18,30 @@ export function summarize(charges: Charge[], today: string) {
   }, { totalKurus: 0, collectedKurus: 0, outstandingKurus: 0, overdueKurus: 0 });
 }
 export const formatMoney = (kurus: number) => new Intl.NumberFormat("tr-TR", { style: "currency", currency: "TRY", maximumFractionDigits: 2 }).format(kurus / 100);
+
+export type Receipt = { amountKurus: number; reversal?: { amountKurus: number } | null };
+function addKurus(a: number, b: number) {
+ const result = a + b;
+ if (!Number.isSafeInteger(result) || result < 0) throw new RangeError("Geçersiz finansal toplam.");
+ return result;
+}
+export function paymentTotals(payments: Receipt[]) {
+ let grossKurus = 0, reversedKurus = 0;
+ for (const payment of payments) {
+  if (!Number.isSafeInteger(payment.amountKurus) || payment.amountKurus <= 0) throw new RangeError("Geçersiz tahsilat.");
+  if (payment.reversal && payment.reversal.amountKurus !== payment.amountKurus) throw new RangeError("Yalnız tam ters kayıt desteklenir.");
+  grossKurus = addKurus(grossKurus, payment.amountKurus);
+  reversedKurus = addKurus(reversedKurus, payment.reversal?.amountKurus ?? 0);
+ }
+ return { grossKurus, reversedKurus, netKurus: grossKurus - reversedKurus };
+}
+export function chargeBalance(charge: { amountKurus: number; payments: Receipt[] }) {
+ const totals = paymentTotals(charge.payments);
+ return { ...totals, remainingKurus: outstanding({ amountKurus: charge.amountKurus, paidKurus: totals.netKurus, dueDate: "" }) };
+}
+export function financialSummary(charges: { amountKurus: number; payments: Receipt[] }[]) {
+ return charges.reduce((totals, charge) => {
+  const balance = chargeBalance(charge);
+  return { chargedKurus: addKurus(totals.chargedKurus, charge.amountKurus), grossKurus: addKurus(totals.grossKurus, balance.grossKurus), reversedKurus: addKurus(totals.reversedKurus, balance.reversedKurus), netKurus: addKurus(totals.netKurus, balance.netKurus), remainingKurus: addKurus(totals.remainingKurus, balance.remainingKurus) };
+ }, { chargedKurus: 0, grossKurus: 0, reversedKurus: 0, netKurus: 0, remainingKurus: 0 });
+}

@@ -20,5 +20,5 @@ export async function organizationAccess(tx: Prisma.TransactionClient, userId: s
  return member;
 }
 export async function audit(tx: Prisma.TransactionClient, actorId: string, action: string, entityId: string, organizationId?: string | null, siteId?: string) {
- await tx.auditLog.create({ data: { actorId, action, entityId, organizationId, siteId } });
+ await tx.auditLog.create({ data: { actorId, action, entityId, organizationId, siteId }, select: { id: true } });
 }

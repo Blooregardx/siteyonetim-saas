@@ -18,12 +18,13 @@ export async function save(_state: { message: string }, form: FormData) {
       case "unit": await api.createUnit(site(), get("blockId"), get("number")); break;
       case "occupant": await api.recordOccupant(site(), get("unitId"), get("name"), z.enum(["OWNER","TENANT"]).parse(form.get("kind")), z.coerce.date().parse(form.get("startedAt"))); break;
       case "charge": await api.createCharge(site(), get("unitId"), get("period"), money.parse(form.get("amount")), z.coerce.date().parse(form.get("dueDate"))); break;
+      case "reversal": z.literal("yes").parse(form.get("confirmed")); await api.reversePayment(site(),get("paymentId"),z.enum(["DUPLICATE_ENTRY","WRONG_AMOUNT","WRONG_CHARGE","ENTRY_ERROR"]).parse(form.get("reasonCode")),z.string().uuid().parse(form.get("idempotencyKey"))); break;
       case "payment": await api.collect(site(), get("chargeId"), money.parse(form.get("amount")), z.string().uuid().parse(form.get("idempotencyKey")), z.enum(["CASH","TRANSFER"]).parse(form.get("method"))); break;
       default: throw new Error("INVALID_OPERATION");
     }
   } catch (error) {
     const message = error instanceof Error ? error.message : "";
-    return { message: message === "OVERPAYMENT" ? "Tutar kalan borcu aşıyor. Fazla ödeme kabul edilmez." : message === "FORBIDDEN" || message === "UNAUTHENTICATED" ? "Bu işlem için yetkiniz veya geçerli oturumunuz yok." : "Kayıt yapılamadı. Alanları ve mükerrer kayıt olasılığını kontrol edin." };
+    return { message: message === "ALREADY_REVERSED" ? "Bu tahsilat daha önce ters kaydedildi." : message === "IDEMPOTENCY_CONFLICT" ? "İşlem anahtarı farklı içerikle kullanılmış. Sayfayı yenileyin." : message === "OVERPAYMENT" ? "Tutar kalan borcu aşıyor. Fazla ödeme kabul edilmez." : message === "FORBIDDEN" || message === "UNAUTHENTICATED" ? "Bu işlem için yetkiniz veya geçerli oturumunuz yok." : "Kayıt yapılamadı. Alanları ve mükerrer kayıt olasılığını kontrol edin." };
   }
   revalidatePath("/panel"); return { message: "Kayıt başarıyla tamamlandı." };
 }

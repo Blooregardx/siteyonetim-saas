@@ -1,5 +1,7 @@
+import { chargeBalance } from "./finance";
+import { z } from "zod";
 import { actor, audit, organizationAccess, lockOrganization } from "./security";
-import { Prisma, PrismaClient } from "@prisma/client";
+import { Prisma, PrismaClient, ReversalReason } from "@prisma/client";
 
 // Only a server-side session verifier may supply this callback. Never use request user IDs.
 export type SessionVerifier = () => Promise<{ userId: string } | null>;
@@ -44,7 +46,7 @@ export function management(db: PrismaClient, verifySession: SessionVerifier) {
     async dashboard(siteId: string) {
       return db.$transaction(async tx => {
         await authorize(tx, siteId);
-        return tx.site.findUniqueOrThrow({ where: { id: siteId }, include: { blocks: true, units: { include: { occupants: true } }, charges: { include: { payments: true } } } });
+        return tx.site.findUniqueOrThrow({ where: { id: siteId }, include: { blocks: true, units: { include: { occupants: true } }, charges: { include: { payments: { include: { reversal: { include: { actor: { select: { name: true } } } } } } } } } });
       });
     },
     async createBlock(siteId: string, name: string) {
@@ -63,6 +65,29 @@ export function management(db: PrismaClient, verifySession: SessionVerifier) {
       if (!/^\d{4}-(0[1-9]|1[0-2])$/.test(period) || !Number.isInteger(amountKurus) || amountKurus <= 0 || amountKurus > 2147483647 || !Number.isFinite(dueDate.getTime())) throw new Error("INVALID_CHARGE");
       return db.$transaction(async tx => { const scope = await authorize(tx, siteId); const result = await tx.charge.create({ data: { siteId, unitId, period, amountKurus, dueDate } }); await audit(tx, scope.userId, "CHARGE_CREATE", result.id, scope.organizationId, siteId); return result; });
     },
+    async reversePayment(siteId: string, paymentId: string, reasonCode: ReversalReason, idempotencyKey: string) {
+      z.string().uuid().parse(idempotencyKey);
+      z.enum(["DUPLICATE_ENTRY", "WRONG_AMOUNT", "WRONG_CHARGE", "ENTRY_ERROR"]).parse(reasonCode);
+      return db.$transaction(async tx => {
+        const user = await actor(tx, verifySession);
+        const site = await tx.site.findUnique({ where: { id: siteId } });
+        if (!site?.organizationId) throw new Error("FORBIDDEN");
+        await organizationAccess(tx, user.id, site.organizationId, true);
+        const payment = await tx.payment.findFirst({ where: { id: paymentId, siteId } });
+        if (!payment) throw new Error("PAYMENT_NOT_FOUND");
+        await tx.$queryRaw`SELECT id FROM "Charge" WHERE id = ${payment.chargeId} AND "siteId" = ${siteId} FOR UPDATE`;
+        await tx.$queryRaw`SELECT id FROM "Payment" WHERE id = ${paymentId} AND "siteId" = ${siteId} FOR UPDATE`;
+        const previous = await tx.paymentReversal.findUnique({ where: { siteId_idempotencyKey: { siteId, idempotencyKey } } });
+        if (previous) {
+          if (previous.paymentId !== paymentId || previous.reasonCode !== reasonCode) throw new Error("IDEMPOTENCY_CONFLICT");
+          return previous;
+        }
+        if (await tx.paymentReversal.findUnique({ where: { paymentId } })) throw new Error("ALREADY_REVERSED");
+        const result = await tx.paymentReversal.create({ data: { siteId, paymentId, amountKurus: payment.amountKurus, reasonCode, actorId: user.id, idempotencyKey } });
+        await audit(tx, user.id, "PAYMENT_REVERSE", result.id, site.organizationId, siteId);
+        return result;
+      });
+    },
     async collect(siteId: string, chargeId: string, amountKurus: number, idempotencyKey: string, method: "CASH" | "TRANSFER" = "CASH") {
       if (!["CASH", "TRANSFER"].includes(method) || !Number.isInteger(amountKurus) || amountKurus <= 0 || amountKurus > 2147483647 || !idempotencyKey.trim() || idempotencyKey.length > 128) throw new Error("INVALID_PAYMENT");
       return db.$transaction(async tx => {
@@ -75,8 +100,8 @@ export function management(db: PrismaClient, verifySession: SessionVerifier) {
           if (previous.chargeId !== chargeId || previous.amountKurus !== amountKurus || previous.method !== method) throw new Error("IDEMPOTENCY_CONFLICT");
           return previous;
         }
-        const sum = await tx.payment.aggregate({ where: { siteId, chargeId }, _sum: { amountKurus: true } });
-        if ((sum._sum.amountKurus ?? 0) + amountKurus > rows[0].amountKurus) throw new Error("OVERPAYMENT");
+        const payments = await tx.payment.findMany({ where: { siteId, chargeId }, include: { reversal: true } });
+        if (amountKurus > chargeBalance({ amountKurus: rows[0].amountKurus, payments }).remainingKurus) throw new Error("OVERPAYMENT");
         const result = await tx.payment.create({ data: { siteId, chargeId, amountKurus, idempotencyKey, method } });
         await audit(tx, scope.userId, "PAYMENT_COLLECT", result.id, scope.organizationId, siteId);
         return result;

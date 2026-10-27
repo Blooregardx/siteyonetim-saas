@@ -15,3 +15,9 @@ Mevcut Occupancy isim kopyası ve OWNER/TENANT ilişkisi taşır; otomatik kulla
 ## S01-C eklemeli migration
 
 `202610290001_security_audit`: User.emailVerifiedAt nullable (eski kullanıcılar doğrulanmaz), EmailVerification, organizasyon/rol kapsamlı Invitation ve append-only AuditLog ekler. Mevcut finans tabloları veya satırları değiştirilmez. Tokenlar yalnız özetle saklanır. AuditLog üzerindeki UPDATE/DELETE/TRUNCATE trigger'ı DDL yetkisi olmayan uygulama rollerinin geçmişi değiştirmesini engeller; actor/tenant/site/entity alanları geçmiş kimlik referansları olarak kalır. Migration sahibi ve uygulama rolü ayrımı SECURITY-S01C.md içindedir. Migration geri almak için tabloları veya audit geçmişini düşürmek yerine ileri düzeltme hazırlanmalıdır.
+
+## S01-D tam ters kayıt
+
+`202610300001_payment_reversals`: ReversalReason enum, Payment üzerindeki bileşik unique indeksler, PaymentReversal ve immutable Payment/Reversal trigger'ları. `202610300002_reversal_relation_key`: Prisma'nın bire bir bileşik ilişki doğrulaması için reversal tarafında bileşik unique indeks. İlk migration'ın uygulanmış SQL'i değiştirilmeden ikinci eklemeli migration kullanıldı. Eski finans verileri korunur; ters kayıt geriye dönük üretilmez.
+
+Tutar eşitliği ve site kapsamı üç alanlı FK, tek ters kayıt paymentId unique, tekrar anahtarı site/key unique, gerekçe enum ve pozitif tutar/UUID CHECK ile korunur. Finans fixture'ları test bitiminde artık silinmez; yalnız izole test DB'de kalır. Tüm test DB'sinin yeniden oluşturulması ancak açıkça izole geliştirme/test işletimiyle yapılabilir; üretimde reset yoktur.

@@ -51,6 +51,27 @@ test('oturum, sahte kimlik reddi, organizasyon ayrımı ve gerçek kayıt akış
  await submit('occupant',{unitId:'1',name:'Örnek Malik',kind:'Malik',startedAt:'2026-10-01'});
  await submit('charge',{unitId:'1',period:'2026-10',amount:'100',dueDate:'2026-10-31'});
  await submit('payment',{amount:'40',method:'Nakit'}); await expect(page.getByText(/Kısmi ödeme/)).toBeVisible();
+ const member=await db.organizationMembership.findFirstOrThrow({where:{userId:user.id}});
+ await page.getByRole('button',{name:'Ters kayıt oluştur',exact:true}).click();
+ const confirmation=page.getByRole('form',{name:'Ters kayıt onayı'});
+ await expect(confirmation).toContainText('Bu işlem banka veya nakit iadesi yapmaz.');
+ const original=await db.payment.findFirstOrThrow({where:{site:{organizationId:member.organizationId}}});
+ await db.organizationMembership.update({where:{organizationId_userId:{organizationId:member.organizationId,userId:user.id}},data:{role:'MANAGER'}});
+ await confirmation.evaluate(form=>{for(const [name,value] of [['role','ADMIN'],['userId','forged-admin']]){const input=document.createElement('input');input.name=name;input.value=value;form.append(input);}});
+ await confirmation.getByRole('button',{name:'Onayla ve ters kaydet',exact:true}).click();
+ await expect(confirmation.getByRole('status')).toContainText('yetkiniz');
+ expect(await db.paymentReversal.count({where:{paymentId:original.id}})).toBe(0);
+ await page.reload();await expect(page.getByRole('button',{name:'Ters kayıt oluştur',exact:true})).toHaveCount(0);
+ await db.organizationMembership.update({where:{organizationId_userId:{organizationId:member.organizationId,userId:user.id}},data:{role:'ADMIN'}});
+ await page.reload();await page.getByRole('button',{name:'Ters kayıt oluştur',exact:true}).click();
+ await page.getByRole('button',{name:'Vazgeç',exact:true}).click();expect(await db.paymentReversal.count({where:{paymentId:original.id}})).toBe(0);
+ await page.getByRole('button',{name:'Ters kayıt oluştur',exact:true}).click();
+ await page.getByRole('button',{name:'Onayla ve ters kaydet',exact:true}).click();await expect(page.getByRole('note')).toContainText('Ters kaydedildi');
+ const netCard=page.locator('.stats article').filter({has:page.getByText('Net tahsilat',{exact:true})});await expect(netCard.locator('strong')).toHaveText(/0,00/);
+ expect(await db.payment.findUniqueOrThrow({where:{id:original.id}})).toEqual(original);
+ const fullPayment=page.locator('form').filter({has:page.locator('[name="operation"][value="payment"]')});await fullPayment.locator('[name=amount]').fill('100');await fullPayment.getByRole('button',{name:'Kaydet',exact:true}).click();
+ await expect(page.getByText(/ · Ödendi/)).toBeVisible();
+
  const cookies=await page.context().cookies(); const session=cookies.find(c=>c.name==='__Host-siteyonetim'); expect(session?.httpOnly).toBe(true); expect(session?.sameSite).toBe('Lax');
  const other=await db.organization.create({data:{name:'Başka organizasyon',kind:'COMPANY'}});
  await page.goto(`/panel?org=${other.id}`); await expect(page.getByText(/404/)).toBeVisible();

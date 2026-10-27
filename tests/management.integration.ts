@@ -44,17 +44,6 @@ test('organizasyon ayrımı, yetki, kayıtlar ve eşzamanlı tahsilat', async ()
     assert.equal(data.units[0].occupants.length, 2);
     assert.equal(data.charges[0].payments.reduce((sum, p) => sum + p.amountKurus, 0), 10000);
   } finally {
-    // Only records belonging to this unique fixture are removed.
-    await db.payment.deleteMany({ where: { siteId: site.id } });
-    await db.charge.deleteMany({ where: { siteId: site.id } });
-    await db.occupancy.deleteMany({ where: { siteId: site.id } });
-    await db.unit.deleteMany({ where: { siteId: site.id } });
-    await db.block.deleteMany({ where: { siteId: site.id } });
-    await db.membership.deleteMany({ where: { userId: user.id } });
-    await db.site.deleteMany({ where: { id: { in: [site.id, other.id] } } });
-    await db.organizationMembership.deleteMany({ where: { organizationId: organization.id } });
-    await db.organization.delete({ where: { id: organization.id } });
-    await db.user.delete({ where: { id: user.id } });
     await db.$disconnect();
   }
 });

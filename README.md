@@ -27,3 +27,9 @@ Yeni ve mevcut hesaplar e-posta doğrulanmadan yönetim/finans yetkisi kullanama
 E-posta değişimi aynı sayfada mevcut parola ve yeni adrese gönderilen doğrulama ile yapılır; sonrasında yeniden giriş gerekir. Audit loglar iş kayıtlarıyla aynı transaction'da yazılır ve normal uygulama yollarında değiştirilemez.
 
 Bulut DB rolleri, SMTP/HTTPS doğrulaması, giriş limiti sınırları, token temizliği ve yedekleme planı: [S01-C güvenlik belgesi](docs/SECURITY-S01C.md). Tahsilat ters kayıt servisi henüz yoktur; [tasarım ve test planı](docs/PAYMENT-REVERSALS.md).
+
+## S01-D tahsilat ters kaydı
+
+Doğrulanmış organizasyon ADMIN'i /panel tahsilat geçmişinden gerekçe ve onayla tam ters kayıt oluşturabilir. Bu işlem gerçek para iadesi yapmaz; özgün ödeme korunur. Net tahsilat=brüt−ters kayıt; yeniden ödeme kalan borca göre alınır. Finans geçmişi değiştirilemez/silinemez. [Model, kilit sırası ve testler](docs/PAYMENT-REVERSALS.md).
+
+Entegrasyon testleri artık ayrı geçici PostgreSQL LOGIN rolleri ve izole migration şeması oluşturur. Yalnız test ortamındaki test yöneticisi rolü CREATE ROLE/şema/izin yönetimi yetkisine sahip olmalıdır. Bu yetki gerçek runtime hesabına verilmez. Testler finans fixture'larını silmez; sentetik veriler izole DB'de kalır.

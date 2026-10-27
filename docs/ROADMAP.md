@@ -9,3 +9,7 @@ Sonraki aşamalar: banka/kart, SMS/WhatsApp, mobil istemci, yapay zekâ ve otoma
 ## S01-C sonrası güncelleme
 
 E-posta sahipliği, davet/üyelik rolleri, audit ve süre aşımı temizliği kod düzeyinde uygulanmıştır. Öncelikli kalanlar: gerçek bulut DB/SMTP/HTTPS kurulumu, runtime/migration/bakım rollerinin sağlayıcıda uygulanıp test edilmesi, edge saldırı koruması, geri yükleme provası ve izleme. Ters kayıt tasarımı PAYMENT-REVERSALS.md içindedir; servis ve güvenlik testleri ayrı görevdir. S00–S01 kapanışı bu operasyonel doğrulamalar ve kalan temel yönetim ihtiyaçları değerlendirilmeden verilmez.
+
+## S01-D sonrası
+
+Tam ters kayıt, merkezi net bakiye ve izole runtime/migration rol testleri uygulandı. Gerçek sağlayıcıdaki DB rol ayrımı/TLS/bağlantı, SMTP teslimi, edge koruma, yedek/PITR, geri yükleme provası, bakım zamanlayıcısı ve izleme açık kalır. Hatalı ters kaydın telafisi/kısmi ters kayıt ayrı finans tasarımıdır; eski kayıtları değiştirme veya silme çözüm değildir. S00–S01 operasyonel kapanışı henüz verilmez.

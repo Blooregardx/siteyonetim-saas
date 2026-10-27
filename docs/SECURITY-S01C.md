@@ -50,3 +50,11 @@ Eski global 100/15 dakika limiti kaldırıldı; tek saldırganın tüm kullanıc
 Sağlayıcıda şifreli otomatik yedek + PITR seçilmeli; RPO/RTO iş hedefiyle belirlenmeli. Migration öncesi snapshot ve izole ortama geri yükleme provası yapılmalı. Erişimler ayrı operatör rolünde olmalı. Yedek saklama/KVKK süreleri kararlaştırılmalı. Audit arşivi ve erişimleri ayrı tutulmalı. Oturum/token içeren yedekler hassas sayılmalı.
 
 DB bağlantı havuzu, kilit bekleme, transaction hatası, audit yazım hatası, doğrulama/davet teslim hatası, giriş ret oranı ve bakım backlog'u izlenmeli. Finans/audit hataları alarm üretmeli; token veya parola loglanmamalı. Gerçek bulutta yedek/geri yükleme veya alarm doğrulaması yapılmadı.
+
+## S01-D güncellemesi — gerçek rol izin testleri
+
+PaymentReversal yalnız ilgili organizasyon ADMIN'i tarafından, doğrulanmış hesapla yazılır. Payment ve reversal UPDATE/DELETE/TRUNCATE trigger'ları eklendi. Audit korunur. Ayrı LOGIN runtime/migration rol testleri yalnız izole PostgreSQL'de uygulanır; sağlayıcıdaki gerçek rollerin kurulmuş olduğu anlamına gelmez.
+
+Prisma audit INSERT ... RETURNING için artık yalnız id döndürür. Minimum audit izinleri INSERT + SELECT(id)'dir; tüm audit kolonlarının okunması gerekli değildir. Charge/Payment/Organization/User satır kilitleri PostgreSQL'de UPDATE ayrıcalığı da gerektirir. Test runtime rolüne yalnız UPDATE(id) verilir; Payment UPDATE(id) girişimi immutable trigger tarafından reddedilir. Payment/Reversal tutar/gerekçe güncelleme, DELETE/TRUNCATE ve runtime DDL reddi ayrıca test edilir. User/Organization/Charge için UPDATE(id) kilit izni doğrudan SQL yetkisi de içerir; DB sırrı güvenlik sınırı olmaya devam eder, uygulama bu alanları değiştiren uç açmaz.
+
+Ayrı migration rolü CREATE yetkisiyle izole şemada bütün migration'ları çalıştırır; ilk migration CREATE SCHEMA IF NOT EXISTS içerdiğinden testte yalnız migration rolüne test DB CREATE izni de verilir. Runtime bu role üye değildir. Test sonunda yalnız test rol/şema/probe kaynakları kaldırılır; public finans geçmişi silinmez.

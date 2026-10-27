@@ -158,3 +158,79 @@ Gerçek yönetimli PostgreSQL, SMTP teslimi, HTTPS sertifikası, edge IP/bot sı
 S01-C'nin uygulanan güvenlik akışları izole ortamda doğrulandı. **S00–S01 hâlâ kısmen tamamlandı; tam kapanış verilmedi.** Gerçek bulut/rol/edge/geri yükleme doğrulamaları ve kalan temel ihtiyaçlar olmadan tüm kritik koşullar sağlanmış kabul edilmez.
 
 Değişiklikler mevcut dalda commit edilip GitHub'a gönderilir; kesin commit ve uzak CI durumu görev sonu sohbet raporunda doğrulanır. Main'e birleştirme/canlı dağıtım yapılmaz.
+
+---
+
+# S01-D — tahsilat ters kayıt ve finansal tutarlılık
+
+## Sonuç ve başlangıç
+
+Başlangıç yerel/uzak HEAD `4edb9df51d9ff30ad1076a325ac3837fa044792d` ile eşleşti; dal ve temiz çalışma ağacı doğrulandı. Yalnız SiteYonetim üzerinde çalışıldı. S01-D tam ters kayıt servisi, UI, merkezi net bakiye ve sekiz zorunlu güvenlik senaryosu uygulandı. **S00–S01 operasyonel kapanışı hâlâ açık.** Üretim veritabanına erişim veya canlı dağıtım yapılmadı.
+
+## Tamamlanan özellikler
+
+- Özgün Payment korunarak ayrı PaymentReversal oluşturma; ilk sürümde yalnız tam tutar.
+- Zorunlu enum gerekçe, UUID idempotency, kullanıcı ve zaman kaydı.
+- Bir ödeme için tek ters kayıt ve site/tutar eşitliğini zorlayan PostgreSQL kısıtları.
+- Yalnız e-postası doğrulanmış ilgili organizasyon ADMIN erişimi. Eski doğrudan site ADMIN ataması yeterli değil.
+- Organizasyon → Charge → Payment kilit sırası; collect ile aynı borç kilidinin paylaşılması.
+- Reversal ve PAYMENT_REVERSE audit tek transaction; hata rollback, idempotent tekrarda tek audit.
+- Payment/Reversal UPDATE/DELETE/TRUNCATE trigger koruması; mevcut audit koruması sürer.
+- paymentTotals, chargeBalance, financialSummary ile merkezi, güvenli tam sayı kuruş hesabı.
+- Brüt−ters kayıt=net tahsilat; tahakkuk−net=kalan borç. Dashboard, aidat, daire borcu, geçmiş ve yeni ödeme kontrolünde ortak hesap.
+- /panel'de gerekçe, ayrı tutarlı onay, vazgeçme, ters kayıt geçmişi ve güncel net borç. Gerçek banka/nakit iadesi yapılmadığı açıkça yazılır.
+
+## Migration'lar
+
+1. `202610300001_payment_reversals`: enum, Payment bileşik unique indeksleri, PaymentReversal, site/tutar FK, actor FK, pozitif tutar ve UUID CHECK, unique anahtarlar, immutable finans trigger'ları.
+2. `202610300002_reversal_relation_key`: Prisma bire bir bileşik ilişki doğrulaması için reversal tarafı composite unique indeks.
+
+Önceden uygulanmış migration SQL'i değiştirilmedi. Mevcut ödeme/tahakkuk satırları değiştirilmedi; örnek ters kayıt geriye dönük üretilmedi.
+
+## Gerçek test sonuçları
+
+| Kontrol | Sonuç |
+|---|---|
+| Prisma validate / generate | Geçti |
+| Migration deploy / status | Altı migration, güncel |
+| Migration diff --exit-code | Fark yok |
+| ESLint / strict TypeScript | Geçti |
+| Birim testleri | 7/7 |
+| PostgreSQL entegrasyon | 13/13 |
+| Production build | Geçti |
+| Playwright Chromium | 4/4 |
+| git diff --check | Geçti |
+
+Sekiz zorunlu ters kayıt senaryosu ayrı isimli entegrasyon testleri olarak `tests/reversals.integration.ts` içinde çalıştı. Ek kapsam: kısmi tahsilatın tam tersi, sonrasında yeniden ödeme, orijinal Payment nesnesinin birebir korunması, farklı apartman referansı, SQL üzerinden yanlış tutar/enum/UUID/mükerrer kayıt reddi, paralel aynı/farklı anahtarlar, dashboard/daire toplamı, ödeme/ters kayıt yarışı ve audit arıza enjeksiyonu rollback.
+
+Tarayıcı testinde ADMIN onay ve vazgeçme, tutar/iade açıklaması, geçmiş ve net tahsilat, yeniden ödeme, rolü MANAGER'a düşürülen açık formdan istemci role=ADMIN/userId sahteciliğinin reddi ve MANAGER arayüzünde ters kayıt kontrolünün bulunmaması doğrulandı. Eski e-posta, SMTP, parola, davet, organizasyon izolasyonu ve CSRF senaryoları korundu.
+
+## Gerçek DB rol ayrımı testi
+
+İzole PostgreSQL'de iki ayrı rastgele LOGIN rol oluşturuldu: migration ve runtime. İkisi de superuser/createrole değildir. Migration rolü kendine ait geçici şemada Prisma CLI ile altı migration'ın tamamını uyguladı. Runtime rolü yalnız gerekli SELECT/INSERT, kilit için sınırlı UPDATE(id), audit INSERT+SELECT(id) izinleriyle collect ve reversePayment yaptı.
+
+Runtime için Payment tutar UPDATE/DELETE, Payment id UPDATE (trigger), Reversal UPDATE/DELETE, Audit UPDATE/DELETE/TRUNCATE, finans TRUNCATE ve DDL reddi gerçekten çalıştırıldı. Test sonunda yalnız geçici rol/şema/probe kaynakları kaldırıldı. Public şemadaki sentetik finans fixture'ları immutable kaldı. Test DB'si loopback `siteyonetim_test`; gerçek bulut sağlayıcı rol kurulumu hâlâ ayrı iştir.
+
+## Başarısız ilk denemeler ve düzeltmeler
+
+İlk Prisma generate, bire bir composite ilişkinin reversal tarafındaki unique indeks gereksinimi nedeniyle başarısızdı; eski istemciyle yapılan ilk typecheck/entegrasyon da bu nedenle başarısız oldu. İkinci eklemeli migration ve yeniden generate ile giderildi.
+
+İlk runtime testinde Prisma audit INSERT RETURNING için SELECT gerekiyordu. Audit dönüşü yalnız id ile sınırlandırıldı ve runtime'a SELECT(id) verildi. Ayrı migration rolünün ilk migration'daki CREATE SCHEMA komutu için test DB CREATE izni gerektiği gerçek çalıştırmada görüldü; yalnız migration rolüne eklendi. Son rol testinde gerçek migration ve yasak işlem kontrolleri geçti.
+
+İlk ters kayıt tarayıcı genişletmesinde tam ödeme sonrası kaldırılan formun başarı mesajı bekleniyordu; test, kalan borç sıfırlandığında Ödendi durumunu doğrulayacak biçimde düzeltildi. Önceki başarısız çalıştırmalar başarı sayılmadı; son Playwright çalıştırmasında 4/4 geçti. Kötü origin testindeki Invalid Server Actions request beklenen güvenlik reddidir.
+
+## Değişen dosyalar
+
+- Prisma şeması ve iki yeni migration.
+- src/lib/management.ts, finance.ts/finance.test.ts, security.ts; yeni reversals.ts.
+- src/app/panel/page.tsx ve actions.ts; yeni components/reversal-form.tsx.
+- Yeni tests/reversals.integration.ts; mevcut management entegrasyonu ve Playwright senaryoları.
+- README, mimari, DB, güvenlik, özellik, karar, yol haritası, PAYMENT-REVERSALS ve bu rapor.
+
+## Açık riskler ve kapanış
+
+Gerçek banka/nakit iadesi yapılmaz. Kısmi ters kayıt, yanlış ters kaydın telafisi, alacak/fazla ödeme, kart/banka ve gider muhasebesi yoktur. DBA/tablo sahibi trigger'ları kaldırabilir. Runtime DB sırrı hâlâ güvenlik sınırıdır; RLS uygulanmadı. Organizasyon kilidi throughput sınırıdır; büyük portföyler için sayfalama/aggregate ve performans testi gerekir.
+
+Gerçek yönetimli PostgreSQL/TLS/pool bağlantısı, sağlayıcıda runtime/migration/bakım rol kurulumu, gerçek SMTP teslimi/HTTPS, edge koruma, PITR/yedek ve geri yükleme provası, izleme/alarmlar ve bakım zamanlayıcısı açık kalır. İzole rol testinin geçmesi bu operasyonel kurulumların tamamlandığı anlamına gelmez. Önceki temel yönetim eksikleri de otomatik tamamlanmış sayılmadı.
+
+Git commit/push ve uzak CI sonucu sohbet raporunda kesinleştirilir. Main birleştirmesi veya canlı dağıtım yapılmaz. **S00–S01 kısmen tamamlandı olarak korunur.**

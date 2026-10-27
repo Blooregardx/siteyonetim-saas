@@ -20,6 +20,7 @@ model User {
   createdAt   DateTime     @default(now())
   emailVerifiedAt DateTime?
   verifications EmailVerification[]
+  paymentReversals PaymentReversal[]
   passwordHash String?
   sessions Session[]
   resets PasswordReset[]
@@ -104,10 +105,13 @@ model Payment {
   idempotencyKey String
   method         String @default("CASH")
   reference      String?
+  reversal       PaymentReversal?
   site           Site     @relation(fields: [siteId], references: [id], onDelete: Restrict)
   charge         Charge   @relation(fields: [siteId, chargeId], references: [siteId, id], onDelete: Restrict)
 
   @@unique([siteId, idempotencyKey])
+  @@unique([siteId, id])
+  @@unique([siteId, id, amountKurus])
   @@index([siteId, chargeId])
 }
 
@@ -216,5 +220,27 @@ model AuditLog {
   entityId String
   createdAt DateTime @default(now())
   @@index([organizationId, createdAt])
+  @@index([siteId, createdAt])
+}
+
+enum ReversalReason {
+  DUPLICATE_ENTRY
+  WRONG_AMOUNT
+  WRONG_CHARGE
+  ENTRY_ERROR
+}
+model PaymentReversal {
+  id String @id @default(cuid())
+  siteId String
+  paymentId String @unique
+  amountKurus Int
+  reasonCode ReversalReason
+  actorId String
+  createdAt DateTime @default(now())
+  idempotencyKey String
+  payment Payment @relation(fields: [siteId, paymentId, amountKurus], references: [siteId, id, amountKurus], onDelete: Restrict, map: "PaymentReversal_payment_fkey")
+  actor User @relation(fields: [actorId], references: [id], onDelete: Restrict)
+  @@unique([siteId, idempotencyKey])
+  @@unique([siteId, paymentId, amountKurus])
   @@index([siteId, createdAt])
 }
