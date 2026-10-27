@@ -7,3 +7,7 @@ Demo: `/demo` ve `/demo?view=company`, eski panel tasarımı ve açıkça etiket
 Yapılandırma bekleyen: gerçek SMTP ile parola kurtarma teslimi.
 
 Eksik: davet/üyelik ve rol düzenleme ekranı, mevcut kayıt güncelleme/silme, kat alanı, oturum bitiş düzenleme, kişi tekilleştirme, toplu borçlandırma, audit ve ters kayıt. Gelir/gider, rapor, personel ve diğer gelişmiş modüller geliştirme aşamasındadır. Fazla ödeme bilinçli olarak reddedilir.
+
+## S01-C ile güncellenen durum
+
+Önceki eksik listesindeki e-posta doğrulama, davet/üyelik/rol ekranları, audit log ve token temizliği uygulanmıştır. ADMIN/MANAGER/RESIDENT modeli korunur. Yeni ekranlar `/eposta-dogrula`, `/uyeler`, `/davet`. Eski doğrulanmamış hesapların yetkisi aktivasyona kadar engellenir. Finansal ters kayıt hâlâ yalnız belgeli tasarımdır; canlı düzeltme işlevi yoktur.

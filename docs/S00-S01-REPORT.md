@@ -80,3 +80,81 @@ Güncellenen: README.md, docs/ARCHITECTURE.md, bu rapor, .env.example, .gitignor
 ## Git
 
 Değişiklikler mevcut çalışma dalında başlangıç commit'i korunarak hazırlanmıştır. Commit ve push sonuçları görev sonu sohbet raporunda doğrulanır. Main birleştirmesi veya canlı dağıtım yapılmaz.
+
+---
+
+# S01-C — güvenlik ve denetim altyapısı
+
+## Başlangıç ve kapsam
+
+Yerel ve uzak HEAD başlangıçta `ce7ad446f2c6afbc45f185d17f4a68fd8c078941` ile eşleşti; dal `codex/s00-s01-foundation`, çalışma ağacı temizdi. Mevcut değişiklik kaybı veya main birleştirmesi olmadı. Yalnız SiteYonetim deposu kullanıldı. Next.js 16 / strict TypeScript / Prisma 6 / PostgreSQL ve mevcut test/CI mimarisi korundu; yeni servis bağımlılığı eklenmedi.
+
+## Gerçekten uygulananlar
+
+- E-posta doğrulama: 256 bit token, DB'de özet, bir saat süre, oturumdaki kullanıcıyla eşleme, tek kullanımlı transaction, yeniden gönderimde önceki token iptali.
+- Yeni/mevcut hesaplar doğrulanmadan organizasyon oluşturamaz, davetle üyelik kazanamaz veya yönetim/finans işlemi yapamaz. Mevcut kullanıcılar otomatik doğrulanmadı.
+- Adres değişimi: mevcut parola tekrar doğrulanır; yeni adrese kanıt gönderilir; onaylanana kadar eski adres korunur. Onayda emailVerifiedAt güncellenir, oturum/reset tokenları iptal edilir.
+- Organizasyon/rol kapsamlı, 48 saatlik, tek kullanımlı davet; iptal/kabul, rol değişimi ve üye çıkarma servisleri ve Türkçe ekranları.
+- ADMIN tüm rolleri, MANAGER yalnız RESIDENT davet edebilir. Rol değişimi/üyelik kaldırma yalnız ADMIN. Kabul, davetçinin güncel yetkisini de yeniden kontrol eder; mevcut üyelik davetle sessizce yükseltilmez.
+- Son doğrulanmış ADMIN'in kaldırılması/düşürülmesi organizasyon kilidiyle, paralel isteklerde de engellenir. Üyelik kaldırma/rol düşürmede organizasyondaki eski doğrudan site yetkileri temizlenir; açık oturumda sonraki erişim reddedilir.
+- Organizasyon, davet/üyelik, apartman/blok/daire, malik/kiracı, aidat ve tahsilat için transaction içi AuditLog. Kalıcı olay kimliği, actor/organizasyon/site/entity kimliği, tür ve zaman tutulur; parola/token/kişi adı/e-posta loglanmaz.
+- Audit UPDATE/DELETE/TRUNCATE trigger ile engellenir; uygulama mutasyon ucu yoktur. Audit arızasında finansal işlem rollback olur; idempotent tahsilat ek audit üretmez. Eski olaylara geriye dönük uydurma audit eklenmedi.
+- Güvenli SMTP/HTTPS APP_URL doğrulaması; gerçek ortamda SMTPS veya zorunlu STARTTLS. Düz SMTP/HTTP yalnız açıkça izole loopback test DB koşulunda.
+- Global giriş limiti kaldırıldı; hesap/kullanıcı limitleri korundu. Edge koruma gereksinimi ve hedefli kilitleme riski belgelendi.
+- Süresi geçmiş güvenlik kayıtları için --apply gerektiren, tablo başına 1000 kayıtla sınırlı bakım komutu. Audit/finans/davet geçmişi silinmez.
+
+## Migration ve veritabanı
+
+Yeni eklemeli migration: `202610290001_security_audit`.
+
+Eklenenler: User.emailVerifiedAt, EmailVerification, Invitation, AuditLog ve audit değişmezlik trigger'ı. Mevcut finans kayıtlarına UPDATE/DELETE veya veri kaybettiren dönüşüm yoktur.
+
+Yalnız Codex Cloud içindeki bu göreve ait PostgreSQL 17-alpine `siteyonetim-s01c-test`, loopback:55432, `siteyonetim_test` kullanıldı. Dört migration boş izole DB'ye uygulandı; status güncel, Prisma diff fark yok. Gerçek bulut DB/SMTP secret'ları ortamda bulunmadı; bağlantı sonucu uydurulmadı. Üretimde migration/reset/test veya canlı dağıtım yapılmadı.
+
+## Test sonuçları
+
+| Kontrol | Sonuç |
+|---|---|
+| Prisma validate / generate | Geçti |
+| Migration deploy / status | Dört migration uygulandı; güncel |
+| Migration diff --exit-code | Fark yok |
+| ESLint | Geçti |
+| TypeScript | Geçti |
+| Birim testleri | 6/6 geçti |
+| PostgreSQL entegrasyon | 5/5 geçti |
+| Production build | Geçti |
+| Playwright, Chromium | 4/4 geçti |
+| HTTP başlıkları ve CSRF regresyonu | Geçti |
+| git diff --check | Geçti |
+
+Entegrasyon kapsamı: eski finans/tenant regresyonları; e-posta süre sonu, yeniden gönderim ve token tekrar kullanımı; doğrulanmamış organizasyon/aidat/tahsilat/davet reddi; adres değişimi ve oturum iptali; davet kabul/iptal/süre sonu, yanlış e-posta; başka organizasyonda yetki yükseltme reddi; MANAGER rol yükseltme reddi; üyelik iptalinin mevcut oturum callback'iyle erişime etkisi; eski site yetkilerinin temizlenmesi; paralel son-admin düşürme; audit içeriği/değişmezliği; gerçek PostgreSQL trigger arıza enjeksiyonunda aidat ve tahsilat rollback; idempotent tahsilatta tek audit; mükerrer/eşzamanlı tahsilat ve fazla ödeme regresyonu; temizliğin geçerli token ve audit'i koruması.
+
+SMTP uçtan uca kapsamı: yeni kayıt doğrulama ve token tekrar kullanım reddi; yanlış parolayla e-posta değişimi reddi, doğru parola ve yeni adres kanıtı sonrasında oturum iptali; parola reset regresyonu; gerçek UI'dan davet gönderimi, ikinci doğrulanmış hesapla kabul ve açık oturumda üyelik iptali; demo/giriş HTTP başlıkları. SMTP yalnız sentetik yerel test sunucusudur; gerçek sağlayıcı teslimi kanıtı değildir.
+
+İlk davet tarayıcı denemeleri rol alanının tam erişilebilir adını bulamadığı için zaman aşımına uğradı; select için açık aria-label eklendi. Sonraki testlerde başarısız form sonrası temizlenen alanın yeniden doldurulması ve test organizasyon türünün COMPANY seçilmesi düzeltildi. Bunlar başarı olarak sayılmadı; son çalıştırmada dört test geçti. CSRF testinin Invalid Server Actions request logu beklenen reddir. Uzak CI sonucu yerel test başarısından ayrıdır.
+
+## Değişen dosyalar
+
+- `prisma/schema.prisma`, yeni security_audit migration.
+- Yeni `src/lib/accounts.ts`, `security.ts`, `mail.ts`, `mail.test.ts`, `cleanup.ts` ve `scripts/cleanup.ts`.
+- `src/lib/management.ts`, `src/app/auth-actions.ts`, panel sayfası.
+- Yeni eposta-dogrula, uyeler (actions dahil), davet sayfaları; email-form ve member-form bileşenleri.
+- `tests/security.integration.ts`, mevcut management entegrasyonu ve Playwright senaryoları.
+- `package.json` (seri entegrasyon ve bakım komutu); `.env.example`, README ve ilgili mimari/güvenlik/veri/karar/özellik/yol haritası belgeleri.
+- Yeni `docs/SECURITY-S01C.md`, `docs/PAYMENT-REVERSALS.md` ve bu rapor.
+
+## Uygulanmayanlar ve kalan riskler
+
+Ters kayıt servisi uygulanmadı; veri modeli, kilit/net bakiye/idempotency kuralları ve sekiz zorunlu güvenlik testi PAYMENT-REVERSALS.md içinde sonraki görev olarak tasarlandı. Mevcut tahsilatlar doğrudan değiştirilmez/silinmez; uygulamada düzeltme/silme ucu yoktur.
+
+Runtime/migration/bakım DB rol ayrımı ve minimum tablo izinleri belgelendi; gerçek sağlayıcıda kurulmadı/test edilmedi. Testler migration sahibi rolünde çalıştı. Tablo sahibi/DBA audit trigger'ını kaldırabilir; dış değişmez arşiv ve erişim kontrolü ayrıca gerekir. RLS yoktur; runtime DB sırrı güvenlik sınırıdır.
+
+Gerçek yönetimli PostgreSQL, SMTP teslimi, HTTPS sertifikası, edge IP/bot sınırlaması, yedek/PITR ve geri yükleme provası, izleme/alarmlar kurulmadı. Hesap bazlı limit hedefli kilitleme ve rastgele e-posta ile yük riskini tamamen çözmez. MFA yoktur. Organizasyon genel kilidi güvenli ama büyük portföylerde throughput sınırıdır. Audit büyümesi/retention ve token temizliği için operasyonel zamanlayıcı gerekir. Bakım tek batch çalışır; yüksek backlog tekrar/izleme gerektirir.
+
+Önceki aşamadan apartman/daire güncelleme, kat bilgisi, doluluk bitiş düzenleme ve diğer temel yönetim eksikleri sürer. Bu görevin güvenlik odağı dışında genişletilmedi.
+
+## Kapanış ve Git
+
+S01-C'nin uygulanan güvenlik akışları izole ortamda doğrulandı. **S00–S01 hâlâ kısmen tamamlandı; tam kapanış verilmedi.** Gerçek bulut/rol/edge/geri yükleme doğrulamaları ve kalan temel ihtiyaçlar olmadan tüm kritik koşullar sağlanmış kabul edilmez.
+
+Değişiklikler mevcut dalda commit edilip GitHub'a gönderilir; kesin commit ve uzak CI durumu görev sonu sohbet raporunda doğrulanır. Main'e birleştirme/canlı dağıtım yapılmaz.

@@ -15,8 +15,9 @@
     "db:migrate": "prisma migrate dev",
     "db:deploy": "prisma migrate deploy",
     "db:studio": "prisma studio",
-    "test:integration": "tsx --test tests/*.integration.ts",
-    "test:e2e": "playwright test"
+    "test:integration": "tsx --test --test-concurrency=1 tests/*.integration.ts",
+    "test:e2e": "playwright test",
+    "security:cleanup": "tsx scripts/cleanup.ts"
   },
   "repository": {
     "type": "git",

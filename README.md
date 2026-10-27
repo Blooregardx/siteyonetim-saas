@@ -19,3 +19,11 @@ Entegrasyon: yalnızca izole localhost/127.0.0.1 `siteyonetim_test` DB üzerinde
 CI PostgreSQL servisi, migration, birim/entegrasyon/build ve Playwright kontrollerini içerir. Uzak CI sonucu yerel test sonucundan ayrıdır.
 
 [Veri modeli ve geçiş](docs/DATABASE.md), [güvenlik](docs/SECURITY.md), [özellikler](docs/FEATURES.md), [kararlar](docs/DECISIONS.md), [yol haritası](docs/ROADMAP.md).
+
+## S01-C güvenlik güncellemesi
+
+Yeni ve mevcut hesaplar e-posta doğrulanmadan yönetim/finans yetkisi kullanamaz. Kayıttan sonra `/eposta-dogrula` üzerinden SMTP bağlantısını onaylayın. Doğrulama 1 saat, organizasyon daveti 48 saat geçerlidir. Mevcut hesaplara otomatik doğrulama veya demo yetki verilmez. `/uyeler` yetkili davet, rol değişimi ve üyelik iptali ekranıdır; `/davet?token=...` kabulü doğrulanmış hesap gerektirir. Davet edilen kullanıcı önce kayıt/giriş ve doğrulamayı tamamlayıp davet bağlantısını yeniden açmalıdır.
+
+E-posta değişimi aynı sayfada mevcut parola ve yeni adrese gönderilen doğrulama ile yapılır; sonrasında yeniden giriş gerekir. Audit loglar iş kayıtlarıyla aynı transaction'da yazılır ve normal uygulama yollarında değiştirilemez.
+
+Bulut DB rolleri, SMTP/HTTPS doğrulaması, giriş limiti sınırları, token temizliği ve yedekleme planı: [S01-C güvenlik belgesi](docs/SECURITY-S01C.md). Tahsilat ters kayıt servisi henüz yoktur; [tasarım ve test planı](docs/PAYMENT-REVERSALS.md).

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { db } from "@/lib/db";
 import { requireSession, verifySession } from "@/lib/session";
 import { management } from "@/lib/management";
@@ -9,6 +9,8 @@ import { formatMoney } from "@/lib/finance";
 export const dynamic = "force-dynamic";
 export default async function Panel({ searchParams }: { searchParams: Promise<{ org?: string; site?: string }> }) {
  const session = await requireSession();
+ const user = await db.user.findUniqueOrThrow({where:{id:session.userId}});
+ if (!user.emailVerifiedAt) redirect("/eposta-dogrula");
  const params = await searchParams;
  const memberships = await db.organizationMembership.findMany({ where: { userId: session.userId, role: { in: ["ADMIN","MANAGER"] } }, include: { organization: true } });
  const selected = memberships.find(m => m.organizationId === (params.org ?? memberships[0]?.organizationId));
@@ -22,7 +24,7 @@ export default async function Panel({ searchParams }: { searchParams: Promise<{ 
  const total = charges.reduce((s,c) => s+c.amountKurus,0);
  const paid = charges.flatMap(c => c.payments).reduce((s,p) => s+p.amountKurus,0);
  const scope: Record<string,string> = current ? { siteId: current.id } : {};
- return <div className="shell"><aside><Link className="brand" href="/panel">▦ SiteYönetim<span>YÖNETİM PLATFORMU</span></Link><nav><a href="#summary">Genel bakış</a><a href="#organization">Organizasyon / ilk kurulum</a><a href="#sites">Apartmanlar</a><a href="#units">Blok ve daireler</a><a href="#people">Malik ve kiracılar</a><a href="#finance">Aidat ve tahsilat</a><Link href="/demo">Örnek demo</Link></nav></aside>
+ return <div className="shell"><aside><Link className="brand" href="/panel">▦ SiteYönetim<span>YÖNETİM PLATFORMU</span></Link><nav><a href="#summary">Genel bakış</a><a href="#organization">Organizasyon / ilk kurulum</a><a href="#sites">Apartmanlar</a><a href="#units">Blok ve daireler</a><a href="#people">Malik ve kiracılar</a><a href="#finance">Aidat ve tahsilat</a><Link href="/eposta-dogrula">E-posta ve güvenlik</Link><Link href="/uyeler">Çalışanlar ve davetler</Link><Link href="/demo">Örnek demo</Link></nav></aside>
  <main><header><span>Gerçek veriler · PostgreSQL</span><form action={logout}><button>Çıkış yap</button></form></header><section className="heading"><div><p className="eyebrow">YÖNETİM PANELİ</p><h1>{portfolio?.kind === "COMPANY" ? "Şirket portföyü" : "Bireysel yönetici"}</h1><p>{portfolio?.name ?? "İlk organizasyonunuzu oluşturun"}</p></div></section>
  <section id="summary" className="stats">{[["Apartman", sites.length], ["Daire", sites.reduce((s,x)=>s+x.units.length,0)], ["Tahakkuk",formatMoney(total)], ["Tahsilat",formatMoney(paid)], ["Kalan borç",formatMoney(total-paid)]].map(([k,v])=><article key={k}><p>{k}</p><strong>{v}</strong></article>)}</section>
  <section id="organization" className="panel"><h2>Organizasyon seçimi ve ilk kurulum</h2><div className="view-switch">{memberships.map(m=><Link key={m.organizationId} href={`/panel?org=${m.organizationId}`}>{m.organization.name}</Link>)}</div><p>1. Organizasyon oluşturun. 2. Apartman ekleyin. 3. Blok ve daireleri kaydedin.</p><DataForm operation="organization"><label>Organizasyon adı<input name="name" required maxLength={200}/></label><label>Tür<select name="kind"><option value="INDIVIDUAL">Bireysel yönetici</option><option value="COMPANY">Profesyonel şirket</option></select></label></DataForm></section>

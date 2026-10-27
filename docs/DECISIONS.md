@@ -6,3 +6,12 @@
 - Mevcut ADMIN/MANAGER/RESIDENT rolleri geriye uyumlu tutuldu. Ayrıntılı sekiz rol ve davet modeli ayrı yetki tasarımı gerektirir.
 - Eski organizasyonsuz siteler otomatik taşınmaz. Demo `/demo` altında ayrıldı.
 - Ödeme yöntemi eklendi; kuruş, kilit ve idempotency korundu. Fazla ödeme/alacak modeli kapsam dışında.
+
+## S01-C
+
+- E-posta doğrulaması yalnız UI'da değil her servis transaction'ında kontrol edilir; mevcut kullanıcılar otomatik doğrulanmaz.
+- E-posta değişimi önce yeni adrese kanıt gönderir, doğrulama sonrası atomik değişir ve oturumlar iptal olur; son aktif admin gereksiz yere doğrulanmamış duruma düşürülmez.
+- Son aktif ADMIN ve yetki iptali yarışları organizasyon satır kilidiyle korunur. MANAGER yüksek rol davet edemez; rol değişimi yalnız ADMIN'dedir.
+- Audit başarısızlığı kritik iş transaction'ını geri alır; audit operasyon kimliği ile entity kimliği ayrı tutulur. Snapshot kimlik referansları geçmişin silinmemesi için audit FK/cascade bağı değildir.
+- Global giriş limiti kaldırıldı; edge koruma eksikliği açıkça belgelenir.
+- Ters kayıt, net bakiye ve concurrency kuralını birlikte değiştireceği için ayrı finans güvenliği görevi olarak tasarlandı; mevcut Payment değişmez.

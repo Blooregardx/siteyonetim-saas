@@ -9,7 +9,7 @@ if (!url || !['localhost', '127.0.0.1'].includes(new URL(url).hostname) || new U
 const db = new PrismaClient({ datasourceUrl: url });
 test('organizasyon ayrımı, yetki, kayıtlar ve eşzamanlı tahsilat', async () => {
   const suffix = crypto.randomUUID();
-  const user = await db.user.create({ data: { email: `${suffix}@example.invalid`, name: 'Test' } });
+  const user = await db.user.create({ data: { email: `${suffix}@example.invalid`, name: 'Test', emailVerifiedAt: new Date() } });
   const api = management(db, async () => ({ userId: user.id }));
   const organization = await api.createOrganization('Test şirketi', 'COMPANY');
   const site = await api.createSite(organization.id, 'Yetkili site');

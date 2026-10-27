@@ -11,3 +11,7 @@ Alan nullable korunmuştur; yetim kayıtlar silinmez veya tahmine dayalı şirke
 ## Kişi tasarımı
 
 Mevcut Occupancy isim kopyası ve OWNER/TENANT ilişkisi taşır; otomatik kullanıcı hesabı veya erişim hakkı oluşturmaz. Gelecek eklemeli model: organizasyon kapsamlı Person, isteğe bağlı doğrulanmış User bağı, tarihli Ownership ve Occupancy.personId. Bir Person birden çok daireyle ilişkilenebilir. İsim eşitliği kişi birleştirmek için yeterli değildir. Önce nullable personId eklenmeli; operatör doğrulamalı eşleme ve tarih kontrolleri sonrası eski isim alanı kaldırılması ayrı migration olmalıdır. Mülkiyet ve fiili ikamet dönemleri ayrı tutulmalıdır. Bu aşamada kişi birleştirme veya veri kaybettiren dönüşüm uygulanmadı.
+
+## S01-C eklemeli migration
+
+`202610290001_security_audit`: User.emailVerifiedAt nullable (eski kullanıcılar doğrulanmaz), EmailVerification, organizasyon/rol kapsamlı Invitation ve append-only AuditLog ekler. Mevcut finans tabloları veya satırları değiştirilmez. Tokenlar yalnız özetle saklanır. AuditLog üzerindeki UPDATE/DELETE/TRUNCATE trigger'ı DDL yetkisi olmayan uygulama rollerinin geçmişi değiştirmesini engeller; actor/tenant/site/entity alanları geçmiş kimlik referansları olarak kalır. Migration sahibi ve uygulama rolü ayrımı SECURITY-S01C.md içindedir. Migration geri almak için tabloları veya audit geçmişini düşürmek yerine ileri düzeltme hazırlanmalıdır.

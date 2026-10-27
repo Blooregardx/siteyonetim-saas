@@ -5,7 +5,9 @@ import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
 import { hashPassword, checkPassword, digest, token } from "@/lib/password";
 import { cookieName, openSession } from "@/lib/session";
-import nodemailer from "nodemailer";
+import { accounts } from "@/lib/accounts";
+import { verifySession } from "@/lib/session";
+import { mailConfiguration, sendLink } from "@/lib/mail";
 const credentials = z.object({ email: z.string().trim().toLowerCase().email().max(254), password: z.string().min(12).max(128) });
 export type Result = { message: string };
 // Atomic shared database limiter; client-supplied identity never authorizes data access.
@@ -18,7 +20,6 @@ export async function authenticate(_state: Result, form: FormData): Promise<Resu
   if (!parsed.success) return { message: "Geçerli e-posta ve 12–128 karakterli parola girin." };
   const { email, password } = parsed.data;
   try {
-    await limit("auth:global");
     await limit(`auth:${email}`);
     let user;
     if (form.get("mode") === "register") {
@@ -31,6 +32,13 @@ export async function authenticate(_state: Result, form: FormData): Promise<Resu
       if (!user || !valid) return { message: "Giriş bilgileri doğrulanamadı." };
     }
     await openSession(user.id);
+    if (!user.emailVerifiedAt && form.get("mode") === "register") {
+      try {
+        mailConfiguration();
+        const proof = await accounts(db, verifySession).requestVerification();
+        await sendLink(proof.email, "eposta-dogrula", proof.token, "SiteYönetim e-posta doğrulama");
+      } catch { /* Verification page exposes configuration/resend errors without granting access. */ }
+    }
   } catch { return { message: "İşlem tamamlanamadı. Bilgilerinizi kontrol edin veya daha sonra tekrar deneyin." }; }
   redirect("/panel");
 }
@@ -57,15 +65,38 @@ export async function resetPassword(_state: Result, form: FormData): Promise<Res
       return { message: "Parola yenilendi. Giriş yapabilirsiniz." };
     }
     const email = z.string().trim().toLowerCase().email().max(254).parse(form.get("email"));
-    await limit("reset:global");
     await limit(`reset:${email}`);
-    if (!process.env.SMTP_URL || !process.env.APP_URL || !process.env.MAIL_FROM) return { message: "Parola kurtarma için posta servisi henüz yapılandırılmadı." };
+    mailConfiguration();
     const user = await db.user.findUnique({ where: { email } });
     if (user) {
       const rawToken = token();
       await db.passwordReset.create({ data: { tokenHash: digest(rawToken), userId: user.id, expiresAt: new Date(Date.now()+1800000) } });
-      await nodemailer.createTransport(process.env.SMTP_URL).sendMail({ from: process.env.MAIL_FROM, to: email, subject: "SiteYönetim parola yenileme", text: `${process.env.APP_URL}/sifre-sifirla?token=${rawToken}` });
+      await sendLink(email, "sifre-sifirla", rawToken, "SiteYönetim parola yenileme");
     }
     return { message: "Hesap mevcutsa yenileme bağlantısı gönderildi." };
   } catch { return { message: "İşlem tamamlanamadı. Daha sonra tekrar deneyin." }; }
+}
+
+export async function emailAction(_state: Result, form: FormData): Promise<Result> {
+ try {
+  const session = await verifySession();
+  if (!session) throw new Error("UNAUTHENTICATED");
+  const api = accounts(db, verifySession);
+  const raw = form.get("token");
+  if (raw) {
+   await api.confirmEmail(z.string().parse(raw));
+   return { message: "E-posta doğrulandı. Yönetim paneline geçebilirsiniz. Adres değiştiyse yeniden giriş yapın." };
+  }
+  await limit(`verify:${session.userId}`);
+  mailConfiguration();
+  const newEmail = form.get("email");
+  if (newEmail) {
+   const user = await db.user.findUniqueOrThrow({where:{id:session.userId}});
+   const password = z.string().max(128).parse(form.get("password"));
+   if (!user.passwordHash || !await checkPassword(password,user.passwordHash)) throw new Error("REAUTH_REQUIRED");
+  }
+  const proof = await api.requestVerification(newEmail ? z.string().email().parse(newEmail) : undefined);
+  await sendLink(proof.email,"eposta-dogrula",proof.token,"SiteYönetim e-posta doğrulama");
+  return { message: "Doğrulama bağlantısı gönderildi. Önceki bağlantı geçersizdir." };
+ } catch { return { message: "İşlem tamamlanamadı. Bağlantı geçersiz veya süresi dolmuş olabilir; posta ayarlarını kontrol edip yeniden gönderin." }; }
 }

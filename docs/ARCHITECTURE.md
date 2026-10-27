@@ -37,3 +37,7 @@ Tahsilat servisi borcu `FOR UPDATE` ile kilitler, bakiyeyi transaction içinde h
 ## Güncel oturum ve arayüz entegrasyonu
 
 Önceki bölümde ertelenmiş olan gerçek oturum ve Server Actions katmanı artık uygulanmıştır. `session.ts` PostgreSQL Session tablosundaki token özetini ve süreyi doğrular; `management(db, verifySession)` gerçek kullanıcıyı kullanır. `panel/actions.ts` Zod doğrulamalı tüm yazımları aynı yetkili servise yönlendirir. `/panel` organizasyon üyeliğiyle gerçek sayaç, liste ve bakiye üretir. `/demo` bağımsız örnek paneldir. Geçiş ve kişi tasarımı DATABASE.md içinde, güncel sınırlar SECURITY.md ve FEATURES.md içindedir.
+
+## S01-C güvenlik sınırı
+
+`accounts.ts` e-posta doğrulama ve davet/üyelik servisidir. `security.ts` doğrulanmış actor, organizasyon kilidi ve audit yardımcılarını içerir. `management.ts` bütün veri erişimlerinde güncel doğrulama/üyelik kontrolünü uygular. Yetki kaybı açık oturumdan bağımsız olarak sonraki işlemde geçerlidir. Kullanıcı satırı kilidi adres değişimini, organizasyon satırı kilidi yetki değişimini işlemlerle sıraya koyar; tahsilatta buna Charge FOR UPDATE kilidi eklenir. `mail.ts` gerçek ortamda HTTPS ve TLS'yi zorunlu kılar. `cleanup.ts` sabit güvenlik tablolarında sınırlı süre-aşımı temizliği sunar; audit ve finans geçmişine dokunmaz.

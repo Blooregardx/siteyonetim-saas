@@ -18,6 +18,8 @@ model User {
   email       String       @unique
   name        String
   createdAt   DateTime     @default(now())
+  emailVerifiedAt DateTime?
+  verifications EmailVerification[]
   passwordHash String?
   sessions Session[]
   resets PasswordReset[]
@@ -137,6 +139,7 @@ model Organization {
   kind OrganizationKind
   memberships OrganizationMembership[]
   sites Site[]
+  invitations Invitation[]
 }
 
 model OrganizationMembership {
@@ -179,4 +182,39 @@ model AuthAttempt {
   key String @id
   count Int
   expiresAt DateTime
+}
+
+model EmailVerification {
+  tokenHash String @id
+  userId String
+  email String
+  expiresAt DateTime
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId])
+  @@index([expiresAt])
+}
+model Invitation {
+  id String @id @default(cuid())
+  tokenHash String @unique
+  organizationId String
+  email String
+  role Role
+  invitedBy String
+  expiresAt DateTime
+  revokedAt DateTime?
+  acceptedAt DateTime?
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  @@index([organizationId])
+  @@index([expiresAt])
+}
+model AuditLog {
+  id String @id @default(cuid())
+  actorId String
+  organizationId String?
+  siteId String?
+  action String
+  entityId String
+  createdAt DateTime @default(now())
+  @@index([organizationId, createdAt])
+  @@index([siteId, createdAt])
 }
