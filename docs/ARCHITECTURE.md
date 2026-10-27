@@ -45,3 +45,7 @@ Tahsilat servisi borcu `FOR UPDATE` ile kilitler, bakiyeyi transaction içinde h
 ## S01-D finans merkezi
 
 PaymentReversal, immutable ödeme geçmişine bağlı ayrı tam ters kayıttır. `finance.ts` içindeki paymentTotals/chargeBalance/financialSummary canlı finans hesaplarının ortak kaynağıdır. collect ve reversePayment organizasyon→Charge kilidini paylaşır; reversePayment ayrıca Payment kilidi alır. ADMIN doğrulaması ve audit yazımı reversal ile tek transaction'dadır. Dashboard, aidat, daire borcu ve yeni ödeme sınırı brütten reversal çıkarılarak hesaplanır. Ayrıntılı model, yarış davranışı ve test haritası PAYMENT-REVERSALS.md içindedir.
+
+## S02-A ve durum ayrımı
+
+DEVELOPMENT, STAGING ve PRODUCTION bağımsızdır; ertelenen servisler DEFERRED-CLOUD-OPERATIONS.md içinde takip edilir. Yeni `/kayitlar` ekranı mevcut session/management/action katmanını kullanır. Person organizasyon kapsamlı kimlik, Ownership tarihli mülkiyet, Occupancy tarihli kiracılık, User ise yetkili hesaptır. Eski Occupancy satırları korunur; yeni OWNER kayıtları Ownership'e yazılır. Güncellemeler ve dönem kapatmalar mevcut organizasyon kilidi/audit transaction düzenini korur. Kullanım durumu elle yönetilen ayrı operasyonel etikettir.

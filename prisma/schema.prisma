@@ -34,6 +34,7 @@ model Site {
   organization Organization? @relation(fields: [organizationId], references: [id], onDelete: Restrict)
   name          String
   address       String?
+  description String?
   createdAt     DateTime       @default(now())
   memberships   Membership[]
   blocks        Block[]
@@ -41,6 +42,9 @@ model Site {
   charges       Charge[]
   payments      Payment[]
   announcements Announcement[]
+  ownerships Ownership[]
+  personOccupancies Occupancy[]
+  @@unique([organizationId, id])
 }
 
 model Membership {
@@ -58,6 +62,7 @@ model Block {
   id     String @id @default(cuid())
   siteId String
   name   String
+  description String?
   site   Site   @relation(fields: [siteId], references: [id], onDelete: Restrict)
   units  Unit[]
 
@@ -69,6 +74,10 @@ model Unit {
   id      String   @id @default(cuid())
   siteId  String
   blockId String
+  floor Int?
+  sectionType String @default("RESIDENTIAL")
+  usageStatus String @default("UNKNOWN")
+  ownerships Ownership[]
   number  String
   site    Site     @relation(fields: [siteId], references: [id], onDelete: Restrict)
   block   Block    @relation(fields: [siteId, blockId], references: [siteId, id], onDelete: Restrict)
@@ -144,6 +153,7 @@ model Organization {
   memberships OrganizationMembership[]
   sites Site[]
   invitations Invitation[]
+  persons Person[]
 }
 
 model OrganizationMembership {
@@ -157,6 +167,10 @@ model OrganizationMembership {
 }
 
 model Occupancy {
+  organizationId String?
+  personId String?
+  person Person? @relation(fields: [organizationId, personId], references: [organizationId, id], onDelete: Restrict)
+  property Site? @relation(fields: [organizationId, siteId], references: [organizationId, id], onDelete: Restrict)
   id String @id @default(cuid())
   siteId String
   unitId String
@@ -243,4 +257,29 @@ model PaymentReversal {
   @@unique([siteId, idempotencyKey])
   @@unique([siteId, paymentId, amountKurus])
   @@index([siteId, createdAt])
+}
+
+model Person {
+  id String @id @default(cuid())
+  organizationId String
+  name String
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  ownerships Ownership[]
+  occupancies Occupancy[]
+  @@unique([organizationId, id])
+  @@index([organizationId, name])
+}
+model Ownership {
+  id String @id @default(cuid())
+  organizationId String
+  siteId String
+  unitId String
+  personId String
+  startedAt DateTime @db.Date
+  endedAt DateTime? @db.Date
+  person Person @relation(fields: [organizationId, personId], references: [organizationId, id], onDelete: Restrict)
+  property Site @relation(fields: [organizationId, siteId], references: [organizationId, id], onDelete: Restrict)
+  unit Unit @relation(fields: [siteId, unitId], references: [siteId, id], onDelete: Restrict)
+  @@index([siteId, unitId])
+  @@index([organizationId, personId])
 }

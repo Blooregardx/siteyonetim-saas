@@ -71,6 +71,19 @@ test('oturum, sahte kimlik reddi, organizasyon ayrımı ve gerçek kayıt akış
  expect(await db.payment.findUniqueOrThrow({where:{id:original.id}})).toEqual(original);
  const fullPayment=page.locator('form').filter({has:page.locator('[name="operation"][value="payment"]')});await fullPayment.locator('[name=amount]').fill('100');await fullPayment.getByRole('button',{name:'Kaydet',exact:true}).click();
  await expect(page.getByText(/ · Ödendi/)).toBeVisible();
+ await page.goto(`/kayitlar?site=${original.siteId}`);
+ await submit('site-update',{name:'Düzenlenmiş Apartman',address:'Sentetik test adresi',description:'Test açıklaması'});
+ await submit('block-update',{name:'Yeni A',description:'Blok açıklaması'});
+ await submit('unit-update',{number:'12',floor:'3',sectionType:'İş yeri',usageStatus:'Boş'});
+ await page.getByLabel('Daire ara',{exact:true}).fill('12');await page.getByRole('button',{name:'Filtrele',exact:true}).click();await expect(page.getByRole('heading',{name:'Yeni A / Daire 12'})).toBeVisible();
+ await submit('person',{name:'İlişki Test Kişisi'});
+ const relation=page.locator('form').filter({has:page.locator('[name="operation"][value="person-link"]')});
+ const personOption=relation.locator('option').filter({hasText:'İlişki Test Kişisi'});await relation.locator('[name=personId]').selectOption(await personOption.getAttribute('value')??'');
+ await relation.locator('[name=unitId]').selectOption({label:'Yeni A / 12'});await relation.locator('[name=kind]').selectOption('TENANT');await relation.locator('[name=startedAt]').fill('2026-01-01');await relation.getByRole('button',{name:'Kaydet',exact:true}).click();await expect(relation.getByRole('status')).toHaveText('Kayıt başarıyla tamamlandı.');
+ const endForm=page.locator('form').filter({has:page.locator('[name="operation"][value="relation-end"]')}).filter({has:page.locator('[name="kind"][value="TENANT"]')}).first();await endForm.locator('[name=endedAt]').fill('2026-03-31');await endForm.getByRole('button',{name:'Kaydet',exact:true}).click();await expect(endForm).toHaveCount(0);
+ await expect(page.getByText(/İlişki Test Kişisi.*2026-03-31/)).toBeVisible();
+ await page.goto('/panel');
+
 
  const cookies=await page.context().cookies(); const session=cookies.find(c=>c.name==='__Host-siteyonetim'); expect(session?.httpOnly).toBe(true); expect(session?.sameSite).toBe('Lax');
  const other=await db.organization.create({data:{name:'Başka organizasyon',kind:'COMPANY'}});

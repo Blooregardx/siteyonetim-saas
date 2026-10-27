@@ -1,3 +1,4 @@
+import { siteInput, blockInput, unitInput, personInput, dateInput } from "./property-validation";
 import { chargeBalance } from "./finance";
 import { z } from "zod";
 import { actor, audit, organizationAccess, lockOrganization } from "./security";
@@ -17,6 +18,50 @@ export function management(db: PrismaClient, verifySession: SessionVerifier) {
     return { userId: user.id, organizationId: site?.organizationId };
   }
   return {
+    async updateSite(siteId: string, input: unknown) {
+      const data=siteInput.parse(input);
+      return db.$transaction(async tx=>{const scope=await authorize(tx,siteId);const result=await tx.site.update({where:{id:siteId},data});await audit(tx,scope.userId,"SITE_UPDATE",result.id,scope.organizationId,siteId);return result;});
+    },
+    async updateBlock(siteId: string, blockId: string, input: unknown) {
+      const data=blockInput.parse(input);
+      return db.$transaction(async tx=>{const scope=await authorize(tx,siteId);const block=await tx.block.findFirstOrThrow({where:{id:blockId,siteId}});const result=await tx.block.update({where:{id:block.id},data});await audit(tx,scope.userId,"BLOCK_UPDATE",result.id,scope.organizationId,siteId);return result;});
+    },
+    async updateUnit(siteId: string, unitId: string, input: unknown) {
+      const data=unitInput.parse(input);
+      return db.$transaction(async tx=>{const scope=await authorize(tx,siteId);const unit=await tx.unit.findFirstOrThrow({where:{id:unitId,siteId}});const result=await tx.unit.update({where:{id:unit.id},data});await audit(tx,scope.userId,"UNIT_UPDATE",result.id,scope.organizationId,siteId);return result;});
+    },
+    async createPerson(siteId: string, name: string) {
+      const validName=personInput.parse(name);
+      return db.$transaction(async tx=>{const scope=await authorize(tx,siteId);if(!scope.organizationId)throw new Error("ORGANIZATION_REQUIRED");await organizationAccess(tx,scope.userId,scope.organizationId);const result=await tx.person.create({data:{organizationId:scope.organizationId,name:validName}});await audit(tx,scope.userId,"PERSON_CREATE",result.id,scope.organizationId,siteId);return result;});
+    },
+    async linkPerson(siteId: string, unitId: string, personId: string, kind: "OWNER"|"TENANT", start: string) {
+      const startedAt=dateInput.parse(start);z.enum(["OWNER","TENANT"]).parse(kind);
+      return db.$transaction(async tx=>{
+        const scope=await authorize(tx,siteId);if(!scope.organizationId)throw new Error("ORGANIZATION_REQUIRED");
+        await organizationAccess(tx,scope.userId,scope.organizationId);
+        await tx.unit.findFirstOrThrow({where:{id:unitId,siteId}});
+        const person=await tx.person.findFirstOrThrow({where:{id:personId,organizationId:scope.organizationId}});
+        const where={siteId,unitId,personId,OR:[{endedAt:null},{endedAt:{gte:startedAt}}]};
+        const duplicate=kind==="OWNER" ? await tx.ownership.findFirst({where}) : await tx.occupancy.findFirst({where:{...where,kind:"TENANT"}});
+        if(duplicate)throw new Error("OVERLAPPING_RELATION");
+        const data={organizationId:scope.organizationId,siteId,unitId,personId,startedAt};
+        const result=kind==="OWNER" ? await tx.ownership.create({data}) : await tx.occupancy.create({data:{...data,name:person.name,kind:"TENANT"}});
+        await audit(tx,scope.userId,kind==="OWNER"?"OWNERSHIP_CREATE":"TENANCY_CREATE",result.id,scope.organizationId,siteId);return result;
+      });
+    },
+    async endRelation(siteId: string, id: string, kind: "OWNER"|"TENANT", end: string) {
+      const endedAt=dateInput.parse(end);z.enum(["OWNER","TENANT"]).parse(kind);
+      return db.$transaction(async tx=>{
+        const scope=await authorize(tx,siteId);
+        const current=kind==="OWNER"?await tx.ownership.findFirstOrThrow({where:{id,siteId}}):await tx.occupancy.findFirstOrThrow({where:{id,siteId,kind:"TENANT"}});
+        if(current.endedAt||endedAt<current.startedAt)throw new Error("INVALID_RELATION_END");
+        const result=kind==="OWNER"?await tx.ownership.update({where:{id},data:{endedAt}}):await tx.occupancy.update({where:{id},data:{endedAt}});
+        await audit(tx,scope.userId,kind==="OWNER"?"OWNERSHIP_END":"TENANCY_END",id,scope.organizationId,siteId);return result;
+      });
+    },
+    async propertyDetails(siteId: string) {
+      return db.$transaction(async tx=>{const scope=await authorize(tx,siteId);const member=scope.organizationId?await tx.organizationMembership.findUnique({where:{organizationId_userId:{organizationId:scope.organizationId,userId:scope.userId}}}):null;const canReadPeople=member&&["ADMIN","MANAGER"].includes(member.role);return {site:await tx.site.findUniqueOrThrow({where:{id:siteId},include:{blocks:true,units:{include:{occupants:true,ownerships:{include:{person:true}}}}}}),persons:scope.organizationId&&canReadPeople?await tx.person.findMany({where:{organizationId:scope.organizationId},orderBy:{name:"asc"}}):[]};});
+    },
     async createOrganization(name: string, kind: "INDIVIDUAL" | "COMPANY") {
       if (!name.trim() || name.length > 200 || !["INDIVIDUAL", "COMPANY"].includes(kind)) throw new Error("INVALID_ORGANIZATION");
       return db.$transaction(async tx => {
@@ -46,7 +91,7 @@ export function management(db: PrismaClient, verifySession: SessionVerifier) {
     async dashboard(siteId: string) {
       return db.$transaction(async tx => {
         await authorize(tx, siteId);
-        return tx.site.findUniqueOrThrow({ where: { id: siteId }, include: { blocks: true, units: { include: { occupants: true } }, charges: { include: { payments: { include: { reversal: { include: { actor: { select: { name: true } } } } } } } } } });
+        return tx.site.findUniqueOrThrow({ where: { id: siteId }, include: { blocks: true, units: { include: { occupants: true, ownerships: { include: { person: true } } } }, charges: { include: { payments: { include: { reversal: { include: { actor: { select: { name: true } } } } } } } } } });
       });
     },
     async createBlock(siteId: string, name: string) {
@@ -59,7 +104,16 @@ export function management(db: PrismaClient, verifySession: SessionVerifier) {
     },
     async recordOccupant(siteId: string, unitId: string, name: string, kind: "OWNER" | "TENANT", startedAt: Date) {
       if (!name.trim() || name.length > 200 || !["OWNER", "TENANT"].includes(kind) || !Number.isFinite(startedAt.getTime())) throw new Error("INVALID_OCCUPANT");
-      return db.$transaction(async tx => { const scope = await authorize(tx, siteId); const result = await tx.occupancy.create({ data: { siteId, unitId, name: name.trim(), kind, startedAt } }); await audit(tx, scope.userId, "OCCUPANT_CREATE", result.id, scope.organizationId, siteId); return result; });
+      return db.$transaction(async tx => {
+        const scope=await authorize(tx,siteId);if(!scope.organizationId)throw new Error("ORGANIZATION_REQUIRED");
+        await organizationAccess(tx,scope.userId,scope.organizationId);
+        await tx.unit.findFirstOrThrow({where:{id:unitId,siteId}});
+        const person=await tx.person.create({data:{organizationId:scope.organizationId,name:name.trim()}});
+        await audit(tx,scope.userId,"PERSON_CREATE",person.id,scope.organizationId,siteId);
+        const data={siteId,unitId,organizationId:scope.organizationId,personId:person.id,startedAt};
+        const result=kind==="OWNER"?await tx.ownership.create({data}):await tx.occupancy.create({data:{...data,name:person.name,kind}});
+        await audit(tx,scope.userId,"OCCUPANT_CREATE",result.id,scope.organizationId,siteId);return result;
+      });
     },
     async createCharge(siteId: string, unitId: string, period: string, amountKurus: number, dueDate: Date) {
       if (!/^\d{4}-(0[1-9]|1[0-2])$/.test(period) || !Number.isInteger(amountKurus) || amountKurus <= 0 || amountKurus > 2147483647 || !Number.isFinite(dueDate.getTime())) throw new Error("INVALID_CHARGE");

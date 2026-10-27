@@ -234,3 +234,70 @@ Gerçek banka/nakit iadesi yapılmaz. Kısmi ters kayıt, yanlış ters kaydın 
 Gerçek yönetimli PostgreSQL/TLS/pool bağlantısı, sağlayıcıda runtime/migration/bakım rol kurulumu, gerçek SMTP teslimi/HTTPS, edge koruma, PITR/yedek ve geri yükleme provası, izleme/alarmlar ve bakım zamanlayıcısı açık kalır. İzole rol testinin geçmesi bu operasyonel kurulumların tamamlandığı anlamına gelmez. Önceki temel yönetim eksikleri de otomatik tamamlanmış sayılmadı.
 
 Git commit/push ve uzak CI sonucu sohbet raporunda kesinleştirilir. Main birleştirmesi veya canlı dağıtım yapılmaz. **S00–S01 kısmen tamamlandı olarak korunur.**
+
+---
+
+# Bütçe kararı ve S02-A geliştirme raporu
+
+## Güncel durum modeli
+
+| Durum | Sonuç |
+|---|---|
+| DEVELOPMENT — uygulanan S00–S01 temeli | Kod ve izole regresyon testleriyle doğrulandı; tüm ürün backlog'u tamamlandı anlamına gelmez |
+| DEVELOPMENT — S02-A | Bu rapordaki kapsam uygulandı ve izole ortamda doğrulandı |
+| STAGING | Bütçe nedeniyle ertelendi |
+| PRODUCTION | Bütçe nedeniyle ertelendi; canlıya hazır onayı verilmedi |
+
+Önceki operasyonel kapanış bekleyen ifadeler tarihsel raporlardır. Harici servisler artık DEVELOPMENT tamamlanma koşulu değildir; yeni özellikleri bloke etmez. Üretim güvenlik gereksinimleri kaldırılmadı, tek takip belgesi DEFERRED-CLOUD-OPERATIONS.md içine alındı.
+
+## Başlangıç ve ortam
+
+Yerel/uzak dal `codex/s00-s01-foundation`, başlangıç `775bd2ce94619587f28c55496648388f50b82cbd`, çalışma ağacı temizdi. Next.js/TypeScript/Prisma/PostgreSQL mimarisi korundu; yeni ücretli hizmet veya bağımlılık kurulmadı. Yalnız Codex Cloud içindeki sentetik `siteyonetim_test` PostgreSQL 17 ve loopback SMTP test sunucusu kullanıldı. Gerçek e-posta, müşteri verisi, kullanıcı bilgisayarı kurulumu, üretim DB erişimi veya canlı dağıtım yoktur.
+
+## Uygulanan S02-A kapsamı
+
+- Apartman adı/adres/açıklama ve blok adı/açıklama düzenleme.
+- Daire numarası, nullable kat, genişletilebilir bölüm türü/kullanım durumu; mevcut blok/site bağları ve numara unique kısıtı korunur.
+- Numara, blok, kat, tür ve durum filtreli liste; boş durum ve Türkçe doğrulanmış formlar.
+- Organizacion kapsamlı Person; aynı kişi farklı dairelerle, bir daire farklı maliklerle ilişkilendirilebilir. Aynı ada sahip iki kişi ayrı kayıt olarak kalır.
+- Yeni malikler Ownership, kiracı dönemleri Person bağlantılı Occupancy üzerinden tutulur. Panelin hızlı kayıt akışı da yeni normalize modele yazar; mevcut name/kind imzası korunur.
+- Giriş/çıkış, dönem kapatma, sonraki yeni giriş ve geçmişi silmeden gösterme. Kapanmış dönemi yeniden değiştirme reddi. Aynı kişi/daire/tür için çakışma reddi.
+- Eski Occupancy satırları otomatik birleştirilmedi/dönüştürülmedi; kişiyle eşleştirilmemiş eski kayıt olarak gösterilir. Eski kiracı kaydına çıkış verilebilir.
+- Sunucu tarafında e-posta, ADMIN/MANAGER/RESIDENT, organizasyon/site kapsamı ve subrecord kontrolleri; yeni yazımlar audit ile tek transaction'dadır.
+- Ödeme/tahakkuk/ters kayıt model ve kayıtları değiştirilmez; finans regresyonları korunur.
+
+## Migration
+
+`202610310001_property_people`: yeni alanlar, Person/Ownership, composite tenant FK ve tarih/kat kısıtları. Veri silen migration veya ada göre backfill yoktur. Eski tarihler bozulmasın diye Occupancy tarih CHECK'i NOT VALID'dir; yeni yazımlar denetlenir, eski satırlar otomatik düzeltilmez.
+
+Yedi migration test DB'de güncel; Prisma diff fark yok. İzole migration rol testi artık repo migration sayısını dinamik doğrular ve bütün migration'ları geçici şemaya uygular.
+
+## Test sonuçları
+
+| Kontrol | Gerçek sonuç |
+|---|---|
+| Prisma validate / generate | Geçti |
+| Migration deploy / status / diff | Geçti; yedi migration, fark yok |
+| ESLint / TypeScript | Geçti |
+| Birim testleri | 8/8 |
+| PostgreSQL entegrasyon testleri | 16/16 |
+| Production build (derleme kontrolü) | Geçti; PRODUCTION hazır durumu değildir |
+| Playwright Chromium | 4/4 |
+
+Yeni entegrasyon testleri: tenant dışı daire/blok düzenleme reddi, geçersiz kat ve numara çakışması; finans kayıtlarının ve eski audit'lerin korunumu; çoklu daire/çoklu malik; adla birleştirmeme; kiracı çıkış/yeni giriş; eski Occupancy; RESIDENT ve diğer organizasyon ilişki değişikliği reddi; kişi FK kapsamı; güncelleme audit arızasında rollback. Önceki kimlik, SMTP, audit, tahsilat, ters kayıt, concurrency ve gerçek DB rol izin testleri korunur.
+
+Tarayıcıda kayıt/giriş/doğrulama ve finans senaryosu genişletilerek gerçek apartman/blok/daire düzenleme, filtre, kişi bağlama, çıkış ve geçmiş doğrulandı. İlk çalıştırmada test genel relation-end seçicisiyle malik formunu hedefledi; kiracı türüyle açıkça sınırlandırıldı ve son çalıştırma geçti. CSRF testindeki sunucu reddi beklenen davranıştır. Uzak GitHub Actions sonucu yerel kanıtlardan ayrıdır.
+
+## Değişen dosyalar
+
+Prisma şeması/yeni migration; management.ts, property-validation.ts/testi; panel actions/sayfa, globals.css; yeni kayitlar/page.tsx; property.integration.ts, management/reversals entegrasyonları ve Playwright; README, AGENTS, DATABASE, ARCHITECTURE, ROADMAP, FEATURES, bu rapor; yeni DEFERRED-CLOUD-OPERATIONS.md.
+
+## Sınırlamalar ve sonraki görev
+
+Kişi birleştirme/düzenleme, legacy OWNER normalizasyonu, mülkiyet pay oranı, daire blok taşıma/silme ve liste sayfalaması uygulanmadı. Person kimliği resmi kimlik doğrulaması veya kullanıcı hesabı değildir. Kullanım durumu kiracıdan otomatik türetilmez. Tarih aralıkları uçları dahil olduğundan yeni dönem önceki çıkıştan sonraki gün başlar. Birden fazla farklı kiracı ortak kullanım için mümkündür.
+
+Gerçek staging/üretim hizmetleri, DB rollerinin sağlayıcıda kurulumu, edge, yedek/PITR/geri yükleme, izleme ve bakım zamanlayıcısı ertelenmiş ayrı operasyon maddeleridir. Bu erteleme S02-A DEVELOPMENT tamamlanmasını engellemez. Sonraki öneri S02-B toplu aidat dönemi/önizleme/idempotent borçlandırmadır.
+
+Mevcut dalda commit/push yapılır; kesin commit ve CI durumu sohbet raporunda doğrulanır. Main birleştirmesi ve canlı dağıtım yoktur.
+
+Ek kapsam kontrolü: Yalnız doğrudan apartman MANAGER atamasıyla organizasyonun Person rehberine erişim/bağlama reddi de entegrasyon senaryosunda doğrulandı. Yeni genel kişi işlemleri organizasyon üyeliği ister; apartmana ait mevcut ilişki geçmişi korunur.

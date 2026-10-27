@@ -8,3 +8,12 @@
 - Demo veriyi `/panel` içine ekleme; örnekler `/demo` içinde açıkça işaretli kalsın.
 - Secret, gerçek kişi verisi ve SMTP tokenlarını loglama/commit etme.
 - Değişikliklerde lint, typecheck, birim, ilgili entegrasyon, build ve Playwright kontrollerini çalıştır; çalışmayanları raporla.
+
+## Bütçesiz geliştirme kararı
+
+- DEVELOPMENT, STAGING ve PRODUCTION durumlarını ayrı raporla. Staging/production bütçe nedeniyle ertelendi; harici servisleri kod/özellik tamamlanma koşulu yapma.
+- Yalnız Codex Cloud ve mevcut GitHub altyapısıyla çalış. PostgreSQL 17 ve SMTP yalnız izole sentetik test ortamıdır; gerçek e-posta gönderme.
+- Ücretli hesap, alan adı, servis veya dağıtım oluşturma; kullanıcı bilgisayarında kurulum isteme.
+- Ertelenmiş operasyonları docs/DEFERRED-CLOUD-OPERATIONS.md içinde takip et.
+- Kişileri ad eşitliğiyle otomatik birleştirme. Person kimliği, malik Ownership ilişkisi, kiracı Occupancy dönemi ve User hesabı ayrı kavramlardır.
+- Eski Occupancy kayıtlarını ve finans geçmişini koru; yeni/güncelleme yazımlarını audit ile aynı transaction'da yap.

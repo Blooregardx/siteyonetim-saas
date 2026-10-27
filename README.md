@@ -33,3 +33,9 @@ Bulut DB rolleri, SMTP/HTTPS doğrulaması, giriş limiti sınırları, token te
 Doğrulanmış organizasyon ADMIN'i /panel tahsilat geçmişinden gerekçe ve onayla tam ters kayıt oluşturabilir. Bu işlem gerçek para iadesi yapmaz; özgün ödeme korunur. Net tahsilat=brüt−ters kayıt; yeniden ödeme kalan borca göre alınır. Finans geçmişi değiştirilemez/silinemez. [Model, kilit sırası ve testler](docs/PAYMENT-REVERSALS.md).
 
 Entegrasyon testleri artık ayrı geçici PostgreSQL LOGIN rolleri ve izole migration şeması oluşturur. Yalnız test ortamındaki test yöneticisi rolü CREATE ROLE/şema/izin yönetimi yetkisine sahip olmalıdır. Bu yetki gerçek runtime hesabına verilmez. Testler finans fixture'larını silmez; sentetik veriler izole DB'de kalır.
+
+## Bütçe kararı ve S02-A
+
+Geliştirme yalnız GPT Codex Cloud ve mevcut GitHub ile sürer. DEVELOPMENT kod ve izole test kanıtlarını; STAGING gerçek servis entegrasyonunu; PRODUCTION canlı kullanım hazırlığını belirtir. STAGING/PRODUCTION bütçe nedeniyle ertelenmiştir ve yeni geliştirmeyi bloke etmez. Vercel, yönetimli DB, gerçek SMTP, alan adı, üretim dağıtımı veya ücretli operasyon hizmeti bu geliştirme aşamasının koşulu değildir. Tek takip belgesi: [ertelenmiş bulut operasyonları](docs/DEFERRED-CLOUD-OPERATIONS.md).
+
+S02-A: Paneldeki **Apartman, daire ve kişi kayıtlarını düzenle** bağlantısı `/kayitlar?site=...` ekranına gider. Apartman adı/adres/açıklama, blok adı/açıklama, daire numarası/kat/tür/durum düzenlenebilir. Daireler blok, numara, kat, tür ve kullanım durumuyla filtrelenir. Person kayıtları açık seçimle birden çok daireye bağlanır; malik Ownership, kiracı tarihli Occupancy ilişkisidir. Eski kayıtlar korunur, adla birleştirme yapılmaz. Çıkış kaydı geçmişi silmez; yeniden giriş yeni dönemdir.

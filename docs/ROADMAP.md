@@ -13,3 +13,9 @@ E-posta sahipliği, davet/üyelik rolleri, audit ve süre aşımı temizliği ko
 ## S01-D sonrası
 
 Tam ters kayıt, merkezi net bakiye ve izole runtime/migration rol testleri uygulandı. Gerçek sağlayıcıdaki DB rol ayrımı/TLS/bağlantı, SMTP teslimi, edge koruma, yedek/PITR, geri yükleme provası, bakım zamanlayıcısı ve izleme açık kalır. Hatalı ters kaydın telafisi/kısmi ters kayıt ayrı finans tasarımıdır; eski kayıtları değiştirme veya silme çözüm değildir. S00–S01 operasyonel kapanışı henüz verilmez.
+
+## Bütçesiz geliştirme kararı — güncel öncelik
+
+STAGING/PRODUCTION bütçe nedeniyle ertelendi; tek operasyon takip belgesi DEFERRED-CLOUD-OPERATIONS.md. Bunlar yeni DEVELOPMENT özelliklerini durdurmaz. S00–S01 uygulanan kimlik/finans/güvenlik temeli izole kanıtlarla değerlendirilir; tüm ürün backlog'u tamamlandı iddiası değildir.
+
+S02-A: güncelleme/filtreleme, kişi kimliği, ayrı mülkiyet/oturum ve geçmiş koruma. Sonraki öneri S02-B: toplu aidat dönemi, borçlandırma önizlemesi ve idempotent toplu oluşturma; mevcut finans/audit kurallarıyla sentetik testler. Ayrıca sayfalama, kontrollü eski kişi eşleme ve ortaklık payı tasarımı ileride ele alınabilir.

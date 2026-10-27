@@ -12,6 +12,12 @@ export async function save(_state: { message: string }, form: FormData) {
     const get = (key: string) => text.parse(form.get(key));
     const site = () => get("siteId");
     switch (get("operation")) {
+      case "site-update": await api.updateSite(site(),{name:get("name"),address:form.get("address"),description:form.get("description")}); break;
+      case "block-update": await api.updateBlock(site(),get("blockId"),{name:get("name"),description:form.get("description")}); break;
+      case "unit-update": await api.updateUnit(site(),get("unitId"),{number:get("number"),floor:form.get("floor")===""?null:Number(form.get("floor")),sectionType:get("sectionType"),usageStatus:get("usageStatus")}); break;
+      case "person": await api.createPerson(site(),get("name")); break;
+      case "person-link": await api.linkPerson(site(),get("unitId"),get("personId"),z.enum(["OWNER","TENANT"]).parse(form.get("kind")),get("startedAt")); break;
+      case "relation-end": await api.endRelation(site(),get("relationId"),z.enum(["OWNER","TENANT"]).parse(form.get("kind")),get("endedAt")); break;
       case "organization": await api.createOrganization(get("name"), z.enum(["INDIVIDUAL","COMPANY"]).parse(form.get("kind"))); break;
       case "site": await api.createSite(get("organizationId"), get("name")); break;
       case "block": await api.createBlock(site(), get("name")); break;
@@ -26,5 +32,5 @@ export async function save(_state: { message: string }, form: FormData) {
     const message = error instanceof Error ? error.message : "";
     return { message: message === "ALREADY_REVERSED" ? "Bu tahsilat daha önce ters kaydedildi." : message === "IDEMPOTENCY_CONFLICT" ? "İşlem anahtarı farklı içerikle kullanılmış. Sayfayı yenileyin." : message === "OVERPAYMENT" ? "Tutar kalan borcu aşıyor. Fazla ödeme kabul edilmez." : message === "FORBIDDEN" || message === "UNAUTHENTICATED" ? "Bu işlem için yetkiniz veya geçerli oturumunuz yok." : "Kayıt yapılamadı. Alanları ve mükerrer kayıt olasılığını kontrol edin." };
   }
-  revalidatePath("/panel"); return { message: "Kayıt başarıyla tamamlandı." };
+  revalidatePath("/kayitlar"); revalidatePath("/panel"); return { message: "Kayıt başarıyla tamamlandı." };
 }

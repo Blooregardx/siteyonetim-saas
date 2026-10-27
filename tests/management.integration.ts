@@ -41,7 +41,8 @@ test('organizasyon ayrımı, yetki, kayıtlar ve eşzamanlı tahsilat', async ()
     const retries = await Promise.all([api.collect(site.id, charge.id, 4000, 'final'), api.collect(site.id, charge.id, 4000, 'final')]);
     assert.equal(retries[0].id, retries[1].id);
     const data = await api.dashboard(site.id);
-    assert.equal(data.units[0].occupants.length, 2);
+    assert.equal(data.units[0].occupants.length, 1);
+    assert.equal(data.units[0].ownerships.length, 1);
     assert.equal(data.charges[0].payments.reduce((sum, p) => sum + p.amountKurus, 0), 10000);
   } finally {
     await db.$disconnect();

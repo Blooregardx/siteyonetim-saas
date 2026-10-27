@@ -1,4 +1,5 @@
 import { test } from "node:test";
+import { readdirSync } from "node:fs";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import assert from "node:assert/strict";
@@ -111,7 +112,7 @@ test("8 — ayrı LOGIN runtime/migration rolleriyle gerçek izin kısıtları",
   const migrationUrl=new URL(url!);migrationUrl.username=migration;migrationUrl.password=secret;migrationUrl.searchParams.set("schema",migrationSchema);
   await promisify(execFile)(process.execPath,["node_modules/prisma/build/index.js","migrate","deploy"],{env:{...process.env,DATABASE_URL:migrationUrl.toString()},timeout:30000});
   const isolatedMigration=new PrismaClient({datasourceUrl:migrationUrl.toString()});
-  try { const applied=await isolatedMigration.$queryRawUnsafe<{count:bigint}[]>(`SELECT count(*) FROM "${migrationSchema}"."_prisma_migrations" WHERE finished_at IS NOT NULL`);assert.equal(Number(applied[0].count),6); }
+  try { const applied=await isolatedMigration.$queryRawUnsafe<{count:bigint}[]>(`SELECT count(*) FROM "${migrationSchema}"."_prisma_migrations" WHERE finished_at IS NOT NULL`);assert.equal(Number(applied[0].count),readdirSync("prisma/migrations",{withFileTypes:true}).filter(e=>e.isDirectory()).length); }
   finally {await isolatedMigration.$disconnect();}
   await ddl.$executeRawUnsafe(`CREATE TABLE "role_probe_${suffix}" (id INTEGER)`);
   await ddl.$executeRawUnsafe(`DROP TABLE "role_probe_${suffix}"`);
