@@ -49,7 +49,7 @@ def main():
     if tables(TARGET):
         raise RuntimeError("Restore target must have an empty public schema")
     names = tables(SOURCE)
-    if not {"User", "Organization", "Payment", "PaymentReversal", "AuditLog", "_prisma_migrations"}.issubset(names):
+    if not {"User", "Organization", "Payment", "PaymentReversal", "AuditLog", "_prisma_migrations", "FinancialCategory", "FinancialEntry", "FinancialEntryReversal"}.issubset(names):
         raise RuntimeError("Source fixture/migrations missing")
     # Quiesce writers before invoking this drill; the independent pg_dump snapshot
     # is consistent, but before/after hashes intentionally detect concurrent writes.

@@ -12,6 +12,11 @@ export async function save(_state: { message: string }, form: FormData) {
     const get = (key: string) => text.parse(form.get(key));
     const site = () => get("siteId");
     switch (get("operation")) {
+      case "financial-defaults": await api.defaultCategories(site()); break;
+      case "financial-category": await api.createCategory(site(),{type:z.enum(["INCOME","EXPENSE"]).parse(form.get("type")),name:get("name")}); break;
+      case "financial-category-deactivate": await api.deactivateCategory(site(),get("categoryId")); break;
+      case "financial-entry": await api.createEntry(site(),{type:z.enum(["INCOME","EXPENSE"]).parse(form.get("type")),categoryId:get("categoryId"),description:form.get("description") as string,amountKurus:money.parse(form.get("amount")),businessDate:get("businessDate"),method:z.enum(["CASH","TRANSFER"]).parse(form.get("method")),reference:String(form.get("reference")??""),idempotencyKey:get("idempotencyKey")}); break;
+      case "financial-reversal": z.literal("yes").parse(form.get("confirmed")); await api.reverseEntry(site(),get("entryId"),String(form.get("reason")),get("idempotencyKey")); break;
       case "payment-policy": await api.setPartialPaymentsAllowed(site(),z.enum(["true","false"]).parse(form.get("allowed"))==="true"); break;
       case "site-update": await api.updateSite(site(),{name:get("name"),address:form.get("address"),description:form.get("description")}); break;
       case "block-update": await api.updateBlock(site(),get("blockId"),{name:get("name"),description:form.get("description")}); break;
@@ -31,7 +36,7 @@ export async function save(_state: { message: string }, form: FormData) {
     }
   } catch (error) {
     const message = error instanceof Error ? error.message : "";
-    return { message: message === "BALANCE_CHANGED" ? "Kalan borç değişti. Sayfayı yenileyip güncel tutarı kontrol edin." : message === "PARTIAL_PAYMENTS_DISABLED" ? "Kısmi ödeme kapalı. Kalan borcun tamamını tahsil edin; güncel bakiye için sayfayı yenileyin." : message === "ALREADY_REVERSED" ? "Bu tahsilat daha önce ters kaydedildi." : message === "IDEMPOTENCY_CONFLICT" ? "İşlem anahtarı farklı içerikle kullanılmış. Sayfayı yenileyin." : message === "OVERPAYMENT" ? "Tutar kalan borcu aşıyor. Fazla ödeme kabul edilmez." : message === "FORBIDDEN" || message === "UNAUTHENTICATED" ? "Bu işlem için yetkiniz veya geçerli oturumunuz yok." : "Kayıt yapılamadı. Alanları ve mükerrer kayıt olasılığını kontrol edin." };
+    return { message: message === "CATEGORY_EXISTS" ? "Bu tür ve ada sahip kategori zaten var; yeni bir ad kullanın." : message === "INVALID_CATEGORY" ? "Kategori geçersiz veya pasif. Seçiminizi kontrol edin." : message === "BALANCE_CHANGED" ? "Kalan borç değişti. Sayfayı yenileyip güncel tutarı kontrol edin." : message === "PARTIAL_PAYMENTS_DISABLED" ? "Kısmi ödeme kapalı. Kalan borcun tamamını tahsil edin; güncel bakiye için sayfayı yenileyin." : message === "ALREADY_REVERSED" ? "Bu işlem daha önce ters kaydedildi." : message === "IDEMPOTENCY_CONFLICT" ? "İşlem anahtarı farklı içerikle kullanılmış. Sayfayı yenileyin." : message === "OVERPAYMENT" ? "Tutar kalan borcu aşıyor. Fazla ödeme kabul edilmez." : message === "FORBIDDEN" || message === "UNAUTHENTICATED" ? "Bu işlem için yetkiniz veya geçerli oturumunuz yok." : "Kayıt yapılamadı. Alanları ve mükerrer kayıt olasılığını kontrol edin." };
   }
-  revalidatePath("/raporlar"); revalidatePath("/kayitlar"); revalidatePath("/panel"); return { message: "Kayıt başarıyla tamamlandı." };
+  revalidatePath("/gelir-gider"); revalidatePath("/raporlar"); revalidatePath("/kayitlar"); revalidatePath("/panel"); return { message: "Kayıt başarıyla tamamlandı." };
 }

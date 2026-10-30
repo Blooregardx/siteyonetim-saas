@@ -1,3 +1,4 @@
+import { incomeExpenses } from "./income-expenses";
 import { reportBusinessDate, reportInput, ReportInput, reportBalance, reportTotals, safeInteger } from "./reports";
 import { bulkInput, BulkInput, fingerprint, bulkTotal } from "./bulk-charges";
 import { siteInput, blockInput, unitInput, personInput, dateInput } from "./property-validation";
@@ -28,6 +29,7 @@ export function management(db: PrismaClient, verifySession: SessionVerifier) {
     return {rows,conflicts,selectedCount:units.length,newCount:units.length-conflicts.length,totalKurus:bulkTotal(input.amountKurus,units.length-conflicts.length),snapshot:fingerprint({input,units,charges})};
   }
   return {
+    ...incomeExpenses(db,verifySession),
     async previewBulkCharges(raw: BulkInput) {
       const input=bulkInput.parse(raw);
       return db.$transaction(async tx=>{await authorize(tx,input.siteId);return bulkSnapshot(tx,input);});

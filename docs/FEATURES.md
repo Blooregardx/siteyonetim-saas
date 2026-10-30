@@ -1,6 +1,6 @@
 # Güncel özellik durumu
 
-Bu belge S03-B geliştirme dalının kapsamını anlatır; S03-B henüz main’e birleşmiş sayılmaz. S03-A PR #11 ile main’e alındı. PR #9 main geçişini tamamladı; bu üretim hazırlığı anlamına gelmez. Önceki raporlar tarihsel kayıttır.
+Bu belge S03-C geliştirme dalının kapsamını anlatır; S03-C henüz main’e birleşmiş sayılmaz. S03-B PR #12 ile main’e alındı. S03-A PR #11 ile main’e alındı. PR #9 main geçişini tamamladı; bu üretim hazırlığı anlamına gelmez. Önceki raporlar tarihsel kayıttır.
 
 | Alan | Uygulanmış geliştirme kapsamı | Sınır / eksik |
 |---|---|---|
@@ -13,7 +13,7 @@ Bu belge S03-B geliştirme dalının kapsamını anlatır; S03-B henüz main’e
 | Demo | Ayrı `/demo` sayfasında açıkça işaretli örnekler | Gerçek müşteri verisi kullanılmaz |
 | Test | Birim, izole PostgreSQL entegrasyon/rol izinleri ve Playwright akışları | Başarı her commit için ayrıca kontrol edilir |
 
-Gelir/gider, gelişmiş raporlar, personel, banka/kart entegrasyonu ve mobil istemci tamamlanmış özellikler değildir. STAGING/PRODUCTION ertelenmiştir. Ücretsiz kendi sunucusunda barındırma hedefi, kurulumu yapanın altyapı maliyeti olmayacağı garantisi değildir.
+Gelişmiş muhasebe raporları, personel, banka/kart entegrasyonu ve mobil istemci tamamlanmış özellikler değildir. STAGING/PRODUCTION ertelenmiştir. Ücretsiz kendi sunucusunda barındırma hedefi, kurulumu yapanın altyapı maliyeti olmayacağı garantisi değildir.
 
 ## OSS-02 lisans durumu
 
@@ -34,3 +34,9 @@ Mevcut aidatı olan tek daire bile tüm işlemi engeller; seçimden çıkarıp y
 Panelde **Borç ve Tahsilat Raporları** bağlantısı; yetkili organizasyon/apartman, aidat dönemi, ödeme durumu, borç ve vade filtreleri. Ödenmedi/kısmi/tam ödeme ile vade durumu ayrı değerlendirilir. Aidatsız daireler borçlu sayılmaz. Sayfa 25 aidattır; dokuz özet kartı bütün filtre kapsamını gösterir. Kişisel bilgiler rapora alınmaz. Aidat dönemi raporu bugünkü net borcu gösterir; ödeme tarihine göre muhasebe/nakit akışı değildir.
 
 **Tahsilat Ayarları → Kısmi Ödeme Kabulü** varsayılan açık; yalnız doğrulanmış organizasyon ADMIN’i değiştirebilir. MANAGER mevcut politikayı görür. Kapatıldığında yeni ödeme güncel kalan borcun tamamı olmalıdır; eski ödemeler/ters kayıtlar korunur. **Kalan Borcun Tamamını Tahsil Et** tutarı doldurur; bu seçimde bakiye değişmişse sunucu yeni kontrol ister. [Kullanım ve sınırlar](REPORTS-PAYMENT-POLICY.md).
+
+## S03-C — Gelir ve Gider Yönetimi
+
+Panel menüsünden manuel gider/aidat dışı gelir, apartmana özel tür ayrımlı kategoriler, işlem geçmişi ve aylık finans özeti. Varsayılan kategoriler açık kullanıcı işlemiyle eklenir; otomatik production seed yoktur. Kullanılan kategorilerin anlamı değiştirilemez, kategoriler pasifleştirilebilir. Manuel kayıtlar ve ters kayıtlar append-only; gerekçeli/onaylı ters kayıt yalnız organizasyon ADMIN’i, giriş ADMIN/MANAGER tarafından yapılır.
+
+Rapor Payment ve PaymentReversal kaynaklarını okur, aidat tahsilatını manuel gelire kopyalamaz. Charge nakit sayılmaz. Ters kayıt kendi ayına karşı hareket olarak yazılır. Europe/Istanbul zaman damgası gruplaması, açık manuel iş tarihi, sunucuda 25 satır ve tam filtre toplamları. [Kullanım ve sınırlamalar](INCOME-EXPENSES.md). Banka bakiyesi, resmî muhasebe, depozito/teminat veya açılış bakiyesi modülü değildir.

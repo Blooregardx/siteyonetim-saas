@@ -29,6 +29,8 @@ model User {
 }
 
 model Site {
+  financialCategories FinancialCategory[]
+  financialEntries FinancialEntry[]
   partialPaymentsAllowed Boolean @default(true)
   paymentPolicyChanges PaymentPolicyChange[]
   bulkChargeOperations BulkChargeOperation[]
@@ -313,4 +315,61 @@ model PaymentPolicyChange {
  createdAt DateTime @default(now())
  site Site @relation(fields: [organizationId, siteId], references: [organizationId, id], onDelete: Restrict)
  @@index([siteId, createdAt])
+}
+
+enum FinancialEntryType {
+ INCOME
+ EXPENSE
+}
+model FinancialCategory {
+ id String @id @default(cuid())
+ organizationId String
+ siteId String
+ type FinancialEntryType
+ name String
+ nameKey String
+ active Boolean @default(true)
+ createdAt DateTime @default(now())
+ site Site @relation(fields:[organizationId,siteId],references:[organizationId,id],onDelete:Restrict)
+ entries FinancialEntry[]
+ @@unique([organizationId,siteId,type,id])
+ @@unique([siteId,type,nameKey])
+}
+model FinancialEntry {
+ id String @id @default(cuid())
+ organizationId String
+ siteId String
+ type FinancialEntryType
+ categoryId String
+ description String
+ amountKurus Int
+ businessDate DateTime @db.Date
+ method String
+ reference String
+ actorId String
+ idempotencyKey String
+ requestHash String
+ createdAt DateTime @default(now())
+ site Site @relation(fields:[organizationId,siteId],references:[organizationId,id],onDelete:Restrict)
+ category FinancialCategory @relation(fields:[organizationId,siteId,type,categoryId],references:[organizationId,siteId,type,id],onDelete:Restrict)
+ reversal FinancialEntryReversal?
+ @@unique([siteId,idempotencyKey])
+ @@unique([organizationId,siteId,id,amountKurus])
+ @@index([siteId,businessDate])
+ @@index([organizationId,businessDate])
+}
+model FinancialEntryReversal {
+ id String @id @default(cuid())
+ organizationId String
+ siteId String
+ entryId String @unique
+ amountKurus Int
+ reason String
+ actorId String
+ idempotencyKey String
+ createdAt DateTime @default(now())
+ entry FinancialEntry @relation(fields:[organizationId,siteId,entryId,amountKurus],references:[organizationId,siteId,id,amountKurus],onDelete:Restrict)
+ @@unique([siteId,idempotencyKey])
+ @@unique([organizationId,siteId,entryId,amountKurus])
+ @@index([siteId,createdAt])
 }

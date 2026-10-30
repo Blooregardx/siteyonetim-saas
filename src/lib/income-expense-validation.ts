@@ -1,0 +1,9 @@
+import { z } from 'zod';
+export const entryTypes={INCOME:'Diğer gelir',EXPENSE:'Gider'} as const;
+export const defaultCategories={INCOME:['Ortak alan kullanım geliri','Reklam geliri','Faiz geliri','Diğer gelirler'],EXPENSE:['Elektrik','Su','Temizlik','Asansör bakım','Genel bakım ve onarım','Personel','Bahçe ve çevre düzenlemesi','Yönetim ve ofis giderleri','Diğer giderler']} as const;
+export const categoryInput=z.object({type:z.enum(['INCOME','EXPENSE']),name:z.string().trim().min(2).max(100).transform(v=>v.normalize('NFKC').replace(/\s+/g,' '))}).refine(v=>v.type!=='INCOME'||!/(aidat|depozito|teminat)/u.test(v.name.toLocaleLowerCase('tr-TR')),'Aidat, teminat ve depozito manuel gelir değildir.');
+export const categoryKey=(name:string)=>name.toLocaleLowerCase('tr-TR');
+export const entryInput=z.object({type:z.enum(['INCOME','EXPENSE']),categoryId:z.string().min(1),description:z.string().trim().min(3).max(1000),amountKurus:z.number().int().positive().max(2147483647),businessDate:z.string().date().regex(/^[1-9]\d{3}-/),method:z.enum(['CASH','TRANSFER']),reference:z.string().trim().max(200).default(''),idempotencyKey:z.string().uuid()});
+export const movementInput=z.object({organizationId:z.string().min(1),siteId:z.string().min(1).optional(),month:z.string().regex(/^[1-9]\d{3}-(0[1-9]|1[0-2])$/),type:z.enum(['ALL','DUES','INCOME','EXPENSE']).default('ALL'),categoryId:z.string().min(1).optional(),method:z.enum(['ALL','CASH','TRANSFER']).default('ALL'),page:z.number().int().min(1).max(1000000).default(1)});
+export function signedKurus(value:bigint){const n=Number(value);if(!Number.isSafeInteger(n))throw new Error('UNSAFE_FINANCIAL_TOTAL');return n;}
+export function movementSummary(dues:bigint,income:bigint,expense:bigint){return {duesKurus:signedKurus(dues),incomeKurus:signedKurus(income),totalIncomeKurus:signedKurus(dues+income),expenseKurus:signedKurus(expense),netKurus:signedKurus(dues+income-expense)};}
