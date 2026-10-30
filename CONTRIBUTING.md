@@ -2,9 +2,9 @@
 
 Katkılar belgeler, erişilebilirlik, çeviri, sentetik testler ve kod incelemesi dahil değerlidir. Önce [topluluk ilkelerini](CODE_OF_CONDUCT.md), [güvenlik politikasını](SECURITY.md) ve [AGENTS](AGENTS.md) kurallarını okuyun.
 
-## Lisans geçişi
+## Katkı lisansı
 
-Lisans henüz seçilmedi; PUBLIC depo otomatik yeniden kullanım izni değildir. Lisans kararı sonuçlanana kadar dış katkılar bakımcı tarafından bekletilebilir. Yalnız hak sahibi olduğunuz içeriği gönderin; üçüncü taraf kodun kaynağını ve lisansını belirtin. Bu rehber telif devri veya CLA değildir; katkı lisansı bakımcı kararıyla ayrıca netleştirilecektir.
+Projenin özgün kodu ve belgeleri AGPL-3.0-only altındadır. Birleştirilmek üzere gönderdiğiniz katkıyı da AGPL-3.0-only altında sağladığınızı belirtin. Yalnız lisanslama yetkiniz olan içeriği gönderin; üçüncü taraf kaynakları ve lisanslarını açıklayın, özgün bildirimlerini koruyun. Bakımcı uyumsuz veya yetkisi belirsiz içeriği birleştirmez. Telif devri/CLA talep edilmez; katkıcı kendi haklarını korur. Bu kural geçmişte başka kişilerin verdiği hakları geriye dönük değiştirmez. [Lisans rehberi](docs/LICENSING.md).
 
 ## İş ve PR akışı
 

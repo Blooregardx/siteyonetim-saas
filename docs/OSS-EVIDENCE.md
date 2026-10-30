@@ -48,3 +48,21 @@ Bu sonuçlar yeni GitHub CI çalışmasının yerine geçmez; PR kontrolleri ayr
 OSS-01'in `eae64e3` commitine ait [PR CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/40987146798) ve [push CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/40987123938) başarılıdır. Bunlar OSS-01B commitinin CI sonucu yerine kullanılmaz; yeni sonuç PR #7 üzerinde ayrıca doğrulanır.
 
 OSS-01B yalnız SECURITY, GitHub ayarları, yol haritası ve bu kanıt belgesini günceller. Uygulama, workflow, bağımlılıklar, migration ve test kaynakları değişmez. LICENSE oluşturulmaz; lisans kullanıcı kararı bekler. İlk topluluk sürümü, zorunlu CI ve bağımsız kurulum/geri yükleme doğrulaması açık kalır. Bu hazırlık PR'sinin birleştirilebilirliği, başvuru/üretim hazırlığından ayrı değerlendirilir.
+
+## Güncel OSS-02 — 30 Ekim 2026
+
+PR #7 geliştirme dalına `fe75208b5592124f91d846ac085f7df59fc615bd` commit'iyle birleştirildi. OSS-02 bu güncel tabandan ayrı dalda hazırlanır. Kullanıcı commitlerdeki eski yazar hesabının da kendisine ait olduğunu doğruladı ve AGPL-3.0-only lisanslamasını onayladı. Güncel bakımcı kimliği Blooregardx'tir; eski commitler değiştirilmez. Yukarıdaki lisans bekleme ifadeleri yalnız OSS-01/OSS-01B tarihsel kayıtlarıdır.
+
+LICENSE GNU resmî metnidir; COPYRIGHT ve package metaverisi AGPL-3.0-only seçimini belirtir. Bağımlılık incelemesi THIRD-PARTY-LICENSES.md ve CSV envanterindedir. PR #7 dışındaki birleştirilmiş dış katkı PR'si incelemede görülmedi. Uygulama özellikleri ve DB şeması değişmez. Son OSS-02 test/CI sonuçları yeni PR'de doğrulanır; önceki başarılar yeni commitin kanıtı sayılmaz.
+
+Main-protection korunur; zorunlu CI kontrolü henüz eksiktir. OSS-02 PR'sinin geliştirme dalına alınması sonrası main geçişi ayrı PR olmalıdır. Sıfırdan ve mevcut main şemasından yükseltme, 16 entegrasyon, 4 E2E ve build kanıtları son birleşecek commit için kontrol edilmelidir. Geçmiş migration dosyaları değiştirilmez, reset/seed/production deploy yapılmaz.
+
+Başvuru öncesi kalanlar: OSS-02 lisanslı PR'nin birleşmesi, main geçişinin ayrı incelemesi, zorunlu CI, ilk topluluk sürümü ve doğrulanabilir bakım/kullanım kanıtlarının büyümesi. Bağımsız self-host/yedekten dönüş ve üretim işletimi doğrulanmış değildir. Ücretli altyapı başvuru şartı değildir; başvuru yapılmış veya kabul edilmiş sayılmaz.
+
+### OSS-02 yerel doğrulama
+
+30 Ekim 2026: ESLint/TypeScript, 8 birim, 16 PostgreSQL entegrasyon, 4 Playwright E2E, Prisma generate/validate ve production build başarılı. Temiz test DB'sinde 7 migration uygulandı. Ayrı test şemasında main'in ilk migration'ı ve sentetik eski kullanıcı/site kayıtları oluşturuldu; ilk migration baseline olarak işaretlenip kalan 6 migration uygulandı. Kullanıcı/site korundu, eski hesaba otomatik e-posta doğrulaması verilmedi. Bu sınırlı yükseltme provası tüm gerçek veri şekillerinin testi değildir.
+
+LICENSE resmî GNU metniyle bayt düzeyinde eşit: SHA-256 `0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0`. İkinci indirme kontrolünde geçici HTTP 503 alındı; yeniden denemede karşılaştırma başarılı oldu. SPDX ve 479 kayıtlık CSV/kilit eşleşmesi, değişmeyen bağımlılık grafiği, Markdown bağlantıları ve diff whitespace doğrulandı. npm audit 0 bildirim döndürdü; bu kapsamlı güvenlik garantisi değildir. Tam paket/platform dağıtım uyumu için üçüncü taraf belgesindeki release kontrolleri açık kalır.
+
+.mailmap kontrolü eski yazar kimliğini Blooregardx'e eşler; ham commit SHA/yazar metaverisi değişmez. GitHub'ın eski commit/PR önbelleği veya Contributors görünümünden diğer hesabın tamamen silindiği iddia edilmez. Kullanıcı geçmiş yazımına izin vermiştir; main koruması ve ayrı main PR sınırları nedeniyle bu OSS-02 geçmişi yeniden yazmaz.

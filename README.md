@@ -2,7 +2,9 @@
 
 Site ve apartman yönetimi için ücretsiz, topluluk katkılarına açık ve kendi sunucusunda barındırılabilir yazılım geliştirme projesi. Depo PUBLIC kalır; ticari abonelik veya ücretli lisans modeli planlanmaz. Next.js App Router, React, strict TypeScript, PostgreSQL ve Prisma 6 mimarisi korunur.
 
-> Açık kaynak lisansı henüz seçilmedi. PUBLIC görünürlük tek başına kullanım/dağıtım lisansı vermez. LICENSE eklenene kadar proje lisanslı açık kaynak sürümü olarak sunulmaz. [Lisans değerlendirmesi](docs/LICENSING.md).
+> **Lisans: AGPL-3.0-only.** Bu yazılımı çalıştırabilir, inceleyebilir, değiştirebilir ve lisans koşullarıyla paylaşabilirsiniz. Değiştirilmiş ağ sürümünüzün kullanıcılarına karşılık gelen kaynak kodunu ücretsiz edinme olanağı sunun; dağıtım yükümlülüklerini de koruyun. [Tam lisans](LICENSE), [haklar ve yükümlülükler](docs/LICENSING.md), [üçüncü taraf bileşenler](docs/THIRD-PARTY-LICENSES.md).
+
+Bakımcı: [Blooregardx](https://github.com/Blooregardx). Yazılım ücretsizdir; sunucu barındırma hizmeti veya ücretsiz altyapı garantisi verilmez.
 
 ## Güncel durum
 
