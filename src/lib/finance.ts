@@ -17,7 +17,14 @@ export function summarize(charges: Charge[], today: string) {
     return result;
   }, { totalKurus: 0, collectedKurus: 0, outstandingKurus: 0, overdueKurus: 0 });
 }
-export const formatMoney = (kurus: number) => new Intl.NumberFormat("tr-TR", { style: "currency", currency: "TRY", maximumFractionDigits: 2 }).format(kurus / 100);
+const moneyFormatter = new Intl.NumberFormat("tr-TR", { style: "currency", currency: "TRY", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+export function formatMoney(kurus:number){
+ if(!Number.isSafeInteger(kurus))throw new RangeError("Geçersiz finansal tutar.");
+ const value=BigInt(kurus),negative=value<0n,absolute=negative?-value:value,whole=absolute/100n;
+ // Format the whole lira as BigInt; replace only the fraction to preserve every kuruş.
+ const formattedWhole=negative?(whole===0n?-0:-whole):whole;
+ return moneyFormatter.formatToParts(formattedWhole).map(part=>part.type==="fraction"?String(absolute%100n).padStart(2,"0"):part.value).join("");
+}
 
 export type Receipt = { amountKurus: number; reversal?: { amountKurus: number } | null };
 function addKurus(a: number, b: number) {

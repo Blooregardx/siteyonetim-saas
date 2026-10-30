@@ -9,9 +9,10 @@
 - OpenAI Codex for Open Source başvurusu kullanıcı tarafından gönderildi; kabul sonucu bekleniyor. Başvuru, kabul veya destek kazanıldığı anlamına gelmez.
 - S03-A toplu aidat özelliği [PR #11](https://github.com/Blooregardx/siteyonetim-saas/pull/11) ile main’e alındı (`bcab0726dde148bdc0bd166b4a50ff6a1493df87`). Mevcut v0.1.0-alpha.1 ön sürümünün parçası değildir.
 - S03-B, [PR #12](https://github.com/Blooregardx/siteyonetim-saas/pull/12) ile main’e birleşti (`6798df1518e15212dd0da2bcfc6cf6f5e183b890`); Europe/Istanbul vade günü düzeltmesi dahildir.
-- S03-C: gelir/gider, kategori yönetimi, immutable manuel hareket/ters kayıt ve aylık hareket raporu geliştirme dalında uygulanır; main’e birleşme ayrı inceleme gerektirir.
+- S03-C, [PR #13](https://github.com/Blooregardx/siteyonetim-saas/pull/13) ile main’e birleşti (`f8b2ff1b6857c8a1e22dae3a04704e2c8bed15b0`).
+- S03-D geliştirme dalı: güvenli ve sınırlı CSV, 3/6/12 aylık karşılaştırma, paylaşılan rapor sorguları ve sentetik performans kanıtları; main’e birleşme ayrı inceleme gerektirir.
 
-Güncel sonraki adım S03-C değişikliklerinin incelenmesidir. Bağımsız kurulum geri bildirimi, üretim güvenliği/işletim doğrulamaları ve kapasite ölçümü açık kalır. Yeni başvuru gönderimi veya yeni release oluşturma bu belge düzeltmesinin kapsamında değildir.
+Güncel sonraki adım S03-D değişikliklerinin incelenmesidir. Bağımsız kurulum geri bildirimi, üretim güvenliği/işletim doğrulamaları ve kapasite ölçümü açık kalır. Yeni başvuru gönderimi veya yeni release oluşturma bu belge düzeltmesinin kapsamında değildir.
 
 ## Tarihsel OSS-04 hazırlık kaydı
 
@@ -36,4 +37,6 @@ Tarihsel S00/S01 raporları ve OSS-EVIDENCE aşama kayıtları korunur; güncel 
 
 S03-A sınırı: iki aşamalı, çakışmada tümü reddedilen toplu aidat PR #11 ile main’e birleşti. Bu çalışma mevcut alpha etiketi ve sürümü değiştirmez; yeni sürüm yayımlamaz.
 
-S03-B aidat dönemi borç raporudur. S03-C ödeme/işlem tarihine göre aylık hareket raporunu ekler. Sonraki işler: büyük portföy kapasite ölçümü, derin sayfalama ve CSV. Mevcut panelin tüm aidat geçmişini yüklemesi ayrı performans borcudur. Kısmi ters kayıt ve üretim dağıtımı kapsam dışıdır.
+S03-B aidat dönemi borç raporudur. S03-C ödeme/işlem tarihine göre aylık hareket raporunu ekler. S03-D CSV ve ilk sentetik rapor ölçümlerini ekler; sonraki işler daha geniş/çoklu kullanıcı yükü ve derin sayfalama tasarımıdır. Mevcut panelin tüm aidat geçmişini yüklemesi ayrı performans borcudur. Kısmi ters kayıt ve üretim dağıtımı kapsam dışıdır.
+
+S03-D sonrası öncelik: panelin tüm geçmişi yükleyen dashboard() akışının ayrı, tam özetli ve geçmiş erişimini koruyan sayfalanmış tasarımı. Sentetik 1.000/10.000 daire provalarında mevcut panel başarısız oldu; limitleri yükseltmek veya geçmişi sessiz kesmek çözüm olarak uygulanmadı. [Ölçüm ve sınırlar](FINANCIAL-EXPORT-PERFORMANCE.md).
