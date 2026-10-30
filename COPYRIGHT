@@ -1,0 +1,11 @@
+SiteYönetim
+Copyright (C) 2026 Blooregardx
+SPDX-License-Identifier: AGPL-3.0-only
+
+This project's original code and documentation are licensed under the GNU
+Affero General Public License, version 3 only. See LICENSE for the full text.
+No later-version option or additional commercial license is granted here.
+
+This software is provided without warranty; see LICENSE sections 15 and 16.
+Third-party components remain under their respective licenses and copyright
+notices. See docs/THIRD-PARTY-LICENSES.md and docs/DEPENDENCY-LICENSES.csv.

@@ -1,6 +1,6 @@
 # Kendi sunucusunda kurulum ve işletim
 
-Hedef ücretsiz kendi sunucusunda barındırmadır. Lisans seçimi bekleniyor; bu rehber kullanım lisansı vermez. Erken geliştirme sürümü için teknik yol gösterir, canlı kullanım onayı değildir. Yazılım aboneliği planlanmaz; sunucu/e-posta/alan adı masrafları işletmeciye göre değişebilir. Bu görev herhangi bir servis kurmaz.
+Hedef ücretsiz kendi sunucusunda barındırmadır. Lisans AGPL-3.0-only; [tam metin](../LICENSE) ve [yükümlülükler](LICENSING.md) geçerlidir. Erken geliştirme sürümü için teknik yol gösterir, canlı kullanım onayı değildir. Yazılım aboneliği planlanmaz; sunucu/e-posta/alan adı masrafları işletmeciye göre değişebilir. Bu görev herhangi bir servis kurmaz.
 
 ## Gereksinimler ve yapılandırma
 
@@ -33,3 +33,9 @@ Güncellemeden önce şifreli yedek alın ve izole geri yüklemeyi doğrulayın.
 Token temizliği için ayrı sınırlı rol ve zamanlayıcı gerekir; `npm run security:cleanup` varsayılan inceleme, `-- --apply` yazma modudur. Finans/audit silinmez. Parola/token içeren loglar tutulmaz. Saklama, erişim ve olay müdahalesi işletmeci sorumluluğudur.
 
 MFA, güvenilir IP/bot koruması, kapasite/alarmlar ve gerçek sağlayıcı testleri tamamlanmadı. [Ertelenmiş operasyonlar](DEFERRED-CLOUD-OPERATIONS.md) ücretli sağlayıcı zorunluluğu değildir; kendi altyapısında da karşılanması gereken güvenlik işleridir.
+
+## Kaynak sağlama
+
+Değiştirilmiş ağ sürümünü çalıştırıyorsanız uzaktan etkileşen tüm kullanıcılara o sürümün karşılık gelen kaynak kodunu ücretsiz edinme olanağını belirgin biçimde sunun (§13). Genel upstream bağlantısı, yerel değişiklikleri ve gereken derleme/kurulum betiklerini içermiyorsa yeterli değildir. İşletmeci kaynak arşivini kendi erişilebilir adresinde, sürüm/commit ile eşleştirerek sağlayabilir. Bu görev arayüz özelliği eklemez; kaynak sunumu işletim kontrol listesine dahildir. Sırları, kişisel verileri ve gerçek .env dosyasını kaynak paketine eklemeyin.
+
+Kopya veya binary/konteyner dağıtırken §§4–6, üçüncü taraf bildirimleri ve ilgili LGPL/MPL koşulları da değerlendirilmelidir. Yazılım ücretsizdir; sunucu/SMTP/depolama hizmetlerinin ücretsiz olması garanti edilmez. Üretim hazırlığı ayrıca doğrulanmalıdır.

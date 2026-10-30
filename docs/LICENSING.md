@@ -1,22 +1,25 @@
-# Lisans değerlendirmesi — karar verilmedi
+# Lisans — AGPL-3.0-only
 
-OSS-01 LICENSE oluşturmaz ve lisans seçmez. Hedef ücretsiz, topluluk katkılarına açık ve kendi sunucusunda barındırılabilir özgür yazılımdır. PUBLIC görünürlük lisans yerine geçmez. Ücretli abonelik/lisans satışı planlanmaz.
+SPDX-License-Identifier: AGPL-3.0-only
 
-| Konu | MIT | Apache-2.0 | AGPL-3.0 |
-|---|---|---|---|
-| Kullanım, değiştirme, kendi sunucusunda çalışma | İzin verir | İzin verir | İzin verir |
-| Başkalarının ticari kullanımı | İzin verir | İzin verir | İzin verir |
-| Kapalı türevler | İzin verir | İzin verir | Kapsanan türevlerde copyleft yükümlülükleri vardır |
-| Ağ üzerinden değiştirilmiş sürüm | Kaynak sunma şartı yok | Kaynak sunma şartı yok | §13 kapsamında uzaktan etkileşen kullanıcılara karşılık gelen kaynak kodu edinme olanağı sunulmalıdır |
-| Başlıca şartlar | Telif/izin bildirimi | Lisans, değişiklik ve uygulanabilir NOTICE bildirimleri | Lisans/kaynak ve ilgili dağıtım/ağ yükümlülükleri |
-| Patent | Açık patent maddesi yok | Açık patent izni ve sona erme koşulları | Açık patent hükümleri var |
+Kullanıcı OSS-02 kapsamında GNU Affero General Public License sürüm 3 **only** seçimini onaylamıştır. Özgün proje kodu ve belgeleri bu lisans altındadır. [LICENSE](../LICENSE) GNU'nun eksiksiz metnidir; değiştirilmemiştir. Metnin açıklama ekindeki örnek “or later” ifadesi projenin seçimi değildir: proje metaverisi ve [COPYRIGHT](../COPYRIGHT) yalnız sürüm 3'ü belirtir.
 
-**Gerekçeli öneri: AGPL-3.0 değerlendirmede öne çıkar.** Sunucuda çalışan yazılımın değiştirilmiş türevlerinin kullanıcılarına kaynak erişimini korumak, toplulukta karşılıklılık sağlar. Bu öneri seçim değildir; entegrasyon/lisans uyumu ve katkı süreci incelemesi gerekir. Bağımsız yazılımlar sırf aynı sunucuda çalıştığı için otomatik olarak aynı lisansa girmez; türev/birleşik eser sınırı somut yapıya göre değerlendirilir.
+## Kullanıcı hakları ve koşullar
 
-En geniş yeniden kullanım ve düşük uyum yükü istenirse MIT; izin verici modelle açık patent hükümleri istenirse Apache-2.0 uygundur. Hiçbiri rakipleri veya ücretli üçüncü taraf hizmetlerini genel olarak yasaklamaz. AGPL de ticari kullanımı yasaklamaz. Projenin ücretsiz sunulması, başkalarının ücret talep edememesi demek değildir.
+Yazılımı çalıştırabilir, inceleyebilir, değiştirebilir ve koşullara uyarak dağıtabilirsiniz. Kopyalarda lisans/telif bildirimlerini koruyun; değişiklik bildirimlerini ve dağıtımda karşılık gelen kaynak kodunu sağlama şartlarını yerine getirin (§§4–6). Değiştirilmiş sürüm ağ üzerinden etkileşim sunuyorsa, uzaktan etkileşen bütün kullanıcılara o sürümün karşılık gelen kaynak kodunu bir ağ sunucusundan ücretsiz edinme olanağını belirgin biçimde sunmalıdır (§13). Kaynak, gerekli derleme/kurulum betiklerini kapsar; sırlar veya gerçek kişi verileri paylaşılmaz.
 
-Bakımcı kararından önce hak sahipliği, üçüncü taraf bağımlılık lisansları ve dış katkıların kabul koşulları kontrol edilmeli; AGPL-3.0-only / or-later seçimi de ayrıca açıkça kararlaştırılmalıdır. Önceden verilmiş lisans hakları sonradan basitçe geri alınamaz. Bu belge telif devri veya hukuki görüş değildir.
+Bu yükümlülük her özel değişikliği dünyaya yayımlama zorunluluğu değildir; kullanım, dağıtım ve ağ etkileşimine göre uygulanır. Ayrı eserler yalnız aynı sunucuda çalıştığı için otomatik olarak AGPL olmaz. Üçüncü taraf bileşenler kendi lisanslarını korur. Garanti verilmez (§§15–16).
 
-Birincil kaynaklar: [MIT](https://opensource.org/license/mit), [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0), [GNU AGPL-3.0](https://www.gnu.org/licenses/agpl-3.0.html).
+Proje ücretsiz sunulur, ücretli abonelik/ticari lisans satışı geliştirilmez. AGPL başkalarının ticari kullanımını veya ücretli barındırma sunmasını genel olarak yasaklamaz. Yazılımın ücretsiz olması sunucu, alan adı, depolama veya SMTP hizmeti sağlandığı anlamına gelmez. Üretime hazır değildir.
 
-AGPL ağ etkileşimi yorumu için [GNU SSS](https://www.gnu.org/licenses/gpl-faq.en.html#AGPLv3InteractingRemotely) ve [OSI lisans metni](https://opensource.org/license/agpl-3-0) de incelenebilir.
+## Hak sahipliği ve katkılar
+
+Mevcut kodun commit yazar kimliği ile depo hesabının aynı kişiye ait olduğu kullanıcı tarafından açıkça doğrulandı; hak sahibi AGPL-3.0-only uygulamasını onayladı. Güncel bakımcı/telif kimliği Blooregardx'tir. Git yazarlığı tek başına hak sahipliği kanıtı olarak kullanılmadı. Geçmiş commitler yeniden yazılmaz; .mailmap yalnız kimlik gösterimini birleştirir. Doğrudan collaborator listesinde yalnız Blooregardx bulunuyordu. İncelenen birleşmiş PR listesinde OSS-01 PR #7 dışında dış katkı PR'si görülmedi; bu kayıtlar kopyalanmış içerik bulunmadığını kesin kanıtlamaz.
+
+Yeni katkılar AGPL-3.0-only koşullarıyla kabul edilir; katkıcı haklarını korur ve lisanslama yetkisini beyan eder. Üçüncü taraf kodlar bu lisansa topluca çevrilmez. [Katkı rehberi](../CONTRIBUTING.md), [bağımlılık incelemesi](THIRD-PARTY-LICENSES.md).
+
+## Tarihsel karar
+
+OSS-01 sırasında MIT, Apache-2.0 ve AGPL-3.0 değerlendirilmiş, lisans eklenmemişti. OSS-01/OSS-01B denetim kanıtları tarihsel olarak korunur. OSS-02 kullanıcı kararı artık kesin olarak AGPL-3.0-only'dir; AGPL-3.0-or-later seçilmemiştir.
+
+Kaynaklar: [GNU resmî lisans metni](https://www.gnu.org/licenses/agpl-3.0.txt), [GNU ağ etkileşimi açıklaması](https://www.gnu.org/licenses/gpl-faq.en.html#AGPLv3InteractingRemotely).
