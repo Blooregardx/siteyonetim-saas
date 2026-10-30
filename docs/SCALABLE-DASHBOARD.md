@@ -95,3 +95,7 @@ Birim, entegrasyon, mobil Playwright ve restore probe; oturum/tenant izolasyonu,
 - Eski `dashboard()`/`propertyDetails()` yardımcı API’leri geriye uyumluluk içindir; yeni çağrı noktaları bunları kullanmamalı. Sonraki temizlikte API kaldırma ayrı karardır.
 - Toplu seçim state’i yenilemede kalıcı değildir; 5.000 metadata önizleme yanıtı, 5.000 transaction yazımı ve eşzamanlı büyük toplu işlem yükü ayrıca ölçülmelidir.
 - Finansal raporların S03-D CSV limitleri, geçici dosya ve ihracat kilidi/disk kapasitesi sınırları aynen geçerlidir.
+
+## PR #15 — İlk CI ve sonraki düzeltme
+
+Yukarıdaki ilk S03-E commit’inin yerel sonuçları tarihsel olarak korunur. `45a0ca1` için push ve PR CI’ı, 10.000 dairede ikinci sayfa metninin beş saniyede değişmemesi nedeniyle başarısız oldu; CI restore adımı atlandı. Yeni düzeltme otomatik Link prefetch yükünü kaldırır ve HTTP/URL/render/farklı aidat kimliklerini ayrı doğrular. İlk/ikinci mobil panel süreleri ve yeniden çalıştırılan tam regresyon [S03E-CI-FIX](S03E-CI-FIX.md) belgesinde ayrı tutulur. Assertion veya veritabanı limitleri artırılmaz.

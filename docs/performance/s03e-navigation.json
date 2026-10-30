@@ -1,0 +1,37 @@
+{
+  "scope": "Synthetic 10000 units / 60000 charges, mobile 390x844, local production build, initial Link defaults before disabling prefetch. Counts from Playwright request headers.",
+  "beforeLocalSamples": [
+    {
+      "sample": 0,
+      "navigationMs": 1424,
+      "automaticPrefetchRequests": 10,
+      "demandRequests": 1
+    },
+    {
+      "sample": 1,
+      "navigationMs": 1457,
+      "automaticPrefetchRequests": 19,
+      "demandRequests": 1
+    },
+    {
+      "sample": 2,
+      "navigationMs": 932,
+      "automaticPrefetchRequests": 13,
+      "demandRequests": 1
+    }
+  ],
+  "initialCiFailures": [
+    {
+      "runId": 41091910449,
+      "event": "push",
+      "failure": "10000-unit next-page expectation remained page 1 after 5000ms; 10 other E2E cases passed"
+    },
+    {
+      "runId": 41092060997,
+      "event": "pull_request",
+      "failure": "Same 5000ms next-page expectation failure"
+    }
+  ],
+  "after": "See s03e-ci-fix-measurements.json http.prefetchRequests/http.nextPageMs and s03e-ci-fix-e2e.json URL/HTTP/record assertions. No database or test assertion timeout increased.",
+  "evidenceLimit": "Initial CI logs contain no URL/network timeline; exact old CI URL commit time and prefetch latency contribution cannot be reconstructed. Old parameter generation and successful actual URL changes were checked locally; final tests record those stages separately."
+}
