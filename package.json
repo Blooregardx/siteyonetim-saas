@@ -1,7 +1,7 @@
 {
   "name": "siteyonetim-saas",
   "version": "0.1.0",
-  "description": "Site ve apartman yönetimi SaaS başlangıç projesi",
+  "description": "Ücretsiz, özgür ve kendi sunucusunda barındırılabilir site ve apartman yönetimi yazılımı",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -14,7 +14,10 @@
     "db:validate": "prisma validate",
     "db:migrate": "prisma migrate dev",
     "db:deploy": "prisma migrate deploy",
-    "db:studio": "prisma studio"
+    "db:studio": "prisma studio",
+    "test:integration": "tsx --test --test-concurrency=1 tests/*.integration.ts",
+    "test:e2e": "playwright test",
+    "security:cleanup": "tsx scripts/cleanup.ts"
   },
   "repository": {
     "type": "git",
@@ -29,16 +32,22 @@
   "dependencies": {
     "@prisma/client": "^6.19.3",
     "next": "^16.4.3",
+    "nodemailer": "^10.2.1",
     "react": "^19.3.1",
-    "react-dom": "^19.3.1"
+    "react-dom": "^19.3.1",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@playwright/test": "^1.64.1",
     "@types/node": "^26.6.5",
+    "@types/nodemailer": "^8.0.2",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
+    "@types/smtp-server": "^3.5.13",
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.4.3",
     "prisma": "^6.19.3",
+    "smtp-server": "^3.21.1",
     "tsx": "^4.23.15",
     "typescript": "^6.0.3"
   },
@@ -48,5 +57,6 @@
   },
   "overrides": {
     "deepmerge-ts": "^8.0.0"
-  }
+  },
+  "license": "AGPL-3.0-only"
 }

@@ -1,0 +1,111 @@
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import { PrismaClient } from "@prisma/client";
+import { accounts } from "../src/lib/accounts";
+import { management } from "../src/lib/management";
+import { digest } from "../src/lib/password";
+import { cleanupExpired } from "../src/lib/cleanup";
+const url=process.env.TEST_DATABASE_URL;
+if(!url||!["localhost","127.0.0.1"].includes(new URL(url).hostname)||new URL(url).pathname!=="/siteyonetim_test") throw new Error("Isolated DB required");
+const db=new PrismaClient({datasourceUrl:url});
+test.after(async()=>db.$disconnect());
+async function fixture(verified=true) {
+ const user=await db.user.create({data:{email:`${crypto.randomUUID()}@example.invalid`,name:"Sentetik test",emailVerifiedAt:verified?new Date():null}});
+ const verify=async()=>({userId:user.id});
+ return {user,api:management(db,verify),account:accounts(db,verify)};
+}
+test("e-posta sahipliği, süre, yeniden gönderim, tek kullanım ve adres değişimi",async()=>{
+ const f=await fixture(false);
+ await assert.rejects(f.api.createOrganization("Yasak","INDIVIDUAL"),/EMAIL_UNVERIFIED/);
+ const first=await f.account.requestVerification();
+ assert.equal(await db.emailVerification.count({where:{tokenHash:first.token}}),0);
+ const second=await f.account.requestVerification();
+ await assert.rejects(f.account.confirmEmail(first.token),/INVALID_TOKEN/);
+ await db.emailVerification.update({where:{tokenHash:digest(second.token)},data:{expiresAt:new Date(0)}});
+ await assert.rejects(f.account.confirmEmail(second.token),/INVALID_TOKEN/);
+ const proof=await f.account.requestVerification();await f.account.confirmEmail(proof.token);
+ await assert.rejects(f.account.confirmEmail(proof.token),/INVALID_TOKEN/);
+ assert.ok((await db.user.findUniqueOrThrow({where:{id:f.user.id}})).emailVerifiedAt);
+ await db.session.create({data:{tokenHash:digest(crypto.randomUUID()),userId:f.user.id,expiresAt:new Date(Date.now()+999999)}});
+ const next=`${crypto.randomUUID()}@example.invalid`;
+ const change=await f.account.requestVerification(next);
+ assert.equal((await db.user.findUniqueOrThrow({where:{id:f.user.id}})).email,f.user.email);
+ await f.account.confirmEmail(change.token);
+ assert.equal((await db.user.findUniqueOrThrow({where:{id:f.user.id}})).email,next);
+ assert.equal(await db.session.count({where:{userId:f.user.id}}),0);
+});
+test("davet sınırı, iptal, kabul, yükseltme ve mevcut oturumla yetki kaybı",async()=>{
+ const owner=await fixture(); const target=await fixture(false); const outsider=await fixture();
+ const org=await owner.api.createOrganization("Güvenlik Testi","COMPANY");
+ const other=await outsider.api.createOrganization("Başka","COMPANY");
+ await assert.rejects(owner.account.invite(other.id,target.user.email,"ADMIN"),/FORBIDDEN/);
+ const cancelled=await owner.account.invite(org.id,target.user.email,"MANAGER");
+ await owner.account.cancel(org.id,cancelled.id);
+ const proof=await target.account.requestVerification();await target.account.confirmEmail(proof.token);
+ await assert.rejects(target.account.accept(cancelled.token),/INVALID_INVITATION/);
+ const expired=await owner.account.invite(org.id,target.user.email,"MANAGER");
+ await db.invitation.update({where:{id:expired.id},data:{expiresAt:new Date(0)}});
+ await assert.rejects(target.account.accept(expired.token),/INVALID_INVITATION/);
+ await assert.rejects(outsider.account.cancel(org.id,expired.id),/FORBIDDEN/);
+ const pending=await owner.account.invite(org.id,target.user.email,"MANAGER");
+ await db.user.update({where:{id:target.user.id},data:{emailVerifiedAt:null}});
+ await assert.rejects(target.account.accept(pending.token),/EMAIL_UNVERIFIED/);
+ await db.user.update({where:{id:target.user.id},data:{emailVerifiedAt:new Date()}});
+ await assert.rejects(outsider.account.accept(pending.token),/INVALID_INVITATION/);
+ await target.account.accept(pending.token);
+ await assert.rejects(target.account.accept(pending.token),/INVALID_INVITATION/);
+ await assert.rejects(target.account.invite(org.id,outsider.user.email,"ADMIN"),/FORBIDDEN/);
+ await assert.rejects(target.account.changeMember(org.id,target.user.id,"ADMIN"),/FORBIDDEN/);
+ await assert.rejects(owner.account.changeMember(other.id,outsider.user.id,"RESIDENT"),/FORBIDDEN/);
+ const site=await owner.api.createSite(org.id,"Test Apartmanı");
+ await db.membership.create({data:{siteId:site.id,userId:target.user.id,role:"ADMIN"}});
+ await target.api.dashboard(site.id);
+ await owner.account.changeMember(org.id,target.user.id,"RESIDENT");
+ await assert.rejects(target.api.dashboard(site.id),/FORBIDDEN/);
+ await owner.account.changeMember(org.id,target.user.id,"MANAGER");
+ await owner.account.changeMember(org.id,target.user.id,null);
+ await assert.rejects(target.api.portfolio(org.id),/FORBIDDEN/);
+ await assert.rejects(target.api.dashboard(site.id),/FORBIDDEN/);
+ await assert.rejects(owner.account.changeMember(org.id,owner.user.id,null),/LAST_ADMIN/);
+ // Concurrent removal/demotion must leave one verified ADMIN.
+ const second=await owner.account.invite(org.id,target.user.email,"ADMIN");await target.account.accept(second.token);
+ const results=await Promise.allSettled([owner.account.changeMember(org.id,owner.user.id,"MANAGER"),target.account.changeMember(org.id,target.user.id,"MANAGER")]);
+ assert.equal(results.filter(r=>r.status==="fulfilled").length,1);
+ assert.equal(await db.organizationMembership.count({where:{organizationId:org.id,role:"ADMIN"}}),1);
+ const logs=await db.auditLog.findMany({where:{organizationId:org.id}});
+ assert.ok(logs.some(l=>l.action==="MEMBER_INVITE"));assert.ok(logs.some(l=>l.action==="MEMBER_REMOVE"));
+ assert.ok(logs.every(l=>l.id&&l.actorId&&l.entityId&&l.createdAt));
+ assert.ok(!JSON.stringify(logs).includes(pending.token));
+ await assert.rejects(db.auditLog.deleteMany({where:{organizationId:org.id}}),/append only/);
+ await assert.rejects(db.auditLog.update({where:{id:logs[0].id},data:{action:"TAMPER"}}),/append only/);
+});
+test("audit başarısızsa tahsilat geri alınır; başarılı tekrarda tek audit",async()=>{
+ const f=await fixture(); const org=await f.api.createOrganization("Atomiklik","INDIVIDUAL");
+ const site=await f.api.createSite(org.id,"Atomik Apartman");const block=await f.api.createBlock(site.id,"A");const unit=await f.api.createUnit(site.id,block.id,"1");
+ await f.api.recordOccupant(site.id,unit.id,"Sentetik kişi","OWNER",new Date());
+ const charge=await f.api.createCharge(site.id,unit.id,"2026-10",10000,new Date());
+ // Test-only DB fault injection: every PAYMENT_COLLECT audit fails while trigger exists.
+ await db.$executeRawUnsafe(`CREATE FUNCTION test_fail_audit() RETURNS trigger LANGUAGE plpgsql AS $$ BEGIN IF NEW.action IN ('PAYMENT_COLLECT','CHARGE_CREATE') THEN RAISE EXCEPTION 'injected audit failure'; END IF; RETURN NEW; END $$`);
+ await db.$executeRawUnsafe(`CREATE TRIGGER test_audit_failure BEFORE INSERT ON "AuditLog" FOR EACH ROW EXECUTE FUNCTION test_fail_audit()`);
+ try {
+  await assert.rejects(f.api.collect(site.id,charge.id,4000,"atomic-test"),/injected audit failure/);
+  assert.equal(await db.payment.count({where:{chargeId:charge.id}}),0);
+  await assert.rejects(f.api.createCharge(site.id,unit.id,"2026-11",10000,new Date()),/injected audit failure/);
+  assert.equal(await db.charge.count({where:{siteId:site.id}}),1);
+ } finally { await db.$executeRawUnsafe(`DROP TRIGGER test_audit_failure ON "AuditLog"`);await db.$executeRawUnsafe(`DROP FUNCTION test_fail_audit()`); }
+ await db.user.update({where:{id:f.user.id},data:{emailVerifiedAt:null}});
+ await assert.rejects(f.api.createCharge(site.id,unit.id,"2026-11",100,new Date()),/EMAIL_UNVERIFIED/);
+ await assert.rejects(f.api.collect(site.id,charge.id,100,"unverified"),/EMAIL_UNVERIFIED/);
+ await db.user.update({where:{id:f.user.id},data:{emailVerifiedAt:new Date()}});
+ const p=await f.api.collect(site.id,charge.id,4000,"atomic-test");await f.api.collect(site.id,charge.id,4000,"atomic-test");
+ assert.equal(await db.auditLog.count({where:{entityId:p.id,action:"PAYMENT_COLLECT"}}),1);
+ const logs=await db.auditLog.findMany({where:{organizationId:org.id}});
+ for(const action of ["ORGANIZATION_CREATE","SITE_CREATE","BLOCK_CREATE","UNIT_CREATE","OCCUPANT_CREATE","CHARGE_CREATE","PAYMENT_COLLECT"]) assert.ok(logs.some(l=>l.action===action));
+ assert.ok(logs.filter(l=>l.action!=="ORGANIZATION_CREATE").every(l=>l.siteId===site.id));
+});
+test("temizlik yalnızca süresi geçmiş güvenlik kayıtlarını siler",async()=>{
+ const f=await fixture(); const expired=digest(crypto.randomUUID());const valid=digest(crypto.randomUUID());
+ await db.session.createMany({data:[{tokenHash:expired,userId:f.user.id,expiresAt:new Date(0)},{tokenHash:valid,userId:f.user.id,expiresAt:new Date(Date.now()+999999)}]});
+ const before=await db.auditLog.count();await cleanupExpired(db);
+ assert.equal(await db.session.count({where:{tokenHash:expired}}),0);assert.equal(await db.session.count({where:{tokenHash:valid}}),1);assert.equal(await db.auditLog.count(),before);
+});

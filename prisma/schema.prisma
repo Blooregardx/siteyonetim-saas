@@ -18,13 +18,23 @@ model User {
   email       String       @unique
   name        String
   createdAt   DateTime     @default(now())
+  emailVerifiedAt DateTime?
+  verifications EmailVerification[]
+  paymentReversals PaymentReversal[]
+  passwordHash String?
+  sessions Session[]
+  resets PasswordReset[]
   memberships Membership[]
+  organizations OrganizationMembership[]
 }
 
 model Site {
   id            String         @id @default(cuid())
+  organizationId String?
+  organization Organization? @relation(fields: [organizationId], references: [id], onDelete: Restrict)
   name          String
   address       String?
+  description String?
   createdAt     DateTime       @default(now())
   memberships   Membership[]
   blocks        Block[]
@@ -32,6 +42,9 @@ model Site {
   charges       Charge[]
   payments      Payment[]
   announcements Announcement[]
+  ownerships Ownership[]
+  personOccupancies Occupancy[]
+  @@unique([organizationId, id])
 }
 
 model Membership {
@@ -49,6 +62,7 @@ model Block {
   id     String @id @default(cuid())
   siteId String
   name   String
+  description String?
   site   Site   @relation(fields: [siteId], references: [id], onDelete: Restrict)
   units  Unit[]
 
@@ -60,9 +74,14 @@ model Unit {
   id      String   @id @default(cuid())
   siteId  String
   blockId String
+  floor Int?
+  sectionType String @default("RESIDENTIAL")
+  usageStatus String @default("UNKNOWN")
+  ownerships Ownership[]
   number  String
   site    Site     @relation(fields: [siteId], references: [id], onDelete: Restrict)
   block   Block    @relation(fields: [siteId, blockId], references: [siteId, id], onDelete: Restrict)
+  occupants Occupancy[]
   charges Charge[]
 
   @@unique([siteId, id])
@@ -93,11 +112,15 @@ model Payment {
   amountKurus    Int
   paidAt         DateTime @default(now())
   idempotencyKey String
+  method         String @default("CASH")
   reference      String?
+  reversal       PaymentReversal?
   site           Site     @relation(fields: [siteId], references: [id], onDelete: Restrict)
   charge         Charge   @relation(fields: [siteId, chargeId], references: [siteId, id], onDelete: Restrict)
 
   @@unique([siteId, idempotencyKey])
+  @@unique([siteId, id])
+  @@unique([siteId, id, amountKurus])
   @@index([siteId, chargeId])
 }
 
@@ -110,4 +133,153 @@ model Announcement {
   site      Site     @relation(fields: [siteId], references: [id], onDelete: Restrict)
 
   @@index([siteId, createdAt])
+}
+
+
+enum OrganizationKind {
+  INDIVIDUAL
+  COMPANY
+}
+
+enum OccupancyKind {
+  OWNER
+  TENANT
+}
+
+model Organization {
+  id String @id @default(cuid())
+  name String
+  kind OrganizationKind
+  memberships OrganizationMembership[]
+  sites Site[]
+  invitations Invitation[]
+  persons Person[]
+}
+
+model OrganizationMembership {
+  organizationId String
+  userId String
+  role Role @default(RESIDENT)
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  user User @relation(fields: [userId], references: [id], onDelete: Restrict)
+  @@id([organizationId, userId])
+  @@index([userId])
+}
+
+model Occupancy {
+  organizationId String?
+  personId String?
+  person Person? @relation(fields: [organizationId, personId], references: [organizationId, id], onDelete: Restrict)
+  property Site? @relation(fields: [organizationId, siteId], references: [organizationId, id], onDelete: Restrict)
+  id String @id @default(cuid())
+  siteId String
+  unitId String
+  name String
+  kind OccupancyKind
+  startedAt DateTime @db.Date
+  endedAt DateTime? @db.Date
+  unit Unit @relation(fields: [siteId, unitId], references: [siteId, id], onDelete: Restrict)
+  @@index([siteId, unitId])
+}
+
+model Session {
+  tokenHash String @id
+  userId String
+  expiresAt DateTime
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId])
+}
+model PasswordReset {
+  tokenHash String @id
+  userId String
+  expiresAt DateTime
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId])
+}
+model AuthAttempt {
+  key String @id
+  count Int
+  expiresAt DateTime
+}
+
+model EmailVerification {
+  tokenHash String @id
+  userId String
+  email String
+  expiresAt DateTime
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId])
+  @@index([expiresAt])
+}
+model Invitation {
+  id String @id @default(cuid())
+  tokenHash String @unique
+  organizationId String
+  email String
+  role Role
+  invitedBy String
+  expiresAt DateTime
+  revokedAt DateTime?
+  acceptedAt DateTime?
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  @@index([organizationId])
+  @@index([expiresAt])
+}
+model AuditLog {
+  id String @id @default(cuid())
+  actorId String
+  organizationId String?
+  siteId String?
+  action String
+  entityId String
+  createdAt DateTime @default(now())
+  @@index([organizationId, createdAt])
+  @@index([siteId, createdAt])
+}
+
+enum ReversalReason {
+  DUPLICATE_ENTRY
+  WRONG_AMOUNT
+  WRONG_CHARGE
+  ENTRY_ERROR
+}
+model PaymentReversal {
+  id String @id @default(cuid())
+  siteId String
+  paymentId String @unique
+  amountKurus Int
+  reasonCode ReversalReason
+  actorId String
+  createdAt DateTime @default(now())
+  idempotencyKey String
+  payment Payment @relation(fields: [siteId, paymentId, amountKurus], references: [siteId, id, amountKurus], onDelete: Restrict, map: "PaymentReversal_payment_fkey")
+  actor User @relation(fields: [actorId], references: [id], onDelete: Restrict)
+  @@unique([siteId, idempotencyKey])
+  @@unique([siteId, paymentId, amountKurus])
+  @@index([siteId, createdAt])
+}
+
+model Person {
+  id String @id @default(cuid())
+  organizationId String
+  name String
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  ownerships Ownership[]
+  occupancies Occupancy[]
+  @@unique([organizationId, id])
+  @@index([organizationId, name])
+}
+model Ownership {
+  id String @id @default(cuid())
+  organizationId String
+  siteId String
+  unitId String
+  personId String
+  startedAt DateTime @db.Date
+  endedAt DateTime? @db.Date
+  person Person @relation(fields: [organizationId, personId], references: [organizationId, id], onDelete: Restrict)
+  property Site @relation(fields: [organizationId, siteId], references: [organizationId, id], onDelete: Restrict)
+  unit Unit @relation(fields: [siteId, unitId], references: [siteId, id], onDelete: Restrict)
+  @@index([siteId, unitId])
+  @@index([organizationId, personId])
 }

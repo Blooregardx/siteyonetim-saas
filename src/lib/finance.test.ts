@@ -17,3 +17,14 @@ test("geçersiz, kesirli ve fazla ödemeler reddedilir", () => {
   }
 });
 test("boş liste sıfır bakiye verir", () => assert.equal(summarize([], "2026-10-26").outstandingKurus, 0));
+
+test("net tahsilat, ters kayıt ve güvenli tam sayı toplamları", async () => {
+ const { paymentTotals, chargeBalance, financialSummary } = await import("./finance");
+ const payments=[{amountKurus:4000,reversal:{amountKurus:4000}},{amountKurus:6000}];
+ assert.deepEqual(paymentTotals(payments),{grossKurus:10000,reversedKurus:4000,netKurus:6000});
+ assert.equal(chargeBalance({amountKurus:10000,payments}).remainingKurus,4000);
+ assert.equal(financialSummary([{amountKurus:10000,payments}]).netKurus,6000);
+ assert.throws(()=>paymentTotals([{amountKurus:4000,reversal:{amountKurus:1}}]));
+ assert.throws(()=>paymentTotals([{amountKurus:Number.MAX_SAFE_INTEGER},{amountKurus:1}]));
+ assert.throws(()=>chargeBalance({amountKurus:100,payments:[{amountKurus:101}]}));
+});

@@ -2,28 +2,34 @@ name: CI
 on:
   push:
   pull_request:
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
   checks:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     services:
       postgres:
         image: postgres:17-alpine
         env:
           POSTGRES_USER: siteyonetim
           POSTGRES_PASSWORD: localdev
-          POSTGRES_DB: siteyonetim
+          POSTGRES_DB: siteyonetim_test
         ports: ['5432:5432']
         options: >-
-          --health-cmd "pg_isready -U siteyonetim -d siteyonetim"
+          --health-cmd "pg_isready -U siteyonetim -d siteyonetim_test"
           --health-interval 5s --health-timeout 5s --health-retries 5
     env:
-      DATABASE_URL: postgresql://siteyonetim:localdev@localhost:5432/siteyonetim?schema=public
+      DATABASE_URL: postgresql://siteyonetim:localdev@localhost:5432/siteyonetim_test?schema=public
       NEXT_TELEMETRY_DISABLED: '1'
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version-file: .nvmrc
           cache: npm
@@ -31,5 +37,12 @@ jobs:
       - run: npm run db:validate
       - run: npm run db:generate
       - run: npm run db:deploy
+      - run: npm run test:integration
+        env:
+          TEST_DATABASE_URL: postgresql://siteyonetim:localdev@localhost:5432/siteyonetim_test
       - run: npm run check
       - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+        env:
+          TEST_DATABASE_URL: postgresql://siteyonetim:localdev@localhost:5432/siteyonetim_test?schema=public
