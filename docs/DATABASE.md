@@ -37,3 +37,11 @@ Organizasyon genelindeki Person rehberi ve mevcut kişiyi bağlama işlemi organ
 ## OSS-04 kurtarma doğrulaması
 
 Temiz PG17 ortamındaki bütün yedi migration ve şema karşılaştırması başarılı. Ayrı boş PG17 hedefe dump/restore ile tüm public tablolar, migration geçmişi, finans/audit satırları ve index/constraint/trigger tanımları eşleşti. Bu sentetik kanıttır; üretim yedek politikası/PITR/RPO/RTO değildir. [Uygulanabilir prova](BACKUP-RESTORE.md), [sonuçlar](OSS04-VALIDATION.md).
+
+## S03-A — kalıcı toplu işlem kimliği
+
+Eklemeli `202611010001_bulk_charges` yalnız `BulkChargeOperation` tablosunu ekler: site FK, site/anahtar unique, kanonik istek+önizleme SHA-256 özeti, oluşturulan kayıt sayısı, BIGINT kuruş toplamı, dönem ve zaman. Eski migration ve finans kayıtları değiştirilmez. Charge üzerindeki `@@unique([siteId, unitId, period])` korunur.
+
+Önizleme yetkilendirilmiş transaction içinde yalnız okur; kalıcı önizleme kaydı yoktur. Seçilen dairelerin (blok dahil) ve dönem aidatlarının özeti onayda yeniden hesaplanır. İşlem, mevcut management oturum/rol kontrolü ve organizasyon kilidini kullanır; Site kilidi legacy siteleri de serileştirir. Daire/blok satırları onay süresince kilitlenir. Mevcut aidatlar tüm işlemi reddeder; unique kısıt son savunmadır. Her aidat ve CHARGE_CREATE audit kaydı, başarılı işlem kimliğiyle aynı transaction'dadır; hata tüm yazımları geri alır.
+
+Aynı site/anahtar ve aynı istek özeti başarılı sonucu tekrar döndürür; farklı içerik reddedilir. Yeni anahtarla aynı dönem çakışır. Başarısız deneme anahtarı kalıcılaştırmaz. Toplamlar güvenli tam sayı kuruş üzerinden hesaplanır; tabloda BIGINT saklanır. Mevcut başarılı anahtarların saklanması idempotency garantisinin parçasıdır. Yedek/restore bu tabloyu da kapsar. Production migration çalıştırılmadı.

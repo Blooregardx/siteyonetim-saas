@@ -18,3 +18,5 @@
 5. Ayrı tasarım/testlerle sayfalama ve toplu aidat önizleme/idempotency; ileride raporlama, kontrollü kişi eşleme ve ortaklık payı. Banka/kart, mobil istemci ve mesajlaşma teslim taahhüdü değildir.
 
 Tarihsel S00/S01 raporları ve OSS-EVIDENCE aşama kayıtları korunur; güncel kapsam [FEATURES](FEATURES.md), işletim açıkları [DEFERRED-CLOUD-OPERATIONS](DEFERRED-CLOUD-OPERATIONS.md) içindedir. Finans/audit geçmişi korunur; migration kozmetik amaçla değiştirilmez.
+
+S03-A: iki aşamalı, çakışmada tümü reddedilen toplu aidat; mevcut alpha etiketi ve sürüm değiştirilmez. Yeni sürüm yayımlanmaz.
