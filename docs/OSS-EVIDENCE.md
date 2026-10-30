@@ -17,7 +17,7 @@ Başlangıçta 8 dal, dallardan erişilen 13 commit, 0 yıldız/fork ve yayımla
 
 ## Başvuru hazırlığı
 
-[Resmî program](https://developers.openai.com/community/codex-for-oss) aktif bakım, anlamlı kullanım veya ekosistem önemini değerlendirir. Lisans kararı, özel güvenlik kanalı, dal koruması ve ilk topluluk sürümü bekliyor. Başvuru yapılmadı; kabul garantisi yoktur.
+[Resmî program](https://developers.openai.com/community/codex-for-oss) aktif bakım, anlamlı kullanım veya ekosistem önemini değerlendirir. Tarihsel OSS-01 başlangıcında lisans kararı, özel güvenlik kanalı, dal koruması ve ilk topluluk sürümü bekliyordu. Güncel OSS-01B durumu aşağıda ayrıdır. Başvuru yapılmadı; kabul garantisi yoktur.
 
 Gelecek kanıtlar: gerçek PR incelemeleri, sorun sınıflandırma/çözümleri, sürüm notları, izole kurulum/geri yükleme sonuçları. Katkı veya kullanım sayıları üretilmez. Codex için önerilen bakım işleri test/PR incelemesi, güvenlik regresyonları, migration kontrolü ve belge tutarlılığıdır; finans değişiklikleri insan incelemesini korur.
 
@@ -40,3 +40,11 @@ Taban `04f83e6`; uygulama/migration/test kaynakları değiştirilmedi. Node 24.1
 Yerel `playwright install --with-deps chromium` root yetkisi nedeniyle başarısız oldu. Ardından `playwright install chromium` ile tarayıcı kuruldu; mevcut sistem kitaplıklarıyla 4 test geçti. Güvenlik denetimi atlanmadı: kötü origin isteğinin reddi E2E'nin beklenen davranışıdır. npm kurulumunda ESLint 9.39.5 için destek dışı uyarısı görüldü; bu PR bağımlılık sürümlerini değiştirmez, ayrı uyumluluk işi gerekir.
 
 Bu sonuçlar yeni GitHub CI çalışmasının yerine geçmez; PR kontrolleri ayrıca incelenmelidir. Gerçek SMTP teslimi, canlı yük, bağımsız self-host kurulumu ve yedekten dönüş bu doğrulamanın parçası değildir. Tam geçmiş taraması önceki salt okunur denetimdir; OSS-01 yeni bir eksiksiz sızma testi iddiası taşımaz.
+
+## OSS-01B GitHub son kontrolü — 30 Ekim 2026
+
+Önceki denetim ve test kanıtları korunmuştur. Kullanıcının yaptığı ayarlar API üzerinden doğrulandı: depo PUBLIC, Private Vulnerability Reporting açık, main-protection (26175642) aktif; varsayılan dal main için silme/force-push engeli ve PR zorunluluğu var. Zorunlu CI kuralı henüz yok; onay sayısı 0 ve konuşma çözümü zorunlu değil. [Ayrıntılı güncel durum](GITHUB-SETTINGS.md).
+
+OSS-01'in `eae64e3` commitine ait [PR CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/40987146798) ve [push CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/40987123938) başarılıdır. Bunlar OSS-01B commitinin CI sonucu yerine kullanılmaz; yeni sonuç PR #7 üzerinde ayrıca doğrulanır.
+
+OSS-01B yalnız SECURITY, GitHub ayarları, yol haritası ve bu kanıt belgesini günceller. Uygulama, workflow, bağımlılıklar, migration ve test kaynakları değişmez. LICENSE oluşturulmaz; lisans kullanıcı kararı bekler. İlk topluluk sürümü, zorunlu CI ve bağımsız kurulum/geri yükleme doğrulaması açık kalır. Bu hazırlık PR'sinin birleştirilebilirliği, başvuru/üretim hazırlığından ayrı değerlendirilir.

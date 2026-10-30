@@ -1,25 +1,46 @@
-# GitHub ayarları — bakımcı kontrol listesi
+# GitHub ayarları — güncel durum ve bakımcı kontrol listesi
 
-OSS-01 ayarları değiştirmez; ayrı PR yalnız dosya değişikliklerini içerir. 30 Ekim 2026 başlangıç kontrolü: depo PUBLIC, Private Vulnerability Reporting kapalı; main protected=false, repository rulesets boş. Son durum GitHub'da tekrar doğrulanmalıdır.
+## Tarihsel başlangıç — OSS-01
 
-## Öncelik 1: özel güvenlik bildirimi
+30 Ekim 2026 OSS-01 başlangıç kontrolü: depo PUBLIC, Private Vulnerability Reporting kapalı; main protected=false, repository rulesets boştu. Bu denetim kanıtı korunur; aşağıdaki OSS-01B kontrolü güncel durumu belirtir. PR yalnız dosyaları değiştirir; GitHub ayarları kullanıcı tarafından uygulanmıştır.
 
-Settings → Security and quality / Advanced Security → Private vulnerability reporting → Enable. Menü adı GitHub arayüzüne göre değişebilir. Security → Advisories bölümünde “Report a vulnerability” kanalının açıldığını doğrulayın. Bakımcı Security alerts bildirimlerini açmalı. Kanal etkinleşince SECURITY.md içindeki başlangıç durumunu güncelleyin. Alternatif özel adres varsa yalnız doğrulanmış adresi yayımlayın.
+## Güncel durum — OSS-01B, 30 Ekim 2026
 
-## Öncelik 2: main koruması
+GitHub API üzerinden yeniden doğrulandı:
 
-Settings → Rules → Rulesets bölümünde main hedefli etkin branch ruleset (veya Branches → branch protection) oluşturun:
+| Ayar | Durum |
+|---|---|
+| Depo görünürlüğü | PUBLIC; böyle kalacak |
+| Private Vulnerability Reporting | Etkin (`enabled=true`) |
+| main-protection | Etkin (`enforcement=active`), ruleset 26175642 |
+| Hedef | Varsayılan dal (`~DEFAULT_BRANCH`); şu anda main |
+| Dal silme | Engelli (`deletion`) |
+| Force push | Engelli (`non_fast_forward`) |
+| Pull request | Zorunlu (`pull_request`) |
+| Zorunlu CI | **Henüz ayarlanmadı**; required_status_checks kuralı yok |
+| Bağımsız onay | Zorunlu onay sayısı 0 |
+| Konuşma çözümü / eski onayın iptali | Zorunlu değil / kapalı |
+| Bypass aktörleri | Liste boş |
 
-- Pull request zorunlu; force push ve dal silme engelli.
-- `CI / checks` görüntülenen işini gerçek son check adıyla doğrulayıp zorunlu kılın. GitHub API context'i `checks` olabilir; adı tahmin ederek kilitlemeyin.
-- Base değişince güncel kontroller isteyin; konuşmalar çözülmeli. Başarısız kontrolleri bypass ederek merge etmeyin.
-- İkinci bağımsız bakımcı varsa en az bir onay, yeni committe eski onayı geçersiz kılma ve son gönderinin başka kişi tarafından onayı. Tek bakımcı kendi PR'sini onaylayamaz; zorunlu onay sayısını etkinleştirmeden sürdürülebilir inceleme düzeni kurun.
-- Yönetici/bypass istisnalarını minimum tutup belgeleyin. Koruma ayarını kapatmayı olağan iş akışı yapmayın.
+Kanıt: [main-protection](https://github.com/Blooregardx/siteyonetim-saas/rules/26175642), [özel güvenlik bildirimi](https://github.com/Blooregardx/siteyonetim-saas/security/advisories/new). Durum anlık görüntüdür; ayar değişikliklerinde tekrar doğrulanmalıdır. Özel kanalın etkin olması, rapor gönderimi/yanıt süresinin test edildiği anlamına gelmez.
 
-PUBLIC görünürlüğü koruyun. Bu PR'nin hedefi geliştirme dalıdır; main'e özellik geçişi ayrı PR/karardır. Geliştirme dalına da aynı kontroller önerilir. Önce çalışan CI adını doğrulayın; aksi hâlde birleştirme kilitlenebilir.
+## Öncelikli kalan: zorunlu CI
+
+Settings → Rules → Rulesets → main-protection içinde required status checks eklenmeli. OSS-01 PR kontrollerinin GitHub API check adı **`checks`** olarak doğrulandı; arayüz bunu `CI / checks` olarak gösterebilir. Son başarılı çalışmadan gerçek kontrolü ve GitHub Actions kaynağını seçin; yalnız görüntü adını tahmin ederek kural eklemeyin.
+
+Base değişince güncel kontrolleri istemek önerilir. CI başarısı şu anda gözlemlenebilir, fakat ruleset tarafından zorunlu tutulmaz. Bu eksik bu PR tarafından otomatik giderilmez.
+
+PR #7'nin hedefi `codex/s00-s01-foundation` dalıdır. main-protection yalnız varsayılan dalı kapsar; #7'nin hedef dalına koruma sağlamaz. Geliştirme dalında da PR/CI koruması ayrıca değerlendirilmeli. main'e özellik geçişi ayrı PR/karardır; bu PR main'e alınmaz.
+
+## İnceleme ve bildirim işletimi
+
+- İkinci bağımsız bakımcı varsa en az bir onay, yeni committe eski onayı geçersiz kılma, son gönderinin başka kişi tarafından onayı ve konuşma çözümü önerilir. Bunlar şu an etkinmiş gibi değerlendirilmemeli. Tek bakımcı kendi PR'sini onaylayamaz.
+- Bypass istisnalarını minimum tutun; korumayı kapatmayı olağan iş akışı yapmayın.
+- Security → Advisories özel bildirim kanalını kullanın; bakımcı Security alerts bildirimlerini açıp takip etmelidir. Alternatif özel adres varsa yalnız doğrulanmış adresi yayımlayın.
+- PUBLIC görünürlüğünü koruyun; varsayılan dal değişirse ruleset hedefinin de değiştiğini kontrol edin.
 
 ## Diğer kontroller
 
-Actions genel token yetkisi read-only; workflow'ların PR oluşturma/onaylama yetkisi gereksizse kapalı. Dependabot uyarıları ve ücretsiz kullanılabilir secret scanning/push protection ayarlarını inceleyin; ücretli ürün etkinleştirmeyin. Fork workflow çalıştırmalarında GitHub'ın onay kontrollerini koruyun. Depoyu private yapmayın.
+Workflow içindeki token yetkisi `contents: read` düzeyindedir; hesap genelindeki Actions varsayılan yetkileri ayrıca kontrol edilmelidir. Gereksiz workflow PR oluşturma/onaylama yetkilerini kapatın. Dependabot uyarıları ve ücretsiz kullanılabilir secret scanning/push protection ayarlarını inceleyin; ücretli ürün etkinleştirmeyin. Fork workflow onay kontrollerini koruyun. Bunların hesap genelinde tamamlandığı iddia edilmez.
 
 Kaynak: [GitHub özel bildirim](https://docs.github.com/en/code-security/how-tos/report-and-fix-vulnerabilities/configure-vulnerability-reporting/configure-for-a-repository), [korumalı dallar](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches).

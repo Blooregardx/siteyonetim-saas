@@ -2,9 +2,11 @@
 
 ## Bildirim
 
-Parola, token, kişisel veri veya çalışır saldırı ayrıntılarını public issue/PR içine koymayın. [GitHub özel güvenlik bildirimi](https://github.com/Blooregardx/siteyonetim-saas/security/advisories/new) yalnız Private Vulnerability Reporting etkin olduğunda kullanılabilir. OSS-01 başlangıç kontrolünde bu ayar kapalıdır; bu PR ayarı etkinleştirmez.
+Parola, token, kişisel veri veya çalışır saldırı ayrıntılarını public issue/PR içine koymayın. Güvenlik açıklarını [GitHub özel güvenlik bildirimi](https://github.com/Blooregardx/siteyonetim-saas/security/advisories/new) üzerinden iletin. **30 Ekim 2026 OSS-01B kontrolünde Private Vulnerability Reporting etkin olarak doğrulandı.** Kullanıcı bu özelliği etkinleştirmiştir; bu PR hesap ayarı değiştirmez.
 
-Kanal kapalıysa yalnız hassas ayrıntı içermeyen “özel güvenlik iletişim kanalı talebi” issue'su açın; bakımcının özel kanal sağlamasını bekleyin. Doğrulanmış özel e-posta adresi henüz yayımlanmadı. Kamuya açık yorumlara bulguyu eklemeyin. Kanalın açılması başvuru öncesi öncelikli iştir.
+Tarihsel kayıt: OSS-01 başlangıç denetiminde kanal kapalıydı. Bu önceki bulgu güncel durum değildir; [ayar geçmişi ve kalanlar](docs/GITHUB-SETTINGS.md) ayrı tutulur.
+
+Özel kanal erişilemiyorsa hassas ayrıntıları public alana taşımayın. Yalnız ayrıntı içermeyen özel iletişim kanalı talebi açıp bakımcının yönlendirmesini bekleyin. Doğrulanmış alternatif özel e-posta adresi henüz yayımlanmadı.
 
 Özel raporda etkilenen commit/sürüm, etki ve yalnız sentetik veriyle tekrar adımlarını paylaşın. Erişim bilgilerini maskeleyin; gerçek sistemlere izinsiz test yapmayın. Bakımcı raporu değerlendirir, düzeltme ve güvenli açıklama zamanını bildirenle koordine eder. Yanıt süresi garantisi verilmez.
 

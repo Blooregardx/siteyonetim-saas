@@ -3,7 +3,7 @@
 Hedef ücretsiz, özgür/açık kaynak ve topluluk katkılarına açık, kendi sunucusunda barındırılabilir site/apartman yönetimidir. Depo PUBLIC kalır. Ticari abonelik veya ücretli lisans geliştirilmez. Next.js, TypeScript, PostgreSQL ve Prisma 6 korunur. Lisans henüz seçilmedi.
 
 1. **OSS-01 — hazırlık (bu PR):** tutarlı belgeler, katkı/topluluk süreci, güvenli CI, lisans değerlendirmesi ve bakım kanıtları. PR açılması lisans/ayar işlerinin tamamlandığı anlamına gelmez.
-2. **Başvuru öncesi:** bakımcı lisans kararını verir; özel güvenlik bildirimi ve main korumaları etkinleştirilir. Geliştirme dalının main'e geçişi ayrı incelemeyle yapılır; geçmiş yeniden yazılmaz.
+2. **Başvuru öncesi:** bakımcı lisans kararını verir; zorunlu CI kontrolü ayarlanır. OSS-01B kontrolünde özel güvenlik bildirimi ve main-protection etkin olarak doğrulandı; [güncel ayarlar](GITHUB-SETTINGS.md) kalan inceleme/CI gereksinimlerini ayırır. Geliştirme dalının main'e geçişi ayrı incelemeyle yapılır; geçmiş yeniden yazılmaz.
 3. **Kendi sunucusunda kurulum:** temiz kurulum ve mevcut şemadan yükseltme provası, minimum runtime/migration/bakım izinleri, HTTPS/SMTP, güvenli güncelleme ve yedekten dönüş belgelerinin izole doğrulaması. Ücretli servis şartı yoktur.
 4. **Güvenlik ve bakım:** kötüye kullanım koruması, güvenilir proxy sınırları, sayfalama/kapasite, saklama ve olay müdahalesi; mevcut finans ve audit kuralları korunur.
 5. **Topluluk sürümü:** bilinen eksiklerle etiketli geliştirme sürümü, sürüm notları, issue sınıflandırma ve PR inceleme kanıtları. Kullanım/adopsiyon verileri uydurulmaz.
