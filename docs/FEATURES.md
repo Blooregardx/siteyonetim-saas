@@ -1,6 +1,6 @@
 # Güncel özellik durumu
 
-Bu belge S03-C geliştirme dalının kapsamını anlatır; S03-C henüz main’e birleşmiş sayılmaz. S03-B PR #12 ile main’e alındı. S03-A PR #11 ile main’e alındı. PR #9 main geçişini tamamladı; bu üretim hazırlığı anlamına gelmez. Önceki raporlar tarihsel kayıttır.
+Bu belge S03-D geliştirme dalının kapsamını anlatır; S03-D henüz main’e birleşmiş sayılmaz. S03-C PR #13 ile main’e alındı. S03-B PR #12 ile main’e alındı. S03-A PR #11 ile main’e alındı. PR #9 main geçişini tamamladı; bu üretim hazırlığı anlamına gelmez. Önceki raporlar tarihsel kayıttır.
 
 | Alan | Uygulanmış geliştirme kapsamı | Sınır / eksik |
 |---|---|---|
@@ -40,3 +40,9 @@ Panelde **Borç ve Tahsilat Raporları** bağlantısı; yetkili organizasyon/apa
 Panel menüsünden manuel gider/aidat dışı gelir, apartmana özel tür ayrımlı kategoriler, işlem geçmişi ve aylık finans özeti. Varsayılan kategoriler açık kullanıcı işlemiyle eklenir; otomatik production seed yoktur. Kullanılan kategorilerin anlamı değiştirilemez, kategoriler pasifleştirilebilir. Manuel kayıtlar ve ters kayıtlar append-only; gerekçeli/onaylı ters kayıt yalnız organizasyon ADMIN’i, giriş ADMIN/MANAGER tarafından yapılır.
 
 Rapor Payment ve PaymentReversal kaynaklarını okur, aidat tahsilatını manuel gelire kopyalamaz. Charge nakit sayılmaz. Ters kayıt kendi ayına karşı hareket olarak yazılır. Europe/Istanbul zaman damgası gruplaması, açık manuel iş tarihi, sunucuda 25 satır ve tam filtre toplamları. [Kullanım ve sınırlamalar](INCOME-EXPENSES.md). Banka bakiyesi, resmî muhasebe, depozito/teminat veya açılış bakiyesi modülü değildir.
+
+## S03-D — CSV, karşılaştırma ve rapor performansı
+
+İki raporda filtre kapsamının tamamını içeren, sunucuda yeniden yetkilendirilen CSV. UTF-8 BOM, noktalı virgül, ondalık virgül; kullanıcı metninde formula injection koruması, sunucu sayılarında doğru negatif tutar. En fazla 50.000 kayıt/128 MiB, 1.000 satırlık cursor partileri, özel geçici dosya ve no-store indirme. 3/6/12 aylık karşılaştırma (varsayılan 6), boş aylar sıfır, önceki aya TL farkı; ana raporun kapsam filtreleri aynıdır. İşlem kaynakları, ters kayıt tarihi ve Istanbul sözleşmesi korunur.
+
+Rapor toplamı ve sayfası tek SQL içinde aynı filtrelenmiş CTE’yi paylaşır; karşılaştırma PostgreSQL’de gruplanır. Şema/indeks/migration değişmedi. Büyük panel akışı ayrı kapasite borcudur; yük provalarındaki başarısızlıklar dahil [ölçümler](FINANCIAL-EXPORT-PERFORMANCE.md) belgelenmiştir. CSV ve özetler banka bakiyesi veya resmî muhasebe değildir.

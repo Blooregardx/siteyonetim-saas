@@ -28,6 +28,14 @@ Bu ekran S03-B aidat dönemi borç raporunu değiştirmez. Aylık hareketler öd
 
 ## Sınırlar ve minimum izinler
 
-Tek kayıt 1..2.147.483.647 kuruştur. Toplamlar PostgreSQL BIGINT ile hesaplanır; JS güvenli tam sayı sınırını aşan sonuç sessiz yuvarlanmaz, rapor reddedilir. Açılış bakiyesi, banka mutabakatı, hesaplar arası transfer, resmî defter, fatura, CSV, kısmi ters kayıt ve banka/kart entegrasyonu yoktur. Büyük portföy yük ölçümü/derin OFFSET ve mevcut panelin tüm aidat geçmişini belleğe yüklemesi ayrı performans borcudur.
+Tek kayıt 1..2.147.483.647 kuruştur. Toplamlar PostgreSQL BIGINT ile hesaplanır; JS güvenli tam sayı sınırını aşan sonuç sessiz yuvarlanmaz, rapor reddedilir. Açılış bakiyesi, banka mutabakatı, hesaplar arası transfer, resmî defter, fatura, kısmi ters kayıt ve banka/kart entegrasyonu yoktur. İlk rapor yük ölçümleri S03-D belgesindedir. Daha geniş/çoklu kullanıcı yükü, derin OFFSET ve mevcut panelin tüm aidat geçmişini belleğe yüklemesi ayrı performans borcudur.
 
 Yeni runtime izinleri: FinancialCategory/FinancialEntry/FinancialEntryReversal SELECT + INSERT, FinancialCategory UPDATE(active), FinancialEntry UPDATE(id) (yalnız satır kilidi; immutable trigger yazmayı reddeder). Bu tablolara DELETE/TRUNCATE verilmez. AuditLog INSERT + SELECT(id), Site/User/Organization mevcut kilit/okuma izinleri ve aidat kaynakları SELECT gereklidir. Kategori kimliği, Entry ve Reversal UPDATE trigger ile korunur. Runtime DDL, migration, süper kullanıcı veya rol oluşturma izni taşımaz. DB sırrı ayrı güvenlik sınırıdır; DB yetkisi uygulama ADMIN kontrolünün yerini tutmaz. Üretim rolü veya deploy bu görevde oluşturulmaz.
+
+## S03-D raporlama eklentisi
+
+CSV İndir, uygulanmış organizasyon/apartman/ay/tür/kategori/yöntem filtrelerinin tüm hareketlerini kapsar; sayfa filtresi uygulanmaz. Negatif ters kayıt tutarları korunur. İndirme üst sınırı 50.000 satır veya 128 MiB; aşımda filtre daraltma hatası verilir. CSV biçimi ve güvenliği [ayrı belgede](FINANCIAL-EXPORT-PERFORMANCE.md).
+
+Aylık Karşılaştırma için Son 3/6/12 ay seçilebilir (varsayılan 6); seçilen ay dahildir. Ana raporun organizasyon/apartman/tür/kategori/yöntem filtreleri aynen uygulanır. Kategori seçiliyse aidat kaynakları kapsam dışıdır. Boş aylar sıfır; net fark önceki takvim ayına göre TL olarak gösterilir. İlk ayın farkı için bir önceki ay da sorgulanır. Yüzde ve banka bakiyesi iddiası yoktur. Negatif net/gider etkisi mümkündür. Ekrandaki aylık özet ve karşılaştırma aynı yetkilendirilmiş transaction’da okunur; başka HTTP istekleri ortak snapshot garantisi taşımaz.
+
+Mevcut dashboard() büyük portföy provalarında zaman aşımı/stack sınırına ulaştı; sayfalanmış panel yeniden tasarımı ayrıca yapılmalıdır. Rapor/CSV iyileştirmeleri panelin kapasite borcunu kapatmaz.

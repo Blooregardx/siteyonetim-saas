@@ -1,0 +1,334 @@
+{
+  "environment": {
+    "node": "v24.19.0",
+    "cpuAvailable": 2,
+    "postgres": [
+      {
+        "version": "PostgreSQL 17.11 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit",
+        "shared_buffers": "128MB",
+        "work_mem": "4MB"
+      }
+    ],
+    "cache": "First call is not a guaranteed cold cache; fixture insertion/ANALYZE warmed PostgreSQL. Three warmed samples, median. No other intentional writers.",
+    "dashboardMethod": "Separate warm process; unchanged dashboard() service wall time and 10 ms RSS samples including final RSS. Not HTTP rendering or browser memory.",
+    "csvMethod": "CSV-only repeat on the same final fixtures after aggregate overflow checks; separate Node process, 10 ms RSS sampling including final RSS. Not network time."
+  },
+  "results": [
+    {
+      "units": 100,
+      "charges": 600,
+      "movementRowsPerMonth": 215,
+      "debtFirst": {
+        "firstBeforeMs": 20.445590999999922,
+        "firstAfterMs": 10.891569000000118,
+        "warmBeforeMs": 11.218025000000125,
+        "warmAfterMs": 9.52506900000003,
+        "beforeSamples": [
+          11.18015800000012,
+          12.714255999999978,
+          11.218025000000125
+        ],
+        "afterSamples": [
+          12.972278999999844,
+          9.151765000000069,
+          9.52506900000003
+        ]
+      },
+      "debtDeep": {
+        "firstBeforeMs": 13.064376000000038,
+        "firstAfterMs": 10.561058000000003,
+        "warmBeforeMs": 11.545861000000059,
+        "warmAfterMs": 9.077894999999899,
+        "beforeSamples": [
+          13.844035000000076,
+          11.529888000000028,
+          11.545861000000059
+        ],
+        "afterSamples": [
+          10.332038000000011,
+          8.858107999999902,
+          9.077894999999899
+        ]
+      },
+      "movementFirst": {
+        "firstBeforeMs": 27.682452000000012,
+        "firstAfterMs": 16.59026400000016,
+        "warmBeforeMs": 19.960310000000163,
+        "warmAfterMs": 13.229982999999947,
+        "beforeSamples": [
+          19.960310000000163,
+          24.593943999999965,
+          17.548423000000184
+        ],
+        "afterSamples": [
+          13.229982999999947,
+          16.074177999999847,
+          11.853848999999855
+        ]
+      },
+      "movementDeep": {
+        "firstBeforeMs": 18.003569000000198,
+        "firstAfterMs": 11.611259000000018,
+        "warmBeforeMs": 19.047600000000102,
+        "warmAfterMs": 15.101873999999953,
+        "beforeSamples": [
+          27.432440000000042,
+          18.332612000000154,
+          19.047600000000102
+        ],
+        "afterSamples": [
+          15.12105100000008,
+          12.453935000000001,
+          15.101873999999953
+        ]
+      },
+      "comparison": {
+        "sequentialBaselineMs": 126.43692599999986,
+        "groupedMs": 21.330775999999787,
+        "beforeSamples": [
+          127.30573299999969,
+          120.69877399999996,
+          126.43692599999986
+        ],
+        "afterSamples": [
+          27.187014999999974,
+          21.330775999999787,
+          20.093385000000126
+        ]
+      },
+      "debtCsv": {
+        "ms": 31.833713999999986,
+        "rows": 100,
+        "bytes": 11935,
+        "rssBeforeMiB": 105.04296875,
+        "sampledPeakRssMiB": 105.54296875,
+        "sampledRssDeltaMiB": 0.5
+      },
+      "movementCsv": {
+        "ms": 32.463865999999996,
+        "rows": 215,
+        "bytes": 26683,
+        "rssBeforeMiB": 105.54296875,
+        "sampledPeakRssMiB": 105.91796875,
+        "sampledRssDeltaMiB": 0.375
+      },
+      "dashboard": {
+        "unchanged": true,
+        "ms": 62.43219799999997,
+        "units": 100,
+        "charges": 600,
+        "payments": 600,
+        "rssBeforeMiB": 83.26953125,
+        "sampledPeakRssMiB": 88.64453125,
+        "sampledRssDeltaMiB": 5.375
+      }
+    },
+    {
+      "units": 1000,
+      "charges": 6000,
+      "movementRowsPerMonth": 2150,
+      "debtFirst": {
+        "firstBeforeMs": 22.95379199999934,
+        "firstAfterMs": 13.231804000000011,
+        "warmBeforeMs": 21.255452000000332,
+        "warmAfterMs": 14.363826999999219,
+        "beforeSamples": [
+          25.13382399999955,
+          21.255452000000332,
+          20.09745599999951
+        ],
+        "afterSamples": [
+          16.366602999999486,
+          13.884422000000086,
+          14.363826999999219
+        ]
+      },
+      "debtDeep": {
+        "firstBeforeMs": 19.907038000000284,
+        "firstAfterMs": 13.90216700000019,
+        "warmBeforeMs": 21.087548999999854,
+        "warmAfterMs": 14.197785000000295,
+        "beforeSamples": [
+          21.087548999999854,
+          21.387288999999328,
+          19.111979000000247
+        ],
+        "afterSamples": [
+          14.819478000000345,
+          14.197785000000295,
+          14.177856999999676
+        ]
+      },
+      "movementFirst": {
+        "firstBeforeMs": 37.178256999999576,
+        "firstAfterMs": 23.531648000000132,
+        "warmBeforeMs": 33.456036999999924,
+        "warmAfterMs": 19.728508000000147,
+        "beforeSamples": [
+          33.456036999999924,
+          37.304204999999456,
+          26.174058000000514
+        ],
+        "afterSamples": [
+          20.41484599999967,
+          19.675489000000198,
+          19.728508000000147
+        ]
+      },
+      "movementDeep": {
+        "firstBeforeMs": 29.171101999999337,
+        "firstAfterMs": 21.897854999999254,
+        "warmBeforeMs": 28.738580000000184,
+        "warmAfterMs": 22.446509999999762,
+        "beforeSamples": [
+          28.316886000000522,
+          28.738580000000184,
+          30.60220500000014
+        ],
+        "afterSamples": [
+          22.446509999999762,
+          22.277729000000363,
+          26.62195100000008
+        ]
+      },
+      "comparison": {
+        "sequentialBaselineMs": 178.17852800000037,
+        "groupedMs": 75.40184499999941,
+        "beforeSamples": [
+          176.55185600000004,
+          178.17852800000037,
+          182.5062969999999
+        ],
+        "afterSamples": [
+          75.40184499999941,
+          61.091591999999764,
+          88.14263399999982
+        ]
+      },
+      "debtCsv": {
+        "ms": 91.61392099999995,
+        "rows": 1000,
+        "bytes": 119586,
+        "rssBeforeMiB": 105.91796875,
+        "sampledPeakRssMiB": 108.04296875,
+        "sampledRssDeltaMiB": 2.125
+      },
+      "movementCsv": {
+        "ms": 69.32219999999995,
+        "rows": 2150,
+        "bytes": 267648,
+        "rssBeforeMiB": 108.04296875,
+        "sampledPeakRssMiB": 117.41796875,
+        "sampledRssDeltaMiB": 9.375
+      },
+      "dashboard": {
+        "unchanged": true,
+        "error": "\nInvalid `tx.site.findUniqueOrThrow()` invocation in\n/workspace/siteyonetim-saas/src/lib/management.ts:150:24\n\n  147 async dashboard(siteId: string) {\n  148   return db.$transaction(async tx => {\n  149     await authorize(tx, siteId);\n→ 150     return tx.site.findUniqueOrThrow(\nTransaction API error: Transaction already closed: A query cannot be executed on an expired transaction. The timeout for this transaction was 5000 ms, however 8845 ms passed since the start of the transaction. Consider increasing the interactive transaction timeout or doing less work in the transaction."
+      }
+    },
+    {
+      "units": 10000,
+      "charges": 60000,
+      "movementRowsPerMonth": 21500,
+      "debtFirst": {
+        "firstBeforeMs": 139.77938800000265,
+        "firstAfterMs": 91.88045899999997,
+        "warmBeforeMs": 210.2682939999977,
+        "warmAfterMs": 102.67456400000083,
+        "beforeSamples": [
+          150.00684199999887,
+          210.2682939999977,
+          222.03861899999902
+        ],
+        "afterSamples": [
+          96.50123300000269,
+          123.43028499999855,
+          102.67456400000083
+        ]
+      },
+      "debtDeep": {
+        "firstBeforeMs": 186.3387920000023,
+        "firstAfterMs": 98.0908159999999,
+        "warmBeforeMs": 198.51875900000232,
+        "warmAfterMs": 106.71277399999963,
+        "beforeSamples": [
+          202.0265709999985,
+          198.51875900000232,
+          177.61997100000008
+        ],
+        "afterSamples": [
+          123.94112200000018,
+          100.35077799999999,
+          106.71277399999963
+        ]
+      },
+      "movementFirst": {
+        "firstBeforeMs": 116.42796499999895,
+        "firstAfterMs": 71.26248199999827,
+        "warmBeforeMs": 148.82815599999958,
+        "warmAfterMs": 134.72455300000001,
+        "beforeSamples": [
+          194.28142299999672,
+          143.10339499999827,
+          148.82815599999958
+        ],
+        "afterSamples": [
+          185.40244399999938,
+          118.28188299999965,
+          134.72455300000001
+        ]
+      },
+      "movementDeep": {
+        "firstBeforeMs": 216.18282800000088,
+        "firstAfterMs": 180.50838499999736,
+        "warmBeforeMs": 191.37390600000072,
+        "warmAfterMs": 160.04355199999918,
+        "beforeSamples": [
+          182.89212000000043,
+          195.12031899999783,
+          191.37390600000072
+        ],
+        "afterSamples": [
+          160.04355199999918,
+          156.00355000000127,
+          188.17717099999936
+        ]
+      },
+      "comparison": {
+        "sequentialBaselineMs": 900.5162490000002,
+        "groupedMs": 668.9044620000022,
+        "beforeSamples": [
+          1003.7014649999983,
+          895.3086359999979,
+          900.5162490000002
+        ],
+        "afterSamples": [
+          668.9044620000022,
+          705.489071,
+          667.7568690000007
+        ]
+      },
+      "debtCsv": {
+        "ms": 235.36628499999995,
+        "rows": 10000,
+        "bytes": 1214087,
+        "rssBeforeMiB": 117.41796875,
+        "sampledPeakRssMiB": 139.2109375,
+        "sampledRssDeltaMiB": 21.79296875
+      },
+      "movementCsv": {
+        "ms": 376.396655,
+        "rows": 21500,
+        "bytes": 2696648,
+        "rssBeforeMiB": 139.2109375,
+        "sampledPeakRssMiB": 181.60546875,
+        "sampledRssDeltaMiB": 42.39453125
+      },
+      "dashboard": {
+        "unchanged": true,
+        "error": "\nInvalid `tx.site.findUniqueOrThrow()` invocation in\n/workspace/siteyonetim-saas/src/lib/management.ts:150:24\n\n  147 async dashboard(siteId: string) {\n  148   return db.$transaction(async tx => {\n  149     await authorize(tx, siteId);\n→ 150     return tx.site.findUniqueOrThrow(\nError occurred during query execution:\nConnectorError(ConnectorError { user_facing_error: None, kind: QueryError(PostgresError { code: \"54001\", message: \"stack depth limit exceeded\", severity: \"ERROR\", detail: None, column: None, hint: Some(\"Increase the configuration parameter \\\"max_stack_depth\\\" (currently 2048kB), after ensuring the platform's stack depth limit is adequate.\") }), transient: false })"
+      },
+      "debtAllPeriodsLimit": "EXPORT_LIMIT for 60000 charges"
+    }
+  ]
+}

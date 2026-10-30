@@ -1,0 +1,302 @@
+{
+  "note": "Initial exploratory run before the final isolated timing pass. Synthetic fixtures retained; PostgreSQL cache/GC/global table population differ. No production guarantee.",
+  "results": [
+    {
+      "units": 100,
+      "charges": 600,
+      "movementRowsPerMonth": 215,
+      "debtFirst": {
+        "firstBeforeMs": 18.73519699999997,
+        "firstAfterMs": 9.696991000000025,
+        "warmBeforeMs": 10.077810999999997,
+        "warmAfterMs": 7.965970999999968,
+        "beforeSamples": [
+          10.077810999999997,
+          8.989863000000014,
+          10.66954300000009
+        ],
+        "afterSamples": [
+          7.965970999999968,
+          7.786539999999945,
+          8.160663999999997
+        ]
+      },
+      "debtDeep": {
+        "firstBeforeMs": 12.028868000000102,
+        "firstAfterMs": 9.055551000000037,
+        "warmBeforeMs": 9.852242000000047,
+        "warmAfterMs": 7.504060999999979,
+        "beforeSamples": [
+          13.894632000000001,
+          9.852242000000047,
+          9.618534999999952
+        ],
+        "afterSamples": [
+          10.111536000000001,
+          7.435229999999933,
+          7.504060999999979
+        ]
+      },
+      "movementFirst": {
+        "firstBeforeMs": 16.845726000000013,
+        "firstAfterMs": 10.774407999999994,
+        "warmBeforeMs": 11.415497999999957,
+        "warmAfterMs": 8.49996699999997,
+        "beforeSamples": [
+          11.87555400000008,
+          11.415497999999957,
+          11.367586999999958
+        ],
+        "afterSamples": [
+          9.226844000000028,
+          8.324486999999976,
+          8.49996699999997
+        ]
+      },
+      "movementDeep": {
+        "firstBeforeMs": 12.050069000000008,
+        "firstAfterMs": 7.645981000000006,
+        "warmBeforeMs": 8.390044999999986,
+        "warmAfterMs": 9.063211000000024,
+        "beforeSamples": [
+          11.859536999999932,
+          8.130358999999999,
+          8.390044999999986
+        ],
+        "afterSamples": [
+          9.77635799999996,
+          6.714872000000014,
+          9.063211000000024
+        ]
+      },
+      "comparison": {
+        "sequentialBaselineMs": 52.17046900000014,
+        "groupedMs": 11.310542999999825,
+        "beforeSamples": [
+          52.17046900000014,
+          50.61115699999982,
+          54.061672000000044
+        ],
+        "afterSamples": [
+          13.002755999999863,
+          11.310542999999825,
+          10.49973100000011
+        ]
+      },
+      "debtCsv": {
+        "ms": 14.45291999999995,
+        "rows": 100,
+        "bytes": 11935,
+        "rssBeforeMiB": 111.68359375,
+        "sampledPeakRssMiB": 111.80859375,
+        "sampledRssDeltaMiB": 0.125
+      },
+      "movementCsv": {
+        "ms": 22.581822999999986,
+        "rows": 215,
+        "bytes": 26683,
+        "rssBeforeMiB": 111.80859375,
+        "sampledPeakRssMiB": 112.18359375,
+        "sampledRssDeltaMiB": 0.375
+      }
+    },
+    {
+      "units": 1000,
+      "charges": 6000,
+      "movementRowsPerMonth": 2150,
+      "debtFirst": {
+        "firstBeforeMs": 28.133925999999974,
+        "firstAfterMs": 18.94477700000016,
+        "warmBeforeMs": 21.58990700000004,
+        "warmAfterMs": 15.179817000000185,
+        "beforeSamples": [
+          28.402583999999933,
+          20.732837000000018,
+          21.58990700000004
+        ],
+        "afterSamples": [
+          15.995284999999967,
+          14.334745000000112,
+          15.179817000000185
+        ]
+      },
+      "debtDeep": {
+        "firstBeforeMs": 24.913673000000017,
+        "firstAfterMs": 15.181500000000142,
+        "warmBeforeMs": 23.63767199999984,
+        "warmAfterMs": 15.803540999999768,
+        "beforeSamples": [
+          23.63767199999984,
+          20.706293000000187,
+          25.20890499999996
+        ],
+        "afterSamples": [
+          14.689170000000104,
+          17.072312000000238,
+          15.803540999999768
+        ]
+      },
+      "movementFirst": {
+        "firstBeforeMs": 41.04001799999969,
+        "firstAfterMs": 26.459915000000365,
+        "warmBeforeMs": 35.31022099999973,
+        "warmAfterMs": 24.73924399999987,
+        "beforeSamples": [
+          35.31022099999973,
+          37.84498299999996,
+          33.44480199999998
+        ],
+        "afterSamples": [
+          22.813681000000088,
+          24.73924399999987,
+          26.27790499999992
+        ]
+      },
+      "movementDeep": {
+        "firstBeforeMs": 38.923861000000215,
+        "firstAfterMs": 25.903148999999758,
+        "warmBeforeMs": 39.152424999999766,
+        "warmAfterMs": 26.82296200000019,
+        "beforeSamples": [
+          38.01575600000024,
+          39.21224000000029,
+          39.152424999999766
+        ],
+        "afterSamples": [
+          26.381798999999774,
+          28.796838000000207,
+          26.82296200000019
+        ]
+      },
+      "comparison": {
+        "sequentialBaselineMs": 204.281884,
+        "groupedMs": 51.4738269999998,
+        "beforeSamples": [
+          224.84319200000027,
+          204.281884,
+          173.1251629999997
+        ],
+        "afterSamples": [
+          49.94860599999993,
+          60.128807999999935,
+          51.4738269999998
+        ]
+      },
+      "debtCsv": {
+        "ms": 50.70618299999978,
+        "rows": 1000,
+        "bytes": 119586,
+        "rssBeforeMiB": 124.30859375,
+        "sampledPeakRssMiB": 132.6640625,
+        "sampledRssDeltaMiB": 8.35546875
+      },
+      "movementCsv": {
+        "ms": 48.25665899999967,
+        "rows": 2150,
+        "bytes": 267648,
+        "rssBeforeMiB": 132.6640625,
+        "sampledPeakRssMiB": 135.4140625,
+        "sampledRssDeltaMiB": 2.75
+      }
+    },
+    {
+      "units": 10000,
+      "charges": 60000,
+      "movementRowsPerMonth": 21500,
+      "debtFirst": {
+        "firstBeforeMs": 136.61001000000033,
+        "firstAfterMs": 156.05806100000154,
+        "warmBeforeMs": 122.7330290000009,
+        "warmAfterMs": 85.50629499999923,
+        "beforeSamples": [
+          134.058352,
+          112.16347900000073,
+          122.7330290000009
+        ],
+        "afterSamples": [
+          81.64288099999976,
+          85.50629499999923,
+          86.22443200000089
+        ]
+      },
+      "debtDeep": {
+        "firstBeforeMs": 199.74381800000083,
+        "firstAfterMs": 108.46983999999975,
+        "warmBeforeMs": 207.17691699999887,
+        "warmAfterMs": 116.81559399999969,
+        "beforeSamples": [
+          206.40851199999997,
+          207.17691699999887,
+          222.8903020000016
+        ],
+        "afterSamples": [
+          116.81559399999969,
+          112.08309299999928,
+          146.49370799999997
+        ]
+      },
+      "movementFirst": {
+        "firstBeforeMs": 141.8807539999998,
+        "firstAfterMs": 65.1404539999985,
+        "warmBeforeMs": 130.29656199999954,
+        "warmAfterMs": 58.56922199999826,
+        "beforeSamples": [
+          150.03506300000117,
+          130.29656199999954,
+          128.2577990000027
+        ],
+        "afterSamples": [
+          58.56922199999826,
+          52.70512000000235,
+          59.676705000001675
+        ]
+      },
+      "movementDeep": {
+        "firstBeforeMs": 208.9182600000022,
+        "firstAfterMs": 174.7325380000002,
+        "warmBeforeMs": 174.77818599999955,
+        "warmAfterMs": 153.2594420000023,
+        "beforeSamples": [
+          174.77818599999955,
+          167.98030799999833,
+          196.7608880000007
+        ],
+        "afterSamples": [
+          143.54457099999854,
+          153.2594420000023,
+          162.11666699999842
+        ]
+      },
+      "comparison": {
+        "sequentialBaselineMs": 836.4281429999974,
+        "groupedMs": 463.23387600000206,
+        "beforeSamples": [
+          849.1682110000002,
+          836.4281429999974,
+          790.2844870000008
+        ],
+        "afterSamples": [
+          610.7958279999984,
+          422.27645499999926,
+          463.23387600000206
+        ]
+      },
+      "debtCsv": {
+        "ms": 245.70904900000096,
+        "rows": 10000,
+        "bytes": 1214087,
+        "rssBeforeMiB": 133.92578125,
+        "sampledPeakRssMiB": 146.0078125,
+        "sampledRssDeltaMiB": 12.08203125
+      },
+      "movementCsv": {
+        "ms": 427.5816550000018,
+        "rows": 21500,
+        "bytes": 2696648,
+        "rssBeforeMiB": 146.0078125,
+        "sampledPeakRssMiB": 173.03515625,
+        "sampledRssDeltaMiB": 27.02734375
+      }
+    }
+  ]
+}
