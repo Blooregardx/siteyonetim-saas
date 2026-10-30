@@ -1,6 +1,6 @@
 # Güncel özellik durumu
 
-Bu belge geliştirme dalının güncel kod kapsamını anlatır; main'e birleştirildiği veya üretime hazır olduğu anlamına gelmez. Önceki raporlar tarihsel kayıttır.
+Bu belge main üzerindeki güncel alpha kapsamını anlatır. PR #9 main geçişini tamamladı; bu üretim hazırlığı anlamına gelmez. Önceki raporlar tarihsel kayıttır.
 
 | Alan | Uygulanmış geliştirme kapsamı | Sınır / eksik |
 |---|---|---|
@@ -18,3 +18,7 @@ Gelir/gider, gelişmiş raporlar, personel, banka/kart entegrasyonu ve mobil ist
 ## OSS-02 lisans durumu
 
 Özgün proje kodu ve belgeleri AGPL-3.0-only ile lisanslanır. Kendi sunucusunda çalıştırma, değiştirme ve lisans koşullarıyla paylaşma mümkündür. Bu hukuki/dağıtım hazırlığı yeni uygulama özelliği veya üretim onayı değildir. Ücretsiz yazılım, ücretsiz barındırma hizmeti anlamına gelmez. [Haklar ve yükümlülükler](LICENSING.md).
+
+## OSS-04 işletim kanıtı
+
+Temiz konteyner kurulumu ve sentetik backup/restore doğrulandı; bağımsız bir insanın kurulumu doğrulanmadı. Runtime rolüyle 4 E2E testi geçti. Gerçek SMTP teslimi, üretim güvenliği/yük testleri, MFA ve tam işletim/izleme açık. [Kanıt](OSS04-VALIDATION.md).

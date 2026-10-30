@@ -1,3 +1,7 @@
+# Güncel okuma notu — OSS-04
+
+PR #7–#9 birleşmiş, AGPL main üzerinde; zorunlu checks etkin. Aşağıdaki OSS-01/01B/02 kayıtları kendi tarihindeki durumları korur. Son kanıt [OSS04-VALIDATION](OSS04-VALIDATION.md), başvuru taslakları [OSS-APPLICATION](OSS-APPLICATION.md), yayımlanmamış aday [sürüm notları](RELEASE-NOTES-v0.1.0-alpha.1.md) içindedir.
+
 # Doğrulanabilir geliştirme ve bakım kanıtları
 
 30 Ekim 2026 başlangıç anlık görüntüsü; sayılar sürekli güncellenen başarı iddiası değildir. OSS-01 geliştirme dalından türetilir; main'e merge edilmez.
@@ -66,3 +70,7 @@ Başvuru öncesi kalanlar: OSS-02 lisanslı PR'nin birleşmesi, main geçişinin
 LICENSE resmî GNU metniyle bayt düzeyinde eşit: SHA-256 `0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0`. İkinci indirme kontrolünde geçici HTTP 503 alındı; yeniden denemede karşılaştırma başarılı oldu. SPDX ve 479 kayıtlık CSV/kilit eşleşmesi, değişmeyen bağımlılık grafiği, Markdown bağlantıları ve diff whitespace doğrulandı. npm audit 0 bildirim döndürdü; bu kapsamlı güvenlik garantisi değildir. Tam paket/platform dağıtım uyumu için üçüncü taraf belgesindeki release kontrolleri açık kalır.
 
 .mailmap kontrolü eski yazar kimliğini Blooregardx'e eşler; ham commit SHA/yazar metaverisi değişmez. GitHub'ın eski commit/PR önbelleği veya Contributors görünümünden diğer hesabın tamamen silindiği iddia edilmez. Kullanıcı geçmiş yazımına izin vermiştir; main koruması ve ayrı main PR sınırları nedeniyle bu OSS-02 geçmişi yeniden yazmaz.
+
+## OSS-03 main geçişi ve OSS-04
+
+[PR #9](https://github.com/Blooregardx/siteyonetim-saas/pull/9) main 55a27f1 ile sonuçlandı. [PR #7](https://github.com/Blooregardx/siteyonetim-saas/pull/7), [PR #8](https://github.com/Blooregardx/siteyonetim-saas/pull/8) birleşmiş; [OSS-03 CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/40996143750) başarılı. Bunlar OSS-04 son commitinin CI sonucu yerine kullanılmaz. 30 Ekim 2026 başlangıcında 0 yıldız/0 fork, release/tag yoktu; indirme/aktif kullanıcı/üretim müşterisi/dış katkıcı veya dış kullanım kanıtı doğrulanmadı. Güncel sayılar başvuru öncesi tekrar okunmalıdır. Yeni bakım kanıtı izole kurulum, kurtarma betikleri ve tekrarlanabilir CI kontrolüdür; bağımsız insan kurulumu değildir.
