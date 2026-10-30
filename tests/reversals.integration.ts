@@ -103,10 +103,12 @@ test("8 — ayrı LOGIN runtime/migration rolleriyle gerçek izin kısıtları",
   await db.$executeRawUnsafe(`GRANT USAGE ON SCHEMA public TO "${runtime}"`);
   await db.$executeRawUnsafe(`GRANT USAGE, CREATE ON SCHEMA public TO "${migration}"`);
   await db.$executeRawUnsafe(`GRANT CREATE ON DATABASE siteyonetim_test TO "${migration}"`);
-  await db.$executeRawUnsafe(`GRANT SELECT ON "User","Organization","OrganizationMembership","Site","Membership","Charge","Payment","PaymentReversal","Unit","Block","PaymentPolicyChange" TO "${runtime}"`);
-  await db.$executeRawUnsafe(`GRANT INSERT ON "Payment","PaymentReversal","AuditLog","PaymentPolicyChange" TO "${runtime}"`);
+  await db.$executeRawUnsafe(`GRANT SELECT ON "User","Organization","OrganizationMembership","Site","Membership","Charge","Payment","PaymentReversal","Unit","Block","PaymentPolicyChange","FinancialCategory","FinancialEntry","FinancialEntryReversal" TO "${runtime}"`);
+  await db.$executeRawUnsafe(`GRANT INSERT ON "Payment","PaymentReversal","AuditLog","PaymentPolicyChange","FinancialCategory","FinancialEntry","FinancialEntryReversal" TO "${runtime}"`);
   await db.$executeRawUnsafe(`GRANT SELECT (id) ON "AuditLog" TO "${runtime}"`);
   await db.$executeRawUnsafe(`GRANT UPDATE ("partialPaymentsAllowed") ON "Site" TO "${runtime}"`);
+  await db.$executeRawUnsafe(`GRANT UPDATE (active) ON "FinancialCategory" TO "${runtime}"`);
+  await db.$executeRawUnsafe(`GRANT UPDATE (id) ON "FinancialEntry" TO "${runtime}"`);
   // PostgreSQL row locks require UPDATE privilege: only id is granted; immutable triggers still reject writes.
   await db.$executeRawUnsafe(`GRANT UPDATE (id) ON "User","Organization","Charge","Payment" TO "${runtime}"`);
   await db.$executeRawUnsafe(`CREATE SCHEMA "${migrationSchema}" AUTHORIZATION "${migration}"`);
@@ -120,6 +122,12 @@ test("8 — ayrı LOGIN runtime/migration rolleriyle gerçek izin kısıtları",
   await assert.rejects(app.$executeRawUnsafe(`CREATE TABLE "runtime_probe_${suffix}" (id INTEGER)`));
   const api=management(app,async()=>({userId:f.user.id}));
   const payment=await api.collect(f.site.id,f.charge.id,1000,crypto.randomUUID());
+  const category=await api.createCategory(f.site.id,{type:"EXPENSE",name:"Runtime gideri"});
+  const manual=await api.createEntry(f.site.id,{type:"EXPENSE",categoryId:category.id,amountKurus:100,businessDate:"2026-10-01",description:"Runtime sentetik",method:"CASH",reference:"",idempotencyKey:crypto.randomUUID()});
+  await api.reverseEntry(f.site.id,manual.id,"Test düzeltmesi",crypto.randomUUID());await api.deactivateCategory(f.site.id,category.id);
+  await api.movementReport({organizationId:f.site.organizationId!,month:"2026-10"});
+  await assert.rejects(app.financialEntry.update({where:{id:manual.id},data:{id:manual.id}}),/append only/);
+  await assert.rejects(app.financialEntry.delete({where:{id:manual.id}}));
   await api.setPartialPaymentsAllowed(f.site.id,false);
   const report=await api.debtReport({organizationId:f.site.organizationId!});assert.ok(report.totalCount>=1);
   await api.reversePayment(f.site.id,payment.id,"ENTRY_ERROR",crypto.randomUUID());

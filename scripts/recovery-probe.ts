@@ -12,7 +12,7 @@ const mode = process.argv[2];
 const fixturePath = process.argv[3];
 if (!["create", "verify"].includes(mode) || !fixturePath) throw new Error("Usage: recovery-probe.ts create|verify fixture.json");
 const db = new PrismaClient({ datasourceUrl: url });
-type Fixture = { userId: string; outsiderId: string; organizationId: string; siteId: string; chargeId: string; paymentId: string; reversalId: string; personId: string; occupancyId: string; auditCount: number; migrations: number; policyChangeId: string };
+type Fixture = { userId: string; outsiderId: string; organizationId: string; siteId: string; chargeId: string; paymentId: string; reversalId: string; personId: string; occupancyId: string; auditCount: number; migrations: number; policyChangeId: string; manualEntryId: string; manualReversalId: string; manualCategoryId: string };
 const apiFor = (userId: string) => management(db, async () => ({ userId }));
 async function main() {
   if (mode === "create") {
@@ -33,13 +33,22 @@ async function main() {
     await apiFor(outsider.id).createOrganization("Sentetik ayrı tenant", "INDIVIDUAL");
     await api.setPartialPaymentsAllowed(site.id, false);
     const policyChange = await db.paymentPolicyChange.findFirstOrThrow({where:{siteId:site.id}});
+    const category=await api.createCategory(site.id,{type:"INCOME",name:"Sentetik kurtarma geliri"});
+    const manual=await api.createEntry(site.id,{type:"INCOME",categoryId:category.id,description:"Sentetik kurtarma kaydı",amountKurus:12345,businessDate:"2026-10-01",method:"TRANSFER",reference:"",idempotencyKey:crypto.randomUUID()});
+    const manualReversal=await api.reverseEntry(site.id,manual.id,"Sentetik düzeltme",crypto.randomUUID());
+    await api.deactivateCategory(site.id,category.id);
     const applied = await db.$queryRaw<{ count: bigint }[]>`SELECT count(*) FROM "_prisma_migrations" WHERE finished_at IS NOT NULL`;
-    const fixture: Fixture = { userId: user.id, outsiderId: outsider.id, organizationId: org.id, siteId: site.id, chargeId: charge.id, paymentId: payment.id, reversalId: reversal.id, personId: person.id, occupancyId: occupancy.id, auditCount: await db.auditLog.count({ where: { siteId: site.id } }), migrations: Number(applied[0].count), policyChangeId:policyChange.id };
+    const fixture: Fixture = { userId: user.id, outsiderId: outsider.id, organizationId: org.id, siteId: site.id, chargeId: charge.id, paymentId: payment.id, reversalId: reversal.id, personId: person.id, occupancyId: occupancy.id, auditCount: await db.auditLog.count({ where: { siteId: site.id } }), migrations: Number(applied[0].count), policyChangeId:policyChange.id,manualEntryId:manual.id,manualReversalId:manualReversal.id,manualCategoryId:category.id };
     await writeFile(fixturePath, JSON.stringify(fixture, null, 2) + "\n", { mode: 0o600 });
   }
   const f: Fixture = JSON.parse(await readFile(fixturePath, "utf8"));
   const site = await apiFor(f.userId).dashboard(f.siteId);
   assert.equal(site.organizationId, f.organizationId);
+  const manual=await db.financialEntry.findUniqueOrThrow({where:{id:f.manualEntryId},include:{reversal:true,category:true}});
+  assert.equal(manual.amountKurus,12345);assert.equal(manual.actorId,f.userId);assert.equal(manual.siteId,f.siteId);assert.equal(manual.category.id,f.manualCategoryId);assert.equal(manual.category.active,false);assert.equal(manual.reversal!.id,f.manualReversalId);assert.equal(manual.reversal!.amountKurus,12345);
+  await assert.rejects(db.financialEntry.update({where:{id:manual.id},data:{description:manual.description}}),/append only/);
+  await assert.rejects(db.financialEntryReversal.delete({where:{id:f.manualReversalId}}),/append only/);
+  await assert.rejects(apiFor(f.outsiderId).movementReport({organizationId:f.organizationId,month:"2026-10"}),/FORBIDDEN/);
   assert.equal(site.partialPaymentsAllowed, false);
   const policy=await db.paymentPolicyChange.findUniqueOrThrow({where:{id:f.policyChangeId}});
   assert.equal(policy.oldValue,true);assert.equal(policy.newValue,false);assert.equal(policy.actorId,f.userId);
@@ -69,7 +78,7 @@ async function main() {
   await assert.rejects(db.auditLog.update({ where: { id: audit[0].id }, data: { action: audit[0].action } }), /append only/);
   const applied = await db.$queryRaw<{ count: bigint }[]>`SELECT count(*) FROM "_prisma_migrations" WHERE finished_at IS NOT NULL`;
   assert.equal(Number(applied[0].count), f.migrations);
-  assert.equal(f.migrations, 9);
+  assert.equal(f.migrations, 10);
   console.log(JSON.stringify({ mode, verified: true, grossKurus: 6500, reversedKurus: 4000, netKurus: 2500, remainingKurus: 7500, auditCount: f.auditCount, migrations: f.migrations, tenantIsolation: true, immutableHistory: true }));
 }
 main().finally(() => db.$disconnect()).catch(error => { console.error(error instanceof Error ? error.message : "Recovery probe failed"); process.exitCode = 1; });
