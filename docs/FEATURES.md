@@ -1,6 +1,6 @@
 # Güncel özellik durumu
 
-Bu belge main üzerindeki güncel alpha kapsamını anlatır. PR #9 main geçişini tamamladı; bu üretim hazırlığı anlamına gelmez. Önceki raporlar tarihsel kayıttır.
+Bu belge S03-B geliştirme dalının kapsamını anlatır; S03-B henüz main’e birleşmiş sayılmaz. S03-A PR #11 ile main’e alındı. PR #9 main geçişini tamamladı; bu üretim hazırlığı anlamına gelmez. Önceki raporlar tarihsel kayıttır.
 
 | Alan | Uygulanmış geliştirme kapsamı | Sınır / eksik |
 |---|---|---|
@@ -23,8 +23,14 @@ Gelir/gider, gelişmiş raporlar, personel, banka/kart entegrasyonu ve mobil ist
 
 Temiz konteyner kurulumu ve sentetik backup/restore doğrulandı; bağımsız bir insanın kurulumu doğrulanmadı. Runtime rolüyle 4 E2E testi geçti. Gerçek SMTP teslimi, üretim güvenliği/yük testleri, MFA ve tam işletim/izleme açık. [Kanıt](OSS04-VALIDATION.md).
 
-## S03-A — Toplu aidat
+## S03-A — Toplu aidat (main’e alındı)
 
 Panelde **Toplu Aidat Oluştur**: yetkili apartmanı seçin, YYYY-MM dönemini, TL tutarını ve son ödeme tarihini girin. Tüm daireler başlangıçta seçilidir; istenmeyenleri çıkarın. Önizlemede blok/daire, dönem, tutar, vade, mevcut aidat ve özet gösterilir. Önizleme aidat yazmaz. Bilgileri kontrol edip **Onayla ve aidatları oluştur** ile kesinleştirin; sonuç sayı, toplam ve dönemi gösterir. Tekil aidat ekranı korunur.
 
 Mevcut aidatı olan tek daire bile tüm işlemi engeller; seçimden çıkarıp yeni önizleme gerekir. Değişen daire/blok/aidat bilgisi yeni önizleme gerektirir. Kısmi oluşturma, mevcut aidatı değiştirme, banka/kart işlemi yoktur. Bir işlem en fazla 5000 daire içerir; büyük portföylerde performans ölçümü sonraki aşamadır. DEVELOPMENT kapsamında; STAGING/PRODUCTION dağıtılmadı.
+
+## S03-B — Borç/tahsilat raporları ve ödeme politikası
+
+Panelde **Borç ve Tahsilat Raporları** bağlantısı; yetkili organizasyon/apartman, aidat dönemi, ödeme durumu, borç ve vade filtreleri. Ödenmedi/kısmi/tam ödeme ile vade durumu ayrı değerlendirilir. Aidatsız daireler borçlu sayılmaz. Sayfa 25 aidattır; dokuz özet kartı bütün filtre kapsamını gösterir. Kişisel bilgiler rapora alınmaz. Aidat dönemi raporu bugünkü net borcu gösterir; ödeme tarihine göre muhasebe/nakit akışı değildir.
+
+**Tahsilat Ayarları → Kısmi Ödeme Kabulü** varsayılan açık; yalnız doğrulanmış organizasyon ADMIN’i değiştirebilir. MANAGER mevcut politikayı görür. Kapatıldığında yeni ödeme güncel kalan borcun tamamı olmalıdır; eski ödemeler/ters kayıtlar korunur. **Kalan Borcun Tamamını Tahsil Et** tutarı doldurur; bu seçimde bakiye değişmişse sunucu yeni kontrol ister. [Kullanım ve sınırlar](REPORTS-PAYMENT-POLICY.md).

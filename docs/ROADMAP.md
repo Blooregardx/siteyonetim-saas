@@ -7,9 +7,10 @@
 - [PR #10 (OSS-04)](https://github.com/Blooregardx/siteyonetim-saas/pull/10) main'e birleştirildi.
 - [v0.1.0-alpha.1](https://github.com/Blooregardx/siteyonetim-saas/releases/tag/v0.1.0-alpha.1) GitHub Pre-release olarak yayımlandı; üretime hazır sürüm değildir.
 - OpenAI Codex for Open Source başvurusu kullanıcı tarafından gönderildi; kabul sonucu bekleniyor. Başvuru, kabul veya destek kazanıldığı anlamına gelmez.
-- S03-A toplu aidat özelliği [PR #11](https://github.com/Blooregardx/siteyonetim-saas/pull/11) üzerinde geliştirildi; henüz main'e birleştirilmedi ve mevcut ön sürümün parçası değildir.
+- S03-A toplu aidat özelliği [PR #11](https://github.com/Blooregardx/siteyonetim-saas/pull/11) ile main’e alındı (`bcab0726dde148bdc0bd166b4a50ff6a1493df87`). Mevcut v0.1.0-alpha.1 ön sürümünün parçası değildir.
+- S03-B: sayfalanmış borç/tahsilat raporları, apartman bazında kısmi ödeme politikası ve kalan borcun tamamını tahsil etme geliştirme dalında uygulanır; main’e birleşme ayrı inceleme gerektirir.
 
-Güncel sonraki adım PR #11'in incelenmesidir. Bağımsız kurulum geri bildirimi, üretim güvenliği/işletim doğrulamaları ve kapasite ölçümü açık kalır. Yeni başvuru gönderimi veya yeni release oluşturma bu belge düzeltmesinin kapsamında değildir.
+Güncel sonraki adım S03-B değişikliklerinin incelenmesidir. Bağımsız kurulum geri bildirimi, üretim güvenliği/işletim doğrulamaları ve kapasite ölçümü açık kalır. Yeni başvuru gönderimi veya yeni release oluşturma bu belge düzeltmesinin kapsamında değildir.
 
 ## Tarihsel OSS-04 hazırlık kaydı
 
@@ -32,4 +33,6 @@ Aşağıdaki tamamlanma ve öncelik listeleri OSS-04 PR'si birleşmeden, ön sü
 
 Tarihsel S00/S01 raporları ve OSS-EVIDENCE aşama kayıtları korunur; güncel kapsam [FEATURES](FEATURES.md), işletim açıkları [DEFERRED-CLOUD-OPERATIONS](DEFERRED-CLOUD-OPERATIONS.md) içindedir. Finans/audit geçmişi korunur; migration kozmetik amaçla değiştirilmez.
 
-Güncel S03-A sınırı: iki aşamalı, çakışmada tümü reddedilen toplu aidat PR #11 kapsamındadır; main’e henüz birleştirilmedi. Bu çalışma mevcut alpha etiketi ve sürümü değiştirmez; yeni sürüm yayımlamaz.
+S03-A sınırı: iki aşamalı, çakışmada tümü reddedilen toplu aidat PR #11 ile main’e birleşti. Bu çalışma mevcut alpha etiketi ve sürümü değiştirmez; yeni sürüm yayımlamaz.
+
+S03-B sonrası: rapor sorgularının büyük portföy kapasite ölçümü, CSV ve ödeme tarihine göre nakit akışı raporu ayrı aşamalardır. S03-B aidat dönemi raporudur; kısmi ters kayıt veya üretim dağıtımı içermez.

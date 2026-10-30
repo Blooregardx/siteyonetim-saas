@@ -29,6 +29,8 @@ model User {
 }
 
 model Site {
+  partialPaymentsAllowed Boolean @default(true)
+  paymentPolicyChanges PaymentPolicyChange[]
   bulkChargeOperations BulkChargeOperation[]
   id            String         @id @default(cuid())
   organizationId String?
@@ -104,9 +106,11 @@ model Charge {
   @@unique([siteId, id])
   @@unique([siteId, unitId, period])
   @@index([siteId, dueDate])
+  @@index([siteId, period])
 }
 
 model Payment {
+  fullBalance Boolean @default(false)
   id             String   @id @default(cuid())
   siteId         String
   chargeId       String
@@ -297,4 +301,16 @@ model BulkChargeOperation {
  createdAt DateTime @default(now())
  site Site @relation(fields: [siteId], references: [id], onDelete: Restrict)
  @@unique([siteId, idempotencyKey])
+}
+
+model PaymentPolicyChange {
+ id String @id @default(cuid())
+ siteId String
+ organizationId String
+ actorId String
+ oldValue Boolean
+ newValue Boolean
+ createdAt DateTime @default(now())
+ site Site @relation(fields: [organizationId, siteId], references: [organizationId, id], onDelete: Restrict)
+ @@index([siteId, createdAt])
 }
