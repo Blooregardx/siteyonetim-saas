@@ -1,0 +1,47 @@
+{
+  "scope": "Fresh clean migrations, single full regression pass; production-build Playwright mobile 390x844, isolated PostgreSQL 17 siteyonetim_test, synthetic fixtures",
+  "unitTestCases": 24,
+  "integrationTestCases": 25,
+  "e2eTestCases": 11,
+  "rows": [
+    {
+      "units": 100,
+      "charges": 600,
+      "firstPanelMs": 407.4961770000009,
+      "secondPanelMs": 141.85898900000393,
+      "responseHeadersMs": 38.6320510000005,
+      "responseStatus": 200,
+      "urlCommitted": true,
+      "rows": 25,
+      "differentRecords": true,
+      "summaryUnchanged": true,
+      "prefetchRequests": 0
+    },
+    {
+      "units": 1000,
+      "charges": 6000,
+      "firstPanelMs": 409.2540200000003,
+      "secondPanelMs": 192.92381600000226,
+      "responseHeadersMs": 30.901889000000665,
+      "responseStatus": 200,
+      "urlCommitted": true,
+      "rows": 25,
+      "differentRecords": true,
+      "summaryUnchanged": true,
+      "prefetchRequests": 0
+    },
+    {
+      "units": 10000,
+      "charges": 60000,
+      "firstPanelMs": 866.7638549999974,
+      "secondPanelMs": 767.4628460000022,
+      "responseHeadersMs": 33.89412900000025,
+      "responseStatus": 200,
+      "urlCommitted": true,
+      "rows": 25,
+      "differentRecords": true,
+      "summaryUnchanged": true,
+      "prefetchRequests": 0
+    }
+  ]
+}

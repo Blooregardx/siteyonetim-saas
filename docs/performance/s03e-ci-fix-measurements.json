@@ -1,0 +1,873 @@
+{
+  "environment": {
+    "node": "v24.19.0",
+    "cpuAvailable": 2,
+    "postgres": [
+      {
+        "version": "PostgreSQL 17.11 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit",
+        "shared_buffers": "128MB",
+        "work_mem": "4MB"
+      }
+    ],
+    "method": "Same per-site synthetic shape as S03-D. Six charges and partial receipts per unit; 10% fully reversed. Three warm service samples; not true cold cache. Node process RSS sampled each 10ms, includes final reading; no intentional concurrent writers. Default Prisma interactive transaction timeout 5000ms, PostgreSQL stack unchanged. Legacy probe retained from initial comparison process; final new-service samples repeated in a fresh Node process with --skip-legacy.",
+    "httpMethod": "One navigation per scale on the same production Next server with progressively warmed routes, mobile 390x844, ascending sizes. Reported headers are streaming TTFB, contentReady waits for heading/table, networkIdle includes 500ms quiet window. HTTP and service probes are separate; shared Cloud resources are variable. No intentional concurrent tests/restore during final probe.",
+    "httpNativeMethod": "One navigation per scale on the same production Next server with progressively warmed routes, mobile 390x844, ascending sizes. Reported headers are streaming TTFB, contentReady waits for heading/table, networkIdle includes 500ms quiet window. HTTP and service probes are separate; shared Cloud resources are variable. No intentional concurrent tests/restore during final probe."
+  },
+  "results": [
+    {
+      "units": 100,
+      "charges": 600,
+      "legacy": {
+        "ms": 63.49084099999982,
+        "queries": 17,
+        "rssBeforeMiB": 187.94921875,
+        "peakMiB": 196.57421875,
+        "deltaMiB": 8.625,
+        "units": 100,
+        "charges": 600
+      },
+      "summary": {
+        "organization": {
+          "id": "cmvv8gayz008jn70ahn9bqude",
+          "name": "S03E sentetik 100",
+          "kind": "COMPANY"
+        },
+        "siteCount": 1,
+        "unitCount": 100,
+        "chargedKurus": 12000000,
+        "grossKurus": 6000000,
+        "reversedKurus": 600000,
+        "netKurus": 5400000,
+        "remainingKurus": 6600000
+      },
+      "services": {
+        "portfolioSummary": {
+          "samples": [
+            {
+              "ms": 6.732874000000038,
+              "queries": 8,
+              "rssBeforeMiB": 188.6953125,
+              "peakMiB": 189.0703125,
+              "deltaMiB": 0.375
+            },
+            {
+              "ms": 6.177421000000095,
+              "queries": 8,
+              "rssBeforeMiB": 189.0703125,
+              "peakMiB": 189.1953125,
+              "deltaMiB": 0.125
+            },
+            {
+              "ms": 5.798598999999967,
+              "queries": 8,
+              "rssBeforeMiB": 189.1953125,
+              "peakMiB": 189.4453125,
+              "deltaMiB": 0.25
+            }
+          ],
+          "medianMs": 6.177421000000095
+        },
+        "firstUnits": {
+          "samples": [
+            {
+              "ms": 12.344286000000011,
+              "queries": 12,
+              "rssBeforeMiB": 189.4453125,
+              "peakMiB": 190.0703125,
+              "deltaMiB": 0.625
+            },
+            {
+              "ms": 9.180763999999954,
+              "queries": 12,
+              "rssBeforeMiB": 190.0703125,
+              "peakMiB": 190.4453125,
+              "deltaMiB": 0.375
+            },
+            {
+              "ms": 9.427644999999984,
+              "queries": 12,
+              "rssBeforeMiB": 190.4453125,
+              "peakMiB": 190.9453125,
+              "deltaMiB": 0.5
+            }
+          ],
+          "medianMs": 9.427644999999984
+        },
+        "lastUnits": {
+          "samples": [
+            {
+              "ms": 9.805139999999938,
+              "queries": 12,
+              "rssBeforeMiB": 190.9453125,
+              "peakMiB": 191.3203125,
+              "deltaMiB": 0.375
+            },
+            {
+              "ms": 8.886447999999973,
+              "queries": 12,
+              "rssBeforeMiB": 191.3203125,
+              "peakMiB": 191.6953125,
+              "deltaMiB": 0.375
+            },
+            {
+              "ms": 45.18507700000009,
+              "queries": 12,
+              "rssBeforeMiB": 191.6953125,
+              "peakMiB": 196.140625,
+              "deltaMiB": 4.4453125
+            }
+          ],
+          "medianMs": 9.805139999999938
+        },
+        "firstCharges": {
+          "samples": [
+            {
+              "ms": 11.864473999999973,
+              "queries": 9,
+              "rssBeforeMiB": 196.140625,
+              "peakMiB": 196.140625,
+              "deltaMiB": 0
+            },
+            {
+              "ms": 10.664905999999974,
+              "queries": 9,
+              "rssBeforeMiB": 196.140625,
+              "peakMiB": 196.140625,
+              "deltaMiB": 0
+            },
+            {
+              "ms": 10.883619999999837,
+              "queries": 9,
+              "rssBeforeMiB": 196.140625,
+              "peakMiB": 196.140625,
+              "deltaMiB": 0
+            }
+          ],
+          "medianMs": 10.883619999999837
+        },
+        "secondCharges": {
+          "samples": [
+            {
+              "ms": 11.479853000000048,
+              "queries": 9,
+              "rssBeforeMiB": 196.140625,
+              "peakMiB": 196.140625,
+              "deltaMiB": 0
+            },
+            {
+              "ms": 13.873207999999977,
+              "queries": 9,
+              "rssBeforeMiB": 196.140625,
+              "peakMiB": 196.140625,
+              "deltaMiB": 0
+            },
+            {
+              "ms": 11.722958999999946,
+              "queries": 9,
+              "rssBeforeMiB": 196.140625,
+              "peakMiB": 196.140625,
+              "deltaMiB": 0
+            }
+          ],
+          "medianMs": 11.722958999999946
+        },
+        "lastCharges": {
+          "samples": [
+            {
+              "ms": 12.192661000000044,
+              "queries": 9,
+              "rssBeforeMiB": 196.140625,
+              "peakMiB": 196.140625,
+              "deltaMiB": 0
+            },
+            {
+              "ms": 12.171879999999874,
+              "queries": 9,
+              "rssBeforeMiB": 196.140625,
+              "peakMiB": 196.140625,
+              "deltaMiB": 0
+            },
+            {
+              "ms": 11.596716999999899,
+              "queries": 9,
+              "rssBeforeMiB": 196.140625,
+              "peakMiB": 196.140625,
+              "deltaMiB": 0
+            }
+          ],
+          "medianMs": 12.171879999999874
+        },
+        "chargeDetails": {
+          "samples": [
+            {
+              "ms": 14.256986999999981,
+              "queries": 12,
+              "rssBeforeMiB": 196.140625,
+              "peakMiB": 196.140625,
+              "deltaMiB": 0
+            },
+            {
+              "ms": 9.618669000000182,
+              "queries": 12,
+              "rssBeforeMiB": 196.140625,
+              "peakMiB": 196.140625,
+              "deltaMiB": 0
+            },
+            {
+              "ms": 7.269279999999981,
+              "queries": 12,
+              "rssBeforeMiB": 196.140625,
+              "peakMiB": 196.140625,
+              "deltaMiB": 0
+            }
+          ],
+          "medianMs": 9.618669000000182
+        },
+        "panelServices": {
+          "samples": [
+            {
+              "ms": 54.01099399999998,
+              "queries": 66,
+              "rssBeforeMiB": 196.140625,
+              "peakMiB": 196.140625,
+              "deltaMiB": 0
+            },
+            {
+              "ms": 51.212244000000055,
+              "queries": 66,
+              "rssBeforeMiB": 196.140625,
+              "peakMiB": 196.140625,
+              "deltaMiB": 0
+            },
+            {
+              "ms": 52.47562300000004,
+              "queries": 66,
+              "rssBeforeMiB": 196.140625,
+              "peakMiB": 196.390625,
+              "deltaMiB": 0.25
+            }
+          ],
+          "medianMs": 52.47562300000004
+        },
+        "panelSecondServices": {
+          "samples": [
+            {
+              "ms": 48.23343199999999,
+              "queries": 66,
+              "rssBeforeMiB": 196.390625,
+              "peakMiB": 196.390625,
+              "deltaMiB": 0
+            },
+            {
+              "ms": 48.04780200000005,
+              "queries": 66,
+              "rssBeforeMiB": 196.390625,
+              "peakMiB": 196.390625,
+              "deltaMiB": 0
+            },
+            {
+              "ms": 51.28866700000026,
+              "queries": 66,
+              "rssBeforeMiB": 196.390625,
+              "peakMiB": 196.390625,
+              "deltaMiB": 0
+            }
+          ],
+          "medianMs": 48.23343199999999
+        }
+      },
+      "http": {
+        "prefetchRequests": 0,
+        "nextPageMs": 241.35511399999996,
+        "serverRssBeforeMiB": 103.9140625,
+        "serverRssAfterMiB": 148.17578125,
+        "serverSampledPeakMiB": 148.17578125,
+        "headersMs": 150.12083800000005,
+        "contentReadyMs": 572.1651040000002,
+        "renderedAndNetworkIdleMs": 901.6788220000001,
+        "responseBytes": 112220,
+        "tableRows": 25,
+        "note": "Production Next server. Network-idle includes mandatory 500ms quiet window; separate from service time. Browser RSS not measured."
+      },
+      "httpNative": {
+        "prefetchRequests": 0,
+        "nextPageMs": 887.6873519999999,
+        "serverRssBeforeMiB": 103.65625,
+        "serverRssAfterMiB": 147.8203125,
+        "serverSampledPeakMiB": 147.8203125,
+        "headersMs": 170.798766,
+        "contentReadyMs": 638.8670040000001,
+        "renderedAndNetworkIdleMs": 916.487657,
+        "responseBytes": 112176,
+        "tableRows": 25,
+        "note": "Production Next server. Network-idle includes mandatory 500ms quiet window; separate from service time. Browser RSS not measured."
+      }
+    },
+    {
+      "units": 1000,
+      "charges": 6000,
+      "legacy": {
+        "error": "\nInvalid `tx.site.findUniqueOrThrow()` invocation in\n/workspace/siteyonetim-saas/src/lib/management.ts:152:24\n\n  149 async dashboard(siteId: string) {\n  150   return db.$transaction(async tx => {\n  151     await authorize(tx, siteId);\n→ 152     return tx.site.findUniqueOrThrow(\nTransaction API error: Transaction already closed: A query cannot be executed on an expired transaction. The timeout for this transaction was 5000 ms, however 8209 ms passed since the start of the transaction. Consider increasing the interactive transaction timeout or doing less work in the transaction."
+      },
+      "summary": {
+        "organization": {
+          "id": "cmvv8ge2b008rn70axsuawi1z",
+          "name": "S03E sentetik 1000",
+          "kind": "COMPANY"
+        },
+        "siteCount": 1,
+        "unitCount": 1000,
+        "chargedKurus": 120000000,
+        "grossKurus": 60000000,
+        "reversedKurus": 6000000,
+        "netKurus": 54000000,
+        "remainingKurus": 66000000
+      },
+      "services": {
+        "portfolioSummary": {
+          "samples": [
+            {
+              "ms": 7.951911999999993,
+              "queries": 8,
+              "rssBeforeMiB": 196.390625,
+              "peakMiB": 196.390625,
+              "deltaMiB": 0
+            },
+            {
+              "ms": 5.9492230000000745,
+              "queries": 8,
+              "rssBeforeMiB": 196.390625,
+              "peakMiB": 196.390625,
+              "deltaMiB": 0
+            },
+            {
+              "ms": 5.575617999999849,
+              "queries": 8,
+              "rssBeforeMiB": 196.390625,
+              "peakMiB": 196.390625,
+              "deltaMiB": 0
+            }
+          ],
+          "medianMs": 5.9492230000000745
+        },
+        "firstUnits": {
+          "samples": [
+            {
+              "ms": 9.057100999999875,
+              "queries": 12,
+              "rssBeforeMiB": 196.390625,
+              "peakMiB": 196.390625,
+              "deltaMiB": 0
+            },
+            {
+              "ms": 10.993233000000146,
+              "queries": 12,
+              "rssBeforeMiB": 196.390625,
+              "peakMiB": 196.390625,
+              "deltaMiB": 0
+            },
+            {
+              "ms": 9.187829999999849,
+              "queries": 12,
+              "rssBeforeMiB": 196.390625,
+              "peakMiB": 196.390625,
+              "deltaMiB": 0
+            }
+          ],
+          "medianMs": 9.187829999999849
+        },
+        "lastUnits": {
+          "samples": [
+            {
+              "ms": 9.22106500000018,
+              "queries": 12,
+              "rssBeforeMiB": 196.390625,
+              "peakMiB": 196.515625,
+              "deltaMiB": 0.125
+            },
+            {
+              "ms": 8.254921000000195,
+              "queries": 12,
+              "rssBeforeMiB": 196.515625,
+              "peakMiB": 196.515625,
+              "deltaMiB": 0
+            },
+            {
+              "ms": 8.517331000000013,
+              "queries": 12,
+              "rssBeforeMiB": 196.515625,
+              "peakMiB": 196.515625,
+              "deltaMiB": 0
+            }
+          ],
+          "medianMs": 8.517331000000013
+        },
+        "firstCharges": {
+          "samples": [
+            {
+              "ms": 48.023245999999745,
+              "queries": 9,
+              "rssBeforeMiB": 196.515625,
+              "peakMiB": 196.515625,
+              "deltaMiB": 0
+            },
+            {
+              "ms": 51.794257000000016,
+              "queries": 9,
+              "rssBeforeMiB": 196.515625,
+              "peakMiB": 196.515625,
+              "deltaMiB": 0
+            },
+            {
+              "ms": 48.32210900000018,
+              "queries": 9,
+              "rssBeforeMiB": 196.515625,
+              "peakMiB": 196.515625,
+              "deltaMiB": 0
+            }
+          ],
+          "medianMs": 48.32210900000018
+        },
+        "secondCharges": {
+          "samples": [
+            {
+              "ms": 49.725950999999895,
+              "queries": 9,
+              "rssBeforeMiB": 196.515625,
+              "peakMiB": 196.515625,
+              "deltaMiB": 0
+            },
+            {
+              "ms": 48.73756500000036,
+              "queries": 9,
+              "rssBeforeMiB": 196.515625,
+              "peakMiB": 196.515625,
+              "deltaMiB": 0
+            },
+            {
+              "ms": 49.97408799999994,
+              "queries": 9,
+              "rssBeforeMiB": 196.515625,
+              "peakMiB": 196.515625,
+              "deltaMiB": 0
+            }
+          ],
+          "medianMs": 49.725950999999895
+        },
+        "lastCharges": {
+          "samples": [
+            {
+              "ms": 56.7138130000003,
+              "queries": 9,
+              "rssBeforeMiB": 196.515625,
+              "peakMiB": 196.515625,
+              "deltaMiB": 0
+            },
+            {
+              "ms": 63.64426000000003,
+              "queries": 9,
+              "rssBeforeMiB": 196.515625,
+              "peakMiB": 196.515625,
+              "deltaMiB": 0
+            },
+            {
+              "ms": 63.025558000000274,
+              "queries": 9,
+              "rssBeforeMiB": 196.515625,
+              "peakMiB": 196.515625,
+              "deltaMiB": 0
+            }
+          ],
+          "medianMs": 63.025558000000274
+        },
+        "chargeDetails": {
+          "samples": [
+            {
+              "ms": 8.800992999999835,
+              "queries": 12,
+              "rssBeforeMiB": 196.515625,
+              "peakMiB": 196.515625,
+              "deltaMiB": 0
+            },
+            {
+              "ms": 10.155451000000085,
+              "queries": 12,
+              "rssBeforeMiB": 196.515625,
+              "peakMiB": 196.515625,
+              "deltaMiB": 0
+            },
+            {
+              "ms": 7.943592999999964,
+              "queries": 12,
+              "rssBeforeMiB": 196.515625,
+              "peakMiB": 196.515625,
+              "deltaMiB": 0
+            }
+          ],
+          "medianMs": 8.800992999999835
+        },
+        "panelServices": {
+          "samples": [
+            {
+              "ms": 88.3006919999998,
+              "queries": 66,
+              "rssBeforeMiB": 196.515625,
+              "peakMiB": 196.890625,
+              "deltaMiB": 0.375
+            },
+            {
+              "ms": 92.23383599999988,
+              "queries": 66,
+              "rssBeforeMiB": 196.890625,
+              "peakMiB": 197.015625,
+              "deltaMiB": 0.125
+            },
+            {
+              "ms": 100.20110999999997,
+              "queries": 66,
+              "rssBeforeMiB": 197.015625,
+              "peakMiB": 197.265625,
+              "deltaMiB": 0.25
+            }
+          ],
+          "medianMs": 92.23383599999988
+        },
+        "panelSecondServices": {
+          "samples": [
+            {
+              "ms": 93.02582600000005,
+              "queries": 66,
+              "rssBeforeMiB": 197.265625,
+              "peakMiB": 197.265625,
+              "deltaMiB": 0
+            },
+            {
+              "ms": 93.24059899999975,
+              "queries": 66,
+              "rssBeforeMiB": 197.265625,
+              "peakMiB": 197.640625,
+              "deltaMiB": 0.375
+            },
+            {
+              "ms": 103.16535799999929,
+              "queries": 66,
+              "rssBeforeMiB": 197.640625,
+              "peakMiB": 199.640625,
+              "deltaMiB": 2
+            }
+          ],
+          "medianMs": 93.24059899999975
+        }
+      },
+      "http": {
+        "prefetchRequests": 0,
+        "nextPageMs": 250.04736000000003,
+        "serverRssBeforeMiB": 148.91015625,
+        "serverRssAfterMiB": 152.0390625,
+        "serverSampledPeakMiB": 152.0390625,
+        "headersMs": 24.82085999999981,
+        "contentReadyMs": 443.32542699999976,
+        "renderedAndNetworkIdleMs": 727.4806960000001,
+        "responseBytes": 154558,
+        "tableRows": 25,
+        "note": "Production Next server. Network-idle includes mandatory 500ms quiet window; separate from service time. Browser RSS not measured."
+      },
+      "httpNative": {
+        "prefetchRequests": 0,
+        "nextPageMs": 388.024504,
+        "serverRssBeforeMiB": 149.16015625,
+        "serverRssAfterMiB": 152.3515625,
+        "serverSampledPeakMiB": 152.3515625,
+        "headersMs": 21.72510599999987,
+        "contentReadyMs": 410.435508,
+        "renderedAndNetworkIdleMs": 690.0424069999999,
+        "responseBytes": 154514,
+        "tableRows": 25,
+        "note": "Production Next server. Network-idle includes mandatory 500ms quiet window; separate from service time. Browser RSS not measured."
+      }
+    },
+    {
+      "units": 10000,
+      "charges": 60000,
+      "legacy": {
+        "error": "\nInvalid `tx.site.findUniqueOrThrow()` invocation in\n/workspace/siteyonetim-saas/src/lib/management.ts:152:24\n\n  149 async dashboard(siteId: string) {\n  150   return db.$transaction(async tx => {\n  151     await authorize(tx, siteId);\n→ 152     return tx.site.findUniqueOrThrow(\nError occurred during query execution:\nConnectorError(ConnectorError { user_facing_error: None, kind: QueryError(PostgresError { code: \"54001\", message: \"stack depth limit exceeded\", severity: \"ERROR\", detail: None, column: None, hint: Some(\"Increase the configuration parameter \\\"max_stack_depth\\\" (currently 2048kB), after ensuring the platform's stack depth limit is adequate.\") }), transient: false })"
+      },
+      "summary": {
+        "organization": {
+          "id": "cmvv8ghje008zn70a81otnj85",
+          "name": "S03E sentetik 10000",
+          "kind": "COMPANY"
+        },
+        "siteCount": 1,
+        "unitCount": 10000,
+        "chargedKurus": 1200000000,
+        "grossKurus": 600000000,
+        "reversedKurus": 60000000,
+        "netKurus": 540000000,
+        "remainingKurus": 660000000
+      },
+      "services": {
+        "portfolioSummary": {
+          "samples": [
+            {
+              "ms": 22.224471999999878,
+              "queries": 8,
+              "rssBeforeMiB": 200.140625,
+              "peakMiB": 200.265625,
+              "deltaMiB": 0.125
+            },
+            {
+              "ms": 24.28229900000042,
+              "queries": 8,
+              "rssBeforeMiB": 200.265625,
+              "peakMiB": 200.515625,
+              "deltaMiB": 0.25
+            },
+            {
+              "ms": 24.76933100000042,
+              "queries": 8,
+              "rssBeforeMiB": 200.515625,
+              "peakMiB": 200.640625,
+              "deltaMiB": 0.125
+            }
+          ],
+          "medianMs": 24.28229900000042
+        },
+        "firstUnits": {
+          "samples": [
+            {
+              "ms": 19.24160000000029,
+              "queries": 12,
+              "rssBeforeMiB": 200.765625,
+              "peakMiB": 201.140625,
+              "deltaMiB": 0.375
+            },
+            {
+              "ms": 10.12792300000001,
+              "queries": 12,
+              "rssBeforeMiB": 201.140625,
+              "peakMiB": 201.390625,
+              "deltaMiB": 0.25
+            },
+            {
+              "ms": 9.932584999999563,
+              "queries": 12,
+              "rssBeforeMiB": 201.390625,
+              "peakMiB": 201.765625,
+              "deltaMiB": 0.375
+            }
+          ],
+          "medianMs": 10.12792300000001
+        },
+        "lastUnits": {
+          "samples": [
+            {
+              "ms": 12.258346999999958,
+              "queries": 12,
+              "rssBeforeMiB": 201.890625,
+              "peakMiB": 202.140625,
+              "deltaMiB": 0.25
+            },
+            {
+              "ms": 11.191957000000002,
+              "queries": 12,
+              "rssBeforeMiB": 202.140625,
+              "peakMiB": 202.515625,
+              "deltaMiB": 0.375
+            },
+            {
+              "ms": 10.990748000000167,
+              "queries": 12,
+              "rssBeforeMiB": 202.515625,
+              "peakMiB": 202.890625,
+              "deltaMiB": 0.375
+            }
+          ],
+          "medianMs": 11.191957000000002
+        },
+        "firstCharges": {
+          "samples": [
+            {
+              "ms": 542.2149419999996,
+              "queries": 9,
+              "rssBeforeMiB": 202.890625,
+              "peakMiB": 203.140625,
+              "deltaMiB": 0.25
+            },
+            {
+              "ms": 527.5975159999998,
+              "queries": 9,
+              "rssBeforeMiB": 203.140625,
+              "peakMiB": 203.515625,
+              "deltaMiB": 0.375
+            },
+            {
+              "ms": 524.3190290000002,
+              "queries": 9,
+              "rssBeforeMiB": 203.515625,
+              "peakMiB": 203.765625,
+              "deltaMiB": 0.25
+            }
+          ],
+          "medianMs": 527.5975159999998
+        },
+        "secondCharges": {
+          "samples": [
+            {
+              "ms": 478.2628370000002,
+              "queries": 9,
+              "rssBeforeMiB": 203.890625,
+              "peakMiB": 204.140625,
+              "deltaMiB": 0.25
+            },
+            {
+              "ms": 489.29876200000035,
+              "queries": 9,
+              "rssBeforeMiB": 204.140625,
+              "peakMiB": 204.515625,
+              "deltaMiB": 0.375
+            },
+            {
+              "ms": 503.1529320000009,
+              "queries": 9,
+              "rssBeforeMiB": 204.515625,
+              "peakMiB": 204.765625,
+              "deltaMiB": 0.25
+            }
+          ],
+          "medianMs": 489.29876200000035
+        },
+        "lastCharges": {
+          "samples": [
+            {
+              "ms": 668.9772300000004,
+              "queries": 9,
+              "rssBeforeMiB": 204.765625,
+              "peakMiB": 205.140625,
+              "deltaMiB": 0.375
+            },
+            {
+              "ms": 593.5452459999997,
+              "queries": 9,
+              "rssBeforeMiB": 205.140625,
+              "peakMiB": 205.390625,
+              "deltaMiB": 0.25
+            },
+            {
+              "ms": 631.1299959999997,
+              "queries": 9,
+              "rssBeforeMiB": 205.390625,
+              "peakMiB": 205.640625,
+              "deltaMiB": 0.25
+            }
+          ],
+          "medianMs": 631.1299959999997
+        },
+        "chargeDetails": {
+          "samples": [
+            {
+              "ms": 11.772515000000567,
+              "queries": 12,
+              "rssBeforeMiB": 205.765625,
+              "peakMiB": 206.015625,
+              "deltaMiB": 0.25
+            },
+            {
+              "ms": 10.19616700000006,
+              "queries": 12,
+              "rssBeforeMiB": 206.015625,
+              "peakMiB": 206.265625,
+              "deltaMiB": 0.25
+            },
+            {
+              "ms": 8.445648000000801,
+              "queries": 12,
+              "rssBeforeMiB": 206.265625,
+              "peakMiB": 206.640625,
+              "deltaMiB": 0.375
+            }
+          ],
+          "medianMs": 10.19616700000006
+        },
+        "panelServices": {
+          "samples": [
+            {
+              "ms": 545.5609519999998,
+              "queries": 65,
+              "rssBeforeMiB": 206.640625,
+              "peakMiB": 208.265625,
+              "deltaMiB": 1.625
+            },
+            {
+              "ms": 605.075691,
+              "queries": 65,
+              "rssBeforeMiB": 208.265625,
+              "peakMiB": 209.890625,
+              "deltaMiB": 1.625
+            },
+            {
+              "ms": 563.917198000001,
+              "queries": 65,
+              "rssBeforeMiB": 209.890625,
+              "peakMiB": 211.515625,
+              "deltaMiB": 1.625
+            }
+          ],
+          "medianMs": 563.917198000001
+        },
+        "panelSecondServices": {
+          "samples": [
+            {
+              "ms": 587.2169869999998,
+              "queries": 65,
+              "rssBeforeMiB": 211.515625,
+              "peakMiB": 215.640625,
+              "deltaMiB": 4.125
+            },
+            {
+              "ms": 560.4869569999992,
+              "queries": 65,
+              "rssBeforeMiB": 215.640625,
+              "peakMiB": 215.640625,
+              "deltaMiB": 0
+            },
+            {
+              "ms": 518.6109099999994,
+              "queries": 66,
+              "rssBeforeMiB": 215.640625,
+              "peakMiB": 215.640625,
+              "deltaMiB": 0
+            }
+          ],
+          "medianMs": 560.4869569999992
+        }
+      },
+      "http": {
+        "prefetchRequests": 0,
+        "nextPageMs": 854.1180260000001,
+        "serverRssBeforeMiB": 154.26171875,
+        "serverRssAfterMiB": 161.4140625,
+        "serverSampledPeakMiB": 161.4140625,
+        "headersMs": 27.08515899999975,
+        "contentReadyMs": 1454.2916689999997,
+        "renderedAndNetworkIdleMs": 1685.9117460000002,
+        "responseBytes": 107652,
+        "tableRows": 25,
+        "note": "Production Next server. Network-idle includes mandatory 500ms quiet window; separate from service time. Browser RSS not measured."
+      },
+      "httpNative": {
+        "prefetchRequests": 0,
+        "nextPageMs": 877.6213809999999,
+        "serverRssBeforeMiB": 159.79296875,
+        "serverRssAfterMiB": 161.09375,
+        "serverSampledPeakMiB": 161.09375,
+        "headersMs": 21.466631999999663,
+        "contentReadyMs": 1429.6112879999996,
+        "renderedAndNetworkIdleMs": 1430.3817189999995,
+        "responseBytes": 107608,
+        "tableRows": 25,
+        "note": "Production Next server. Network-idle includes mandatory 500ms quiet window; separate from service time. Browser RSS not measured."
+      }
+    }
+  ]
+}

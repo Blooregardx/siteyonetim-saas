@@ -75,3 +75,9 @@ Rapor okuma sorguları financial-reporting/report-queries modüllerinde paylaş�
 CSV, actor ve organizationAccess ile READ COMMITTED transaction’da yetkilendirilir. Sabit sıralı PostgreSQL NO SCROLL cursor’un query snapshot’ı FETCH partileri boyunca değişmez; COUNT OVER aynı görünümde indirme öncesi sınırı verir. Borç/hareket cursor adları ayrı tutulur (Prisma prepared FETCH metadata önbelleği). Org kilidi uygulama rol/yazım değişimlerini dosya hazırlanırken serileştirir; dosya hazır olunca transaction biter, ağ indirmesi sırasında DB kilidi tutulmaz. Herhangi bir tabloya finans/audit kaydı yazılmaz; temp-table veya DDL izni gerekmez.
 
 Aylık karşılaştırma bir SQL’de en fazla 13 ayı gruplar (ilk gösterilen ayın farkı için önceki ay dahil). Boş aylar sıfırdır; fark BIGINT üzerinden güvenli kuruşa doğrulanır. Ekrandaki aylık özet ve karşılaştırma aynı yetkilendirilmiş transaction/org kilidinde okunur. Ayrı HTTP istekleri (ekran/CSV/sayfalar) ortak snapshot paylaşmaz. Detaylar ve ölçümler: [FINANCIAL-EXPORT-PERFORMANCE](FINANCIAL-EXPORT-PERFORMANCE.md).
+
+## S03-E — Şema değiştirmeyen panel okuma modelleri
+
+S03-D PR #14 ile main’e alındı. S03-E yeni migration/indeks eklemez; mevcut on migration ve finans/audit kayıtları korunur. Panel organizasyon kapsamındaki Charge, Payment ve PaymentReversal toplamlarını ayrı SQL alt sorgularında BIGINT olarak toplar. Görünen 25 dairenin borcu, aidat listesi ve tek aidatın tam bakiyesi SQL ile hesaplanır; ödeme/ilişki satırları sayfalanır. FinancialEntry/FinancialEntryReversal aidat kartlarına eklenmez.
+
+Yeni read servisleri REPEATABLE READ kullanır; mevcut actor User paylaşım kilidi dışında organizasyon yazma kilidi almaz. Servis içi yetki/liste/toplam aynı snapshot; ayrı servis/HTTP istekleri aynı snapshot değildir. Eski doğrudan site üyeliği korunur, organizasyon kişi rehberine erişim genişletilmez. [Mimari ve performans](SCALABLE-DASHBOARD.md).
