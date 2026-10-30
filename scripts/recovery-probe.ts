@@ -63,7 +63,7 @@ async function main() {
   await assert.rejects(db.auditLog.update({ where: { id: audit[0].id }, data: { action: audit[0].action } }), /append only/);
   const applied = await db.$queryRaw<{ count: bigint }[]>`SELECT count(*) FROM "_prisma_migrations" WHERE finished_at IS NOT NULL`;
   assert.equal(Number(applied[0].count), f.migrations);
-  assert.equal(f.migrations, 7);
+  assert.equal(f.migrations, 8);
   console.log(JSON.stringify({ mode, verified: true, grossKurus: 6500, reversedKurus: 4000, netKurus: 2500, remainingKurus: 7500, auditCount: f.auditCount, migrations: f.migrations, tenantIsolation: true, immutableHistory: true }));
 }
 main().finally(() => db.$disconnect()).catch(error => { console.error(error instanceof Error ? error.message : "Recovery probe failed"); process.exitCode = 1; });

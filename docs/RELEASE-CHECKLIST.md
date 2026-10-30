@@ -1,5 +1,15 @@
 # İlk topluluk geliştirme sürümü kontrol listesi
 
+## Güncel yayımlama durumu — 30 Ekim 2026
+
+[PR #10](https://github.com/Blooregardx/siteyonetim-saas/pull/10) main'e birleştirildi ve [v0.1.0-alpha.1 GitHub Pre-release](https://github.com/Blooregardx/siteyonetim-saas/releases/tag/v0.1.0-alpha.1) yayımlandı. Sürüm **EARLY DEVELOPMENT / ALPHA — NOT PRODUCTION READY** durumundadır.
+
+OpenAI Codex for Open Source başvurusu kullanıcı tarafından gönderildi; kabul sonucu bekleniyor. S03-A [PR #11](https://github.com/Blooregardx/siteyonetim-saas/pull/11) üzerinde geliştirildi, henüz main'e birleştirilmedi ve bu ön sürüme dahil değildir. Bu dokümantasyon düzeltmesi yeni release/tag veya başvuru oluşturmaz.
+
+## Tarihsel yayımlama öncesi kontrol listesi
+
+Aşağıdaki aday durumu, “tag/release yoktur”, “başvuru gönderilmemiş” ifadeleri ve işaretlenmemiş bakımcı kapıları yayımlama öncesindeki kayıttır. Güncel bekleyen yayımlama işleri olarak okunmamalıdır. Geçmiş kontrol kanıtları geriye dönük değiştirilmedi; üretim/binary dağıtımına ilişkin ek gereksinimler açık kalır.
+
 Aday: **v0.1.0-alpha.1**; statü: **EARLY DEVELOPMENT / ALPHA — NOT PRODUCTION READY**. Bu belge yayımlama yetkisi vermez. Şu anda tag/release yoktur; kullanıcı onayı olmadan oluşturulmaz. Kontrol anı 30 Ekim 2026; yayımlama öncesi yeniden kontrol edilir.
 
 ## Tamamlanan hazırlık
@@ -12,7 +22,7 @@ Aday: **v0.1.0-alpha.1**; statü: **EARLY DEVELOPMENT / ALPHA — NOT PRODUCTION
 - [x] Kaynak kod temelli dağıtım kapsamı ve mevcut eksikler sürüm notlarında yazılı.
 - [x] TR/EN başvuru taslakları hazırlanmış; başvuru gönderilmemiş.
 
-## Yayımlama öncesi bakımcı kapısı — henüz tamamlanmadı
+## Tarihsel yayımlama öncesi bakımcı kapısı — o aşamada tamamlanmamıştı
 
 - [ ] OSS-04 PR'sini inceleyip birleştirme kararını ver; son commitin CI sonucunu doğrula.
 - [ ] Son commit, paket/lock sürümü ve kullanılacak v0.1.0-alpha.1 adının çakışmadığını doğrula.

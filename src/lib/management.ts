@@ -1,3 +1,4 @@
+import { bulkInput, BulkInput, fingerprint, bulkTotal } from "./bulk-charges";
 import { siteInput, blockInput, unitInput, personInput, dateInput } from "./property-validation";
 import { chargeBalance } from "./finance";
 import { z } from "zod";
@@ -17,7 +18,42 @@ export function management(db: PrismaClient, verifySession: SessionVerifier) {
     if (![direct?.role, org?.role].some(role => role === "ADMIN" || role === "MANAGER")) throw new Error("FORBIDDEN");
     return { userId: user.id, organizationId: site?.organizationId };
   }
+  async function bulkSnapshot(tx: Prisma.TransactionClient, input: ReturnType<typeof bulkInput.parse>) {
+    const units = await tx.unit.findMany({where:{siteId:input.siteId,id:{in:input.unitIds}},include:{block:true},orderBy:{id:"asc"}});
+    if(units.length!==input.unitIds.length)throw new Error("INVALID_UNITS");
+    const charges=await tx.charge.findMany({where:{siteId:input.siteId,unitId:{in:input.unitIds},period:input.period},orderBy:{id:"asc"}});
+    const rows=units.map(u=>({unitId:u.id,block:u.block.name,number:u.number,exists:charges.some(c=>c.unitId===u.id)}));
+    const conflicts=rows.filter(r=>r.exists).map(r=>`${r.block} / ${r.number}`);
+    return {rows,conflicts,selectedCount:units.length,newCount:units.length-conflicts.length,totalKurus:bulkTotal(input.amountKurus,units.length-conflicts.length),snapshot:fingerprint({input,units,charges})};
+  }
   return {
+    async previewBulkCharges(raw: BulkInput) {
+      const input=bulkInput.parse(raw);
+      return db.$transaction(async tx=>{await authorize(tx,input.siteId);return bulkSnapshot(tx,input);});
+    },
+    async commitBulkCharges(raw: BulkInput, snapshot:string, idempotencyKey:string) {
+      const input=bulkInput.parse(raw);z.string().uuid().parse(idempotencyKey);z.string().regex(/^[a-f0-9]{64}$/).parse(snapshot);
+      const requestHash=fingerprint({input,snapshot});
+      return db.$transaction(async tx=>{
+        const scope=await authorize(tx,input.siteId);
+        // Also serializes legacy sites without an organization.
+        await tx.$queryRaw`SELECT id FROM "Site" WHERE id=${input.siteId} FOR UPDATE`;
+        const previous=await tx.bulkChargeOperation.findUnique({where:{siteId_idempotencyKey:{siteId:input.siteId,idempotencyKey}}});
+        if(previous){if(previous.requestHash!==requestHash)throw new Error("IDEMPOTENCY_CONFLICT");return {createdCount:previous.createdCount,totalKurus:Number(previous.totalKurus),period:previous.period};}
+        // Freeze selected unit and block metadata until commit, including external writers.
+        await tx.$queryRaw`SELECT u.id FROM "Unit" u JOIN "Block" b ON b.id=u."blockId" WHERE u."siteId"=${input.siteId} FOR UPDATE OF u,b`;
+        const current=await bulkSnapshot(tx,input);
+        if(current.conflicts.length)throw new Error("BULK_CONFLICT:"+current.conflicts.join(", "));
+        if(current.snapshot!==snapshot)throw new Error("STALE_PREVIEW");
+        for(const unitId of input.unitIds){
+          const charge=await tx.charge.create({data:{siteId:input.siteId,unitId,period:input.period,amountKurus:input.amountKurus,dueDate:new Date(input.dueDate)}});
+          await audit(tx,scope.userId,"CHARGE_CREATE",charge.id,scope.organizationId,input.siteId);
+        }
+        const result={createdCount:input.unitIds.length,totalKurus:bulkTotal(input.amountKurus,input.unitIds.length),period:input.period};
+        await tx.bulkChargeOperation.create({data:{...result,siteId:input.siteId,idempotencyKey,requestHash}});
+        return result;
+      },{timeout:60000});
+    },
     async updateSite(siteId: string, input: unknown) {
       const data=siteInput.parse(input);
       return db.$transaction(async tx=>{const scope=await authorize(tx,siteId);const result=await tx.site.update({where:{id:siteId},data});await audit(tx,scope.userId,"SITE_UPDATE",result.id,scope.organizationId,siteId);return result;});

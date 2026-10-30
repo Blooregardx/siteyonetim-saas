@@ -29,6 +29,7 @@ model User {
 }
 
 model Site {
+  bulkChargeOperations BulkChargeOperation[]
   id            String         @id @default(cuid())
   organizationId String?
   organization Organization? @relation(fields: [organizationId], references: [id], onDelete: Restrict)
@@ -282,4 +283,18 @@ model Ownership {
   unit Unit @relation(fields: [siteId, unitId], references: [siteId, id], onDelete: Restrict)
   @@index([siteId, unitId])
   @@index([organizationId, personId])
+}
+
+// Successful requests only: written atomically with charges and audit.
+model BulkChargeOperation {
+ id String @id @default(cuid())
+ siteId String
+ idempotencyKey String
+ requestHash String
+ createdCount Int
+ totalKurus BigInt
+ period String
+ createdAt DateTime @default(now())
+ site Site @relation(fields: [siteId], references: [id], onDelete: Restrict)
+ @@unique([siteId, idempotencyKey])
 }

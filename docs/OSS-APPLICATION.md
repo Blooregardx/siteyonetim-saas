@@ -1,4 +1,14 @@
-# Codex for Open Source — başvuru hazırlığı
+# Codex for Open Source — başvuru durumu ve tarihsel hazırlık
+
+## Güncel durum — 30 Ekim 2026
+
+OpenAI Codex for Open Source başvurusu **kullanıcı tarafından gönderildi; kabul sonucu bekleniyor**. Bu durum kullanıcı beyanına dayanır; kabul, kredi veya program desteği kazanıldığı iddia edilmez. Bu görevde başvuru gönderilmez veya yinelenmez.
+
+[PR #10](https://github.com/Blooregardx/siteyonetim-saas/pull/10) main'e birleştirildi; [v0.1.0-alpha.1](https://github.com/Blooregardx/siteyonetim-saas/releases/tag/v0.1.0-alpha.1) GitHub Pre-release olarak yayımlandı. S03-A [PR #11](https://github.com/Blooregardx/siteyonetim-saas/pull/11) üzerinde geliştirildi; henüz main'e birleştirilmedi ve yayımlanmış ön sürüme dahil değildir.
+
+## Tarihsel başvuru hazırlık kaydı
+
+Aşağıdaki “Gönderilmedi”, “release taslak” ifadeleri, ölçümler, form kontrolleri, TR/EN metinleri ve son gönderim kontrolü başvuru öncesi hazırlık aşamasının kaydıdır. Güncel durum beyanı veya gönderilen formun birebir kopyası değildir. Taslaklar ve karakter sayıları tarihsel bütünlük için değiştirilmedi; yeniden başvuru talimatı olarak okunmamalıdır.
 
 **Gönderilmedi.** Bakımcı/kullanıcı adı **Blooregardx**. Proje yeni ve erken alpha aşamasında; yaygın benimsenme iddiası yok. 30 Ekim 2026 kontrolü: PUBLIC depo, AGPL-3.0-only main üzerinde; 0 yıldız, 0 fork. İndirme, aktif kullanıcı, üretim müşterisi veya bağımsız dış katkıcı ölçümü doğrulanmadı. Son sayıları gönderimden önce tekrar okuyun; commitlerdeki eski hesap aynı kişinin kimliğidir, ikinci dış katkıcı diye sayılmaz.
 
