@@ -38,3 +38,29 @@ test('S03-B politika yetkileri, audit, bakiye, yarışlar, rapor filtreleri ve r
  const fullReceipt=await api.collect(site.id,charge.id,75000,'finish','CASH',true);assert.deepEqual(await api.collect(site.id,charge.id,75000,'finish','CASH',true),fullReceipt);await assert.rejects(api.collect(site.id,charge.id,75000,'finish','CASH',false),/IDEMPOTENCY_CONFLICT/);const paid=await api.debtReport({organizationId:org.id,status:'PAID'});assert.equal(paid.totalCount,1);assert.equal(paid.rows[0].overdue,false);
  }finally{await db.$disconnect();}
 });
+
+test('İstanbul gecesinde SQL filtreleri, özet ve satırlar aynı vade gününü kullanır',async context=>{
+ const clockDb=new PrismaClient({datasourceUrl:url});
+ const previousTZ=process.env.TZ;
+ try {
+  const user=await clockDb.user.create({data:{name:'Sentetik Vade',email:crypto.randomUUID()+'@example.invalid',emailVerifiedAt:new Date()}});
+  const api=management(clockDb,async()=>({userId:user.id}));const org=await api.createOrganization('İstanbul vade testi','COMPANY');const site=await api.createSite(org.id,'Vade apartmanı');const block=await api.createBlock(site.id,'A');const unit=await api.createUnit(site.id,block.id,'1');
+  await api.createCharge(site.id,unit.id,'2026-09',10000,new Date('2026-10-30T00:00:00Z'));
+  await api.createCharge(site.id,unit.id,'2026-10',20000,new Date('2026-10-31T00:00:00Z'));
+  context.mock.timers.enable({apis:['Date'],now:new Date('2026-10-30T21:30:00Z')});
+  for(const zone of ['UTC','America/Los_Angeles','Asia/Tokyo']){
+   process.env.TZ=zone;
+   for(const instant of ['2026-10-30T21:30:00Z','2026-10-30T23:59:00Z']){
+    context.mock.timers.setTime(new Date(instant).getTime());
+    const report=await api.debtReport({organizationId:org.id});
+    assert.equal(report.today,'2026-10-31');assert.equal(report.summary.overdueKurus,10000);
+    assert.equal(report.rows.find(r=>r.dueDate==='2026-10-30')!.overdue,true);
+    assert.equal(report.rows.find(r=>r.dueDate==='2026-10-31')!.overdue,false);
+    const overdue=await api.debtReport({organizationId:org.id,overdueOnly:true});
+    assert.equal(overdue.today,report.today);assert.equal(overdue.totalCount,1);assert.equal(overdue.summary.overdueKurus,10000);assert.equal(overdue.summary.remainingKurus,10000);assert.equal(overdue.rows[0].dueDate,'2026-10-30');assert.equal(overdue.rows[0].overdue,true);
+   }
+  }
+  context.mock.timers.setTime(new Date('2026-10-31T21:30:00Z').getTime());
+  const nextDay=await api.debtReport({organizationId:org.id,overdueOnly:true});assert.equal(nextDay.today,'2026-11-01');assert.equal(nextDay.totalCount,2);assert.equal(nextDay.summary.overdueKurus,30000);assert.ok(nextDay.rows.every(r=>r.overdue));
+ }finally{context.mock.timers.reset();if(previousTZ===undefined)delete process.env.TZ;else process.env.TZ=previousTZ;await clockDb.$disconnect();}
+});

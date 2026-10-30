@@ -2,7 +2,7 @@
 
 Panelde Borç ve Tahsilat Raporları bağlantısını açın. Organizasyon seçin; apartman filtresi boşsa o organizasyonun yetkili tüm apartmanları kapsanır. Başka organizasyona geçerken apartman seçimini temizleyin. Dönem, ödeme durumu, borç ve vade filtreleri birlikte uygulanır. Özetler filtrelerin tamamına aittir; sayfa 25 satırdır. Aidatsız daireler borç oluşturmaz; borçlu daire sayısı aynı daireyi bir kez sayar. Rapor kişi adı veya iletişim bilgisi içermez.
 
-Dönem, aidatın dönemidir: bugün bilinen tahsilat/ters kayıtlar hesaba katılır. Bu ekran ödeme tarihiyle muhasebe/nakit akışı veya geçmiş tarihli bakiye raporu değildir. Vade UTC takvim gününe göre hesaplanır; vade gününde gecikmiş sayılmaz. Kısmi ödenmiş bir aidat ayrıca gecikmiş olabilir.
+Dönem, aidatın dönemidir: bugün bilinen tahsilat/ters kayıtlar hesaba katılır. Bu ekran ödeme tarihiyle muhasebe/nakit akışı veya geçmiş tarihli bakiye raporu değildir. Vade Europe/Istanbul takvim gününe göre hesaplanır; vade gününde gecikmiş sayılmaz, ertesi gün gecikmiş sayılır. Rapor başında hesaplanan tek YYYY-MM-DD günü filtreler, özet kartları ve tablo satırlarında ortak kullanılır; sunucunun sistem saat dilimi sonucu değiştirmez. Türkiye saatiyle 00.30 ve 02.59’da UTC hâlâ önceki gün olsa da Türkiye takvim günü esas alınır. Kısmi ödenmiş bir aidat ayrıca gecikmiş olabilir.
 
 Örnek: 2.000 TL aidat ve 750 TL tahsilatta net 750 TL, kalan 1.250 TL. 750 TL tahsilatın tamamı ters kaydedilirse net 0 TL, kalan 2.000 TL. Kısmi ters kayıt desteklenmez.
 

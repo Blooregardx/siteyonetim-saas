@@ -1,5 +1,15 @@
 import { z } from 'zod';
 import { chargeBalance, financialSummary } from './finance';
+const businessDateFormatter = new Intl.DateTimeFormat('en-GB', {
+ timeZone:'Europe/Istanbul',calendar:'gregory',numberingSystem:'latn',
+ year:'numeric',month:'2-digit',day:'2-digit',
+});
+/** One Istanbul calendar day per report, independent of the host timezone. */
+export function reportBusinessDate(now = new Date()):string {
+ const parts=businessDateFormatter.formatToParts(now);
+ const part=(type:Intl.DateTimeFormatPartTypes)=>parts.find(p=>p.type===type)!.value;
+ return `${part('year')}-${part('month')}-${part('day')}`;
+}
 export const reportInput = z.object({
  organizationId:z.string().min(1),siteId:z.string().min(1).optional(),
  period:z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/).optional(),

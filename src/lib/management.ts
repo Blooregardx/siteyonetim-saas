@@ -1,4 +1,4 @@
-import { reportInput, ReportInput, reportBalance, reportTotals, safeInteger } from "./reports";
+import { reportBusinessDate, reportInput, ReportInput, reportBalance, reportTotals, safeInteger } from "./reports";
 import { bulkInput, BulkInput, fingerprint, bulkTotal } from "./bulk-charges";
 import { siteInput, blockInput, unitInput, personInput, dateInput } from "./property-validation";
 import { chargeBalance } from "./finance";
@@ -77,7 +77,7 @@ export function management(db: PrismaClient, verifySession: SessionVerifier) {
         const user=await actor(tx,verifySession);
         await organizationAccess(tx,user.id,input.organizationId);
         if(input.siteId&&!await tx.site.findFirst({where:{id:input.siteId,organizationId:input.organizationId}}))throw new Error("FORBIDDEN");
-        const today=new Date().toISOString().slice(0,10);
+        const today=reportBusinessDate();
         // Aggregate in PostgreSQL before pagination: no historical receipt arrays are loaded.
         const base=Prisma.sql`WITH balances AS (
           SELECT c.id,c."siteId",c."unitId",c.period,c."amountKurus",c."dueDate",b.name AS block,u.number,

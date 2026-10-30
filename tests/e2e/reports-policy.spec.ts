@@ -1,6 +1,7 @@
 import { test,expect } from '@playwright/test';
 import { PrismaClient } from '@prisma/client';
 import { hashPassword } from '../../src/lib/password';
+import { reportBusinessDate } from '../../src/lib/reports';
 import { management } from '../../src/lib/management';
 const url=process.env.TEST_DATABASE_URL;
 if(!url||!['localhost','127.0.0.1'].includes(new URL(url).hostname)||new URL(url).pathname!='/siteyonetim_test'||process.env.DATABASE_URL!==url)throw new Error('Isolated test database required');
@@ -15,7 +16,7 @@ test('mobil rapor, politika, tam tahsilat ve rol sınırları',async({page})=>{
  await receipt.locator('[name=amount]').evaluate((e:HTMLInputElement)=>{e.readOnly=false;e.value='500';});await receipt.getByRole('button',{name:'Kaydet',exact:true}).click();await expect(receipt.getByRole('status')).toContainText('Kalan borç değişti');expect(await db.payment.count({where:{chargeId:charge.id}})).toBe(1);
  await page.reload();
  await receipt.getByRole('button',{name:'Kalan Borcun Tamamını Tahsil Et',exact:true}).click();await expect(receipt.locator('[name=amount]')).toHaveValue('1250.00');await receipt.getByRole('button',{name:'Kaydet',exact:true}).click();await expect(receipt).toHaveCount(0);
- await page.getByRole('link',{name:'Borç ve Tahsilat Raporları',exact:true}).click();await expect(page.getByRole('heading',{name:'Borç ve Tahsilat Raporları',exact:true})).toBeVisible();await expect(page.getByRole('table')).toContainText('Tamamen ödendi');await expect(page.getByRole('table')).toContainText('Borç yok');
+ await page.getByRole('link',{name:'Borç ve Tahsilat Raporları',exact:true}).click();await expect(page.getByRole('heading',{name:'Borç ve Tahsilat Raporları',exact:true})).toBeVisible();await expect(page.getByText(/Vade günü Europe\/Istanbul takvimine/)).toContainText(reportBusinessDate());await expect(page.getByRole('table')).toContainText('Tamamen ödendi');await expect(page.getByRole('table')).toContainText('Borç yok');
  const net=page.getByRole('region',{name:'Rapor özeti'}).locator('article').filter({has:page.getByText('Net tahsilat',{exact:true})});await expect(net).toContainText('2.000,00');
  await page.getByLabel('Ödeme durumu',{exact:true}).selectOption('UNPAID');await page.getByRole('button',{name:'Filtrele',exact:true}).click();await expect(page.getByText('Bu filtrelerde aidat bulunamadı.')).toBeVisible();
  await page.goto(`/raporlar?org=${org.id}&period=2026-13`);await expect(page.locator('p[role=alert]')).toContainText('Filtreler geçersiz');
