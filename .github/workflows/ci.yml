@@ -59,6 +59,7 @@ jobs:
 
       - name: Synthetic backup and restore drill
         env:
+          TEST_DATABASE_URL: postgresql://siteyonetim:localdev@localhost:5432/siteyonetim_test?schema=public
           OSS_TEST_SOURCE_CONTAINER: ${{ job.services.postgres.id }}
           OSS_TEST_RESTORE_CONTAINER: ${{ job.services.postgres_restore.id }}
         run: |
