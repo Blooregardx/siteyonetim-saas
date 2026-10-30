@@ -39,3 +39,9 @@ MFA, güvenilir IP/bot koruması, kapasite/alarmlar ve gerçek sağlayıcı test
 Değiştirilmiş ağ sürümünü çalıştırıyorsanız uzaktan etkileşen tüm kullanıcılara o sürümün karşılık gelen kaynak kodunu ücretsiz edinme olanağını belirgin biçimde sunun (§13). Genel upstream bağlantısı, yerel değişiklikleri ve gereken derleme/kurulum betiklerini içermiyorsa yeterli değildir. İşletmeci kaynak arşivini kendi erişilebilir adresinde, sürüm/commit ile eşleştirerek sağlayabilir. Bu görev arayüz özelliği eklemez; kaynak sunumu işletim kontrol listesine dahildir. Sırları, kişisel verileri ve gerçek .env dosyasını kaynak paketine eklemeyin.
 
 Kopya veya binary/konteyner dağıtırken §§4–6, üçüncü taraf bildirimleri ve ilgili LGPL/MPL koşulları da değerlendirilmelidir. Yazılım ücretsizdir; sunucu/SMTP/depolama hizmetlerinin ücretsiz olması garanti edilmez. Üretim hazırlığı ayrıca doğrulanmalıdır.
+
+## OSS-04 izole kurulum provası
+
+Main 55a27f1'in temiz kaynak arşivi, mevcut çalışma ağacının .env/node_modules/.next dosyaları olmadan yeni Node 24.22.2 Debian konteynerinde kullanıldı. OpenSSL/CA ve Playwright sistem kitaplıkları önkoşul olarak kuruldu; HTTPS sertifika doğrulaması kapatılmadı. Yeni PostgreSQL 17 veritabanına 7 migration uygulandı, build ve 4 E2E geçti. Ek E2E çalışması DDL yetkisi olmayan runtime rolüyle de geçti. Test yöneticisi migration/fixture hazırladı; runtime normal uygulamada kullanıldı. [Tam kanıt](OSS04-VALIDATION.md).
+
+Loopback HTTP ve sentetik SMTP istisnası yalnız DATABASE_URL=TEST_DATABASE_URL ve loopback siteyonetim_test koşuluyla kullanıldı; gerçek HTTPS/SMTP teslimi test edilmedi. Kurulum sırasının gerçek sağlayıcı/ters proxy kısmı uygulanmadı ve tamamlanmış sayılmaz. Bu, mevcut geliştirme ortamından ayrı otomatik konteyner provasıdır; bağımsız bir kişinin kendi sunucusunda kurulum deneyimi değildir. Üretim altyapısı kurulmadı. [Sentetik yedekten dönüş](BACKUP-RESTORE.md).

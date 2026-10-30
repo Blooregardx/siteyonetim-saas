@@ -1,3 +1,13 @@
+# Güncel GitHub durumu — OSS-04, 30 Ekim 2026
+
+Main başlangıç commit'i 55a27f18ed4c014f1b3044db6e181382879d38f2. PR #7, #8 ve #9 birleşmiş. Depo PUBLIC, varsayılan dal main. main-protection aktif; PR zorunlu, force-push/silme engelli, bypass aktörü yok. **checks zorunlu**, integration_id=15368 GitHub Actions; strict up-to-date seçeneği kapalı. Onay sayısı 0, konuşma çözümü zorunlu değil. Bu PR ayarları değiştirmez. Private Vulnerability Reporting etkinliği önceki doğrulamaya ek olarak yayımlama öncesi tekrar kontrol edilir.
+
+Bakımcı son commitin CI'ını denetlemeli; ikinci bakımcı oluşunca bağımsız inceleme/konuşma çözümü kuralları değerlendirilmeli. PUBLIC ve main korumaları korunur. Tag/release yalnız ayrı kullanıcı onayıyla yayımlanır; mevcut kayıtlar tekrar kontrol edilir. Git kimliği yalnız depo bazında Blooregardx noreply'dir; geçmiş yeniden yazılmaz.
+
+## Tarihsel OSS-01/01B ayar raporu — aşağıdaki durumlar kendi denetim anlarına aittir
+
+Aşağıdaki eski “henüz ayarlanmadı” ve geliştirme dalı hedefi ifadeleri tarihsel kanıttır; güncel durum yukarıdadır.
+
 # GitHub ayarları — güncel durum ve bakımcı kontrol listesi
 
 ## Tarihsel başlangıç — OSS-01

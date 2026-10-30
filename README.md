@@ -8,7 +8,7 @@ Bakımcı: [Blooregardx](https://github.com/Blooregardx). Yazılım ücretsizdir
 
 ## Güncel durum
 
-Erken geliştirme sürümüdür; üretime hazır olarak işaretlenmemiştir. Kayıt/giriş, e-posta doğrulama, organizasyon ve rol yönetimi, apartman/blok/daire ve kişi ilişkileri, aidat, kısmi tahsilat ve tam tahsilat ters kaydı uygulanmıştır. Ters kayıt gerçek para iadesi değildir. [Güncel özellikler ve eksikler](docs/FEATURES.md).
+**EARLY DEVELOPMENT / ALPHA — NOT PRODUCTION READY.** Main geçişi PR #9 ile tamamlandı. `v0.1.0-alpha.1` yalnız adaydır; henüz tag/release yayımlanmadı. [Sürüm notu taslağı](docs/RELEASE-NOTES-v0.1.0-alpha.1.md) ve [yayın kontrol listesi](docs/RELEASE-CHECKLIST.md). Kayıt/giriş, e-posta doğrulama, organizasyon ve rol yönetimi, apartman/blok/daire ve kişi ilişkileri, aidat, kısmi tahsilat ve tam tahsilat ters kaydı uygulanmıştır. Ters kayıt gerçek para iadesi değildir. [Güncel özellikler ve eksikler](docs/FEATURES.md).
 
 `/panel` PostgreSQL ve gerçek oturum ister. `/demo` ve `/demo?view=company` açıkça işaretli, veritabanından bağımsız örneklerdir. Otomatik demo hesap/seed yoktur. Gerçek kişi verilerini issue, test veya demo içine eklemeyin.
 
@@ -46,3 +46,7 @@ Entegrasyon ve Playwright yalnız loopback `siteyonetim_test` veritabanında ça
 - [GitHub ayarları](docs/GITHUB-SETTINGS.md), [doğrulanabilir bakım kanıtları](docs/OSS-EVIDENCE.md)
 
 Geçmiş S00/S01 raporları tarihsel kayıttır. Güncel özellik durumu FEATURES, öncelikler ROADMAP içindedir. STAGING/PRODUCTION tamamlanmış değildir; [ertelenmiş operasyonlar](docs/DEFERRED-CLOUD-OPERATIONS.md) güvenlik gereksinimi olarak geçerliliğini korur.
+
+## OSS-04 doğrulama durumu
+
+Temiz kaynak ve ayrı Node 24/PostgreSQL 17 konteynerlerinde otomatik kurulum ve sentetik yedekten dönüş provası yapıldı. Bu aynı bakımcı tarafından yürütülen izole testtir; bağımsız insan kurulumu, gerçek SMTP teslimi veya üretim işletimi değildir. [Kanıtlar](docs/OSS04-VALIDATION.md), [geri yükleme](docs/BACKUP-RESTORE.md), [başvuru hazırlığı](docs/OSS-APPLICATION.md). Başvuru gönderilmedi.

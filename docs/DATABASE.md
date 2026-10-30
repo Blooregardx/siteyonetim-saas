@@ -1,6 +1,6 @@
 # Veritabanı ve geçiş
 
-Üç eklemeli migration vardır. Son migration User.passwordHash (nullable), Session, PasswordReset, AuthAttempt ve Payment.method ekler. Eski kullanıcılarda parola otomatik üretilmez; doğrulanmış posta kurtarma kanalı veya kontrollü hesap sahipliği doğrulaması gerekir. Geçerli parola olmadan eski hesabın girişine izin verilmez. Nakit/havale yöntemi saklanır; eski ödemeler CASH varsayımı taşır, bu geçmiş verinin gerçek ödeme yönteminin kanıtı değildir.
+Main üzerinde toplam **yedi migration** vardır: ilk şema ve altı eklemeli geçiş. `202610280001_sessions` User.passwordHash (nullable), Session, PasswordReset, AuthAttempt ve Payment.method ekler; son `202610310001_property_people` kişi/daire modelini genişletir. Eski kullanıcılarda parola otomatik üretilmez; doğrulanmış posta kurtarma kanalı veya kontrollü hesap sahipliği doğrulaması gerekir. Geçerli parola olmadan eski hesabın girişine izin verilmez. Nakit/havale yöntemi saklanır; eski ödemeler CASH varsayımı taşır, bu geçmiş verinin gerçek ödeme yönteminin kanıtı değildir.
 
 Session ve PasswordReset ham token yerine SHA-256 özetini saklar. Session 7 gün, reset 30 dakika geçerlidir. Süresi dolmuş oturumlar doğrulanmaz. Eski token/limit satırları için periyodik temizlik operasyonu kurulmalıdır.
 
@@ -8,7 +8,7 @@ Session ve PasswordReset ham token yerine SHA-256 özetini saklar. Session 7 gü
 
 Alan nullable korunmuştur; yetim kayıtlar silinmez veya tahmine dayalı şirkete atanmaz. Yeni siteler üyeliği doğrulanmış organizasyonda açılır. Geçiş için önce yedek alınmalı, site ADMIN üyeliği ve yönetim sözleşmesi doğrulanmalı, site→organizasyon eşlemesi onaylı operatör listesiyle hazırlanmalıdır. Transaction içinde yalnızca organizationId NULL olan beklenen satırlar güncellenmeli; satır sayısı denetlenmeli, üyelikler ve borç/ödeme kimlikleri korunmalıdır. Tüm siteler doğrulanmadan NOT NULL uygulanmamalıdır. Eski doğrudan üyelik servis düzeyinde korunur; yeni organizasyon panelinde otomatik gösterilmez.
 
-## Kişi tasarımı
+## Tarihsel kişi tasarımı — S01 (güncel uygulama S02-A bölümünde)
 
 Mevcut Occupancy isim kopyası ve OWNER/TENANT ilişkisi taşır; otomatik kullanıcı hesabı veya erişim hakkı oluşturmaz. Gelecek eklemeli model: organizasyon kapsamlı Person, isteğe bağlı doğrulanmış User bağı, tarihli Ownership ve Occupancy.personId. Bir Person birden çok daireyle ilişkilenebilir. İsim eşitliği kişi birleştirmek için yeterli değildir. Önce nullable personId eklenmeli; operatör doğrulamalı eşleme ve tarih kontrolleri sonrası eski isim alanı kaldırılması ayrı migration olmalıdır. Mülkiyet ve fiili ikamet dönemleri ayrı tutulmalıdır. Bu aşamada kişi birleştirme veya veri kaybettiren dönüşüm uygulanmadı.
 
@@ -33,3 +33,7 @@ Tarih aralıkları gün bazında ve uçları dahil yorumlanır; aynı kişi/dair
 Kat -20..200 veya boş olabilir. Tür/durum alanları genişletilebilir string kodlarıdır; UI/servis güncel izinli kodları doğrular. Kullanım durumu operasyonel etikettir, kiracı veya mülkiyet kaydından otomatik türetilmez. Daire düzenlemesi blockId/siteId ilişkisini değiştirmez; mevcut daire numarası unique kısıtı korunur. Ortaklık payı/yüzdesi bu sürümde tutulmaz; çoklu Ownership modeli ileride pay bilgisiyle genişletilebilir.
 
 Organizasyon genelindeki Person rehberi ve mevcut kişiyi bağlama işlemi organizasyon ADMIN/MANAGER üyeliği gerektirir. Yalnız doğrudan apartman yetkisi olan kullanıcıya organizasyonun tüm kişi listesi açılmaz; kendi apartman ilişki geçmişi ve yetkili apartman düzenlemeleri korunur. Kişi seçeneklerinde isim yanında sabit kısa referans gösterilir; aynı isimli kayıtlar otomatik birleştirilmez.
+
+## OSS-04 kurtarma doğrulaması
+
+Temiz PG17 ortamındaki bütün yedi migration ve şema karşılaştırması başarılı. Ayrı boş PG17 hedefe dump/restore ile tüm public tablolar, migration geçmişi, finans/audit satırları ve index/constraint/trigger tanımları eşleşti. Bu sentetik kanıttır; üretim yedek politikası/PITR/RPO/RTO değildir. [Uygulanabilir prova](BACKUP-RESTORE.md), [sonuçlar](OSS04-VALIDATION.md).

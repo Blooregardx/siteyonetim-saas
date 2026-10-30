@@ -1,0 +1,69 @@
+/** Isolated synthetic recovery drill only; never a production seed or restore tool. */
+import assert from "node:assert/strict";
+import { readFile, writeFile } from "node:fs/promises";
+import { PrismaClient } from "@prisma/client";
+import { management } from "../src/lib/management";
+
+const url = process.env.TEST_DATABASE_URL;
+if (!url || process.env.DATABASE_URL !== url) throw new Error("Matching isolated test URLs required");
+const parsed = new URL(url);
+if (!["localhost", "127.0.0.1"].includes(parsed.hostname) || parsed.pathname !== "/siteyonetim_test") throw new Error("Isolated loopback siteyonetim_test required");
+const mode = process.argv[2];
+const fixturePath = process.argv[3];
+if (!["create", "verify"].includes(mode) || !fixturePath) throw new Error("Usage: recovery-probe.ts create|verify fixture.json");
+const db = new PrismaClient({ datasourceUrl: url });
+type Fixture = { userId: string; outsiderId: string; organizationId: string; siteId: string; chargeId: string; paymentId: string; reversalId: string; personId: string; occupancyId: string; auditCount: number; migrations: number };
+const apiFor = (userId: string) => management(db, async () => ({ userId }));
+async function main() {
+  if (mode === "create") {
+    const user = await db.user.create({ data: { email: `${crypto.randomUUID()}@example.invalid`, name: "Sentetik kurtarma yöneticisi", emailVerifiedAt: new Date() } });
+    const outsider = await db.user.create({ data: { email: `${crypto.randomUUID()}@example.invalid`, name: "Sentetik başka tenant", emailVerifiedAt: new Date() } });
+    const api = apiFor(user.id);
+    const org = await api.createOrganization("Sentetik kurtarma organizasyonu", "COMPANY");
+    const site = await api.createSite(org.id, "Sentetik kurtarma sitesi");
+    const block = await api.createBlock(site.id, "Kurtarma A");
+    const unit = await api.createUnit(site.id, block.id, "01");
+    const person = await api.createPerson(site.id, "Sentetik kurtarma kişisi");
+    await api.linkPerson(site.id, unit.id, person.id, "OWNER", "2026-01-01");
+    const occupancy = await api.linkPerson(site.id, unit.id, person.id, "TENANT", "2026-02-01");
+    const charge = await api.createCharge(site.id, unit.id, "2026-10", 10000, new Date("2026-10-01"));
+    const payment = await api.collect(site.id, charge.id, 4000, crypto.randomUUID());
+    const reversal = await api.reversePayment(site.id, payment.id, "ENTRY_ERROR", crypto.randomUUID());
+    await api.collect(site.id, charge.id, 2500, crypto.randomUUID(), "TRANSFER");
+    await apiFor(outsider.id).createOrganization("Sentetik ayrı tenant", "INDIVIDUAL");
+    const applied = await db.$queryRaw<{ count: bigint }[]>`SELECT count(*) FROM "_prisma_migrations" WHERE finished_at IS NOT NULL`;
+    const fixture: Fixture = { userId: user.id, outsiderId: outsider.id, organizationId: org.id, siteId: site.id, chargeId: charge.id, paymentId: payment.id, reversalId: reversal.id, personId: person.id, occupancyId: occupancy.id, auditCount: await db.auditLog.count({ where: { siteId: site.id } }), migrations: Number(applied[0].count) };
+    await writeFile(fixturePath, JSON.stringify(fixture, null, 2) + "\n", { mode: 0o600 });
+  }
+  const f: Fixture = JSON.parse(await readFile(fixturePath, "utf8"));
+  const site = await apiFor(f.userId).dashboard(f.siteId);
+  assert.equal(site.organizationId, f.organizationId);
+  assert.equal(site.blocks.length, 1);
+  assert.equal(site.units.length, 1);
+  assert.equal(site.units[0].ownerships[0].personId, f.personId);
+  assert.equal(site.units[0].occupants[0].id, f.occupancyId);
+  assert.equal((await db.organizationMembership.findUniqueOrThrow({ where: { organizationId_userId: { organizationId: f.organizationId, userId: f.userId } } })).role, "ADMIN");
+  const charge = site.charges.find(c => c.id === f.chargeId)!;
+  assert.equal(charge.amountKurus, 10000);
+  assert.equal(charge.payments.length, 2);
+  assert.equal(charge.payments.reduce((n, p) => n + p.amountKurus, 0), 6500);
+  const payment = charge.payments.find(p => p.id === f.paymentId)!;
+  assert.ok(payment.reversal);
+  assert.equal(payment.reversal.id, f.reversalId);
+  assert.equal(payment.reversal.amountKurus, 4000);
+  assert.equal(payment.reversal.actorId, f.userId);
+  const audit = await db.auditLog.findMany({ where: { siteId: f.siteId } });
+  assert.equal(audit.length, f.auditCount);
+  assert.ok(audit.some(a => a.action === "PAYMENT_REVERSE" && a.entityId === f.reversalId && a.actorId === f.userId));
+  await assert.rejects(apiFor(f.outsiderId).dashboard(f.siteId), /FORBIDDEN/);
+  await assert.rejects(apiFor(f.outsiderId).reversePayment(f.siteId, f.paymentId, "ENTRY_ERROR", crypto.randomUUID()), /FORBIDDEN/);
+  await assert.rejects(apiFor(f.userId).reversePayment(f.siteId, f.paymentId, "ENTRY_ERROR", crypto.randomUUID()), /ALREADY_REVERSED/);
+  await assert.rejects(db.payment.update({ where: { id: f.paymentId }, data: { amountKurus: 4000 } }), /append only/);
+  await assert.rejects(db.paymentReversal.update({ where: { id: f.reversalId }, data: { amountKurus: 4000 } }), /append only/);
+  await assert.rejects(db.auditLog.update({ where: { id: audit[0].id }, data: { action: audit[0].action } }), /append only/);
+  const applied = await db.$queryRaw<{ count: bigint }[]>`SELECT count(*) FROM "_prisma_migrations" WHERE finished_at IS NOT NULL`;
+  assert.equal(Number(applied[0].count), f.migrations);
+  assert.equal(f.migrations, 7);
+  console.log(JSON.stringify({ mode, verified: true, grossKurus: 6500, reversedKurus: 4000, netKurus: 2500, remainingKurus: 7500, auditCount: f.auditCount, migrations: f.migrations, tenantIsolation: true, immutableHistory: true }));
+}
+main().finally(() => db.$disconnect()).catch(error => { console.error(error instanceof Error ? error.message : "Recovery probe failed"); process.exitCode = 1; });

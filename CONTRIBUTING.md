@@ -10,7 +10,7 @@ Projenin özgün kodu ve belgeleri AGPL-3.0-only altındadır. Birleştirilmek �
 
 Önce ilgili issue'ları arayın. Hata için commit, beklenen/gözlenen davranış ve sentetik tekrar adımları verin. Büyük değişiklikte tasarımı issue'da tartışın. Güvenlik açıkları public issue konusu değildir.
 
-OSS-01 PR tabanı `codex/s00-s01-foundation` dalıdır. main ile özellik farkı kapanana kadar işin tabanını bakımcıyla doğrulayın; ilgisiz dalları birleştirmeyin. Tek amaçlı bir dal/PR açın; problemi, sonucu, test kanıtını ve kalan riski yazın. Bakımcı kapsam/yetki/veri güvenliği incelemesi yapar; başarısız kontroller atlanmaz. Otomatik merge ve geçmiş yeniden yazımı kullanılmaz. Değişiklik istekleri çözülmeden birleştirilmez.
+PR #9 ile özellikler main’e alındı; yeni katkılar güncel main’den türetilir ve main’i hedefler. OSS-01/02 PR’lerinin geliştirme tabanı tarihsel iş akışıdır. İlgisiz dalları birleştirmeyin. Tek amaçlı bir dal/PR açın; problemi, sonucu, test kanıtını ve kalan riski yazın. Bakımcı kapsam/yetki/veri güvenliği incelemesi yapar; başarısız kontroller atlanmaz. Otomatik merge ve geçmiş yeniden yazımı kullanılmaz. Değişiklik istekleri çözülmeden birleştirilmez.
 
 ## Geliştirme ve kontroller
 

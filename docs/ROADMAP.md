@@ -1,14 +1,20 @@
-# Yol haritası
+# Güncel yol haritası — OSS-04
 
-Hedef ücretsiz, özgür/açık kaynak ve topluluk katkılarına açık, kendi sunucusunda barındırılabilir site/apartman yönetimidir. Depo PUBLIC kalır. Ticari abonelik veya ücretli lisans geliştirilmez. Next.js, TypeScript, PostgreSQL ve Prisma 6 korunur. AGPL-3.0-only kullanıcı tarafından onaylandı; OSS-02 ile uygulanır.
+Ücretsiz, AGPL-3.0-only, PUBLIC ve topluluk katkılı kendi sunucusunda barındırma hedefi korunur. Ticari abonelik/ücretli lisans modeli yoktur. Next.js, strict TypeScript, PostgreSQL 17 ve Prisma 6 değişmez. Üretime hazır değildir.
 
-1. **OSS-01 — hazırlık (bu PR):** tutarlı belgeler, katkı/topluluk süreci, güvenli CI, lisans değerlendirmesi ve bakım kanıtları. PR açılması lisans/ayar işlerinin tamamlandığı anlamına gelmez.
-2. **Başvuru öncesi:** lisanslı OSS-02 PR incelenir; zorunlu CI kontrolü ayarlanır. OSS-01B kontrolünde özel güvenlik bildirimi ve main-protection etkin olarak doğrulandı; [güncel ayarlar](GITHUB-SETTINGS.md) kalan inceleme/CI gereksinimlerini ayırır. Geliştirme dalının main'e geçişi ayrı incelemeyle yapılır; geçmiş yeniden yazılmaz.
-3. **Kendi sunucusunda kurulum:** temiz kurulum ve mevcut şemadan yükseltme provası, minimum runtime/migration/bakım izinleri, HTTPS/SMTP, güvenli güncelleme ve yedekten dönüş belgelerinin izole doğrulaması. Ücretli servis şartı yoktur.
-4. **Güvenlik ve bakım:** kötüye kullanım koruması, güvenilir proxy sınırları, sayfalama/kapasite, saklama ve olay müdahalesi; mevcut finans ve audit kuralları korunur.
-5. **Topluluk sürümü:** bilinen eksiklerle etiketli geliştirme sürümü, sürüm notları, issue sınıflandırma ve PR inceleme kanıtları. Kullanım/adopsiyon verileri uydurulmaz.
-6. **Sonraki işlevler:** ayrı tasarım ve testlerle toplu aidat önizlemesi/idempotent oluşturma; daha sonra raporlama, kişi eşleme ve ortaklık payı. Banka/kart, mesajlaşma ve mobil istemci taahhüt edilmiş teslimler değildir.
+## Tamamlanan aşamalar
 
-S00–S01 ve S02-A ile uygulanmış kapsam [FEATURES](FEATURES.md) içindedir. E-posta doğrulama, davet/rol, audit ve tam ters kayıt artık bekleyen özellik olarak listelenmez. Kısmi ters kayıt ve gerçek para iadesi uygulanmadı. STAGING/PRODUCTION için [operasyon listesi](DEFERRED-CLOUD-OPERATIONS.md) geçerlidir; canlı dağıtım bu görevin parçası değildir.
+- OSS-01/01B: katkı/güvenlik belgeleri, CI sertleştirmesi; PR #7 birleşti.
+- OSS-02: AGPL-3.0-only ve lisans envanteri; PR #8 birleşti.
+- OSS-03: kaynak özelliklerin main'e geçişi; PR #9 birleşti. Main 55a27f1, zorunlu GitHub Actions checks etkin.
+- OSS-04 yerel kanıtı: yeni konteynerlerde temiz kurulum, runtime rolüyle E2E ve ayrı PG17 hedefe sentetik yedekten dönüş. [Kanıt](OSS04-VALIDATION.md). Bu PR'nin henüz birleştiği varsayılmaz.
 
-OSS-02: LICENSE resmî metni, SPDX metaverisi, katkı lisansı ve üçüncü taraf envanteri; üretim/özellik değişikliği yok. Main geçişi OSS-02 birleşmesinden sonra ayrı PR olarak planlanır.
+## Öncelik sırası
+
+1. OSS-04 PR ve son CI'ını incele; v0.1.0-alpha.1 **kaynak kod temelli ön sürüm** adayını kullanıcı kararıyla değerlendir. Henüz release/tag yok. [Kontrol listesi](RELEASE-CHECKLIST.md).
+2. Başvuru taslaklarını hesap sahibinin gerçek bilgileriyle sonlandır; kullanıcı gönderebilir. Başvuru veya kabul gerçekleşmiş sayılmaz.
+3. Bağımsız kullanıcı kurulumu ve kullanılabilirlik geri bildirimi; gerçek SMTP/TLS/proxy doğrulaması. Bunlar tamamlanmadı ve ücretli sağlayıcı açma koşulu değildir.
+4. Üretim güvenliği/yük/bot koruması, MFA, minimum işletim rolleri, yedek/PITR/RPO/RTO ve izleme. Sentetik restore başarısı bu işletim işlerini kapatmaz.
+5. Ayrı tasarım/testlerle sayfalama ve toplu aidat önizleme/idempotency; ileride raporlama, kontrollü kişi eşleme ve ortaklık payı. Banka/kart, mobil istemci ve mesajlaşma teslim taahhüdü değildir.
+
+Tarihsel S00/S01 raporları ve OSS-EVIDENCE aşama kayıtları korunur; güncel kapsam [FEATURES](FEATURES.md), işletim açıkları [DEFERRED-CLOUD-OPERATIONS](DEFERRED-CLOUD-OPERATIONS.md) içindedir. Finans/audit geçmişi korunur; migration kozmetik amaçla değiştirilmez.
