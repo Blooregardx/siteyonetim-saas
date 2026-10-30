@@ -17,3 +17,10 @@
 - Ertelenmiş operasyonları docs/DEFERRED-CLOUD-OPERATIONS.md içinde takip et.
 - Kişileri ad eşitliğiyle otomatik birleştirme. Person kimliği, malik Ownership ilişkisi, kiracı Occupancy dönemi ve User hesabı ayrı kavramlardır.
 - Eski Occupancy kayıtlarını ve finans geçmişini koru; yeni/güncelleme yazımlarını audit ile aynı transaction'da yap.
+
+## OSS-01 hedefi
+
+- Depo PUBLIC kalır; ücretsiz, topluluk katkılı ve kendi sunucusunda barındırılabilir özgür yazılım hedeflenir. Ticari abonelik/ücretli lisans geliştirilmez.
+- Lisans bakımcı kararı bekler; kullanıcı adına LICENSE seçme.
+- Kendi sunucusunda kurulum belgesi hazırlanabilir; kullanıcı bilgisayarında kurulum yaptırma veya ücretli servis/production deploy oluşturma.
+- Geçmiş raporlar tarihsel, güncel kapsam docs/FEATURES.md ve öncelikler docs/ROADMAP.md içindedir.

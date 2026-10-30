@@ -1,21 +1,12 @@
 # Yol haritası
 
-S00–S01 kapanışı: SMTP kurulum ve teslim testi; hesap sahipliği doğrulaması; daha kapsamlı limit tarayıcı regresyonları; güvenlik incelemesi; eksik temel düzenleme ve denetim gereksinimleri.
+Hedef ücretsiz, özgür/açık kaynak ve topluluk katkılarına açık, kendi sunucusunda barındırılabilir site/apartman yönetimidir. Depo PUBLIC kalır. Ticari abonelik veya ücretli lisans geliştirilmez. Next.js, TypeScript, PostgreSQL ve Prisma 6 korunur. Lisans henüz seçilmedi.
 
-Ardından: davet/rol yönetimi, kişi ve mülkiyet ayrımı, toplu aidat, audit log ve ters kayıt, gelir/gider ve raporlar, yedekleme/geri yükleme ve izleme.
+1. **OSS-01 — hazırlık (bu PR):** tutarlı belgeler, katkı/topluluk süreci, güvenli CI, lisans değerlendirmesi ve bakım kanıtları. PR açılması lisans/ayar işlerinin tamamlandığı anlamına gelmez.
+2. **Başvuru öncesi:** bakımcı lisans kararını verir; özel güvenlik bildirimi ve main korumaları etkinleştirilir. Geliştirme dalının main'e geçişi ayrı incelemeyle yapılır; geçmiş yeniden yazılmaz.
+3. **Kendi sunucusunda kurulum:** temiz kurulum ve mevcut şemadan yükseltme provası, minimum runtime/migration/bakım izinleri, HTTPS/SMTP, güvenli güncelleme ve yedekten dönüş belgelerinin izole doğrulaması. Ücretli servis şartı yoktur.
+4. **Güvenlik ve bakım:** kötüye kullanım koruması, güvenilir proxy sınırları, sayfalama/kapasite, saklama ve olay müdahalesi; mevcut finans ve audit kuralları korunur.
+5. **Topluluk sürümü:** bilinen eksiklerle etiketli geliştirme sürümü, sürüm notları, issue sınıflandırma ve PR inceleme kanıtları. Kullanım/adopsiyon verileri uydurulmaz.
+6. **Sonraki işlevler:** ayrı tasarım ve testlerle toplu aidat önizlemesi/idempotent oluşturma; daha sonra raporlama, kişi eşleme ve ortaklık payı. Banka/kart, mesajlaşma ve mobil istemci taahhüt edilmiş teslimler değildir.
 
-Sonraki aşamalar: banka/kart, SMS/WhatsApp, mobil istemci, yapay zekâ ve otomatik gecikme faizi. Bu görevde geliştirilmedi. Canlı dağıtım yapılmaz.
-
-## S01-C sonrası güncelleme
-
-E-posta sahipliği, davet/üyelik rolleri, audit ve süre aşımı temizliği kod düzeyinde uygulanmıştır. Öncelikli kalanlar: gerçek bulut DB/SMTP/HTTPS kurulumu, runtime/migration/bakım rollerinin sağlayıcıda uygulanıp test edilmesi, edge saldırı koruması, geri yükleme provası ve izleme. Ters kayıt tasarımı PAYMENT-REVERSALS.md içindedir; servis ve güvenlik testleri ayrı görevdir. S00–S01 kapanışı bu operasyonel doğrulamalar ve kalan temel yönetim ihtiyaçları değerlendirilmeden verilmez.
-
-## S01-D sonrası
-
-Tam ters kayıt, merkezi net bakiye ve izole runtime/migration rol testleri uygulandı. Gerçek sağlayıcıdaki DB rol ayrımı/TLS/bağlantı, SMTP teslimi, edge koruma, yedek/PITR, geri yükleme provası, bakım zamanlayıcısı ve izleme açık kalır. Hatalı ters kaydın telafisi/kısmi ters kayıt ayrı finans tasarımıdır; eski kayıtları değiştirme veya silme çözüm değildir. S00–S01 operasyonel kapanışı henüz verilmez.
-
-## Bütçesiz geliştirme kararı — güncel öncelik
-
-STAGING/PRODUCTION bütçe nedeniyle ertelendi; tek operasyon takip belgesi DEFERRED-CLOUD-OPERATIONS.md. Bunlar yeni DEVELOPMENT özelliklerini durdurmaz. S00–S01 uygulanan kimlik/finans/güvenlik temeli izole kanıtlarla değerlendirilir; tüm ürün backlog'u tamamlandı iddiası değildir.
-
-S02-A: güncelleme/filtreleme, kişi kimliği, ayrı mülkiyet/oturum ve geçmiş koruma. Sonraki öneri S02-B: toplu aidat dönemi, borçlandırma önizlemesi ve idempotent toplu oluşturma; mevcut finans/audit kurallarıyla sentetik testler. Ayrıca sayfalama, kontrollü eski kişi eşleme ve ortaklık payı tasarımı ileride ele alınabilir.
+S00–S01 ve S02-A ile uygulanmış kapsam [FEATURES](FEATURES.md) içindedir. E-posta doğrulama, davet/rol, audit ve tam ters kayıt artık bekleyen özellik olarak listelenmez. Kısmi ters kayıt ve gerçek para iadesi uygulanmadı. STAGING/PRODUCTION için [operasyon listesi](DEFERRED-CLOUD-OPERATIONS.md) geçerlidir; canlı dağıtım bu görevin parçası değildir.
