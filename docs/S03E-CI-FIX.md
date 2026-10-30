@@ -92,3 +92,11 @@ E2E gerçek `isNavigationRequest()` yanıtını yakalar, HTTP 200 + text/html de
 Normal ana URL gezinmesi belgeyi yeniler; gönderilmemiş form alanları bu gezinmede kalıcı taslak değildir. Toplu aidat formunun kendi daire arama/seçim/önizleme sayfaları hâlâ aynı client form içinde çalışır ve seçimleri korur. Native sayfalama sunucu oturum/rol/site kontrollerini her istekte yeniden yapar; finansal yazma ve idempotency değişmez.
 
 Yeni commit için hem push hem PR CI’ının tamamlanması ayrıca doğrulanır; 45a0ca1 ve 7083f92 başarısız koşuları silinmez.
+
+## Son senkronizasyon düzeltmesi — yaşam döngüsü yerine gerçek hazırlık
+
+0905ac7 için [push CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41099432064) başarılı, [PR CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41099441549) başarısızdı. PR logu bu kez açıkça chargesPage=2 adresine **gidildiğini**, ardından DOMContentLoaded beklentisinin 120 saniyeye ulaştığını gösterdi. Önceki aşamadaki URL commit takılması çözülmüş; bu yeni hata belge yaşam döngüsü koşuluydu. Eski loglar bu olayın hiç oluşmaması ile testin olay beklemesinin tamamlanmamasını ayırmaz; daha alt framework nedeni iddia edilmez.
+
+Son test `waitUntil: commit` ve `click({noWaitAfter:true})` ile yalnız örtük load/DOMContentLoaded beklemesini kaldırır. Ardından gerçek document GET/HTTP HTML yanıtı, doğru URL, Sayfa 2 etiketi, 25 farklı aidat ve tam kartların eşitliği zorunludur. Ek olarak **Daire ara** client butonunu çalıştırır ve yetkili server-action’dan gelen 25 checkbox’ı bekler. Böylece yalnız HTML görünürlüğü değil, gerçek etkileşim de kanıtlanır. Sonrasında aidat detayı, CollectionForm ve ADMIN ters kayıt erişimi denetlenir. Assertion/test/transaction/stack bütçeleri artırılmaz; skip/retry yoktur. Hata halinde URL, readyState, satır sayısı ve pager tanısı CI loguna yazılır.
+
+[Son mobil tam E2E](performance/s03e-stream-ready-e2e.json): 11/11 başarılı. İlk/ikinci panel süreleri 100 dairede 465/513 ms, 1.000’de 493/505 ms, 10.000’de 1.203/757 ms. Bütün ölçeklerde 25 ayrı aidat, aynı tam özet, sıfır prefetch ve çalışan client araması doğrulandı. Yukarıdaki servis ve HTTP örnekleri aynı, değişmemiş uygulama/SQL üzerindedir; bu son değişiklik yalnız test hazırlık koşulu ve tanı kaydıdır.

@@ -46,6 +46,15 @@
   "finalEvidence": {
     "e2e": "s03e-native-e2e.json",
     "http": "s03e-ci-fix-measurements.json results[].httpNative",
-    "transport": "standard anchor document GET; matching browser navigation response and DOMContentLoaded URL required"
+    "transport": "standard anchor document GET; matching browser navigation response and DOMContentLoaded URL required",
+    "finalE2e": "s03e-stream-ready-e2e.json"
+  },
+  "followup0905ac7": {
+    "pushRunId": 41099432064,
+    "pushResult": "success",
+    "prRunId": 41099441549,
+    "prResult": "failure",
+    "provenFailureStage": "Playwright explicitly logged navigation to chargesPage=2 but timed out waiting for DOMContentLoaded. This was a document lifecycle wait, not a failed URL transition.",
+    "finalReadiness": "Wait for actual document navigation commit; assert HTTP HTML, URL, 25 distinct charge rows and full summaries, then execute client bulk-unit search and require 25 returned checkboxes. click noWaitAfter removes only implicit load wait; explicit business readiness assertions remain unchanged."
   }
 }
