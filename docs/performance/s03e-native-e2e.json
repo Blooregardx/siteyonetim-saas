@@ -1,0 +1,46 @@
+{
+  "scope": "Final native document GET pagination, local production-build mobile Playwright 390x844; PostgreSQL 17 siteyonetim_test synthetic fixtures",
+  "e2eTestCases": 11,
+  "responseType": "text/html; browser document navigation required",
+  "rows": [
+    {
+      "units": 100,
+      "charges": 600,
+      "firstPanelMs": 433.71026499999425,
+      "secondPanelMs": 520.8549570000032,
+      "responseHeadersMs": 50.34746300000552,
+      "responseStatus": 200,
+      "urlCommitted": true,
+      "rows": 25,
+      "differentRecords": true,
+      "summaryUnchanged": true,
+      "prefetchRequests": 0
+    },
+    {
+      "units": 1000,
+      "charges": 6000,
+      "firstPanelMs": 392.72731799999747,
+      "secondPanelMs": 449.46802800000296,
+      "responseHeadersMs": 43.764454999996815,
+      "responseStatus": 200,
+      "urlCommitted": true,
+      "rows": 25,
+      "differentRecords": true,
+      "summaryUnchanged": true,
+      "prefetchRequests": 0
+    },
+    {
+      "units": 10000,
+      "charges": 60000,
+      "firstPanelMs": 1055.7973490000004,
+      "secondPanelMs": 644.0268989999968,
+      "responseHeadersMs": 39.44644900000276,
+      "responseStatus": 200,
+      "urlCommitted": true,
+      "rows": 25,
+      "differentRecords": true,
+      "summaryUnchanged": true,
+      "prefetchRequests": 0
+    }
+  ]
+}

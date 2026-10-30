@@ -2,6 +2,8 @@
 
 İlk commit `45a0ca1621ad69aa48f64687eae21c4b19354e31` için hem [push](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41091910449) hem [pull_request](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41092060997) koşusu aynı noktada başarısız oldu: 10.000 daire / 60.000 aidat E2E’si “Sayfa 2” beklerken beş saniye sonunda “Sayfa 1 / 2400” görüyordu. Her ikisinde 10 E2E başarılıydı; önceki adımlar başarılı, restore adımı E2E yüzünden atlanmıştı. İlk commit’in yerel başarılı sonuçları GitHub CI başarısı anlamına gelmiyordu.
 
+> Bu belgenin ilk bölümleri 7083f92 denemesini korur. Prefetch’i kapatmak tek başına yeterli olmadı; nihai document GET çözümü ve son ölçümler en alttadır.
+
 ## Neden ve kanıt sınırı
 
 `Pager` bağlantısı `chargesPage=2`, doğru organizasyon ve site parametrelerini üretir. `dashboardPage` bunu 2 olarak doğrular; SQL OFFSET 25’tir. Yerel eski uygulama izlemesinde URL gerçekten 2’ye geçti; ikinci sayfa bağlantısı/filtre ayrıştırmasında hata bulunmadı.
@@ -10,7 +12,7 @@ Sorun asenkron gezinme ve arka plan yükü sınırındaydı: ilk test `click()` 
 
 Eski CI logları URL veya ağ zaman çizelgesi kaydetmediğinden, eski koşuda URL’nin hangi milisaniyede commit edildiği ya da her prefetch’in katkısı geriye dönük kanıtlanamaz. Logların kesin kanıtladığı nokta eski DOM’un beş saniyelik pencere içinde kalmasıdır. Ölçülmeyen CI ağ zamanları uydurulmaz. Yeni test ve ölçüm bu belirsizliği ayrı HTTP, URL, render ve veri kontrolleriyle giderir. [İlk hata ve yerel ağ kanıtı](performance/s03e-navigation.json).
 
-## Düzeltme
+## İlk düzeltme denemesi — 7083f92
 
 Panel, kayıt, aidat detayı ve Pager bağlantıları `prefetch={false}` kullanır. Yetkili veri yalnız kullanıcı ilgili bağlantıya gittiğinde yüklenir. Sayfa/filtre anlamı ve SQL değiştirilmez. Alternatif SQL gruplaması denendi; kanıtlanmış kazanç sağlamadığı için değişiklikte tutulmadı.
 
@@ -64,3 +66,29 @@ ESLint, TypeScript, Next production build, Prisma validate/generate ve schema di
 Finansal geçmişe veya audit’e geriye dönük düzeltme yapılmaz. PUBLIC, AGPL-3.0-only ve v0.1.0-alpha.1 etiketi korunur. Yalnız DEVELOPMENT: local production build doğrulama içindir; STAGING/PRODUCTION deploy veya release yoktur. PR #15 açık kalır.
 
 Kalan sınırlar: tek oturumlu sıcak örnekler üretim SLA’sı değildir; ortak cloud CPU/I/O ve GC oynaktır. OFFSET istekleri ortak snapshot paylaşmaz. Büyük portföyde tam SQL sayımının maliyeti ve tekrarlanan sabit yetki sorguları devam eder. Otomatik prefetch kapandığından kullanıcı tıklamasında gerçek sunucu cevabı beklenir; gecikme gizlenmez.
+
+## Nihai düzeltme — sunucu document GET sayfalaması
+
+7083f92 için [PR CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41097812660) başarılı, [push CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41097801620) başarısız oldu. Yeni tanı kontrolleri hatayı somutlaştırdı: doğru chargesPage=2 GET yanıtı HTTP 200 ile alınmış ve içerik türü doğrulanmışken, tarayıcı URL’si beş saniye sonunda hâlâ birinci sayfadaydı. Dolayısıyla yalnız prefetch veya hatalı href/SQL açıklaması yeterli değildi; istemci geçişinin URL commit aşaması tamamlanmıyordu. Next’in daha alt iç planlama nedeni loglardan iddia edilmez.
+
+`Pager` artık Next Link istemci geçişi yerine standart `<a href>` kullanır. Tarayıcı gerçek document GET navigasyonu yapar; URL, server render ve tarayıcı geçmişi normal HTTP gezinmesiyle ilerler. Filtreler ve benzersiz sıralama değişmez. Ağır panel sayfalaması RSC istemci commit’ine bağımlı değildir. Diğer panel/kayıt/detay Link’lerinde prefetch=false korunur.
+
+E2E gerçek `isNavigationRequest()` yanıtını yakalar, HTTP 200 + text/html denetler, URL ve DOMContentLoaded navigasyonunu bekler; ardından 25 ayrı aidat ve değişmeyen tam özetleri doğrular. Sabit bekleme veya timeout artışı yoktur. İkinci sayfa detayında tahsilat ve ADMIN ters kayıt erişimi yine sınanır.
+
+| Daire | Son mobil E2E ilk panel | Son mobil E2E ikinci sayfa | Farklı aidat / aynı tam özet |
+|---|---:|---:|---|
+| 100 | 433.71 ms | 520.85 ms | 25 / evet |
+| 1000 | 392.73 ms | 449.47 ms | 25 / evet |
+| 10000 | 1055.80 ms | 644.03 ms | 25 / evet |
+
+[Nihai mobil E2E kanıtı](performance/s03e-native-e2e.json): tam paket 11/11 başarılı. Servis/SQL kodu değişmedi; yukarıdaki restored-DB ilk/ikinci 564/560 ms servis ölçümleri geçerlidir. Transport düzeltmesi yeni sorgu veya yazım eklemez. Ayrı, son native-GET HTTP provası eski ölçümleri silmeden ham JSON’a `httpNative` alanıyla eklenir:
+
+| Daire | Son HTTP başlık+tablo hazır | Son HTTP ikinci sayfa | Prefetch |
+|---|---:|---:|---:|
+| 100 | 638.87 ms | 887.69 ms | 0 |
+| 1000 | 410.44 ms | 388.02 ms | 0 |
+| 10000 | 1429.61 ms | 877.62 ms | 0 |
+
+Normal ana URL gezinmesi belgeyi yeniler; gönderilmemiş form alanları bu gezinmede kalıcı taslak değildir. Toplu aidat formunun kendi daire arama/seçim/önizleme sayfaları hâlâ aynı client form içinde çalışır ve seçimleri korur. Native sayfalama sunucu oturum/rol/site kontrollerini her istekte yeniden yapar; finansal yazma ve idempotency değişmez.
+
+Yeni commit için hem push hem PR CI’ının tamamlanması ayrıca doğrulanır; 45a0ca1 ve 7083f92 başarısız koşuları silinmez.

@@ -10,7 +10,8 @@
       }
     ],
     "method": "Same per-site synthetic shape as S03-D. Six charges and partial receipts per unit; 10% fully reversed. Three warm service samples; not true cold cache. Node process RSS sampled each 10ms, includes final reading; no intentional concurrent writers. Default Prisma interactive transaction timeout 5000ms, PostgreSQL stack unchanged. Legacy probe retained from initial comparison process; final new-service samples repeated in a fresh Node process with --skip-legacy.",
-    "httpMethod": "One navigation per scale on the same production Next server with progressively warmed routes, mobile 390x844, ascending sizes. Reported headers are streaming TTFB, contentReady waits for heading/table, networkIdle includes 500ms quiet window. HTTP and service probes are separate; shared Cloud resources are variable. No intentional concurrent tests/restore during final probe."
+    "httpMethod": "One navigation per scale on the same production Next server with progressively warmed routes, mobile 390x844, ascending sizes. Reported headers are streaming TTFB, contentReady waits for heading/table, networkIdle includes 500ms quiet window. HTTP and service probes are separate; shared Cloud resources are variable. No intentional concurrent tests/restore during final probe.",
+    "httpNativeMethod": "One navigation per scale on the same production Next server with progressively warmed routes, mobile 390x844, ascending sizes. Reported headers are streaming TTFB, contentReady waits for heading/table, networkIdle includes 500ms quiet window. HTTP and service probes are separate; shared Cloud resources are variable. No intentional concurrent tests/restore during final probe."
   },
   "results": [
     {
@@ -287,6 +288,19 @@
         "responseBytes": 112220,
         "tableRows": 25,
         "note": "Production Next server. Network-idle includes mandatory 500ms quiet window; separate from service time. Browser RSS not measured."
+      },
+      "httpNative": {
+        "prefetchRequests": 0,
+        "nextPageMs": 887.6873519999999,
+        "serverRssBeforeMiB": 103.65625,
+        "serverRssAfterMiB": 147.8203125,
+        "serverSampledPeakMiB": 147.8203125,
+        "headersMs": 170.798766,
+        "contentReadyMs": 638.8670040000001,
+        "renderedAndNetworkIdleMs": 916.487657,
+        "responseBytes": 112176,
+        "tableRows": 25,
+        "note": "Production Next server. Network-idle includes mandatory 500ms quiet window; separate from service time. Browser RSS not measured."
       }
     },
     {
@@ -557,6 +571,19 @@
         "responseBytes": 154558,
         "tableRows": 25,
         "note": "Production Next server. Network-idle includes mandatory 500ms quiet window; separate from service time. Browser RSS not measured."
+      },
+      "httpNative": {
+        "prefetchRequests": 0,
+        "nextPageMs": 388.024504,
+        "serverRssBeforeMiB": 149.16015625,
+        "serverRssAfterMiB": 152.3515625,
+        "serverSampledPeakMiB": 152.3515625,
+        "headersMs": 21.72510599999987,
+        "contentReadyMs": 410.435508,
+        "renderedAndNetworkIdleMs": 690.0424069999999,
+        "responseBytes": 154514,
+        "tableRows": 25,
+        "note": "Production Next server. Network-idle includes mandatory 500ms quiet window; separate from service time. Browser RSS not measured."
       }
     },
     {
@@ -825,6 +852,19 @@
         "contentReadyMs": 1454.2916689999997,
         "renderedAndNetworkIdleMs": 1685.9117460000002,
         "responseBytes": 107652,
+        "tableRows": 25,
+        "note": "Production Next server. Network-idle includes mandatory 500ms quiet window; separate from service time. Browser RSS not measured."
+      },
+      "httpNative": {
+        "prefetchRequests": 0,
+        "nextPageMs": 877.6213809999999,
+        "serverRssBeforeMiB": 159.79296875,
+        "serverRssAfterMiB": 161.09375,
+        "serverSampledPeakMiB": 161.09375,
+        "headersMs": 21.466631999999663,
+        "contentReadyMs": 1429.6112879999996,
+        "renderedAndNetworkIdleMs": 1430.3817189999995,
+        "responseBytes": 107608,
         "tableRows": 25,
         "note": "Production Next server. Network-idle includes mandatory 500ms quiet window; separate from service time. Browser RSS not measured."
       }

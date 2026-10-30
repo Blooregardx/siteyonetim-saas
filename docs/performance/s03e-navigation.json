@@ -33,5 +33,19 @@
     }
   ],
   "after": "See s03e-ci-fix-measurements.json http.prefetchRequests/http.nextPageMs and s03e-ci-fix-e2e.json URL/HTTP/record assertions. No database or test assertion timeout increased.",
-  "evidenceLimit": "Initial CI logs contain no URL/network timeline; exact old CI URL commit time and prefetch latency contribution cannot be reconstructed. Old parameter generation and successful actual URL changes were checked locally; final tests record those stages separately."
+  "evidenceLimit": "Initial CI logs contain no URL/network timeline; exact old CI URL commit time and prefetch latency contribution cannot be reconstructed. Old parameter generation and successful actual URL changes were checked locally; final tests record those stages separately.",
+  "followup7083f92": {
+    "pushRunId": 41097801620,
+    "pushResult": "failure",
+    "prRunId": 41097812660,
+    "prResult": "success",
+    "provenFailureStage": "Demand response HTTP 200 was received and content type validated, but browser URL still lacked chargesPage=2 after 5000ms. Prefetch suppression alone was insufficient.",
+    "failedUrl": "/panel?org=<synthetic organization>&site=<synthetic site>",
+    "finalApproach": "Pager uses standard anchor document GET navigation. Test waits for matching document response and DOMContentLoaded URL transition, then verifies distinct charge IDs and unchanged full summaries. No timeout or database limit increased."
+  },
+  "finalEvidence": {
+    "e2e": "s03e-native-e2e.json",
+    "http": "s03e-ci-fix-measurements.json results[].httpNative",
+    "transport": "standard anchor document GET; matching browser navigation response and DOMContentLoaded URL required"
+  }
 }
