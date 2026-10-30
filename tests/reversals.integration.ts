@@ -103,9 +103,10 @@ test("8 — ayrı LOGIN runtime/migration rolleriyle gerçek izin kısıtları",
   await db.$executeRawUnsafe(`GRANT USAGE ON SCHEMA public TO "${runtime}"`);
   await db.$executeRawUnsafe(`GRANT USAGE, CREATE ON SCHEMA public TO "${migration}"`);
   await db.$executeRawUnsafe(`GRANT CREATE ON DATABASE siteyonetim_test TO "${migration}"`);
-  await db.$executeRawUnsafe(`GRANT SELECT ON "User","Organization","OrganizationMembership","Site","Membership","Charge","Payment","PaymentReversal" TO "${runtime}"`);
-  await db.$executeRawUnsafe(`GRANT INSERT ON "Payment","PaymentReversal","AuditLog" TO "${runtime}"`);
+  await db.$executeRawUnsafe(`GRANT SELECT ON "User","Organization","OrganizationMembership","Site","Membership","Charge","Payment","PaymentReversal","Unit","Block","PaymentPolicyChange" TO "${runtime}"`);
+  await db.$executeRawUnsafe(`GRANT INSERT ON "Payment","PaymentReversal","AuditLog","PaymentPolicyChange" TO "${runtime}"`);
   await db.$executeRawUnsafe(`GRANT SELECT (id) ON "AuditLog" TO "${runtime}"`);
+  await db.$executeRawUnsafe(`GRANT UPDATE ("partialPaymentsAllowed") ON "Site" TO "${runtime}"`);
   // PostgreSQL row locks require UPDATE privilege: only id is granted; immutable triggers still reject writes.
   await db.$executeRawUnsafe(`GRANT UPDATE (id) ON "User","Organization","Charge","Payment" TO "${runtime}"`);
   await db.$executeRawUnsafe(`CREATE SCHEMA "${migrationSchema}" AUTHORIZATION "${migration}"`);
@@ -119,6 +120,8 @@ test("8 — ayrı LOGIN runtime/migration rolleriyle gerçek izin kısıtları",
   await assert.rejects(app.$executeRawUnsafe(`CREATE TABLE "runtime_probe_${suffix}" (id INTEGER)`));
   const api=management(app,async()=>({userId:f.user.id}));
   const payment=await api.collect(f.site.id,f.charge.id,1000,crypto.randomUUID());
+  await api.setPartialPaymentsAllowed(f.site.id,false);
+  const report=await api.debtReport({organizationId:f.site.organizationId!});assert.ok(report.totalCount>=1);
   await api.reversePayment(f.site.id,payment.id,"ENTRY_ERROR",crypto.randomUUID());
   await assert.rejects(app.payment.update({where:{id:payment.id},data:{amountKurus:1000}}));
   await assert.rejects(app.payment.update({where:{id:payment.id},data:{id:payment.id}}),/append only/);

@@ -1,3 +1,4 @@
+import { reportBusinessDate, reportInput, ReportInput, reportBalance, reportTotals, safeInteger } from "./reports";
 import { bulkInput, BulkInput, fingerprint, bulkTotal } from "./bulk-charges";
 import { siteInput, blockInput, unitInput, personInput, dateInput } from "./property-validation";
 import { chargeBalance } from "./finance";
@@ -53,6 +54,60 @@ export function management(db: PrismaClient, verifySession: SessionVerifier) {
         await tx.bulkChargeOperation.create({data:{...result,siteId:input.siteId,idempotencyKey,requestHash}});
         return result;
       },{timeout:60000});
+    },
+    async setPartialPaymentsAllowed(siteId:string,allowed:boolean) {
+      z.boolean().parse(allowed);
+      return db.$transaction(async tx=>{
+        const user=await actor(tx,verifySession);
+        const site=await tx.site.findUnique({where:{id:siteId}});
+        if(!site?.organizationId)throw new Error("ORGANIZATION_REQUIRED");
+        await organizationAccess(tx,user.id,site.organizationId,true);
+        await tx.$queryRaw`SELECT id FROM "Site" WHERE id=${siteId} FOR UPDATE`;
+        const current=await tx.site.findUniqueOrThrow({where:{id:siteId}});
+        if(current.partialPaymentsAllowed===allowed)return current;
+        const change=await tx.paymentPolicyChange.create({data:{siteId,organizationId:site.organizationId,actorId:user.id,oldValue:current.partialPaymentsAllowed,newValue:allowed}});
+        const result=await tx.site.update({where:{id:siteId},data:{partialPaymentsAllowed:allowed}});
+        await audit(tx,user.id,"PAYMENT_POLICY_CHANGE",change.id,site.organizationId,siteId);
+        return result;
+      });
+    },
+    async debtReport(raw:ReportInput) {
+      const input=reportInput.parse(raw);
+      return db.$transaction(async tx=>{
+        const user=await actor(tx,verifySession);
+        await organizationAccess(tx,user.id,input.organizationId);
+        if(input.siteId&&!await tx.site.findFirst({where:{id:input.siteId,organizationId:input.organizationId}}))throw new Error("FORBIDDEN");
+        const today=reportBusinessDate();
+        // Aggregate in PostgreSQL before pagination: no historical receipt arrays are loaded.
+        const base=Prisma.sql`WITH balances AS (
+          SELECT c.id,c."siteId",c."unitId",c.period,c."amountKurus",c."dueDate",b.name AS block,u.number,
+          coalesce(sum(p."amountKurus"),0)::bigint AS gross,coalesce(sum(r."amountKurus"),0)::bigint AS reversed
+          FROM "Charge" c JOIN "Site" s ON s.id=c."siteId"
+          JOIN "Unit" u ON u.id=c."unitId" AND u."siteId"=c."siteId"
+          JOIN "Block" b ON b.id=u."blockId" AND b."siteId"=c."siteId"
+          LEFT JOIN "Payment" p ON p."chargeId"=c.id AND p."siteId"=c."siteId"
+          LEFT JOIN "PaymentReversal" r ON r."paymentId"=p.id AND r."siteId"=p."siteId"
+          WHERE s."organizationId"=${input.organizationId}
+          ${input.siteId?Prisma.sql`AND c."siteId"=${input.siteId}`:Prisma.empty}
+          ${input.period?Prisma.sql`AND c.period=${input.period}`:Prisma.empty}
+          GROUP BY c.id,b.name,u.number
+        ), filtered AS (SELECT *, "amountKurus"-gross+reversed AS remaining FROM balances
+          WHERE (${input.status}='ALL' OR (${input.status}='UNPAID' AND gross=reversed)
+            OR (${input.status}='PARTIAL' AND gross-reversed>0 AND gross-reversed<"amountKurus")
+            OR (${input.status}='PAID' AND gross-reversed="amountKurus"))
+          AND (${!input.debtOnly} OR "amountKurus"-gross+reversed>0)
+          AND (${!input.overdueOnly} OR ("amountKurus"-gross+reversed>0 AND "dueDate"<${today}::date)))`;
+        const totals=await tx.$queryRaw<{count:bigint;amount:bigint;gross:bigint;reversed:bigint;debtors:bigint;paid:bigint;partial:bigint;overdue:bigint}[]>(Prisma.sql`${base}
+          SELECT count(*)::bigint AS count,coalesce(sum("amountKurus"),0)::bigint AS amount,coalesce(sum(gross),0)::bigint AS gross,coalesce(sum(reversed),0)::bigint AS reversed,
+          count(DISTINCT ("siteId","unitId")) FILTER(WHERE remaining>0)::bigint AS debtors,
+          count(*) FILTER(WHERE remaining=0)::bigint AS paid,
+          count(*) FILTER(WHERE remaining>0 AND gross>reversed)::bigint AS partial,
+          coalesce(sum(remaining) FILTER(WHERE remaining>0 AND "dueDate"<${today}::date),0)::bigint AS overdue FROM filtered`);
+        const rows=await tx.$queryRaw<{id:string;siteId:string;unitId:string;period:string;amountKurus:number;dueDate:Date;block:string;number:string;gross:bigint;reversed:bigint}[]>(Prisma.sql`${base} SELECT * FROM filtered ORDER BY period DESC,"siteId",block,number,id LIMIT 25 OFFSET ${(input.page-1)*25}`);
+        const t=totals[0];
+        return {rows:rows.map(r=>({id:r.id,siteId:r.siteId,unitId:r.unitId,period:r.period,amountKurus:r.amountKurus,dueDate:r.dueDate.toISOString().slice(0,10),block:r.block,number:r.number,...reportBalance(r.amountKurus,r.gross,r.reversed,r.dueDate.toISOString().slice(0,10),today)})),
+          summary:{...reportTotals(t.amount,t.gross,t.reversed),debtorUnits:safeInteger(t.debtors),paidCount:safeInteger(t.paid),partialCount:safeInteger(t.partial),overdueKurus:safeInteger(t.overdue)},totalCount:safeInteger(t.count),page:input.page,pageSize:25,today};
+      });
     },
     async updateSite(siteId: string, input: unknown) {
       const data=siteInput.parse(input);
@@ -178,21 +233,28 @@ export function management(db: PrismaClient, verifySession: SessionVerifier) {
         return result;
       });
     },
-    async collect(siteId: string, chargeId: string, amountKurus: number, idempotencyKey: string, method: "CASH" | "TRANSFER" = "CASH") {
+    async collect(siteId: string, chargeId: string, amountKurus: number, idempotencyKey: string, method: "CASH" | "TRANSFER" = "CASH", fullBalance = false) {
+      z.boolean().parse(fullBalance);
       if (!["CASH", "TRANSFER"].includes(method) || !Number.isInteger(amountKurus) || amountKurus <= 0 || amountKurus > 2147483647 || !idempotencyKey.trim() || idempotencyKey.length > 128) throw new Error("INVALID_PAYMENT");
       return db.$transaction(async tx => {
         const scope = await authorize(tx, siteId);
+        // Lock order: actor -> organization -> Site -> Charge. Policy changes use the same prefix.
+        await tx.$queryRaw`SELECT id FROM "Site" WHERE id=${siteId} FOR UPDATE`;
         // Serialize all receipts for this charge, including concurrent partial payments.
         const rows = await tx.$queryRaw<{ amountKurus: number }[]>`SELECT "amountKurus" FROM "Charge" WHERE "siteId" = ${siteId} AND id = ${chargeId} FOR UPDATE`;
         if (!rows.length) throw new Error("CHARGE_NOT_FOUND");
         const previous = await tx.payment.findUnique({ where: { siteId_idempotencyKey: { siteId, idempotencyKey } } });
         if (previous) {
-          if (previous.chargeId !== chargeId || previous.amountKurus !== amountKurus || previous.method !== method) throw new Error("IDEMPOTENCY_CONFLICT");
+          if (previous.chargeId !== chargeId || previous.amountKurus !== amountKurus || previous.method !== method || previous.fullBalance !== fullBalance) throw new Error("IDEMPOTENCY_CONFLICT");
           return previous;
         }
         const payments = await tx.payment.findMany({ where: { siteId, chargeId }, include: { reversal: true } });
-        if (amountKurus > chargeBalance({ amountKurus: rows[0].amountKurus, payments }).remainingKurus) throw new Error("OVERPAYMENT");
-        const result = await tx.payment.create({ data: { siteId, chargeId, amountKurus, idempotencyKey, method } });
+        const remaining=chargeBalance({ amountKurus: rows[0].amountKurus, payments }).remainingKurus;
+        if(amountKurus>remaining)throw new Error("OVERPAYMENT");
+        const policy=await tx.site.findUniqueOrThrow({where:{id:siteId},select:{partialPaymentsAllowed:true}});
+        if(fullBalance&&amountKurus!==remaining)throw new Error("BALANCE_CHANGED");
+        if(!policy.partialPaymentsAllowed&&amountKurus!==remaining)throw new Error("PARTIAL_PAYMENTS_DISABLED");
+        const result = await tx.payment.create({ data: { siteId, chargeId, amountKurus, idempotencyKey, method, fullBalance } });
         await audit(tx, scope.userId, "PAYMENT_COLLECT", result.id, scope.organizationId, siteId);
         return result;
       });

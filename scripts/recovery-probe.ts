@@ -12,7 +12,7 @@ const mode = process.argv[2];
 const fixturePath = process.argv[3];
 if (!["create", "verify"].includes(mode) || !fixturePath) throw new Error("Usage: recovery-probe.ts create|verify fixture.json");
 const db = new PrismaClient({ datasourceUrl: url });
-type Fixture = { userId: string; outsiderId: string; organizationId: string; siteId: string; chargeId: string; paymentId: string; reversalId: string; personId: string; occupancyId: string; auditCount: number; migrations: number };
+type Fixture = { userId: string; outsiderId: string; organizationId: string; siteId: string; chargeId: string; paymentId: string; reversalId: string; personId: string; occupancyId: string; auditCount: number; migrations: number; policyChangeId: string };
 const apiFor = (userId: string) => management(db, async () => ({ userId }));
 async function main() {
   if (mode === "create") {
@@ -31,13 +31,19 @@ async function main() {
     const reversal = await api.reversePayment(site.id, payment.id, "ENTRY_ERROR", crypto.randomUUID());
     await api.collect(site.id, charge.id, 2500, crypto.randomUUID(), "TRANSFER");
     await apiFor(outsider.id).createOrganization("Sentetik ayrı tenant", "INDIVIDUAL");
+    await api.setPartialPaymentsAllowed(site.id, false);
+    const policyChange = await db.paymentPolicyChange.findFirstOrThrow({where:{siteId:site.id}});
     const applied = await db.$queryRaw<{ count: bigint }[]>`SELECT count(*) FROM "_prisma_migrations" WHERE finished_at IS NOT NULL`;
-    const fixture: Fixture = { userId: user.id, outsiderId: outsider.id, organizationId: org.id, siteId: site.id, chargeId: charge.id, paymentId: payment.id, reversalId: reversal.id, personId: person.id, occupancyId: occupancy.id, auditCount: await db.auditLog.count({ where: { siteId: site.id } }), migrations: Number(applied[0].count) };
+    const fixture: Fixture = { userId: user.id, outsiderId: outsider.id, organizationId: org.id, siteId: site.id, chargeId: charge.id, paymentId: payment.id, reversalId: reversal.id, personId: person.id, occupancyId: occupancy.id, auditCount: await db.auditLog.count({ where: { siteId: site.id } }), migrations: Number(applied[0].count), policyChangeId:policyChange.id };
     await writeFile(fixturePath, JSON.stringify(fixture, null, 2) + "\n", { mode: 0o600 });
   }
   const f: Fixture = JSON.parse(await readFile(fixturePath, "utf8"));
   const site = await apiFor(f.userId).dashboard(f.siteId);
   assert.equal(site.organizationId, f.organizationId);
+  assert.equal(site.partialPaymentsAllowed, false);
+  const policy=await db.paymentPolicyChange.findUniqueOrThrow({where:{id:f.policyChangeId}});
+  assert.equal(policy.oldValue,true);assert.equal(policy.newValue,false);assert.equal(policy.actorId,f.userId);
+  await assert.rejects(db.paymentPolicyChange.update({where:{id:policy.id},data:{newValue:true}}),/append only/);
   assert.equal(site.blocks.length, 1);
   assert.equal(site.units.length, 1);
   assert.equal(site.units[0].ownerships[0].personId, f.personId);
@@ -63,7 +69,7 @@ async function main() {
   await assert.rejects(db.auditLog.update({ where: { id: audit[0].id }, data: { action: audit[0].action } }), /append only/);
   const applied = await db.$queryRaw<{ count: bigint }[]>`SELECT count(*) FROM "_prisma_migrations" WHERE finished_at IS NOT NULL`;
   assert.equal(Number(applied[0].count), f.migrations);
-  assert.equal(f.migrations, 8);
+  assert.equal(f.migrations, 9);
   console.log(JSON.stringify({ mode, verified: true, grossKurus: 6500, reversedKurus: 4000, netKurus: 2500, remainingKurus: 7500, auditCount: f.auditCount, migrations: f.migrations, tenantIsolation: true, immutableHistory: true }));
 }
 main().finally(() => db.$disconnect()).catch(error => { console.error(error instanceof Error ? error.message : "Recovery probe failed"); process.exitCode = 1; });
