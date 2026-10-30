@@ -1,6 +1,6 @@
 # Güncel özellik durumu
 
-Bu belge S03-D geliştirme dalının kapsamını anlatır; S03-D henüz main’e birleşmiş sayılmaz. S03-C PR #13 ile main’e alındı. S03-B PR #12 ile main’e alındı. S03-A PR #11 ile main’e alındı. PR #9 main geçişini tamamladı; bu üretim hazırlığı anlamına gelmez. Önceki raporlar tarihsel kayıttır.
+Bu belge S03-E geliştirme dalının kapsamını anlatır; S03-E henüz main’e birleşmiş sayılmaz. S03-D PR #14 ile main’e alındı. S03-C PR #13 ile main’e alındı. S03-B PR #12 ile main’e alındı. S03-A PR #11 ile main’e alındı. PR #9 main geçişini tamamladı; bu üretim hazırlığı anlamına gelmez. Önceki raporlar tarihsel kayıttır.
 
 | Alan | Uygulanmış geliştirme kapsamı | Sınır / eksik |
 |---|---|---|
@@ -25,9 +25,9 @@ Temiz konteyner kurulumu ve sentetik backup/restore doğrulandı; bağımsız bi
 
 ## S03-A — Toplu aidat (main’e alındı)
 
-Panelde **Toplu Aidat Oluştur**: yetkili apartmanı seçin, YYYY-MM dönemini, TL tutarını ve son ödeme tarihini girin. Tüm daireler başlangıçta seçilidir; istenmeyenleri çıkarın. Önizlemede blok/daire, dönem, tutar, vade, mevcut aidat ve özet gösterilir. Önizleme aidat yazmaz. Bilgileri kontrol edip **Onayla ve aidatları oluştur** ile kesinleştirin; sonuç sayı, toplam ve dönemi gösterir. Tekil aidat ekranı korunur.
+Panelde **Toplu Aidat Oluştur**: yetkili apartmanı seçin, YYYY-MM dönemini, TL tutarını ve son ödeme tarihini girin. En fazla 5.000 daireli apartmanda tüm daireler başlangıçta seçilidir; daha büyük apartmanda seçim boş başlar. Arama ve sayfalarla seçim yapın; seçilenleri inceleyin. Önizlemede blok/daire, dönem, tutar, vade, mevcut aidat ve özet gösterilir. Önizleme aidat yazmaz. Bilgileri kontrol edip **Onayla ve aidatları oluştur** ile kesinleştirin; sonuç sayı, toplam ve dönemi gösterir. Tekil aidat ekranı korunur.
 
-Mevcut aidatı olan tek daire bile tüm işlemi engeller; seçimden çıkarıp yeni önizleme gerekir. Değişen daire/blok/aidat bilgisi yeni önizleme gerektirir. Kısmi oluşturma, mevcut aidatı değiştirme, banka/kart işlemi yoktur. Bir işlem en fazla 5000 daire içerir; büyük portföylerde performans ölçümü sonraki aşamadır. DEVELOPMENT kapsamında; STAGING/PRODUCTION dağıtılmadı.
+Mevcut aidatı olan tek daire bile tüm işlemi engeller; seçimden çıkarıp yeni önizleme gerekir. Değişen daire/blok/aidat bilgisi yeni önizleme gerektirir. Kısmi oluşturma, mevcut aidatı değiştirme, banka/kart işlemi yoktur. Bir işlem en fazla 5000 daire içerir. S03-E, checkbox ve önizleme tablosunu 25’lik gösterir; büyük yazım transaction’ının ayrı yük provası açık kalır. DEVELOPMENT kapsamında; STAGING/PRODUCTION dağıtılmadı.
 
 ## S03-B — Borç/tahsilat raporları ve ödeme politikası
 
@@ -45,4 +45,12 @@ Rapor Payment ve PaymentReversal kaynaklarını okur, aidat tahsilatını manuel
 
 İki raporda filtre kapsamının tamamını içeren, sunucuda yeniden yetkilendirilen CSV. UTF-8 BOM, noktalı virgül, ondalık virgül; kullanıcı metninde formula injection koruması, sunucu sayılarında doğru negatif tutar. En fazla 50.000 kayıt/128 MiB, 1.000 satırlık cursor partileri, özel geçici dosya ve no-store indirme. 3/6/12 aylık karşılaştırma (varsayılan 6), boş aylar sıfır, önceki aya TL farkı; ana raporun kapsam filtreleri aynıdır. İşlem kaynakları, ters kayıt tarihi ve Istanbul sözleşmesi korunur.
 
-Rapor toplamı ve sayfası tek SQL içinde aynı filtrelenmiş CTE’yi paylaşır; karşılaştırma PostgreSQL’de gruplanır. Şema/indeks/migration değişmedi. Büyük panel akışı ayrı kapasite borcudur; yük provalarındaki başarısızlıklar dahil [ölçümler](FINANCIAL-EXPORT-PERFORMANCE.md) belgelenmiştir. CSV ve özetler banka bakiyesi veya resmî muhasebe değildir.
+Rapor toplamı ve sayfası tek SQL içinde aynı filtrelenmiş CTE’yi paylaşır; karşılaştırma PostgreSQL’de gruplanır. Şema/indeks/migration değişmedi. S03-D aşamasındaki büyük panel akışı S03-E’nin ayrı kapsamıdır; yük provalarındaki başarısızlıklar dahil [ölçümler](FINANCIAL-EXPORT-PERFORMANCE.md) belgelenmiştir. CSV ve özetler banka bakiyesi veya resmî muhasebe değildir.
+
+## S03-E — Tam özetli, sayfalı yönetim paneli
+
+Organizasyonun tüm apartman/daire sayısı ve aidat tahakkuk, brüt/ters/net tahsilat, kalan borcu PostgreSQL üzerinden hesaplanır. Listeler 25 kayıt; kartlar yalnız sayfa satırlarından oluşmaz. Apartman araması, daire blok/numara/kat/tür/durum filtreleri, aidat dönem/blok/daire/durum/borç filtreleri ve bütün geçmişe sayfalı erişim vardır. Tahsilat ve ADMIN tam ters kayıt aidat detayındadır; mevcut CollectionForm ve finansal yazma kuralları korunur.
+
+Kayıt ekranında blok/daire/kişi arama ve sayfaları, seçili dairenin ilişki geçmişi vardır; bütün organizasyon ilişkileri bir defada yüklenmez. Toplu aidat seçimleri form açıkken sayfalar arasında korunur; en fazla 5.000, küçük apartmanda varsayılan tüm seçim, büyük apartmanda açık boş seçim. Sunucu önizleme/hash/idempotency/atomiklik kuralları değişmez.
+
+Yeni read modelleri kısa tutarlı transaction kullanır; ayrı sayfalar arasında snapshot garantisi yoktur. OFFSET derinliği ölçülür; eski sınırsız yardımcılar geriye uyumluluk için korunur fakat canlı ekranlarda kullanılmaz. [Kullanım, ölçümler ve açık sınırlar](SCALABLE-DASHBOARD.md).
