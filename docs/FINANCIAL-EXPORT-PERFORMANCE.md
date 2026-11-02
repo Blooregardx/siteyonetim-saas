@@ -74,3 +74,7 @@ Dashboard sorgusu değişmedi; geçmişi sessiz kesmek veya özetleri ilk sayfay
 - 10.000 daire / 60.000 aidat: başarısız; PostgreSQL `stack depth limit exceeded` (54001).
 
 Bu başarısızlıklar gizlenmedi ve yapılandırma limitleri yükseltilmedi. Panel için tam finansal özetleri ayrı hesaplayan, daire/aidat/geçmişi sayfalayan ve mevcut tahsilat/ters kayıt/toplu aidat erişimini koruyan ayrı tasarım gerekir. S03-D raporlarının geçmesi panelin büyük portföye hazır olduğu anlamına gelmez.
+
+## Sonraki aşama bağlantısı — S03-E
+
+Yukarıdaki S03-D ölçümleri ve başarısız panel provaları tarihsel kanıttır; değerler değiştirilmedi. S03-D PR #14 ile main’e alındı. S03-E, sınırsız panel/kayıt yüklemesini ayrı okuma modelleri ve tam SQL özetleriyle ele alır. Yeni önce/sonra ölçümleri, HTTP/tarayıcı doğrulaması ve kalan sınırlar [SCALABLE-DASHBOARD](SCALABLE-DASHBOARD.md) belgesindedir. CSV, bağımsız borç/hareket raporu ve aylık karşılaştırma sorguları bu aşamada değiştirilmez.

@@ -42,6 +42,16 @@ async function main() {
     await writeFile(fixturePath, JSON.stringify(fixture, null, 2) + "\n", { mode: 0o600 });
   }
   const f: Fixture = JSON.parse(await readFile(fixturePath, "utf8"));
+  const bounded = apiFor(f.userId);
+  const overview = await bounded.portfolioSummary(f.organizationId);
+  assert.equal(overview.siteCount, 1); assert.equal(overview.unitCount, 1);
+  assert.equal(overview.chargedKurus, 10000); assert.equal(overview.grossKurus, 6500);
+  assert.equal(overview.reversedKurus, 4000); assert.equal(overview.netKurus, 2500);
+  assert.equal(overview.remainingKurus, 7500);
+  assert.equal((await bounded.siteUnitsPage(f.siteId)).rows[0].remainingKurus,7500);
+  assert.equal((await bounded.siteChargesPage(f.siteId)).rows[0].id,f.chargeId);
+  assert.equal((await bounded.chargeDetails(f.siteId,f.chargeId)).payments.length,2);
+  await assert.rejects(apiFor(f.outsiderId).portfolioSummary(f.organizationId),/FORBIDDEN/);
   const site = await apiFor(f.userId).dashboard(f.siteId);
   assert.equal(site.organizationId, f.organizationId);
   const manual=await db.financialEntry.findUniqueOrThrow({where:{id:f.manualEntryId},include:{reversal:true,category:true}});

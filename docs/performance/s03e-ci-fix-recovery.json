@@ -1,0 +1,21 @@
+{
+  "verified": true,
+  "tables": 26,
+  "totalRows": 258067,
+  "dumpSha256": "39c87c0958524fdb6adf93390804cc5cb92a2b91ac19d9d1ecd3bb5af30bf300",
+  "catalogEqual": true,
+  "newPanelProbe": {
+    "mode": "verify",
+    "verified": true,
+    "grossKurus": 6500,
+    "reversedKurus": 4000,
+    "netKurus": 2500,
+    "remainingKurus": 7500,
+    "auditCount": 15,
+    "migrations": 10,
+    "tenantIsolation": true,
+    "immutableHistory": true
+  },
+  "scope": "Fresh single-pass regression source and separate empty restore target, PostgreSQL 17 siteyonetim_test; original larger synthetic databases retained unchanged.",
+  "failedEarlierAttempt": "Prior repeatedly accumulated test source exceeded jsonb_agg 268435455-byte array-element limit in verification tool; no data deleted or PostgreSQL limit raised."
+}

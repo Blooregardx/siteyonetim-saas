@@ -1,0 +1,52 @@
+{
+  "scope": "Final document navigation with commit + actual records/summaries + functional client search, mobile 390x844, isolated PostgreSQL 17 synthetic data",
+  "e2eTestCases": 11,
+  "lifecyclePolicy": "No document EOF/load/DOMContentLoaded wait for pagination; actual document request, committed URL, 25 distinct rows, complete unchanged summaries and client server-action search are required. Existing assertion/test budgets unchanged.",
+  "rows": [
+    {
+      "units": 100,
+      "charges": 600,
+      "firstPanelMs": 464.9253570000001,
+      "secondPanelMs": 513.0536759999959,
+      "responseHeadersMs": 47.90329099999508,
+      "responseStatus": 200,
+      "urlCommitted": true,
+      "rows": 25,
+      "documentReadyState": "complete",
+      "clientSearchWorks": true,
+      "differentRecords": true,
+      "summaryUnchanged": true,
+      "prefetchRequests": 0
+    },
+    {
+      "units": 1000,
+      "charges": 6000,
+      "firstPanelMs": 492.87481699999626,
+      "secondPanelMs": 504.8023089999988,
+      "responseHeadersMs": 44.74158399999578,
+      "responseStatus": 200,
+      "urlCommitted": true,
+      "rows": 25,
+      "documentReadyState": "complete",
+      "clientSearchWorks": true,
+      "differentRecords": true,
+      "summaryUnchanged": true,
+      "prefetchRequests": 0
+    },
+    {
+      "units": 10000,
+      "charges": 60000,
+      "firstPanelMs": 1203.2742240000007,
+      "secondPanelMs": 757.3413460000011,
+      "responseHeadersMs": 43.86604100000113,
+      "responseStatus": 200,
+      "urlCommitted": true,
+      "rows": 25,
+      "documentReadyState": "complete",
+      "clientSearchWorks": true,
+      "differentRecords": true,
+      "summaryUnchanged": true,
+      "prefetchRequests": 0
+    }
+  ]
+}

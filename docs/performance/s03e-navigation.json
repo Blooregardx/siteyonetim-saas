@@ -1,0 +1,60 @@
+{
+  "scope": "Synthetic 10000 units / 60000 charges, mobile 390x844, local production build, initial Link defaults before disabling prefetch. Counts from Playwright request headers.",
+  "beforeLocalSamples": [
+    {
+      "sample": 0,
+      "navigationMs": 1424,
+      "automaticPrefetchRequests": 10,
+      "demandRequests": 1
+    },
+    {
+      "sample": 1,
+      "navigationMs": 1457,
+      "automaticPrefetchRequests": 19,
+      "demandRequests": 1
+    },
+    {
+      "sample": 2,
+      "navigationMs": 932,
+      "automaticPrefetchRequests": 13,
+      "demandRequests": 1
+    }
+  ],
+  "initialCiFailures": [
+    {
+      "runId": 41091910449,
+      "event": "push",
+      "failure": "10000-unit next-page expectation remained page 1 after 5000ms; 10 other E2E cases passed"
+    },
+    {
+      "runId": 41092060997,
+      "event": "pull_request",
+      "failure": "Same 5000ms next-page expectation failure"
+    }
+  ],
+  "after": "See s03e-ci-fix-measurements.json http.prefetchRequests/http.nextPageMs and s03e-ci-fix-e2e.json URL/HTTP/record assertions. No database or test assertion timeout increased.",
+  "evidenceLimit": "Initial CI logs contain no URL/network timeline; exact old CI URL commit time and prefetch latency contribution cannot be reconstructed. Old parameter generation and successful actual URL changes were checked locally; final tests record those stages separately.",
+  "followup7083f92": {
+    "pushRunId": 41097801620,
+    "pushResult": "failure",
+    "prRunId": 41097812660,
+    "prResult": "success",
+    "provenFailureStage": "Demand response HTTP 200 was received and content type validated, but browser URL still lacked chargesPage=2 after 5000ms. Prefetch suppression alone was insufficient.",
+    "failedUrl": "/panel?org=<synthetic organization>&site=<synthetic site>",
+    "finalApproach": "Pager uses standard anchor document GET navigation. Test waits for matching document response and DOMContentLoaded URL transition, then verifies distinct charge IDs and unchanged full summaries. No timeout or database limit increased."
+  },
+  "finalEvidence": {
+    "e2e": "s03e-native-e2e.json",
+    "http": "s03e-ci-fix-measurements.json results[].httpNative",
+    "transport": "standard anchor document GET; matching browser navigation response and DOMContentLoaded URL required",
+    "finalE2e": "s03e-stream-ready-e2e.json"
+  },
+  "followup0905ac7": {
+    "pushRunId": 41099432064,
+    "pushResult": "success",
+    "prRunId": 41099441549,
+    "prResult": "failure",
+    "provenFailureStage": "Playwright explicitly logged navigation to chargesPage=2 but timed out waiting for DOMContentLoaded. This was a document lifecycle wait, not a failed URL transition.",
+    "finalReadiness": "Wait for actual document navigation commit; assert HTTP HTML, URL, 25 distinct charge rows and full summaries, then execute client bulk-unit search and require 25 returned checkboxes. click noWaitAfter removes only implicit load wait; explicit business readiness assertions remain unchanged."
+  }
+}

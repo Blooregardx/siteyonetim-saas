@@ -50,6 +50,7 @@ test('oturum, sahte kimlik reddi, organizasyon ayrımı ve gerçek kayıt akış
  await submit('unit',{blockId:'A',number:'1'});
  await submit('occupant',{unitId:'1',name:'Örnek Malik',kind:'Malik',startedAt:'2026-10-01'});
  await submit('charge',{unitId:'1',period:'2026-10',amount:'100',dueDate:'2026-10-31'});
+ await page.getByRole('link',{name:'Aidat detayı ve tahsilat',exact:true}).click();
  await submit('payment',{amount:'40',method:'Nakit'}); await expect(page.getByText(/Kısmi ödeme/)).toBeVisible();
  const member=await db.organizationMembership.findFirstOrThrow({where:{userId:user.id}});
  await page.getByRole('button',{name:'Ters kayıt oluştur',exact:true}).click();
@@ -67,10 +68,13 @@ test('oturum, sahte kimlik reddi, organizasyon ayrımı ve gerçek kayıt akış
  await page.getByRole('button',{name:'Vazgeç',exact:true}).click();expect(await db.paymentReversal.count({where:{paymentId:original.id}})).toBe(0);
  await page.getByRole('button',{name:'Ters kayıt oluştur',exact:true}).click();
  await page.getByRole('button',{name:'Onayla ve ters kaydet',exact:true}).click();await expect(page.getByRole('note')).toContainText('Ters kaydedildi');
+ await page.goto('/panel');
  const netCard=page.locator('.stats article').filter({has:page.getByText('Net tahsilat',{exact:true})});await expect(netCard.locator('strong')).toHaveText(/0,00/);
  expect(await db.payment.findUniqueOrThrow({where:{id:original.id}})).toEqual(original);
+ await page.getByRole('link',{name:'Aidat detayı ve tahsilat',exact:true}).click();
  const fullPayment=page.locator('form').filter({has:page.locator('[name="operation"][value="payment"]')});await fullPayment.locator('[name=amount]').fill('100');await fullPayment.getByRole('button',{name:'Kaydet',exact:true}).click();
  await expect(page.getByText(/ · Ödendi/)).toBeVisible();
+ await page.goto('/panel');
  await page.setViewportSize({width:390,height:844});
  const bulk=page.getByRole('region',{name:'Toplu aidat',exact:true});
  await bulk.getByLabel('Aidat dönemi',{exact:true}).fill('2026-12');

@@ -1,3 +1,4 @@
+import { dashboardReads } from "./dashboard-reads";
 import { incomeExpenses } from "./income-expenses";
 import { financialReporting } from "./financial-reporting";
 import { bulkInput, BulkInput, fingerprint, bulkTotal } from "./bulk-charges";
@@ -29,6 +30,7 @@ export function management(db: PrismaClient, verifySession: SessionVerifier) {
     return {rows,conflicts,selectedCount:units.length,newCount:units.length-conflicts.length,totalKurus:bulkTotal(input.amountKurus,units.length-conflicts.length),snapshot:fingerprint({input,units,charges})};
   }
   return {
+    ...dashboardReads(db,verifySession),
     ...incomeExpenses(db,verifySession),
     ...financialReporting(db,verifySession),
     async previewBulkCharges(raw: BulkInput) {

@@ -7,3 +7,5 @@ textarea{font:inherit;min-height:80px;padding:10px;border:1px solid #cad8de;bord
 
 .bulk-fields{display:flex;flex-wrap:wrap;gap:12px;min-width:0;width:100%;border:0;padding:0}.bulk-units{display:flex;flex-wrap:wrap;gap:12px;min-width:0;max-height:280px;overflow:auto;width:100%;border:1px solid #cad8de;border-radius:7px}.bulk-units label{display:flex;align-items:center;min-height:44px}.bulk-fields>label{min-width:0}@media(max-width:760px){.bulk-fields>label{width:100%}.bulk-fields input,.bulk-fields select{width:100%}}
 .report-page{max-width:1440px;margin:24px auto;padding:16px}.report-page .stats strong{overflow-wrap:anywhere}.report-page form label{min-width:0}.report-page nav{display:flex;gap:16px}.report-page .table-wrap{max-width:100%}@media(max-width:760px){.report-page{padding:12px}.report-page form label{width:100%}.report-page h1{font-size:25px}}
+/* Bounded dashboard lists still need to fit narrow screens and large totals. */
+.shell main{min-width:0}.shell .stats strong{overflow-wrap:anywhere}.shell .block{flex-wrap:wrap;gap:12px}

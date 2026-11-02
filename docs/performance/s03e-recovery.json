@@ -1,0 +1,20 @@
+{
+  "verified": true,
+  "tables": 26,
+  "totalRows": 477484,
+  "dumpSha256": "38ff7e5efe1bfd16cac3c24d1bc2d368bc342d7cab82aa57cbc8a8122fbfbfd3",
+  "catalogEqual": true,
+  "newPanelProbe": {
+    "mode": "verify",
+    "verified": true,
+    "grossKurus": 6500,
+    "reversedKurus": 4000,
+    "netKurus": 2500,
+    "remainingKurus": 7500,
+    "auditCount": 15,
+    "migrations": 10,
+    "tenantIsolation": true,
+    "immutableHistory": true
+  },
+  "scope": "Local PostgreSQL 17 siteyonetim_test synthetic containers; no staging or production."
+}
