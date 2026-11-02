@@ -2,6 +2,8 @@
 
 **DRAFT — NOT PUBLISHED. EARLY DEVELOPMENT / ALPHA — NOT PRODUCTION READY.** This preparation does not bump package/lock versions or modify v0.1.0-alpha.1. The final commit, tag and release date require a separate maintainer decision. [Readiness decision](ALPHA2-READINESS.md), [security/regression evidence in Turkish](S03F-SECURITY-REGRESSION.md).
 
+**Release blocker:** readiness is BLOCKED by the large-portfolio second-page CI regression. This draft is not ready for publication.
+
 ## Changes merged into main since alpha.1
 
 - S03-A / PR #11: bulk dues for up to 5,000 selected units, preview/hash validation, idempotency and all-or-nothing conflict handling.

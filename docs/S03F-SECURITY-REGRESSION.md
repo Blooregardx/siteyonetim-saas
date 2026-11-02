@@ -118,6 +118,14 @@ PR hatası 10.000 daire testinin ikinci sayfa URL assertion’ında: HTTP 200/co
 
 Son commit CI sonucu ve bağlantıları PR açıklaması/nihai raporda kaydedilir; önceki başarılı push, yeni commit veya başarısız PR sonucu yerine kullanılmaz.
 
+## Sonraki CI — gerçek içerik regresyonu, karar BLOCKED
+
+`d11c8dd5d8c90000c37650bdafac9847a4eb7465` için [push](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41520791081) ve [PR](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41520799236) koşularının **ikisi de 13/14 E2E** ile başarısız oldu. Lint/typecheck/birim, 28 entegrasyon, build, migration/diff, lisans/Markdown ve audit adımları geçti; restore ve Python streaming adımları önceki hata nedeniyle bu iki koşuda çalışmadı. Önceki yerel/push restore başarısı bunların yerine geçirilmez.
+
+**F-10 / P2 — zorunlu büyük portföy regresyonu:** Etkilenen gözlem yolu `/panel` (`src/app/panel/page.tsx` / dashboard read modelleri); test `tests/e2e/scalable-dashboard.spec.ts`. 10.000/60.000 ölçekte HTTP 200, navigation commit ve tam URL kontrolü geçti. Sonraki pager `Sayfa 2 /` kontrolü 5 saniyede element bulamadı; hata anında readyState loading ve tablo satırı 0. Uygulamanın hangi katmanının beklediği henüz kanıtlanmadı; SQL/Next.js/Chromium alt nedeni uydurulmaz. F-09’daki örtülü load bekleyişi gerçekti, ancak tek neden değildi; düzeltme içerik render’ını çözmüş sayılmaz. Bu, yetki atlatma veya finans kaybı kanıtı değildir, zorunlu regresyon başarısızlığıdır.
+
+Öneri: aynı sentetik fixture ile HTTP gövde tamamlanması, server render adımları, redakte DB sorgu zamanları ve tarayıcı lifecycle/request failure izleri ilişkilendirilsin; yalnız kanıtlanan katmana küçük düzeltme uygulansın. Bu aşamada spekülatif ürün/pagination mimarisi değişikliği yapılmadı. İlgili test korunur; süre/retry/skip gevşetilmez. Kalan risk: büyük portföy ikinci sayfa akışı CI’da güvenilir biçimde doğrulanamıyor. Kaynak kod alpha için de **BLOCKED**; PR taslak, yayımlama yok. Bir sonraki dokümantasyon commitinde rastlantısal yeşil koşu çıkması bu açık sorunu kendiliğinden kapatmaz.
+
 ## Açık işletim kapıları
 
 Gerçek SMTP teslimi, bağımsız insan kurulumu, TLS/proxy ve canlı güvenlik/yük testi, MFA, tüm işletim rolleri, yedek şifreleme/saklama/PITR/RPO/RTO, izleme/alarmlar ve veri koruma süreçleri tamamlanmadı. CSV açıklamaları kişisel veri içerebilir. Sentetik başarı STAGING/PRODUCTION veya felaket kurtarma garantisi değildir. [Hazırlık kararı](ALPHA2-READINESS.md); yeni release/tag yalnız ayrı kullanıcı onayıyla değerlendirilebilir.

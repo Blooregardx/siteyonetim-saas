@@ -1,10 +1,14 @@
 # v0.1.0-alpha.2 — Hazırlık kararı
 
-**READY FOR MAINTAINER REVIEW** — kaynak kod temelli alpha için yerel DEVELOPMENT kontrolleri başarılı; denetlenen kapsamda doğrulanmış P0/P1 engeli bulunmadı. Bu belge yayımlama yetkisi değildir.
+**BLOCKED** — 10.000 daire / 60.000 aidat ikinci sayfa regresyonu son push ve PR CI koşularında başarısız oldu. Yerel 14/14 veya önceki başarılı push bu zorunlu kontrolün yerine geçmez. PR taslak kalmalı; alpha.2 yayımlanmamalıdır.
 
-Kanıt: 25/25 birim, 28/28 PostgreSQL entegrasyon, 14/14 Playwright; lint/typecheck/build/generate/validate; temiz 11 migration, 7→11 ve 10→11 yükseltme; 26 tablo/308.493 satır restore + hash/katalog/ACL/runtime izin eşitliği; üç streaming testi; lisans/SPDX ve 37 Markdown/130 yerel bağlantı kontrolü. Audit production 0, dev 16 moderate paket düğümü / tek advisory; P2’ler açıkça belgelenmiştir.
+Engel güvenlik açığı veya finansal veri kaybı olarak kanıtlanmadı: HTTP 200 ve doğru URL’den sonra sayfanın pager/veri bölümü 5 saniyelik assertion süresinde görünmüyor; hata anında document loading ve sıfır tablo satırı kaydedildi. URL assertion’ındaki örtülü load bekleyişi ayrıca kaldırıldı, fakat içerik sorunu iki yeni koşuda sürdü. Alt neden henüz doğrulanmadı. Timeout artırımı, retry ekleme veya test atlama yapılmadı.
 
-Karar kapısı: son commitin **hem push hem PR CI** koşusu başarılı olmalıdır; gerçek bağlantı ve sonuçlar PR açıklamasında/nihai raporda kaydedilir. Koşular bitmeden veya başarısızsa PR birleştirmeye/yayımlamaya hazır kabul edilmez. Bakımcı son commit ve CI kaynağını ayrıca doğrulamalıdır.
+Başarılı kanıtlar: yerel 25/25 birim, 28/28 PostgreSQL entegrasyon, 14/14 E2E; lint/typecheck/build/generate/validate; temiz 11 migration, 7→11 ve 10→11 yükseltme; 26 tablo/308.493 satır restore + hash/katalog/ACL/runtime izin eşitliği; üç streaming testi; lisans/SPDX ve 37 Markdown/130 yerel bağlantı kontrolü. İlk push CI da 25/28/14 ve 26/258.144 restore ile başarılıydı. Buna karşılık aynı commitin PR koşusu ve sonraki commitin iki koşusu 13/14 E2E ile başarısızdı; son başarısız koşularda restore adımı çalışmadı.
+
+Audit production 0, dev 16 moderate paket düğümü / tek advisory. Denetlenen kapsamda doğrulanmış P0/P1 yoktur; P2’ler açıkça belgelenmiştir. **Başarısız zorunlu test tek başına bu kararın engelidir.**
+
+Kapanış: sentetik fixture yeniden kullanılmalı; HTTP gövdesinin tamamlanması, server render/DB sorguları ve tarayıcı lifecycle’ı zaman damgalarıyla ilişkilendirilmeli. Alt nedene yönelik küçük güvenli düzeltme ve tam regresyon gerekir. Son commitin hem push hem PR CI başarısı gerekli; rastgele tekrarlarla bir yeşil sonuç elde etmek kapanış değildir. Güncel gerçek bağlantı/sonuçlar PR açıklamasında ve nihai raporda yer alır. Bu belge yayımlama yetkisi değildir.
 
 Aday yalnız proje kaynak kodu temelli erken alpha’dır. Yeni tag/GitHub release/binary/konteyner oluşturulmadı. Mevcut v0.1.0-alpha.1 etiketi ve package/lock `0.1.0-alpha.1` sürümü korunur. Main’e doğrudan yazım, force-push, geçmiş/migration yeniden yazımı yapılmaz.
 

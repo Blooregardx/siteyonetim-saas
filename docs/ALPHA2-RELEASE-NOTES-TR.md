@@ -2,6 +2,8 @@
 
 **TASLAK — yayımlanmadı. EARLY DEVELOPMENT / ALPHA — NOT PRODUCTION READY.** Paket sürümü bu hazırlıkta yükseltilmez; mevcut v0.1.0-alpha.1 değişmez. Nihai commit/tag ve yayın tarihi ayrı bakımcı kararıdır. [Hazırlık kararı](ALPHA2-READINESS.md), [denetim](S03F-SECURITY-REGRESSION.md).
 
+**Yayımlama engeli:** büyük portföy ikinci sayfa CI regresyonu nedeniyle hazırlık kararı BLOCKED. Bu taslak yayımlanmaya hazır değildir.
+
 ## Alpha.1 sonrasında main’e alınan geliştirmeler
 
 - S03-A / PR #11: en fazla 5.000 daire, önizleme/hash, idempotency ve çatışmada tam ret ile toplu aidat.

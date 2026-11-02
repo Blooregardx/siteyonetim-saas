@@ -13,6 +13,8 @@
 - S03-D, [PR #14](https://github.com/Blooregardx/siteyonetim-saas/pull/14) ile main’e birleşti (`33169af14ea0a2fd898838839cc8eb7772a31e09`): güvenli CSV, aylık karşılaştırma ve sentetik rapor ölçümleri.
 - S03-E [PR #15](https://github.com/Blooregardx/siteyonetim-saas/pull/15) ile main’e birleşti (`afd7ea7bcfe693f06daeea9d48b38b8e1fe27fcc`): tam organizasyon özeti ve sınırlı/sayfalı panel, kayıt ve aidat detayları. [Mimari, kapasite ve sınırlar](SCALABLE-DASHBOARD.md).
 
+Alpha.2 şu anda BLOCKED: zorunlu 10.000 daire ikinci sayfa CI regresyonunun alt nedeni doğrulanıp küçük düzeltme ve tam testlerle kapanmalıdır. Ücretli servis veya dağıtım bu engelin çözümü değildir.
+
 Güncel sonraki adım [S03-F güvenlik/regresyon kanıtı](S03F-SECURITY-REGRESSION.md) ve [alpha.2 hazırlık kararının](ALPHA2-READINESS.md) bakımcı incelemesidir. Yeni tag/release için ayrı kullanıcı onayı gerekir. Bağımsız kurulum geri bildirimi, üretim güvenliği/işletim doğrulamaları ve kapasite ölçümü açık kalır. Yeni başvuru gönderimi veya yeni release oluşturma bu belge düzeltmesinin kapsamında değildir.
 
 ## Tarihsel OSS-04 hazırlık kaydı
