@@ -108,6 +108,16 @@ Production bağımlılıkları için ayrı `npm audit --omit=dev` sonucu 0 uyar�
 
 Başlangıçta 10 yerel ref üzerinden 32 commit/350 blob; bütün uzak dallar getirildikten sonra 24 ref üzerinden 39 commit/362 blob yüksek güvenli token/özel anahtar desenleri ve hassas dosya adlarıyla tarandı; eşleşme yok. Geçmişte erişilemeyen GitHub PR/cache/unreachable objeler için yokluk garantisi yoktur. Mevcut çalışma ağacı ve son değişiklikler ayrıca kontrol edilir. Sentetik fixture adresleri `example.invalid`; Git kimlik eşlemesindeki bilinçli metadata kullanıcı veritabanı değildir; kişisel e-postalar rapora taşınmaz. Desen taraması bütün kişisel veriyi veya her biçimde sırrı bulma garantisi değildir. Bir gerçek sır bulunursa değer yayımlanmadan iptal/rotasyon ve kapsam incelemesi gerekir; geçmiş yeniden yazılmaz.
 
+## İlk GitHub CI ve URL assertion düzeltmesi
+
+`1c23b4624ed8234031c21973efaeae145cad591b` için [push CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41519691459) başarılıydı: 25/28/14 test, backup/restore 26 tablo/258.144 satır, katalog/izin eşitliği. Aynı commitin [PR CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41519852680) koşusu 13/14 E2E ile başarısız oldu; restore adımı bu koşuda çalışmadı, başarılı sayılmaz. Eski koşular silinmedi veya yeniden etiketlenmedi.
+
+PR hatası 10.000 daire testinin ikinci sayfa URL assertion’ında: HTTP 200/commit gerçekleşmiş, hata mesajındaki URL beklenen panel/org/site/chargesPage=2 değerini taşıyor, document readyState loading idi. Kurulu Playwright 1.64.1 kodunda `toHaveURLWithPredicate` → `waitForURL` → `waitForLoadState(undefined)` yolu varsayılan **load** olayını da bekliyor. Önceki açık commit bekleyişinden sonra predicate assertion bu gizli lifecycle koşulunu tekrar getiriyordu. Bu, Next.js’in daha alt bir arızasının kanıtı değildir.
+
+**F-09 / P3:** `tests/e2e/scalable-dashboard.spec.ts`: URL assertion’ı gerçek bağlantının tam `target.href` metniyle yapıldı. Playwright’ın metin URL matcher’ı URL değerini denetler; predicate overload’un örtülü load bekleyişini kullanmaz. Tam URL kontrolü org/site/sayfa ile birlikte bütün link filtrelerini korur. HTTP yanıtı, commit bekleyişi, 25 ayrık satır, tam özet ve çalışan istemci araması assertion’ları değişmedi. Süre artırımı, retry ekleme veya test atlama yok; uygulama navigasyonu/finans kodu değiştirilmedi. İlgili dosya lint/typecheck ve son commitin tam push/PR iş akışlarıyla doğrulanır. Gerçek veri render’ı veya etkileşim takılırsa sonraki assertion’lar yine hata verir; streaming/load alt nedeni kapatılmış sayılmaz.
+
+Son commit CI sonucu ve bağlantıları PR açıklaması/nihai raporda kaydedilir; önceki başarılı push, yeni commit veya başarısız PR sonucu yerine kullanılmaz.
+
 ## Açık işletim kapıları
 
 Gerçek SMTP teslimi, bağımsız insan kurulumu, TLS/proxy ve canlı güvenlik/yük testi, MFA, tüm işletim rolleri, yedek şifreleme/saklama/PITR/RPO/RTO, izleme/alarmlar ve veri koruma süreçleri tamamlanmadı. CSV açıklamaları kişisel veri içerebilir. Sentetik başarı STAGING/PRODUCTION veya felaket kurtarma garantisi değildir. [Hazırlık kararı](ALPHA2-READINESS.md); yeni release/tag yalnız ayrı kullanıcı onayıyla değerlendirilebilir.
