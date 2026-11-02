@@ -1,10 +1,19 @@
 # İlk topluluk geliştirme sürümü kontrol listesi
 
-## Güncel yayımlama durumu — 30 Ekim 2026
+## Güncel yayımlama durumu — S03-F / 2 Kasım 2026
 
 [PR #10](https://github.com/Blooregardx/siteyonetim-saas/pull/10) main'e birleştirildi ve [v0.1.0-alpha.1 GitHub Pre-release](https://github.com/Blooregardx/siteyonetim-saas/releases/tag/v0.1.0-alpha.1) yayımlandı. Sürüm **EARLY DEVELOPMENT / ALPHA — NOT PRODUCTION READY** durumundadır.
 
-OpenAI Codex for Open Source başvurusu kullanıcı tarafından gönderildi; kabul sonucu bekleniyor. S03-A [PR #11](https://github.com/Blooregardx/siteyonetim-saas/pull/11) üzerinde geliştirildi, henüz main'e birleştirilmedi ve bu ön sürüme dahil değildir. Bu dokümantasyon düzeltmesi yeni release/tag veya başvuru oluşturmaz.
+OpenAI Codex for Open Source başvurusu kullanıcı tarafından gönderildi; kabul sonucu bekleniyor. S03-A–E, PR #11–#15 ile main’e birleşti (son birleşme `afd7ea7bcfe693f06daeea9d48b38b8e1fe27fcc`); mevcut alpha.1 ön sürümüne dahil değildir. Bu dokümantasyon düzeltmesi yeni release/tag veya başvuru oluşturmaz.
+
+## Alpha.2 için ayrı bakımcı kapısı
+
+- [ ] [S03-F denetimi](S03F-SECURITY-REGRESSION.md) ve [hazırlık kararı](ALPHA2-READINESS.md) incelensin; son commitin push ve PR CI sonuçları doğrulansın.
+- [ ] S03-F PR’si kullanıcı kararıyla birleştirilsin; yayımlanacak kesin commit ve kaynak arşivi yeniden kontrol edilsin.
+- [ ] [Türkçe](ALPHA2-RELEASE-NOTES-TR.md) / [İngilizce](ALPHA2-RELEASE-NOTES-EN.md) taslaklar, bilinen açıklar ve üçüncü taraf bildirimleri gözden geçirilsin.
+- [ ] Ayrı yayımlama onayı alınsın. Bu görev tag/release oluşturmaz; package/lock sürümü `0.1.0-alpha.1` kalır. Mevcut alpha.1 değiştirilmez.
+
+DEVELOPMENT test başarısı STAGING/PRODUCTION onayı değildir. SMTP teslimi, bağımsız insan kurulumu, canlı güvenlik/yük, MFA ve işletim kapıları açık kalır.
 
 ## Tarihsel yayımlama öncesi kontrol listesi
 

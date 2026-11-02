@@ -34,6 +34,14 @@ npx prisma migrate diff --from-url "$DATABASE_URL" --to-schema-datamodel prisma/
 
 Hedef başka Docker ağ alanındaysa Node kontrolünü o konteynerin ağına bağlı geçici Node ortamından çalıştırın; test korumasını aşmak için hostname/path kontrollerini kaldırmayın. RUNNER_TEMP mevcut ve yalnız test artefaktları için ayrılmış olmalıdır.
 
+## S03-F güncel doğrulama yöntemi
+
+`verify-backup-restore.py`, sıralanmış her satırı PostgreSQL COPY text/UTF-8 akışında hash’ler; istemci 64 KiB parçalar okur. `jsonb_agg` ile tek büyük tablo değeri ve dump’ın bütünüyle belleğe alınması kaldırıldı. COPY alan içi satır sonlarını kaçırdığı için gerçek satır sayımı korunur. Yeni `postgres-copy-text-jsonl-v1` hash’leri eski yöntemin hash’leriyle karşılaştırılamaz; aynı prova içindeki kaynak/hedef eşitliği aranır. Üç Python regresyonu boş veri, çok baytlı metin/parça sınırları ve binary dump hash’ini doğrular.
+
+PostgreSQL sıralaması geçici disk kullanabilir; tek satır JSON sınırı, disk/CPU maliyeti ve eşzamanlı yazıcıları durdurma gereği sürer. Bu sınırsız kapasite veya production kurtarma garantisi değildir. Tablo/sütun/şema ACL’leri de karşılaştırılır; tablo/sütun grant’leri sıralı izinlere açılır, implicit sahip varsayılanı ile eşdeğer explicit grant fark sayılmaz. CI, yalnız sentetik NOLOGIN `s03f_restore_runtime` rolünü iki tarafta önceden oluşturup kaynakta seçili SELECT ve UPDATE(id) izinleri verir; restore bu izinleri taşımalıdır. Bu rol bir production runtime hesabı değildir; global roller/parolalar pg_dump tarafından yedeklenmez.
+
+S03-F zinciri 11 migration’dır; probe beklenen sayıyı mevcut migration dizinlerinden alır. Güncel sonuçlar: [S03-F kanıtı](S03F-SECURITY-REGRESSION.md). Aşağıdaki OSS-04 sayıları tarihsel kalır.
+
 ## Neler karşılaştırılır?
 
 PG custom format yedeği pg_restore --exit-on-error --single-transaction ile boş hedefe yüklenir. Tüm public tablo adları, tüm satırların sıralanmış JSON hash'leri/sayıları ve index/constraint/trigger tanımları karşılaştırılır. `_prisma_migrations`, kullanıcı/organizasyon ilişkileri, Payment/PaymentReversal ve AuditLog dahildir. Kaynak değişirse prova başarısız olur.

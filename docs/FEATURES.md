@@ -1,6 +1,6 @@
 # Güncel özellik durumu
 
-Bu belge S03-E geliştirme dalının kapsamını anlatır; S03-E henüz main’e birleşmiş sayılmaz. S03-D PR #14 ile main’e alındı. S03-C PR #13 ile main’e alındı. S03-B PR #12 ile main’e alındı. S03-A PR #11 ile main’e alındı. PR #9 main geçişini tamamladı; bu üretim hazırlığı anlamına gelmez. Önceki raporlar tarihsel kayıttır.
+Bu belge main’e alınmış S03-A–E kapsamını anlatır. S03-E PR #15 ile `afd7ea7bcfe693f06daeea9d48b38b8e1fe27fcc` commit’inde birleşti. S03-F yeni ürün özelliği eklemez; [güvenlik/regresyon kanıtları](S03F-SECURITY-REGRESSION.md) ve [alpha.2 hazırlığı](ALPHA2-READINESS.md) ayrı belgelenir. S03-D PR #14 ile main’e alındı. S03-C PR #13 ile main’e alındı. S03-B PR #12 ile main’e alındı. S03-A PR #11 ile main’e alındı. PR #9 main geçişini tamamladı; bu üretim hazırlığı anlamına gelmez. Önceki raporlar tarihsel kayıttır.
 
 | Alan | Uygulanmış geliştirme kapsamı | Sınır / eksik |
 |---|---|---|

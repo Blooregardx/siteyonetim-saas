@@ -81,3 +81,7 @@ Aylık karşılaştırma bir SQL’de en fazla 13 ayı gruplar (ilk gösterilen 
 S03-D PR #14 ile main’e alındı. S03-E yeni migration/indeks eklemez; mevcut on migration ve finans/audit kayıtları korunur. Panel organizasyon kapsamındaki Charge, Payment ve PaymentReversal toplamlarını ayrı SQL alt sorgularında BIGINT olarak toplar. Görünen 25 dairenin borcu, aidat listesi ve tek aidatın tam bakiyesi SQL ile hesaplanır; ödeme/ilişki satırları sayfalanır. FinancialEntry/FinancialEntryReversal aidat kartlarına eklenmez.
 
 Yeni read servisleri REPEATABLE READ kullanır; mevcut actor User paylaşım kilidi dışında organizasyon yazma kilidi almaz. Servis içi yetki/liste/toplam aynı snapshot; ayrı servis/HTTP istekleri aynı snapshot değildir. Eski doğrudan site üyeliği korunur, organizasyon kişi rehberine erişim genişletilmez. [Mimari ve performans](SCALABLE-DASHBOARD.md).
+
+## S03-F — Aidat ve toplu işlem geçmişinin DB değişmezliği
+
+`202611040001_financial_immutability`, mevcut `reject_financial_mutation` fonksiyonunu Charge ve BulkChargeOperation için UPDATE/DELETE/TRUNCATE statement trigger’larına bağlar. Veri değiştirmez; mevcut on migration korunur, güncel zincir 11’dir. Satır kilidi için gereken UPDATE(id) izni kaldırılmaz, SELECT FOR UPDATE çalışır; gerçek UPDATE reddedilir. Böylece aidat/idempotency geçmişi servis dışındaki yanlış yazımlara karşı da korunur. DDL/migration yöneticisi ayrı güven sınırıdır. [Kanıt ve sınırlamalar](S03F-SECURITY-REGRESSION.md).

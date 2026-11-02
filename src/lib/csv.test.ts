@@ -13,3 +13,11 @@ test('ekran ve CSV güvenli sayı sınırında aynı kuruşu korur',()=>{
  assert.equal(formatMoney(-1),'-₺0,01');assert.equal(formatMoney(1),'₺0,01');assert.equal(formatMoney(0),'₺0,00');
  assert.throws(()=>formatMoney(Number.MAX_SAFE_INTEGER+1));
 });
+
+import { exportByteSize, EXPORT_MAX_BYTES } from "./csv";
+test("CSV byte limit includes multibyte UTF-8 and rejects crossing 128 MiB",()=>{
+ assert.equal(exportByteSize(EXPORT_MAX_BYTES-3,"€"),EXPORT_MAX_BYTES);
+ assert.throws(()=>exportByteSize(EXPORT_MAX_BYTES-2,"€"),/EXPORT_LIMIT/);
+ assert.throws(()=>exportByteSize(EXPORT_MAX_BYTES,"x"),/EXPORT_LIMIT/);
+ assert.throws(()=>exportByteSize(-1,""),/EXPORT_LIMIT/);
+});

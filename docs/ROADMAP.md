@@ -2,7 +2,7 @@
 
 Ücretsiz, AGPL-3.0-only, PUBLIC ve topluluk katkılı kendi sunucusunda barındırma hedefi korunur. Ticari abonelik/ücretli lisans modeli yoktur. Next.js, strict TypeScript, PostgreSQL 17 ve Prisma 6 değişmez. Üretime hazır değildir.
 
-## Güncel durum — 30 Ekim 2026
+## Güncel durum — S03-F / 2 Kasım 2026
 
 - [PR #10 (OSS-04)](https://github.com/Blooregardx/siteyonetim-saas/pull/10) main'e birleştirildi.
 - [v0.1.0-alpha.1](https://github.com/Blooregardx/siteyonetim-saas/releases/tag/v0.1.0-alpha.1) GitHub Pre-release olarak yayımlandı; üretime hazır sürüm değildir.
@@ -11,9 +11,9 @@
 - S03-B, [PR #12](https://github.com/Blooregardx/siteyonetim-saas/pull/12) ile main’e birleşti (`6798df1518e15212dd0da2bcfc6cf6f5e183b890`); Europe/Istanbul vade günü düzeltmesi dahildir.
 - S03-C, [PR #13](https://github.com/Blooregardx/siteyonetim-saas/pull/13) ile main’e birleşti (`f8b2ff1b6857c8a1e22dae3a04704e2c8bed15b0`).
 - S03-D, [PR #14](https://github.com/Blooregardx/siteyonetim-saas/pull/14) ile main’e birleşti (`33169af14ea0a2fd898838839cc8eb7772a31e09`): güvenli CSV, aylık karşılaştırma ve sentetik rapor ölçümleri.
-- S03-E geliştirme dalı: tam organizasyon özeti ve sınırlı/sayfalı panel, kayıt ve aidat detayları. [Mimari, kapasite ve sınırlar](SCALABLE-DASHBOARD.md); henüz main’e birleşmiş sayılmaz.
+- S03-E [PR #15](https://github.com/Blooregardx/siteyonetim-saas/pull/15) ile main’e birleşti (`afd7ea7bcfe693f06daeea9d48b38b8e1fe27fcc`): tam organizasyon özeti ve sınırlı/sayfalı panel, kayıt ve aidat detayları. [Mimari, kapasite ve sınırlar](SCALABLE-DASHBOARD.md).
 
-Güncel sonraki adım S03-E değişikliklerinin ve büyük portföy kanıtlarının incelenmesidir. Bağımsız kurulum geri bildirimi, üretim güvenliği/işletim doğrulamaları ve kapasite ölçümü açık kalır. Yeni başvuru gönderimi veya yeni release oluşturma bu belge düzeltmesinin kapsamında değildir.
+Güncel sonraki adım [S03-F güvenlik/regresyon kanıtı](S03F-SECURITY-REGRESSION.md) ve [alpha.2 hazırlık kararının](ALPHA2-READINESS.md) bakımcı incelemesidir. Yeni tag/release için ayrı kullanıcı onayı gerekir. Bağımsız kurulum geri bildirimi, üretim güvenliği/işletim doğrulamaları ve kapasite ölçümü açık kalır. Yeni başvuru gönderimi veya yeni release oluşturma bu belge düzeltmesinin kapsamında değildir.
 
 ## Tarihsel OSS-04 hazırlık kaydı
 

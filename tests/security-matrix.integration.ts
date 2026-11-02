@@ -1,0 +1,60 @@
+// SPDX-License-Identifier: AGPL-3.0-only
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { PrismaClient } from '@prisma/client';
+import { management } from '../src/lib/management';
+const url=process.env.TEST_DATABASE_URL;
+if(!url||!['localhost','127.0.0.1'].includes(new URL(url).hostname)||new URL(url).pathname!='/siteyonetim_test')throw new Error('Isolated test database required');
+const db=new PrismaClient({datasourceUrl:url});
+test.after(async()=>db.$disconnect());
+test('security matrix: current verification/membership governs denied financial writes',async()=>{
+ const user=await db.user.create({data:{name:'Synthetic matrix',email:crypto.randomUUID()+'@example.invalid',emailVerifiedAt:new Date()}}),api=management(db,async()=>({userId:user.id}));
+ const org=await api.createOrganization('Matrix','COMPANY'),site=await api.createSite(org.id,'Matrix'),block=await api.createBlock(site.id,'A'),unit=await api.createUnit(site.id,block.id,'1');
+ const charge=await api.createCharge(site.id,unit.id,'2027-01',10000,new Date('2027-01-31')),payment=await api.collect(site.id,charge.id,100,'synthetic');
+ const input={siteId:site.id,unitIds:[unit.id],period:'2027-02',amountKurus:100,dueDate:'2027-02-28'},preview=await api.previewBulkCharges(input);
+ const counts=()=>Promise.all([db.payment.count({where:{siteId:site.id}}),db.paymentReversal.count({where:{siteId:site.id}}),db.charge.count({where:{siteId:site.id}}),db.auditLog.count({where:{siteId:site.id}})]),baseline=await counts();
+ const denied=async(client:ReturnType<typeof management>,reason:RegExp)=>{
+  await assert.rejects(client.collect(site.id,charge.id,100,'synthetic'),reason);
+  await assert.rejects(client.reversePayment(site.id,payment.id,'ENTRY_ERROR',crypto.randomUUID()),reason);
+  await assert.rejects(client.setPartialPaymentsAllowed(site.id,false),reason);
+  await assert.rejects(client.commitBulkCharges(input,preview.snapshot,crypto.randomUUID()),reason);
+  assert.deepEqual(await counts(),baseline);
+ };
+ await denied(management(db,async()=>null),/UNAUTHENTICATED/);
+ await db.user.update({where:{id:user.id},data:{emailVerifiedAt:null}});await denied(api,/EMAIL_UNVERIFIED/);
+ await db.user.update({where:{id:user.id},data:{emailVerifiedAt:new Date()}});
+ await db.organizationMembership.update({where:{organizationId_userId:{organizationId:org.id,userId:user.id}},data:{role:'RESIDENT'}});await denied(api,/FORBIDDEN/);
+ await db.organizationMembership.delete({where:{organizationId_userId:{organizationId:org.id,userId:user.id}}});await denied(api,/FORBIDDEN/);
+ await api.createOrganization('Other tenant','COMPANY');await denied(api,/FORBIDDEN/);
+ await db.organizationMembership.create({data:{organizationId:org.id,userId:user.id,role:'MANAGER'}});
+ await assert.rejects(api.reversePayment(site.id,payment.id,'ENTRY_ERROR',crypto.randomUUID()),/FORBIDDEN/);
+ await assert.rejects(api.setPartialPaymentsAllowed(site.id,false),/FORBIDDEN/);await api.collect(site.id,charge.id,100,'manager synthetic');
+});
+test('bulk preview rejects changed block and deleted unit without partial writes',async()=>{
+ const user=await db.user.create({data:{name:'Synthetic snapshot',email:crypto.randomUUID()+'@example.invalid',emailVerifiedAt:new Date()}}),api=management(db,async()=>({userId:user.id}));
+ const org=await api.createOrganization('Snapshot','COMPANY'),site=await api.createSite(org.id,'Snapshot'),block=await api.createBlock(site.id,'A'),unit=await api.createUnit(site.id,block.id,'1');
+ const input={siteId:site.id,unitIds:[unit.id],period:'2027-03',amountKurus:100,dueDate:'2027-03-31'};
+ const p=await api.previewBulkCharges(input);await api.updateBlock(site.id,block.id,{name:'B',description:''});
+ await assert.rejects(api.commitBulkCharges(input,p.snapshot,crypto.randomUUID()),/STALE_PREVIEW/);
+ const p2=await api.previewBulkCharges(input);await db.unit.delete({where:{id:unit.id}});
+ await assert.rejects(api.commitBulkCharges(input,p2.snapshot,crypto.randomUUID()),/INVALID_UNITS/);
+ assert.equal(await db.charge.count({where:{siteId:site.id}}),0);assert.equal(await db.bulkChargeOperation.count({where:{siteId:site.id}}),0);
+});
+test('charge and bulk operation history reject UPDATE DELETE TRUNCATE; row locks still permit collection',async()=>{
+ const user=await db.user.create({data:{name:'Synthetic immutable',email:crypto.randomUUID()+'@example.invalid',emailVerifiedAt:new Date()}}),api=management(db,async()=>({userId:user.id}));
+ const org=await api.createOrganization('Immutable','COMPANY'),site=await api.createSite(org.id,'Immutable'),block=await api.createBlock(site.id,'A'),unit=await api.createUnit(site.id,block.id,'1');
+ const input={siteId:site.id,unitIds:[unit.id],period:'2027-04',amountKurus:10000,dueDate:'2027-04-30'},preview=await api.previewBulkCharges(input),key=crypto.randomUUID();
+ await api.commitBulkCharges(input,preview.snapshot,key);
+ const charge=await db.charge.findFirstOrThrow({where:{siteId:site.id}}),operation=await db.bulkChargeOperation.findFirstOrThrow({where:{siteId:site.id}});
+ await assert.rejects(db.charge.update({where:{id:charge.id},data:{amountKurus:1}}),/append only/);
+ await assert.rejects(db.charge.update({where:{id:charge.id},data:{id:charge.id}}),/append only/);
+ await assert.rejects(db.charge.delete({where:{id:charge.id}}),/append only/);
+ await assert.rejects(db.$executeRawUnsafe('TRUNCATE "Charge" CASCADE'),/append only/);
+ await assert.rejects(db.bulkChargeOperation.update({where:{id:operation.id},data:{requestHash:'tamper'}}),/append only/);
+ await assert.rejects(db.bulkChargeOperation.delete({where:{id:operation.id}}),/append only/);
+ await assert.rejects(db.$executeRawUnsafe('TRUNCATE "BulkChargeOperation"'),/append only/);
+ assert.deepEqual(await db.charge.findUniqueOrThrow({where:{id:charge.id}}),charge);
+ assert.deepEqual(await db.bulkChargeOperation.findUniqueOrThrow({where:{id:operation.id}}),operation);
+ await api.collect(site.id,charge.id,100,'synthetic immutable');
+ assert.equal((await api.commitBulkCharges(input,preview.snapshot,key)).createdCount,1);
+});
