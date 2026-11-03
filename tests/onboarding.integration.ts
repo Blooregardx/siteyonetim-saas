@@ -4,7 +4,8 @@ import { PrismaClient } from '@prisma/client';
 import { onboarding } from '../src/lib/onboarding';
 import { management } from '../src/lib/management';
 const url=process.env.TEST_DATABASE_URL;
-if(!url||!['localhost','127.0.0.1'].includes(new URL(url).hostname)||new URL(url).pathname!='/siteyonetim_test'||process.env.DATABASE_URL!==url)throw new Error('Isolated test database required');
+const normalized=(value:string)=>{const parsed=new URL(value);if(parsed.searchParams.get('schema')==='public')parsed.searchParams.delete('schema');return parsed.href;};
+if(!url||!['localhost','127.0.0.1'].includes(new URL(url).hostname)||new URL(url).pathname!='/siteyonetim_test'||(!process.env.DATABASE_URL||normalized(process.env.DATABASE_URL)!==normalized(url)))throw new Error('Isolated test database required');
 const db=new PrismaClient({datasourceUrl:url});
 after(()=>db.$disconnect());
 async function fixture(verified=true){const user=await db.user.create({data:{name:'Sentetik kurulum',email:crypto.randomUUID()+'@example.invalid',emailVerifiedAt:verified?new Date():null}});const verify=async()=>({userId:user.id});return {user,api:onboarding(db,verify),normal:management(db,verify)};}
