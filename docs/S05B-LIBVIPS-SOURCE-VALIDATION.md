@@ -1,8 +1,8 @@
 # S05-B Sharp/libvips kaynak doğrulaması
 
-DEVELOPMENT: INCOMPLETE — son HEAD push ve PR CI tamamlanmalı.
+DEVELOPMENT: Son HEAD kararı, PR #27 içindeki son SHA push ve PR CI kayıtlarıyla verilir; aşağıdaki başarılı kontrol noktaları onun yerine kullanılmaz.
 LIBVIPS SOURCE EVIDENCE: PARTIAL
-RELINKING EVIDENCE: BLOCKED — yeni imaj deneyi sonucu bekleniyor.
+RELINKING EVIDENCE: PARTIAL — aynı-byte alternatif dinamik yükleme; değiştirilmiş kaynak/static LGPL rebuild BLOCKED.
 SOURCE RELEASE STATUS: ALPHA.2 PUBLISHED — UNCHANGED
 BINARY DISTRIBUTION READINESS: BLOCKED
 INDEPENDENT INSTALLATION: PENDING HUMAN VALIDATION
@@ -64,3 +64,15 @@ Sharp 0.35.5 exact commit arşivi ayrıca indirildi/hash'lendi; özgün Apache L
 `d84d05e` checks başarılı, selfhost yeni addon incelemesinde başarısız oldu: gerçek dosya adı `sharp-linux-x64-0.35.5.node`, probe ise sürümsüz ad varsaymıştı. Yeni probe dosya adını tahmin etmek yerine paketin `sharp.node` export'unu çözer. Başarısız job başarılı sayılmadı; son HEAD iki tam CI yeniden doğrulanmalıdır.
 
 İkinci probe düzeltmesi: paket export'u `index.cjs` shim'idir; ELF dosyası olarak okunmaz. Gerçek lib/*.node dosyası ayrı bulunur, export ve native dosyanın hash'leri ayrı tutulur. İki ELF parser testi JavaScript ve bozuk header tablosunu reddeder. İzole probe scratch tmpfs `exec` gerektirir; normal app Compose değişmez. Eski yerel S05-A imajında yapılan tanılama source manifest'in yeni imaj kanıtı olarak kullanılmadı. Son yeni CI'da LD_LIBRARY_PATH ve LD_PRELOAD sonuçları ayrı doğrulanır.
+
+## Başarılı yeni imaj kontrol noktası
+
+`dc50c65bfc5a5f1dae4d0dc67e1c402ef52c7a7e` için [push CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41725468214) ve [PR CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41725475512) checks+selfhost başarılı. [Runtime snapshot](evidence/s05b/baseline-dc50c65-app.json), [migration snapshot](evidence/s05b/baseline-dc50c65-migrate.json) yeni CI imajlarından indirildi. Runtime config `sha256:3bf88820a91084ce8eb10e9ca9e5b21d804a5b5b6fbe9ac76491fe18e5cc0728`, migration config `sha256:841b9960129e54b927cbabbc24d80fbd42beb9765d3e7eed1574774256e34e9e`.
+
+Her ikisinde Sharp 0.35.5, platform paketleri1.3.4, libvips8.18.7, ELF64 x86-64 ve 28 versions.json girdisi doğrulandı. LD_LIBRARY_PATH deneyi özgün dosyayı map etti: BLOCKED. LD_PRELOAD deneyi alternatif kopyayı map etti, özgün dosya mapped değildi, 1×1 PNG üretildi, exit0: yalnız PARTIAL. Orijinal/kopya hash'leri eşit; değiştirilmiş kaynak derlemesi değil. Addon DT_NEEDED libvips-cpp.so.8.18.7 ve DT_RPATH, libvips-cpp DT_RUNPATH=$ORIGIN gözlendi. Son genel filesystem envanteri musl addon dahil tüm native adaylarda ELF/dinamik alanları ayrıca kaydeder; çözümlenemeyenler UNRESOLVED kalır.
+
+Kaynak edinme/byte kontrolü: native28 PASS, Sharp1 PASS. Binary-source eşleşmesi/onayı: PASS0, BLOCKED29 (native28+Sharp1). Cargo.lock kaynak kayıtları UNKNOWN357; bunların hepsinin binary'de bulunduğu iddia edilmez. Derlenmiş target/features alt kümesi belirlenmedi. Özgün metinler native73+Sharp1; per-file lisans/derleme kapsamı manuel incelemesi açık.
+
+Kontrol noktasında ESLint/strict TS, 25 birim, 36 PG entegrasyon, 19 Playwright, production build, Prisma validate/generate, 11 migration/schema diff, tenant/finans/audit/query-plan, 12 preflight/4 archive/7 distribution gate/14 kaynak testi, 1 notice ve 2 ELF parser testi başarılı. Temiz selfhost/restart, şifreli backup hata matrisi, ayrı cluster encrypted recovery ve başarısız migration güvenli durma da iki job'da geçti.
+
+Son dokümantasyon ve envanter commit'i sonrası iki CI yeniden doğrulanır. İmaj kendi içerdiği manifest'e kendi config digest'ini yazamaz; güncel son SHA, image config digest ve artifact bağları [taslak PR #27](https://github.com/Blooregardx/siteyonetim-saas/pull/27) harici kanıt kaydındadır. Buradaki dc50c65 snapshot'ları son dokümantasyon imajıyla aynı digest'te diye sunulmaz.

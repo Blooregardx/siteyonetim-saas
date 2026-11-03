@@ -1,4 +1,5 @@
 // Read-only filesystem evidence. Never grants binary distribution clearance.
+import { dynamicElf } from './elf-evidence.mjs';
 import { existsSync, readFileSync, readdirSync, lstatSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
@@ -18,7 +19,11 @@ function walk(root) {
   if (/\.node$|\.so(\.|$)|\.wasm$|^query-engine(?:-|$)|^schema-engine(?:-|$)/.test(entry)) {
    let links;
    try { links = execFileSync('ldd', [path], {encoding:'utf8', stdio:['ignore','pipe','ignore']}).trim(); } catch { links = 'UNRESOLVED_OR_NOT_DYNAMIC'; }
-   binaries.push({path, sha256:hash(path), links});
+   const bytes=readFileSync(path);
+   const elf=bytes.length>=20 && bytes.subarray(0,4).toString('hex')==='7f454c46' ? {magic:'7f454c46',class:bytes[4],machine:bytes.readUInt16LE(18)} : null;
+   let dynamic;
+   try { dynamic=dynamicElf(bytes); } catch { dynamic={status:'UNRESOLVED',needed:[]}; }
+   binaries.push({path, sha256:hash(path), elf, dynamic, links});
   }
  }
 }
