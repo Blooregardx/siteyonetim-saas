@@ -20,3 +20,9 @@ dumps
 !prisma/migrations/**/*.sql
 
 !docker/grants.sql
+**/__pycache__
+**/*.pyc
+**/*.age
+**/*.agekey
+**/*.key
+ops/backup.config.json

@@ -1,5 +1,11 @@
 # Sentetik yedekleme ve geri yükleme provası
 
+## S04-C — Şifreli mantıksal yedek ve korumalı güncelleme
+
+Host operatörüne yönelik pg_dump → age akışı, atomik encrypted backup/manifest, lock, durum ve açık etkinleştirilen systemd timer/retention altyapısı eklendi. Ayrı boş/portsuz siteyonetim_test restore provası ve hata sonrası yazıcıları durduran güncelleme aracı vardır. Web kullanıcısına ham yedek veya Docker socket yetkisi verilmez. [İşletim ve anahtar rehberi](BACKUP-OPERATIONS.md), [güncelleme](SAFE-UPGRADE.md), [DEVELOPMENT doğrulaması](S04C-BACKUP-VALIDATION.md).
+
+Bu günlük mantıksal backup kapsamıdır; WAL/PITR, anlık kurtarma ve production RPO/RTO ayrıca tasarlanıp sınanmalıdır. Anahtar kaybı yedeği açmayı engeller; fiziksel disk kaybına karşı ayrı depoda kopya gerekir. Ücretli sağlayıcı/Supabase zorunluluğu yoktur. Zamanlayıcı/silme varsayılan etkin değildir; gerçek deploy/güncelleme yapılmadı. Aşağıdaki tarihsel kanıtlar korunur.
+
 Bu bir production yedekleme servisi değildir. Yalnız iki ayrı, geçici PostgreSQL 17 konteynerindeki `siteyonetim_test` içindir. Üretim/diğer proje DB'leri, gerçek kullanıcılar veya gerçek e-posta kullanılmaz. Başarılı izole prova PITR, RPO/RTO, şifreleme, saklama veya felaket kurtarma onayı değildir.
 
 ## Önkoşullar ve güvenlik

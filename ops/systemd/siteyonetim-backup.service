@@ -1,0 +1,18 @@
+[Unit]
+Description=SiteYonetim encrypted logical backup (host operator)
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+User=root
+UMask=0077
+WorkingDirectory=/opt/siteyonetim
+ExecStart=/usr/bin/python3 /opt/siteyonetim/scripts/backup_ops.py backup --config /etc/siteyonetim/backup.json
+# No automatic retention: inspect dry-run and explicitly enable a separate prune step.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/siteyonetim/backups
+TimeoutStartSec=6h

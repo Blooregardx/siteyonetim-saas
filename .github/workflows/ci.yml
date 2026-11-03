@@ -92,3 +92,9 @@ jobs:
         with:
           persist-credentials: false
       - run: sh scripts/test-selfhost.sh
+      - name: Install host-only open source encryption tool
+        run: sudo apt-get update && sudo apt-get install -y age
+      - name: Encrypted backup failure matrix
+        run: PYTHONDONTWRITEBYTECODE=1 python3 scripts/test_backup_ops.py
+      - name: Encrypted recovery and safe upgrade drill
+        run: PYTHONDONTWRITEBYTECODE=1 python3 scripts/test_recovery.py

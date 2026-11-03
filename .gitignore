@@ -14,3 +14,12 @@ work/
 /secrets/
 /backups/
 !.env.selfhost.example
+__pycache__/
+*.pyc
+*.age
+*.agekey
+*.dump
+/ops/backup.config.json
+*.key
+*.sql.gz
+*.backup
