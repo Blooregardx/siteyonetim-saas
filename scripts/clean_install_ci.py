@@ -39,6 +39,8 @@ def main():
         compose=D+['compose','-p','s04a-ci','-f',str(root/'compose.selfhost.yaml')]
         try:
             execute(['sh','scripts/test-selfhost.sh'],root)
+            for image in ['app', 'migrate']:
+                execute(['sh', 'scripts/collect_distribution.sh', 's04a-ci-'+image, str(Path(os.environ['RUNNER_TEMP'])/'s05a-evidence'/image)], root)
             execute(['python3','scripts/test_backup_ops.py'],root)
             execute(['python3','scripts/test_recovery.py'],root)
         finally:

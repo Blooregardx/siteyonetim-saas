@@ -24,3 +24,7 @@ Docker altyapısı S04-A, uygulama içi kurulum S04-B, backup/update araçları 
 **AGPL-3.0-only.** [LICENSE](LICENSE), [COPYRIGHT](COPYRIGHT), [kaynak sunma yükümlülükleri](docs/LICENSING.md). Kaynak kod-only dağıtım ile binary/container dağıtımı farklıdır. **BLOCKED FOR BINARY DISTRIBUTION:** Sharp/libvips, LGPL/MPL ve temel imaj bildirim/karşılık gelen kaynak kanıtları tamamlanmadı. [İnceleme](docs/THIRD-PARTY-LICENSES.md).
 
 Bakımcı: [Blooregardx](https://github.com/Blooregardx). [Alpha.2 taslak kararı](docs/ALPHA2-READINESS.md), [önceki README tarihçesi](docs/README-BEFORE-S04D.md). Staging/production, gerçek SMTP/TLS, bağımsız insan kurulumu ve WAL/PITR ayrı doğrulama gerektirir.
+
+## S05-A geliştirme denetimi
+
+SOURCE RELEASE STATUS: ALPHA.2 PUBLISHED — UNCHANGED. Hazır imaj dağıtımı BLOCKED; bağımsız insan kurulumu PENDING HUMAN VALIDATION. Bu geliştirme çalışmasının son HEAD test kararı [S05-A raporunda](docs/S05A-DISTRIBUTION-COMPLIANCE-VALIDATION.md), [binary kapıları](docs/BINARY-DISTRIBUTION-GATES.md) ve [insan kurulum formunda](docs/INDEPENDENT-INSTALLATION-CHECKLIST.md) izlenir. Önceki hazırlık kararları tarihsel kayıttır.
