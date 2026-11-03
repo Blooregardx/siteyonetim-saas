@@ -1,0 +1,10 @@
+[Unit]
+Description=SiteYonetim daily backup (disabled until operator enables)
+
+[Timer]
+OnCalendar=*-*-* 03:00:00
+Persistent=true
+Unit=siteyonetim-backup.service
+
+[Install]
+WantedBy=timers.target
