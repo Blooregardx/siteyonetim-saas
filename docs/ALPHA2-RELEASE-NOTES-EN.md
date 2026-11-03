@@ -1,6 +1,10 @@
 # v0.1.0-alpha.2 — Draft release notes
 
-## Current F-10 status — BLOCKED
+## Current decision — READY FOR MAINTAINER REVIEW
+
+The preserved commit `e9ed54a786ba3d33e382b6b1208241464b9c5653` was pushed normally without changing its author, committer or history. Both [push CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41564379171) and [PR CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41564385740) passed in full: 25 unit, 29 integration, 14 E2E tests, build, 11 clean migrations/schema comparison, both query-plan modes, 3 streaming tests and synthetic restore of 26 tables/258,298 rows including privileges. This clears the F-10 DEVELOPMENT blocker at this checkpoint. The final documentation HEAD must also pass both workflows. PR #20 remains **draft and open**; publishing or merging requires a separate user decision. No release/tag/deployment was created. Earlier decisions below are historical evidence. [Investigation](F10-INVESTIGATION.md).
+
+## Historical reopening — 91dbba7 / BLOCKED
 
 Push CI on 91dbba7 failed (13/14 E2E), reopening the previous READY checkpoint. The Charge-only scope and post-pagination metadata joins passed local 25/29/14 regression and three independent 4/4 acceptance runs. Both CI results on the new commit remain required. Earlier READY statements below are historical checkpoints. [Investigation](F10-INVESTIGATION.md). PR remains draft; no release or merge.
 

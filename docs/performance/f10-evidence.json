@@ -427,6 +427,33 @@
       "applicationProbe": true,
       "migrations": 11,
       "auditCount": 15
+    },
+    "ciCheckpoint": {
+      "commit": "e9ed54a786ba3d33e382b6b1208241464b9c5653",
+      "push": 41564379171,
+      "pr": 41564385740,
+      "bothFullWorkflows": "success",
+      "unit": 25,
+      "integration": 29,
+      "e2e": 14,
+      "streaming": 3,
+      "restoreTables": 26,
+      "restoreRows": 258298,
+      "migrations": 11,
+      "queryScopeRelations": [
+        "Charge"
+      ],
+      "paymentAggregateLoops": 25,
+      "mobile10000": {
+        "push": {
+          "firstPanelMs": 419.547,
+          "secondPanelMs": 920.124
+        },
+        "pr": {
+          "firstPanelMs": 395.017,
+          "secondPanelMs": 405.963
+        }
+      }
     }
   }
 }

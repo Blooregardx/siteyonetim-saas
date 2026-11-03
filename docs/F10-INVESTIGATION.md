@@ -1,6 +1,12 @@
 # F-10 — Kök neden, düzeltme ve doğrulama
 
-## Güncel yeniden açılış — F-10 / BLOCKED
+## Güncel karar — READY FOR MAINTAINER REVIEW
+
+Korunan `e9ed54a786ba3d33e382b6b1208241464b9c5653` commit'i normal fast-forward push ile aynı dala gönderildi; author/committer Blooregardx ve onaylı noreply adresi, eski SHA'lar değişmedi. [Push CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41564379171) ve [PR CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41564385740) tam başarılı: 25/25 birim, 29/29 entegrasyon, 14/14 E2E, build, Prisma generate/validate, temiz 11 migration/schema diff, iki query-plan modu (yalnız Charge kapsamı, 25 ödeme döngüsü), Python 3/3 ve 26 tablo/258.298 satır sentetik restore/ACL/runtime probu. 10.000 daire mobil ilk/ikinci panel push'ta 420/920 ms, PR'da 395/406 ms; üretim SLA'sı değildir.
+
+F-10 için BLOCKED engeli bu DEVELOPMENT kontrol noktasıyla kaldırıldı. Yeni dokümantasyon HEAD'inin hem push hem PR CI'ı da başarılı olmadan bu karar merge/yayımlama için kullanılamaz; son sonuçlar PR açıklamasında doğrulanır. PR #20 **taslak ve açık** kalır. Alpha.2 tag/release veya staging/production deploy yapılmadı; kullanıcı kararı gerekir. Önceki BLOCKED/READY kayıtları aşağıda tarihsel kanıttır. [Ayrıntılı kanıt](F10-INVESTIGATION.md).
+
+## Tarihsel yeniden açılış — 91dbba7 / BLOCKED
 
 `91dbba74402e2d42309260b8b260b7e6a36ea20e` için [push CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41556179024) 13/14 E2E ile başarısız, [PR CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41556184945) başarılı oldu. Önceki ace4983 kontrol noktası bu sonucun yerine geçmez. Önceki READY kararı bu başarısızlıkla yeniden BLOCKED oldu; aşağıdaki eski kapanış ifadeleri tarihsel kontrol noktasıdır.
 
@@ -10,6 +16,8 @@ Son düzeltme: varsayılan kapsam/count yalnız Charge okur; Unit/Block metadata
 
 Yerelde üç bağımsız mobil kabul koşusu 4/4 + 4/4 + 4/4; tam regresyon 25/25 birim, 29/29 entegrasyon, 14/14 E2E ve build başarılıdır. Yeni commit'in hem push hem PR CI'ı tamamlanana kadar **BLOCKED**. PR #20 taslak/açık kalır; merge veya release yoktur.
 
+
+## Tarihsel ace4983 ilk düzeltmesi ve ölçümleri
 
 Başlangıç: PR #20, `e02576f4616fcc216f7ff3aa77e4f0321ce8815a`. S03-F güvenlik düzeltmeleri ve tarihsel başarısızlık kayıtları korunur. Düzeltme ace4983 için hem push hem PR CI başarılı; alpha.2 kaynak kod hazırlığı **READY FOR MAINTAINER REVIEW**. PR kullanıcı isteğiyle taslak kalır. Son HEAD’in iki CI kapısı korunur; merge/yayımlama onayı verilmez.
 
