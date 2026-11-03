@@ -113,11 +113,23 @@ GRANT USAGE ON SCHEMA public TO sy_runtime;''')
         spec = importlib.util.spec_from_file_location('historical_recovery',ops.ROOT/'scripts/verify-backup-restore.py')
         historical = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(historical)
-        names = historical.tables(source['container_id'])
-        before = historical.snapshot(source['container_id'],names)
+        names = ops.sql(source,"SELECT tablename FROM pg_tables WHERE schemaname='public' ORDER BY tablename").splitlines()
+        def snapshot(cid, tables):
+            result={}
+            for table in tables:
+                quoted='"'+table.replace('"','""')+'"'
+                statement=f"""COPY (SELECT to_jsonb(t)::text FROM public.{quoted} t ORDER BY to_jsonb(t)::text COLLATE "C") TO STDOUT WITH (FORMAT text, ENCODING 'UTF8')"""
+                with subprocess.Popen(D+['exec','-i',cid,'psql','-X','-q','-v','ON_ERROR_STOP=1','-U','postgres','-d','siteyonetim_test','-c',statement],stdout=subprocess.PIPE,stderr=subprocess.DEVNULL) as process:
+                    digest,rows=historical.digest_stream(process.stdout)
+                    ops.require(process.wait()==0)
+                result[table]={'rows':rows,'sha256':digest}
+            return result
+        before = snapshot(source['container_id'],names)
         print('recovery stage: encrypted backup and negative validation',flush=True)
+        name=json.loads(ops.run([sys.executable,str(ops.ROOT/'scripts/backup_ops.py'),'backup','--config',str(config_file)]))['backup']
+        status=json.loads(ops.run([sys.executable,str(ops.ROOT/'scripts/backup_ops.py'),'status','--config',str(config_file),'--max-age-hours','36']))
+        ops.require(status['healthy'] and status['valid_copies']==1)
         with ops.locked(root):
-            name = ops.backup(c)
             ops.verify(root,name,key)
             # The role-only dump is a complete readable archive, not a runtime-role shortcut.
             wrong = base/'wrong.agekey'
@@ -151,10 +163,11 @@ GRANT USAGE ON SCHEMA public TO sy_runtime;''')
             print('recovery stage: isolated empty restore',flush=True)
             result = ops.restore(root,name,key,target_config)
         ops.require(result['catalog_equal'] and result['migrations'] == 11)
-        ops.require(before == historical.snapshot(target['container_id'],names))
-        ops.require(before == historical.snapshot(source['container_id'],names))
+        ops.require(before == snapshot(target['container_id'],names))
+        ops.require(before == snapshot(source['container_id'],names))
         # Recreated roles have no copied passwords and are initially NOLOGIN.
         ops.sql(target,'ALTER ROLE sy_migrator LOGIN; ALTER ROLE sy_runtime LOGIN;')
+        image(target,['node_modules/prisma/build/index.js','migrate','diff','--from-schema-datasource','prisma/schema.prisma','--to-schema-datamodel','prisma/schema.prisma','--exit-code'])
         image(target,['node_modules/tsx/dist/cli.mjs','scripts/recovery-probe.ts','verify','/fixtures/fixture.json'],fixture)
         reject(lambda:ops.sql(target,'SET ROLE sy_runtime; CREATE TABLE public.forbidden(id int)'))
         reject(lambda:ops.sql(target,'SET ROLE sy_runtime; SELECT * FROM "AuditLog"'))
@@ -178,7 +191,7 @@ GRANT USAGE ON SCHEMA public TO sy_runtime;''')
         ops.run(D+['restart',target['container_id']])
         ready(target['container_id'])
         health()
-        ops.require(before == historical.snapshot(target['container_id'],names))
+        ops.require(before == snapshot(target['container_id'],names))
         # Exercise actual orchestration with real backup verification and a real failed
         # Prisma migration, in a disposable candidate schema copy, never historical SQL.
         candidate_js = """const fs=require('fs'),cp=require('child_process');fs.cpSync('prisma','/tmp/prisma',{recursive:true});fs.mkdirSync('/tmp/prisma/migrations/209901010001_failure');fs.writeFileSync('/tmp/prisma/migrations/209901010001_failure/migration.sql','SELECT 1/0;');process.exit(cp.spawnSync('node',['node_modules/prisma/build/index.js','migrate','deploy','--schema','/tmp/prisma/schema.prisma'],{stdio:'ignore',env:process.env}).status??1);"""
@@ -205,7 +218,7 @@ GRANT USAGE ON SCHEMA public TO sy_runtime;''')
         ops.require(events == ['stop','build-reviewed-candidate','migrate','stop'])
         for table in names:
             if table != '_prisma_migrations':
-                ops.require(before[table] == historical.snapshot(target['container_id'],[table])[table])
+                ops.require(before[table] == snapshot(target['container_id'],[table])[table])
         ops.require(sql_failed_migration(target))
         # CLI failure exit, not a log-only failure; wrong target config remains private.
         target_file = base/'wrong-target.json'
