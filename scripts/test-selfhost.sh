@@ -12,8 +12,11 @@ sudo chown 1000:999 secrets/*
 compose() { docker compose -p s04a-ci -f compose.selfhost.yaml "$@"; }
 sudo chmod 640 secrets/*
 compose config --quiet
-compose build
+compose --profile tools build
 compose up -d --wait db
+# No DB port binding, and native Prisma works as the restricted runtime before migration.
+[ "$(docker inspect --format '{{json .HostConfig.PortBindings}}' "$(compose ps -q db)")" = '{}' ]
+compose run --rm --no-deps app node docker/acceptance.mjs before
 # Startup must fail before migration.
 set +e
 timeout 30 docker compose -p s04a-ci -f compose.selfhost.yaml run --rm --no-deps app
@@ -25,9 +28,12 @@ compose up -d --wait app
 curl --fail --silent http://127.0.0.1:3000/demo > /dev/null
 curl --silent -D /tmp/s04a-panel-headers http://127.0.0.1:3000/panel > /dev/null
 rg -q '^HTTP/1.1 30[37]' /tmp/s04a-panel-headers
+rg -qi '^location: /giris' /tmp/s04a-panel-headers
 compose exec -T app node docker/health.mjs
+compose exec -T app node docker/acceptance.mjs write
 compose restart db
 compose up -d --wait db
 compose exec -T app node docker/health.mjs
+compose exec -T app node docker/acceptance.mjs read
 # Gate queries migration rows after restart; persisted history must still match all checksums.
 compose stop app db

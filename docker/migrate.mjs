@@ -19,4 +19,4 @@ try {
  try { for (const sql of readFileSync('docker/grants.sql','utf8').split(';').filter(s=>s.trim())) await db.$executeRawUnsafe(sql); }
  finally { await db.$disconnect(); }
  console.log('Migration, schema and runtime grants verified');
-} catch (error) { console.error(`Failed stage: ${stage}; code: ${/^P[0-9]{4}$/.test(error.code ?? '') ? error.code : 'unclassified'}`); console.error('SELFHOST_MIGRATION_FAILED: inspect target and schema using a trusted operator session'); process.exit(1); }
+} catch (error) { console.error(`Failed stage: ${stage}; code: ${/^(P[0-9]{4}|ENOENT|EACCES)$/.test(error.code ?? '') ? error.code : 'unclassified'}`); console.error('SELFHOST_MIGRATION_FAILED: inspect target and schema using a trusted operator session'); process.exit(1); }

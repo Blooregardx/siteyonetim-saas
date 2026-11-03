@@ -18,3 +18,5 @@ data
 dumps
 **/*.sql
 !prisma/migrations/**/*.sql
+
+!docker/grants.sql
