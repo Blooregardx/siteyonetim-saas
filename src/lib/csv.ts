@@ -5,3 +5,10 @@ export function csvLine(cells:{text:string}[]|({text:string}|{money:number})[]){
 export const EXPORT_BATCH_SIZE=1000;
 export const EXPORT_MAX_ROWS=50000;
 export const EXPORT_MAX_BYTES=128*1024*1024;
+
+export function exportByteSize(current:number,value:string){
+ if(!Number.isSafeInteger(current)||current<0)throw new Error('EXPORT_LIMIT');
+ const next=current+Buffer.byteLength(value);
+ if(next>EXPORT_MAX_BYTES)throw new Error('EXPORT_LIMIT');
+ return next;
+}

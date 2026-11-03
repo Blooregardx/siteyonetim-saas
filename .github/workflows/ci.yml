@@ -47,6 +47,10 @@ jobs:
       - run: npm run db:validate
       - run: npm run db:generate
       - run: npm run db:deploy
+      - run: npx prisma migrate diff --from-url "$DATABASE_URL" --to-schema-datamodel prisma/schema.prisma --exit-code
+      - run: python3 scripts/verify-source-readiness.py
+      - run: npm audit --audit-level=high
+      - run: npm audit --omit=dev
       - run: npm run test:integration
         env:
           TEST_DATABASE_URL: postgresql://siteyonetim:localdev@localhost:5432/siteyonetim_test
@@ -55,7 +59,14 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
         env:
+          F10_DIAGNOSTICS: '1'
           TEST_DATABASE_URL: postgresql://siteyonetim:localdev@localhost:5432/siteyonetim_test?schema=public
+
+      - run: npx tsx scripts/verify-dashboard-query-plan.ts
+        env:
+          TEST_DATABASE_URL: postgresql://siteyonetim:localdev@localhost:5432/siteyonetim_test?schema=public
+
+      - run: PYTHONDONTWRITEBYTECODE=1 python3 scripts/test_backup_stream.py
 
       - name: Synthetic backup and restore drill
         env:
@@ -64,5 +75,8 @@ jobs:
           OSS_TEST_RESTORE_CONTAINER: ${{ job.services.postgres_restore.id }}
         run: |
           npx tsx scripts/recovery-probe.ts create "$RUNNER_TEMP/recovery-fixture.json"
+          # pg_dump carries ACLs, not global roles; pre-create the synthetic role.
+          docker exec "$OSS_TEST_SOURCE_CONTAINER" psql -U siteyonetim -d siteyonetim_test -v ON_ERROR_STOP=1 -c 'CREATE ROLE s03f_restore_runtime NOLOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE; GRANT USAGE ON SCHEMA public TO s03f_restore_runtime; GRANT SELECT ON "Payment","PaymentReversal","FinancialEntry","FinancialEntryReversal" TO s03f_restore_runtime; GRANT SELECT (id) ON "AuditLog" TO s03f_restore_runtime; GRANT UPDATE (id) ON "Payment" TO s03f_restore_runtime;'
+          docker exec "$OSS_TEST_RESTORE_CONTAINER" psql -U siteyonetim -d siteyonetim_test -v ON_ERROR_STOP=1 -c 'CREATE ROLE s03f_restore_runtime NOLOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE;'
           python3 scripts/verify-backup-restore.py
           DATABASE_URL=postgresql://siteyonetim:localdev@127.0.0.1:5433/siteyonetim_test?schema=public TEST_DATABASE_URL=postgresql://siteyonetim:localdev@127.0.0.1:5433/siteyonetim_test?schema=public npx tsx scripts/recovery-probe.ts verify "$RUNNER_TEMP/recovery-fixture.json"

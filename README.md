@@ -8,7 +8,7 @@ Bakımcı: [Blooregardx](https://github.com/Blooregardx). Yazılım ücretsizdir
 
 ## Güncel durum
 
-**EARLY DEVELOPMENT / ALPHA — NOT PRODUCTION READY.** Main geçişi PR #9 ile tamamlandı. `v0.1.0-alpha.1` yalnız adaydır; henüz tag/release yayımlanmadı. [Sürüm notu taslağı](docs/RELEASE-NOTES-v0.1.0-alpha.1.md) ve [yayın kontrol listesi](docs/RELEASE-CHECKLIST.md). Kayıt/giriş, e-posta doğrulama, organizasyon ve rol yönetimi, apartman/blok/daire ve kişi ilişkileri, aidat, kısmi tahsilat ve tam tahsilat ters kaydı uygulanmıştır. Ters kayıt gerçek para iadesi değildir. [Güncel özellikler ve eksikler](docs/FEATURES.md).
+**EARLY DEVELOPMENT / ALPHA — NOT PRODUCTION READY.** Main geçişi PR #9 ile tamamlandı. `v0.1.0-alpha.1` kaynak kod temelli ön sürüm olarak yayımlandı. S03-A–E, PR #11–#15 ile main’e alındı; mevcut alpha.1 etiketine dahil değildir. `v0.1.0-alpha.2` yalnız hazırlık adayıdır; [S03-F kararı](docs/ALPHA2-READINESS.md) ayrı bakımcı onayı gerektirir. [Sürüm notu taslağı](docs/RELEASE-NOTES-v0.1.0-alpha.1.md) ve [yayın kontrol listesi](docs/RELEASE-CHECKLIST.md). Kayıt/giriş, e-posta doğrulama, organizasyon ve rol yönetimi, apartman/blok/daire ve kişi ilişkileri, aidat, kısmi tahsilat ve tam tahsilat ters kaydı uygulanmıştır. Ters kayıt gerçek para iadesi değildir. [Güncel özellikler ve eksikler](docs/FEATURES.md).
 
 `/panel` PostgreSQL ve gerçek oturum ister. `/demo` ve `/demo?view=company` açıkça işaretli, veritabanından bağımsız örneklerdir. Otomatik demo hesap/seed yoktur. Gerçek kişi verilerini issue, test veya demo içine eklemeyin.
 

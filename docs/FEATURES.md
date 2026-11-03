@@ -1,6 +1,17 @@
 # Güncel özellik durumu
 
-Bu belge S03-E geliştirme dalının kapsamını anlatır; S03-E henüz main’e birleşmiş sayılmaz. S03-D PR #14 ile main’e alındı. S03-C PR #13 ile main’e alındı. S03-B PR #12 ile main’e alındı. S03-A PR #11 ile main’e alındı. PR #9 main geçişini tamamladı; bu üretim hazırlığı anlamına gelmez. Önceki raporlar tarihsel kayıttır.
+## Güncel karar — READY FOR MAINTAINER REVIEW
+
+Korunan `e9ed54a786ba3d33e382b6b1208241464b9c5653` commit'i normal fast-forward push ile aynı dala gönderildi; author/committer Blooregardx ve onaylı noreply adresi, eski SHA'lar değişmedi. [Push CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41564379171) ve [PR CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41564385740) tam başarılı: 25/25 birim, 29/29 entegrasyon, 14/14 E2E, build, Prisma generate/validate, temiz 11 migration/schema diff, iki query-plan modu (yalnız Charge kapsamı, 25 ödeme döngüsü), Python 3/3 ve 26 tablo/258.298 satır sentetik restore/ACL/runtime probu. 10.000 daire mobil ilk/ikinci panel push'ta 420/920 ms, PR'da 395/406 ms; üretim SLA'sı değildir.
+
+F-10 için BLOCKED engeli bu DEVELOPMENT kontrol noktasıyla kaldırıldı. Yeni dokümantasyon HEAD'inin hem push hem PR CI'ı da başarılı olmadan bu karar merge/yayımlama için kullanılamaz; son sonuçlar PR açıklamasında doğrulanır. PR #20 **taslak ve açık** kalır. Alpha.2 tag/release veya staging/production deploy yapılmadı; kullanıcı kararı gerekir. Önceki BLOCKED/READY kayıtları aşağıda tarihsel kanıttır. [Ayrıntılı kanıt](F10-INVESTIGATION.md).
+
+## Tarihsel yeniden açılış — 91dbba7 / BLOCKED
+
+91dbba7 push CI 13/14 E2E ile başarısız oldu; önceki READY kontrol noktası yeniden açıldı. Charge-only kapsam ve sayfa sonrası metadata join düzeltmesi yerelde 25/29/14 ve üç bağımsız 4/4 kabul koşusunu geçti. Yeni commit’in iki CI sonucu beklenir. Aşağıdaki önceki kapanış/READY ifadeleri tarihsel kontrol noktasıdır. [Başarısızlık ve yeni kanıtlar](F10-INVESTIGATION.md). PR taslak kalır; yayın/merge yoktur.
+
+
+Bu belge main’e alınmış S03-A–E kapsamını anlatır. S03-E PR #15 ile `afd7ea7bcfe693f06daeea9d48b38b8e1fe27fcc` commit’inde birleşti. S03-F yeni ürün özelliği eklemez; [güvenlik/regresyon kanıtları](S03F-SECURITY-REGRESSION.md) ve [alpha.2 hazırlığı](ALPHA2-READINESS.md) ayrı belgelenir. S03-D PR #14 ile main’e alındı. S03-C PR #13 ile main’e alındı. S03-B PR #12 ile main’e alındı. S03-A PR #11 ile main’e alındı. PR #9 main geçişini tamamladı; bu üretim hazırlığı anlamına gelmez. Önceki raporlar tarihsel kayıttır.
 
 | Alan | Uygulanmış geliştirme kapsamı | Sınır / eksik |
 |---|---|---|
@@ -54,3 +65,7 @@ Organizasyonun tüm apartman/daire sayısı ve aidat tahakkuk, brüt/ters/net ta
 Kayıt ekranında blok/daire/kişi arama ve sayfaları, seçili dairenin ilişki geçmişi vardır; bütün organizasyon ilişkileri bir defada yüklenmez. Toplu aidat seçimleri form açıkken sayfalar arasında korunur; en fazla 5.000, küçük apartmanda varsayılan tüm seçim, büyük apartmanda açık boş seçim. Sunucu önizleme/hash/idempotency/atomiklik kuralları değişmez.
 
 Yeni read modelleri kısa tutarlı transaction kullanır; ayrı sayfalar arasında snapshot garantisi yoktur. OFFSET derinliği ölçülür; eski sınırsız yardımcılar geriye uyumluluk için korunur fakat canlı ekranlarda kullanılmaz. [Kullanım, ölçümler ve açık sınırlar](SCALABLE-DASHBOARD.md).
+
+## F-10 — Sınırlı aidat sayfası hesabı
+
+Varsayılan filtresiz aidat listesinde tam kapsam sayılır; ödeme/ters kayıt toplamları sayfanın 25 adayı için hesaplanır. Bakiye/durum filtresinde doğru filtre ve toplam için bütün kapsam hesabı korunur; organizasyonun tam özeti değişmez. 10.000 daire/60.000 aidat, üç bağımsız mobil kabul koşusu ve ace4983’in iki tam CI akışı başarılı. [Ölçüm ve sınırlar](F10-INVESTIGATION.md). Bu production kapasite/SLA veya yayımlama onayı değildir.

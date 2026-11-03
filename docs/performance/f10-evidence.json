@@ -1,0 +1,459 @@
+{
+  "baseline": "e02576f4616fcc216f7ff3aa77e4f0321ce8815a",
+  "diagnosticCommit": "0745c6271ad3ccc894488a2b08c11ea80cc0daa5",
+  "environment": {
+    "scope": "synthetic isolated PostgreSQL 17 siteyonetim_test; mobile 390x844",
+    "method": "Each acceptance invocation starts a new Next/Playwright worker/browser. Scales ascend 100/1000/10000. Database fixtures and database/OS caches are reused. Not cold-cache or production load."
+  },
+  "blockedQueryMD5": "e9cfa5bd26b8a270b8a33865592d722b",
+  "failedCI": [
+    {
+      "run": 41525819051,
+      "e2e": "13/14",
+      "headersMs": 10,
+      "dispatchMs": 2,
+      "panelEntryMs": 5,
+      "chargesStartMs": 243,
+      "queryObservedAgeMsAtLeast": 4755.66,
+      "lockWaitSamples": 0,
+      "renderStarted": false,
+      "bodyCompleted": false,
+      "rows25Visible": false
+    },
+    {
+      "run": 41525826543,
+      "e2e": "13/14",
+      "headersMs": 8,
+      "dispatchMs": 1,
+      "panelEntryMs": 3,
+      "chargesStartMs": 134,
+      "queryObservedAgeMsAtLeast": 4834.439,
+      "lockWaitSamples": 0,
+      "renderStarted": false,
+      "bodyCompleted": false,
+      "rows25Visible": false
+    }
+  ],
+  "beforePlans": {
+    "force_custom_plan": {
+      "executionMs": 1598.39,
+      "paymentAggregateLoops": 60000,
+      "jitMs": 616.255
+    },
+    "force_generic_plan": {
+      "executionMs": 1007.475,
+      "paymentAggregateLoops": 60000,
+      "jitMs": 40.197
+    }
+  },
+  "afterPlans": [
+    {
+      "mode": "force_custom_plan",
+      "total": 60000,
+      "pageRows": 25,
+      "paymentAggregateLoops": [
+        25
+      ],
+      "executionMs": 115.368
+    },
+    {
+      "mode": "force_generic_plan",
+      "total": 60000,
+      "pageRows": 25,
+      "paymentAggregateLoops": [
+        25
+      ],
+      "executionMs": 269.127
+    }
+  ],
+  "acceptance": [
+    {
+      "independentRun": 1,
+      "result": "4/4 passed",
+      "metrics": [
+        {
+          "units": 100,
+          "firstPanelMs": 744.136796,
+          "secondPanelMs": 545.0340369999999,
+          "clientSearchMs": 198.93130999999994,
+          "responseHeadersMs": 59.577631999999994,
+          "responseStatus": 200,
+          "urlCommitted": true,
+          "rows": 25,
+          "documentReadyState": "complete",
+          "clientSearchWorks": true,
+          "differentRecords": true,
+          "summaryUnchanged": true,
+          "prefetchRequests": 0
+        },
+        {
+          "units": 1000,
+          "firstPanelMs": 456.79630299999917,
+          "secondPanelMs": 525.285734,
+          "clientSearchMs": 96.5471950000001,
+          "responseHeadersMs": 76.48360899999989,
+          "responseStatus": 200,
+          "urlCommitted": true,
+          "rows": 25,
+          "documentReadyState": "complete",
+          "clientSearchWorks": true,
+          "differentRecords": true,
+          "summaryUnchanged": true,
+          "prefetchRequests": 0
+        },
+        {
+          "units": 10000,
+          "firstPanelMs": 466.15155400000003,
+          "secondPanelMs": 513.803199,
+          "clientSearchMs": 85.03321700000015,
+          "responseHeadersMs": 42.75409600000057,
+          "responseStatus": 200,
+          "urlCommitted": true,
+          "rows": 25,
+          "documentReadyState": "complete",
+          "clientSearchWorks": true,
+          "differentRecords": true,
+          "summaryUnchanged": true,
+          "prefetchRequests": 0
+        }
+      ]
+    },
+    {
+      "independentRun": 2,
+      "result": "4/4 passed",
+      "metrics": [
+        {
+          "units": 100,
+          "firstPanelMs": 674.550935,
+          "secondPanelMs": 516.2626260000002,
+          "clientSearchMs": 175.05957799999987,
+          "responseHeadersMs": 60.20757500000013,
+          "responseStatus": 200,
+          "urlCommitted": true,
+          "rows": 25,
+          "documentReadyState": "complete",
+          "clientSearchWorks": true,
+          "differentRecords": true,
+          "summaryUnchanged": true,
+          "prefetchRequests": 0
+        },
+        {
+          "units": 1000,
+          "firstPanelMs": 575.2915709999997,
+          "secondPanelMs": 477.2032529999997,
+          "clientSearchMs": 90.45098099999996,
+          "responseHeadersMs": 44.994786000000204,
+          "responseStatus": 200,
+          "urlCommitted": true,
+          "rows": 25,
+          "documentReadyState": "complete",
+          "clientSearchWorks": true,
+          "differentRecords": true,
+          "summaryUnchanged": true,
+          "prefetchRequests": 0
+        },
+        {
+          "units": 10000,
+          "firstPanelMs": 527.7016460000013,
+          "secondPanelMs": 715.2766620000002,
+          "clientSearchMs": 139.79286700000011,
+          "responseHeadersMs": 66.83368700000028,
+          "responseStatus": 200,
+          "urlCommitted": true,
+          "rows": 25,
+          "documentReadyState": "complete",
+          "clientSearchWorks": true,
+          "differentRecords": true,
+          "summaryUnchanged": true,
+          "prefetchRequests": 0
+        }
+      ]
+    },
+    {
+      "independentRun": 3,
+      "result": "4/4 passed",
+      "metrics": [
+        {
+          "units": 100,
+          "firstPanelMs": 685.5431879999999,
+          "secondPanelMs": 532.4200449999998,
+          "clientSearchMs": 118.181736,
+          "responseHeadersMs": 84.827225,
+          "responseStatus": 200,
+          "urlCommitted": true,
+          "rows": 25,
+          "documentReadyState": "complete",
+          "clientSearchWorks": true,
+          "differentRecords": true,
+          "summaryUnchanged": true,
+          "prefetchRequests": 0
+        },
+        {
+          "units": 1000,
+          "firstPanelMs": 494.34595199999967,
+          "secondPanelMs": 493.7408490000007,
+          "clientSearchMs": 92.63477599999987,
+          "responseHeadersMs": 58.97190800000044,
+          "responseStatus": 200,
+          "urlCommitted": true,
+          "rows": 25,
+          "documentReadyState": "complete",
+          "clientSearchWorks": true,
+          "differentRecords": true,
+          "summaryUnchanged": true,
+          "prefetchRequests": 0
+        },
+        {
+          "units": 10000,
+          "firstPanelMs": 498.7962289999996,
+          "secondPanelMs": 528.3752239999994,
+          "clientSearchMs": 106.18578199999865,
+          "responseHeadersMs": 53.470486999998684,
+          "responseStatus": 200,
+          "urlCommitted": true,
+          "rows": 25,
+          "documentReadyState": "complete",
+          "clientSearchWorks": true,
+          "differentRecords": true,
+          "summaryUnchanged": true,
+          "prefetchRequests": 0
+        }
+      ]
+    }
+  ],
+  "firstPartialFixCheckpoint": {
+    "commit": "ace4983b96b949584d382c0bae468c2e29466bbb",
+    "note": "afterPlans and acceptance above describe this partial fix only; later push failure reopened F10"
+  },
+  "reopenedFailure": {
+    "commit": "91dbba74402e2d42309260b8b260b7e6a36ea20e",
+    "push": 41556179024,
+    "pr": 41556184945,
+    "pushE2E": "13/14",
+    "prE2E": "14/14",
+    "queryPrefixBytes": 1023,
+    "queryPrefixMD5": "30d2a1b70e471f38c7f3c68a90f7e637",
+    "queryObservedAgeMsAtLeast": 23792.945,
+    "transactionElapsedMs": 44178,
+    "error": "P2028"
+  },
+  "finalScopeFix": {
+    "plans": [
+      {
+        "mode": "force_custom_plan",
+        "total": 60000,
+        "pageRows": 25,
+        "paymentAggregateLoops": [
+          25
+        ],
+        "scopeRelations": [
+          "Charge"
+        ],
+        "executionMs": 62.971
+      },
+      {
+        "mode": "force_generic_plan",
+        "total": 60000,
+        "pageRows": 25,
+        "paymentAggregateLoops": [
+          25
+        ],
+        "scopeRelations": [
+          "Charge"
+        ],
+        "executionMs": 60.498
+      }
+    ],
+    "acceptance": [
+      {
+        "independentRun": 1,
+        "result": "4/4 passed",
+        "metrics": [
+          {
+            "units": 100,
+            "firstPanelMs": 824.3560699999998,
+            "secondPanelMs": 574.5186429999999,
+            "clientSearchMs": 166.18173499999966,
+            "responseHeadersMs": 73.71065299999964,
+            "responseStatus": 200,
+            "urlCommitted": true,
+            "rows": 25,
+            "documentReadyState": "complete",
+            "clientSearchWorks": true,
+            "differentRecords": true,
+            "summaryUnchanged": true,
+            "prefetchRequests": 0
+          },
+          {
+            "units": 1000,
+            "firstPanelMs": 568.6420489999991,
+            "secondPanelMs": 587.2842110000001,
+            "clientSearchMs": 147.16796900000008,
+            "responseHeadersMs": 75.4144780000006,
+            "responseStatus": 200,
+            "urlCommitted": true,
+            "rows": 25,
+            "documentReadyState": "complete",
+            "clientSearchWorks": true,
+            "differentRecords": true,
+            "summaryUnchanged": true,
+            "prefetchRequests": 0
+          },
+          {
+            "units": 10000,
+            "firstPanelMs": 570.5403639999986,
+            "secondPanelMs": 1230.8019069999991,
+            "clientSearchMs": 138.53698000000077,
+            "responseHeadersMs": 67.55657500000052,
+            "responseStatus": 200,
+            "urlCommitted": true,
+            "rows": 25,
+            "documentReadyState": "complete",
+            "clientSearchWorks": true,
+            "differentRecords": true,
+            "summaryUnchanged": true,
+            "prefetchRequests": 0
+          }
+        ]
+      },
+      {
+        "independentRun": 2,
+        "result": "4/4 passed",
+        "metrics": [
+          {
+            "units": 100,
+            "firstPanelMs": 731.089833,
+            "secondPanelMs": 607.10392,
+            "clientSearchMs": 156.5370600000001,
+            "responseHeadersMs": 94.61864699999978,
+            "responseStatus": 200,
+            "urlCommitted": true,
+            "rows": 25,
+            "documentReadyState": "complete",
+            "clientSearchWorks": true,
+            "differentRecords": true,
+            "summaryUnchanged": true,
+            "prefetchRequests": 0
+          },
+          {
+            "units": 1000,
+            "firstPanelMs": 537.6871890000002,
+            "secondPanelMs": 492.53202899999997,
+            "clientSearchMs": 110.48527099999956,
+            "responseHeadersMs": 52.565230000000156,
+            "responseStatus": 200,
+            "urlCommitted": true,
+            "rows": 25,
+            "documentReadyState": "complete",
+            "clientSearchWorks": true,
+            "differentRecords": true,
+            "summaryUnchanged": true,
+            "prefetchRequests": 0
+          },
+          {
+            "units": 10000,
+            "firstPanelMs": 519.711537000001,
+            "secondPanelMs": 503.2146190000003,
+            "clientSearchMs": 91.54658999999992,
+            "responseHeadersMs": 55.51589000000058,
+            "responseStatus": 200,
+            "urlCommitted": true,
+            "rows": 25,
+            "documentReadyState": "complete",
+            "clientSearchWorks": true,
+            "differentRecords": true,
+            "summaryUnchanged": true,
+            "prefetchRequests": 0
+          }
+        ]
+      },
+      {
+        "independentRun": 3,
+        "result": "4/4 passed",
+        "metrics": [
+          {
+            "units": 100,
+            "firstPanelMs": 845.667309,
+            "secondPanelMs": 554.139304,
+            "clientSearchMs": 133.677725,
+            "responseHeadersMs": 97.59275099999991,
+            "responseStatus": 200,
+            "urlCommitted": true,
+            "rows": 25,
+            "documentReadyState": "complete",
+            "clientSearchWorks": true,
+            "differentRecords": true,
+            "summaryUnchanged": true,
+            "prefetchRequests": 0
+          },
+          {
+            "units": 1000,
+            "firstPanelMs": 491.0575179999996,
+            "secondPanelMs": 539.4993140000006,
+            "clientSearchMs": 101.11481499999991,
+            "responseHeadersMs": 66.30372800000077,
+            "responseStatus": 200,
+            "urlCommitted": true,
+            "rows": 25,
+            "documentReadyState": "complete",
+            "clientSearchWorks": true,
+            "differentRecords": true,
+            "summaryUnchanged": true,
+            "prefetchRequests": 0
+          },
+          {
+            "units": 10000,
+            "firstPanelMs": 534.7994979999985,
+            "secondPanelMs": 560.3139549999996,
+            "clientSearchMs": 88.65134399999988,
+            "responseHeadersMs": 73.29744199999914,
+            "responseStatus": 200,
+            "urlCommitted": true,
+            "rows": 25,
+            "documentReadyState": "complete",
+            "clientSearchWorks": true,
+            "differentRecords": true,
+            "summaryUnchanged": true,
+            "prefetchRequests": 0
+          }
+        ]
+      }
+    ],
+    "restore": {
+      "tables": 26,
+      "rows": 478993,
+      "catalogEqual": true,
+      "runtimePrivilegesChecked": true,
+      "applicationProbe": true,
+      "migrations": 11,
+      "auditCount": 15
+    },
+    "ciCheckpoint": {
+      "commit": "e9ed54a786ba3d33e382b6b1208241464b9c5653",
+      "push": 41564379171,
+      "pr": 41564385740,
+      "bothFullWorkflows": "success",
+      "unit": 25,
+      "integration": 29,
+      "e2e": 14,
+      "streaming": 3,
+      "restoreTables": 26,
+      "restoreRows": 258298,
+      "migrations": 11,
+      "queryScopeRelations": [
+        "Charge"
+      ],
+      "paymentAggregateLoops": 25,
+      "mobile10000": {
+        "push": {
+          "firstPanelMs": 419.547,
+          "secondPanelMs": 920.124
+        },
+        "pr": {
+          "firstPanelMs": 395.017,
+          "secondPanelMs": 405.963
+        }
+      }
+    }
+  }
+}

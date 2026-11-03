@@ -120,6 +120,7 @@ test("8 — ayrı LOGIN runtime/migration rolleriyle gerçek izin kısıtları",
   await ddl.$executeRawUnsafe(`CREATE TABLE "role_probe_${suffix}" (id INTEGER)`);
   await ddl.$executeRawUnsafe(`DROP TABLE "role_probe_${suffix}"`);
   await assert.rejects(app.$executeRawUnsafe(`CREATE TABLE "runtime_probe_${suffix}" (id INTEGER)`));
+  await assert.rejects(app.charge.update({where:{id:f.charge.id},data:{id:f.charge.id}}),/append only/);
   const api=management(app,async()=>({userId:f.user.id}));
   const payment=await api.collect(f.site.id,f.charge.id,1000,crypto.randomUUID());
   const category=await api.createCategory(f.site.id,{type:"EXPENSE",name:"Runtime gideri"});

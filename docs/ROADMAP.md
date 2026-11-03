@@ -1,8 +1,19 @@
 # Güncel yol haritası
 
+## Güncel karar — READY FOR MAINTAINER REVIEW
+
+Korunan `e9ed54a786ba3d33e382b6b1208241464b9c5653` commit'i normal fast-forward push ile aynı dala gönderildi; author/committer Blooregardx ve onaylı noreply adresi, eski SHA'lar değişmedi. [Push CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41564379171) ve [PR CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41564385740) tam başarılı: 25/25 birim, 29/29 entegrasyon, 14/14 E2E, build, Prisma generate/validate, temiz 11 migration/schema diff, iki query-plan modu (yalnız Charge kapsamı, 25 ödeme döngüsü), Python 3/3 ve 26 tablo/258.298 satır sentetik restore/ACL/runtime probu. 10.000 daire mobil ilk/ikinci panel push'ta 420/920 ms, PR'da 395/406 ms; üretim SLA'sı değildir.
+
+F-10 için BLOCKED engeli bu DEVELOPMENT kontrol noktasıyla kaldırıldı. Yeni dokümantasyon HEAD'inin hem push hem PR CI'ı da başarılı olmadan bu karar merge/yayımlama için kullanılamaz; son sonuçlar PR açıklamasında doğrulanır. PR #20 **taslak ve açık** kalır. Alpha.2 tag/release veya staging/production deploy yapılmadı; kullanıcı kararı gerekir. Önceki BLOCKED/READY kayıtları aşağıda tarihsel kanıttır. [Ayrıntılı kanıt](F10-INVESTIGATION.md).
+
+## Tarihsel yeniden açılış — 91dbba7 / BLOCKED
+
+91dbba7 push CI 13/14 E2E ile başarısız oldu; önceki READY kontrol noktası yeniden açıldı. Charge-only kapsam ve sayfa sonrası metadata join düzeltmesi yerelde 25/29/14 ve üç bağımsız 4/4 kabul koşusunu geçti. Yeni commit’in iki CI sonucu beklenir. Aşağıdaki önceki kapanış/READY ifadeleri tarihsel kontrol noktasıdır. [Başarısızlık ve yeni kanıtlar](F10-INVESTIGATION.md). PR taslak kalır; yayın/merge yoktur.
+
+
 Ücretsiz, AGPL-3.0-only, PUBLIC ve topluluk katkılı kendi sunucusunda barındırma hedefi korunur. Ticari abonelik/ücretli lisans modeli yoktur. Next.js, strict TypeScript, PostgreSQL 17 ve Prisma 6 değişmez. Üretime hazır değildir.
 
-## Güncel durum — 30 Ekim 2026
+## Güncel durum — S03-F / 2 Kasım 2026
 
 - [PR #10 (OSS-04)](https://github.com/Blooregardx/siteyonetim-saas/pull/10) main'e birleştirildi.
 - [v0.1.0-alpha.1](https://github.com/Blooregardx/siteyonetim-saas/releases/tag/v0.1.0-alpha.1) GitHub Pre-release olarak yayımlandı; üretime hazır sürüm değildir.
@@ -11,9 +22,11 @@
 - S03-B, [PR #12](https://github.com/Blooregardx/siteyonetim-saas/pull/12) ile main’e birleşti (`6798df1518e15212dd0da2bcfc6cf6f5e183b890`); Europe/Istanbul vade günü düzeltmesi dahildir.
 - S03-C, [PR #13](https://github.com/Blooregardx/siteyonetim-saas/pull/13) ile main’e birleşti (`f8b2ff1b6857c8a1e22dae3a04704e2c8bed15b0`).
 - S03-D, [PR #14](https://github.com/Blooregardx/siteyonetim-saas/pull/14) ile main’e birleşti (`33169af14ea0a2fd898838839cc8eb7772a31e09`): güvenli CSV, aylık karşılaştırma ve sentetik rapor ölçümleri.
-- S03-E geliştirme dalı: tam organizasyon özeti ve sınırlı/sayfalı panel, kayıt ve aidat detayları. [Mimari, kapasite ve sınırlar](SCALABLE-DASHBOARD.md); henüz main’e birleşmiş sayılmaz.
+- S03-E [PR #15](https://github.com/Blooregardx/siteyonetim-saas/pull/15) ile main’e birleşti (`afd7ea7bcfe693f06daeea9d48b38b8e1fe27fcc`): tam organizasyon özeti ve sınırlı/sayfalı panel, kayıt ve aidat detayları. [Mimari, kapasite ve sınırlar](SCALABLE-DASHBOARD.md).
 
-Güncel sonraki adım S03-E değişikliklerinin ve büyük portföy kanıtlarının incelenmesidir. Bağımsız kurulum geri bildirimi, üretim güvenliği/işletim doğrulamaları ve kapasite ölçümü açık kalır. Yeni başvuru gönderimi veya yeni release oluşturma bu belge düzeltmesinin kapsamında değildir.
+F-10, sayfalama öncesi gereksiz tüm-kapsam ödeme toplamı işine ayrılıp sınırlı aday sorgusuyla düzeltildi; ace4983 push ve PR CI başarılı. Alpha.2 kaynak kod hazırlığı [READY FOR MAINTAINER REVIEW](ALPHA2-READINESS.md); son HEAD’in iki CI sonucu ve bakımcı incelemesi hâlâ kapıdır. [Kök neden/kanıt](F10-INVESTIGATION.md). PR #20 taslak kalır; yeni release/tag yoktur.
+
+Güncel sonraki adım [S03-F güvenlik/regresyon kanıtı](S03F-SECURITY-REGRESSION.md) ve [alpha.2 hazırlık kararının](ALPHA2-READINESS.md) bakımcı incelemesidir. Yeni tag/release için ayrı kullanıcı onayı gerekir. Bağımsız kurulum geri bildirimi, üretim güvenliği/işletim doğrulamaları ve kapasite ölçümü açık kalır. Yeni başvuru gönderimi veya yeni release oluşturma bu belge düzeltmesinin kapsamında değildir.
 
 ## Tarihsel OSS-04 hazırlık kaydı
 

@@ -39,3 +39,23 @@ test('paged people/relations and bulk selection boundaries preserve original ide
  const small=await f.api.createSite(f.org.id,'Small'),b=await f.api.createBlock(small.id,'B'),u=await f.api.createUnit(small.id,b.id,'1');assert.deepEqual((await f.api.bulkSelection(small.id)).ids,[u.id]);await assert.rejects(f.api.selectedUnitsPage(f.site.id,[u.id]),/FORBIDDEN/);await assert.rejects(f.api.siteRelationsPage(f.site.id,u.id),/FORBIDDEN/);
  for(let i=0;i<26;i++){const p=await f.api.createPerson(f.site.id,'Aynı ad');await f.api.linkPerson(f.site.id,ids[0],p.id,'OWNER','2026-01-01');}assert.equal((await f.api.personsPage(f.site.id,{q:'Aynı ad'})).total,26);assert.equal((await f.api.personsPage(f.site.id,{page:2})).rows.length,1);assert.equal((await f.api.siteRelationsPage(f.site.id,ids[0])).rows.length,25);assert.equal((await f.api.siteRelationsPage(f.site.id,ids[0],2)).rows.length,1);const legacy=await db.site.create({data:{name:'Eski organizasyonsuz'}});await db.membership.create({data:{siteId:legacy.id,userId:f.user.id,role:'MANAGER'}});assert.equal((await f.api.siteOverview(legacy.id)).organizationId,null);assert.equal((await f.api.personsPage(legacy.id)).total,0);assert.equal((await f.api.portfolioSummary(f.org.id)).siteCount,3);
 });
+test('F10 static page total and balance-filter pagination agree across paid/partial/reversed/unpaid rows',async()=>{
+ const f=await fixture();const prefix=crypto.randomUUID();
+ await db.unit.createMany({data:Array.from({length:60},(_,i)=>({id:prefix+'u'+String(i).padStart(3,'0'),siteId:f.site.id,blockId:f.block.id,number:String(i)}))});
+ const units=await db.unit.findMany({where:{siteId:f.site.id},orderBy:{id:'asc'}});
+ await db.charge.createMany({data:units.map((u,i)=>({id:prefix+'c'+String(i).padStart(3,'0'),siteId:f.site.id,unitId:u.id,period:'2026-10',amountKurus:10000,dueDate:new Date('2026-10-31')}))});
+ const charges=await db.charge.findMany({where:{siteId:f.site.id},orderBy:{id:'asc'}});
+ for(let i=0;i<5;i++)await f.api.collect(f.site.id,charges[i].id,10000,crypto.randomUUID());
+ for(let i=5;i<10;i++)await f.api.collect(f.site.id,charges[i].id,2500,crypto.randomUUID());
+ const p=await f.api.collect(f.site.id,charges[10].id,4000,crypto.randomUUID());await f.api.reversePayment(f.site.id,p.id,'ENTRY_ERROR',crypto.randomUUID());
+ const before=await hash(f.site.id),summary=await f.api.portfolioSummary(f.org.id);
+ for(const status of ['ALL','PAID','PARTIAL','UNPAID'] as const)for(const debt of ['','true'] as const){
+  const expected=charges.filter((_,i)=>(status==='ALL'||(status==='PAID'&&i<5)||(status==='PARTIAL'&&i>=5&&i<10)||(status==='UNPAID'&&i>=10))&&(!debt||i>=5)).map(c=>c.id);
+  const found:string[]=[];for(let page=1;page<=Math.ceil(expected.length/25)+1;page++){const result=await f.api.siteChargesPage(f.site.id,{status,debt,page});assert.equal(result.total,expected.length);assert.ok(result.rows.length<=25);found.push(...result.rows.map(c=>c.id));}
+  assert.deepEqual(found,expected);assert.equal(new Set(found).size,expected.length);
+ }
+ assert.equal((await f.api.siteChargesPage(f.site.id,{period:'2099-01'})).total,0);
+ assert.equal((await f.api.siteChargesPage(f.site.id,{unit:units[30].id})).total,1);
+ assert.equal((await f.api.siteChargesPage(f.site.id,{block:f.block.id,page:2})).rows.length,25);
+ assert.deepEqual(await f.api.portfolioSummary(f.org.id),summary);assert.equal(await hash(f.site.id),before);
+});

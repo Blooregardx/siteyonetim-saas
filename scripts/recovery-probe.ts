@@ -1,6 +1,6 @@
 /** Isolated synthetic recovery drill only; never a production seed or restore tool. */
 import assert from "node:assert/strict";
-import { readFile, writeFile } from "node:fs/promises";
+import { readdir, readFile, writeFile } from "node:fs/promises";
 import { PrismaClient } from "@prisma/client";
 import { management } from "../src/lib/management";
 
@@ -83,12 +83,13 @@ async function main() {
   await assert.rejects(apiFor(f.outsiderId).dashboard(f.siteId), /FORBIDDEN/);
   await assert.rejects(apiFor(f.outsiderId).reversePayment(f.siteId, f.paymentId, "ENTRY_ERROR", crypto.randomUUID()), /FORBIDDEN/);
   await assert.rejects(apiFor(f.userId).reversePayment(f.siteId, f.paymentId, "ENTRY_ERROR", crypto.randomUUID()), /ALREADY_REVERSED/);
+  await assert.rejects(db.charge.update({where:{id:f.chargeId},data:{amountKurus:10000}}), /append only/);
   await assert.rejects(db.payment.update({ where: { id: f.paymentId }, data: { amountKurus: 4000 } }), /append only/);
   await assert.rejects(db.paymentReversal.update({ where: { id: f.reversalId }, data: { amountKurus: 4000 } }), /append only/);
   await assert.rejects(db.auditLog.update({ where: { id: audit[0].id }, data: { action: audit[0].action } }), /append only/);
   const applied = await db.$queryRaw<{ count: bigint }[]>`SELECT count(*) FROM "_prisma_migrations" WHERE finished_at IS NOT NULL`;
   assert.equal(Number(applied[0].count), f.migrations);
-  assert.equal(f.migrations, 10);
+  assert.equal(f.migrations, (await readdir("prisma/migrations", { withFileTypes: true })).filter(entry => entry.isDirectory()).length);
   console.log(JSON.stringify({ mode, verified: true, grossKurus: 6500, reversedKurus: 4000, netKurus: 2500, remainingKurus: 7500, auditCount: f.auditCount, migrations: f.migrations, tenantIsolation: true, immutableHistory: true }));
 }
 main().finally(() => db.$disconnect()).catch(error => { console.error(error instanceof Error ? error.message : "Recovery probe failed"); process.exitCode = 1; });
