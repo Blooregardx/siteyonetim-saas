@@ -15,6 +15,16 @@ try {
  assert.equal(role.rolconnlimit, 10);
  assert.equal(role.rolsuper || role.rolcreatedb || role.rolcreaterole || role.migration_member, false);
  await assert.rejects(db.$executeRawUnsafe('CREATE TABLE public.s04a_forbidden_ddl (id integer)'), e => e.meta?.code === '42501');
+ if (process.argv[2] === 'write') {
+  const response = await fetch('http://127.0.0.1:3000/panel', {redirect:'manual', signal:AbortSignal.timeout(5000)});
+  if ([303,307].includes(response.status)) assert.equal(response.headers.get('location'), '/giris');
+  else {
+   assert.equal(response.status, 200);
+   // App Router loading boundary streams the redirect after the HTTP headers.
+   assert.ok((await response.text()).includes('<meta id="__next-page-redirect" http-equiv="refresh" content="1;url=/giris"/>'));
+  }
+  console.log('Anonymous panel redirects to /giris (HTTP or App Router streaming redirect)');
+ }
  if (process.argv[2] === 'before') {
   const [schema] = await db.$queryRaw`SELECT to_regclass('public._prisma_migrations')::text AS migrations`;
   assert.equal(schema.migrations, null);
