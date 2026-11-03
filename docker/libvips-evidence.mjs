@@ -23,7 +23,7 @@ try {
  copyFileSync(selected.path,target);
  const child = spawnSync(process.execPath,['-e',`const sharp=require('/app/node_modules/sharp'); sharp({create:{width:2,height:2,channels:3,background:'#123456'}}).resize(1,1).png().toBuffer().then(b=>{const maps=require('fs').readFileSync('/proc/self/maps','utf8'); console.log(JSON.stringify({imageProduced:b.length>0,alternativeLoaded:maps.includes(process.env.S05B_LIBRARY_DIR+'/libvips-cpp.so.')}))}).catch(()=>process.exit(1));`],{env:{...process.env,LD_LIBRARY_PATH:temp,S05B_LIBRARY_DIR:temp},encoding:'utf8',timeout:30000});
  const result=child.status===0?JSON.parse(child.stdout):{};
- relocation={...result,exitCode:child.status,originalSha256:selected.sha256,replacementSha256:sha(readFileSync(target)),decision:'PARTIAL',scope:'identical-byte alternate directory load, not a modified-library or static-sublibrary rebuild'};
+ relocation={...result,exitCode:child.status,originalSha256:selected.sha256,replacementSha256:sha(readFileSync(target)),decision:result.alternativeLoaded && result.imageProduced ? 'PARTIAL' : 'BLOCKED',scope:'identical-byte alternate directory load, not a modified-library or static-sublibrary rebuild'};
 } catch { relocation={decision:'BLOCKED',error:'ALTERNATE_LIBRARY_PROBE_FAILED'}; }
 finally { rmSync(temp,{recursive:true,force:true}); }
-console.log(JSON.stringify({node:process.version,sharpVersion:JSON.parse(readFileSync('/app/node_modules/sharp/package.json')).version,binaries,relocation,binarySourceDecision:'BLOCKED',relinkingDecision:'PARTIAL'}));
+console.log(JSON.stringify({node:process.version,sharpVersion:JSON.parse(readFileSync('/app/node_modules/sharp/package.json')).version,binaries,relocation,binarySourceDecision:'BLOCKED',relinkingDecision:relocation.alternativeLoaded && relocation.imageProduced ? 'PARTIAL' : 'BLOCKED'}));
