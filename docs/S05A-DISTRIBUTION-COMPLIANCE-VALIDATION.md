@@ -1,6 +1,6 @@
 # S05-A dağıtım uyumluluğu doğrulaması
 
-DEVELOPMENT: INCOMPLETE — son HEAD zorunlu CI sonuçları henüz doğrulanmadı.
+DEVELOPMENT: READY FOR MAINTAINER REVIEW — aşağıdaki doğrulanmış CI kontrol noktası için; bu belgeyi içeren son HEAD iki CI sonucu ayrıca PR kanıt kaydında doğrulanmalıdır.
 
 SOURCE RELEASE STATUS: ALPHA.2 PUBLISHED — UNCHANGED
 
@@ -66,3 +66,20 @@ f15ff5c push/PR selfhost kontrolü image-ID uyuşmazlığında başarısız oldu
 Alpha.2 runtime dosya kanıtında `/app/node_modules` altında hiçbir LICENSE/NOTICE/COPYING bulunmadı. Standalone tracing bildirim taşıyor varsayımı geçersiz. Yeni build adımı kurulu npm ağacındaki özgün bildirimleri yol ve SHA-256 envanteriyle `third-party-notices` dizinine kopyalar; runtime bu dizini taşır. Geliştirme araçlarının bildirimleri de dahildir; bu onların runtime binary'sinin varlığını göstermez. Kaynağında notice bulunmayan libvips paketine metin uydurulmaz. Symlink ve notice olmayan dosyalar kopyalanmaz. Test nested/scoped yol, özgün byte/hash, secret dışlama ve symlink davranışını doğrular. Bu teknik koruma tam notice/source uyumu iddiası değildir.
 
 Runtime SBOM lisans metadatası Debian ca-certificates/libffi8 içinde MPL ifadeleri de içerir; axe-core'un runtime'da bulunmaması bütün runtime'ın MPL içermediği anlamına gelmez. Paket alt dosyası/lisans alternatifi uygulanabilirliği ayrıca incelenmelidir.
+
+## Başarılı CI ve gerçek son imaj incelemesi
+
+`3a3debc57a13752b5ced039b5eb5af340a92c786` için [push CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41684138876) ve [PR CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41684147458) checks+selfhost başarılı. Her iki workflow artifact seti indirildi ve incelendi; yerel migration dosya inceleme engeli CI'da kapandı. Önceki başarısız/eksik aşamalar yukarıda tarihsel olarak korunur.
+
+| Son CI imajı | SBOM bileşeni | PASS | BLOCKED | UNKNOWN | N/A | Debian | npm metadata | Native aday | Notice dosyası |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Runtime | 310 | 0 | 241 | 69 | 0 | 91 | 22 | 6 | 606 |
+| Migrate | 866 | 0 | 777 | 89 | 0 | 91 | 415 | 30 | 1121 |
+
+Runtime artık 515 özgün npm notice dosyasını ayrı dizinde taşıyor; toplam 606 dosya Debian/Node bildirimlerini de içerir. Migrate toplamında hem asıl npm ağacı hem korunan kopyalar bulunur; 1121 benzersiz lisans/paket sayısı değildir. İki imajda Node v24.22.2. Push artifact config kimlikleri runtime `sha256:f2d57eb6c8d0d351e34f55336611ba9e1a4eff14a071fa478fffaec5715f10d7`, migrate `sha256:0a1684d27cf5025bba98b636db292f79efe674943de926089d6864bce7fa8382`; farklı build'lerin hash'leri eşit olmak zorunda değildir.
+
+Doğrulanan testler: ESLint/strict TS; 25 birim; 36 PostgreSQL entegrasyon; 19 Playwright; production build; Prisma generate/validate; 11 migration/schema diff; tenant/finans/audit ve query-plan; 12 preflight, 4 arşiv politikası, 6 lisans kapısı, 1 notice koruma, 3 streaming testi. Selfhost temiz kurulum/restart, şifreli backup hata matrisi, ayrı cluster encrypted recovery ve başarısız migration sonrası writers-stopped testleri de iki CI'da başarılıdır. CI'da binary kapısının BLOCKED sonucunu üretmesi beklenir; bu test başarısı binary onayı değildir.
+
+libvips kesin upstream commit'indeki [LICENSE](https://github.com/libvips/libvips/blob/24ad4d042940e6bf99a68871ba886ca8847c9c82/LICENSE) LGPL v2.1 metni olarak ayrıca doğrulandı; SHA-256 `dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551`. Dağıtılan platform paketi LGPL-3.0-or-later beyan eder; çekirdek upstream LICENSE bütün bundled alt bağımlılıkları kapsayan kaynak/notice kanıtı sayılamaz. Aynı sürüm kaynak/build flags/patches/notice/relinking paketi ve Node/Debian kaynak sunumu açık kalır.
+
+Son dokümantasyon commit'inin kesin SHA, kaynak arşivi ve push/PR CI bağlantıları [taslak PR #26](https://github.com/Blooregardx/siteyonetim-saas/pull/26) içinde tutulur. Bu belgeye yeni SHA yazmak yeni commit yaratacağından son HEAD kontrolü oradaki harici kanıt kaydındadır. İnsan kurulumu yapılmadı; binary dağıtımı BLOCKED kalır.
