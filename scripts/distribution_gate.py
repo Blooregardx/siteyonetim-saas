@@ -25,6 +25,9 @@ def evaluate(sbom, image_id, evidence):
         # All applicability choices require explicit review, including permissive licenses.
         required = ['upstream', 'binarySourceMatch', 'noticeEvidence', 'sourceProvision', 'relinking', 'reviewer']
         complete = exact and all(isinstance(proof.get(k), str) and proof[k].strip() for k in required)
+        if item.get('name') == 'sharp' or item.get('name', '').startswith('@img/sharp'):
+            # S05-B source/relinking manifest remains incomplete; text fields cannot clear native packages.
+            complete = False
         status = 'UNKNOWN' if not known else ('PASS' if complete and proof.get('decision') == 'PASS' else 'BLOCKED')
         rows.append({'id': key, 'name': item.get('name'), 'version': item.get('version'), 'status': status})
     return {'imageID': image_id, 'readiness': 'PASS' if all(r['status'] == 'PASS' for r in rows) else 'BLOCKED', 'counts': {s: sum(r['status'] == s for r in rows) for s in ['PASS', 'BLOCKED', 'UNKNOWN', 'NOT_APPLICABLE']}, 'components': rows}

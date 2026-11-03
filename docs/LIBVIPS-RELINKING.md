@@ -1,0 +1,11 @@
+# libvips değiştirme ve yeniden bağlama sınırı
+
+S05-B deneyinin kodu `docker/libvips-evidence.mjs`; mevcut selfhost runtime ve migrate imajlarında, ağsız, non-root, read-only ve yalnız geçici `/tmp` tmpfs ile çalışır. İmaj katmanları değişmez.
+
+Sharp addon libvips-cpp shared object'ini dinamik kullanır. Ancak pinned upstream `build/posix.sh`, libvips C çekirdeğini ve birçok alt bağımlılığı libvips-cpp içine statik bağlar; `--exclude-libs`, version-script ve `-Bsymbolic-functions` uygular. Bu nedenle bir shared object'in yüklenebilmesi, statik LGPL alt parçalarının yeniden bağlanabildiğinin kanıtı değildir.
+
+Prova: glibc libvips-cpp dosyasını farklı geçici dizine kopyala, SHA-256 eşitliğini kaydet; ayrı Node sürecinde LD_LIBRARY_PATH ile 2×2 sentetik görseli 1×1 PNG'ye dönüştür; `/proc/self/maps` içinde alternatif dosyanın gerçekten yüklendiğini denetle. Başarılıysa yalnız aynı byte'ların alternatif yerden yüklenmesi doğrulanmıştır. Bu bir değiştirilmiş kütüphane derlemesi değildir; RELINKING EVIDENCE en fazla PARTIAL olabilir. Başarısız çıktı VERIFIED sayılmaz.
+
+Tam kanıt için: ilgili LGPL sürümü/dosya kapsamını belirle; aynı libvips SONAME/ABI'ı sağlayan değiştirilmiş kaynağı bütün statik LGPL alt bağımlılıklarıyla derle; gerekli object/archive/link girdilerini, header'ları, araç sürümlerini, yamaları ve kurulum tarifini sağla; değiştirilmiş sürümle gerçek Sharp addon ve sentetik görsel testini çalıştır. Orijinal kaynak kod, değişiklik bildirimleri, lisans/telif metinleri ve uygulanabilir kurulum bilgisi ayrıca dağıtım paketine bağlanmalıdır. Upstream tarifindeki floating nightly Rust, paket yöneticileri ve base tag'leri kesin toolchain provenance sağlamaz.
+
+glibc ve musl binaryleri ayrı değerlendirilir. Debian imajındaki musl dosyasının bulunması, kullanılabilir olduğu anlamına gelmez. Musl binary silinmez veya glibc deneyinin başarısıyla doğrulanmış sayılmaz. Bit düzeyinde reproducible build, source/build provenance ve kullanıcının değiştirme mekanizması ayrı kararlardır.
