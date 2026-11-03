@@ -11,9 +11,11 @@ const db=new PrismaClient({datasourceUrl:url.toString(),log:[{level:'query',emit
 let captured:{query:string;params:unknown[]}|undefined;
 db.$on('query',event=>{if(event.query.startsWith('WITH scoped AS')&&event.query.includes('filtered AS MATERIALIZED'))captured={query:event.query,params:JSON.parse(event.params)};});
 function literal(value:unknown){if(typeof value==='string')return "'"+value.replaceAll("'","''")+"'";if(typeof value==='boolean')return value?'TRUE':'FALSE';if(typeof value==='number'&&Number.isSafeInteger(value))return String(value);throw Error('Unexpected diagnostic parameter type');}
-type Node={ 'Node Type':string;'Relation Name'?:string;'Actual Loops'?:number;Plans?:Node[] };
+type Node={ 'Node Type':string;'Relation Name'?:string;'Actual Loops'?:number;'Subplan Name'?:string;Plans?:Node[] };
 function readsPayments(node:Node):boolean{return node['Relation Name']==='Payment'||!!node.Plans?.some(readsPayments);}
 function balanceLoops(node:Node):number[]{return [...(node['Node Type']==='Aggregate'&&readsPayments(node)?[node['Actual Loops']??0]:[]),...(node.Plans??[]).flatMap(balanceLoops)];}
+function findScope(node:Node):Node|undefined{return node['Subplan Name']==='CTE scoped'?node:node.Plans?.map(findScope).find(Boolean);}
+function relations(node:Node):string[]{return [...(node['Relation Name']?[node['Relation Name']]:[]),...(node.Plans??[]).flatMap(relations)];}
 async function main(){
  const site=await db.site.findFirstOrThrow({where:{name:'S03E synthetic 10000'},include:{organization:{include:{memberships:true}}}});
  const api=management(db,async()=>({userId:site.organization!.memberships[0].userId}));const result=await api.siteChargesPage(site.id,{page:2});assert.equal(result.total,60000);assert.equal(result.rows.length,25);
@@ -25,8 +27,8 @@ async function main(){
   // Existing S03-E service target is 3 seconds, not a relaxed E2E timeout.
   await db.$executeRawUnsafe("SET statement_timeout='3s'");
   const plans=await db.$queryRawUnsafe<{'QUERY PLAN':{Plan:Node;'Execution Time':number}[]}[]>('EXPLAIN (ANALYZE,BUFFERS,FORMAT JSON) '+execute);
-  const plan=plans[0]['QUERY PLAN'][0];const loops=balanceLoops(plan.Plan);assert.ok(loops.length>0);assert.ok(loops.every(count=>count===25));
-  console.log(JSON.stringify({mode,total:result.total,pageRows:result.rows.length,paymentAggregateLoops:loops,executionMs:plan['Execution Time']}));
+  const plan=plans[0]['QUERY PLAN'][0];const scoped=findScope(plan.Plan);assert.ok(scoped);const scopeRelations=[...new Set(relations(scoped))];assert.deepEqual(scopeRelations,['Charge']);const loops=balanceLoops(plan.Plan);assert.ok(loops.length>0);assert.ok(loops.every(count=>count===25));
+  console.log(JSON.stringify({mode,total:result.total,pageRows:result.rows.length,paymentAggregateLoops:loops,scopeRelations,executionMs:plan['Execution Time']}));
  }
 }
 main().finally(()=>db.$disconnect()).catch(()=>{console.error('F10 bounded query-plan verification failed; inspect the isolated test privately');process.exitCode=1;});

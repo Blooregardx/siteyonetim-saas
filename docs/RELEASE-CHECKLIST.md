@@ -1,5 +1,10 @@
 # İlk topluluk geliştirme sürümü kontrol listesi
 
+## Güncel F-10 durumu — BLOCKED
+
+91dbba7 push CI 13/14 E2E ile başarısız oldu; önceki READY kontrol noktası yeniden açıldı. Charge-only kapsam ve sayfa sonrası metadata join düzeltmesi yerelde 25/29/14 ve üç bağımsız 4/4 kabul koşusunu geçti. Yeni commit’in iki CI sonucu beklenir. Aşağıdaki önceki kapanış/READY ifadeleri tarihsel kontrol noktasıdır. [Başarısızlık ve yeni kanıtlar](F10-INVESTIGATION.md). PR taslak kalır; yayın/merge yoktur.
+
+
 ## Güncel yayımlama durumu — S03-F / 2 Kasım 2026
 
 [PR #10](https://github.com/Blooregardx/siteyonetim-saas/pull/10) main'e birleştirildi ve [v0.1.0-alpha.1 GitHub Pre-release](https://github.com/Blooregardx/siteyonetim-saas/releases/tag/v0.1.0-alpha.1) yayımlandı. Sürüm **EARLY DEVELOPMENT / ALPHA — NOT PRODUCTION READY** durumundadır.

@@ -1,5 +1,10 @@
 # v0.1.0-alpha.2 — Draft release notes
 
+## Current F-10 status — BLOCKED
+
+Push CI on 91dbba7 failed (13/14 E2E), reopening the previous READY checkpoint. The Charge-only scope and post-pagination metadata joins passed local 25/29/14 regression and three independent 4/4 acceptance runs. Both CI results on the new commit remain required. Earlier READY statements below are historical checkpoints. [Investigation](F10-INVESTIGATION.md). PR remains draft; no release or merge.
+
+
 **DRAFT — NOT PUBLISHED. EARLY DEVELOPMENT / ALPHA — NOT PRODUCTION READY.** This preparation does not bump package/lock versions or modify v0.1.0-alpha.1. The final commit, tag and release date require a separate maintainer decision. [Readiness decision](ALPHA2-READINESS.md), [security/regression evidence in Turkish](S03F-SECURITY-REGRESSION.md).
 
 **Development readiness:** F-10 was addressed by bounding charge balance aggregation to the selected page; both fix CI workflows passed. Status: READY FOR MAINTAINER REVIEW. This remains a draft requiring final-HEAD checks and separate user authorization to publish.

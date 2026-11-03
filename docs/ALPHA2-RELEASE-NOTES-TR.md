@@ -1,5 +1,10 @@
 # v0.1.0-alpha.2 — Türkçe sürüm notu taslağı
 
+## Güncel F-10 durumu — BLOCKED
+
+91dbba7 push CI 13/14 E2E ile başarısız oldu; önceki READY kontrol noktası yeniden açıldı. Charge-only kapsam ve sayfa sonrası metadata join düzeltmesi yerelde 25/29/14 ve üç bağımsız 4/4 kabul koşusunu geçti. Yeni commit’in iki CI sonucu beklenir. Aşağıdaki önceki kapanış/READY ifadeleri tarihsel kontrol noktasıdır. [Başarısızlık ve yeni kanıtlar](F10-INVESTIGATION.md). PR taslak kalır; yayın/merge yoktur.
+
+
 **TASLAK — yayımlanmadı. EARLY DEVELOPMENT / ALPHA — NOT PRODUCTION READY.** Paket sürümü bu hazırlıkta yükseltilmez; mevcut v0.1.0-alpha.1 değişmez. Nihai commit/tag ve yayın tarihi ayrı bakımcı kararıdır. [Hazırlık kararı](ALPHA2-READINESS.md), [denetim](S03F-SECURITY-REGRESSION.md).
 
 **Geliştirme hazırlığı:** F-10 sınırlı aidat sorgusuyla giderildi; düzeltmenin iki CI akışı başarılı. Karar READY FOR MAINTAINER REVIEW. Bu metin taslaktır; son HEAD kontrolleri ve ayrı kullanıcı yayımlama onayı gerekir.

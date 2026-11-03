@@ -1,5 +1,10 @@
 # Güncel yol haritası
 
+## Güncel F-10 durumu — BLOCKED
+
+91dbba7 push CI 13/14 E2E ile başarısız oldu; önceki READY kontrol noktası yeniden açıldı. Charge-only kapsam ve sayfa sonrası metadata join düzeltmesi yerelde 25/29/14 ve üç bağımsız 4/4 kabul koşusunu geçti. Yeni commit’in iki CI sonucu beklenir. Aşağıdaki önceki kapanış/READY ifadeleri tarihsel kontrol noktasıdır. [Başarısızlık ve yeni kanıtlar](F10-INVESTIGATION.md). PR taslak kalır; yayın/merge yoktur.
+
+
 Ücretsiz, AGPL-3.0-only, PUBLIC ve topluluk katkılı kendi sunucusunda barındırma hedefi korunur. Ticari abonelik/ücretli lisans modeli yoktur. Next.js, strict TypeScript, PostgreSQL 17 ve Prisma 6 değişmez. Üretime hazır değildir.
 
 ## Güncel durum — S03-F / 2 Kasım 2026

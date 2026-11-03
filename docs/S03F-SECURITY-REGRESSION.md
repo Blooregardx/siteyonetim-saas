@@ -1,5 +1,10 @@
 # S03-F — Güvenlik denetimi ve tam regresyon
 
+## Güncel F-10 durumu — BLOCKED
+
+91dbba7 push CI 13/14 E2E ile başarısız oldu; önceki READY kontrol noktası yeniden açıldı. Charge-only kapsam ve sayfa sonrası metadata join düzeltmesi yerelde 25/29/14 ve üç bağımsız 4/4 kabul koşusunu geçti. Yeni commit’in iki CI sonucu beklenir. Aşağıdaki önceki kapanış/READY ifadeleri tarihsel kontrol noktasıdır. [Başarısızlık ve yeni kanıtlar](F10-INVESTIGATION.md). PR taslak kalır; yayın/merge yoktur.
+
+
 ## Güncel F-10 kapanışı — 3 Kasım 2026
 
 F-10, varsayılan aidat listesinde sayfalama öncesi bütün 60.000 kaydın ödeme bakiyesini hesaplayan sorguya ayrıldı. Sınırlı aday hesabıyla ödeme aggregate döngüsü 60.000→25 oldu; tam sayı/özet ve bakiye filtrelerinin doğru count/pagination semantiği korundu. [Teşhis, yeni sorgu, karşılaştırma ve sınırlar](F10-INVESTIGATION.md).

@@ -1,5 +1,16 @@
 # F-10 — Kök neden, düzeltme ve doğrulama
 
+## Güncel yeniden açılış — F-10 / BLOCKED
+
+`91dbba74402e2d42309260b8b260b7e6a36ea20e` için [push CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41556179024) 13/14 E2E ile başarısız, [PR CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41556184945) başarılı oldu. Önceki ace4983 kontrol noktası bu sonucun yerine geçmez. Önceki READY kararı bu başarısızlıkla yeniden BLOCKED oldu; aşağıdaki eski kapanış ifadeleri tarihsel kontrol noktasıdır.
+
+İlk düzeltme ödeme aggregate işini 25'e indirdi ancak Unit/Block metadata join'lerini 60.000 satırlık kapsamda bıraktı. Son push'ta bu sorgu ilk paneli engelledi: başlık 10 ms, aktif SQL en az 23.793 ms, ardından P2028 (5.000 ms transaction bütçesi; 44.178 ms geçen süre). PostgreSQL query alanı 1.023 baytta kesildiği için tam hash farklıydı; kesilmiş önek MD5 `30d2a1b70e471f38c7f3c68a90f7e637` aynı sorguyu doğruladı. Bu, SQL maliyetinin giderilmediğinin kanıtıdır; CI'daki tam plan veya CPU/JIT alt nedeni ölçülmüş değildir.
+
+Son düzeltme: varsayılan kapsam/count yalnız Charge okur; Unit/Block metadata join'leri sayfa seçimi sonrasına taşınır. Blok filtresi tenant/site ile sınırlandırılmış EXISTS kullanır; mevcut yetki ve yabancı blok/daire reddi korunur. Count eşdeğerliği mevcut tenant bileşik foreign key'lerine dayanır. Bakiye/durum filtresinin tüm-kapsam gereksinimi korunur. Plan kontrolü hem özel/genel planda yalnız Charge kapsamını ve 25 ödeme döngüsünü zorunlu kılar. Timeout/retry değişmedi.
+
+Yerelde üç bağımsız mobil kabul koşusu 4/4 + 4/4 + 4/4; tam regresyon 25/25 birim, 29/29 entegrasyon, 14/14 E2E ve build başarılıdır. Yeni commit'in hem push hem PR CI'ı tamamlanana kadar **BLOCKED**. PR #20 taslak/açık kalır; merge veya release yoktur.
+
+
 Başlangıç: PR #20, `e02576f4616fcc216f7ff3aa77e4f0321ce8815a`. S03-F güvenlik düzeltmeleri ve tarihsel başarısızlık kayıtları korunur. Düzeltme ace4983 için hem push hem PR CI başarılı; alpha.2 kaynak kod hazırlığı **READY FOR MAINTAINER REVIEW**. PR kullanıcı isteğiyle taslak kalır. Son HEAD’in iki CI kapısı korunur; merge/yayımlama onayı verilmez.
 
 ## Kanıtlanan neden
@@ -68,3 +79,17 @@ OFFSET’in eşzamanlı eklemelerde kayması, ayrı HTTP snapshot’ları, bakiy
 `ace4983b96b949584d382c0bae468c2e29466bbb`: [push CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41555386707) ve [PR CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41555393666) tam başarılı. İkisinde 25/25 birim, 29/29 entegrasyon, 14/14 E2E, her iki plan modunda 25 döngü, Python 3/3, 11 migration ve 26 tablo/258.298 satır restore/izin eşitliği doğrulandı. 10.000 daire ilk/ikinci panel gözlemleri push’ta 435/884 ms, PR’da 397/444 ms; karşılık gelen istemci araması 103/71 ms. Bunlar tek CI örnekleridir, üretim SLA’sı değildir.
 
 Bu kontrol noktası sonradan oluşan dokümantasyon commit’inin CI’ı yerine kullanılmaz. Son HEAD’in gerçek iki sonucu PR açıklamasında ve nihai raporda ayrıca kaydedilir. [Güncel hazırlık kararı](ALPHA2-READINESS.md).
+
+## Charge-only düzeltmesinin yeni yerel ölçümleri
+
+Bu tablo ace4983 ölçümlerinden ayrıdır. Aynı sentetik fixture ve cache yeniden kullanıldı; her bağımsız çağrı yeni Next/Playwright/browser sürecidir. 390×844 mobil, her sayfada ayrık 25 kayıt, aynı tam özet, detay/tahsilat/ADMIN onay açma-iptal, arama ve tenant kontrolleri üç çağrıda da geçti. Retry yoktur.
+
+| Daire | İlk panel (üç koşu) | İkinci sayfa (üç koşu) | İstemci araması |
+|---|---:|---:|---:|
+| 100 | 731–846 ms | 554–607 ms | 134–166 ms |
+| 1000 | 491–569 ms | 493–587 ms | 101–147 ms |
+| 10000 | 520–571 ms | 503–1231 ms | 89–139 ms |
+
+Yeni özel/genel EXPLAIN süreleri 63/60 ms; iki planda kapsam ilişkileri yalnız Charge, Payment aggregate döngüsü 25. Bu kontrollü yerel SQL örneği CI/production gecikmesinin üst sınırı değildir.
+
+Son Charge-only düzeltmesi sonrası sentetik restore: **26 tablo / 478,993 satır**; hash/katalog/ACL/runtime eşitliği, hedefte 11 migration/15 audit ve tenant/immutable probu başarılı. Önceki 371.530 satır farklı kontrol noktasına aittir.

@@ -220,5 +220,213 @@
         }
       ]
     }
-  ]
+  ],
+  "firstPartialFixCheckpoint": {
+    "commit": "ace4983b96b949584d382c0bae468c2e29466bbb",
+    "note": "afterPlans and acceptance above describe this partial fix only; later push failure reopened F10"
+  },
+  "reopenedFailure": {
+    "commit": "91dbba74402e2d42309260b8b260b7e6a36ea20e",
+    "push": 41556179024,
+    "pr": 41556184945,
+    "pushE2E": "13/14",
+    "prE2E": "14/14",
+    "queryPrefixBytes": 1023,
+    "queryPrefixMD5": "30d2a1b70e471f38c7f3c68a90f7e637",
+    "queryObservedAgeMsAtLeast": 23792.945,
+    "transactionElapsedMs": 44178,
+    "error": "P2028"
+  },
+  "finalScopeFix": {
+    "plans": [
+      {
+        "mode": "force_custom_plan",
+        "total": 60000,
+        "pageRows": 25,
+        "paymentAggregateLoops": [
+          25
+        ],
+        "scopeRelations": [
+          "Charge"
+        ],
+        "executionMs": 62.971
+      },
+      {
+        "mode": "force_generic_plan",
+        "total": 60000,
+        "pageRows": 25,
+        "paymentAggregateLoops": [
+          25
+        ],
+        "scopeRelations": [
+          "Charge"
+        ],
+        "executionMs": 60.498
+      }
+    ],
+    "acceptance": [
+      {
+        "independentRun": 1,
+        "result": "4/4 passed",
+        "metrics": [
+          {
+            "units": 100,
+            "firstPanelMs": 824.3560699999998,
+            "secondPanelMs": 574.5186429999999,
+            "clientSearchMs": 166.18173499999966,
+            "responseHeadersMs": 73.71065299999964,
+            "responseStatus": 200,
+            "urlCommitted": true,
+            "rows": 25,
+            "documentReadyState": "complete",
+            "clientSearchWorks": true,
+            "differentRecords": true,
+            "summaryUnchanged": true,
+            "prefetchRequests": 0
+          },
+          {
+            "units": 1000,
+            "firstPanelMs": 568.6420489999991,
+            "secondPanelMs": 587.2842110000001,
+            "clientSearchMs": 147.16796900000008,
+            "responseHeadersMs": 75.4144780000006,
+            "responseStatus": 200,
+            "urlCommitted": true,
+            "rows": 25,
+            "documentReadyState": "complete",
+            "clientSearchWorks": true,
+            "differentRecords": true,
+            "summaryUnchanged": true,
+            "prefetchRequests": 0
+          },
+          {
+            "units": 10000,
+            "firstPanelMs": 570.5403639999986,
+            "secondPanelMs": 1230.8019069999991,
+            "clientSearchMs": 138.53698000000077,
+            "responseHeadersMs": 67.55657500000052,
+            "responseStatus": 200,
+            "urlCommitted": true,
+            "rows": 25,
+            "documentReadyState": "complete",
+            "clientSearchWorks": true,
+            "differentRecords": true,
+            "summaryUnchanged": true,
+            "prefetchRequests": 0
+          }
+        ]
+      },
+      {
+        "independentRun": 2,
+        "result": "4/4 passed",
+        "metrics": [
+          {
+            "units": 100,
+            "firstPanelMs": 731.089833,
+            "secondPanelMs": 607.10392,
+            "clientSearchMs": 156.5370600000001,
+            "responseHeadersMs": 94.61864699999978,
+            "responseStatus": 200,
+            "urlCommitted": true,
+            "rows": 25,
+            "documentReadyState": "complete",
+            "clientSearchWorks": true,
+            "differentRecords": true,
+            "summaryUnchanged": true,
+            "prefetchRequests": 0
+          },
+          {
+            "units": 1000,
+            "firstPanelMs": 537.6871890000002,
+            "secondPanelMs": 492.53202899999997,
+            "clientSearchMs": 110.48527099999956,
+            "responseHeadersMs": 52.565230000000156,
+            "responseStatus": 200,
+            "urlCommitted": true,
+            "rows": 25,
+            "documentReadyState": "complete",
+            "clientSearchWorks": true,
+            "differentRecords": true,
+            "summaryUnchanged": true,
+            "prefetchRequests": 0
+          },
+          {
+            "units": 10000,
+            "firstPanelMs": 519.711537000001,
+            "secondPanelMs": 503.2146190000003,
+            "clientSearchMs": 91.54658999999992,
+            "responseHeadersMs": 55.51589000000058,
+            "responseStatus": 200,
+            "urlCommitted": true,
+            "rows": 25,
+            "documentReadyState": "complete",
+            "clientSearchWorks": true,
+            "differentRecords": true,
+            "summaryUnchanged": true,
+            "prefetchRequests": 0
+          }
+        ]
+      },
+      {
+        "independentRun": 3,
+        "result": "4/4 passed",
+        "metrics": [
+          {
+            "units": 100,
+            "firstPanelMs": 845.667309,
+            "secondPanelMs": 554.139304,
+            "clientSearchMs": 133.677725,
+            "responseHeadersMs": 97.59275099999991,
+            "responseStatus": 200,
+            "urlCommitted": true,
+            "rows": 25,
+            "documentReadyState": "complete",
+            "clientSearchWorks": true,
+            "differentRecords": true,
+            "summaryUnchanged": true,
+            "prefetchRequests": 0
+          },
+          {
+            "units": 1000,
+            "firstPanelMs": 491.0575179999996,
+            "secondPanelMs": 539.4993140000006,
+            "clientSearchMs": 101.11481499999991,
+            "responseHeadersMs": 66.30372800000077,
+            "responseStatus": 200,
+            "urlCommitted": true,
+            "rows": 25,
+            "documentReadyState": "complete",
+            "clientSearchWorks": true,
+            "differentRecords": true,
+            "summaryUnchanged": true,
+            "prefetchRequests": 0
+          },
+          {
+            "units": 10000,
+            "firstPanelMs": 534.7994979999985,
+            "secondPanelMs": 560.3139549999996,
+            "clientSearchMs": 88.65134399999988,
+            "responseHeadersMs": 73.29744199999914,
+            "responseStatus": 200,
+            "urlCommitted": true,
+            "rows": 25,
+            "documentReadyState": "complete",
+            "clientSearchWorks": true,
+            "differentRecords": true,
+            "summaryUnchanged": true,
+            "prefetchRequests": 0
+          }
+        ]
+      }
+    ],
+    "restore": {
+      "tables": 26,
+      "rows": 478993,
+      "catalogEqual": true,
+      "runtimePrivilegesChecked": true,
+      "applicationProbe": true,
+      "migrations": 11,
+      "auditCount": 15
+    }
+  }
 }

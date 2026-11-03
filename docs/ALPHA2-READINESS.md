@@ -1,5 +1,10 @@
 # v0.1.0-alpha.2 — Hazırlık kararı
 
+## Güncel F-10 durumu — BLOCKED
+
+91dbba7 push CI 13/14 E2E ile başarısız oldu; önceki READY kontrol noktası yeniden açıldı. Charge-only kapsam ve sayfa sonrası metadata join düzeltmesi yerelde 25/29/14 ve üç bağımsız 4/4 kabul koşusunu geçti. Yeni commit’in iki CI sonucu beklenir. Aşağıdaki önceki kapanış/READY ifadeleri tarihsel kontrol noktasıdır. [Başarısızlık ve yeni kanıtlar](F10-INVESTIGATION.md). PR taslak kalır; yayın/merge yoktur.
+
+
 **READY FOR MAINTAINER REVIEW** — F-10’un kanıtlanan aidat okuma darboğazı giderildi. Düzeltme `ace4983b96b949584d382c0bae468c2e29466bbb` için [push CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41555386707) ve [PR CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41555393666) bütün adımlarıyla başarılıdır. Bu yalnız kaynak kod temelli alpha’nın DEVELOPMENT bakımcı incelemesi kararıdır; yayın/merge yetkisi değildir.
 
 Kanıt: 25/25 birim, **29/29 entegrasyon**, 14/14 E2E; üç bağımsız kabul koşusu 4/4+4/4+4/4; her ölçekte 390×844, ayrık 25 kayıt/tam özet ve çalışan finans/arama kontrolleri. Plan, 60.000 toplam aidatta yalnız 25 ödeme aggregate döngüsünü iki plan türünde doğrular. Build/generate/validate, 11 migration/schema diff, streaming 3/3 başarılı. Yerel restore 26/371.530; iki başarılı CI restore’u 26/258.298 satır, hash/katalog/ACL/runtime izin eşitliğiyle başarılı. [F-10 kök neden ve ölçümler](F10-INVESTIGATION.md).
