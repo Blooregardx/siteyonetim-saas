@@ -10,3 +10,7 @@ coverage/
 work/
 /test-results/
 /playwright-report/
+
+/secrets/
+/backups/
+!.env.selfhost.example

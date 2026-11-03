@@ -1,0 +1,68 @@
+name: siteyonetim
+services:
+  db:
+    image: postgres:17-bookworm
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: ${POSTGRES_DB:?set POSTGRES_DB}
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+    secrets: [db_password, migrator_password, runtime_password]
+    volumes:
+      - selfhost_data:/var/lib/postgresql/data
+      - ./docker/init.sh:/docker-entrypoint-initdb.d/10-roles.sh:ro
+    networks: [database]
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U postgres -d "$${POSTGRES_DB}"']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+  migrate:
+    build:
+      context: .
+      target: migrate
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:?set POSTGRES_DB}
+    secrets: [migrator_password]
+    networks: [database]
+    depends_on:
+      db:
+        condition: service_healthy
+    profiles: [tools]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+  app:
+    build:
+      context: .
+      target: runtime
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:?set POSTGRES_DB}
+      APP_URL: ${APP_URL:?set HTTPS APP_URL}
+      MAIL_FROM: ${MAIL_FROM:-}
+    secrets: [runtime_password, smtp_url]
+    networks: [database, outbound]
+    ports: ['127.0.0.1:${APP_PORT:-3000}:3000']
+    depends_on:
+      db:
+        condition: service_healthy
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    read_only: true
+    tmpfs: [/tmp:size=160m,mode=1777]
+    init: true
+    restart: unless-stopped
+networks:
+  database:
+    internal: true
+  outbound:
+volumes:
+  selfhost_data:
+secrets:
+  db_password:
+    file: ./secrets/db_password
+  migrator_password:
+    file: ./secrets/migrator_password
+  runtime_password:
+    file: ./secrets/runtime_password
+  smtp_url:
+    file: ./secrets/smtp_url

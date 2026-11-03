@@ -1,5 +1,9 @@
 # Bütçe kararı ve ertelenmiş bulut operasyonları
 
+## S04-A güncel karar
+
+Supabase kullanılmayacak. Ücretsiz, PUBLIC, AGPL-3.0-only ve kendi sunucusunda kurulum önceliği korunur; ücretli servis zorunlu değildir. Sunucu/alan adı/e-posta maliyeti işletmeciye bağlıdır. Ayrı `compose.selfhost.yaml` ve [Docker kurulum rehberi](SELF-HOSTING-DOCKER.md) eklendi; `compose.yaml` geliştirme içindir. DEVELOPMENT doğrulaması üretim onayı değildir. S04-B web kurulum sihirbazı, S04-C yedek işletimi ayrı aşamalardır. Aşağıdaki eski durum raporları tarihsel bağlamıyla korunur. S04-A sonuçları S04A-VALIDATION belgesindedir.
+
 ## Üç bağımsız durum
 
 - DEVELOPMENT: GPT Codex Cloud + mevcut GitHub; kod/migration ve sentetik, izole PostgreSQL 17/SMTP/Chromium testleriyle doğrulanan geliştirme. Harici servis bütçesi gerektirmez.

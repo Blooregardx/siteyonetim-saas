@@ -1,5 +1,9 @@
 # Kendi sunucusunda kurulum ve işletim
 
+## S04-A güncel karar
+
+Supabase kullanılmayacak. Ücretsiz, PUBLIC, AGPL-3.0-only ve kendi sunucusunda kurulum önceliği korunur; ücretli servis zorunlu değildir. Sunucu/alan adı/e-posta maliyeti işletmeciye bağlıdır. Ayrı `compose.selfhost.yaml` ve [Docker kurulum rehberi](SELF-HOSTING-DOCKER.md) eklendi; `compose.yaml` geliştirme içindir. DEVELOPMENT doğrulaması üretim onayı değildir. S04-B web kurulum sihirbazı, S04-C yedek işletimi ayrı aşamalardır. Aşağıdaki eski durum raporları tarihsel bağlamıyla korunur. S04-A sonuçları S04A-VALIDATION belgesindedir.
+
 Hedef ücretsiz kendi sunucusunda barındırmadır. Lisans AGPL-3.0-only; [tam metin](../LICENSE) ve [yükümlülükler](LICENSING.md) geçerlidir. Erken geliştirme sürümü için teknik yol gösterir, canlı kullanım onayı değildir. Yazılım aboneliği planlanmaz; sunucu/e-posta/alan adı masrafları işletmeciye göre değişebilir. Bu görev herhangi bir servis kurmaz.
 
 ## Gereksinimler ve yapılandırma
@@ -12,7 +16,7 @@ Node 24, npm, PostgreSQL 17 ve Node sunucusuna HTTPS sağlayan ters proxy gereki
 - MAIL_FROM: kontrol ettiğiniz gönderici; SMTP teslimi ve SPF/DKIM/DMARC işletmeci tarafından doğrulanır.
 - TEST_DATABASE_URL: yalnız izole loopback `siteyonetim_test`; gerçek uygulama veritabanına verilmez.
 
-`.env.example` kopyalanabilir; `.env` public erişime açılmaz/commit edilmez. Compose yalnız localhost'a bağlı geliştirme DB'sidir; örnek parolayı canlı sistemde kullanmayın. Tam uygulama/HTTPS dağıtım Compose'u henüz sunulmuyor.
+`.env.example` kopyalanabilir; `.env` public erişime açılmaz/commit edilmez. Compose yalnız localhost'a bağlı geliştirme DB'sidir; örnek parolayı canlı sistemde kullanmayın. Ayrı uygulama Compose altyapısı yukarıdaki S04-A rehberindedir; HTTPS ters proxy işletmeci tarafından hazırlanır.
 
 ## Kurulum sırası
 
