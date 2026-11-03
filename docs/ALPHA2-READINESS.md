@@ -1,10 +1,26 @@
 # v0.1.0-alpha.2 — Hazırlık kararı
 
+## S04-D güncel durum — kaynak dağıtımı adayı
+
+GitHub denetiminde [PR #20](https://github.com/Blooregardx/siteyonetim-saas/pull/20) (S03-F), [#21](https://github.com/Blooregardx/siteyonetim-saas/pull/21) (S04-A), [#22](https://github.com/Blooregardx/siteyonetim-saas/pull/22) (S04-B) ve [#23](https://github.com/Blooregardx/siteyonetim-saas/pull/23) main'e **birleşmiş** durumdadır (3 Kasım 2026). Aşağıdaki önceki taslak/açık ifadeleri yalnız tarihsel kontrol noktalarıdır; güncel PR durumu değildir.
+
+Güncel giriş [adım adım kurulum](COMMUNITY-INSTALLATION.md); source archive/temiz otomatik prova [S04-D doğrulamasında](S04D-DISTRIBUTION-VALIDATION.md). Bağımsız üçüncü taraf insan kurulumu yapılmadı. Alpha.2 yalnız aday; yayımlanmış tek sürüm v0.1.0-alpha.1, package/lock 0.1.0-alpha.1 kalır. Sürüm/tag/registry/deploy oluşturulmaz. **SOURCE RELEASE READINESS: READY FOR SOURCE-ONLY MAINTAINER REVIEW** — kod kontrol noktası geçti; son HEAD CI ve ayrı yayımlama onayı kapısı korunur. **BINARY DISTRIBUTION READINESS: BLOCKED FOR BINARY DISTRIBUTION**; LGPL/MPL/temel imaj kaynak ve bildirim kanıtı eksik.
+
+## Alpha.2 için ayrı yayım kapısı
+
+- [ ] Bu PR'nin son HEAD push ve PR checks/selfhost sonuçları, gerçek codeload archive hash'i ve temiz clone raporu incelensin.
+- [ ] SOURCE RELEASE READINESS bakımcı tarafından onaylansın; bağımsız insan kurulumu yapılmış gibi yazılmasın.
+- [ ] Kesin release commit'i seçilsin. Package ve lock 0.1.0-alpha.2 değişikliği ayrı kararda birlikte yapılsın; şu anda 0.1.0-alpha.1 korunur.
+- [ ] AGPL kaynak sunumu ve üçüncü taraf koşulları sürümle eşleştirilsin. Binary/container kapısı BLOCKED; source-only kararı bunu kapatmaz.
+- [ ] Ayrı kullanıcı yayımlama onayı alınsın. Alpha.2 tag/release ve registry push bu görevin kapsamı değildir; alpha.1 aynı kalır.
+
+## Önceki geliştirme kayıtları — tarihsel bağlam
+
 ## Güncel karar — READY FOR MAINTAINER REVIEW
 
 Korunan `e9ed54a786ba3d33e382b6b1208241464b9c5653` commit'i normal fast-forward push ile aynı dala gönderildi; author/committer Blooregardx ve onaylı noreply adresi, eski SHA'lar değişmedi. [Push CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41564379171) ve [PR CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41564385740) tam başarılı: 25/25 birim, 29/29 entegrasyon, 14/14 E2E, build, Prisma generate/validate, temiz 11 migration/schema diff, iki query-plan modu (yalnız Charge kapsamı, 25 ödeme döngüsü), Python 3/3 ve 26 tablo/258.298 satır sentetik restore/ACL/runtime probu. 10.000 daire mobil ilk/ikinci panel push'ta 420/920 ms, PR'da 395/406 ms; üretim SLA'sı değildir.
 
-F-10 için BLOCKED engeli bu DEVELOPMENT kontrol noktasıyla kaldırıldı. Yeni dokümantasyon HEAD'inin hem push hem PR CI'ı da başarılı olmadan bu karar merge/yayımlama için kullanılamaz; son sonuçlar PR açıklamasında doğrulanır. PR #20 **taslak ve açık** kalır. Alpha.2 tag/release veya staging/production deploy yapılmadı; kullanıcı kararı gerekir. Önceki BLOCKED/READY kayıtları aşağıda tarihsel kanıttır. [Ayrıntılı kanıt](F10-INVESTIGATION.md).
+F-10 için BLOCKED engeli bu DEVELOPMENT kontrol noktasıyla kaldırıldı. Yeni dokümantasyon HEAD'inin hem push hem PR CI'ı da başarılı olmadan bu karar merge/yayımlama için kullanılamaz; son sonuçlar PR açıklamasında doğrulanır. Bu kontrol noktasında PR #20 taslak/açıktı; yukarıdaki S04-D denetiminde birleşmiş olduğu doğrulandı. Alpha.2 tag/release veya staging/production deploy yapılmadı; kullanıcı kararı gerekir. Önceki BLOCKED/READY kayıtları aşağıda tarihsel kanıttır. [Ayrıntılı kanıt](F10-INVESTIGATION.md).
 
 ## Tarihsel yeniden açılış — 91dbba7 / BLOCKED
 

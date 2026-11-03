@@ -1,42 +1,29 @@
 # v0.1.0-alpha.2 — Draft release notes
 
-## Current decision — READY FOR MAINTAINER REVIEW
+**DRAFT / NOT PUBLISHED — EARLY DEVELOPMENT, NOT PRODUCTION READY.** Alpha.1 remains unchanged. Package and lock versions remain 0.1.0-alpha.1; changing them to 0.1.0-alpha.2 is a proposal for a separate release decision. No tag, GitHub Release or registry image is created.
 
-The preserved commit `e9ed54a786ba3d33e382b6b1208241464b9c5653` was pushed normally without changing its author, committer or history. Both [push CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41564379171) and [PR CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41564385740) passed in full: 25 unit, 29 integration, 14 E2E tests, build, 11 clean migrations/schema comparison, both query-plan modes, 3 streaming tests and synthetic restore of 26 tables/258,298 rows including privileges. This clears the F-10 DEVELOPMENT blocker at this checkpoint. The final documentation HEAD must also pass both workflows. PR #20 remains **draft and open**; publishing or merging requires a separate user decision. No release/tag/deployment was created. Earlier decisions below are historical evidence. [Investigation](F10-INVESTIGATION.md).
+## Candidate scope
 
-## Historical reopening — 91dbba7 / BLOCKED
+The candidate may include S03-A–F and S04-A–D changes after alpha.1. PRs #11–15 and #20–23 are merged; S04-D is this distribution review. A final release commit must be selected separately.
 
-Push CI on 91dbba7 failed (13/14 E2E), reopening the previous READY checkpoint. The Charge-only scope and post-pagination metadata joins passed local 25/29/14 regression and three independent 4/4 acceptance runs. Both CI results on the new commit remain required. Earlier READY statements below are historical checkpoints. [Investigation](F10-INVESTIGATION.md). PR remains draft; no release or merge.
+- Previewed, idempotent bulk charges with transaction/audit protection.
+- Partial/full collection policy, debt and movement reports, manual income/expenses and full reversals. A reversal is not a real money refund.
+- Safe CSV, full-scope summaries and bounded pages; S03-E/F dashboard/payment aggregation improvements and immutable financial triggers.
+- S04-A: Node24/PG17/Prisma6 standalone non-root Docker, loopback app/unpublished DB ports, distinct migration/runtime roles and migration/health gates.
+- S04-B: Turkish mobile onboarding at `/kurulum`, existing verification/membership/audit rules, resumable and duplicate-safe first organization/site setup.
+- S04-C: host-only pg_dump→age encrypted streams, atomic publication, locking/retention/status, opt-in systemd examples; isolated empty-target recovery and upgrade orchestration that stops app writers on migration failure.
+- S04-D: clearer community installation/troubleshooting, read-only preflight, clean public GitHub source/archive acceptance and distinct source/binary distribution gates. Automated installation is not independent human validation.
 
+## Requirements and compatibility
 
-**DRAFT — NOT PUBLISHED. EARLY DEVELOPMENT / ALPHA — NOT PRODUCTION READY.** This preparation does not bump package/lock versions or modify v0.1.0-alpha.1. The final commit, tag and release date require a separate maintainer decision. [Readiness decision](ALPHA2-READINESS.md), [security/regression evidence in Turkish](S03F-SECURITY-REGRESSION.md).
+Initial automated Docker acceptance covers Linux x86-64, Docker Engine with Compose v2 or a compatible plugin, Git/Python3/OpenSSL. Node24/PostgreSQL17/Prisma6 run in images; host backup additionally needs age. Operators must provide and validate HTTPS and SMTP. No paid provider, Supabase, subscription or license key is required; infrastructure may cost money.
 
-**Development readiness:** F-10 was addressed by bounding charge balance aggregation to the selected page; both fix CI workflows passed. Status: READY FOR MAINTAINER REVIEW. This remains a draft requiring final-HEAD checks and separate user authorization to publish.
+Eleven migrations remain unchanged; S04 adds no schema migration. Older databases need reviewed forward migrations under the separate owner, checksum/schema checks and financial/audit preservation. No automatic reset/down migration. An old image is not automatically compatible with a new schema; no automatic backup overwrite of the active database. [Safe upgrade](SAFE-UPGRADE.md).
 
-## Changes merged into main since alpha.1
+## Known limits and operational gates
 
-- S03-A / PR #11: bulk dues for up to 5,000 selected units, preview/hash validation, idempotency and all-or-nothing conflict handling.
-- S03-B / PR #12: debt/collection reporting and due-date/period filters; ADMIN-controlled partial-payment policy and server-side balance rechecks.
-- S03-C / PR #13: site-scoped income/expense categories, immutable manual entries, justified ADMIN full reversals and monthly summaries by payment/business date. Dues assessment is not cash; collections are not copied into manual income.
-- S03-D / PR #14: two authenticated CSV exports with Turkish UTF-8 formatting, formula injection defenses, 50,000-row / 128 MiB limits and cursor snapshots; 3/6/12-month comparisons.
-- S03-E / PR #15: bounded dashboard reads with complete organization totals; paged dues, collections, ownership/occupancy and record history, unit/charge search and persistent bulk selections across component pages. Main merge: `afd7ea7bcfe693f06daeea9d48b38b8e1fe27fcc`.
-- S03-F candidate: security/regression review, additive database immutability protection for charges/bulk history, streaming synthetic backup/restore hashes, ACL comparisons and focused session/authorization/stale-preview/CSV-boundary regressions. Inclusion requires separate review of the S03-F PR.
+Staging/production, real SMTP/HTTPS delivery, independent human installation, internet-scale load/bot protection/MFA, monitoring and operational SLAs are unverified. OFFSET and separate-page snapshot limits remain. Daily logical backups are not WAL/PITR or a physical-disk disaster guarantee. Losing the private key makes a backup inaccessible; separate protected key/backup copies are necessary. Timers/pruning are opt-in.
 
-Existing authentication, verification/recovery, organizations/roles/invitations, property/person relationships, collection and immutable financial/audit behavior are preserved. A reversal does not issue a real refund. Reports are not certified accounting records or bank balances.
+AGPL-3.0-only remains. Source-only and binary/container distribution are separate activities. **BLOCKED FOR BINARY DISTRIBUTION:** LGPL/MPL and base-image corresponding-source/notice obligations are not fully evidenced. No prebuilt image is published. [License review](THIRD-PARTY-LICENSES.md), [readiness](ALPHA2-READINESS.md), [installation](COMMUNITY-INSTALLATION.md), [S04-D evidence](S04D-DISTRIBUTION-VALIDATION.md).
 
-## Source distribution and installation
-
-This is a **project source-code** alpha candidate, using Node 24, Next.js 16, PostgreSQL 17 and Prisma 6. The current chain contains eleven migrations; historical migrations remain unchanged. See [self-hosting](SELF-HOSTING.md) and [backup/restore](BACKUP-RESTORE.md). Take private backups and rehearse updates in isolation; reverting application code does not revert the database or remove financial/audit history.
-
-AGPL-3.0-only remains in force. Operators of modified network versions must offer interacting users access to the corresponding source; distribution obligations also apply. See [licensing](LICENSING.md) and [third-party requirements](THIRD-PARTY-LICENSES.md). Free software does not mean free server, SMTP or domain hosting. No binaries, containers, node_modules, browsers or dumps are distributed by this preparation; LGPL/MPL/NOTICE obligations for those remain separate gates.
-
-## Known limitations
-
-- Real SMTP delivery, independent human installation, live security/load and full operations/monitoring readiness are unverified. MFA is not implemented.
-- Single-user synthetic tests at 10,000 units/60,000 charges do not establish production capacity or a multi-user SLA. Production load for 5,000-charge writes remains unverified.
-- OFFSET pagination and separate request snapshots may shift pages under concurrent inserts. Full navigation resets unsaved main-form fields; bulk selections persist within their component pagination.
-- CSV descriptions may contain personal information; no automatic redaction is provided. Downloads and backups require careful handling.
-- Development lint dependencies retain a minimatch advisory; lint/Actions runtime maintenance remains open. Production traffic protection, least-privilege operations, TLS/proxy, encrypted backups/PITR/RPO/RTO and incident response remain incomplete.
-- A synthetic restore is not a disaster-recovery guarantee. Streaming client hashes still require PostgreSQL sorting and temporary disk resources.
-
-DEVELOPMENT validation is not STAGING or PRODUCTION approval. Merging, tagging and publishing require separate user authorization; this draft performs none of them.
+The [previous S03-F draft](ALPHA2-RELEASE-NOTES-EN-S03F-HISTORY.md) is preserved. Publication requires final HEAD CI, exact source-archive review, maintainer review, version metadata updates and a separate user decision.

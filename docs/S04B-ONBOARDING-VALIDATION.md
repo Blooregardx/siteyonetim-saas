@@ -1,5 +1,13 @@
 # S04-B — İlk kurulum doğrulaması
 
+## S04-D güncel durum — kaynak dağıtımı adayı
+
+GitHub denetiminde [PR #20](https://github.com/Blooregardx/siteyonetim-saas/pull/20) (S03-F), [#21](https://github.com/Blooregardx/siteyonetim-saas/pull/21) (S04-A), [#22](https://github.com/Blooregardx/siteyonetim-saas/pull/22) (S04-B) ve [#23](https://github.com/Blooregardx/siteyonetim-saas/pull/23) main'e **birleşmiş** durumdadır (3 Kasım 2026). Aşağıdaki önceki taslak/açık ifadeleri yalnız tarihsel kontrol noktalarıdır; güncel PR durumu değildir.
+
+Güncel giriş [adım adım kurulum](COMMUNITY-INSTALLATION.md); source archive/temiz otomatik prova [S04-D doğrulamasında](S04D-DISTRIBUTION-VALIDATION.md). Bağımsız üçüncü taraf insan kurulumu yapılmadı. Alpha.2 yalnız aday; yayımlanmış tek sürüm v0.1.0-alpha.1, package/lock 0.1.0-alpha.1 kalır. Sürüm/tag/registry/deploy oluşturulmaz. **SOURCE RELEASE READINESS:** son HEAD testleri ve bakımcı incelemesi kapısı. **BINARY DISTRIBUTION READINESS: BLOCKED FOR BINARY DISTRIBUTION**; LGPL/MPL/temel imaj kaynak ve bildirim kanıtı eksik.
+
+## Önceki geliştirme kayıtları — tarihsel bağlam
+
 Durum: **READY FOR MAINTAINER REVIEW** — yalnız DEVELOPMENT; production-ready değildir.
 
 Doğrulanan kod commit'i `b1166f890729d056d6667f1d4b1ab3739e48a515`:
@@ -9,7 +17,7 @@ Doğrulanan kod commit'i `b1166f890729d056d6667f1d4b1ab3739e48a515`:
 | [Push 41575406954](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41575406954) | Başarılı | Başarılı |
 | [PR 41575410846](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41575410846) | Başarılı | Başarılı |
 
-İki koşu completed/success; headSha aynı kod commit'iyle eşleşir. Bu rapor commit'inin son HEAD CI sonuçları da [taslak PR #22](https://github.com/Blooregardx/siteyonetim-saas/pull/22) açıklamasında ayrıca kaydedilir; son HEAD için iki CI başarısı bakımcı kapısıdır. PR açık/taslak kalır; merge veya release onayı değildir.
+İki koşu completed/success; headSha aynı kod commit'iyle eşleşir. Bu rapor commit'inin son HEAD CI sonuçları da [PR #22 — o aşamada taslak](https://github.com/Blooregardx/siteyonetim-saas/pull/22) açıklamasında ayrıca kaydedilir; son HEAD için iki CI başarısı bakımcı kapısıdır. PR açık/taslak kalır; merge veya release onayı değildir.
 
 ## Tam CI kabulü
 
