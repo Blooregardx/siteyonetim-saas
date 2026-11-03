@@ -76,6 +76,7 @@ if __name__=='__main__':
             for notice in record['notices']:
                 data=archive.extractfile(notice['path']).read()
                 relative='notices/'+record['name']+'/'+notice['sha256'][:16]+'-'+Path(notice['path']).name
+                relative += '.txt' if relative.endswith('.md') else ''
                 output=OUT/relative;output.parent.mkdir(parents=True,exist_ok=True);output.write_bytes(data)
                 notice.pop('text',None);notice['evidenceFile']=relative
     files={str(p.relative_to(OUT)):digest(p.read_bytes()) for p in (OUT/'upstream').rglob('*') if p.is_file() and p.name!='librsvg-Cargo.lock'}

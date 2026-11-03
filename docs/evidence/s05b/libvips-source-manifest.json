@@ -101,7 +101,7 @@
         {
           "path": "zlib-ng-2.3.3/LICENSE.md",
           "sha256": "6c9f0d975b41afaa34d22f55bb8986ce69e5cb7ad327cb2b28820cd425edf5ee",
-          "evidenceFile": "notices/zlib-ng/6c9f0d975b41afaa-LICENSE.md"
+          "evidenceFile": "notices/zlib-ng/6c9f0d975b41afaa-LICENSE.md.txt"
         }
       ],
       "archiveStatus": "PASS",
@@ -344,7 +344,7 @@
         {
           "path": "mozjpeg-08265790774cd0714832c9e675522acbe5581437/LICENSE.md",
           "sha256": "96f5b328adbb78eeaaec6980d73fd558cb1e4d62560ed615646bc3cf5e532430",
-          "evidenceFile": "notices/mozjpeg/96f5b328adbb78ee-LICENSE.md"
+          "evidenceFile": "notices/mozjpeg/96f5b328adbb78ee-LICENSE.md.txt"
         },
         {
           "path": "mozjpeg-08265790774cd0714832c9e675522acbe5581437/java/doc/legal/LICENSE",
@@ -463,7 +463,7 @@
         {
           "path": "libtiff-v4.7.2/LICENSE.md",
           "sha256": "0e27c2382d7b8147972bbb746e04059a1152c8d0fda9d03ef1399d1a433c4ade",
-          "evidenceFile": "notices/tiff/0e27c2382d7b8147-LICENSE.md"
+          "evidenceFile": "notices/tiff/0e27c2382d7b8147-LICENSE.md.txt"
         },
         {
           "path": "libtiff-v4.7.2/doc/project/license.rst",
