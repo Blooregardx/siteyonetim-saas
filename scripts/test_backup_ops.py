@@ -105,6 +105,18 @@ class BackupTests(unittest.TestCase):
                 ops.backup(self.c)
         self.assertEqual(ops.status(self.root)['valid_copies'],0)
 
+        actual_fsync=ops.os.fsync
+        calls=0
+        def fail_publication(fd):
+            nonlocal calls
+            calls+=1
+            if calls==4:raise OSError(28,'simulated parent directory fsync failure')
+            return actual_fsync(fd)
+        with self.produce("import sys;sys.stdout.buffer.write(b'test')"),patch.object(ops.os,'fsync',side_effect=fail_publication):
+            with self.assertRaises(OSError):ops.backup(self.c)
+        self.assertEqual(ops.status(self.root)['valid_copies'],0)
+        self.assertFalse(list(self.root.glob('.partial-*')))
+
     def test_interruption_terminates_pipeline(self):
         def worker():
             signal.signal(signal.SIGTERM,ops.interrupted)
@@ -156,6 +168,13 @@ class BackupTests(unittest.TestCase):
         only = self.dated(self.complete(),30)
         self.assertEqual(ops.prune(self.c,self.root,False)['eligible_count'],0)
         self.assertTrue(only.exists())
+        config=self.base/'config.json'
+        ops.write_json(config,self.c)
+        def check_status():
+            return subprocess.run([sys.executable,str(ops.ROOT/'scripts/backup_ops.py'),'status','--config',str(config),'--max-age-hours','36'],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+        self.assertEqual(check_status().returncode,2)
+        self.dated(only.name,-1)
+        self.assertEqual(check_status().returncode,2)
 
     def test_corrupt_backup_not_counted_or_pruned(self):
         directory = self.dated(self.complete(),30)
@@ -169,9 +188,14 @@ class BackupTests(unittest.TestCase):
         outside = self.base/'outside'
         outside.mkdir(mode=0o700)
         (outside/'keep').write_text('untouched')
+        (outside/'keep').chmod(0o600)
         with self.assertRaises((ops.Refused,OSError)):
             with ops.locked(outside):
                 pass
+        unsafe=self.base/'unsafe-parent'
+        unsafe.mkdir(mode=0o700)
+        unsafe.chmod(0o777)
+        with self.assertRaises(ops.Refused):ops.initialize(unsafe/'backups')
         (self.base/'alias').symlink_to(self.root,target_is_directory=True)
         with self.assertRaises(ops.Refused):
             with ops.locked(self.base/'alias'):

@@ -9,7 +9,7 @@ Doğrulanan kod `d1ee5404390d6a93029497ddbfdc4f57cda373e4`:
 | [Push 41642147018](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41642147018) | Başarılı | Başarılı |
 | [PR 41642154958](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41642154958) | Başarılı | Başarılı |
 
-Koşular completed/success; headSha eşleşir. Bu raporla birlikte son restore-hedef/DB ACL sertleştirmesi gönderilir: portsuz ve özel rollü/başka uygulama DB'si bulunmayan hedef, NOLOGIN/beklenen rol limitleri ve kontrollü DB owner/ACL zorunludur. Son HEAD push/PR sonuçları [taslak PR #23](https://github.com/Blooregardx/siteyonetim-saas/pull/23) açıklamasında ayrıca kaydedilir; tamamlanmamış koşular başarı sayılmaz.
+Koşular completed/success; headSha eşleşir. Bu raporla birlikte son restore-hedef/DB ACL sertleştirmesi gönderilir: portsuz ve özel rollü/başka uygulama DB'si bulunmayan hedef, NOLOGIN/beklenen rol limitleri ve kontrollü DB owner/ACL zorunludur. Ek dosya sistemi kapanışında parent fsync hatasının normal yayımı geri çekmesi, güvenilmeyen/yazılabilir üst dizin ve FIFO lock reddi; eski/gelecek timestamp sağlık uyarısı yerel 12 test içinde ayrıca sınanır. Son HEAD push/PR sonuçları [taslak PR #23](https://github.com/Blooregardx/siteyonetim-saas/pull/23) açıklamasında ayrıca kaydedilir; tamamlanmamış koşular başarı sayılmaz.
 
 ## Tam CI kanıtı
 

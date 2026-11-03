@@ -49,6 +49,9 @@ def private(path, directory=False):
     require(path.is_absolute() and str(path) == os.path.normpath(str(path)))
     for parent in [*path.parents, path]:
         require(not parent.is_symlink())
+        parent_info=parent.lstat()
+        require(parent_info.st_uid in (0,os.getuid()))
+        require(not parent_info.st_mode & 0o022 or (parent_info.st_mode & stat.S_ISVTX and parent_info.st_uid == 0))
     info = path.lstat()
     require((stat.S_ISDIR(info.st_mode) if directory else stat.S_ISREG(info.st_mode)))
     require(info.st_uid == os.getuid() and info.st_mode & 0o077 == 0)
@@ -217,6 +220,14 @@ def write_json(path, value):
         os.fsync(out.fileno())
 
 
+def fsync_directory(path):
+    fd=os.open(path,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW)
+    try:
+        os.fsync(fd)
+    finally:
+        os.close(fd)
+
+
 def backup(c):
     source = bound(c['source'])
     before = metadata(source)
@@ -239,13 +250,15 @@ def backup(c):
         manifest = {'format':1, 'created':stamp, 'source':source, 'revision':c['revision'], 'sha256':hash_file(cipher), 'roles':['sy_migrator','sy_runtime','sy_backup'], **before}
         write_json(partial / 'manifest.json', manifest)
         final = root / f'backup-{stamp}-{token}'
-        fd = os.open(partial, os.O_RDONLY | os.O_DIRECTORY)
-        os.fsync(fd)
-        os.close(fd)
+        fsync_directory(partial)
         os.rename(partial, final)
-        fd = os.open(root, os.O_RDONLY | os.O_DIRECTORY)
-        os.fsync(fd)
-        os.close(fd)
+        try:
+            fsync_directory(root)
+        except BaseException:
+            # A publication durability failure must not leave a normal completed name.
+            with contextlib.suppress(OSError):
+                os.rename(final,partial)
+            raise
         return final.name
     finally:
         # Only this invocation's known encrypted files; never recursive deletion.
@@ -394,7 +407,7 @@ def main():
     if args.max_age_hours is not None:
         require(args.operation == 'status' and 1 <= args.max_age_hours <= 87600)
         stamp=result['last_successful_backup']
-        result['healthy']=bool(stamp and dt.datetime.now(UTC)-dt.datetime.strptime(stamp,STAMP).replace(tzinfo=UTC) <= dt.timedelta(hours=args.max_age_hours))
+        result['healthy']=bool(stamp and dt.timedelta(0) <= dt.datetime.now(UTC)-dt.datetime.strptime(stamp,STAMP).replace(tzinfo=UTC) <= dt.timedelta(hours=args.max_age_hours))
     print(json.dumps(result))
     if result.get('healthy') is False:
         sys.exit(2)
