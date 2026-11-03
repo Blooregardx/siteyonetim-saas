@@ -11,10 +11,11 @@ test('preserves original notice bytes and nested paths; skips symlinks and secre
   mkdirSync(join(source, '@scope', 'fixture'), {recursive:true});
   writeFileSync(join(source, '@scope', 'fixture', 'LICENSE'), 'original copyright\n');
   writeFileSync(join(source, 'NOTICE.txt'), 'original notice\n');
+  writeFileSync(join(source, 'COPYING-LESSER'), 'original lesser notice\n');
   writeFileSync(join(source, '.env'), 'SYNTHETIC_SECRET');
   symlinkSync(join(source, 'NOTICE.txt'), join(source, 'COPYING'));
   const records = collectNotices(source, output);
-  assert.equal(records.length, 2);
+  assert.equal(records.length, 3);
   assert.equal(readFileSync(join(output, '@scope', 'fixture', 'LICENSE'), 'utf8'), 'original copyright\n');
   assert.equal(records.every(r => /^[a-f0-9]{64}$/.test(r.sha256)), true);
   assert.throws(() => collectNotices(source, join(source, 'output')));

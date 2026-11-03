@@ -11,7 +11,7 @@ export function collectNotices(source, destination) {
    const path = join(dir, entry), stat = lstatSync(path);
    if (stat.isSymbolicLink()) continue;
    if (stat.isDirectory()) { walk(path); continue; }
-   if (!/^(license|notice|copying|copyright)(\.|$)/i.test(entry)) continue;
+   if (!/^(license|notice|copying|copyright)([._-]|$)/i.test(entry)) continue;
    const name = relative(root, path), output = join(target, name);
    mkdirSync(resolve(output, '..'), { recursive:true });
    copyFileSync(path, output);

@@ -14,7 +14,7 @@ function walk(root) {
   if (entry === 'package.json') {
    try { const p = JSON.parse(readFileSync(path, 'utf8')); if (p.name && p.version) packages.push({path, name:p.name, version:p.version, license:p.license ?? null}); } catch { /* non-package JSON is not evidence */ }
   }
-  if (/^(license|notice|copying|copyright)(\.|$)/i.test(entry)) notices.push({path, sha256:hash(path)});
+  if (/^(license|notice|copying|copyright)([._-]|$)/i.test(entry)) notices.push({path, sha256:hash(path)});
   if (/\.node$|\.so(\.|$)|\.wasm$|^query-engine(?:-|$)|^schema-engine(?:-|$)/.test(entry)) {
    let links;
    try { links = execFileSync('ldd', [path], {encoding:'utf8', stdio:['ignore','pipe','ignore']}).trim(); } catch { links = 'UNRESOLVED_OR_NOT_DYNAMIC'; }
