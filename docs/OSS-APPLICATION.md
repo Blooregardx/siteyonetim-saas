@@ -94,7 +94,7 @@ If awarded, API credits would support this OSS repository’s PR review, synthet
 Türkçe — 318/500 karakter:
 
 ```text
-Proje üretime hazır değildir. Temiz konteyner kurulumu ve ayrı PostgreSQL hedefe sentetik yedekten dönüş doğrulandı; bağımsız insan kurulumu, gerçek SMTP teslimi ve üretim güvenliği/yük testleri açık kalır. Release adayı hazırlanıyor, henüz yayımlanmadı. İndirme/aktif kullanıcı veya dış benimsenme kanıtı sunamıyoruz.
+Proje üretime hazır değildir. Temiz konteyner kurulumu ve ayrı PostgreSQL hedefe sentetik yedekten dönüş doğrulandı; bağımsız insan kurulumu, gerçek SMTP teslimi ve üretim güvenliği/yük testleri açık kalır. Alpha.2 kaynak-only ön sürümü yayımlandı; hazır binary dağıtımı BLOCKED. Önceki aday hazırlığı ifadeleri tarihsel kayıttır. İndirme/aktif kullanıcı veya dış benimsenme kanıtı sunamıyoruz.
 ```
 
 English — 353/500 characters:
