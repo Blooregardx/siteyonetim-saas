@@ -56,3 +56,7 @@ Syft gerçek şeması `source.metadata.imageID` kullanır; ilk gerçek tarama il
 VFS yerel disk alanı migration container dosya/native incelemesinde tükendi; iki deneme de Docker nonzero verdi. Bu inceleme **INCOMPLETE/BLOCKED**, başarı sayılmadı. Yalnız bu görevin ürettiği host node_modules/geçici araç dosyaları ve kaldırılmış migration imajının kesin build cache ID'si temizlendi; genel prune veya mevcut PostgreSQL verisine dokunulmadı. Migration SBOM'u önceden üretildi ve korundu. Son HEAD CI daha geniş diskli runner'da dosya envanterini ayrıca üretmelidir.
 
 Son yerel tekrar: kapı **6/6** (gerçek CLI 0/1/2 çıkışları dahil), preflight **12/12**, arşiv politikası **4/4**, streaming **3/3**, Prisma generate/validate ve kaynak/lisans/link doğrulaması geçti. Önceki npm check: lint/strict TypeScript ve **25/25** birim geçti; iki Docker production build'i başarılı. Yeni native aday filtresi JS dosyalarını binary saymaz; eski runtime dosya kanıtı daha geniş query-engine aday listesini korur. Son CI sonuçları tamamlanmadan DEVELOPMENT INCOMPLETE kalır.
+
+## CI kimlik hata bulgusu
+
+f15ff5c push/PR selfhost kontrolü image-ID uyuşmazlığında başarısız oldu. Artifact incelemesinde Docker inspect index ID ile Syft config ID'nin farklı olduğu doğrulandı. Kontrol gevşetilmedi: sabit inspect ID ile Docker arşivi export edilir; gerçek config içeriği SHA-256 ile hash'lenir ve Syft aynı arşivi tarar. Özgün inspect ID ayrıca saklanır. Bu düzeltmenin son HEAD CI sonuçları ayrıca beklenir.

@@ -13,8 +13,20 @@ tar -xzf "$work/syft.tar.gz" -C "$work" syft
 export DOCKER_HOST=unix:///var/run/docker.sock
 unset DOCKER_CONTEXT DOCKER_TLS DOCKER_TLS_VERIFY DOCKER_CERT_PATH
 id=$(docker image inspect --format '{{.Id}}' "$image")
-printf '%s\n' "$id" > "$out/image-id.txt"
-"$work/syft" scan "docker:$id" --scope squashed -o "syft-json=$out/sbom.syft.json" -o "cyclonedx-json=$out/sbom.cdx.json"
+printf '%s\n' "$id" > "$out/docker-inspect-id.txt"
+# Export the immutable local reference; Docker containerd stores may expose an index ID.
+docker image save "$id" -o "$work/image.tar"
+config_id=$(python3 - "$work/image.tar" <<'PYCODE'
+import hashlib,json,sys,tarfile
+with tarfile.open(sys.argv[1]) as t:
+    manifest=json.load(t.extractfile('manifest.json'))
+    if len(manifest)!=1:raise ValueError('Expected one exported image')
+    config=t.extractfile(manifest[0]['Config']).read()
+    print('sha256:'+hashlib.sha256(config).hexdigest())
+PYCODE
+)
+printf '%s\n' "$config_id" > "$out/image-id.txt"
+"$work/syft" scan "docker-archive:$work/image.tar" --scope squashed -o "syft-json=$out/sbom.syft.json" -o "cyclonedx-json=$out/sbom.cdx.json"
 # Syft includes encoded image configuration by default; do not retain env/history.
 python3 - "$out/sbom.syft.json" <<'PYCODE'
 import json,sys
@@ -27,7 +39,7 @@ PYCODE
 docker run --rm --network=none --read-only --cap-drop=ALL --security-opt=no-new-privileges:true --entrypoint=node "$id" docker/image-license-audit.mjs > "$out/filesystem.json"
 printf '{}\n' > "$out/evidence.json"
 set +e
-python3 scripts/distribution_gate.py --sbom "$out/sbom.syft.json" --image-id "$id" --evidence "$out/evidence.json" > "$out/gate.json"
+python3 scripts/distribution_gate.py --sbom "$out/sbom.syft.json" --image-id "$config_id" --evidence "$out/evidence.json" > "$out/gate.json"
 status=$?
 set -e
 # Collection can succeed while distribution remains blocked. Invalid evidence is a CI error.
