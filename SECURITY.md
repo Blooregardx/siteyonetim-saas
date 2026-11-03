@@ -10,9 +10,11 @@ Tarihsel kayıt: OSS-01 başlangıç denetiminde kanal kapalıydı. Bu önceki b
 
 Özel raporda etkilenen commit/sürüm, etki ve yalnız sentetik veriyle tekrar adımlarını paylaşın. Erişim bilgilerini maskeleyin; gerçek sistemlere izinsiz test yapmayın. Bakımcı raporu değerlendirir, düzeltme ve güvenli açıklama zamanını bildirenle koordine eder. Yanıt süresi garantisi verilmez.
 
+S04-D GitHub denetiminde özel güvenlik bildirimi halen etkin olarak doğrulandı. Secret/age kimliği/backup veya gerçek müşteri verisini public rapora eklemeyin; güvenli kurulum teşhisi için [rehber](docs/TROUBLESHOOTING.md).
+
 ## Destek kapsamı
 
-Henüz kararlı sürüm veya uzun süreli destek taahhüdü yoktur. Öncelik geliştirme dalındaki güncel koddur; main aynı özellikleri içermeyebilir. Güvenlik düzeltmeleri incelemeli PR ve testlerle ele alınır. Bu sürüm canlı kullanım onayı değildir.
+Henüz kararlı sürüm veya uzun süreli destek taahhüdü yoktur. Öncelik incelenmiş main kaynakları ve açık PR düzeltmeleridir; yayımlanmış alpha.1 yeni main özelliklerini içermez. Geriye dönük güvenlik backport/LTS taahhüdü yoktur. Güvenlik düzeltmeleri incelemeli PR ve testlerle ele alınır. Bu sürüm canlı kullanım onayı değildir.
 
 ## Uygulanan korumalar ve sınırlar
 

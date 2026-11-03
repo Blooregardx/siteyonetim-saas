@@ -49,6 +49,8 @@ jobs:
       - run: npm run db:deploy
       - run: npx prisma migrate diff --from-url "$DATABASE_URL" --to-schema-datamodel prisma/schema.prisma --exit-code
       - run: python3 scripts/verify-source-readiness.py
+      - name: Read-only preflight and source archive policy tests
+        run: python3 scripts/test_preflight.py && python3 scripts/test_distribution.py
       - run: npm audit --audit-level=high
       - run: npm audit --omit=dev
       - run: npm run test:integration
@@ -91,10 +93,10 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           persist-credentials: false
-      - run: sh scripts/test-selfhost.sh
       - name: Install host-only open source encryption tool
         run: sudo apt-get update && sudo apt-get install -y age
-      - name: Encrypted backup failure matrix
-        run: PYTHONDONTWRITEBYTECODE=1 python3 scripts/test_backup_ops.py
-      - name: Encrypted recovery and safe upgrade drill
-        run: PYTHONDONTWRITEBYTECODE=1 python3 scripts/test_recovery.py
+      - name: Clean public GitHub checkout, source archive, Docker and encrypted recovery
+        env:
+          CLEAN_INSTALL_REVISION: ${{ github.event.pull_request.head.sha || github.sha }}
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: python3 scripts/clean_install_ci.py --revision "$CLEAN_INSTALL_REVISION"

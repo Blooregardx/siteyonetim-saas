@@ -1,5 +1,13 @@
 # S04-C — Şifreli yedek, kurtarma ve güncelleme doğrulaması
 
+## S04-D güncel durum — kaynak dağıtımı adayı
+
+GitHub denetiminde [PR #20](https://github.com/Blooregardx/siteyonetim-saas/pull/20) (S03-F), [#21](https://github.com/Blooregardx/siteyonetim-saas/pull/21) (S04-A), [#22](https://github.com/Blooregardx/siteyonetim-saas/pull/22) (S04-B) ve [#23](https://github.com/Blooregardx/siteyonetim-saas/pull/23) main'e **birleşmiş** durumdadır (3 Kasım 2026). Aşağıdaki önceki taslak/açık ifadeleri yalnız tarihsel kontrol noktalarıdır; güncel PR durumu değildir.
+
+Güncel giriş [adım adım kurulum](COMMUNITY-INSTALLATION.md); source archive/temiz otomatik prova [S04-D doğrulamasında](S04D-DISTRIBUTION-VALIDATION.md). Bağımsız üçüncü taraf insan kurulumu yapılmadı. Alpha.2 yalnız aday; yayımlanmış tek sürüm v0.1.0-alpha.1, package/lock 0.1.0-alpha.1 kalır. Sürüm/tag/registry/deploy oluşturulmaz. **SOURCE RELEASE READINESS:** son HEAD testleri ve bakımcı incelemesi kapısı. **BINARY DISTRIBUTION READINESS: BLOCKED FOR BINARY DISTRIBUTION**; LGPL/MPL/temel imaj kaynak ve bildirim kanıtı eksik.
+
+## Önceki geliştirme kayıtları — tarihsel bağlam
+
 Durum: **READY FOR MAINTAINER REVIEW — DEVELOPMENT kod kabulü.** Production-ready değildir. Son HEAD'in iki CI başarısı ayrıca bakımcı kapısıdır.
 
 Doğrulanan kod `d1ee5404390d6a93029497ddbfdc4f57cda373e4`:
@@ -9,7 +17,7 @@ Doğrulanan kod `d1ee5404390d6a93029497ddbfdc4f57cda373e4`:
 | [Push 41642147018](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41642147018) | Başarılı | Başarılı |
 | [PR 41642154958](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41642154958) | Başarılı | Başarılı |
 
-Koşular completed/success; headSha eşleşir. Bu raporla birlikte son restore-hedef/DB ACL sertleştirmesi gönderilir: portsuz ve özel rollü/başka uygulama DB'si bulunmayan hedef, NOLOGIN/beklenen rol limitleri ve kontrollü DB owner/ACL zorunludur. Ek dosya sistemi kapanışında parent fsync hatasının normal yayımı geri çekmesi, güvenilmeyen/yazılabilir üst dizin ve FIFO lock reddi; eski/gelecek timestamp sağlık uyarısı yerel 12 test içinde ayrıca sınanır. Son HEAD push/PR sonuçları [taslak PR #23](https://github.com/Blooregardx/siteyonetim-saas/pull/23) açıklamasında ayrıca kaydedilir; tamamlanmamış koşular başarı sayılmaz.
+Koşular completed/success; headSha eşleşir. Bu raporla birlikte son restore-hedef/DB ACL sertleştirmesi gönderilir: portsuz ve özel rollü/başka uygulama DB'si bulunmayan hedef, NOLOGIN/beklenen rol limitleri ve kontrollü DB owner/ACL zorunludur. Ek dosya sistemi kapanışında parent fsync hatasının normal yayımı geri çekmesi, güvenilmeyen/yazılabilir üst dizin ve FIFO lock reddi; eski/gelecek timestamp sağlık uyarısı yerel 12 test içinde ayrıca sınanır. Son HEAD push/PR sonuçları [PR #23 — o aşamada taslak](https://github.com/Blooregardx/siteyonetim-saas/pull/23) açıklamasında ayrıca kaydedilir; tamamlanmamış koşular başarı sayılmaz.
 
 ## Tam CI kanıtı
 

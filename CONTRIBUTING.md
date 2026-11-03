@@ -1,5 +1,9 @@
 # Katkı rehberi
 
+Yeni başlayanlar için [Docker kurulumu](docs/COMMUNITY-INSTALLATION.md) ve [teşhis](docs/TROUBLESHOOTING.md). Kod geliştirme Node24/strict TypeScript/Prisma6/PG17 ile yapılır; Docker kullanıcı kurulumu host npm gerektirmez. Güncel geliştirme tabanı main'dir; alpha.1 eski kaynak snapshot'ıdır, alpha.2 yayımlanmadı. [Özellikler/eksikler](docs/FEATURES.md) ve [kabul kapsamı](docs/S04D-DISTRIBUTION-VALIDATION.md) günceldir.
+
+CI checks temel regresyonları; selfhost temiz GitHub clone/archive, tek uygulama build'i ve şifreli recovery'yi çalıştırır. Yeni preflight/archive politika testleri Python stdlib kullanır. Host backup testleri age gerektirir. Yerel kaynağınız/diskiniz yetmiyorsa eksik testi açık raporlayın; test atlama/retry ile yeşil sonuç üretmeyin. Bağımsız insan geri bildirimi gönüllü katılım gerektirir; otomatik CI bu iddia değildir.
+
 Katkılar belgeler, erişilebilirlik, çeviri, sentetik testler ve kod incelemesi dahil değerlidir. Önce [topluluk ilkelerini](CODE_OF_CONDUCT.md), [güvenlik politikasını](SECURITY.md) ve [AGENTS](AGENTS.md) kurallarını okuyun.
 
 ## Katkı lisansı

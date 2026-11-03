@@ -1,5 +1,9 @@
 # Docker Compose ile kendi sunucusunda kurulum — DEVELOPMENT
 
+## Yeni kullanıcı başlangıcı — S04-D
+
+[SiteYönetim’i Docker ile Kur — Adım Adım](COMMUNITY-INSTALLATION.md) kısa kurulum yolu, [TROUBLESHOOTING](TROUBLESHOOTING.md) güvenli hata teşhisidir. `sh scripts/selfhost-preflight.sh` ilk başlangıç öncesi salt okunur kontrol yapar; otomatik düzeltme veya volume silme yoktur. Mevcut teknik/S04-A–C işletim ayrıntıları aşağıda korunur. S04-A/B/C PR #21/#22/#23 main'e birleşti; alpha.2 henüz yayımlanmadı.
+
 ## S04-C — Şifreli mantıksal yedek ve korumalı güncelleme
 
 Host operatörüne yönelik pg_dump → age akışı, atomik encrypted backup/manifest, lock, durum ve açık etkinleştirilen systemd timer/retention altyapısı eklendi. Ayrı boş/portsuz siteyonetim_test restore provası ve hata sonrası yazıcıları durduran güncelleme aracı vardır. Web kullanıcısına ham yedek veya Docker socket yetkisi verilmez. [İşletim ve anahtar rehberi](BACKUP-OPERATIONS.md), [güncelleme](SAFE-UPGRADE.md), [DEVELOPMENT doğrulaması](S04C-BACKUP-VALIDATION.md).

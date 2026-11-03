@@ -1,5 +1,15 @@
 # Üçüncü taraf lisans incelemesi — OSS-02
 
+## S04-D dağıtım ayrımı
+
+**SOURCE RELEASE READINESS:** yalnız özgün kaynak/manifest/kilit/betik/belge arşivi için otomatik içerik ve AGPL kontrolleri; bakımcı incelemesi/yayımlama onayı ayrı kapıdır. **BINARY DISTRIBUTION READINESS: BLOCKED FOR BINARY DISTRIBUTION.** Yerel kullanıcı kaynak build'i, hazır imaj dağıtımıyla aynı işlem değildir. Bu çalışma lisans uyumunu bütünüyle tamamladı iddiası veya yeni kaynak sunumu yapmaz.
+
+Kilit envanteri 479 kayıt olarak korunur; paket/kilit değiştirilmez. Sharp/libvips'in dağıtılacak platform binary'si, LGPL bağımlılık kaynakları/yeniden bağlama ve özgün COPYING/NOTICE dosyaları tamamlanmadı. MPL axe-core dosya düzeyindeki kaynak/bildirim yükümlülüğü, dağıtımda bulunup bulunmadığına göre ayrıca değerlendirilir; geliştirme paketinin varlığı runtime'a otomatik dahil olduğu anlamına gelmez.
+
+Node 24 Debian tabanında Node'un kendisi ve bundled bağımlılıkları, Debian libc/OpenSSL/CA vb. paketleri ayrıca envanterlenmelidir; `/usr/share/doc` dosyalarının bulunması karşılık gelen source sağlama koşulunu tek başına kapatmaz. CI `docker/image-license-audit.mjs` sadece çalışma imajındaki paket sürümü/lisans metadatası ve notice dosyası varlığını raporlar, clearance vermez. Next standalone tracing bütün bildirimleri taşıyor varsayılmaz. age host araç bağımlılığıdır, binary'si kaynak arşivine/imaja vendored edilmez; kendi dağıtımına ekleyen operatör upstream lisansını da korur.
+
+Dağıtımdan önce gerçek imajın tam SBOM/envanteri, her bileşenin özgün lisans/notice dosyası, gerekli aynı sürüm source sunumu ve yeniden bağlama/kurulum bilgisi incelenmelidir. Eksikler varken registry push veya binary release yapılmaz. Aşağıdaki önceki inceleme kanıtları korunur.
+
 Projenin AGPL-3.0-only lisansı bağımlılıkları yeniden lisanslamaz. [Envanter](DEPENDENCY-LICENSES.csv), package-lock.json packages alanından yol/sürüm/lisans/dev/optional bilgileriyle üretildi. Aynı paketin farklı sürümleri ve platform paketleri ayrı satırdır; sayı kurulu runtime paket sayısı değildir.
 
 Doğrudan runtime: Prisma Client Apache-2.0; Next.js, React/React DOM ve Zod MIT; Nodemailer MIT-0. Doğrudan geliştirme araçları MIT, MIT-0 veya Apache-2.0 bildirir. Bu lisanslarda AGPL-3.0-only ile kullanım için engel tespit edilmedi. Yükümlülükler ve özgün bildirimler korunur.

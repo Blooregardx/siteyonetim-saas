@@ -1,5 +1,13 @@
 # Güncel yol haritası
 
+## S04-D güncel durum — kaynak dağıtımı adayı
+
+GitHub denetiminde [PR #20](https://github.com/Blooregardx/siteyonetim-saas/pull/20) (S03-F), [#21](https://github.com/Blooregardx/siteyonetim-saas/pull/21) (S04-A), [#22](https://github.com/Blooregardx/siteyonetim-saas/pull/22) (S04-B) ve [#23](https://github.com/Blooregardx/siteyonetim-saas/pull/23) main'e **birleşmiş** durumdadır (3 Kasım 2026). Aşağıdaki önceki taslak/açık ifadeleri yalnız tarihsel kontrol noktalarıdır; güncel PR durumu değildir.
+
+Güncel giriş [adım adım kurulum](COMMUNITY-INSTALLATION.md); source archive/temiz otomatik prova [S04-D doğrulamasında](S04D-DISTRIBUTION-VALIDATION.md). Bağımsız üçüncü taraf insan kurulumu yapılmadı. Alpha.2 yalnız aday; yayımlanmış tek sürüm v0.1.0-alpha.1, package/lock 0.1.0-alpha.1 kalır. Sürüm/tag/registry/deploy oluşturulmaz. **SOURCE RELEASE READINESS:** son HEAD testleri ve bakımcı incelemesi kapısı. **BINARY DISTRIBUTION READINESS: BLOCKED FOR BINARY DISTRIBUTION**; LGPL/MPL/temel imaj kaynak ve bildirim kanıtı eksik.
+
+## Önceki geliştirme kayıtları — tarihsel bağlam
+
 ## S04-C — Şifreli mantıksal yedek ve korumalı güncelleme
 
 Host operatörüne yönelik pg_dump → age akışı, atomik encrypted backup/manifest, lock, durum ve açık etkinleştirilen systemd timer/retention altyapısı eklendi. Ayrı boş/portsuz siteyonetim_test restore provası ve hata sonrası yazıcıları durduran güncelleme aracı vardır. Web kullanıcısına ham yedek veya Docker socket yetkisi verilmez. [İşletim ve anahtar rehberi](BACKUP-OPERATIONS.md), [güncelleme](SAFE-UPGRADE.md), [DEVELOPMENT doğrulaması](S04C-BACKUP-VALIDATION.md).
@@ -22,7 +30,7 @@ Supabase kullanılmayacak. Ücretsiz, PUBLIC, AGPL-3.0-only ve kendi sunucusunda
 
 Korunan `e9ed54a786ba3d33e382b6b1208241464b9c5653` commit'i normal fast-forward push ile aynı dala gönderildi; author/committer Blooregardx ve onaylı noreply adresi, eski SHA'lar değişmedi. [Push CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41564379171) ve [PR CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41564385740) tam başarılı: 25/25 birim, 29/29 entegrasyon, 14/14 E2E, build, Prisma generate/validate, temiz 11 migration/schema diff, iki query-plan modu (yalnız Charge kapsamı, 25 ödeme döngüsü), Python 3/3 ve 26 tablo/258.298 satır sentetik restore/ACL/runtime probu. 10.000 daire mobil ilk/ikinci panel push'ta 420/920 ms, PR'da 395/406 ms; üretim SLA'sı değildir.
 
-F-10 için BLOCKED engeli bu DEVELOPMENT kontrol noktasıyla kaldırıldı. Yeni dokümantasyon HEAD'inin hem push hem PR CI'ı da başarılı olmadan bu karar merge/yayımlama için kullanılamaz; son sonuçlar PR açıklamasında doğrulanır. PR #20 **taslak ve açık** kalır. Alpha.2 tag/release veya staging/production deploy yapılmadı; kullanıcı kararı gerekir. Önceki BLOCKED/READY kayıtları aşağıda tarihsel kanıttır. [Ayrıntılı kanıt](F10-INVESTIGATION.md).
+F-10 için BLOCKED engeli bu DEVELOPMENT kontrol noktasıyla kaldırıldı. Yeni dokümantasyon HEAD'inin hem push hem PR CI'ı da başarılı olmadan bu karar merge/yayımlama için kullanılamaz; son sonuçlar PR açıklamasında doğrulanır. Bu kontrol noktasında PR #20 taslak/açıktı; yukarıdaki S04-D denetiminde birleşmiş olduğu doğrulandı. Alpha.2 tag/release veya staging/production deploy yapılmadı; kullanıcı kararı gerekir. Önceki BLOCKED/READY kayıtları aşağıda tarihsel kanıttır. [Ayrıntılı kanıt](F10-INVESTIGATION.md).
 
 ## Tarihsel yeniden açılış — 91dbba7 / BLOCKED
 
@@ -42,7 +50,7 @@ F-10 için BLOCKED engeli bu DEVELOPMENT kontrol noktasıyla kaldırıldı. Yeni
 - S03-D, [PR #14](https://github.com/Blooregardx/siteyonetim-saas/pull/14) ile main’e birleşti (`33169af14ea0a2fd898838839cc8eb7772a31e09`): güvenli CSV, aylık karşılaştırma ve sentetik rapor ölçümleri.
 - S03-E [PR #15](https://github.com/Blooregardx/siteyonetim-saas/pull/15) ile main’e birleşti (`afd7ea7bcfe693f06daeea9d48b38b8e1fe27fcc`): tam organizasyon özeti ve sınırlı/sayfalı panel, kayıt ve aidat detayları. [Mimari, kapasite ve sınırlar](SCALABLE-DASHBOARD.md).
 
-F-10, sayfalama öncesi gereksiz tüm-kapsam ödeme toplamı işine ayrılıp sınırlı aday sorgusuyla düzeltildi; ace4983 push ve PR CI başarılı. Alpha.2 kaynak kod hazırlığı [READY FOR MAINTAINER REVIEW](ALPHA2-READINESS.md); son HEAD’in iki CI sonucu ve bakımcı incelemesi hâlâ kapıdır. [Kök neden/kanıt](F10-INVESTIGATION.md). PR #20 taslak kalır; yeni release/tag yoktur.
+F-10, sayfalama öncesi gereksiz tüm-kapsam ödeme toplamı işine ayrılıp sınırlı aday sorgusuyla düzeltildi; ace4983 push ve PR CI başarılı. Alpha.2 kaynak kod hazırlığı [READY FOR MAINTAINER REVIEW](ALPHA2-READINESS.md); son HEAD’in iki CI sonucu ve bakımcı incelemesi hâlâ kapıdır. [Kök neden/kanıt](F10-INVESTIGATION.md). PR #20 o aşamada taslaktı; yeni release/tag yoktur.
 
 Güncel sonraki adım [S03-F güvenlik/regresyon kanıtı](S03F-SECURITY-REGRESSION.md) ve [alpha.2 hazırlık kararının](ALPHA2-READINESS.md) bakımcı incelemesidir. Yeni tag/release için ayrı kullanıcı onayı gerekir. Bağımsız kurulum geri bildirimi, üretim güvenliği/işletim doğrulamaları ve kapasite ölçümü açık kalır. Yeni başvuru gönderimi veya yeni release oluşturma bu belge düzeltmesinin kapsamında değildir.
 
