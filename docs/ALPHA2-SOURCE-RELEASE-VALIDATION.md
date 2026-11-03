@@ -1,6 +1,8 @@
 # Alpha.2 kaynak sürüm doğrulaması
 
-**TASLAK — YAYIMLANMADI**
+**SOURCE RELEASE STATUS: ALPHA.2 PUBLISHED — UNCHANGED**
+
+3 Kasım 2026 16:22:11 UTC: [kaynak-only ön sürüm](https://github.com/Blooregardx/siteyonetim-saas/releases/tag/v0.1.0-alpha.2) yayımlandı. Tag ve yayın commit'i `c20646fddbc8a7e3dcd45cbc01aacd531c225e4a`; yayın içeriği değiştirilmedi. Aşağıdaki aday hazırlık anlatımı tarihsel kayıttır, güncel yayın durumu değildir.
 
 **EARLY DEVELOPMENT / ALPHA — NOT PRODUCTION READY**
 

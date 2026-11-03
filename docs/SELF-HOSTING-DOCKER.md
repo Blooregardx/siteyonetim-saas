@@ -2,7 +2,7 @@
 
 ## Yeni kullanıcı başlangıcı — S04-D
 
-[SiteYönetim’i Docker ile Kur — Adım Adım](COMMUNITY-INSTALLATION.md) kısa kurulum yolu, [TROUBLESHOOTING](TROUBLESHOOTING.md) güvenli hata teşhisidir. `sh scripts/selfhost-preflight.sh` ilk başlangıç öncesi salt okunur kontrol yapar; otomatik düzeltme veya volume silme yoktur. Mevcut teknik/S04-A–C işletim ayrıntıları aşağıda korunur. S04-A/B/C PR #21/#22/#23 main'e birleşti; alpha.2 henüz yayımlanmadı.
+[SiteYönetim’i Docker ile Kur — Adım Adım](COMMUNITY-INSTALLATION.md) kısa kurulum yolu, [TROUBLESHOOTING](TROUBLESHOOTING.md) güvenli hata teşhisidir. `sh scripts/selfhost-preflight.sh` ilk başlangıç öncesi salt okunur kontrol yapar; otomatik düzeltme veya volume silme yoktur. Mevcut teknik/S04-A–C işletim ayrıntıları aşağıda korunur. S04-A/B/C PR #21/#22/#23 main'e birleşti; alpha.2 kaynak-only ön sürümü yayımlandı (`c20646fddbc8a7e3dcd45cbc01aacd531c225e4a`); hazır imaj dağıtımı BLOCKED.
 
 ## S04-C — Şifreli mantıksal yedek ve korumalı güncelleme
 

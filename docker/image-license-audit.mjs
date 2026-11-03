@@ -1,12 +1,28 @@
-// Inventory evidence only. This does not clear an image for binary distribution.
-import { existsSync, readFileSync, readdirSync } from 'node:fs';
+// Read-only filesystem evidence. Never grants binary distribution clearance.
+import { existsSync, readFileSync, readdirSync, lstatSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
-const packages={};
-for(const name of ['next','sharp','@img/sharp-libvips-linux-x64','@prisma/client']){
- const root=`node_modules/${name}`;
- if(!existsSync(`${root}/package.json`)){packages[name]={present:false};continue;}
- const p=JSON.parse(readFileSync(`${root}/package.json`,'utf8'));
- packages[name]={present:true,version:p.version,license:p.license??'not in package metadata',noticeFiles:readdirSync(root).filter(n=>/^(license|notice|copying)/i.test(n))};
+import { createHash } from 'node:crypto';
+const packages = [], notices = [], binaries = [];
+const hash = p => createHash('sha256').update(readFileSync(p)).digest('hex');
+function walk(root) {
+ if (!existsSync(root)) return;
+ for (const entry of readdirSync(root)) {
+  const path = `${root}/${entry}`;
+  const st = lstatSync(path);
+  if (st.isSymbolicLink()) continue;
+  if (st.isDirectory()) { walk(path); continue; }
+  if (entry === 'package.json') {
+   try { const p = JSON.parse(readFileSync(path, 'utf8')); if (p.name && p.version) packages.push({path, name:p.name, version:p.version, license:p.license ?? null}); } catch { /* non-package JSON is not evidence */ }
+  }
+  if (/^(license|notice|copying|copyright)([._-]|$)/i.test(entry)) notices.push({path, sha256:hash(path)});
+  if (/\.node$|\.so(\.|$)|\.wasm$|^query-engine(?:-|$)|^schema-engine(?:-|$)/.test(entry)) {
+   let links;
+   try { links = execFileSync('ldd', [path], {encoding:'utf8', stdio:['ignore','pipe','ignore']}).trim(); } catch { links = 'UNRESOLVED_OR_NOT_DYNAMIC'; }
+   binaries.push({path, sha256:hash(path), links});
+  }
+ }
 }
-const installed=execFileSync('dpkg-query',['-W','-f=${Package}\t${Version}\n'],{encoding:'utf8'}).trim().split('\n');
-console.log(JSON.stringify({binaryDistributionReadiness:'BLOCKED FOR BINARY DISTRIBUTION',scope:'runtime inventory; corresponding-source and notice completeness not proven',nodeVersion:process.version,nodeLicensePresent:existsSync('/usr/local/LICENSE'),basePackageCount:installed.length,baseCopyrightFiles:{libc6:existsSync('/usr/share/doc/libc6/copyright'),openssl:existsSync('/usr/share/doc/openssl/copyright')},packages}));
+walk('/app/node_modules'); walk('/app/third-party-notices'); walk('/usr/share/doc');
+if (existsSync('/usr/local/LICENSE')) notices.push({path:'/usr/local/LICENSE',sha256:hash('/usr/local/LICENSE')});
+const debian = execFileSync('dpkg-query', ['-W', '-f=${Package}\t${Version}\t${source:Package}\t${source:Version}\n'], {encoding:'utf8'}).trim().split('\n');
+console.log(JSON.stringify({binaryDistributionReadiness:'BLOCKED', scope:'filesystem inventory, not complete legal or source evidence; symlinks excluded', nodeVersion:process.version, debian, packages, notices, binaries}));

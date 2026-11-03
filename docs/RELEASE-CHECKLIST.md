@@ -1,6 +1,10 @@
 # Alpha.2 kaynak sürüm hazırlığı
 
-**TASLAK — YAYIMLANMADI**
+**SOURCE RELEASE STATUS: ALPHA.2 PUBLISHED — UNCHANGED**
+
+[Published source-only prerelease / yayımlanmış kaynak ön sürümü](https://github.com/Blooregardx/siteyonetim-saas/releases/tag/v0.1.0-alpha.2): `c20646fddbc8a7e3dcd45cbc01aacd531c225e4a`, 2026-11-03 16:22:11 UTC. Release/tag contents unchanged. BINARY DISTRIBUTION READINESS: BLOCKED.
+
+Aşağıdaki hazırlık/checklist ifadeleri tarihsel yayın öncesi kayıttır; güncel yayın durumu yukarıdadır. The preparation/checklist below preserves the historical pre-publication checkpoint.
 
 **EARLY DEVELOPMENT / ALPHA — NOT PRODUCTION READY**
 

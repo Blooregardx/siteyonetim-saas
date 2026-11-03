@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends openssl ca-cert
 ENV NEXT_TELEMETRY_DISABLED=1
 FROM base AS build
 COPY . .
-RUN --mount=type=secret,id=proxy_ca NODE_EXTRA_CA_CERTS=/run/secrets/proxy_ca npm ci     && npx prisma generate && npm run build && npm cache clean --force
+RUN --mount=type=secret,id=proxy_ca NODE_EXTRA_CA_CERTS=/run/secrets/proxy_ca npm ci     && npx prisma generate && npm run build && node docker/collect-notices.mjs && npm cache clean --force
 FROM build AS migrate
 USER node
 CMD ["node", "docker/migrate.mjs"]
@@ -13,6 +13,7 @@ FROM base AS runtime
 ENV NODE_ENV=production HOSTNAME=0.0.0.0 PORT=3000
 COPY --from=build --chown=node:node /app/.next/standalone ./
 COPY --from=build --chown=node:node /app/.next/static ./.next/static
+COPY --from=build /app/third-party-notices ./third-party-notices
 COPY --from=build /app/prisma ./prisma
 COPY --from=build /app/docker ./docker
 COPY --from=build /app/LICENSE /app/COPYRIGHT ./

@@ -17,12 +17,12 @@ openssl version
 
 ## 2. GitHub’dan kaynak alın
 
-Yayımlanmış `v0.1.0-alpha.1` eski kaynak ön sürümüdür; S04-A–D içermez. Alpha.2 henüz tag/release değildir. Yeni kurulum rehberi için S04-D'yi içeren, bakımcı tarafından incelenmiş main commit'ini seçin. Main hareketli geliştirme dalıdır; commit'i kaydedin ve rastgele yeni sürüme otomatik geçmeyin. PR incelemesinde bakımcının belirttiği kesin commit'i ayrıca checkout edin.
+Alpha.2 kaynak-only ön sürümü yayımlandı: `v0.1.0-alpha.2`, kesin commit `c20646fddbc8a7e3dcd45cbc01aacd531c225e4a`. Hazır Docker dağıtımı halen engellidir. Yeni kurulumda hareketli main yerine bu sabit kaynağı seçin.
 
 ```sh
 git clone https://github.com/Blooregardx/siteyonetim-saas.git
 cd siteyonetim-saas
-git switch --detach origin/main
+git switch --detach c20646fddbc8a7e3dcd45cbc01aacd531c225e4a
 git rev-parse HEAD
 ```
 

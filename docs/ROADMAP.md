@@ -80,3 +80,7 @@ S03-A sınırı: iki aşamalı, çakışmada tümü reddedilen toplu aidat PR #1
 S03-B aidat dönemi borç raporudur. S03-C ödeme/işlem tarihine göre aylık hareket raporunu ekler. S03-D CSV ve ilk sentetik rapor ölçümlerini ekler; sonraki işler daha geniş/çoklu kullanıcı yükü ve derin sayfalama tasarımıdır. S03-D aşamasındaki panelin tüm aidat geçmişini yüklemesi S03-E’nin ayrı kapsamıdır. Kısmi ters kayıt ve üretim dağıtımı kapsam dışıdır.
 
 Tarihsel S03-D kapasite bulgusu: o aşamadaki panelin tüm geçmişi yükleyen dashboard() akışı sentetik 1.000/10.000 daire provalarında başarısız oldu; limitleri yükseltmek veya geçmişi sessiz kesmek çözüm olarak uygulanmadı. S03-E bu bulguya karşı ayrı, tam özetli ve geçmiş erişimini koruyan sayfalı panel geliştirir; yeni ölçümler [ayrı belgede](SCALABLE-DASHBOARD.md) tutulur. [Ölçüm ve sınırlar](FINANCIAL-EXPORT-PERFORMANCE.md).
+
+## S05-A geliştirme denetimi
+
+SOURCE RELEASE STATUS: ALPHA.2 PUBLISHED — UNCHANGED. Hazır imaj dağıtımı BLOCKED; bağımsız insan kurulumu PENDING HUMAN VALIDATION. Bu geliştirme çalışmasının son HEAD test kararı [S05-A raporunda](S05A-DISTRIBUTION-COMPLIANCE-VALIDATION.md), [binary kapıları](BINARY-DISTRIBUTION-GATES.md) ve [insan kurulum formunda](INDEPENDENT-INSTALLATION-CHECKLIST.md) izlenir. Önceki hazırlık kararları tarihsel kayıttır.

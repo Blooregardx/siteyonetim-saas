@@ -95,3 +95,7 @@ Yeni read modelleri kısa tutarlı transaction kullanır; ayrı sayfalar arasın
 ## F-10 — Sınırlı aidat sayfası hesabı
 
 Varsayılan filtresiz aidat listesinde tam kapsam sayılır; ödeme/ters kayıt toplamları sayfanın 25 adayı için hesaplanır. Bakiye/durum filtresinde doğru filtre ve toplam için bütün kapsam hesabı korunur; organizasyonun tam özeti değişmez. 10.000 daire/60.000 aidat, üç bağımsız mobil kabul koşusu ve ace4983’in iki tam CI akışı başarılı. [Ölçüm ve sınırlar](F10-INVESTIGATION.md). Bu production kapasite/SLA veya yayımlama onayı değildir.
+
+## S05-A geliştirme denetimi
+
+SOURCE RELEASE STATUS: ALPHA.2 PUBLISHED — UNCHANGED. Hazır imaj dağıtımı BLOCKED; bağımsız insan kurulumu PENDING HUMAN VALIDATION. Bu geliştirme çalışmasının son HEAD test kararı [S05-A raporunda](S05A-DISTRIBUTION-COMPLIANCE-VALIDATION.md), [binary kapıları](BINARY-DISTRIBUTION-GATES.md) ve [insan kurulum formunda](INDEPENDENT-INSTALLATION-CHECKLIST.md) izlenir. Önceki hazırlık kararları tarihsel kayıttır.
