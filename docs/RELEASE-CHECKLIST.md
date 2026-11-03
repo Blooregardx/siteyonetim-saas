@@ -1,18 +1,22 @@
-# İlk topluluk geliştirme sürümü kontrol listesi
+# Alpha.2 kaynak sürüm hazırlığı
 
-## S04-D güncel durum — kaynak dağıtımı adayı
+**TASLAK — YAYIMLANMADI**
 
-GitHub denetiminde [PR #20](https://github.com/Blooregardx/siteyonetim-saas/pull/20) (S03-F), [#21](https://github.com/Blooregardx/siteyonetim-saas/pull/21) (S04-A), [#22](https://github.com/Blooregardx/siteyonetim-saas/pull/22) (S04-B) ve [#23](https://github.com/Blooregardx/siteyonetim-saas/pull/23) main'e **birleşmiş** durumdadır (3 Kasım 2026). Aşağıdaki önceki taslak/açık ifadeleri yalnız tarihsel kontrol noktalarıdır; güncel PR durumu değildir.
+**EARLY DEVELOPMENT / ALPHA — NOT PRODUCTION READY**
 
-Güncel giriş [adım adım kurulum](COMMUNITY-INSTALLATION.md); source archive/temiz otomatik prova [S04-D doğrulamasında](S04D-DISTRIBUTION-VALIDATION.md). Bağımsız üçüncü taraf insan kurulumu yapılmadı. Alpha.2 yalnız aday; yayımlanmış tek sürüm v0.1.0-alpha.1, package/lock 0.1.0-alpha.1 kalır. Sürüm/tag/registry/deploy oluşturulmaz. **SOURCE RELEASE READINESS:** son HEAD testleri ve bakımcı incelemesi kapısı. **BINARY DISTRIBUTION READINESS: BLOCKED FOR BINARY DISTRIBUTION**; LGPL/MPL/temel imaj kaynak ve bildirim kanıtı eksik.
+REL-ALPHA2-PREP güncel kontrol noktası: main `54215e73b2744c5cd24962e3956c017ad0a7fc21`; #24 dahil S03-A–F/S04-A–D birleşti. Package/lock 0.1.0-alpha.2, private: true. Alpha.1 korunur; Alpha.2 tag/release yoktur.
 
-## Alpha.2 için ayrı yayım kapısı
+DEVELOPMENT ve SOURCE RELEASE READINESS: **INCOMPLETE — son HEAD push ve PR CI kanıtı bekleniyor**. Sonuçlar [doğrulama sözleşmesi](ALPHA2-SOURCE-RELEASE-VALIDATION.md) uyarınca PR açıklamasında kesin SHA ile kaydedilir. Tarihsel READY sonuçları yeni HEAD için kullanılamaz.
 
-- [ ] Bu PR'nin son HEAD push ve PR checks/selfhost sonuçları, gerçek codeload archive hash'i ve temiz clone raporu incelensin.
-- [ ] SOURCE RELEASE READINESS bakımcı tarafından onaylansın; bağımsız insan kurulumu yapılmış gibi yazılmasın.
-- [ ] Kesin release commit'i seçilsin. Package ve lock 0.1.0-alpha.2 değişikliği ayrı kararda birlikte yapılsın; şu anda 0.1.0-alpha.1 korunur.
-- [ ] AGPL kaynak sunumu ve üçüncü taraf koşulları sürümle eşleştirilsin. Binary/container kapısı BLOCKED; source-only kararı bunu kapatmaz.
-- [ ] Ayrı kullanıcı yayımlama onayı alınsın. Alpha.2 tag/release ve registry push bu görevin kapsamı değildir; alpha.1 aynı kalır.
+**BINARY DISTRIBUTION READINESS: BLOCKED FOR BINARY DISTRIBUTION.** LGPL/MPL, Sharp/libvips ve Node/Debian corresponding-source/notice kapıları açıktır.
+
+- [x] Sürüm metadata’sı birlikte güncellendi; bağımlılık/migration değişmedi.
+- [ ] Son HEAD push ve PR checks/selfhost başarılı; gerçek codeload SHA-256/dosya sayısı kaydedilmiş olmalı.
+- [ ] Bakımcı kaynak/lisans/TR-EN taslaklarını incelesin.
+- [ ] Kesin release commit’i ve tarih ayrı kararla seçilsin; yeni commit varsa tüm kanıtlar yenilensin.
+- [ ] Ayrı yayın onayı alınsın. Bu görev tag/release/npm/registry/deploy yapmaz.
+
+Gerçek HTTPS/SMTP, bağımsız insan kurulumu, WAL/PITR, production RPO/RTO, ticari operasyonlar doğrulanmadı. Alpha.1 güncellemesi için [SAFE-UPGRADE](SAFE-UPGRADE.md) ve [BACKUP-OPERATIONS](BACKUP-OPERATIONS.md) uygulanır; reset/down/aktif DB üzerine restore veya otomatik eski imaj yoktur.
 
 ## Önceki geliştirme kayıtları — tarihsel bağlam
 

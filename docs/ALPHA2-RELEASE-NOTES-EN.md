@@ -1,10 +1,14 @@
 # v0.1.0-alpha.2 — Draft release notes
 
-**DRAFT / NOT PUBLISHED — EARLY DEVELOPMENT, NOT PRODUCTION READY.** Alpha.1 remains unchanged. Package and lock versions remain 0.1.0-alpha.1; changing them to 0.1.0-alpha.2 is a proposal for a separate release decision. No tag, GitHub Release or registry image is created.
+**TASLAK — YAYIMLANMADI / DRAFT — NOT PUBLISHED**
+
+**EARLY DEVELOPMENT / ALPHA — NOT PRODUCTION READY**
+
+This candidate prepares merged improvements since Alpha.1 for source-only maintainer review. Package/lock are now 0.1.0-alpha.2; private: true remains. Alpha.1 is unchanged. Publication date and final release commit require a separate decision.
 
 ## Candidate scope
 
-The candidate may include S03-A–F and S04-A–D changes after alpha.1. PRs #11–15 and #20–23 are merged; S04-D is this distribution review. A final release commit must be selected separately.
+S03-A–F and S04-A–D are merged after alpha.1: PRs #11–15 and #20–24. A final release commit must be selected separately.
 
 - Previewed, idempotent bulk charges with transaction/audit protection.
 - Partial/full collection policy, debt and movement reports, manual income/expenses and full reversals. A reversal is not a real money refund.
@@ -27,3 +31,6 @@ Staging/production, real SMTP/HTTPS delivery, independent human installation, in
 AGPL-3.0-only remains. Source-only and binary/container distribution are separate activities. **BLOCKED FOR BINARY DISTRIBUTION:** LGPL/MPL and base-image corresponding-source/notice obligations are not fully evidenced. No prebuilt image is published. [License review](THIRD-PARTY-LICENSES.md), [readiness](ALPHA2-READINESS.md), [installation](COMMUNITY-INSTALLATION.md), [S04-D evidence](S04D-DISTRIBUTION-VALIDATION.md).
 
 The [previous S03-F draft](ALPHA2-RELEASE-NOTES-EN-S03F-HISTORY.md) is preserved. Publication requires final HEAD CI, exact source-archive review, maintainer review, version metadata updates and a separate user decision.
+
+
+Alpha.1 → Alpha.2 requires more than a package version change: encrypted backup, recovery rehearsal into a separate empty cluster, reviewed forward migrations and controlled upgrade. [Backup operations](BACKUP-OPERATIONS.md). [Source validation / kaynak doğrulaması](ALPHA2-SOURCE-RELEASE-VALIDATION.md).
