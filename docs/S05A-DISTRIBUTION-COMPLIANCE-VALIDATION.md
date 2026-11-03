@@ -60,3 +60,9 @@ Son yerel tekrar: kapı **6/6** (gerçek CLI 0/1/2 çıkışları dahil), prefli
 ## CI kimlik hata bulgusu
 
 f15ff5c push/PR selfhost kontrolü image-ID uyuşmazlığında başarısız oldu. Artifact incelemesinde Docker inspect index ID ile Syft config ID'nin farklı olduğu doğrulandı. Kontrol gevşetilmedi: sabit inspect ID ile Docker arşivi export edilir; gerçek config içeriği SHA-256 ile hash'lenir ve Syft aynı arşivi tarar. Özgün inspect ID ayrıca saklanır. Bu düzeltmenin son HEAD CI sonuçları ayrıca beklenir.
+
+## Özgün npm bildirimlerini koruma düzeltmesi
+
+Alpha.2 runtime dosya kanıtında `/app/node_modules` altında hiçbir LICENSE/NOTICE/COPYING bulunmadı. Standalone tracing bildirim taşıyor varsayımı geçersiz. Yeni build adımı kurulu npm ağacındaki özgün bildirimleri yol ve SHA-256 envanteriyle `third-party-notices` dizinine kopyalar; runtime bu dizini taşır. Geliştirme araçlarının bildirimleri de dahildir; bu onların runtime binary'sinin varlığını göstermez. Kaynağında notice bulunmayan libvips paketine metin uydurulmaz. Symlink ve notice olmayan dosyalar kopyalanmaz. Test nested/scoped yol, özgün byte/hash, secret dışlama ve symlink davranışını doğrular. Bu teknik koruma tam notice/source uyumu iddiası değildir.
+
+Runtime SBOM lisans metadatası Debian ca-certificates/libffi8 içinde MPL ifadeleri de içerir; axe-core'un runtime'da bulunmaması bütün runtime'ın MPL içermediği anlamına gelmez. Paket alt dosyası/lisans alternatifi uygulanabilirliği ayrıca incelenmelidir.

@@ -22,7 +22,7 @@ function walk(root) {
   }
  }
 }
-walk('/app/node_modules'); walk('/usr/share/doc');
+walk('/app/node_modules'); walk('/app/third-party-notices'); walk('/usr/share/doc');
 if (existsSync('/usr/local/LICENSE')) notices.push({path:'/usr/local/LICENSE',sha256:hash('/usr/local/LICENSE')});
 const debian = execFileSync('dpkg-query', ['-W', '-f=${Package}\t${Version}\t${source:Package}\t${source:Version}\n'], {encoding:'utf8'}).trim().split('\n');
 console.log(JSON.stringify({binaryDistributionReadiness:'BLOCKED', scope:'filesystem inventory, not complete legal or source evidence; symlinks excluded', nodeVersion:process.version, debian, packages, notices, binaries}));
