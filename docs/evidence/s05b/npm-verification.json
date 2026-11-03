@@ -1,0 +1,138 @@
+[
+  {
+    "name": "@img/sharp-libvips-linux-x64",
+    "version": "1.3.4",
+    "gitHead": "ebb95f8add54eee8bed840e3fb587e4cbec857d7",
+    "tarball": "https://registry.npmjs.org/@img/sharp-libvips-linux-x64/-/sharp-libvips-linux-x64-1.3.4.tgz",
+    "sha256": "e371cb713fc8822c96a0d3fb60a3d092799d0aefab6d7f1fb3b72d8d75f1d109",
+    "integrity": "sha512-GJ//SSXbnwSDes02umB3nDJLFcQzw8a18V8fyhqr6tV515tOEMdImjjxj1AoafMRz56F3PHgftnj1QEKSU1zkw==",
+    "registrySignatureVerified": true,
+    "registryKeyId": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "provenanceClaims": [
+      {
+        "_type": "https://in-toto.io/Statement/v1",
+        "subject": [
+          {
+            "name": "pkg:npm/%40img/sharp-libvips-linux-x64@1.3.4",
+            "digest": {
+              "sha512": "189fff4925db9f04837acd36ba60779c324b15c433c3c6b5f15f1fca1aabead579d79b4e10c7489a38f18f502869f311cf9e85dcf1e07ed9e3d5010a494d7393"
+            }
+          }
+        ],
+        "predicateType": "https://slsa.dev/provenance/v1",
+        "predicate": {
+          "buildDefinition": {
+            "buildType": "https://slsa-framework.github.io/github-actions-buildtypes/workflow/v1",
+            "externalParameters": {
+              "workflow": {
+                "ref": "refs/tags/v1.3.4",
+                "repository": "https://github.com/lovell/sharp-libvips",
+                "path": ".github/workflows/ci.yml"
+              }
+            },
+            "internalParameters": {
+              "github": {
+                "event_name": "push",
+                "repository_id": "104502835",
+                "repository_owner_id": "210965"
+              }
+            },
+            "resolvedDependencies": [
+              {
+                "uri": "git+https://github.com/lovell/sharp-libvips@refs/tags/v1.3.4",
+                "digest": {
+                  "gitCommit": "ebb95f8add54eee8bed840e3fb587e4cbec857d7"
+                }
+              }
+            ]
+          },
+          "runDetails": {
+            "builder": {
+              "id": "https://github.com/actions/runner/github-hosted"
+            },
+            "metadata": {
+              "invocationId": "https://github.com/lovell/sharp-libvips/actions/runs/36315646015/attempts/1"
+            }
+          }
+        }
+      }
+    ],
+    "sigstoreTrustVerified": false,
+    "binaries": [
+      {
+        "path": "package/lib/libvips-cpp.so.8.18.7",
+        "sha256": "4aa73553408c3964071728f4a231a8e86918e39bc49f1fbae75355f7ea933ea9",
+        "elfMachine": 62
+      }
+    ],
+    "decision": "PARTIAL"
+  },
+  {
+    "name": "@img/sharp-libvips-linuxmusl-x64",
+    "version": "1.3.4",
+    "gitHead": "ebb95f8add54eee8bed840e3fb587e4cbec857d7",
+    "tarball": "https://registry.npmjs.org/@img/sharp-libvips-linuxmusl-x64/-/sharp-libvips-linuxmusl-x64-1.3.4.tgz",
+    "sha256": "c6312802c16511458a1cf3d990c3e2b9dba555932caf297025ba0bec34ee5cbe",
+    "integrity": "sha512-6zXKeE/p39I1AmA3cJG35eyBGNqNddLnUXjhwBnsGjFPWqf5VKkDBEqaEkPDoTEtkxwi2vv8Tcr2mDyP4So7Fg==",
+    "registrySignatureVerified": true,
+    "registryKeyId": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "provenanceClaims": [
+      {
+        "_type": "https://in-toto.io/Statement/v1",
+        "subject": [
+          {
+            "name": "pkg:npm/%40img/sharp-libvips-linuxmusl-x64@1.3.4",
+            "digest": {
+              "sha512": "eb35ca784fe9dfd2350260377091b7e5ec8118da8d75d2e75178e1c019ec1a314f5aa7f954a903044a9a1243c3a1312d931c22dafbfc4dcaf6983c8fe12a3b16"
+            }
+          }
+        ],
+        "predicateType": "https://slsa.dev/provenance/v1",
+        "predicate": {
+          "buildDefinition": {
+            "buildType": "https://slsa-framework.github.io/github-actions-buildtypes/workflow/v1",
+            "externalParameters": {
+              "workflow": {
+                "ref": "refs/tags/v1.3.4",
+                "repository": "https://github.com/lovell/sharp-libvips",
+                "path": ".github/workflows/ci.yml"
+              }
+            },
+            "internalParameters": {
+              "github": {
+                "event_name": "push",
+                "repository_id": "104502835",
+                "repository_owner_id": "210965"
+              }
+            },
+            "resolvedDependencies": [
+              {
+                "uri": "git+https://github.com/lovell/sharp-libvips@refs/tags/v1.3.4",
+                "digest": {
+                  "gitCommit": "ebb95f8add54eee8bed840e3fb587e4cbec857d7"
+                }
+              }
+            ]
+          },
+          "runDetails": {
+            "builder": {
+              "id": "https://github.com/actions/runner/github-hosted"
+            },
+            "metadata": {
+              "invocationId": "https://github.com/lovell/sharp-libvips/actions/runs/36315646015/attempts/1"
+            }
+          }
+        }
+      }
+    ],
+    "sigstoreTrustVerified": false,
+    "binaries": [
+      {
+        "path": "package/lib/libvips-cpp.so.8.18.7",
+        "sha256": "979b625437190a1970b835164e0e30d47dc60159ce6a394ce78cc40cb9d59ab8",
+        "elfMachine": 62
+      }
+    ],
+    "decision": "PARTIAL"
+  }
+]

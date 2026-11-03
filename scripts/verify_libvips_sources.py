@@ -4,6 +4,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import tarfile
 
 BUILD_COMMIT='ebb95f8add54eee8bed840e3fb587e4cbec857d7'
 VIPS_COMMIT='24ad4d042940e6bf99a68871ba886ca8847c9c82'
@@ -25,8 +26,9 @@ def local(root, name):
     return result
 
 
-def verify(manifest, root, image=None, image_id=None):
+def verify(manifest, root, image=None, image_id=None, cache=None):
     errors=[]
+    checked_archives=0
     if manifest.get('schemaVersion')!=1:raise ValueError('SCHEMA')
     if manifest['package']['commit']!=BUILD_COMMIT or manifest['package']['version']!='1.3.4':raise ValueError('BUILD_COMMIT_VERSION')
     if manifest['libvips']!={'version':'8.18.7','commit':VIPS_COMMIT}:raise ValueError('SOURCE_COMMIT_VERSION')
@@ -39,17 +41,27 @@ def verify(manifest, root, image=None, image_id=None):
     records=manifest['dependencies']
     if {r['name']:r['version'] for r in records}!=expected or len(records)!=len(expected):raise ValueError('DEPENDENCY_SET_VERSION')
     for record in records:
+        if cache is not None:
+            from research_libvips_sources import inspect_archive
+            archive=local(cache,record['name']+'.tar')
+            if sha(archive)!=record.get('sha256'):raise ValueError('SOURCE_ARCHIVE_HASH')
+            actual={n['path']:n['sha256'] for n in inspect_archive(archive)}
+            if any(actual.get(n['path'])!=n['sha256'] for n in record.get('notices',[])):raise ValueError('ARCHIVE_NOTICE_MATCH')
+            checked_archives+=1
         if record.get('archiveStatus')!='PASS':errors.append(record['name']+':SOURCE_ARCHIVE_MISSING')
-        if not HEX.fullmatch(record.get('sha256','')):errors.append(record['name']+':SOURCE_CHECKSUM_MISSING')
+        if not HEX.fullmatch(record.get('sha256','')):
+            if record.get('archiveStatus')=='PASS':raise ValueError('SOURCE_CHECKSUM_INVALID')
+            errors.append(record['name']+':SOURCE_CHECKSUM_MISSING')
         if not record.get('notices'):errors.append(record['name']+':NOTICE_MISSING')
         for notice in record.get('notices',[]):
             if sha(local(root,notice['evidenceFile']))!=notice['sha256']:raise ValueError('NOTICE_HASH')
         # Same version is not authenticated binary build provenance.
         if record.get('sourceMatch')!='VERIFIED':errors.append(record['name']+':BINARY_SOURCE_PROVENANCE_MISSING')
     for patch in manifest['patches']:
-        if patch.get('status')!='PASS' or sha(local(root,patch['evidenceFile']))!=patch['sha256']:errors.append('PATCH_MISSING')
+        if patch.get('status')!='PASS':errors.append('PATCH_MISSING')
+        elif not HEX.fullmatch(patch.get('sha256','')) or sha(local(root,patch['evidenceFile']))!=patch['sha256']:raise ValueError('PATCH_HASH')
     if image is not None:
-        if not image_id or image.get('imageID')!=image_id:raise ValueError('IMAGE_ID')
+        if not image_id or not re.fullmatch(r'sha256:[a-f0-9]{64}',image_id) or image.get('imageID')!=image_id:raise ValueError('IMAGE_ID')
         if image.get('sharpVersion')!='0.35.5':raise ValueError('IMAGE_SHARP_VERSION')
         platforms={b['platform']:b for b in image['binaries']}
         if set(platforms)!={'linux-x64','linuxmusl-x64'}:raise ValueError('PLATFORM_SET')
@@ -59,20 +71,20 @@ def verify(manifest, root, image=None, image_id=None):
             if not HEX.fullmatch(binary['sha256']):raise ValueError('BINARY_HASH')
             if not any(b.get('platform')==platform and b.get('sha256')==binary['sha256'] and b.get('imageID')==image_id for b in manifest.get('images',[])):errors.append(platform+':UNREVIEWED_BINARY_BINDING')
             if binary['versions']['vips']!='8.18.7':raise ValueError('IMAGE_VIPS_VERSION')
-        if not image.get('relocation',{}).get('alternativeLoaded'):errors.append('ALTERNATE_LOAD_NOT_PROVEN')
+        if not (image.get('relocation',{}).get('alternativeLoaded') and not image.get('relocation',{}).get('originalLoaded') and image.get('relocation',{}).get('imageProduced')):errors.append('ALTERNATE_LOAD_NOT_PROVEN')
     else:errors.append('FRESH_IMAGE_EVIDENCE_REQUIRED')
     errors.extend(manifest.get('gaps',[]))
     if manifest.get('rustDependencies'):errors.append('RUST_TRANSITIVE_SOURCES_AND_NOTICES_UNVERIFIED')
     errors.append('MODIFIED_LIBRARY_AND_STATIC_SUBLIBRARY_REBUILD_NOT_PROVEN')
     # Explicit human approval cannot be replaced by populated evidence strings.
     if manifest.get('maintainerReview',{}).get('approved') is not True:errors.append('MAINTAINER_REVIEW_REQUIRED')
-    return {'sourceEvidence':'PARTIAL','binarySourceEvidence':'BLOCKED','relinkingEvidence':'PARTIAL' if image and image.get('relocation',{}).get('alternativeLoaded') else 'BLOCKED','binaryDistributionReadiness':'BLOCKED','errors':errors}
+    return {'archivesReverified':checked_archives,'sourceEvidence':'PARTIAL','binarySourceEvidence':'BLOCKED','relinkingEvidence':'PARTIAL' if image and image.get('relocation',{}).get('alternativeLoaded') and not image.get('relocation',{}).get('originalLoaded') and image.get('relocation',{}).get('imageProduced') else 'BLOCKED','binaryDistributionReadiness':'BLOCKED','errors':errors}
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--manifest',type=Path,required=True);p.add_argument('--root',type=Path,required=True);p.add_argument('--image',type=Path);p.add_argument('--image-id');a=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--manifest',type=Path,required=True);p.add_argument('--root',type=Path,required=True);p.add_argument('--image',type=Path);p.add_argument('--image-id');p.add_argument('--cache',type=Path);a=p.parse_args()
     try:
-        result=verify(json.loads(a.manifest.read_text()),a.root,json.loads(a.image.read_text()) if a.image else None,a.image_id)
+        result=verify(json.loads(a.manifest.read_text()),a.root,json.loads(a.image.read_text()) if a.image else None,a.image_id,a.cache)
         print(json.dumps(result));raise SystemExit(1)
-    except (OSError,ValueError,KeyError,TypeError):
+    except (OSError,ValueError,KeyError,TypeError,tarfile.TarError):
         print('{"binaryDistributionReadiness":"BLOCKED","error":"INVALID_LIBVIPS_EVIDENCE"}');raise SystemExit(2)

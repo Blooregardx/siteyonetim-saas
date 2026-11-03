@@ -882,7 +882,204 @@
       "spdxReview": "UNKNOWN \u2014 per-file/compiled-scope review required"
     }
   ],
-  "images": [],
+  "images": [
+    {
+      "platform": "linux-x64",
+      "path": "/app/node_modules/@img/sharp-libvips-linux-x64/lib/libvips-cpp.so.8.18.7",
+      "sha256": "4aa73553408c3964071728f4a231a8e86918e39bc49f1fbae75355f7ea933ea9",
+      "package": "@img/sharp-libvips-linux-x64",
+      "packageVersion": "1.3.4",
+      "versions": {
+        "aom": "3.15.1",
+        "archive": "3.8.9",
+        "cairo": "1.18.6",
+        "cgif": "0.5.4",
+        "exif": "0.6.26",
+        "expat": "2.8.5",
+        "ffi": "3.8.0",
+        "fontconfig": "2.18.3",
+        "freetype": "2.14.3",
+        "fribidi": "1.0.17",
+        "glib": "2.90.0",
+        "harfbuzz": "14.5.0",
+        "heif": "1.23.5",
+        "highway": "1.4.0",
+        "imagequant": "2.4.1",
+        "lcms": "2.19.1",
+        "mozjpeg": "0826579",
+        "pango": "1.58.2",
+        "pixman": "0.46.4",
+        "png": "1.6.58",
+        "proxy-libintl": "0.5",
+        "rsvg": "2.63.2",
+        "tiff": "4.7.2",
+        "uhdr": "2.0.2",
+        "vips": "8.18.7",
+        "webp": "1.6.0",
+        "xml2": "2.15.4",
+        "zlib-ng": "2.3.3"
+      },
+      "elf": {
+        "magic": "7f454c46",
+        "class": 2,
+        "machine": 62
+      },
+      "links": "\tlinux-vdso.so.1 (0x0000702ddde2f000)\n\tlibresolv.so.2 => /lib/x86_64-linux-gnu/libresolv.so.2 (0x0000702ddca51000)\n\tlibdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x0000702ddca4c000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x0000702ddc832000)\n\tlibpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x0000702ddc82d000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x0000702ddc74d000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x0000702ddc72b000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x0000702ddc549000)\n\t/lib64/ld-linux-x86-64.so.2 (0x0000702ddde31000)\n",
+      "linkerExitCode": 0,
+      "compatibleWithHost": true,
+      "image": "app",
+      "imageID": "sha256:8f2c939401dfb42776851e473ca0ba65e9952fb8729571a09e4934d705579b92",
+      "sourceCommit": "789840f7ffffe2fc72035c4c0e2fb0a271b46310",
+      "sourceDecision": "BLOCKED"
+    },
+    {
+      "platform": "linuxmusl-x64",
+      "path": "/app/node_modules/@img/sharp-libvips-linuxmusl-x64/lib/libvips-cpp.so.8.18.7",
+      "sha256": "979b625437190a1970b835164e0e30d47dc60159ce6a394ce78cc40cb9d59ab8",
+      "package": "@img/sharp-libvips-linuxmusl-x64",
+      "packageVersion": "1.3.4",
+      "versions": {
+        "aom": "3.15.1",
+        "archive": "3.8.9",
+        "cairo": "1.18.6",
+        "cgif": "0.5.4",
+        "exif": "0.6.26",
+        "expat": "2.8.5",
+        "ffi": "3.8.0",
+        "fontconfig": "2.18.3",
+        "freetype": "2.14.3",
+        "fribidi": "1.0.17",
+        "glib": "2.90.0",
+        "harfbuzz": "14.5.0",
+        "heif": "1.23.5",
+        "highway": "1.4.0",
+        "imagequant": "2.4.1",
+        "lcms": "2.19.1",
+        "mozjpeg": "0826579",
+        "pango": "1.58.2",
+        "pixman": "0.46.4",
+        "png": "1.6.58",
+        "proxy-libintl": "0.5",
+        "rsvg": "2.63.2",
+        "tiff": "4.7.2",
+        "uhdr": "2.0.2",
+        "vips": "8.18.7",
+        "webp": "1.6.0",
+        "xml2": "2.15.4",
+        "zlib-ng": "2.3.3"
+      },
+      "elf": {
+        "magic": "7f454c46",
+        "class": 2,
+        "machine": 62
+      },
+      "links": "\tlinux-vdso.so.1 (0x00007d1f7f044000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007d1f7da2a000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007d1f7da0a000)\n\tlibc.musl-x86_64.so.1 => not found\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007d1f7d92a000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007d1f7d748000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007d1f7f046000)\n",
+      "linkerExitCode": 0,
+      "compatibleWithHost": false,
+      "image": "app",
+      "imageID": "sha256:8f2c939401dfb42776851e473ca0ba65e9952fb8729571a09e4934d705579b92",
+      "sourceCommit": "789840f7ffffe2fc72035c4c0e2fb0a271b46310",
+      "sourceDecision": "BLOCKED"
+    },
+    {
+      "platform": "linux-x64",
+      "path": "/app/node_modules/@img/sharp-libvips-linux-x64/lib/libvips-cpp.so.8.18.7",
+      "sha256": "4aa73553408c3964071728f4a231a8e86918e39bc49f1fbae75355f7ea933ea9",
+      "package": "@img/sharp-libvips-linux-x64",
+      "packageVersion": "1.3.4",
+      "versions": {
+        "aom": "3.15.1",
+        "archive": "3.8.9",
+        "cairo": "1.18.6",
+        "cgif": "0.5.4",
+        "exif": "0.6.26",
+        "expat": "2.8.5",
+        "ffi": "3.8.0",
+        "fontconfig": "2.18.3",
+        "freetype": "2.14.3",
+        "fribidi": "1.0.17",
+        "glib": "2.90.0",
+        "harfbuzz": "14.5.0",
+        "heif": "1.23.5",
+        "highway": "1.4.0",
+        "imagequant": "2.4.1",
+        "lcms": "2.19.1",
+        "mozjpeg": "0826579",
+        "pango": "1.58.2",
+        "pixman": "0.46.4",
+        "png": "1.6.58",
+        "proxy-libintl": "0.5",
+        "rsvg": "2.63.2",
+        "tiff": "4.7.2",
+        "uhdr": "2.0.2",
+        "vips": "8.18.7",
+        "webp": "1.6.0",
+        "xml2": "2.15.4",
+        "zlib-ng": "2.3.3"
+      },
+      "elf": {
+        "magic": "7f454c46",
+        "class": 2,
+        "machine": 62
+      },
+      "links": "\tlinux-vdso.so.1 (0x00007be48a8ad000)\n\tlibresolv.so.2 => /lib/x86_64-linux-gnu/libresolv.so.2 (0x00007be4894cf000)\n\tlibdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007be4894ca000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007be4892b0000)\n\tlibpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007be4892ab000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007be4891cb000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007be4891a9000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007be488fc7000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007be48a8af000)\n",
+      "linkerExitCode": 0,
+      "compatibleWithHost": true,
+      "image": "migrate",
+      "imageID": "sha256:20ae0f9f4c904f98d97d53c1b13c0161e5052216ecbc50b804c317fd7f0b8d16",
+      "sourceCommit": "789840f7ffffe2fc72035c4c0e2fb0a271b46310",
+      "sourceDecision": "BLOCKED"
+    },
+    {
+      "platform": "linuxmusl-x64",
+      "path": "/app/node_modules/@img/sharp-libvips-linuxmusl-x64/lib/libvips-cpp.so.8.18.7",
+      "sha256": "979b625437190a1970b835164e0e30d47dc60159ce6a394ce78cc40cb9d59ab8",
+      "package": "@img/sharp-libvips-linuxmusl-x64",
+      "packageVersion": "1.3.4",
+      "versions": {
+        "aom": "3.15.1",
+        "archive": "3.8.9",
+        "cairo": "1.18.6",
+        "cgif": "0.5.4",
+        "exif": "0.6.26",
+        "expat": "2.8.5",
+        "ffi": "3.8.0",
+        "fontconfig": "2.18.3",
+        "freetype": "2.14.3",
+        "fribidi": "1.0.17",
+        "glib": "2.90.0",
+        "harfbuzz": "14.5.0",
+        "heif": "1.23.5",
+        "highway": "1.4.0",
+        "imagequant": "2.4.1",
+        "lcms": "2.19.1",
+        "mozjpeg": "0826579",
+        "pango": "1.58.2",
+        "pixman": "0.46.4",
+        "png": "1.6.58",
+        "proxy-libintl": "0.5",
+        "rsvg": "2.63.2",
+        "tiff": "4.7.2",
+        "uhdr": "2.0.2",
+        "vips": "8.18.7",
+        "webp": "1.6.0",
+        "xml2": "2.15.4",
+        "zlib-ng": "2.3.3"
+      },
+      "elf": {
+        "magic": "7f454c46",
+        "class": 2,
+        "machine": 62
+      },
+      "links": "\tlinux-vdso.so.1 (0x00007e340b0fb000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007e3409ae1000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007e3409ac1000)\n\tlibc.musl-x86_64.so.1 => not found\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007e34099e1000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007e34097ff000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007e340b0fd000)\n",
+      "linkerExitCode": 0,
+      "compatibleWithHost": false,
+      "image": "migrate",
+      "imageID": "sha256:20ae0f9f4c904f98d97d53c1b13c0161e5052216ecbc50b804c317fd7f0b8d16",
+      "sourceCommit": "789840f7ffffe2fc72035c4c0e2fb0a271b46310",
+      "sourceDecision": "BLOCKED"
+    }
+  ],
   "sourceDecision": "PARTIAL",
   "binarySourceDecision": "BLOCKED",
   "relinkingDecision": "BLOCKED",
@@ -890,10 +1087,10 @@
     "approved": false
   },
   "gaps": [
-    "No signed per-binary source/build attestation",
     "Unpinned upstream toolchains/nightly/base images",
     "No full rebuild of static LGPL sublibraries",
-    "Fresh image evidence is produced as CI artifact, not inherited from S05-A"
+    "Fresh image evidence is produced as CI artifact, not inherited from S05-A",
+    "Npm SLSA subject/commit claims match; full Sigstore certificate/Rekor trust has not been verified"
   ],
   "rustDependencies": [
     {
@@ -4109,5 +4306,151 @@
       "sourceDecision": "UNKNOWN",
       "missingEvidence": "Cargo registry/git source archive and original notices not individually acquired; lock checksum is not download verification"
     }
-  ]
+  ],
+  "npmEvidence": [
+    {
+      "name": "@img/sharp-libvips-linux-x64",
+      "version": "1.3.4",
+      "gitHead": "ebb95f8add54eee8bed840e3fb587e4cbec857d7",
+      "tarball": "https://registry.npmjs.org/@img/sharp-libvips-linux-x64/-/sharp-libvips-linux-x64-1.3.4.tgz",
+      "sha256": "e371cb713fc8822c96a0d3fb60a3d092799d0aefab6d7f1fb3b72d8d75f1d109",
+      "integrity": "sha512-GJ//SSXbnwSDes02umB3nDJLFcQzw8a18V8fyhqr6tV515tOEMdImjjxj1AoafMRz56F3PHgftnj1QEKSU1zkw==",
+      "registrySignatureVerified": true,
+      "registryKeyId": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+      "provenanceClaims": [
+        {
+          "_type": "https://in-toto.io/Statement/v1",
+          "subject": [
+            {
+              "name": "pkg:npm/%40img/sharp-libvips-linux-x64@1.3.4",
+              "digest": {
+                "sha512": "189fff4925db9f04837acd36ba60779c324b15c433c3c6b5f15f1fca1aabead579d79b4e10c7489a38f18f502869f311cf9e85dcf1e07ed9e3d5010a494d7393"
+              }
+            }
+          ],
+          "predicateType": "https://slsa.dev/provenance/v1",
+          "predicate": {
+            "buildDefinition": {
+              "buildType": "https://slsa-framework.github.io/github-actions-buildtypes/workflow/v1",
+              "externalParameters": {
+                "workflow": {
+                  "ref": "refs/tags/v1.3.4",
+                  "repository": "https://github.com/lovell/sharp-libvips",
+                  "path": ".github/workflows/ci.yml"
+                }
+              },
+              "internalParameters": {
+                "github": {
+                  "event_name": "push",
+                  "repository_id": "104502835",
+                  "repository_owner_id": "210965"
+                }
+              },
+              "resolvedDependencies": [
+                {
+                  "uri": "git+https://github.com/lovell/sharp-libvips@refs/tags/v1.3.4",
+                  "digest": {
+                    "gitCommit": "ebb95f8add54eee8bed840e3fb587e4cbec857d7"
+                  }
+                }
+              ]
+            },
+            "runDetails": {
+              "builder": {
+                "id": "https://github.com/actions/runner/github-hosted"
+              },
+              "metadata": {
+                "invocationId": "https://github.com/lovell/sharp-libvips/actions/runs/36315646015/attempts/1"
+              }
+            }
+          }
+        }
+      ],
+      "sigstoreTrustVerified": false,
+      "binaries": [
+        {
+          "path": "package/lib/libvips-cpp.so.8.18.7",
+          "sha256": "4aa73553408c3964071728f4a231a8e86918e39bc49f1fbae75355f7ea933ea9",
+          "elfMachine": 62
+        }
+      ],
+      "decision": "PARTIAL"
+    },
+    {
+      "name": "@img/sharp-libvips-linuxmusl-x64",
+      "version": "1.3.4",
+      "gitHead": "ebb95f8add54eee8bed840e3fb587e4cbec857d7",
+      "tarball": "https://registry.npmjs.org/@img/sharp-libvips-linuxmusl-x64/-/sharp-libvips-linuxmusl-x64-1.3.4.tgz",
+      "sha256": "c6312802c16511458a1cf3d990c3e2b9dba555932caf297025ba0bec34ee5cbe",
+      "integrity": "sha512-6zXKeE/p39I1AmA3cJG35eyBGNqNddLnUXjhwBnsGjFPWqf5VKkDBEqaEkPDoTEtkxwi2vv8Tcr2mDyP4So7Fg==",
+      "registrySignatureVerified": true,
+      "registryKeyId": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+      "provenanceClaims": [
+        {
+          "_type": "https://in-toto.io/Statement/v1",
+          "subject": [
+            {
+              "name": "pkg:npm/%40img/sharp-libvips-linuxmusl-x64@1.3.4",
+              "digest": {
+                "sha512": "eb35ca784fe9dfd2350260377091b7e5ec8118da8d75d2e75178e1c019ec1a314f5aa7f954a903044a9a1243c3a1312d931c22dafbfc4dcaf6983c8fe12a3b16"
+              }
+            }
+          ],
+          "predicateType": "https://slsa.dev/provenance/v1",
+          "predicate": {
+            "buildDefinition": {
+              "buildType": "https://slsa-framework.github.io/github-actions-buildtypes/workflow/v1",
+              "externalParameters": {
+                "workflow": {
+                  "ref": "refs/tags/v1.3.4",
+                  "repository": "https://github.com/lovell/sharp-libvips",
+                  "path": ".github/workflows/ci.yml"
+                }
+              },
+              "internalParameters": {
+                "github": {
+                  "event_name": "push",
+                  "repository_id": "104502835",
+                  "repository_owner_id": "210965"
+                }
+              },
+              "resolvedDependencies": [
+                {
+                  "uri": "git+https://github.com/lovell/sharp-libvips@refs/tags/v1.3.4",
+                  "digest": {
+                    "gitCommit": "ebb95f8add54eee8bed840e3fb587e4cbec857d7"
+                  }
+                }
+              ]
+            },
+            "runDetails": {
+              "builder": {
+                "id": "https://github.com/actions/runner/github-hosted"
+              },
+              "metadata": {
+                "invocationId": "https://github.com/lovell/sharp-libvips/actions/runs/36315646015/attempts/1"
+              }
+            }
+          }
+        }
+      ],
+      "sigstoreTrustVerified": false,
+      "binaries": [
+        {
+          "path": "package/lib/libvips-cpp.so.8.18.7",
+          "sha256": "979b625437190a1970b835164e0e30d47dc60159ce6a394ce78cc40cb9d59ab8",
+          "elfMachine": 62
+        }
+      ],
+      "decision": "PARTIAL"
+    }
+  ],
+  "upstreamRun": {
+    "conclusion": "success",
+    "created_at": "2026-09-27T11:24:47Z",
+    "event": "push",
+    "head_sha": "ebb95f8add54eee8bed840e3fb587e4cbec857d7",
+    "html_url": "https://github.com/lovell/sharp-libvips/actions/runs/36315646015",
+    "run_attempt": 1
+  }
 }

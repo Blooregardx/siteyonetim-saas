@@ -2,6 +2,7 @@
 Evidence is a maintainer-reviewed artifact, never inferred from lock metadata.
 """
 import argparse
+import hashlib
 import json
 import re
 from pathlib import Path
@@ -29,7 +30,11 @@ def evaluate(sbom, image_id, evidence):
             # S05-B source/relinking manifest remains incomplete; text fields cannot clear native packages.
             complete = False
         status = 'UNKNOWN' if not known else ('PASS' if complete and proof.get('decision') == 'PASS' else 'BLOCKED')
-        rows.append({'id': key, 'name': item.get('name'), 'version': item.get('version'), 'status': status})
+        native_trace={}
+        if item.get('name') == 'sharp' or item.get('name','').startswith('@img/sharp'):
+            manifest=Path(__file__).resolve().parents[1]/'docs/evidence/s05b/libvips-source-manifest.json'
+            native_trace={'sourceManifest':'docs/evidence/s05b/libvips-source-manifest.json','sourceManifestSha256':hashlib.sha256(manifest.read_bytes()).hexdigest() if manifest.is_file() else None,'sourceDecision':'BLOCKED','maintainerApprovalRequired':True}
+        rows.append({**native_trace,'id': key, 'name': item.get('name'), 'version': item.get('version'), 'status': status})
     return {'imageID': image_id, 'readiness': 'PASS' if all(r['status'] == 'PASS' for r in rows) else 'BLOCKED', 'counts': {s: sum(r['status'] == s for r in rows) for s in ['PASS', 'BLOCKED', 'UNKNOWN', 'NOT_APPLICABLE']}, 'components': rows}
 
 
