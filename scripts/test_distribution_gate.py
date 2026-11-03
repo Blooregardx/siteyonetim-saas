@@ -35,6 +35,13 @@ class GateTests(unittest.TestCase):
             del p['1'][key]
             self.assertEqual(evaluate(SBOM, ID, p)['readiness'], 'BLOCKED', key)
 
+    def test_missing_component_version(self):
+        s = copy.deepcopy(SBOM)
+        p = copy.deepcopy(PROOF)
+        del s['artifacts'][0]['version']
+        del p['1']['version']
+        self.assertEqual(evaluate(s, ID, p)['readiness'], 'BLOCKED')
+
     def test_wrong_version(self):
         p = copy.deepcopy(PROOF)
         p['1']['version'] = '2'

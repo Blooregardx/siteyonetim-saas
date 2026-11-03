@@ -21,7 +21,7 @@ def evaluate(sbom, image_id, evidence):
         proof = evidence.get(key, {})
         licenses = item.get('licenses', [])
         known = bool(licenses) and all(x.get('spdxExpression') and not re.search(r'LicenseRef|UNKNOWN|NOASSERTION|NONE', x['spdxExpression']) for x in licenses)
-        exact = proof.get('name') == item.get('name') and proof.get('version') == item.get('version') and proof.get('imageID') == image_id
+        exact = isinstance(item.get('version'), str) and bool(item['version'].strip()) and proof.get('name') == item.get('name') and proof.get('version') == item.get('version') and proof.get('imageID') == image_id
         # All applicability choices require explicit review, including permissive licenses.
         required = ['upstream', 'binarySourceMatch', 'noticeEvidence', 'sourceProvision', 'relinking', 'reviewer']
         complete = exact and all(isinstance(proof.get(k), str) and proof[k].strip() for k in required)
