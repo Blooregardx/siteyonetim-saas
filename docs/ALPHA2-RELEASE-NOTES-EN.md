@@ -2,7 +2,7 @@
 
 **DRAFT — NOT PUBLISHED. EARLY DEVELOPMENT / ALPHA — NOT PRODUCTION READY.** This preparation does not bump package/lock versions or modify v0.1.0-alpha.1. The final commit, tag and release date require a separate maintainer decision. [Readiness decision](ALPHA2-READINESS.md), [security/regression evidence in Turkish](S03F-SECURITY-REGRESSION.md).
 
-**Release blocker:** readiness is BLOCKED by the large-portfolio second-page CI regression. This draft is not ready for publication.
+**Development readiness:** F-10 was addressed by bounding charge balance aggregation to the selected page; both fix CI workflows passed. Status: READY FOR MAINTAINER REVIEW. This remains a draft requiring final-HEAD checks and separate user authorization to publish.
 
 ## Changes merged into main since alpha.1
 

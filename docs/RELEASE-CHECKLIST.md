@@ -6,6 +6,12 @@
 
 OpenAI Codex for Open Source başvurusu kullanıcı tarafından gönderildi; kabul sonucu bekleniyor. S03-A–E, PR #11–#15 ile main’e birleşti (son birleşme `afd7ea7bcfe693f06daeea9d48b38b8e1fe27fcc`); mevcut alpha.1 ön sürümüne dahil değildir. Bu dokümantasyon düzeltmesi yeni release/tag veya başvuru oluşturmaz.
 
+## F-10 geliştirme kontrol noktası
+
+- [x] [Kök neden ve sınırlı sorgu düzeltmesi](F10-INVESTIGATION.md): üç bağımsız mobil kabul koşusu, filtre/toplam ve finans korunumu.
+- [x] ace4983 için push ve PR CI tam başarılı; 25/29/14, plan sınırı, 11 migration ve restore dahil.
+- [ ] Birleştirilecek/yayımlanacak **son HEAD** için iki CI sonucunu yeniden doğrula. PR #20 taslak ve açık kalır; merge/tag/release ayrı kullanıcı kararıdır.
+
 ## Alpha.2 için ayrı bakımcı kapısı
 
 - [ ] [S03-F denetimi](S03F-SECURITY-REGRESSION.md) ve [hazırlık kararı](ALPHA2-READINESS.md) incelensin; son commitin push ve PR CI sonuçları doğrulansın.

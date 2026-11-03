@@ -54,3 +54,7 @@ Organizasyonun tüm apartman/daire sayısı ve aidat tahakkuk, brüt/ters/net ta
 Kayıt ekranında blok/daire/kişi arama ve sayfaları, seçili dairenin ilişki geçmişi vardır; bütün organizasyon ilişkileri bir defada yüklenmez. Toplu aidat seçimleri form açıkken sayfalar arasında korunur; en fazla 5.000, küçük apartmanda varsayılan tüm seçim, büyük apartmanda açık boş seçim. Sunucu önizleme/hash/idempotency/atomiklik kuralları değişmez.
 
 Yeni read modelleri kısa tutarlı transaction kullanır; ayrı sayfalar arasında snapshot garantisi yoktur. OFFSET derinliği ölçülür; eski sınırsız yardımcılar geriye uyumluluk için korunur fakat canlı ekranlarda kullanılmaz. [Kullanım, ölçümler ve açık sınırlar](SCALABLE-DASHBOARD.md).
+
+## F-10 — Sınırlı aidat sayfası hesabı
+
+Varsayılan filtresiz aidat listesinde tam kapsam sayılır; ödeme/ters kayıt toplamları sayfanın 25 adayı için hesaplanır. Bakiye/durum filtresinde doğru filtre ve toplam için bütün kapsam hesabı korunur; organizasyonun tam özeti değişmez. 10.000 daire/60.000 aidat, üç bağımsız mobil kabul koşusu ve ace4983’in iki tam CI akışı başarılı. [Ölçüm ve sınırlar](F10-INVESTIGATION.md). Bu production kapasite/SLA veya yayımlama onayı değildir.

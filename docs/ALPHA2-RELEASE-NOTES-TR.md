@@ -2,7 +2,7 @@
 
 **TASLAK — yayımlanmadı. EARLY DEVELOPMENT / ALPHA — NOT PRODUCTION READY.** Paket sürümü bu hazırlıkta yükseltilmez; mevcut v0.1.0-alpha.1 değişmez. Nihai commit/tag ve yayın tarihi ayrı bakımcı kararıdır. [Hazırlık kararı](ALPHA2-READINESS.md), [denetim](S03F-SECURITY-REGRESSION.md).
 
-**Yayımlama engeli:** büyük portföy ikinci sayfa CI regresyonu nedeniyle hazırlık kararı BLOCKED. Bu taslak yayımlanmaya hazır değildir.
+**Geliştirme hazırlığı:** F-10 sınırlı aidat sorgusuyla giderildi; düzeltmenin iki CI akışı başarılı. Karar READY FOR MAINTAINER REVIEW. Bu metin taslaktır; son HEAD kontrolleri ve ayrı kullanıcı yayımlama onayı gerekir.
 
 ## Alpha.1 sonrasında main’e alınan geliştirmeler
 

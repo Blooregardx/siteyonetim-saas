@@ -1,14 +1,24 @@
 # v0.1.0-alpha.2 — Hazırlık kararı
 
-**BLOCKED** — 10.000 daire / 60.000 aidat ikinci sayfa regresyonu son push ve PR CI koşularında başarısız oldu. Yerel 14/14 veya önceki başarılı push bu zorunlu kontrolün yerine geçmez. PR taslak kalmalı; alpha.2 yayımlanmamalıdır.
+**READY FOR MAINTAINER REVIEW** — F-10’un kanıtlanan aidat okuma darboğazı giderildi. Düzeltme `ace4983b96b949584d382c0bae468c2e29466bbb` için [push CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41555386707) ve [PR CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41555393666) bütün adımlarıyla başarılıdır. Bu yalnız kaynak kod temelli alpha’nın DEVELOPMENT bakımcı incelemesi kararıdır; yayın/merge yetkisi değildir.
 
-Engel güvenlik açığı veya finansal veri kaybı olarak kanıtlanmadı: HTTP 200 ve doğru URL’den sonra sayfanın pager/veri bölümü 5 saniyelik assertion süresinde görünmüyor; hata anında document loading ve sıfır tablo satırı kaydedildi. URL assertion’ındaki örtülü load bekleyişi ayrıca kaldırıldı, fakat içerik sorunu iki yeni koşuda sürdü. Alt neden henüz doğrulanmadı. Timeout artırımı, retry ekleme veya test atlama yapılmadı.
+Kanıt: 25/25 birim, **29/29 entegrasyon**, 14/14 E2E; üç bağımsız kabul koşusu 4/4+4/4+4/4; her ölçekte 390×844, ayrık 25 kayıt/tam özet ve çalışan finans/arama kontrolleri. Plan, 60.000 toplam aidatta yalnız 25 ödeme aggregate döngüsünü iki plan türünde doğrular. Build/generate/validate, 11 migration/schema diff, streaming 3/3 başarılı. Yerel restore 26/371.530; iki başarılı CI restore’u 26/258.298 satır, hash/katalog/ACL/runtime izin eşitliğiyle başarılı. [F-10 kök neden ve ölçümler](F10-INVESTIGATION.md).
 
-Başarılı kanıtlar: yerel 25/25 birim, 28/28 PostgreSQL entegrasyon, 14/14 E2E; lint/typecheck/build/generate/validate; temiz 11 migration, 7→11 ve 10→11 yükseltme; 26 tablo/308.493 satır restore + hash/katalog/ACL/runtime izin eşitliği; üç streaming testi; lisans/SPDX ve 37 Markdown/130 yerel bağlantı kontrolü. İlk push CI da 25/28/14 ve 26/258.144 restore ile başarılıydı. Buna karşılık aynı commitin PR koşusu ve sonraki commitin iki koşusu 13/14 E2E ile başarısızdı; son başarısız koşularda restore adımı çalışmadı.
+Sonraki commitler için iki CI kapısı korunur: **son HEAD’in hem push hem PR CI’ı başarılı olmadan** bu karara dayanarak merge/yayımlama yapılmaz. Güncel son HEAD bağlantıları PR açıklaması ve nihai raporda doğrulanır. PR #20 kullanıcı isteğiyle taslak kalır.
 
-Audit production 0, dev 16 moderate paket düğümü / tek advisory. Denetlenen kapsamda doğrulanmış P0/P1 yoktur; P2’ler açıkça belgelenmiştir. **Başarısız zorunlu test tek başına bu kararın engelidir.**
+## Tarihsel BLOCKED kararı — e02576f / düzeltme öncesi
 
-Kapanış: sentetik fixture yeniden kullanılmalı; HTTP gövdesinin tamamlanması, server render/DB sorguları ve tarayıcı lifecycle’ı zaman damgalarıyla ilişkilendirilmeli. Alt nedene yönelik küçük güvenli düzeltme ve tam regresyon gerekir. Son commitin hem push hem PR CI başarısı gerekli; rastgele tekrarlarla bir yeşil sonuç elde etmek kapanış değildir. Güncel gerçek bağlantı/sonuçlar PR açıklamasında ve nihai raporda yer alır. Bu belge yayımlama yetkisi değildir.
+Aşağıdaki kayıt önceki gözlemi korur; güncel karar yukarıdadır.
+
+> **BLOCKED** — 10.000 daire / 60.000 aidat ikinci sayfa regresyonu son push ve PR CI koşularında başarısız oldu. Yerel 14/14 veya önceki başarılı push bu zorunlu kontrolün yerine geçmez. PR taslak kalmalı; alpha.2 yayımlanmamalıdır.
+>
+> Engel güvenlik açığı veya finansal veri kaybı olarak kanıtlanmadı: HTTP 200 ve doğru URL’den sonra sayfanın pager/veri bölümü 5 saniyelik assertion süresinde görünmüyor; hata anında document loading ve sıfır tablo satırı kaydedildi. URL assertion’ındaki örtülü load bekleyişi ayrıca kaldırıldı, fakat içerik sorunu iki yeni koşuda sürdü. Alt neden henüz doğrulanmadı. Timeout artırımı, retry ekleme veya test atlama yapılmadı.
+>
+> Başarılı kanıtlar: yerel 25/25 birim, 28/28 PostgreSQL entegrasyon, 14/14 E2E; lint/typecheck/build/generate/validate; temiz 11 migration, 7→11 ve 10→11 yükseltme; 26 tablo/308.493 satır restore + hash/katalog/ACL/runtime izin eşitliği; üç streaming testi; lisans/SPDX ve 37 Markdown/130 yerel bağlantı kontrolü. İlk push CI da 25/28/14 ve 26/258.144 restore ile başarılıydı. Buna karşılık aynı commitin PR koşusu ve sonraki commitin iki koşusu 13/14 E2E ile başarısızdı; son başarısız koşularda restore adımı çalışmadı.
+>
+> Audit production 0, dev 16 moderate paket düğümü / tek advisory. Denetlenen kapsamda doğrulanmış P0/P1 yoktur; P2’ler açıkça belgelenmiştir. **Başarısız zorunlu test tek başına bu kararın engelidir.**
+>
+> Kapanış: sentetik fixture yeniden kullanılmalı; HTTP gövdesinin tamamlanması, server render/DB sorguları ve tarayıcı lifecycle’ı zaman damgalarıyla ilişkilendirilmeli. Alt nedene yönelik küçük güvenli düzeltme ve tam regresyon gerekir. Son commitin hem push hem PR CI başarısı gerekli; rastgele tekrarlarla bir yeşil sonuç elde etmek kapanış değildir. Güncel gerçek bağlantı/sonuçlar PR açıklamasında ve nihai raporda yer alır. Bu belge yayımlama yetkisi değildir.
 
 Aday yalnız proje kaynak kodu temelli erken alpha’dır. Yeni tag/GitHub release/binary/konteyner oluşturulmadı. Mevcut v0.1.0-alpha.1 etiketi ve package/lock `0.1.0-alpha.1` sürümü korunur. Main’e doğrudan yazım, force-push, geçmiş/migration yeniden yazımı yapılmaz.
 

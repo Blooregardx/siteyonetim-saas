@@ -1,6 +1,6 @@
 # F-10 — Kök neden, düzeltme ve doğrulama
 
-Başlangıç: PR #20, `e02576f4616fcc216f7ff3aa77e4f0321ce8815a`. S03-F güvenlik düzeltmeleri ve tarihsel başarısızlık kayıtları korunur. Bu aşamada yerel düzeltme başarılı; iki güncel CI sonucu tamamlanana kadar alpha.2 **BLOCKED**, PR taslaktır.
+Başlangıç: PR #20, `e02576f4616fcc216f7ff3aa77e4f0321ce8815a`. S03-F güvenlik düzeltmeleri ve tarihsel başarısızlık kayıtları korunur. Düzeltme ace4983 için hem push hem PR CI başarılı; alpha.2 kaynak kod hazırlığı **READY FOR MAINTAINER REVIEW**. PR kullanıcı isteğiyle taslak kalır. Son HEAD’in iki CI kapısı korunur; merge/yayımlama onayı verilmez.
 
 ## Kanıtlanan neden
 
@@ -62,3 +62,9 @@ Sentetik restore: **26 tablo / 371.530 satır**; hash, indeks/constraint/trigger
 İlk teşhis JSON’undaki test status alanı finally sırasında framework sonucu henüz güncellenmeden alınmıştı; başarı kanıtı olarak kullanılmadı. Gerçek CI sonucu 13/14 idi. Bu yanıltıcı alan kaldırıldı; sonuç Playwright/GitHub’dan alınır. Önceki başarısız loglar silinmedi. Timeout artırımı, skip/fixme, retry veya assertion kaldırılması yapılmadı.
 
 OFFSET’in eşzamanlı eklemelerde kayması, ayrı HTTP snapshot’ları, bakiye filtresinde tam kapsam hesabı ve üretim/çok kullanıcı kapasite sınırları sürer. Gerçek SMTP, bağımsız insan kurulumu, MFA ve işletim/izleme doğrulamaları bu görevle tamamlanmaz. PR #20 taslak kalır; main merge ve release/tag ayrı kullanıcı kararıdır.
+
+## Başarılı düzeltme CI kontrol noktası
+
+`ace4983b96b949584d382c0bae468c2e29466bbb`: [push CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41555386707) ve [PR CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41555393666) tam başarılı. İkisinde 25/25 birim, 29/29 entegrasyon, 14/14 E2E, her iki plan modunda 25 döngü, Python 3/3, 11 migration ve 26 tablo/258.298 satır restore/izin eşitliği doğrulandı. 10.000 daire ilk/ikinci panel gözlemleri push’ta 435/884 ms, PR’da 397/444 ms; karşılık gelen istemci araması 103/71 ms. Bunlar tek CI örnekleridir, üretim SLA’sı değildir.
+
+Bu kontrol noktası sonradan oluşan dokümantasyon commit’inin CI’ı yerine kullanılmaz. Son HEAD’in gerçek iki sonucu PR açıklamasında ve nihai raporda ayrıca kaydedilir. [Güncel hazırlık kararı](ALPHA2-READINESS.md).

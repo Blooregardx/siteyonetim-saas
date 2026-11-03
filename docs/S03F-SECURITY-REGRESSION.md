@@ -1,5 +1,13 @@
 # S03-F — Güvenlik denetimi ve tam regresyon
 
+## Güncel F-10 kapanışı — 3 Kasım 2026
+
+F-10, varsayılan aidat listesinde sayfalama öncesi bütün 60.000 kaydın ödeme bakiyesini hesaplayan sorguya ayrıldı. Sınırlı aday hesabıyla ödeme aggregate döngüsü 60.000→25 oldu; tam sayı/özet ve bakiye filtrelerinin doğru count/pagination semantiği korundu. [Teşhis, yeni sorgu, karşılaştırma ve sınırlar](F10-INVESTIGATION.md).
+
+Düzeltme commit’i ace4983 için [push](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41555386707) ve [PR](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41555393666) CI başarılı: 25 birim / 29 entegrasyon / 14 E2E, iki query-plan modu, streaming 3/3 ve 26 tablo/258.298 satır restore dahil. Kaynak kod alpha kararı [READY FOR MAINTAINER REVIEW](ALPHA2-READINESS.md). PR taslak; merge/release yapılmaz. Son HEAD’in iki CI sonucu PR/nihai raporda ayrıca doğrulanır.
+
+Aşağıdaki ilk S03-F bulguları, F-09/F-10 engeli ve başarısız CI kayıtları **tarihsel aşama kanıtıdır**; silinmedi. F-10’un güncel durumu bu bölüm ve ayrı kapanış belgesidir. Diğer açık işletim/rate-limit/OFFSET/lisans bakım sınırları korunur.
+
 ## Kapsam ve başlangıç
 
 2 Kasım 2026; yalnız DEVELOPMENT, yerel ve izole PostgreSQL 17 `siteyonetim_test`, sentetik hesap/veri ve yerel SMTP. Bu çalışma bağımsız penetrasyon testi, hukuki görüş veya production güvenlik onayı değildir.
