@@ -1,10 +1,14 @@
 # v0.1.0-alpha.2 — Türkçe sürüm notu taslağı
 
-**TASLAK / YAYIMLANMADI — EARLY DEVELOPMENT, NOT PRODUCTION READY.** Alpha.1 mevcut etiketinde kalır. Package ve kilit 0.1.0-alpha.1; 0.1.0-alpha.2 değişikliği yalnız ayrı yayımlama kararından sonra önerilir. Bu belge tag, GitHub Release veya registry imajı oluşturmaz.
+**TASLAK — YAYIMLANMADI / DRAFT — NOT PUBLISHED**
+
+**EARLY DEVELOPMENT / ALPHA — NOT PRODUCTION READY**
+
+Amaç, Alpha.1 sonrasında birleşmiş geliştirmeleri kaynak-only bakımcı incelemesine hazırlamaktır. Package/lock 0.1.0-alpha.2 olarak eşzamanlı güncellendi; private: true korunur. Alpha.1 değişmez. Yayın tarihi ve kesin release commit’i ayrı kararla belirlenir.
 
 ## Aday kapsam
 
-S03-A–F ve S04-A–D, alpha.1 sonrasındaki incelenmiş main değişikliklerini kapsayabilir. PR #11–15, #20–23 birleşmiştir; S04-D bu taslağın inceleme çalışmasıdır. Kesin release commit'i ayrıca seçilmelidir.
+S03-A–F ve S04-A–D, alpha.1 sonrasında main’e birleşmiştir: #11–15, #20–24. Kesin release commit'i ayrıca seçilmelidir.
 
 - Önizlemeli, idempotent ve transaction/audit korumalı toplu aidat.
 - Kısmi/tam tahsilat politikası, borç/tahsilat ve aylık hareket raporları, manuel gelir/gider ve tam ters kayıt. Gerçek para iadesi değildir.
@@ -27,3 +31,6 @@ Staging/production, gerçek SMTP/HTTPS teslimi, bağımsız insan kurulumu, inte
 AGPL-3.0-only korunur. Kaynak-only arşiv ile binary/container dağıtımı farklıdır. **BLOCKED FOR BINARY DISTRIBUTION:** LGPL/MPL ve temel imaj karşılık gelen kaynak/bildirim yükümlülükleri tamamlanmadı; hazır imaj yayımlanmaz. [Lisans incelemesi](THIRD-PARTY-LICENSES.md), [Alpha.2 kararı](ALPHA2-READINESS.md), [kurulum](COMMUNITY-INSTALLATION.md), [S04-D kanıtı](S04D-DISTRIBUTION-VALIDATION.md).
 
 Önceki taslak [S03-F tarihçesinde](ALPHA2-RELEASE-NOTES-TR-S03F-HISTORY.md) korunur. Yayım için son HEAD CI, kesin source arşivi, bakımcı incelemesi, sürüm metadata değişikliği ve ayrı kullanıcı kararı gerekir.
+
+
+Alpha.1 → Alpha.2 yalnız paket sürüm değişikliği değildir: önce şifreli yedek, ayrı boş cluster’a restore provası ve incelenmiş ileri migration zinciri; ardından kontrollü güncelleme gerekir. [Yedek işletimi](BACKUP-OPERATIONS.md). [Source validation / kaynak doğrulaması](ALPHA2-SOURCE-RELEASE-VALIDATION.md).

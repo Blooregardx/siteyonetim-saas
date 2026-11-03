@@ -43,6 +43,7 @@ def verify(root,revision,archive):
     expected=tree(root,revision)
     require(REQUIRED<=set(expected))
     require(len([n for n in expected if re.fullmatch(r'prisma/migrations/\d[^/]+/migration.sql',n)])==11)
+    metadata={}
     seen=set();top=None;total=0
     with tarfile.open(archive,'r:gz') as source:
         for member in source:
@@ -63,8 +64,13 @@ def verify(root,revision,archive):
             require(digest.hexdigest()==expected[name][1])
             require(bool(member.mode&0o111)==(expected[name][0]=='100755'))
             if name=='LICENSE':require(sha.hexdigest()==LICENSE_SHA)
+            if name in {'package.json','package-lock.json'}:
+                metadata[name]=json.loads(source.extractfile(member).read())
             seen.add(name)
     require(seen==set(expected))
+    package=metadata['package.json'];lock=metadata['package-lock.json']
+    require(package['private'] is True)
+    require(package['version']==lock['version']==lock['packages']['']['version'])
     sha=hashlib.sha256()
     with Path(archive).open('rb') as stream:
         while chunk:=stream.read(65536):sha.update(chunk)

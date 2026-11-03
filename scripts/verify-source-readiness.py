@@ -10,6 +10,7 @@ from urllib.parse import unquote
 root = Path(__file__).resolve().parent.parent
 package = json.loads((root / 'package.json').read_text())
 lock = json.loads((root / 'package-lock.json').read_text())
+assert package['private'] is True, 'npm publication must remain disabled'
 assert package['license'] == lock['packages']['']['license'] == 'AGPL-3.0-only'
 assert package['version'] == lock['version'] == lock['packages']['']['version']
 assert hashlib.sha256((root / 'LICENSE').read_bytes()).hexdigest() == '0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0', 'Official complete AGPL text changed'
