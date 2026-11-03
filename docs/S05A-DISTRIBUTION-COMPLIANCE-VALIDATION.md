@@ -48,3 +48,11 @@ Gerçek runtime hem glibc hem musl x64 Sharp/libvips paketlerini taşıyor. glib
 libvips upstream `v8.18.7` tag API'si `24ad4d042940e6bf99a68871ba886ca8847c9c82` commit'ini gösterdi: https://github.com/libvips/libvips/tree/24ad4d042940e6bf99a68871ba886ca8847c9c82 . Bu upstream sürüm adayıdır; binary build flags/patches/alt bağımlılık kaynak eşleşmesi veya kaynak sunma yükümlülüğünün tamamlandığını kanıtlamaz.
 
 Syft gerçek şeması `source.metadata.imageID` kullanır; ilk gerçek tarama ile doğrulanıp kapı testleri düzeltildi. Syft JSON içindeki encoded imaj config/env/history kanıt dosyalarından çıkarıldı; yalnız kimlik/mimari alanları tutuldu. Migration imajı ve son HEAD push/PR artifacts ayrıca değerlendirilmelidir.
+
+## Gerçek yerel Alpha.2 migration SBOM'u ve sınır
+
+İmaj `sha256:a57f59594fb925382fbb722252277b52e73c6ec1d6c9698af94b35ea4ba28023`, aynı base digest: **866** bileşen, **PASS 0 / BLOCKED 777 / UNKNOWN 89 / NOT_APPLICABLE 0**. [Syft](evidence/s05a/alpha2-migrate.syft.json), [CycloneDX](evidence/s05a/alpha2-migrate.cdx.json), [kararlar](evidence/s05a/alpha2-migrate-gate.json). `axe-core` **4.14.0** gerçekten migration imajında bulundu; runtime envanterinde bulunmuyor. Dolayısıyla MPL değerlendirmesi migration dağıtımında uygulanabilir; yalnız dev etiketiyle dışlanamaz.
+
+VFS yerel disk alanı migration container dosya/native incelemesinde tükendi; iki deneme de Docker nonzero verdi. Bu inceleme **INCOMPLETE/BLOCKED**, başarı sayılmadı. Yalnız bu görevin ürettiği host node_modules/geçici araç dosyaları ve kaldırılmış migration imajının kesin build cache ID'si temizlendi; genel prune veya mevcut PostgreSQL verisine dokunulmadı. Migration SBOM'u önceden üretildi ve korundu. Son HEAD CI daha geniş diskli runner'da dosya envanterini ayrıca üretmelidir.
+
+Son yerel tekrar: kapı **6/6** (gerçek CLI 0/1/2 çıkışları dahil), preflight **12/12**, arşiv politikası **4/4**, streaming **3/3**, Prisma generate/validate ve kaynak/lisans/link doğrulaması geçti. Önceki npm check: lint/strict TypeScript ve **25/25** birim geçti; iki Docker production build'i başarılı. Yeni native aday filtresi JS dosyalarını binary saymaz; eski runtime dosya kanıtı daha geniş query-engine aday listesini korur. Son CI sonuçları tamamlanmadan DEVELOPMENT INCOMPLETE kalır.

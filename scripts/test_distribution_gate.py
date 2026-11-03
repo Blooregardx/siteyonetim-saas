@@ -1,5 +1,10 @@
 import copy
 import unittest
+import json
+import subprocess
+import sys
+import tempfile
+from pathlib import Path
 from distribution_gate import evaluate
 
 ID = 'sha256:' + 'a' * 64
@@ -8,6 +13,19 @@ PROOF = {'1': dict(name='fixture', version='1', imageID=ID, decision='PASS', ups
 
 
 class GateTests(unittest.TestCase):
+    def test_cli_exit_codes(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            sbom = root / 'sbom.json'
+            proof = root / 'proof.json'
+            sbom.write_text(json.dumps(SBOM))
+            command = [sys.executable, str(Path(__file__).with_name('distribution_gate.py')), '--sbom', str(sbom), '--image-id', ID, '--evidence', str(proof)]
+            for value, expected in [(PROOF, 0), ({}, 1), ('malformed', 2)]:
+                proof.write_text(json.dumps(value) if isinstance(value, dict) else value)
+                result = subprocess.run(command, capture_output=True, text=True)
+                self.assertEqual(result.returncode, expected)
+                self.assertNotIn('Traceback', result.stderr)
+
     def test_complete(self):
         self.assertEqual(evaluate(SBOM, ID, PROOF)['readiness'], 'PASS')
 
