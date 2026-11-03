@@ -8,14 +8,18 @@ mkdir secrets
 for role in db migrator runtime; do openssl rand -hex 32 > "secrets/${role}_password"; done
 : > secrets/smtp_url
 # UID 1000 is the image user; GitHub runner UID may differ.
-sudo chown -R 1000:999 secrets
+sudo chown 1000:999 secrets/*
 compose() { docker compose -p s04a-ci -f compose.selfhost.yaml "$@"; }
 sudo chmod 640 secrets/*
 compose config --quiet
 compose build
 compose up -d --wait db
 # Startup must fail before migration.
-if timeout 30 docker compose -p s04a-ci -f compose.selfhost.yaml run --rm --no-deps app; then echo 'Unexpected pre-migration startup'; exit 1; fi
+set +e
+timeout 30 docker compose -p s04a-ci -f compose.selfhost.yaml run --rm --no-deps app
+startup_status=$?
+set -e
+[ "$startup_status" -eq 1 ] || { echo 'Expected explicit startup rejection'; exit 1; }
 compose run --rm migrate
 compose up -d --wait app
 curl --fail --silent http://127.0.0.1:3000/demo > /dev/null
