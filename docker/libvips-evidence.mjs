@@ -1,21 +1,11 @@
-import { readFileSync, existsSync, copyFileSync, mkdtempSync, rmSync } from 'node:fs';
+import { dynamicElf } from './elf-evidence.mjs';
+import { dirname } from 'node:path';
+import { readFileSync, existsSync, copyFileSync, mkdtempSync, rmSync, readdirSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 const sha = b => createHash('sha256').update(b).digest('hex');
-function dynamic(bytes) {
- const phoff=Number(bytes.readBigUInt64LE(32)), size=bytes.readUInt16LE(54), count=bytes.readUInt16LE(56);
- const headers=[];
- for(let i=0;i<count;i++){const o=phoff+i*size;headers.push({type:bytes.readUInt32LE(o),offset:Number(bytes.readBigUInt64LE(o+8)),address:Number(bytes.readBigUInt64LE(o+16)),length:Number(bytes.readBigUInt64LE(o+32))});}
- const section=headers.find(h=>h.type===2), entries=[];
- if(!section)return {needed:[],status:'NO_DYNAMIC_SECTION'};
- for(let o=section.offset;o<section.offset+section.length;o+=16){const tag=Number(bytes.readBigInt64LE(o));if(tag===0)break;entries.push({tag,value:Number(bytes.readBigUInt64LE(o+8))});}
- const address=entries.find(e=>e.tag===5)?.value, load=headers.find(h=>h.type===1 && address>=h.address && address<h.address+h.length);
- if(!load)return {needed:[],status:'STRING_TABLE_UNRESOLVED'};
- const base=load.offset+address-load.address;
- const strings=tag=>entries.filter(e=>e.tag===tag).map(e=>{const o=base+e.value;return bytes.subarray(o,bytes.indexOf(0,o)).toString();});
- return {needed:strings(1),soname:strings(14),rpath:strings(15),runpath:strings(29),status:'PARSED_ELF64_LE'};
-}
+const temporaryMountNoexec=readFileSync('/proc/mounts','utf8').split('\n').some(line=>{const fields=line.split(' ');return fields[1]==='/tmp' && fields[3].split(',').includes('noexec');});
 const binaries = [];
 for (const platform of ['linux-x64','linuxmusl-x64']) {
  const root = `/app/node_modules/@img/sharp-libvips-${platform}`;
@@ -26,12 +16,17 @@ for (const platform of ['linux-x64','linuxmusl-x64']) {
  const bytes = readFileSync(path);
  const linked = spawnSync('ldd',[path],{encoding:'utf8'});
  const links = linked.stdout || 'LINKER_REJECTED';
- binaries.push({platform,path,sha256:sha(bytes),package:meta.name,packageVersion:meta.version,versions,elf:{magic:bytes.subarray(0,4).toString('hex'),class:bytes[4],machine:bytes.readUInt16LE(18)},dynamic:dynamic(bytes),links,linkerExitCode:linked.status,compatibleWithHost:platform==='linux-x64' && Boolean(process.report.getReport().header.glibcVersionRuntime)});
+ binaries.push({platform,path,sha256:sha(bytes),package:meta.name,packageVersion:meta.version,versions,elf:{magic:bytes.subarray(0,4).toString('hex'),class:bytes[4],machine:bytes.readUInt16LE(18)},dynamic:dynamicElf(bytes),links,linkerExitCode:linked.status,compatibleWithHost:platform==='linux-x64' && Boolean(process.report.getReport().header.glibcVersionRuntime)});
 }
 const temp = mkdtempSync('/tmp/s05b-libvips-');
-const addonPath=createRequire('/app/package.json').resolve('@img/sharp-linux-x64/sharp.node');
+const resolver=createRequire('/app/package.json');
+const packageRoot=dirname(resolver.resolve('@img/sharp-linux-x64/package'));
+const nativeFiles=readdirSync(packageRoot+'/lib').filter(name=>name.endsWith('.node'));
+if(nativeFiles.length!==1)throw new Error('AMBIGUOUS_NATIVE_ADDON');
+const addonPath=packageRoot+'/lib/'+nativeFiles[0];
+const exportPath=resolver.resolve('@img/sharp-linux-x64/sharp.node');
 const addonBytes=readFileSync(addonPath);
-const addon={path:addonPath,sha256:sha(addonBytes),dynamic:dynamic(addonBytes)};
+const addon={path:addonPath,exportPath,exportSha256:sha(readFileSync(exportPath)),sha256:sha(addonBytes),dynamic:dynamicElf(addonBytes)};
 let relocation;
 try {
  const selected = binaries.find(b=>b.compatibleWithHost);
@@ -45,4 +40,4 @@ try {
  relocation={...result,ldLibraryPathProbe,preloadProbe,originalSha256:selected.sha256,replacementSha256:sha(readFileSync(target)),decision:result.alternativeLoaded && !result.originalLoaded && result.imageProduced ? 'PARTIAL' : 'BLOCKED',scope:'identical-byte alternate directory load, not a modified-library or static-sublibrary rebuild'};
 } catch { relocation={decision:'BLOCKED',error:'ALTERNATE_LIBRARY_PROBE_FAILED'}; }
 finally { rmSync(temp,{recursive:true,force:true}); }
-console.log(JSON.stringify({node:process.version,sharpVersion:JSON.parse(readFileSync('/app/node_modules/sharp/package.json')).version,binaries,addon,relocation,binarySourceDecision:'BLOCKED',relinkingDecision:relocation.alternativeLoaded && !relocation.originalLoaded && relocation.imageProduced ? 'PARTIAL' : 'BLOCKED'}));
+console.log(JSON.stringify({temporaryMountNoexec,node:process.version,sharpVersion:JSON.parse(readFileSync('/app/node_modules/sharp/package.json')).version,binaries,addon,relocation,binarySourceDecision:'BLOCKED',relinkingDecision:relocation.alternativeLoaded && !relocation.originalLoaded && relocation.imageProduced ? 'PARTIAL' : 'BLOCKED'}));

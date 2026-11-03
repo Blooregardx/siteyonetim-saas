@@ -75,7 +75,7 @@ class SourceTests(unittest.TestCase):
         image_id='sha256:'+'a'*64
         image={'imageID':image_id,'sharpVersion':'0.35.5','binaries':[{'platform':'darwin-arm64'}]}
         with self.assertRaises(ValueError):verify(M,ROOT,image,image_id)
-        image['binaries']=[{'platform':p,'package':'@img/sharp-libvips-'+p,'packageVersion':'1.3.4','elf':{'magic':'7f454c46','class':2,'machine':62},'sha256':'invalid','versions':{'vips':'8.18.7'}} for p in ['linux-x64','linuxmusl-x64']]
+        image['binaries']=[{'platform':p,'package':'@img/sharp-libvips-'+p,'packageVersion':'1.3.4','elf':{'magic':'7f454c46','class':2,'machine':62},'sha256':'invalid','versions':{r['name']:r['version'] for r in M['dependencies']}} for p in ['linux-x64','linuxmusl-x64']]
         with self.assertRaises(ValueError):verify(M,ROOT,image,image_id)
         for b in image['binaries']:b['sha256']='a'*64
         m=copy.deepcopy(M);m['images']=[{'platform':b['platform'],'imageID':image_id,'sha256':'b'*64} for b in image['binaries']]

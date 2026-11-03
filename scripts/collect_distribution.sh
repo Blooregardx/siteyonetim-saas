@@ -37,7 +37,7 @@ s['source']['metadata']={k:m[k] for k in ['imageID','manifestDigest','architectu
 with open(p,'w') as f:json.dump(s,f)
 PYCODE
 docker run --rm --network=none --read-only --cap-drop=ALL --security-opt=no-new-privileges:true --entrypoint=node "$id" docker/image-license-audit.mjs > "$out/filesystem.json"
-docker run --rm --network=none --read-only --tmpfs /tmp:size=160m,mode=1777 --cap-drop=ALL --security-opt=no-new-privileges:true --entrypoint=node "$id" docker/libvips-evidence.mjs > "$out/libvips.json"
+docker run --rm --network=none --read-only --tmpfs /tmp:size=160m,mode=1777,exec --cap-drop=ALL --security-opt=no-new-privileges:true --entrypoint=node "$id" docker/libvips-evidence.mjs > "$out/libvips.json"
 python3 - "$out/libvips.json" "$config_id" <<'PYCODE'
 import json,sys
 p=sys.argv[1];data=json.load(open(p));data['imageID']=sys.argv[2]

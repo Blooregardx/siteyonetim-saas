@@ -45,6 +45,10 @@ def verify(manifest, root, image=None, image_id=None, cache=None):
     if cache is not None:
         if sha(local(cache,'sharp.tar'))!=sharp['sha256']:raise ValueError('SHARP_ARCHIVE_HASH')
         if sha(local(cache.parent,'commit.tar.gz'))!=manifest['buildArchive']['sha256']:raise ValueError('BUILD_ARCHIVE_HASH')
+        from research_libvips_sources import inspect_archive
+        sharp_notices={n['path']:n['sha256'] for n in inspect_archive(local(cache,'sharp.tar'))}
+        if any(sharp_notices.get(n['path'])!=n['sha256'] for n in sharp['notices']):raise ValueError('SHARP_ARCHIVE_NOTICE_MATCH')
+        inspect_archive(local(cache.parent,'commit.tar.gz'))
     for name,expected in manifest['buildFiles'].items():
         if not HEX.fullmatch(expected) or sha(local(root,name))!=expected:raise ValueError('BUILD_FILE_HASH')
     versions=dict(re.findall(r'^VERSION_(\w+)=(.+)$',local(root,'upstream/versions.properties').read_text(),re.M))
@@ -82,6 +86,7 @@ def verify(manifest, root, image=None, image_id=None, cache=None):
             if not HEX.fullmatch(binary['sha256']):raise ValueError('BINARY_HASH')
             if not any(b.get('platform')==platform and b.get('sha256')==binary['sha256'] and b.get('imageID')==image_id for b in manifest.get('images',[])):errors.append(platform+':UNREVIEWED_BINARY_BINDING')
             if binary['versions']['vips']!='8.18.7':raise ValueError('IMAGE_VIPS_VERSION')
+            if any(binary['versions'].get(r['name'])!=r['version'] for r in records):raise ValueError('IMAGE_DEPENDENCY_VERSION')
         if not (image.get('relocation',{}).get('alternativeLoaded') and not image.get('relocation',{}).get('originalLoaded') and image.get('relocation',{}).get('imageProduced')):errors.append('ALTERNATE_LOAD_NOT_PROVEN')
     else:errors.append('FRESH_IMAGE_EVIDENCE_REQUIRED')
     errors.extend(manifest.get('gaps',[]))
