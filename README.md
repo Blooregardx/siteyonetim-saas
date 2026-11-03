@@ -1,5 +1,9 @@
 # SiteYönetim
 
+## S04-A güncel karar
+
+Supabase kullanılmayacak. Ücretsiz, PUBLIC, AGPL-3.0-only ve kendi sunucusunda kurulum önceliği korunur; ücretli servis zorunlu değildir. Sunucu/alan adı/e-posta maliyeti işletmeciye bağlıdır. Ayrı `compose.selfhost.yaml` ve [Docker kurulum rehberi](docs/SELF-HOSTING-DOCKER.md) eklendi; `compose.yaml` geliştirme içindir. DEVELOPMENT doğrulaması üretim onayı değildir. S04-B web kurulum sihirbazı, S04-C yedek işletimi ayrı aşamalardır. Aşağıdaki eski durum raporları tarihsel bağlamıyla korunur. S04-A sonuçları S04A-VALIDATION belgesindedir.
+
 Site ve apartman yönetimi için ücretsiz, topluluk katkılarına açık ve kendi sunucusunda barındırılabilir yazılım geliştirme projesi. Depo PUBLIC kalır; ticari abonelik veya ücretli lisans modeli planlanmaz. Next.js App Router, React, strict TypeScript, PostgreSQL ve Prisma 6 mimarisi korunur.
 
 > **Lisans: AGPL-3.0-only.** Bu yazılımı çalıştırabilir, inceleyebilir, değiştirebilir ve lisans koşullarıyla paylaşabilirsiniz. Değiştirilmiş ağ sürümünüzün kullanıcılarına karşılık gelen kaynak kodunu ücretsiz edinme olanağı sunun; dağıtım yükümlülüklerini de koruyun. [Tam lisans](LICENSE), [haklar ve yükümlülükler](docs/LICENSING.md), [üçüncü taraf bileşenler](docs/THIRD-PARTY-LICENSES.md).
