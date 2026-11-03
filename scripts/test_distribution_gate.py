@@ -3,7 +3,7 @@ import unittest
 from distribution_gate import evaluate
 
 ID = 'sha256:' + 'a' * 64
-SBOM = {'source': {'type': 'image', 'target': {'imageID': ID}}, 'artifacts': [{'id': '1', 'name': 'fixture', 'version': '1', 'licenses': [{'spdxExpression': 'MIT'}]}]}
+SBOM = {'source': {'type': 'image', 'metadata': {'imageID': ID}}, 'artifacts': [{'id': '1', 'name': 'fixture', 'version': '1', 'licenses': [{'spdxExpression': 'MIT'}]}]}
 PROOF = {'1': dict(name='fixture', version='1', imageID=ID, decision='PASS', upstream='https://example.invalid/fixture/1', binarySourceMatch='synthetic verified match', noticeEvidence='synthetic LICENSE hash', sourceProvision='not applicable: permissive fixture', relinking='not applicable: permissive fixture', reviewer='synthetic test')}
 
 

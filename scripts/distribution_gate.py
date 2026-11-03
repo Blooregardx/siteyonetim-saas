@@ -10,7 +10,7 @@ from pathlib import Path
 def evaluate(sbom, image_id, evidence):
     if not re.fullmatch(r'sha256:[a-f0-9]{64}', image_id):
         raise ValueError('INVALID_IMAGE_ID')
-    if sbom.get('source', {}).get('type') != 'image' or sbom['source'].get('target', {}).get('imageID') != image_id:
+    if sbom.get('source', {}).get('type') != 'image' or sbom['source'].get('metadata', {}).get('imageID') != image_id:
         raise ValueError('SBOM_IMAGE_MISMATCH')
     artifacts = sbom.get('artifacts', [])
     if not artifacts:

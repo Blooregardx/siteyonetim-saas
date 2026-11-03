@@ -15,6 +15,15 @@ unset DOCKER_CONTEXT DOCKER_TLS DOCKER_TLS_VERIFY DOCKER_CERT_PATH
 id=$(docker image inspect --format '{{.Id}}' "$image")
 printf '%s\n' "$id" > "$out/image-id.txt"
 "$work/syft" scan "docker:$id" --scope squashed -o "syft-json=$out/sbom.syft.json" -o "cyclonedx-json=$out/sbom.cdx.json"
+# Syft includes encoded image configuration by default; do not retain env/history.
+python3 - "$out/sbom.syft.json" <<'PYCODE'
+import json,sys
+p=sys.argv[1]
+s=json.load(open(p))
+m=s['source']['metadata']
+s['source']['metadata']={k:m[k] for k in ['imageID','manifestDigest','architecture','os'] if k in m}
+with open(p,'w') as f:json.dump(s,f)
+PYCODE
 docker run --rm --network=none --read-only --cap-drop=ALL --security-opt=no-new-privileges:true --entrypoint=node "$id" docker/image-license-audit.mjs > "$out/filesystem.json"
 printf '{}\n' > "$out/evidence.json"
 set +e
