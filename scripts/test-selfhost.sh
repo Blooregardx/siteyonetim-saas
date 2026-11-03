@@ -27,8 +27,8 @@ compose run --rm migrate
 compose up -d --wait app
 curl --fail --silent http://127.0.0.1:3000/demo > /dev/null
 curl --silent -D /tmp/s04a-panel-headers http://127.0.0.1:3000/panel > /dev/null
-rg -q '^HTTP/1.1 30[37]' /tmp/s04a-panel-headers
-rg -qi '^location: /giris' /tmp/s04a-panel-headers
+grep -Eq '^HTTP/1.1 30[37]' /tmp/s04a-panel-headers
+grep -qi '^location: /giris' /tmp/s04a-panel-headers
 compose exec -T app node docker/health.mjs
 compose exec -T app node docker/acceptance.mjs write
 compose restart db
