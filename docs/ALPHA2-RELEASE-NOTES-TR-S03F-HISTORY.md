@@ -1,3 +1,5 @@
+> Tarihsel S03-F taslağıdır. Güncel aday [sürüm notundadır](ALPHA2-RELEASE-NOTES-TR.md); eski PR taslak durumları güncel durum değildir.
+
 # v0.1.0-alpha.2 — Türkçe sürüm notu taslağı
 
 ## Güncel karar — READY FOR MAINTAINER REVIEW

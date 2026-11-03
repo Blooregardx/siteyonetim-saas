@@ -1,12 +1,29 @@
 # S04-D — Temiz kurulum ve topluluk dağıtımı doğrulaması
 
-**DEVELOPMENT: INCOMPLETE — son HEAD CI bekleniyor.**
+**DEVELOPMENT: READY FOR MAINTAINER REVIEW — kod kabulü, son HEAD CI kapısı korunur.**
 
-**SOURCE RELEASE READINESS: INCOMPLETE — gerçek GitHub archive/temiz clone kabulü ve bakımcı incelemesi bekleniyor.**
+**SOURCE RELEASE READINESS: READY FOR SOURCE-ONLY MAINTAINER REVIEW.** Yayım onayı değildir; kesin source commit/archive, sürüm metadata kararı ve son HEAD CI ayrıca kapıdır.
 
 **BINARY DISTRIBUTION READINESS: BLOCKED FOR BINARY DISTRIBUTION.** LGPL/MPL, Sharp/libvips ve temel imaj karşılık gelen kaynak/bildirim yükümlülükleri tamamlandı iddiası yoktur. Kaynak koddan yerel build, hazır imaj dağıtımı değildir.
 
 Başlangıç main `f81ffe8df881f62a1331913b8bbd16b2f58bc945`; temiz çalışma ağacı, dal `codex/s04-d-community-distribution`. 11 migration, sy_migrator/sy_runtime ve opt-in sy_backup, named volume, audit/financial immutable mekanizmaları incelendi. Finans, auth/onboarding servisleri, tarihsel migration ve LICENSE değiştirilmez.
+
+## Otomatik temiz kaynak kabulü — tamamlanan kod kontrol noktası
+
+Doğrulanan `cd4cedc1cfb51574034c74ed2ea311105588991c` için iki CI completed/success:
+
+| Koşu | checks | temiz clone selfhost + recovery |
+|---|---|---|
+| [Push 41653356341](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41653356341) | Başarılı | Başarılı |
+| [PR 41653421470](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41653421470) | Başarılı | Başarılı |
+
+İki selfhost logunda ayrı public Git clone ve gerçek GitHub codeload tar.gz **222 kaynak dosyası** ile aynı commit tree'ye blob/mode bazında eşleşti. Arşiv SHA-256: `8f67bd9071fa98792a9e2d824becd5f3bdb809904c39e4b6ffbe425a2e93bc4c`. Bu hash yalnız bu kod kontrol noktasıdır; dokümantasyon commit'i farklı hash üretir. Son HEAD'in yeniden çalıştırılmış iki CI bağlantısı ve arşiv hash'i [taslak PR #24](https://github.com/Blooregardx/siteyonetim-saas/pull/24) açıklamasında ayrıca kaydedilir; tamamlanmamış job başarı sayılmaz.
+
+Checks: preflight **12/12**, archive policy **4/4**, ESLint/strict TypeScript, **25/25 birim, 36/36 entegrasyon, 19/19 E2E**, production build, Prisma generate/validate, 11 migration/schema diff, source/license/npm audit, iki dashboard query-plan modu, streaming **3/3** ve tarihsel sentetik restore başarılı. Selfhost: gerçek preflight ok=true (SMTP/MAIL_FROM/TLS uyarılarıyla demo-only), negatif kurulum senaryoları, standalone runtime/demo/panel/kurulum, roller, native Prisma/DDL reddi ve restart kalıcılığı başarılı. Backup hata matrisi **12/12** ve yeni encrypted recovery **26 tablo/100.048 satır**; katalog/ACL eşitliği, finans/tenant/audit, restored health ve gerçek başarısız migration'da writers stopped başarılı.
+
+Runtime inventory: Node v24.22.2; 91 Debian paket kaydı; Node LICENSE ve libc6/OpenSSL copyright mevcut. Next16.4.3, Sharp0.35.5, libvips platform paketi1.3.4, PrismaClient6.19.3 kurulu; taranan paket **köklerinde** LICENSE/NOTICE/COPYING dosyası bulunmadı. Bu bütün nested bildirimlerin yokluğu veya tam SBOM değildir; karşılık gelen kaynak/relinking/bildirim kanıtını kapatmaz. Binary kapısı halen BLOCKED.
+
+Bağımsız insan kurulum katılımı **yoktur**. Linux x86-64 ephemeral GitHub runner ve host araçları yeniden kullanılmıştır; uygulama kaynakları, dependency dizini veya önceden hazırlanmış app image'i yeniden kullanılmamıştır. Yerel VFS gerçek kurulum kanıtı olarak kullanılmadı. Alpha.2 tag/release veya binary dağıtımı yapılmadı.
 
 ## GitHub güncel durum denetimi
 
