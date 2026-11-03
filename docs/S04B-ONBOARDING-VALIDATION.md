@@ -1,6 +1,27 @@
 # S04-B — İlk kurulum doğrulaması
 
-Durum: INCOMPLETE — son HEAD CI henüz bekleniyor. Yalnız DEVELOPMENT; production-ready değildir.
+Durum: **READY FOR MAINTAINER REVIEW** — yalnız DEVELOPMENT; production-ready değildir.
+
+Doğrulanan kod commit'i `b1166f890729d056d6667f1d4b1ab3739e48a515`:
+
+| Koşu | checks | selfhost |
+|---|---|---|
+| [Push 41575406954](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41575406954) | Başarılı | Başarılı |
+| [PR 41575410846](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41575410846) | Başarılı | Başarılı |
+
+İki koşu completed/success; headSha aynı kod commit'iyle eşleşir. Bu rapor commit'inin son HEAD CI sonuçları da [taslak PR #22](https://github.com/Blooregardx/siteyonetim-saas/pull/22) açıklamasında ayrıca kaydedilir; son HEAD için iki CI başarısı bakımcı kapısıdır. PR açık/taslak kalır; merge veya release onayı değildir.
+
+## Tam CI kabulü
+
+İki checks işinde ESLint, strict TypeScript, **25/25 birim, 36/36 PostgreSQL entegrasyon, 19/19 Playwright**, production build, Prisma validate/generate, temiz 11 migration/schema diff, kaynak/lisans hazırlık ve npm audit, iki dashboard query-plan modu, streaming backup Python **3/3**, ayrı boş hedefe sentetik restore başarılı.
+
+Push restore **26 tablo / 258.383 satır** eşleştirdi; index/constraint/trigger ve tablo/sütun ACL'leri dahil. Restore probu 11 migration, 15 audit, tenantIsolation=true, immutableHistory=true; brüt 6500/ters 4000/net 2500/kalan 7500 kuruş. Satır sayısı sentetik fixture ve süreli oturum kayıtlarına göre koşudan koşuya değişebilir; her koşu kendi kaynak/hedef eşitliğini doğrular.
+
+İki selfhost işinde runtime/migration image build, native Prisma bağlantısı, PG17, ayrı runtime/migrator izinleri, DDL reddi, migration öncesi güvenli app reddi, 11 migration/schema/grants, app health, demo/panel yönlendirmesi ve restart sonrası sentinel/migration kalıcılığı başarılı. Yeni log satırı: `Anonymous onboarding redirects to /giris`. Bu, yeni rotanın standalone imajında bulunduğunu ve anonim erişimin engellendiğini kanıtlar; tam doğrulamalı onboarding E2E ayrı checks işindedir.
+
+## Tarihsel ilk CI hatası ve düzeltme
+
+`1ff339e` [push checks](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41575141040) yeni entegrasyon dosyasının başlangıç korumasında durdu: DATABASE_URL varsayılan schema=public içeriyor, TEST_DATABASE_URL içermiyordu. Aynı loopback siteyonetim_test hedefi için yalnız bu eşdeğer varsayılan parametre normalize edildi. Diğer URL farkları reddedilir; host/DB/kimlik izolasyonu kaldırılmadı. Aynı CI biçimiyle yeni 7 test yerelde tekrar başarılı; ardından iki tam CI başarılı. Retry/test atlama veya güvenlik kontrolü gevşetme yapılmadı.
 
 Başlangıç main `dbd378f10683379223971a73a46916cf365d20dd`, temiz çalışma ağacı; dal `codex/s04-b-onboarding-wizard`.
 

@@ -1,6 +1,6 @@
 # Güncel yol haritası
 
-## S04-B — Uygulama içi ilk kurulum
+## S04-B — Uygulama içi ilk kurulum (bakımcı incelemesine hazır)
 
 `/kurulum`, giriş yapmış ve e-postasını doğrulamış kullanıcı için Türkçe, mobil uyumlu başlangıç akışıdır: yönetim türü → organizasyon → ilk apartman/site → kapsamlı panel bağlantısı. Kayıt ve doğrulama mevcut ekranlardadır; SMTP olmadan doğrulama tamamlanmış sayılmaz. Panelde “İlk kuruluma başla / devam et”, doğrulama ekranında “İlk kuruluma devam et” bağlantısı vardır.
 
