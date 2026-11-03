@@ -1,6 +1,23 @@
 # S04-C — Şifreli yedek, kurtarma ve güncelleme doğrulaması
 
-Durum: **INCOMPLETE — son HEAD CI bekleniyor.** Yalnız DEVELOPMENT; production-ready değildir.
+Durum: **READY FOR MAINTAINER REVIEW — DEVELOPMENT kod kabulü.** Production-ready değildir. Son HEAD'in iki CI başarısı ayrıca bakımcı kapısıdır.
+
+Doğrulanan kod `d1ee5404390d6a93029497ddbfdc4f57cda373e4`:
+
+| Koşu | checks | selfhost + encrypted recovery |
+|---|---|---|
+| [Push 41642147018](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41642147018) | Başarılı | Başarılı |
+| [PR 41642154958](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41642154958) | Başarılı | Başarılı |
+
+Koşular completed/success; headSha eşleşir. Bu raporla birlikte son restore-hedef/DB ACL sertleştirmesi gönderilir: portsuz ve özel rollü/başka uygulama DB'si bulunmayan hedef, NOLOGIN/beklenen rol limitleri ve kontrollü DB owner/ACL zorunludur. Son HEAD push/PR sonuçları [taslak PR #23](https://github.com/Blooregardx/siteyonetim-saas/pull/23) açıklamasında ayrıca kaydedilir; tamamlanmamış koşular başarı sayılmaz.
+
+## Tam CI kanıtı
+
+İki koşuda mevcut Docker kabulü ve gerçek age ile **12/12 host hata testi** başarılı. Yeni şifreli recovery adımı **26 tablo / 100.048 satır**, 11 migration, source/target bounded hash eşitliği, katalog/owner/index/constraint/column/enum/function/trigger/tablo-sütun/default ACL eşitliği, backup ve runtime DDL/yazma reddi, yanlış/eksik anahtar/değiştirilmiş ciphertext/yanlış-dolu hedef reddi, finans/audit/tenant probu, restored standalone health ve restart kalıcılığını geçti. Candidate içinde gerçek başarısız Prisma migration kaydı oluştu; diğer tüm veri tabloları değişmedi ve app durmuş kaldı. Bu, gerçek sunucu upgrade kabulü değildir.
+
+Checks iki koşuda ESLint, strict TypeScript, **25/25 birim, 36/36 PostgreSQL entegrasyon, 19/19 Playwright**, production build, Prisma validate/generate ve 11 migration/schema diff, source/license/npm audit, iki dashboard query-plan modu, Python streaming **3/3** ve tarihsel sentetik restore başarılı. Push tarihsel restore **258.385 satır** eşleştirdi. Restore probu brüt6500/ters4000/net2500/kalan7500 kuruş, 15 audit, 11 migration; tenantIsolation=true ve immutableHistory=true. Koşuya göre süreli sentetik satır sayısı değişebilir; her koşu kendi kaynak/hedef eşitliğini doğrular.
+
+İlk `58cd4b2` CI selfhost recovery, tarihsel hash yardımcısının sabit siteyonetim test yöneticisi nedeniyle durdu. Tarihsel betik değiştirilmedi; yeni provalarda yalnız orijinal bounded digest algoritması, postgres operatörüne açık bağlanan COPY stream ile kullanıldı. Sonraki iki CI tamamıyla başarılı. Hata retry/test atlama ile gizlenmedi.
 
 Başlangıç main `6ce422c7a83e03109222a2a9810d6fee85e885f9`, temiz çalışma ağacı; dal `codex/s04-c-backup-recovery`. 11 migration, S04-A roller/named volume ve S04-B davranışı incelendi; tarihsel migration, finans servisi, web uygulaması ve LICENSE değişmedi.
 

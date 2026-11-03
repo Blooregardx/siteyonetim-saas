@@ -189,6 +189,11 @@ class BackupTests(unittest.TestCase):
         os.link(outside/'keep',directory/'database.age')
         with self.assertRaises(ops.Refused):
             ops.entry(self.root,name)
+        (self.root/'.lock').unlink()
+        os.mkfifo(self.root/'.lock',0o600)
+        with self.assertRaises(ops.Refused):
+            with ops.locked(self.root):
+                self.fail('FIFO lock accepted')
 
     def test_safe_upgrade_stage_order_and_failure_stops_writers(self):
         class Driver:

@@ -22,6 +22,7 @@ NAME = re.compile(r'backup-(\d{8}T\d{6}Z)-[a-f0-9]{32}\Z')
 DOCKER = ['env', '-u', 'DOCKER_HOST', '-u', 'DOCKER_CONTEXT', '-u', 'DOCKER_TLS', '-u', 'DOCKER_TLS_VERIFY', '-u', 'DOCKER_CERT_PATH', 'docker', '--host=unix:///var/run/docker.sock']
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = """SELECT json_build_object(
+'databaseAcl',(SELECT json_agg(x ORDER BY x) FROM (SELECT d.datdba::regrole::text||':'||CASE WHEN a.grantee=0 THEN 'PUBLIC' ELSE a.grantee::regrole::text END||':'||a.privilege_type||':'||a.is_grantable::text x FROM pg_database d CROSS JOIN LATERAL aclexplode(coalesce(d.datacl,acldefault('d'::"char",d.datdba)))a WHERE d.datname=current_database())s),
 'indexes',(SELECT json_agg(indexdef ORDER BY indexdef) FROM pg_indexes WHERE schemaname='public'),
 'constraints',(SELECT json_agg(x ORDER BY x) FROM (SELECT conname||':'||pg_get_constraintdef(oid) x FROM pg_constraint WHERE connamespace='public'::regnamespace)s),
 'columns',(SELECT json_agg(x ORDER BY x) FROM (SELECT c.relname||':'||a.attnum::text||':'||a.attname||':'||format_type(a.atttypid,a.atttypmod)||':'||a.attnotnull::text||':'||a.attidentity::text||':'||a.attgenerated::text||':'||coalesce(pg_get_expr(d.adbin,d.adrelid),'') x FROM pg_attribute a JOIN pg_class c ON c.oid=a.attrelid LEFT JOIN pg_attrdef d ON d.adrelid=c.oid AND d.adnum=a.attnum WHERE c.relnamespace='public'::regnamespace AND c.relkind IN('r','v','m') AND a.attnum>0 AND NOT a.attisdropped)s),
@@ -123,7 +124,7 @@ def locked(path):
     fd = os.open(root, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
     lock = os.open('.lock', os.O_RDWR | os.O_CREAT | os.O_NOFOLLOW, 0o600, dir_fd=fd)
     try:
-        require(os.fstat(lock).st_nlink == 1 and os.fstat(lock).st_uid == os.getuid())
+        require(stat.S_ISREG(os.fstat(lock).st_mode) and os.fstat(lock).st_nlink == 1 and os.fstat(lock).st_uid == os.getuid())
         try:
             fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
         except BlockingIOError:
@@ -287,6 +288,9 @@ def restore(root, name, identity, target):
     binding = bound(target['binding'])
     require(binding['database'] == 'siteyonetim_test')
     require(json.loads(run(DOCKER + ['inspect','--format={{json .HostConfig.PortBindings}}',binding['container_id']])) == {})
+    require(sql(binding,"SELECT count(*) FROM pg_database WHERE NOT datistemplate AND datname NOT IN('postgres','siteyonetim_test')") == '0')
+    require(sql(binding,"SELECT count(*) FROM pg_roles WHERE rolname NOT LIKE 'pg_%' AND rolname NOT IN('postgres','sy_migrator','sy_runtime','sy_backup')") == '0')
+    require(sql({**binding,'database':'postgres'},"SELECT count(*) FROM pg_class WHERE relnamespace IN(SELECT oid FROM pg_namespace WHERE nspname NOT LIKE 'pg_%' AND nspname<>'information_schema')") == '0')
     m = verify(root, name, identity)
     require(binding['system_identifier'] != m['source']['system_identifier'])
     # Check all user namespaces, not just public tables.
@@ -300,10 +304,10 @@ UNION ALL SELECT oid FROM pg_extension WHERE extname<>'plpgsql')x""") == '0')
     for role in m['roles']:
         if sql(binding, f"SELECT count(*) FROM pg_roles WHERE rolname='{role}'") == '0':
             sql(binding, f'CREATE ROLE {role} NOLOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOREPLICATION CONNECTION LIMIT {dict(sy_migrator=5,sy_runtime=10,sy_backup=2)[role]}')
-        require(sql(binding, f"SELECT (NOT rolsuper AND NOT rolcreatedb AND NOT rolcreaterole AND NOT rolreplication)::text FROM pg_roles WHERE rolname='{role}'") == 'true')
+        require(sql(binding, f"SELECT (NOT rolcanlogin AND NOT rolsuper AND NOT rolcreatedb AND NOT rolcreaterole AND NOT rolreplication AND rolconnlimit={dict(sy_migrator=5,sy_runtime=10,sy_backup=2)[role]})::text FROM pg_roles WHERE rolname='{role}'") == 'true')
         require(sql(binding, f"SELECT count(*) FROM pg_auth_members WHERE member=(SELECT oid FROM pg_roles WHERE rolname='{role}')") == '0')
     pipeline(['age','-d','-i',str(private(identity)),str(root / name / 'database.age')], DOCKER + ['exec','-i',binding['container_id'],'pg_restore','-U','postgres','-d',binding['database'],'--exit-on-error','--single-transaction'])
-    sql(binding, 'REVOKE ALL ON DATABASE siteyonetim_test FROM PUBLIC; GRANT CONNECT ON DATABASE siteyonetim_test TO sy_runtime; GRANT CONNECT,CREATE ON DATABASE siteyonetim_test TO sy_migrator;')
+    sql(binding, 'ALTER DATABASE siteyonetim_test OWNER TO postgres; REVOKE ALL ON DATABASE siteyonetim_test FROM PUBLIC,sy_runtime,sy_migrator,sy_backup; GRANT CONNECT ON DATABASE siteyonetim_test TO sy_runtime,sy_backup; GRANT CONNECT,CREATE ON DATABASE siteyonetim_test TO sy_migrator;')
     actual = metadata(binding)
     require(actual == {key:m[key] for key in ['migrations','catalog_sha256']})
     return {'restored':True, 'migrations':len(actual['migrations']), 'catalog_equal':True}
