@@ -32,7 +32,7 @@ class SourceTests(unittest.TestCase):
 
     def test_cached_archive_checksum(self):
         with tempfile.TemporaryDirectory() as tmp:
-            root=Path(tmp);(root/(M['dependencies'][0]['name']+'.tar')).write_bytes(b'wrong source')
+            root=Path(tmp);(root/'sharp.tar').write_bytes(b'wrong source')
             with self.assertRaises(ValueError):verify(M,ROOT,cache=root)
 
     def test_missing_source(self):

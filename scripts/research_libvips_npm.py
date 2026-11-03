@@ -20,6 +20,7 @@ def check(meta, attestations, keys, archive):
     if meta['gitHead']!=COMMIT:raise ValueError('NPM_GIT_HEAD')
     with tempfile.TemporaryDirectory(prefix='s05b-signature-') as tmp:
         root=Path(tmp);key=next(k for k in keys['keys'] if k['keyid']==KEY)
+        if base64.b64encode(hashlib.sha256(base64.b64decode(key['key'])).digest()).decode().rstrip('=')!='+xkKRiEjRDUAy822UZYj5xeenzjYStTpNity0raLYsE':raise ValueError('NPM_REGISTRY_KEY_BYTES')
         (root/'key.der').write_bytes(base64.b64decode(key['key']))
         subprocess.run(['openssl','pkey','-pubin','-inform','DER','-in',str(root/'key.der'),'-out',str(root/'key.pem')],check=True,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
         (root/'message').write_text(meta['name']+'@'+meta['version']+':'+meta['dist']['integrity'])
@@ -52,7 +53,7 @@ if __name__=='__main__':
     for platform in ['glibc','musl']:
         meta=json.load(open('/tmp/s05b-npm-'+platform+'.json'));att=json.load(open('/tmp/s05b-att-'+platform+'.json'));keys=json.load(open('/tmp/s05b-npm-keys.json'))
         archive=Path('/tmp/s05b-upstream')/(platform+'.tgz')
-        subprocess.run(['curl','--proto','=https','-fLsS','--max-time','90',meta['dist']['tarball'],'-o',str(archive)],check=True)
+        subprocess.run(['curl','--proto','=https','-fLsS','--max-time','90','--max-filesize','100000000',meta['dist']['tarball'],'-o',str(archive)],check=True)
         result=check(meta,att,keys,archive);records.append(result)
         path=ROOT/'npm'/platform;path.mkdir(parents=True,exist_ok=True)
         (path/'metadata.json').write_text(json.dumps(meta,indent=2)+'\n')

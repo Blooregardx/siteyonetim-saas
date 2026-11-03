@@ -10,6 +10,7 @@ BUILD_COMMIT='ebb95f8add54eee8bed840e3fb587e4cbec857d7'
 VIPS_COMMIT='24ad4d042940e6bf99a68871ba886ca8847c9c82'
 SHARP_COMMIT='51a990faa26ade5586a4934ac9673c98d8893326'
 BUILD_ANCHORS={'upstream/versions.properties': 'c0ad634f7c2ac8994f831dd0bcb5c60043db7ba4ddd9cc2dbc3703b15f4ec7e5', 'upstream/THIRD-PARTY-NOTICES.md': '6f0d5086e3bcbee12bcdacf5878b31d1104002aeecaeb241d3fff466108082fe', 'upstream/LICENSE': 'b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1', 'upstream/build.sh': 'f32e344b1355b6bcf3836e7f25e2c2de7f25eefeb8c96d02711ad3fcea487488', 'upstream/build/posix.sh': '333031b3b49bf1a16d0b9d6812d98f67c404218932ef8c0b389388524a524b36', 'upstream/platforms/linuxmusl-x64/meson.ini': '9b9ac8223114dbe407673195f64c075468f394426c5bacbcc233b9048830debf', 'upstream/platforms/linuxmusl-x64/Toolchain.cmake': 'eaf601b65260c4ff1991063f248346d51fe6751e84f7dc83b7fcd3fd4658cad6', 'upstream/platforms/linuxmusl-x64/Dockerfile': '547187f4c281e8aba140047a4cd1fe1c056004b7ce45495df561705f6561de0a', 'upstream/platforms/linux-x64/meson.ini': '0d85749d3921b1877e3d68615265a7f158856bf615ab56d6beb75d71a7fd0a41', 'upstream/platforms/linux-x64/x86_64-linux-gnu-pkgconf': 'c256bf8fcad1bcee36872c22c007d41980ace7cfe74072af130d336ddd92f61e', 'upstream/platforms/linux-x64/Toolchain.cmake': 'eaf601b65260c4ff1991063f248346d51fe6751e84f7dc83b7fcd3fd4658cad6', 'upstream/platforms/linux-x64/Dockerfile': '1e8bc3981c8f1718cd99ea4fcd6d2e511afb9969f2fe3e0d2dc1ebf5a338a6e3', 'upstream/.github/workflows/ci.yml': '0a0c730ee600f2b95298ead170a84e0b7933a8878db0664c9858321f416cda7d'}
+SHARP_BINDING_ANCHOR='aa0750bba07e0de556ccdf1463e148a21e373ea43ac0ee622d23ad287890e658'
 HEX=re.compile(r'[a-f0-9]{64}')
 
 
@@ -34,6 +35,16 @@ def verify(manifest, root, image=None, image_id=None, cache=None):
     if manifest['libvips']!={'version':'8.18.7','commit':VIPS_COMMIT}:raise ValueError('SOURCE_COMMIT_VERSION')
     if manifest['sharp']!={'version':'0.35.5','commit':SHARP_COMMIT}:raise ValueError('SHARP_COMMIT_VERSION')
     if manifest['buildFiles']!=BUILD_ANCHORS:raise ValueError('BUILD_ANCHORS')
+    sharp=manifest['sharpSource']
+    if sharp['url']!='https://codeload.github.com/lovell/sharp/tar.gz/'+SHARP_COMMIT or not HEX.fullmatch(sharp['sha256']):raise ValueError('SHARP_ARCHIVE')
+    binding=sharp['bindingRecipe']
+    if binding['sha256']!=SHARP_BINDING_ANCHOR or sha(local(root,binding['path']))!=SHARP_BINDING_ANCHOR:raise ValueError('SHARP_BUILD_RECIPE')
+    for notice in sharp['notices']:
+        if sha(local(root,notice['evidenceFile']))!=notice['sha256']:raise ValueError('SHARP_NOTICE')
+    if not sharp['notices']:raise ValueError('SHARP_NOTICE_MISSING')
+    if cache is not None:
+        if sha(local(cache,'sharp.tar'))!=sharp['sha256']:raise ValueError('SHARP_ARCHIVE_HASH')
+        if sha(local(cache.parent,'commit.tar.gz'))!=manifest['buildArchive']['sha256']:raise ValueError('BUILD_ARCHIVE_HASH')
     for name,expected in manifest['buildFiles'].items():
         if not HEX.fullmatch(expected) or sha(local(root,name))!=expected:raise ValueError('BUILD_FILE_HASH')
     versions=dict(re.findall(r'^VERSION_(\w+)=(.+)$',local(root,'upstream/versions.properties').read_text(),re.M))

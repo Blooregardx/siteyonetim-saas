@@ -1,4 +1,5 @@
 import { readFileSync, existsSync, copyFileSync, mkdtempSync, rmSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 const sha = b => createHash('sha256').update(b).digest('hex');
@@ -28,7 +29,7 @@ for (const platform of ['linux-x64','linuxmusl-x64']) {
  binaries.push({platform,path,sha256:sha(bytes),package:meta.name,packageVersion:meta.version,versions,elf:{magic:bytes.subarray(0,4).toString('hex'),class:bytes[4],machine:bytes.readUInt16LE(18)},dynamic:dynamic(bytes),links,linkerExitCode:linked.status,compatibleWithHost:platform==='linux-x64' && Boolean(process.report.getReport().header.glibcVersionRuntime)});
 }
 const temp = mkdtempSync('/tmp/s05b-libvips-');
-const addonPath='/app/node_modules/@img/sharp-linux-x64/lib/sharp-linux-x64.node';
+const addonPath=createRequire('/app/package.json').resolve('@img/sharp-linux-x64/sharp.node');
 const addonBytes=readFileSync(addonPath);
 const addon={path:addonPath,sha256:sha(addonBytes),dynamic:dynamic(addonBytes)};
 let relocation;

@@ -56,3 +56,9 @@ Npm platform arşivleri ayrıca indirildi. SHA-512 SRI ve npm registry ECDSA imz
 Npm SLSA subject digest'leri indirilen arşivlerle; commit/ref/workflow beyanları exact v1.3.4 commit'iyle eşleşti. [Upstream build koşusu](https://github.com/lovell/sharp-libvips/actions/runs/36315646015) GitHub API'de aynı commit için başarılıdır. Tam Sigstore Fulcio/Rekor güven zinciri doğrulaması yapılmadı: signed bundle korunur, ancak beyanın eşleşmesi bağımsız publisher identity veya bütün static alt bileşenlerin corresponding-source kanıtı diye sunulmaz.
 
 Kaynak cache'i yeniden okunarak 28 arşiv SHA-256 ve arşiv içi notice eşleşmesi doğrulandı. [Makine raporu](evidence/s05b/source-archive-verification.json) PARTIAL/BLOCKED kararlarını korur. CI büyük kaynakları tekrar indirmez; exact build anchor'larını ve yerel özgün notice/patch dosyalarını tekrar hash'ler. Cache ile kaynak byte doğrulaması için `verify_libvips_sources.py --cache` kullanılabilir; cache hash kontrolünü atlamaz. Araştırma aracı kanonik manifest'i otomatik overwrite etmez; ayrı taslak üretir. Yeni test sayısı 14, S05-A kapı testleri 7'dir.
+
+## Sharp addon tarifi ve probe düzeltmesi
+
+Sharp 0.35.5 exact commit arşivi ayrıca indirildi/hash'lendi; özgün Apache LICENSE ve src/binding.gyp byte'ları korundu. Native 73 bildirime ek olarak Sharp LICENSE dosyası da manifest'tedir. Mozjpeg kısa recipe commit'i GitHub API ile `08265790774cd0714832c9e675522acbe5581437` tam commit'ine çözüldü; orijinal archive URL/hash kaydı değiştirilmedi.
+
+`d84d05e` checks başarılı, selfhost yeni addon incelemesinde başarısız oldu: gerçek dosya adı `sharp-linux-x64-0.35.5.node`, probe ise sürümsüz ad varsaymıştı. Yeni probe dosya adını tahmin etmek yerine paketin `sharp.node` export'unu çözer. Başarısız job başarılı sayılmadı; son HEAD iki tam CI yeniden doğrulanmalıdır.
