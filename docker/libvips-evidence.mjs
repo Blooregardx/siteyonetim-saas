@@ -1,6 +1,6 @@
 import { readFileSync, existsSync, copyFileSync, mkdtempSync, rmSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { execFileSync, spawnSync } from 'node:child_process';
+import { spawnSync } from 'node:child_process';
 const sha = b => createHash('sha256').update(b).digest('hex');
 const binaries = [];
 for (const platform of ['linux-x64','linuxmusl-x64']) {
@@ -10,9 +10,9 @@ for (const platform of ['linux-x64','linuxmusl-x64']) {
  const versions = JSON.parse(readFileSync(`${root}/versions.json`));
  const path = `${root}/lib/libvips-cpp.so.${versions.vips}`;
  const bytes = readFileSync(path);
- let links;
- try { links = execFileSync('ldd',[path],{encoding:'utf8',stdio:['ignore','pipe','ignore']}); } catch { links='LINKER_REJECTED'; }
- binaries.push({platform,path,sha256:sha(bytes),package:meta.name,packageVersion:meta.version,versions,elf:{magic:bytes.subarray(0,4).toString('hex'),class:bytes[4],machine:bytes.readUInt16LE(18)},links,compatibleWithHost:platform==='linux-x64' && Boolean(process.report.getReport().header.glibcVersionRuntime)});
+ const linked = spawnSync('ldd',[path],{encoding:'utf8'});
+ const links = linked.stdout || 'LINKER_REJECTED';
+ binaries.push({platform,path,sha256:sha(bytes),package:meta.name,packageVersion:meta.version,versions,elf:{magic:bytes.subarray(0,4).toString('hex'),class:bytes[4],machine:bytes.readUInt16LE(18)},links,linkerExitCode:linked.status,compatibleWithHost:platform==='linux-x64' && Boolean(process.report.getReport().header.glibcVersionRuntime)});
 }
 const temp = mkdtempSync('/tmp/s05b-libvips-');
 let relocation;
