@@ -1,3 +1,4 @@
+import { createOrganizationIn, createSiteIn } from "./organization-creation";
 import { dashboardReads } from "./dashboard-reads";
 import { incomeExpenses } from "./income-expenses";
 import { financialReporting } from "./financial-reporting";
@@ -124,9 +125,7 @@ export function management(db: PrismaClient, verifySession: SessionVerifier) {
       if (!name.trim() || name.length > 200 || !["INDIVIDUAL", "COMPANY"].includes(kind)) throw new Error("INVALID_ORGANIZATION");
       return db.$transaction(async tx => {
         const user = await actor(tx, verifySession);
-        const result = await tx.organization.create({ data: { name: name.trim(), kind, memberships: { create: { userId: user.id, role: "ADMIN" } } } });
-        await audit(tx, user.id, "ORGANIZATION_CREATE", result.id, result.id);
-        return result;
+        return createOrganizationIn(tx, user.id, name, kind);
       });
     },
     async portfolio(organizationId: string) {
@@ -140,10 +139,7 @@ export function management(db: PrismaClient, verifySession: SessionVerifier) {
       if (!name.trim() || name.length > 200) throw new Error("INVALID_NAME");
       return db.$transaction(async tx => {
         const user = await actor(tx, verifySession);
-        await organizationAccess(tx, user.id, organizationId);
-        const result = await tx.site.create({ data: { organizationId, name: name.trim() } });
-        await audit(tx, user.id, "SITE_CREATE", result.id, organizationId, result.id);
-        return result;
+        return createSiteIn(tx, user.id, organizationId, {name});
       });
     },
     async dashboard(siteId: string) {

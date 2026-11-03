@@ -1,5 +1,13 @@
 # Docker Compose ile kendi sunucusunda kurulum — DEVELOPMENT
 
+## S04-B — Uygulama içi ilk kurulum
+
+`/kurulum`, giriş yapmış ve e-postasını doğrulamış kullanıcı için Türkçe, mobil uyumlu başlangıç akışıdır: yönetim türü → organizasyon → ilk apartman/site → kapsamlı panel bağlantısı. Kayıt ve doğrulama mevcut ekranlardadır; SMTP olmadan doğrulama tamamlanmış sayılmaz. Panelde “İlk kuruluma başla / devam et”, doğrulama ekranında “İlk kuruluma devam et” bağlantısı vardır.
+
+İlerleme PostgreSQL üyelik/organizasyon/site kayıtlarından türetilir; tarayıcı saklaması veya yeni setupCompleted alanı yoktur. Yenileme/yeniden giriş mevcut adımdan devam eder. Kurulum yazımlarında kullanıcı kilidi ve güncel yetki kontrolü tekrar gönderimleri tekilleştirir; normal panelin çoklu organizasyon/site oluşturması korunur. Mevcut RESIDENT ve legacy üyelikler yükseltilmez; davetliler veya mevcut kullanıcılar kuruluma zorla yönlendirilmez. Birden fazla yönetim organizasyonunda önce sitesi olmayan, sonra ID sırasındaki ilk organizasyon gösterilir; panelden kapsam seçimi ve normal işlemler korunur.
+
+Bu akış Docker/PostgreSQL/HTTPS/SMTP kurmaz, secret göstermez veya değiştirmez. Sunucu altyapısı operatör sorumluluğundadır. Finansal kayıt veya global admin oluşturmaz. Yalnız DEVELOPMENT; [test kapsamı ve sınırlar](S04B-ONBOARDING-VALIDATION.md). S04-C güvenilir yedek işletimi ayrı aşamadır. Tarihsel kayıtlar aşağıda korunur.
+
 Supabase kullanılmaz. Yazılım ücretsiz, PUBLIC ve AGPL-3.0-only kalır; ücretli barındırma, abonelik veya lisans anahtarı gerekmez. Sunucu, alan adı ve e-posta işletmeciye maliyet çıkarabilir. Bu altyapı üretim onayı değildir. Web kurulum sihirbazı S04-B, güvenilir zamanlanmış yedek işletimi S04-C kapsamıdır.
 
 ## İlk kurulum

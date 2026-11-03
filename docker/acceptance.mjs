@@ -23,6 +23,10 @@ try {
    // App Router loading boundary streams the redirect after the HTTP headers.
    assert.ok((await response.text()).includes('<meta id="__next-page-redirect" http-equiv="refresh" content="1;url=/giris"/>'));
   }
+  const setupResponse=await fetch('http://127.0.0.1:3000/kurulum',{redirect:'manual',signal:AbortSignal.timeout(5000)});
+  assert.equal(setupResponse.status,307);
+  assert.equal(setupResponse.headers.get('location'),'/giris');
+  console.log('Anonymous onboarding redirects to /giris');
   console.log('Anonymous panel redirects to /giris (HTTP or App Router streaming redirect)');
  }
  if (process.argv[2] === 'before') {
