@@ -152,5 +152,5 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--root',type=Path,required=True);p.add_argument('--result',type=Path,required=True);p.add_argument('--spec',type=Path,required=True);a=p.parse_args()
     try:
         r=verify_rebuild(json.loads(a.result.read_text()),a.root,json.loads(a.spec.read_text()));print(json.dumps(r));raise SystemExit(1)
-    except (OSError,ValueError,KeyError,TypeError,zlib.error,subprocess.SubprocessError):
+    except (OSError,ValueError,KeyError,TypeError,IndexError,AttributeError,StopIteration,tarfile.TarError,zlib.error,subprocess.SubprocessError):
         print('{"modifiedRebuild":"BLOCKED","binaryDistributionReadiness":"BLOCKED","error":"INVALID_REBUILD_EVIDENCE"}');raise SystemExit(2)

@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import tarfile
 import tempfile
 import unittest
@@ -80,6 +81,12 @@ class EvidenceTests(unittest.TestCase):
         with self.assertRaises(ValueError):v.verify_sources(s,DATA)
         o=copy.deepcopy(OBS);o['commit']='0'*40
         with self.assertRaises(ValueError):v.verify_scope(SCOPE,LOCK,o)
+    def test_invalid_cli_data_returns_invalid_evidence_code(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path=Path(tmp)/'invalid.json';path.write_text('[]')
+            r=subprocess.run([sys.executable,str(ROOT/'scripts/verify_libvips_rebuild.py'),'--root',tmp,'--result',str(path),'--spec',str(DATA/'toolchain-spec.json')],capture_output=True,text=True)
+            self.assertEqual(r.returncode,2)
+            self.assertIn('INVALID_REBUILD_EVIDENCE',r.stdout)
     def test_text_only_rebuild_fails(self):
         with tempfile.TemporaryDirectory() as tmp:
             with self.assertRaises((ValueError,KeyError,OSError)):v.verify_rebuild({'status':'PARTIAL','sourceCommit':v.COMMIT,'baseImage':SPEC['baseImage'],'target':SPEC['target']},Path(tmp),SPEC)
