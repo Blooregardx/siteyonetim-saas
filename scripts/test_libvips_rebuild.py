@@ -75,6 +75,11 @@ class EvidenceTests(unittest.TestCase):
             with tarfile.open(p,'w') as t:
                 item=tarfile.TarInfo('../LICENSE');item.size=1;t.addfile(item,io.BytesIO(b'x'))
             with self.assertRaises(ValueError):inspect_rust_archive(p)
+    def test_source_counts_and_origin_cannot_be_filled_in(self):
+        s=copy.deepcopy(SOURCES);s['counts']['PASS']=357
+        with self.assertRaises(ValueError):v.verify_sources(s,DATA)
+        o=copy.deepcopy(OBS);o['commit']='0'*40
+        with self.assertRaises(ValueError):v.verify_scope(SCOPE,LOCK,o)
     def test_text_only_rebuild_fails(self):
         with tempfile.TemporaryDirectory() as tmp:
             with self.assertRaises((ValueError,KeyError,OSError)):v.verify_rebuild({'status':'PARTIAL','sourceCommit':v.COMMIT,'baseImage':SPEC['baseImage'],'target':SPEC['target']},Path(tmp),SPEC)

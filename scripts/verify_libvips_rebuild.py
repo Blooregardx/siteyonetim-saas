@@ -34,6 +34,7 @@ def file_at(root,name):
 
 
 def verify_scope(scope,lock_path,observations):
+    if observations.get('commit')!='ebb95f8add54eee8bed840e3fb587e4cbec857d7' or observations.get('job')!=108609814156:raise ValueError('COMPILATION_OBSERVATION_ORIGIN')
     if scope.get('schemaVersion')!=1 or scope.get('target')!='x86_64-unknown-linux-gnu' or scope.get('upstreamRecipeCommit')!='ebb95f8add54eee8bed840e3fb587e4cbec857d7':raise ValueError('RUST_TARGET_RECIPE_SCHEMA')
     if scope['lockSha256']!=LOCK_SHA or scope['lockSha256']!=sha(lock_path):raise ValueError('CARGO_LOCK')
     lock=[p for p in tomllib.loads(lock_path.read_text())['package'] if 'source' in p]
@@ -60,6 +61,8 @@ def verify_sources(manifest,root,archive_root=None):
     if manifest.get('schemaVersion')!=1 or manifest.get('scopeLockSha256')!=LOCK_SHA:raise ValueError('RUST_SOURCE_SCHEMA_LOCK')
     trusted={(p['name'],p['version'],p['source']):p.get('checksum') for p in tomllib.loads((ROOT/'docs/evidence/s05b/upstream/librsvg-Cargo.lock').read_text())['package'] if 'source' in p}
     if len(manifest['records'])!=len(trusted) or len({(r['name'],r['version'],r['source']) for r in manifest['records']})!=len(trusted):raise ValueError('SOURCE_RECORD_COVERAGE')
+    states=['PASS','BLOCKED','UNKNOWN','NOT_APPLICABLE']
+    if any(r.get('decision') not in states for r in manifest['records']) or manifest.get('counts')!={s:sum(r['decision']==s for r in manifest['records']) for s in states}:raise ValueError('SOURCE_DECISIONS_COUNTS')
     for r in manifest['records']:
         if (r['name'],r['version'],r['source']) not in trusted:raise ValueError('UNKNOWN_CRATE_IDENTITY')
         if r.get('lockChecksum')!=trusted[(r['name'],r['version'],r['source'])]:raise ValueError('LOCK_CRATE_CHECKSUM')
@@ -68,6 +71,7 @@ def verify_sources(manifest,root,archive_root=None):
         if kind!=actual_kind:raise ValueError('SOURCE_KIND_IDENTITY')
         if kind not in ['registry','git','path']:raise ValueError('SOURCE_KIND')
         if r['decision']!='PASS':continue
+        if r.get('archiveIntegrity')!='PASS':raise ValueError('SOURCE_ARCHIVE_INTEGRITY')
         if kind=='registry':
             if not re.fullmatch('[a-f0-9]{64}',r.get('archiveSha256','')) or r['archiveSha256']!=r.get('expectedChecksum') or (r.get('lockChecksum') and r['archiveSha256']!=r['lockChecksum']):raise ValueError('CARGO_SOURCE_CHECKSUM')
         elif kind=='git':
