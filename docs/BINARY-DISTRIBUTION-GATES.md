@@ -14,3 +14,7 @@ Runtime ve migrate ayrı ürün envanterleridir. `scripts/collect_distribution.s
 Kolektör uygulamayı başlatmaz; ağsız, salt okunur, capability'siz ve imajın kendi kullanıcısıyla dosya incelemesi yapar. Docker socket yalnız host araçlarına aittir. Ham inspect/env/log/secret toplanmaz. SBOM dosya yolları içerir; yayımlamadan önce inceleyin. Bilinmeyen/çözülemeyen lisanslar istisnayla gizlenmez.
 
 Docker containerd store index ID / config ID ayrımı: özgün inspect ID `docker-inspect-id.txt`, aynı ID ile export edilmiş arşivin config SHA-256 değeri `image-id.txt` içinde tutulur. Syft aynı arşivi tarar; tag yeniden çözülmez. Config hash kimlik eşleşmesidir; publisher imzası değildir.
+
+## S05-B kaynak/build incelemesi
+
+[Kaynak doğrulaması](S05B-LIBVIPS-SOURCE-VALIDATION.md): 28 native kaynak girdisi ve 357 Rust transitif kayıt ayrı tutulur; binary provenance ve değiştirilmiş static-LGPL rebuild tamamlanmadı. LIBVIPS SOURCE EVIDENCE: PARTIAL; genel BINARY DISTRIBUTION READINESS: BLOCKED. S05-A tarihsel kanıtları değişmedi. Yeni imaj ELF/hash ve alternatif yükleme provası CI artifact'ındadır; dolu evidence metni native pakete PASS veremez. Node/Debian kaynak işleri ve bağımsız insan kurulumu açık kalır.
