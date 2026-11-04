@@ -10,7 +10,7 @@ import shutil,sys
 if shutil.disk_usage(sys.argv[1]).free<6*1024**3:raise ValueError('S05C_DISK_BELOW_6GIB')
 PYCODE
 python3 scripts/prepare_libvips_rebuild.py "$out/input"
-docker build --platform linux/amd64 -f docker/s05c/Dockerfile --secret id=ca_bundle,src=/etc/ssl/certs/ca-certificates.crt --secret "id=meson_wheel,src=$out/input/meson-1.9.1-py3-none-any.whl" -t s05c-rebuild-environment .
+docker build --platform linux/amd64 -f docker/s05c/Dockerfile --secret id=ca_bundle,src=/etc/ssl/certs/ca-certificates.crt --build-context "s05c_inputs=$out/input" -t s05c-rebuild-environment .
 id=$(docker image inspect --format '{{.Id}}' s05c-rebuild-environment)
 printf '%s\n' "$id" > "$out/environment-inspect-id.txt"
 # Bind SBOM to the exact exported environment, not a mutable tag.

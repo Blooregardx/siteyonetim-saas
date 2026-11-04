@@ -5,8 +5,8 @@ COPY docs/evidence/s05c/toolchain-spec.json /spec.json
 RUN --mount=type=secret,id=ca_bundle,required=true apt-get -o Acquire::https::CaInfo=/run/secrets/ca_bundle update \
  && node -e 'const fs=require("fs"),c=require("crypto"),s=require("/spec.json"); for(const [repo,hash] of Object.entries(s.aptInRelease)){const name=fs.readdirSync("/var/lib/apt/lists").find(n=>n.includes("archive_"+repo+"_")&&n.endsWith("_InRelease"));if(!name||c.createHash("sha256").update(fs.readFileSync("/var/lib/apt/lists/"+name)).digest("hex")!==hash)throw Error("APT_SNAPSHOT_HASH");}' \
  && apt-get -o Acquire::https::CaInfo=/run/secrets/ca_bundle install -y --no-install-recommends build-essential binutils pkg-config python3 python3-pip ninja-build libglib2.0-dev libexpat1-dev libjpeg62-turbo-dev libpng-dev ca-certificates patch
-RUN --mount=type=secret,id=meson_wheel,required=true \
- node -e 'const fs=require("fs"),c=require("crypto"),s=require("/spec.json");const b=fs.readFileSync("/run/secrets/meson_wheel");if(c.createHash("sha256").update(b).digest("hex")!==s.mesonWheel.sha256)throw Error("MESON_HASH");fs.writeFileSync("/tmp/"+s.mesonWheel.filename,b);' \
+COPY --from=s05c_inputs meson-1.9.1-py3-none-any.whl /tmp/meson-1.9.1-py3-none-any.whl
+RUN node -e 'const fs=require("fs"),c=require("crypto"),s=require("/spec.json");const b=fs.readFileSync("/tmp/"+s.mesonWheel.filename);if(c.createHash("sha256").update(b).digest("hex")!==s.mesonWheel.sha256)throw Error("MESON_HASH");' \
  && python3 -m pip install --break-system-packages --no-deps --no-index /tmp/meson-1.9.1-py3-none-any.whl
 WORKDIR /app
 COPY package.json package-lock.json ./
