@@ -15,3 +15,7 @@ glibc ve musl binaryleri ayrı değerlendirilir. Debian imajındaki musl dosyas�
 Probe container'ın scratch tmpfs'i yalnız bu izole deneyde `exec` seçeneğiyle açılır; indirilen yabancı kod çalıştırılmaz, imajın kendi kütüphanesi kopyalanır. Normal uygulama Compose tmpfs/read-only/capability seçenekleri değiştirilmez. Default noexec scratch'te LD_PRELOAD dosyayı map edemediği için mount koşulu ayrıca kaydedilir. S05-A yerel imajındaki tanılama yeni S05-B imaj kanıtı değildir; yeni kanıt yalnız yeni CI imajından alınır.
 
 Yeni dc50c65 runtime ve migration CI imajlarında doğrulanan sonuç: DT_RPATH nedeniyle LD_LIBRARY_PATH alternatifini kullanmadı. Ayrı LD_PRELOAD deneyi executable scratch'te aynı-byte alternatif libvips-cpp'yi map etti; özgün dosya map edilmedi ve PNG üretildi. Karar PARTIAL; native/static LGPL alt parçalarıyla değiştirilmiş kaynağı yeniden derleme ve kullanıcıya gerekli girdileri sağlama hâlâ BLOCKED.
+
+## S05-C kaynak ve rebuild kontrolü
+
+[Doğrulama](S05C-REBUILD-VALIDATION.md) ve [tekrar tarifi](LIBVIPS-REBUILD-REPRODUCTION.md):357 dış Cargo.lock kaydından162'si upstream librsvg compile log'unda gözlendi;195 UNKNOWN,0 NOT SELECTED. Toolchain cargo-c build satırları ayrı tutulur. Yeni kaynak/ABI/load doğrulayıcı fiziksel dosya/hash ister; modified-source reduced-profile deneyi orijinal static bundle'a eşdeğer sayılmaz. Genel BINARY DISTRIBUTION: BLOCKED; Node/Debian/Prisma ve kalıcı source sunumu açık. Son HEAD deney sonucu ve iki mandatory CI PR kanıt kaydındadır; hazırlanmış/başarısız deney VERIFIED sayılamaz.

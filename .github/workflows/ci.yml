@@ -50,7 +50,7 @@ jobs:
       - run: npx prisma migrate diff --from-url "$DATABASE_URL" --to-schema-datamodel prisma/schema.prisma --exit-code
       - run: python3 scripts/verify-source-readiness.py
       - name: Read-only preflight and source archive policy tests
-        run: python3 scripts/test_preflight.py && python3 scripts/test_distribution.py && python3 scripts/test_distribution_gate.py && python3 scripts/test_libvips_sources.py
+        run: python3 scripts/test_preflight.py && python3 scripts/test_distribution.py && python3 scripts/test_distribution_gate.py && python3 scripts/test_libvips_sources.py && python3 scripts/test_libvips_rebuild.py
       - run: npm audit --audit-level=high
       - run: npm audit --omit=dev
       - run: npm run test:integration
@@ -107,4 +107,53 @@ jobs:
         with:
           name: s05a-image-evidence-${{ github.event_name }}
           path: ${{ runner.temp }}/s05a-evidence
+          if-no-files-found: error
+
+  rebuild-experiment:
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/codex/s05-c-')
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Reverify Rust candidate source bytes and preserve a bounded source bundle
+        run: |
+          python3 scripts/research_rust_sources.py
+          python3 - <<'PYCODE'
+          import hashlib,json,os,tarfile
+          from pathlib import Path
+          manifest=json.load(open('docs/evidence/s05c/rust-source-manifest.json'))
+          with tarfile.open(Path(os.environ['RUNNER_TEMP'])/'s05c-rust-sources.tar.gz','w:gz') as archive:
+              for r in manifest['records']:
+                  if r.get('archiveIntegrity')!='PASS':continue
+                  p=Path('/tmp/s05c-crates')/(r['name']+'-'+r['version']+'.crate')
+                  if p.is_symlink() or hashlib.sha256(p.read_bytes()).hexdigest()!=r['archiveSha256']:raise ValueError('CACHE_HASH')
+                  archive.add(p,arcname=p.name,recursive=False)
+          PYCODE
+      - name: Controlled Cargo resolution (not compilation)
+        run: python3 scripts/capture_rust_metadata.py
+      - name: Actual modified-source experiment (non-gating)
+        run: sh scripts/run_s05c_experiment.sh
+      - name: Preserve honest experiment outcome and inputs
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: s05c-experiment-${{ github.sha }}
+          retention-days: 14
+          path: |
+            ${{ runner.temp }}/s05c-experiment/experiment-status.json
+            ${{ runner.temp }}/s05c-experiment/out
+            ${{ runner.temp }}/s05c-experiment/input/spec.json
+            ${{ runner.temp }}/s05c-experiment/environment-config-id.txt
+            ${{ runner.temp }}/s05c-experiment/validation.json
+            ${{ runner.temp }}/s05c-rust-metadata/resolution-result.json
+            ${{ runner.temp }}/s05c-rust-metadata/metadata.stdout
+            ${{ runner.temp }}/s05c-rust-metadata/metadata.stderr
+            ${{ runner.temp }}/s05c-rust-metadata/tree.stdout
+            ${{ runner.temp }}/s05c-rust-metadata/rustc.stdout
+            ${{ runner.temp }}/s05c-rebuild-evidence.tar.gz
+            ${{ runner.temp }}/s05c-rust-sources.tar.gz
+            docs/evidence/s05c/rust-source-manifest.json
           if-no-files-found: error

@@ -65,3 +65,7 @@ SOURCE RELEASE STATUS: ALPHA.2 PUBLISHED — UNCHANGED. Hazır imaj dağıtımı
 ## S05-B kaynak/build incelemesi
 
 [Kaynak doğrulaması](S05B-LIBVIPS-SOURCE-VALIDATION.md): 28 native kaynak girdisi ve 357 Rust transitif kayıt ayrı tutulur; binary provenance ve değiştirilmiş static-LGPL rebuild tamamlanmadı. LIBVIPS SOURCE EVIDENCE: PARTIAL; genel BINARY DISTRIBUTION READINESS: BLOCKED. S05-A tarihsel kanıtları değişmedi. Yeni imaj ELF/hash ve alternatif yükleme provası CI artifact'ındadır; dolu evidence metni native pakete PASS veremez. Node/Debian kaynak işleri ve bağımsız insan kurulumu açık kalır.
+
+## S05-C kaynak ve rebuild kontrolü
+
+[Doğrulama](S05C-REBUILD-VALIDATION.md) ve [tekrar tarifi](LIBVIPS-REBUILD-REPRODUCTION.md):357 dış Cargo.lock kaydından162'si upstream librsvg compile log'unda gözlendi;195 UNKNOWN,0 NOT SELECTED. Toolchain cargo-c build satırları ayrı tutulur. Yeni kaynak/ABI/load doğrulayıcı fiziksel dosya/hash ister; modified-source reduced-profile deneyi orijinal static bundle'a eşdeğer sayılmaz. Genel BINARY DISTRIBUTION: BLOCKED; Node/Debian/Prisma ve kalıcı source sunumu açık. Son HEAD deney sonucu ve iki mandatory CI PR kanıt kaydındadır; hazırlanmış/başarısız deney VERIFIED sayılamaz.

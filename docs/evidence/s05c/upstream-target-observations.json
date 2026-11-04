@@ -1,0 +1,10 @@
+{
+  "job": 108609814156,
+  "commit": "ebb95f8add54eee8bed840e3fb587e4cbec857d7",
+  "lines": [
+    "2026-09-27T11:26:58.7935770Z #7 78.29 info: default host tuple is x86_64-unknown-linux-gnu",
+    "2026-09-27T11:27:08.1408508Z #7 87.44   nightly-x86_64-unknown-linux-gnu installed - rustc 1.101.0-nightly (75a75c3e0 2026-09-26)",
+    "2026-09-27T11:27:08.1413803Z #7 87.44 cargo:rerun-if-env-changed=CC_x86_64-unknown-linux-gnu",
+    "2026-09-27T11:27:08.1414498Z #7 87.44 cargo:rerun-if-env-changed=CC_x86_64_unknown_linux_gnu"
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "baseImage": "node:24-bookworm-slim@sha256:c86ecead9e55a5210ac1727de38a4ca840bf03dcaf34dc9749addbf383b1920c",
+  "rustMetadataImage": "rust:1.92.0-bookworm@sha256:5c38a9e735664861e84ce6918e98ce7f05dbac210230d45381bcf870b2d58083",
+  "rustMetadataImage192": "rust:1.92.0-bookworm@sha256:5c38a9e735664861e84ce6918e98ce7f05dbac210230d45381bcf870b2d58083",
+  "sourceCommit": "24ad4d042940e6bf99a68871ba886ca8847c9c82",
+  "source": {
+    "name": "vips",
+    "version": "8.18.7",
+    "url": "https://github.com/libvips/libvips/releases/download/v8.18.7/vips-8.18.7.tar.xz",
+    "imagePresence": {
+      "declaration": "pinned recipe and package versions.json; localized static code presence not independently proven",
+      "platformCondition": "see pinned recipe feature/target conditions",
+      "reports": [
+        {
+          "image": "app",
+          "platform": "linux-x64",
+          "reportedVersion": "8.18.7",
+          "imageID": "sha256:3bf88820a91084ce8eb10e9ca9e5b21d804a5b5b6fbe9ac76491fe18e5cc0728",
+          "sourceCommit": "dc50c65bfc5a5f1dae4d0dc67e1c402ef52c7a7e"
+        },
+        {
+          "image": "app",
+          "platform": "linuxmusl-x64",
+          "reportedVersion": "8.18.7",
+          "imageID": "sha256:3bf88820a91084ce8eb10e9ca9e5b21d804a5b5b6fbe9ac76491fe18e5cc0728",
+          "sourceCommit": "dc50c65bfc5a5f1dae4d0dc67e1c402ef52c7a7e"
+        },
+        {
+          "image": "migrate",
+          "platform": "linux-x64",
+          "reportedVersion": "8.18.7",
+          "imageID": "sha256:841b9960129e54b927cbabbc24d80fbd42beb9765d3e7eed1574774256e34e9e",
+          "sourceCommit": "dc50c65bfc5a5f1dae4d0dc67e1c402ef52c7a7e"
+        },
+        {
+          "image": "migrate",
+          "platform": "linuxmusl-x64",
+          "reportedVersion": "8.18.7",
+          "imageID": "sha256:841b9960129e54b927cbabbc24d80fbd42beb9765d3e7eed1574774256e34e9e",
+          "sourceCommit": "dc50c65bfc5a5f1dae4d0dc67e1c402ef52c7a7e"
+        }
+      ]
+    },
+    "linkage": "statically bundled into libvips-cpp per pinned recipe; platform conditions apply",
+    "licenseDecision": "UNKNOWN until original per-file licenses reviewed",
+    "sha256": "5baaead3b0bb20ffdb9e9ff09aa9fda08620923df77b63b436654cb5e0b3bf94",
+    "notices": [
+      {
+        "path": "vips-8.18.7/LICENSE",
+        "sha256": "dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551",
+        "evidenceFile": "notices/vips/dc626520dcd53a22-LICENSE"
+      },
+      {
+        "path": "vips-8.18.7/libvips/foreign/libnsgif/COPYING",
+        "sha256": "1469b759cf18e43c6e1b4ff892307d3962cbbb337ac497620d6690a219fad10c",
+        "evidenceFile": "notices/vips/1469b759cf18e43c-COPYING"
+      }
+    ],
+    "archiveStatus": "PASS",
+    "sourceMatch": "BLOCKED",
+    "missingEvidence": "Archive integrity observed, not authenticated binary build provenance; no bit-reproducible rebuild.",
+    "upstreamLicenseStatement": "LGPLv3",
+    "spdxReview": "UNKNOWN \u2014 per-file/compiled-scope review required"
+  },
+  "sonamePatch": {
+    "url": "https://gist.githubusercontent.com/lovell/313a6901e9db1bf285f2a1f1180499e4/raw/3988223c7dfa4d22745d9392034b0117abef1446/libvips-cpp-soversion.patch",
+    "status": "PASS",
+    "sha256": "256b7d6f8c973bb53b20cff5171c7117d6b35d3aa4e72d22cb906f4fe1e2c890",
+    "evidenceFile": "patches/4.patch"
+  },
+  "mesonWheel": {
+    "version": "1.9.1",
+    "url": "https://files.pythonhosted.org/packages/9c/07/b48592d325cb86682829f05216e4efb2dc881762b8f1bafb48b57442307a/meson-1.9.1-py3-none-any.whl",
+    "sha256": "f824ab770c041a202f532f69e114c971918ed2daff7ea56583d80642564598d0",
+    "filename": "meson-1.9.1-py3-none-any.whl"
+  },
+  "snapshot": "20261103T000000Z",
+  "aptInRelease": {
+    "debian": "77737fa4b34f2693e982cc9ee35736816c35a7778fc2d326cc1bbf5b301fe1aa",
+    "debian-security": "fd12a3fb752f7ad786bce24b5bcd3c577252d1c261ce452acb906041d29b0d23"
+  },
+  "expectedTools": {
+    "gcc": "12.2.0",
+    "meson": "1.9.1",
+    "ninja": "1.11.1"
+  },
+  "target": "x86_64-linux-gnu",
+  "profile": "reduced-feature PNG/JPEG, system dynamic dependencies, not full sharp-libvips static bundle",
+  "fullUpstreamRecipe": false,
+  "binaryDistributionReadiness": "BLOCKED",
+  "distributedBinarySha256": "4aa73553408c3964071728f4a231a8e86918e39bc49f1fbae75355f7ea933ea9",
+  "resourceLimits": {
+    "cpus": 2,
+    "memoryGiB": 4,
+    "minimumFreeDiskGiB": 6
+  }
+}

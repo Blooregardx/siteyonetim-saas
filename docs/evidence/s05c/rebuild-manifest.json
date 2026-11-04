@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "24ad4d042940e6bf99a68871ba886ca8847c9c82",
+  "libvipsVersion": "8.18.7",
+  "sharpVersion": "0.35.5",
+  "recipeCommit": "ebb95f8add54eee8bed840e3fb587e4cbec857d7",
+  "toolchainSpecification": "toolchain-spec.json",
+  "inputSourceSha256": "5baaead3b0bb20ffdb9e9ff09aa9fda08620923df77b63b436654cb5e0b3bf94",
+  "oldBinaryReferenceSha256": "4aa73553408c3964071728f4a231a8e86918e39bc49f1fbae75355f7ea933ea9",
+  "oldBinaryReferenceScope": "S05-B reference only; experiment must remeasure actual file",
+  "newBinarySha256": null,
+  "modifiedSourceRebuild": "BLOCKED \u2014 NOT RUN YET",
+  "staticInputs": "BLOCKED",
+  "fullRecipeMatch": false,
+  "bitReproducibleBuild": "NOT TESTED",
+  "scope": "reduced-feature PNG/JPEG source experiment, not full original static/Rust bundle",
+  "artifactRetentionDays": 14,
+  "permanentCorrespondingSourceProvision": "BLOCKED: temporary CI artifacts are not a durable source offer",
+  "binaryDistributionReadiness": "BLOCKED"
+}

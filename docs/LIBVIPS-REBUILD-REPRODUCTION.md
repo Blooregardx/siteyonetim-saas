@@ -1,0 +1,15 @@
+# S05-C izole rebuild tekrarı
+
+Bu bir production kurulum yolu değildir. Normal Dockerfile/Compose değiştirilmez. Tüm Source/Root artifact hash'leri doğrulanmadan VERIFIED verilemez.
+
+1. İncelenen kesin PR commit'ini temiz Linux x86-64 GitHub runner'a checkout edin. Docker/Compose/cc/readelf/nm ve en az6GiB boş alan kontrol edin. Gerekli job mevcut CI'da `rebuild-experiment`; yalnız push olayında çalışır.
+2. `python3 scripts/research_rust_sources.py`: özgün lock hash'ini, upstream librsvg log kapsamını ve crate cache byte'larını doğrular. Graph/compile/link kararları farklıdır; UNKNOWN'u eksik log nedeniyle NOT SELECTED yapmayın.
+3. `python3 scripts/capture_rust_metadata.py`: GITHUB_RUN_ID/RUNNER_TEMP ile disposable pinned Rust1.92 container'ında cargo metadata/tree çalıştırır. Build script'i çalıştırmaz. --locked hata verirse orijinal lock değiştirilmez; hata ve eski/yeni lock hash'i artifact'ta kalır.
+4. `sh scripts/run_s05c_experiment.sh`: yalnız GITHUB_ACTIONS=true sentetik runner'da çalışır. Pinned source/wheel/SONAME patch'i indirip hash'ler; immutable Node base ve authenticated Debian snapshot ile yalnız deney environment'ını oluşturur. Rastgele remote shell/rustup çalıştırmaz. Snapshot tarihsel olduğu için expiry kontrolü kapalıdır; GPG signature ve TLS doğrulaması açık kalır.
+5. Runner environment image'ını immutable ID ile export eder, config SHA'yı hesaplar ve SHA-256 pinli Syft1.18.1 ile SBOM'a bağlar. Encoded image config/env/history artifact'tan çıkarılır.
+6. Ağsız, read-only,2 CPU/4GiB, capabilities yok ve no-new-privileges container'ında control/modified build yapılır; yazma yalnız kendi /work ve /out scratch mount'larındadır. libvips8.18.7 source init.c internal data marker değişikliği, ortak SONAME/static-core tarifi ve bütün komutlar kaydedilir. --wrap-mode=nodownload beklenmeyen source indirmesini engeller.
+7. `verify_libvips_rebuild.py --root ARTIFACT_ROOT --result ARTIFACT_ROOT/out/rebuild-result.json --spec ARTIFACT_ROOT/input/spec.json`:0 bir genel dağıtım izni değildir; mevcut sınırlı profil PARTIAL/BLOCKED için1, bozuk/yanlış kanıt için2 üretir. Fiziksel source, patch, ELF, ABI, PNG ve image/SBOM bağlarını yeniden okur. Yalnız dolu JSON alanı yeterli değildir.
+
+PNG/JPEG reduced profile orijinal28 bileşenli static bundle değildir. Control→modified export equality, orijinal upstream bundle'ın bütün ABI/export'larının eşitliği anlamına gelmez. Aynı-byte kopya, farklı-byte source rebuild, ABI uyumu, static relinking girdileri ve bit-reproducible build ayrı sonuçlardır. Deney çıktısı uygulamaya kalıcı olarak kopyalanmaz.
+
+Başarılıysa artifact source/archive, source-change.patch, toolchain/dpkg listesi, Meson/Ninja komutları, .a/object/install girdileri, old/control/new hash'ler, ABI ve PNG/maps sonuçlarını içerir. Başarısızsa yalnız ulaşılan aşamanın kanıtı vardır; binary hash alanlarını tahminle doldurmayın. Artifact14 gün tutulur; uzun süreli source mirror/offer ayrıca gereklidir. Normal app security, DB migration/restore veya SMTP bu betiklerle işletilmez.
