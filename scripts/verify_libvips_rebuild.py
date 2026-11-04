@@ -56,13 +56,16 @@ def verify_scope(scope,lock_path,observations):
     return {'decision':'PARTIAL','counts':scope['counts'],'binaryDistributionReadiness':'BLOCKED'}
 
 
-def verify_sources(manifest,root):
+def verify_sources(manifest,root,archive_root=None):
     if manifest.get('schemaVersion')!=1 or manifest.get('scopeLockSha256')!=LOCK_SHA:raise ValueError('RUST_SOURCE_SCHEMA_LOCK')
     trusted={(p['name'],p['version'],p['source']):p.get('checksum') for p in tomllib.loads((ROOT/'docs/evidence/s05b/upstream/librsvg-Cargo.lock').read_text())['package'] if 'source' in p}
+    if len(manifest['records'])!=len(trusted) or len({(r['name'],r['version'],r['source']) for r in manifest['records']})!=len(trusted):raise ValueError('SOURCE_RECORD_COVERAGE')
     for r in manifest['records']:
         if (r['name'],r['version'],r['source']) not in trusted:raise ValueError('UNKNOWN_CRATE_IDENTITY')
         if r.get('lockChecksum')!=trusted[(r['name'],r['version'],r['source'])]:raise ValueError('LOCK_CRATE_CHECKSUM')
         kind=r.get('sourceKind')
+        actual_kind='registry' if r['source'].startswith('registry+') else 'git' if r['source'].startswith('git+') else 'path'
+        if kind!=actual_kind:raise ValueError('SOURCE_KIND_IDENTITY')
         if kind not in ['registry','git','path']:raise ValueError('SOURCE_KIND')
         if r['decision']!='PASS':continue
         if kind=='registry':
@@ -71,9 +74,16 @@ def verify_sources(manifest,root):
             if not re.fullmatch('[a-f0-9]{40}',(r.get('gitCommit') or '')):raise ValueError('GIT_SOURCE_REVISION')
         elif not r.get('sourceArchiveSha256'):raise ValueError('PATH_SOURCE_ARCHIVE')
         if not r.get('notices') or not r.get('license'):raise ValueError('LICENSE_NOTICE_MISSING')
+        archive=None
+        if archive_root is not None:
+            path=file_at(archive_root,r['name']+'-'+r['version']+'.crate')
+            if sha(path)!=r['archiveSha256']:raise ValueError('ACTUAL_CRATE_CHECKSUM')
+            from research_libvips_sources import inspect_archive
+            found={n['path']:n['sha256'] for n in inspect_archive(path)}
+            if any(found.get(n['path'])!=n['sha256'] for n in r['notices']):raise ValueError('CRATE_NOTICE_BINDING')
         for n in r['notices']:
             if sha(file_at(root,n['evidenceFile']))!=n['sha256']:raise ValueError('LICENSE_NOTICE_HASH')
-    return {'decision':'PARTIAL','counts':manifest['counts'],'binaryDistributionReadiness':'BLOCKED'}
+    return {'decision':'PARTIAL','counts':manifest['counts'],'sourceBytes':'REVALIDATED' if archive_root is not None else 'NOT_REVALIDATED_IN_THIS_CHECK','binaryDistributionReadiness':'BLOCKED'}
 
 
 def verify_rebuild(result,root,spec):
@@ -121,6 +131,10 @@ def verify_rebuild(result,root,spec):
     if change['marker'].encode() not in new_file.read_bytes():raise ValueError('SOURCE_MARKER_MISSING')
     if not result['abi']['controlVsModifiedEqual'] or result['abi']['missingFromModified']:raise ValueError('ABI')
     if 'libvips-cpp.so.8.18.7' not in new['soname']:raise ValueError('SONAME')
+    actual_missing=sorted(symbols(file_at(root,'out/distributed-libvips.so'))-symbols(new_file))
+    if actual_missing!=result['abi']['missingComparedWithDistributed']:raise ValueError('DISTRIBUTED_ABI_CLAIM')
+    maps=file_at(root,'out/sharp-maps.txt').read_text()
+    if new['path'] not in maps or '/app/node_modules/@img/sharp-libvips-linux-x64/lib/libvips-cpp.so.8.18.7' in maps:raise ValueError('RAW_LIBRARY_MAPS')
     probe=result['sharp']
     if probe['exitCode']!=0 or not probe.get('newLoaded') or probe.get('oldLoaded') or probe.get('loadedSha256')!=new['sha256'] or not probe.get('png') or probe.get('width')!=1 or probe.get('height')!=1:raise ValueError('FAKE_OR_OLD_LIBRARY_LOAD')
     # System-dynamic reduced profile cannot clear original static LGPL inputs.

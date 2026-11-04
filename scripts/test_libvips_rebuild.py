@@ -57,6 +57,12 @@ class EvidenceTests(unittest.TestCase):
             s=copy.deepcopy(SOURCES);r=next(r for r in s['records'] if r['decision']=='PASS');r['sourceKind']=kind
             with self.assertRaises(ValueError):v.verify_sources(s,DATA)
 
+    def test_actual_crate_bytes_required(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            with self.assertRaises(ValueError):v.verify_sources(SOURCES,DATA,Path(tmp))
+    def test_source_record_omission(self):
+        s=copy.deepcopy(SOURCES);s['records'].pop()
+        with self.assertRaises(ValueError):v.verify_sources(s,DATA)
     def test_text_only_rebuild_fails(self):
         with tempfile.TemporaryDirectory() as tmp:
             with self.assertRaises((ValueError,KeyError,OSError)):v.verify_rebuild({'status':'PARTIAL','sourceCommit':v.COMMIT,'baseImage':SPEC['baseImage'],'target':SPEC['target']},Path(tmp),SPEC)
@@ -86,6 +92,7 @@ class BinaryEvidenceTests(unittest.TestCase):
         # Real PNG signature/IHDR dimensions are checked; this unit fixture is not a Sharp execution claim.
         def chunk(kind,data):return len(data).to_bytes(4,'big')+kind+data+(zlib.crc32(kind+data)&0xffffffff).to_bytes(4,'big')
         (self.root/'out/result.png').write_bytes(b'\x89PNG\r\n\x1a\n'+chunk(b'IHDR',struct.pack('>IIBBBBB',1,1,8,2,0,0,0))+chunk(b'IDAT',zlib.compress(b'\x00\x12\x34\x56'))+chunk(b'IEND',b''))
+        (self.root/'out/sharp-maps.txt').write_text('7000-8000 r-xp 00000000 00:00 42 out/modified/libvips.so\n')
         self.image='sha256:'+'a'*64;sbom={'source':{'metadata':{'imageID':self.image}}};(self.root/'out/environment-sbom.syft.json').write_text(json.dumps(sbom));(self.root/'environment-config-id.txt').write_text(self.image)
         self.spec=copy.deepcopy(SPEC);self.spec['source']['sha256']=v.sha(self.root/'input/vips.tar');self.spec['distributedBinarySha256']=v.sha(self.root/'out/distributed-libvips.so')
         self.anchor=patch.object(v,'SOURCE_SHA',self.spec['source']['sha256']);self.anchor.start()
@@ -120,6 +127,9 @@ class BinaryEvidenceTests(unittest.TestCase):
         with self.assertRaises(ValueError):v.verify_rebuild(self.r,self.root,self.spec)
     def test_foreign_sbom(self):
         self.r['imageID']='sha256:'+'b'*64
+        with self.assertRaises(ValueError):v.verify_rebuild(self.r,self.root,self.spec)
+    def test_raw_maps_required(self):
+        (self.root/'out/sharp-maps.txt').write_text('old binary only')
         with self.assertRaises(ValueError):v.verify_rebuild(self.r,self.root,self.spec)
     def test_static_text_does_not_clear(self):
         self.r['staticInputs']={'originalFullBundleAvailable':True,'review':'all fields filled'}

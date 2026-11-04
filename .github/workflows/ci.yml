@@ -124,7 +124,11 @@ jobs:
           python3 - <<'PYCODE'
           import hashlib,json,os,tarfile
           from pathlib import Path
+          import sys
+          sys.path.insert(0,'scripts')
+          from verify_libvips_rebuild import verify_sources
           manifest=json.load(open('docs/evidence/s05c/rust-source-manifest.json'))
+          print(json.dumps(verify_sources(manifest,Path('docs/evidence/s05c'),Path('/tmp/s05c-crates'))))
           with tarfile.open(Path(os.environ['RUNNER_TEMP'])/'s05c-rust-sources.tar.gz','w:gz') as archive:
               for r in manifest['records']:
                   if r.get('archiveIntegrity')!='PASS':continue
