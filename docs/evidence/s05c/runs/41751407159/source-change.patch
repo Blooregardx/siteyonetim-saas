@@ -1,0 +1,9 @@
+--- a/libvips/iofuncs/init.c
++++ b/libvips/iofuncs/init.c
+@@ -1360,3 +1360,6 @@
+ 	TerminateProcess(GetCurrentProcess(), ret);
+ #endif /*G_OS_WIN32*/
+ }
++
++/* S05-C scratch experiment; inherits this upstream file LGPL terms. */
++__attribute__((used,retain)) static const char s05c_marker[] = "S05C_MODIFIED_SOURCE_MARKER_20261104";

@@ -15,3 +15,7 @@ glibc ve musl binaryleri ayrı değerlendirilir. Debian imajındaki musl dosyas�
 Probe container'ın scratch tmpfs'i yalnız bu izole deneyde `exec` seçeneğiyle açılır; indirilen yabancı kod çalıştırılmaz, imajın kendi kütüphanesi kopyalanır. Normal uygulama Compose tmpfs/read-only/capability seçenekleri değiştirilmez. Default noexec scratch'te LD_PRELOAD dosyayı map edemediği için mount koşulu ayrıca kaydedilir. S05-A yerel imajındaki tanılama yeni S05-B imaj kanıtı değildir; yeni kanıt yalnız yeni CI imajından alınır.
 
 Yeni dc50c65 runtime ve migration CI imajlarında doğrulanan sonuç: DT_RPATH nedeniyle LD_LIBRARY_PATH alternatifini kullanmadı. Ayrı LD_PRELOAD deneyi executable scratch'te aynı-byte alternatif libvips-cpp'yi map etti; özgün dosya map edilmedi ve PNG üretildi. Karar PARTIAL; native/static LGPL alt parçalarıyla değiştirilmiş kaynağı yeniden derleme ve kullanıcıya gerekli girdileri sağlama hâlâ BLOCKED.
+
+## S05-C kaynak ve rebuild kontrolü
+
+S05-B'nin aynı-byte yüklemesine ek olarak değiştirilmiş init.c'den farklı-byte kütüphane üretildi ve gerçek Sharp PNG yolunda eski kütüphane yüklenmeden çalıştı. Control/modified 1576 export adı eşit; özgün bundle'dan 1946 export adı eksik. Bu azaltılmış profil sonucu PARTIAL; özgün statik LGPL .a/.o seti ve bit reproducibility doğrulanmadı. [Kanıt ve sınırlar](S05C-REBUILD-VALIDATION.md); [tekrar tarifi](LIBVIPS-REBUILD-REPRODUCTION.md).

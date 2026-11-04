@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "24ad4d042940e6bf99a68871ba886ca8847c9c82",
+  "libvipsVersion": "8.18.7",
+  "sharpVersion": "0.35.5",
+  "recipeCommit": "ebb95f8add54eee8bed840e3fb587e4cbec857d7",
+  "toolchainSpecification": "toolchain-spec.json",
+  "inputSourceSha256": "5baaead3b0bb20ffdb9e9ff09aa9fda08620923df77b63b436654cb5e0b3bf94",
+  "oldBinaryReferenceSha256": "4aa73553408c3964071728f4a231a8e86918e39bc49f1fbae75355f7ea933ea9",
+  "oldBinaryReferenceScope": "S05-B reference only; experiment must remeasure actual file",
+  "newBinarySha256": "480bd66dabe1d6e69c515faf333fcd220f701f3432c498ca010786953f109d05",
+  "modifiedSourceRebuild": "PARTIAL",
+  "staticInputs": "BLOCKED",
+  "fullRecipeMatch": false,
+  "bitReproducibleBuild": "NOT TESTED",
+  "scope": "reduced-feature PNG/JPEG source experiment, not full original static/Rust bundle",
+  "artifactRetentionDays": 14,
+  "permanentCorrespondingSourceProvision": "BLOCKED: temporary CI artifacts are not a durable source offer",
+  "binaryDistributionReadiness": "BLOCKED",
+  "controlBinarySha256": "96b2937bb906e8aa99e0bfa9811c90cd1f5ed9d41f473f091bafc5dd922e5fe6",
+  "actualOldBinarySha256": "4aa73553408c3964071728f4a231a8e86918e39bc49f1fbae75355f7ea933ea9",
+  "imageConfigDigest": "sha256:45a6916290b4a7264c5f38c4af81009a5edbf6da6ee5b963c292e9857912a134",
+  "sbomFormat": "Syft JSON 1.18.1",
+  "sbomSha256": "8357449097a4fba7f5d8b8ec7cd8048049da44f67995708914929fb902ff83f6",
+  "sbomComponentCount": 558,
+  "sourceModification": {
+    "file": "libvips/iofuncs/init.c",
+    "beforeSha256": "10f0201e4853d5d40b3b88f6b2c81616e9c474ab3c10b029b96014fe0d0c2f78",
+    "afterSha256": "c8251a657e49dd300c4de9cec084fe72657938d943917fc0a8e6507f583e843d",
+    "patchSha256": "1a9714fd5b8e1dca2a4505768f5256bb4f5e930e87298ad0e3e2cfcfbd7a5141",
+    "marker": "S05C_MODIFIED_SOURCE_MARKER_20261104",
+    "behavior": "retained internal data only, no new exported API or algorithm change"
+  },
+  "toolchain": {
+    "gcc": "12.2.0",
+    "linker": "GNU ld (GNU Binutils for Debian) 2.40",
+    "meson": "1.9.1",
+    "ninja": "1.11.1",
+    "target": "x86_64-linux-gnu",
+    "python": "Python 3.11.2",
+    "rust": "NOT_USED: librsvg disabled in reduced profile"
+  },
+  "abi": {
+    "controlVsModifiedEqual": true,
+    "controlExportedSymbolCount": 1576,
+    "modifiedExportedSymbolCount": 1576,
+    "missingComparedWithDistributed": 1946,
+    "scope": "symbol-name comparison and tested Sharp path; not full ABI/type/layout equivalence"
+  },
+  "sharp": {
+    "exitCode": 0,
+    "png": true,
+    "width": 1,
+    "height": 1,
+    "newLoaded": true,
+    "oldLoaded": false,
+    "loadedSha256": "480bd66dabe1d6e69c515faf333fcd220f701f3432c498ca010786953f109d05",
+    "stderrCode": null
+  },
+  "experiment": {
+    "run": 41751407159,
+    "job": 126317236856,
+    "commit": "4d740ff908b55fc35535ac51803468092d1cd52b",
+    "url": "https://github.com/Blooregardx/siteyonetim-saas/actions/runs/41751407159",
+    "artifactId": 13286701379,
+    "artifactZipSha256": "c0e545ff15dd971b544466df58412f042b1ec144b7e3764dd23a4487e43ecbf4",
+    "artifactSizeBytes": 228686247,
+    "receiptFiles": {
+      "runs/41751407159/source-change.patch": "1a9714fd5b8e1dca2a4505768f5256bb4f5e930e87298ad0e3e2cfcfbd7a5141",
+      "runs/41751407159/dpkg-packages.txt": "416ee5a48545a63d6e82e121e883a6db83b8db46974c466ca03a5d02ddf003aa",
+      "runs/41751407159/sharp-maps.txt": "9032966abcd20ed25a8306e82343303732d28fc5379cd4e4edd165d17088597d",
+      "runs/41751407159/validation.json": "04d13dbfa054914f872e31adddcc87ada0853fa0cd057bbfd5543350e8a626fe",
+      "runs/41751407159/rebuild-result.json": "bb4a31c314e1276caaf9e93e6fdc303f873167b9aae160a181ad1f0e466bb941"
+    },
+    "reviewRevalidation": "Actual source archive, original/modified init.c, ELF binaries, raw maps and PNG revalidated locally by verify_libvips_rebuild.py; exit 1 PARTIAL as designed"
+  },
+  "separateDecisions": {
+    "sameByteAlternativeLoad": "S05-B historical only",
+    "modifiedReducedProfileBuild": "VERIFIED",
+    "controlModifiedSymbolNames": "PASS",
+    "testedSharpPngPath": "PASS",
+    "completeDistributedAbi": "PARTIAL",
+    "originalStaticRelinkingInputs": "BLOCKED",
+    "bitReproducible": "NOT_TESTED"
+  },
+  "rustEvidence": {
+    "scopeManifestSha256": "eab99b195f1c1a5037f99076e56d50312986228b669d3e7f512e8af72c3978ef",
+    "sourceManifestSha256": "b7eda607616f5af3687f7b48d885e3a06b51136ba327605f15b7f0f249c8f54c",
+    "generatedUpstreamLock": "UNAVAILABLE"
+  },
+  "knownGaps": [
+    "Reduced PNG/JPEG profile omits original Rust/static native bundle",
+    "1946 original bundle exported names absent; full ABI parity not claimed",
+    "Original matching LGPL static object/archive set unavailable",
+    "Cargo metadata --locked failed because feature edits require lock update",
+    "13 candidate crates lack recognized original notice text",
+    "Temporary CI retention is not durable source provision",
+    "Maintainer and legal review pending; Node/Debian/Prisma and general gates remain open"
+  ]
+}

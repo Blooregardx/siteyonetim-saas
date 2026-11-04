@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 1,
+  "components": [
+    {
+      "name": "proxy-libintl",
+      "version": "0.5",
+      "sourceArchiveSha256": "f7a1cbd7579baaf575c66f9d99fb6295e9b0684a28b095967cfda17857595303",
+      "upstreamDistributionLicenseStatement": "LGPLv3",
+      "fileEvidence": {
+        "path": "proxy-libintl-0.5/libintl.c",
+        "sha256": "ffdca4ee882e133ecee5b996f3c38e08e94f7c8075d6ce1ad392e37d3eb28f62",
+        "licenseContext": "/*\n * Copyright (C) 2008 Tor Lillqvist\n *\n * This library is free software; you can redistribute it and/or\n * modify it under the terms of the GNU Library General Public\n * License as published by the Free Software Foundation; either\n * version 2 of the License, or (at your option) any later version.\n *\n * This library is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU\n * Library General Public License for more details.\n *\n * You should have received a copy of the GNU Library General Public\n * License along with this library; see the file COPYING.LIB.txt.  If\n * not, write to the Free Software Foundation, Inc., 51 Franklin\n * Street, Fifth Floor, Boston, MA 02110-1301, USA.\n */\n\n#ifdef _WIN32\n#  define WIN32_LEAN_AND_MEAN\n#  include <windows.h>\n#else\n#  define _POSIX_C_SOURCE 200809L\n#  include <stddef.h>\n#  if !STUB_ONLY\n#    include <dlfcn.h>\n#  endif\ntypedef void* HMODULE;\n#endif\n\n#ifdef _MSC_VER\n#  define strdup(s) _strdup (s)\n#endif\n\n#include <stdlib.h>\n#include <string.h>\n\n#define G_INTL_COMPILATION\n#include \"libintl.h\"\n\nint _nl_msg_cat_cntr;\t\t/* So that configury thinks it is GNU\n\t\t\t\t * gettext\n\t\t\t\t */\n\nstatic char * (*p_gettext) (const char *msgid);\n\nstatic char * (*p_dgettext) (const char *domainname,\n\t\t\t     const char *msgid);\n\nstatic char * (*p_dcgettext) (const char *domainname,\n\t\t\t      const char *msgid,\n\t\t\t      int         category);\n\nstatic char * (*p_ngettext) (const char       *msgid1,\n\t\t\t     const char       *msgid2,\n\t\t\t     unsigned long int n);\n\nstatic char * (*p_dngettext) (const char       *domainname,\n\t\t\t      const char       *msgid1,\n\t\t\t      const char       *msgid2,\n\t\t\t      unsigned long int n);\n\nstatic char * (*p_dcngettext) (const char       *domainname,\n\t\t\t       const char       *msgid1,\n\t\t\t       const char       *msgid2,\n\t\t\t       unsigned long int n,\n\t\t\t       int               category);\n\nstatic char * (*p_textdomain) (const char *domainname);\n\nstatic char * (*p_bindtextdomain) (const char *domainname,\n\t\t\t\t   const char *dirname);\n\nstatic char * (*p_bind_textdomain_codeset) (const char *domainname,\n\t\t\t\t\t    const char *codeset);\n\nstatic int\nuse_intl_dll (HMODULE dll)\n{\n#if !STUB_ONLY\n#  i",
+        "scope": "Core-source header sample; compiled object membership and complete per-file licensing unverified"
+      },
+      "originalLinkage": "static into libvips-cpp per pinned posix recipe; proxy-libintl is musl-only",
+      "originalStaticObjectArchivesAvailable": false,
+      "decision": "BLOCKED",
+      "legalReview": "REQUIRES LEGAL REVIEW",
+      "missing": "Original matching .a/.o relinking set and full compiled file/license scope; new reduced profile is not equivalent",
+      "noticeAndSourceDecision": "PARTIAL: original source notices retained in S05-B; file sample does not establish complete distributed subset",
+      "installationAndRelinkingDecision": "BLOCKED: original static archive/object/build correspondence unavailable"
+    },
+    {
+      "name": "glib",
+      "version": "2.90.0",
+      "sourceArchiveSha256": "17d15cac2af80a33271127408e0abc2748eb297c595c2a26409e81e14e7d1b8f",
+      "upstreamDistributionLicenseStatement": "LGPLv3",
+      "fileEvidence": {
+        "path": "glib-2.90.0/glib/gmain.c",
+        "sha256": "c8e3de300452cb3be4668fcf38a72c1ae825bd85824891427b804fda64faf344",
+        "licenseContext": "/* GLIB - Library of useful routines for C programming\n * Copyright (C) 1995-1997  Peter Mattis, Spencer Kimball and Josh MacDonald\n *\n * gmain.c: Main loop abstraction, timeouts, and idle functions\n * Copyright 1998 Owen Taylor\n *\n * SPDX-License-Identifier: LGPL-2.1-or-later\n *\n * This library is free software; you can redistribute it and/or\n * modify it under the terms of the GNU Lesser General Public\n * License as published by the Free Software Foundation; either\n * version 2.1 of the License, or (at your option) any later version.\n *\n * This library is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\t See the GNU\n * Lesser General Public License for more details.\n *\n * You should have received a copy of the GNU Lesser General Public\n * License along with this library; if not, see <http://www.gnu.org/licenses/>.\n */\n\n/*\n * Modified by the GLib Team and others 1997-2000.  See the AUTHORS\n * file for a list of people on the GLib Team.  See the ChangeLog\n * files for a list of changes.  These files are distributed with\n * GLib at ftp://ftp.gtk.org/pub/gtk/.\n */\n\n/*\n * MT safe\n */\n\n#include \"config.h\"\n\n/* We need to include this as early as possible, because on some\n * platforms like AIX, <poll.h> redefines the names we use for\n * GPollFD struct members.\n * See https://gitlab.gnome.org/GNOME/glib/-/issues/3500 */\n\n#ifdef HAVE_POLL_H\n#include <poll.h>\n#endif\n\n#include \"glib.h\"\n#include \"glibconfig.h\"\n#include \"glib_trace.h\"\n\n/* Uncomment the next line (and the corresponding line in gpoll.c) to\n * enable debugging printouts if the environment variable\n * G_MAIN_POLL_DEBUG is set to some value.\n */\n/* #define G_MAIN_POLL_DEBUG */\n\n#ifdef _WIN32\n/* Always enable debugging printout on Windows, as it is more often\n * needed there...\n */\n#define G_MAIN_POLL_DEBUG\n#endif\n\n\n#ifdef G_OS_UNIX\n#include \"glib-unix.h\"\n#include <pthread.h>\n#ifdef HAVE_EVENTFD\n#include <sys/eventfd.h>\n#endif\n#endif\n\n#include <signal.h>\n#include <sys/types.h>\n#include <time.h>\n#include <stdlib.h>\n#ifdef HAVE_SYS_TIME_H\n#include <sys/time.h>\n#endif /* HAVE_SYS_TIME_H */\n#ifdef G_OS_UNIX\n#include <unistd.h>\n#endif /* G_OS_UNIX */\n#include <errno.h>\n#include <string.h>\n#include",
+        "scope": "Core-source header sample; compiled object membership and complete per-file licensing unverified"
+      },
+      "originalLinkage": "static into libvips-cpp per pinned posix recipe; proxy-libintl is musl-only",
+      "originalStaticObjectArchivesAvailable": false,
+      "decision": "BLOCKED",
+      "legalReview": "REQUIRES LEGAL REVIEW",
+      "missing": "Original matching .a/.o relinking set and full compiled file/license scope; new reduced profile is not equivalent",
+      "noticeAndSourceDecision": "PARTIAL: original source notices retained in S05-B; file sample does not establish complete distributed subset",
+      "installationAndRelinkingDecision": "BLOCKED: original static archive/object/build correspondence unavailable"
+    },
+    {
+      "name": "exif",
+      "version": "0.6.26",
+      "sourceArchiveSha256": "4a055ed6575e61ca46c3172be3c753cc16c9becd0f99ec71d58dd0e471476c0c",
+      "upstreamDistributionLicenseStatement": "LGPLv3",
+      "fileEvidence": {
+        "path": "libexif-0.6.26/libexif/exif-data.c",
+        "sha256": "a6571b63f43615f20b419e6e0c4592259382a29897e4dd791762a37d846a7e02",
+        "licenseContext": "/* exif-data.c\n *\n * Copyright (c) 2001 Lutz Mueller <lutz@users.sourceforge.net>\n *\n * This library is free software; you can redistribute it and/or\n * modify it under the terms of the GNU Lesser General Public\n * License as published by the Free Software Foundation; either\n * version 2 of the License, or (at your option) any later version.\n *\n * This library is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU\n * Lesser General Public License for more details.\n *\n * You should have received a copy of the GNU Lesser General Public\n * License along with this library; if not, write to the\n * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,\n * Boston, MA  02110-1301  USA.\n *\n * SPDX-License-Identifier: LGPL-2.0-or-later\n */\n\n#include <config.h>\n\n#include <libexif/exif-mnote-data.h>\n#include <libexif/exif-data.h>\n#include <libexif/exif-ifd.h>\n#include <libexif/exif-mnote-data-priv.h>\n#include <libexif/exif-utils.h>\n#include <libexif/exif-loader.h>\n#include <libexif/exif-log.h>\n#include <libexif/i18n.h>\n#include <libexif/exif-system.h>\n\n/*#include <libexif/apple/exif-mnote-data-apple.h>*/\n#include <libexif/canon/exif-mnote-data-canon.h>\n#include <libexif/fuji/exif-mnote-data-fuji.h>\n#include <libexif/olympus/exif-mnote-data-olympus.h>\n#include <libexif/pentax/exif-mnote-data-pentax.h>\n\n#include <math.h>\n#include <stdlib.h>\n#include <stdio.h>\n#include <string.h>\n\n#undef JPEG_MARKER_SOI\n#define JPEG_MARKER_SOI  0xd8\n#undef JPEG_MARKER_APP0\n#define JPEG_MARKER_APP0 0xe0\n#undef JPEG_MARKER_APP1\n#define JPEG_MARKER_APP1 0xe1\n\n#define CHECKOVERFLOW(offset,datasize,structsize) (( (offset) >= (datasize)) || ((structsize) > (datasize)) || ((offset) > (datasize) - (structsize) ))\n\nstatic const unsigned char ExifHeader[] = {0x45, 0x78, 0x69, 0x66, 0x00, 0x00};\n\nstruct _ExifDataPrivate\n{\n\tExifByteOrder order;\n\n\tExifMnoteData *md;\n\n\tExifLog *log;\n\tExifMem *mem;\n\n\tunsigned int ref_count;\n\n\t/* Temporarily used while loading data */\n\tunsigned int offset_mnote;\n\n\tExifDataOption options;\n\tExifDataType data_type;\n};\n\nstatic void *\nexif_data_alloc (ExifData *data, unsigned int i)\n{\n\tvoid *d;\n\n\tif (!data || !i) \n\t\treturn NULL;\n\n\td = exif_",
+        "scope": "Core-source header sample; compiled object membership and complete per-file licensing unverified"
+      },
+      "originalLinkage": "static into libvips-cpp per pinned posix recipe; proxy-libintl is musl-only",
+      "originalStaticObjectArchivesAvailable": false,
+      "decision": "BLOCKED",
+      "legalReview": "REQUIRES LEGAL REVIEW",
+      "missing": "Original matching .a/.o relinking set and full compiled file/license scope; new reduced profile is not equivalent",
+      "noticeAndSourceDecision": "PARTIAL: original source notices retained in S05-B; file sample does not establish complete distributed subset",
+      "installationAndRelinkingDecision": "BLOCKED: original static archive/object/build correspondence unavailable"
+    },
+    {
+      "name": "heif",
+      "version": "1.23.5",
+      "sourceArchiveSha256": "fd9036064c4432f0550d15072ddf34956a248279ee9aeaff0fba3fa0f77d8f1a",
+      "upstreamDistributionLicenseStatement": "LGPLv3",
+      "fileEvidence": {
+        "path": "libheif-1.23.5/libheif/security_limits.h",
+        "sha256": "afff1b76f518630254d8589e6ff104d7d933025a1bc15464c6b34014fcfde824",
+        "licenseContext": "/*\n * HEIF codec.\n * Copyright (c) 2018 Dirk Farin <dirk.farin@gmail.com>\n *\n * This file is part of libheif.\n *\n * libheif is free software: you can redistribute it and/or modify\n * it under the terms of the GNU Lesser General Public License as\n * published by the Free Software Foundation, either version 3 of\n * the License, or (at your option) any later version.\n *\n * libheif is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n * GNU Lesser General Public License for more details.\n *\n * You should have received a copy of the GNU Lesser General Public License\n * along with libheif.  If not, see <http://www.gnu.org/licenses/>.\n */\n#ifndef LIBHEIF_SECURITY_LIMITS_H\n#define LIBHEIF_SECURITY_LIMITS_H\n\n#include \"libheif/heif.h\"\n#include <cinttypes>\n#include <cstddef>\n#include <set>\n#include <atomic>\n#include <memory>\n#include \"error.h\"\n\n\nextern heif_security_limits global_security_limits;\nextern heif_security_limits disabled_security_limits;\n\n// Maximum nesting level of boxes in input files.\n// We put a limit on this to avoid unlimited stack usage by malicious input files.\nstatic const int MAX_BOX_NESTING_LEVEL = 20;\n\nstatic const int MAX_BOX_SIZE = 0x7FFFFFFF; // 2 GB\nstatic const int64_t MAX_LARGE_BOX_SIZE = 0x0FFFFFFFFFFFFFFF;\nstatic const int64_t MAX_FILE_POS = 0"
+      },
+      "originalLinkage": "static into libvips-cpp per pinned posix recipe; proxy-libintl is musl-only",
+      "originalStaticObjectArchivesAvailable": false,
+      "decision": "BLOCKED",
+      "legalReview": "REQUIRES LEGAL REVIEW",
+      "missing": "Original matching .a/.o relinking set and full compiled file/license scope; new reduced profile is not equivalent",
+      "noticeAndSourceDecision": "PARTIAL: original source notices retained in S05-B; file sample does not establish complete distributed subset",
+      "installationAndRelinkingDecision": "BLOCKED: original static archive/object/build correspondence unavailable"
+    },
+    {
+      "name": "cairo",
+      "version": "1.18.6",
+      "sourceArchiveSha256": "1c767308174337a74694da0f3ec069c271452163a1ef4540964c50c301f157d4",
+      "upstreamDistributionLicenseStatement": "Mozilla Public License 1.1",
+      "fileEvidence": {
+        "path": "cairo-1.18.6/src/cairo-analysis-surface-private.h",
+        "sha256": "ecf6b4fe51fe6bb6a4edf373aab34a54c2014c7a931d61b1e0ae64ef060b2903",
+        "licenseContext": "/*\n * Copyright \u00a9 2005 Keith Packard\n *\n * This library is free software; you can redistribute it and/or\n * modify it either under the terms of the GNU Lesser General Public\n * License version 2.1 as published by the Free Software Foundation\n * (the \"LGPL\") or, at your option, under the terms of the Mozilla\n * Public License Version 1.1 (the \"MPL\"). If you do not alter this\n * notice, a recipient may use your version of this file under either\n * the MPL or the LGPL.\n *\n * You should have received a copy of the LGPL along with this library\n * in the file COPYING-LGPL-2.1; if not, write to the Free Software\n * Foundation, Inc., 51 Franklin Street, Suite 500, Boston, MA 02110-1335, USA\n * You should have received a copy of the MPL along with this library\n * in the file COPYING-MPL-1.1\n *\n * The contents of this file are subject to the Mozilla Public License\n * Version 1.1 (the \"License\"); you may not use this file except in\n * compliance with the License. You may obtain a copy of the License at\n * http://www.mozilla.org/MPL/\n *\n * This software is distributed on an \"AS IS\" basis, WITHOUT WARRANTY\n * OF ANY KIND, either express or implied. See the LGPL or the MPL for\n * the specific language governing rights and limitations.\n *\n * The Original Code is the cairo graphics library.\n *\n * The Initial Developer of the Original Code is Keit"
+      },
+      "originalLinkage": "static into libvips-cpp per pinned posix recipe; proxy-libintl is musl-only",
+      "originalStaticObjectArchivesAvailable": false,
+      "decision": "BLOCKED",
+      "legalReview": "REQUIRES LEGAL REVIEW",
+      "missing": "Original matching .a/.o relinking set and full compiled file/license scope; new reduced profile is not equivalent",
+      "noticeAndSourceDecision": "PARTIAL: original source notices retained in S05-B; file sample does not establish complete distributed subset",
+      "installationAndRelinkingDecision": "BLOCKED: original static archive/object/build correspondence unavailable"
+    },
+    {
+      "name": "fribidi",
+      "version": "1.0.17",
+      "sourceArchiveSha256": "6949dcde27d41cebad1fd741fcafc36d55a1020d2d872d4a6eb3914caabbada2",
+      "upstreamDistributionLicenseStatement": "LGPLv3",
+      "fileEvidence": {
+        "path": "fribidi-1.0.17/lib/fribidi.c",
+        "sha256": "52284f7e4b49f275dd50af23e3dc1632aea886ff2d12acd40ae0a77105546957",
+        "licenseContext": "/* FriBidi\n * fribidi.c - Unicode bidirectional and Arabic joining/shaping algorithms\n *\n * Authors:\n *   Behdad Esfahbod, 2001, 2002, 2004\n *   Dov Grobgeld, 1999, 2000\n *\n * Copyright (C) 2004 Sharif FarsiWeb, Inc\n * Copyright (C) 2001,2002 Behdad Esfahbod\n * Copyright (C) 1999,2000 Dov Grobgeld\n * \n * This library is free software; you can redistribute it and/or\n * modify it under the terms of the GNU Lesser General Public\n * License as published by the Free Software Foundation; either\n * version 2.1 of the License, or (at your option) any later version.\n * \n * This library is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU\n * Lesser General Public License for more details.\n * \n * You should have received a copy of the GNU Lesser General Public License\n * along with this library, in a file named COPYING; if not, write to the\n * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,\n * Boston, MA 02110-1301, USA\n * \n * For licensing issues, contact <fribidi.license@gmail.com>.\n */\n\n#include \"common.h\"\n\n#include <fribidi.h>\n\n#ifdef DEBUG\nstatic int flag_debug = false;\n#endif\n\nFRIBIDI_ENTRY fribidi_boolean\nfribidi_debug_status (\n  void\n)\n{\n#ifdef DEBUG\n  return flag_debug;\n#else\n  return false;\n#endif\n}\n\nFRIBIDI_ENTRY fribidi_boolean\nfribidi_set_debug (\n  /* input */\n  fribidi_boolean state\n)\n{\n#ifdef DEBUG\n  return flag_debug = state;\n#else\n  return false;\n#endif\n}\n\nFRIBIDI_ENTRY FriBidiStrIndex\nfribidi_remove_bidi_marks (\n  FriBidiChar *str,\n  const FriBidiStrIndex len,\n  FriBidiStrIndex *positions_to_this,\n  FriBidiStrIndex *position_from_this_list,\n  FriBidiLevel *embedding_levels\n)\n{\n  register FriBidiStrIndex i, j = 0;\n  fribidi_boolean private_from_this = false;\n  fribidi_boolean status = false;\n\n  if UNLIKELY\n    (len == 0 || str == NULL)\n    {\n      status = true;\n      goto out;\n    }\n\n  DBG (\"in fribidi_remove_bidi_marks\");\n\n  fribidi_assert (str);\n\n  /* If to_this is not NULL, we must have from_this as well. If it is\n     not given by the caller, we have to make a private instance of it. */\n  if (positions_to_this && !position_from_this_list)\n    {\n      position_from_this_list = fribidi_malloc (sizeof\n\t\t\t",
+        "scope": "Core-source header sample; compiled object membership and complete per-file licensing unverified"
+      },
+      "originalLinkage": "static into libvips-cpp per pinned posix recipe; proxy-libintl is musl-only",
+      "originalStaticObjectArchivesAvailable": false,
+      "decision": "BLOCKED",
+      "legalReview": "REQUIRES LEGAL REVIEW",
+      "missing": "Original matching .a/.o relinking set and full compiled file/license scope; new reduced profile is not equivalent",
+      "noticeAndSourceDecision": "PARTIAL: original source notices retained in S05-B; file sample does not establish complete distributed subset",
+      "installationAndRelinkingDecision": "BLOCKED: original static archive/object/build correspondence unavailable"
+    },
+    {
+      "name": "pango",
+      "version": "1.58.2",
+      "sourceArchiveSha256": "342385b6ca3b7c73455d7c80a13b7dbe4489e00bc3bd4c5bd6ed4dce421e374a",
+      "upstreamDistributionLicenseStatement": "LGPLv3",
+      "fileEvidence": {
+        "path": "pango-1.58.2/pango/pango-layout.c",
+        "sha256": "bfdc9ffc57ebea066ce2675df39b0ee92b2f290e98fdc1155f58b9bfba705091",
+        "licenseContext": "/* Pango\n * pango-layout.c: High-level layout driver\n *\n * Copyright (C) 2000, 2001, 2006 Red Hat Software\n *\n * This library is free software; you can redistribute it and/or\n * modify it under the terms of the GNU Library General Public\n * License as published by the Free Software Foundation; either\n * version 2 of the License, or (at your option) any later version.\n *\n * This library is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU\n * Library General Public License for more details.\n *\n * You should have received a copy of the GNU Library General Public\n * License along with this library; if not, write to the\n * Free Software Foundation, Inc., 59 Temple Place - Suite 330,\n * Boston, MA 02111-1307, USA.\n */\n\n/**\n * PangoLayout:\n *\n * A `PangoLayout` structure represents an entire paragraph of text.\n *\n * While complete access to the layout capabilities of Pango is provided\n * using the detailed interfaces for itemization and shaping, using\n * that functionality directly involves writing a fairly large amount\n * of code. `PangoLayout` provides a high-level driver for formatting\n * entire paragraphs of text at once. This includes paragraph-level\n * functionality such as line breaking, justification, alignment and\n * ellipsization.\n *\n * A `PangoLayout` is initialized with a `PangoContext`, UTF-8 string\n * and set of attributes for that string. Once that is done, the set of\n * formatted lines can be extracted from the object, the layout can be\n * rendered, and conversion between logical character positions within\n * the layout's text, and the physical position of the resulting glyphs\n * can be made.\n *\n * There are a number of parameters to adjust the formatting of a\n * `PangoLayout`. The following image shows adjustable parameters\n * (on the left) and font metrics (on the right):\n *\n * <picture>\n *   <source srcset=\"layout-dark.png\" media=\"(prefers-color-scheme: dark)\">\n *   <img alt=\"Pango Layout Parameters\" src=\"layout-light.png\">\n * </picture>\n *\n * The following images demonstrate the effect of alignment and\n * justification on the layout of text:\n *\n * | | |\n * | --- | --- |\n * | ![align=left](align-left.png) | ![align=le",
+        "scope": "Core-source header sample; compiled object membership and complete per-file licensing unverified"
+      },
+      "originalLinkage": "static into libvips-cpp per pinned posix recipe; proxy-libintl is musl-only",
+      "originalStaticObjectArchivesAvailable": false,
+      "decision": "BLOCKED",
+      "legalReview": "REQUIRES LEGAL REVIEW",
+      "missing": "Original matching .a/.o relinking set and full compiled file/license scope; new reduced profile is not equivalent",
+      "noticeAndSourceDecision": "PARTIAL: original source notices retained in S05-B; file sample does not establish complete distributed subset",
+      "installationAndRelinkingDecision": "BLOCKED: original static archive/object/build correspondence unavailable"
+    },
+    {
+      "name": "rsvg",
+      "version": "2.63.2",
+      "sourceArchiveSha256": "852b18e1a00b8605528825a27dc7748bff2a5dd254028f59dc22a34ea57e81b6",
+      "upstreamDistributionLicenseStatement": "LGPLv3",
+      "fileEvidence": {
+        "path": "librsvg-2.63.2/gdk-pixbuf-loader/io-svg.c",
+        "sha256": "fa6a8904dbd2efbe63ea7e28d44d8bd8b5c8a237e18da0dca421534ad298d350",
+        "licenseContext": "G image loader\n *\n * Copyright (C) 2002 Matthias Clasen\n * Copyright (C) 2002-2004 Dom Lachowicz\n *\n * Authors: Matthias Clasen <maclas@gmx.de>\n *          Dom Lachowicz <cinamod@hotmail.com>\n *\n * This library is free software; you can redistribute it and/or\n * modify it under the terms of the GNU Lesser General Public\n * License as published by the Free Software Foundation; either\n * version 2.1 of the License, or (at your option) any later version.\n *\n * This library is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU\n * Lesser General Public License for more details.\n *\n * You should have received a copy of the GNU Lesser General Public\n * License along with this library; if not, write to the Free Software\n * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA\n */\n\n#define RSVG_DISABLE_DEPRECATION_WARNINGS\n\n#include <stdlib.h>\n\n#include <librsvg/rsvg.h>\n#include <gdk-pixbuf/gdk-pixbuf.h>\n\ntypedef struct {\n        RsvgHandle                 *handle;\n\n        GdkPixbufModuleUpdatedFunc  updated_func;\n        GdkPixbufModulePreparedFunc prepared_func;\n        GdkPixbufModuleSizeFunc     size_func;\n\n        gboolean                    first_write;\n\n        gpointer                    user_data;\n} SvgContext;\n\nG_MODULE_EXPORT void fill_vtable (GdkPixbufModule *module);\nG_MODULE_EXPORT void fill_info (GdkPixbufFormat *i"
+      },
+      "originalLinkage": "static into libvips-cpp per pinned posix recipe; proxy-libintl is musl-only",
+      "originalStaticObjectArchivesAvailable": false,
+      "decision": "BLOCKED",
+      "legalReview": "REQUIRES LEGAL REVIEW",
+      "missing": "Original matching .a/.o relinking set and full compiled file/license scope; new reduced profile is not equivalent",
+      "noticeAndSourceDecision": "PARTIAL: original source notices retained in S05-B; file sample does not establish complete distributed subset",
+      "installationAndRelinkingDecision": "BLOCKED: original static archive/object/build correspondence unavailable"
+    },
+    {
+      "name": "vips",
+      "version": "8.18.7",
+      "sourceArchiveSha256": "5baaead3b0bb20ffdb9e9ff09aa9fda08620923df77b63b436654cb5e0b3bf94",
+      "upstreamDistributionLicenseStatement": "LGPLv3",
+      "fileEvidence": {
+        "path": "vips-8.18.7/libvips/iofuncs/init.c",
+        "sha256": "10f0201e4853d5d40b3b88f6b2c81616e9c474ab3c10b029b96014fe0d0c2f78",
+        "licenseContext": "/* Start up the world of vips.\n *\n * 7/1/04 JC\n *\t- 1st version\n * 7/6/05\n * \t- g_type_init() too, so we can use gobject\n * 2/9/06\n * \t- also set g_prg_name() and load plugins\n * 8/12/06\n * \t- add liboil support\n * 5/2/07\n * \t- stop a loop if we're called recursively during VIPS startup ... it\n * \t  can happen if (for example) vips_guess_prefix() fails and tries to\n * \t  i18n an error message (thanks Christian)\n * 8/6/07\n * \t- just warn if plugins fail to load correctly: too annoying to have\n * \t  VIPS refuse to start because of a dodgy plugin\n * 7/11/07\n * \t- progress feedback option\n * 5/8/08\n * \t- load plugins from libdir/vips-x.x\n * 5/10/09\n * \t- gtkdoc comments\n * 14/3/10\n * \t- init image and region before we start, we need all types to be fully\n * \t  constructed before we go parallel\n * 18/9/16\n * \t- call _setmaxstdio() on win32\n * 4/8/17\n * \t- hide warnings is VIPS_WARNING is set\n * 20/4/19\n * \t- set the min stack, if we can\n * 17/9/21\n * \t- don't use atexit for cleanup, it's too unreliable ... users should\n * \t  call vips_shutdown explicitly if they want a clean exit, though a\n * \t  dirty exit is fine\n */\n\n/*\n\n\tThis file is part of VIPS.\n\n\tVIPS is free software; you can redistribute it and/or modify\n\tit under the terms of the GNU Lesser General Public License as published by\n\tthe Free Software Foundation; either version 2 of the License, or\n\t(at your option) any later version.\n\n\tThis program is distributed in the hope that it will be useful,\n\tbut WITHOUT ANY WARRANTY; without even the implied warranty of\n\tMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n\tGNU Lesser General Public License for more details.\n\n\tYou should have received a copy of the GNU Lesser General Public License\n\talong with this program; if not, write to the Free Software\n\tFoundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA\n\t02110-1301  USA\n\n */\n\n/*\n\n\tThese files are distributed with VIPS - http://www.vips.ecs.soton.ac.uk\n\n */\n\n/*\n#define DEBUG\n */\n\n/* pthread_setattr_default_np() is a non-portable GNU extension.\n */\n#define _GNU_SOURCE\n\n#ifdef HAVE_CONFIG_H\n#include <config.h>\n#endif /*HAVE_CONFIG_H*/\n#include <glib/gi18n-lib.h>\n\n#ifdef HAVE_PTHREAD_DEFAULT_NP\n#include <pthread.h>\n#endif /*HAVE_PTHREAD_DEFAULT_NP*/\n\n#include <stdio.h>\n#include <stdlib.h>\n#ifdef ",
+        "scope": "Core-source header sample; compiled object membership and complete per-file licensing unverified"
+      },
+      "originalLinkage": "static into libvips-cpp per pinned posix recipe; proxy-libintl is musl-only",
+      "originalStaticObjectArchivesAvailable": false,
+      "decision": "BLOCKED",
+      "legalReview": "REQUIRES LEGAL REVIEW",
+      "missing": "Original matching .a/.o relinking set and full compiled file/license scope; new reduced profile is not equivalent",
+      "noticeAndSourceDecision": "PARTIAL: original source notices retained in S05-B; file sample does not establish complete distributed subset",
+      "installationAndRelinkingDecision": "BLOCKED: original static archive/object/build correspondence unavailable"
+    }
+  ],
+  "platformNpmPackage": "1.3.4 files lib/versions only; upstream dev package declares headers/cplusplus, not full static archives",
+  "decision": "BLOCKED"
+}

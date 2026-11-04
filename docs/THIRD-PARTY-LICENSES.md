@@ -65,3 +65,7 @@ SOURCE RELEASE STATUS: ALPHA.2 PUBLISHED — UNCHANGED. Hazır imaj dağıtımı
 ## S05-B kaynak/build incelemesi
 
 [Kaynak doğrulaması](S05B-LIBVIPS-SOURCE-VALIDATION.md): 28 native kaynak girdisi ve 357 Rust transitif kayıt ayrı tutulur; binary provenance ve değiştirilmiş static-LGPL rebuild tamamlanmadı. LIBVIPS SOURCE EVIDENCE: PARTIAL; genel BINARY DISTRIBUTION READINESS: BLOCKED. S05-A tarihsel kanıtları değişmedi. Yeni imaj ELF/hash ve alternatif yükleme provası CI artifact'ındadır; dolu evidence metni native pakete PASS veremez. Node/Debian kaynak işleri ve bağımsız insan kurulumu açık kalır.
+
+## S05-C kaynak ve rebuild kontrolü
+
+357 Rust adayının arşiv checksum'ları ölçüldü; özgün bildirim edinimi 344 PASS/13 BLOCKED. Derleme log'unda gözlenen 162 dış kaydın mutants 0.0.4 ve selectors 0.40.0 bildirimleri eksiktir. Dokuz LGPL/MPL native örnek için per-file koşullar ayrı kayıtlıdır: REQUIRES LEGAL REVIEW. Genel binary dağıtımı BLOCKED kalır. [Kanıt ve sınırlar](S05C-REBUILD-VALIDATION.md); [tekrar tarifi](LIBVIPS-REBUILD-REPRODUCTION.md).
