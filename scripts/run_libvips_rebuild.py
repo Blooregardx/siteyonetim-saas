@@ -50,6 +50,11 @@ def main():
     def save():(OUT/'rebuild-result.json').write_text(json.dumps(state,indent=2)+'\n')
     save()
     try:
+        packages={name:json.loads((Path('/app/node_modules')/name/'package.json').read_text())['version'] for name in ['sharp','@img/sharp-libvips-linux-x64','@img/sharp-linux-x64']}
+        if packages!={'sharp':'0.35.5','@img/sharp-libvips-linux-x64':'1.3.4','@img/sharp-linux-x64':'0.35.5'}:raise ValueError('NATIVE_PACKAGE_VERSION')
+        addon=next(Path('/app/node_modules/@img/sharp-linux-x64/lib').glob('*.node'))
+        state['packages']=packages;state['nativeAddon']={'path':str(addon),'sha256':sha(addon)}
+        shutil.copyfile(addon,OUT/'sharp-addon.node')
         source=Path('/input/vips.tar');patch=Path('/input/soname.patch')
         if sha(source)!=spec['source']['sha256'] or sha(patch)!=spec['sonamePatch']['sha256']:raise ValueError('SOURCE_OR_PATCH_HASH')
         tools={'gcc':capture(['gcc','-dumpfullversion']),'linker':capture(['ld','--version']).splitlines()[0],'meson':capture(['meson','--version']),'ninja':capture(['ninja','--version']),'target':capture(['gcc','-dumpmachine']),'python':capture(['python3','--version']),'rust':'NOT_USED: librsvg disabled in reduced profile'}

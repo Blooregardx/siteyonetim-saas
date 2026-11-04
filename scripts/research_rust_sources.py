@@ -25,6 +25,15 @@ def compilation_pairs(observations):
     return pairs
 
 
+def inspect_rust_archive(path):
+    with tarfile.open(path) as archive:
+        total=0
+        for index,member in enumerate(archive):
+            total+=member.size if member.isfile() else 0
+            if index>=150000 or member.size>64*1024**2 or total>512*1024**2:raise ValueError('CRATE_ARCHIVE_RESOURCE_LIMIT')
+    return inspect_archive(path)
+
+
 def acquire(record):
     r=dict(record)
     if not r['source'].startswith('registry+'):
@@ -45,7 +54,7 @@ def acquire(record):
             subprocess.run(['curl','--proto','=https','-fLsS','--max-time','50','--max-filesize','25000000',url,'-o',str(path)],check=True,stderr=subprocess.DEVNULL)
         actual=hashlib.sha256(path.read_bytes()).hexdigest()
         if actual!=expected:raise ValueError('CRATE_CHECKSUM')
-        notices=inspect_archive(path)
+        notices=inspect_rust_archive(path)
         with tarfile.open(path) as archive:
             entry=next(e for e in archive if e.isfile() and e.name==key+'/Cargo.toml')
             cargo=tomllib.loads(archive.extractfile(entry).read().decode())
@@ -57,7 +66,7 @@ def acquire(record):
                 if target.is_symlink() or not target.resolve().is_relative_to(OUT.resolve()):raise ValueError('NOTICE_PATH')
                 target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(raw)
                 n.pop('text',None);n['evidenceFile']=relative
-        return {**r,'url':url,'archiveSha256':actual,'expectedChecksum':expected,'checksumAuthority':'original Cargo.lock' if r.get('lockChecksum') else 'crates.io version API; generated upstream lock unavailable','license':cargo['package'].get('license'),'licenseFile':cargo['package'].get('license-file'),'notices':notices,'buildScripts':scripts,'archiveIntegrity':'PASS','decision':'PASS' if notices and cargo['package'].get('license') else 'BLOCKED','reason':'Archive/notice acquisition only; compilation source checksum and distribution obligations are separate'}
+        return {**r,'url':url,'archiveSha256':actual,'expectedChecksum':expected,'checksumAuthority':'original Cargo.lock' if r.get('lockChecksum') else 'crates.io version API; generated upstream lock unavailable','license':cargo['package'].get('license'),'licenseFile':cargo['package'].get('license-file'),'notices':notices,'buildScripts':scripts,'archiveIntegrity':'PASS','decision':'PASS' if notices and cargo['package'].get('license') else 'BLOCKED','reason':'Archive/notice acquisition only; compilation source checksum and distribution obligations are separate' if notices and cargo['package'].get('license') else 'Original crate has no recognized license/notice text or license declaration; upstream supplemental evidence required'}
     except (OSError,ValueError,KeyError,StopIteration,tarfile.TarError,subprocess.SubprocessError):
         return {**r,'archiveIntegrity':'BLOCKED','decision':'BLOCKED','reason':'Download/checksum/safe archive/notice inspection incomplete; no replacement or inferred source'}
 
@@ -76,7 +85,8 @@ if __name__=='__main__':
         if pair not in known and pair[0] not in ['librsvg','librsvg-c']:
             extras.append({'name':pair[0],'version':pair[1],'source':'registry+https://github.com/rust-lang/crates.io-index','sourceKind':'registry','lockChecksum':None,'scopeDecision':'COMPILED — EVIDENCED','sourceIdentityDecision':'UNKNOWN: registry location candidate; generated lock unavailable','evidenceLines':lines})
     scope={'schemaVersion':1,'lockSha256':hashlib.sha256(lockpath.read_bytes()).hexdigest(),'target':'x86_64-unknown-linux-gnu','librsvgVersion':'2.63.2','upstreamRecipeCommit':obs['commit'],'upstreamCargoCommand':"cargo cbuild --locked --library-type staticlib --release -p librsvg-c",'historicalLockChanged':True,'records':rows,'additionalCompilationObservations':extras,'counts':{s:sum(r['scopeDecision']==s for r in rows) for s in ['COMPILED — EVIDENCED','RESOLVED — NOT PROVEN COMPILED','NOT SELECTED — EVIDENCED','UNKNOWN']},'gaps':['357 is source-archive lock registry/git records, not all compiled records','Toolchain cargo-c installation compilation excluded','Compilation name/version evidence does not prove source checksum of the unavailable generated lock or final linked subset']}
-    scope['workspaceRecords']=[{'name':p['name'],'version':p['version'],'sourceKind':'path','scopeDecision':'COMPILED — EVIDENCED' if (p['name'],p['version']) in compiled else 'UNKNOWN','evidenceLines':compiled.get((p['name'],p['version']),[]),'packageId':None,'gaps':['Workspace source archive identity; emitted Cargo package IDs unavailable']} for p in lock['package'] if 'source' not in p]
+    librsvg_source=next(r for r in json.loads((ROOT/'docs/evidence/s05b/libvips-source-manifest.json').read_text())['dependencies'] if r['name']=='rsvg')
+    scope['workspaceRecords']=[{'name':p['name'],'version':p['version'],'sourceKind':'path','sourceArchiveUrl':librsvg_source['url'],'sourceArchiveSha256':librsvg_source['sha256'],'target':scope['target'],'features':'UNKNOWN: resolved per-package features unavailable','dependencyKind':'UNKNOWN','scopeDecision':'COMPILED — EVIDENCED' if (p['name'],p['version']) in compiled else 'UNKNOWN','evidenceLines':compiled.get((p['name'],p['version']),[]),'packageId':None,'gaps':['Workspace source archive identity; emitted Cargo package IDs unavailable']} for p in lock['package'] if 'source' not in p]
     (OUT/'rust-build-scope.json').write_text(json.dumps(scope,indent=2)+'\n')
     # Prioritize actual compilation observations, then remaining original-lock candidates.
     candidates=sorted(rows+extras,key=lambda r:r['scopeDecision']!='COMPILED — EVIDENCED')

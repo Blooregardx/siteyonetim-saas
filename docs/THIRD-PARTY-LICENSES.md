@@ -68,4 +68,4 @@ SOURCE RELEASE STATUS: ALPHA.2 PUBLISHED — UNCHANGED. Hazır imaj dağıtımı
 
 ## S05-C kaynak ve rebuild kontrolü
 
-[Doğrulama](S05C-REBUILD-VALIDATION.md) ve [tekrar tarifi](LIBVIPS-REBUILD-REPRODUCTION.md):357 dış Cargo.lock kaydından162'si upstream librsvg compile log'unda gözlendi;195 UNKNOWN,0 NOT SELECTED. Toolchain cargo-c build satırları ayrı tutulur. Yeni kaynak/ABI/load doğrulayıcı fiziksel dosya/hash ister; modified-source reduced-profile deneyi orijinal static bundle'a eşdeğer sayılmaz. Genel BINARY DISTRIBUTION: BLOCKED; Node/Debian/Prisma ve kalıcı source sunumu açık. Son HEAD deney sonucu ve iki mandatory CI PR kanıt kaydındadır; hazırlanmış/başarısız deney VERIFIED sayılamaz.
+357 Rust adayının arşiv checksum'ları ölçüldü; özgün bildirim edinimi 344 PASS/13 BLOCKED. Derleme log'unda gözlenen 162 dış kaydın mutants 0.0.4 ve selectors 0.40.0 bildirimleri eksiktir. Dokuz LGPL/MPL native örnek için per-file koşullar ayrı kayıtlıdır: REQUIRES LEGAL REVIEW. Genel binary dağıtımı BLOCKED kalır. [Kanıt ve sınırlar](S05C-REBUILD-VALIDATION.md); [tekrar tarifi](LIBVIPS-REBUILD-REPRODUCTION.md).

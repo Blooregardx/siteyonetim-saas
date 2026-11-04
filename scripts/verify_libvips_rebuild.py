@@ -78,8 +78,8 @@ def verify_sources(manifest,root,archive_root=None):
         if archive_root is not None:
             path=file_at(archive_root,r['name']+'-'+r['version']+'.crate')
             if sha(path)!=r['archiveSha256']:raise ValueError('ACTUAL_CRATE_CHECKSUM')
-            from research_libvips_sources import inspect_archive
-            found={n['path']:n['sha256'] for n in inspect_archive(path)}
+            from research_rust_sources import inspect_rust_archive
+            found={n['path']:n['sha256'] for n in inspect_rust_archive(path)}
             if any(found.get(n['path'])!=n['sha256'] for n in r['notices']):raise ValueError('CRATE_NOTICE_BINDING')
         for n in r['notices']:
             if sha(file_at(root,n['evidenceFile']))!=n['sha256']:raise ValueError('LICENSE_NOTICE_HASH')
@@ -91,6 +91,8 @@ def verify_rebuild(result,root,spec):
     if spec['baseImage']!=BASE_IMAGE or spec['source']['sha256']!=SOURCE_SHA or spec['expectedTools']!=TOOLS:raise ValueError('UNTRUSTED_SPECIFICATION')
     if result.get('baseImage')!=spec['baseImage'] or result.get('target')!=spec['target']:raise ValueError('BASE_OR_TARGET')
     if result.get('status')=='BLOCKED':return {'modifiedRebuild':'BLOCKED','stage':result.get('stage'),'staticInputs':'BLOCKED','binaryDistributionReadiness':'BLOCKED'}
+    if result.get('packages')!={'sharp':'0.35.5','@img/sharp-libvips-linux-x64':'1.3.4','@img/sharp-linux-x64':'0.35.5'}:raise ValueError('NATIVE_PACKAGE_VERSION')
+    if sha(file_at(root,'out/sharp-addon.node'))!=result['nativeAddon']['sha256']:raise ValueError('NATIVE_ADDON_HASH')
     image=(root/'environment-config-id.txt').read_text().strip()
     sbom=json.loads(file_at(root,'out/environment-sbom.syft.json').read_text())
     if result.get('imageID')!=image or sbom['source']['metadata']['imageID']!=image or result.get('sbomSha256')!=sha(file_at(root,'out/environment-sbom.syft.json')):raise ValueError('FOREIGN_SBOM_OR_IMAGE')
@@ -135,6 +137,7 @@ def verify_rebuild(result,root,spec):
     if actual_missing!=result['abi']['missingComparedWithDistributed']:raise ValueError('DISTRIBUTED_ABI_CLAIM')
     maps=file_at(root,'out/sharp-maps.txt').read_text()
     if new['path'] not in maps or '/app/node_modules/@img/sharp-libvips-linux-x64/lib/libvips-cpp.so.8.18.7' in maps:raise ValueError('RAW_LIBRARY_MAPS')
+    if result['nativeAddon']['path'] not in maps:raise ValueError('NATIVE_ADDON_MAPS')
     probe=result['sharp']
     if probe['exitCode']!=0 or not probe.get('newLoaded') or probe.get('oldLoaded') or probe.get('loadedSha256')!=new['sha256'] or not probe.get('png') or probe.get('width')!=1 or probe.get('height')!=1:raise ValueError('FAKE_OR_OLD_LIBRARY_LOAD')
     # System-dynamic reduced profile cannot clear original static LGPL inputs.

@@ -91,4 +91,4 @@ SOURCE RELEASE STATUS: ALPHA.2 PUBLISHED — UNCHANGED. Hazır imaj dağıtımı
 
 ## S05-C kaynak ve rebuild kontrolü
 
-[Doğrulama](S05C-REBUILD-VALIDATION.md) ve [tekrar tarifi](LIBVIPS-REBUILD-REPRODUCTION.md):357 dış Cargo.lock kaydından162'si upstream librsvg compile log'unda gözlendi;195 UNKNOWN,0 NOT SELECTED. Toolchain cargo-c build satırları ayrı tutulur. Yeni kaynak/ABI/load doğrulayıcı fiziksel dosya/hash ister; modified-source reduced-profile deneyi orijinal static bundle'a eşdeğer sayılmaz. Genel BINARY DISTRIBUTION: BLOCKED; Node/Debian/Prisma ve kalıcı source sunumu açık. Son HEAD deney sonucu ve iki mandatory CI PR kanıt kaydındadır; hazırlanmış/başarısız deney VERIFIED sayılamaz.
+S05-C upstream derleme kapsamını 162 dış crate + 2 workspace olarak ayırdı; 195 dış kayıt UNKNOWN. Azaltılmış değiştirilmiş libvips/Sharp PNG deneyi başarılı, genel karar PARTIAL/BLOCKED. S05-D: generated Cargo.lock, exact feature/role/link subset, eksik crate bildirimleri, özgün statik girdiler ve tam bundle rebuild; Node/Debian/Prisma ile kalıcı kaynak sunumu açık. [Kanıt ve sınırlar](S05C-REBUILD-VALIDATION.md); [tekrar tarifi](LIBVIPS-REBUILD-REPRODUCTION.md).

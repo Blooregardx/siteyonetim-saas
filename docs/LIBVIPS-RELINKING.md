@@ -18,4 +18,4 @@ Yeni dc50c65 runtime ve migration CI imajlarında doğrulanan sonuç: DT_RPATH n
 
 ## S05-C kaynak ve rebuild kontrolü
 
-[Doğrulama](S05C-REBUILD-VALIDATION.md) ve [tekrar tarifi](LIBVIPS-REBUILD-REPRODUCTION.md):357 dış Cargo.lock kaydından162'si upstream librsvg compile log'unda gözlendi;195 UNKNOWN,0 NOT SELECTED. Toolchain cargo-c build satırları ayrı tutulur. Yeni kaynak/ABI/load doğrulayıcı fiziksel dosya/hash ister; modified-source reduced-profile deneyi orijinal static bundle'a eşdeğer sayılmaz. Genel BINARY DISTRIBUTION: BLOCKED; Node/Debian/Prisma ve kalıcı source sunumu açık. Son HEAD deney sonucu ve iki mandatory CI PR kanıt kaydındadır; hazırlanmış/başarısız deney VERIFIED sayılamaz.
+S05-B'nin aynı-byte yüklemesine ek olarak değiştirilmiş init.c'den farklı-byte kütüphane üretildi ve gerçek Sharp PNG yolunda eski kütüphane yüklenmeden çalıştı. Control/modified 1576 export adı eşit; özgün bundle'dan 1946 export adı eksik. Bu azaltılmış profil sonucu PARTIAL; özgün statik LGPL .a/.o seti ve bit reproducibility doğrulanmadı. [Kanıt ve sınırlar](S05C-REBUILD-VALIDATION.md); [tekrar tarifi](LIBVIPS-REBUILD-REPRODUCTION.md).

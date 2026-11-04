@@ -2,66 +2,12 @@
   "schemaVersion": 1,
   "baseImage": "node:24-bookworm-slim@sha256:c86ecead9e55a5210ac1727de38a4ca840bf03dcaf34dc9749addbf383b1920c",
   "rustMetadataImage": "rust:1.92.0-bookworm@sha256:5c38a9e735664861e84ce6918e98ce7f05dbac210230d45381bcf870b2d58083",
-  "rustMetadataImage192": "rust:1.92.0-bookworm@sha256:5c38a9e735664861e84ce6918e98ce7f05dbac210230d45381bcf870b2d58083",
   "sourceCommit": "24ad4d042940e6bf99a68871ba886ca8847c9c82",
   "source": {
     "name": "vips",
     "version": "8.18.7",
     "url": "https://github.com/libvips/libvips/releases/download/v8.18.7/vips-8.18.7.tar.xz",
-    "imagePresence": {
-      "declaration": "pinned recipe and package versions.json; localized static code presence not independently proven",
-      "platformCondition": "see pinned recipe feature/target conditions",
-      "reports": [
-        {
-          "image": "app",
-          "platform": "linux-x64",
-          "reportedVersion": "8.18.7",
-          "imageID": "sha256:3bf88820a91084ce8eb10e9ca9e5b21d804a5b5b6fbe9ac76491fe18e5cc0728",
-          "sourceCommit": "dc50c65bfc5a5f1dae4d0dc67e1c402ef52c7a7e"
-        },
-        {
-          "image": "app",
-          "platform": "linuxmusl-x64",
-          "reportedVersion": "8.18.7",
-          "imageID": "sha256:3bf88820a91084ce8eb10e9ca9e5b21d804a5b5b6fbe9ac76491fe18e5cc0728",
-          "sourceCommit": "dc50c65bfc5a5f1dae4d0dc67e1c402ef52c7a7e"
-        },
-        {
-          "image": "migrate",
-          "platform": "linux-x64",
-          "reportedVersion": "8.18.7",
-          "imageID": "sha256:841b9960129e54b927cbabbc24d80fbd42beb9765d3e7eed1574774256e34e9e",
-          "sourceCommit": "dc50c65bfc5a5f1dae4d0dc67e1c402ef52c7a7e"
-        },
-        {
-          "image": "migrate",
-          "platform": "linuxmusl-x64",
-          "reportedVersion": "8.18.7",
-          "imageID": "sha256:841b9960129e54b927cbabbc24d80fbd42beb9765d3e7eed1574774256e34e9e",
-          "sourceCommit": "dc50c65bfc5a5f1dae4d0dc67e1c402ef52c7a7e"
-        }
-      ]
-    },
-    "linkage": "statically bundled into libvips-cpp per pinned recipe; platform conditions apply",
-    "licenseDecision": "UNKNOWN until original per-file licenses reviewed",
-    "sha256": "5baaead3b0bb20ffdb9e9ff09aa9fda08620923df77b63b436654cb5e0b3bf94",
-    "notices": [
-      {
-        "path": "vips-8.18.7/LICENSE",
-        "sha256": "dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551",
-        "evidenceFile": "notices/vips/dc626520dcd53a22-LICENSE"
-      },
-      {
-        "path": "vips-8.18.7/libvips/foreign/libnsgif/COPYING",
-        "sha256": "1469b759cf18e43c6e1b4ff892307d3962cbbb337ac497620d6690a219fad10c",
-        "evidenceFile": "notices/vips/1469b759cf18e43c-COPYING"
-      }
-    ],
-    "archiveStatus": "PASS",
-    "sourceMatch": "BLOCKED",
-    "missingEvidence": "Archive integrity observed, not authenticated binary build provenance; no bit-reproducible rebuild.",
-    "upstreamLicenseStatement": "LGPLv3",
-    "spdxReview": "UNKNOWN \u2014 per-file/compiled-scope review required"
+    "sha256": "5baaead3b0bb20ffdb9e9ff09aa9fda08620923df77b63b436654cb5e0b3bf94"
   },
   "sonamePatch": {
     "url": "https://gist.githubusercontent.com/lovell/313a6901e9db1bf285f2a1f1180499e4/raw/3988223c7dfa4d22745d9392034b0117abef1446/libvips-cpp-soversion.patch",

@@ -7132,82 +7132,149 @@
       "name": "ci",
       "version": "0.0.0",
       "sourceKind": "path",
-      "packageId": null,
-      "scopeDecision": "UNKNOWN",
+      "sourceArchiveUrl": "https://download.gnome.org/sources/librsvg/2.63/librsvg-2.63.2.tar.xz",
       "sourceArchiveSha256": "852b18e1a00b8605528825a27dc7748bff2a5dd254028f59dc22a34ea57e81b6",
-      "sourceIdentityDecision": "BLOCKED: generated post-patch tree and compiler package ID unavailable"
+      "target": "x86_64-unknown-linux-gnu",
+      "features": "UNKNOWN: resolved per-package features unavailable",
+      "dependencyKind": "UNKNOWN",
+      "scopeDecision": "UNKNOWN",
+      "evidenceLines": [],
+      "packageId": null,
+      "gaps": [
+        "Workspace source archive identity; emitted Cargo package IDs unavailable"
+      ]
     },
     {
       "name": "librsvg",
       "version": "2.63.2",
       "sourceKind": "path",
-      "packageId": null,
-      "scopeDecision": "COMPILED \u2014 EVIDENCED",
+      "sourceArchiveUrl": "https://download.gnome.org/sources/librsvg/2.63/librsvg-2.63.2.tar.xz",
       "sourceArchiveSha256": "852b18e1a00b8605528825a27dc7748bff2a5dd254028f59dc22a34ea57e81b6",
-      "sourceIdentityDecision": "BLOCKED: generated post-patch tree and compiler package ID unavailable"
+      "target": "x86_64-unknown-linux-gnu",
+      "features": "UNKNOWN: resolved per-package features unavailable",
+      "dependencyKind": "UNKNOWN",
+      "scopeDecision": "COMPILED \u2014 EVIDENCED",
+      "evidenceLines": [
+        "2026-09-27T11:42:28.9775967Z    Compiling librsvg v2.63.2 (/deps/rsvg/rsvg)"
+      ],
+      "packageId": null,
+      "gaps": [
+        "Workspace source archive identity; emitted Cargo package IDs unavailable"
+      ]
     },
     {
       "name": "librsvg-c",
       "version": "2.63.2",
       "sourceKind": "path",
-      "packageId": null,
-      "scopeDecision": "COMPILED \u2014 EVIDENCED",
+      "sourceArchiveUrl": "https://download.gnome.org/sources/librsvg/2.63/librsvg-2.63.2.tar.xz",
       "sourceArchiveSha256": "852b18e1a00b8605528825a27dc7748bff2a5dd254028f59dc22a34ea57e81b6",
-      "sourceIdentityDecision": "BLOCKED: generated post-patch tree and compiler package ID unavailable"
+      "target": "x86_64-unknown-linux-gnu",
+      "features": "UNKNOWN: resolved per-package features unavailable",
+      "dependencyKind": "UNKNOWN",
+      "scopeDecision": "COMPILED \u2014 EVIDENCED",
+      "evidenceLines": [
+        "2026-09-27T11:42:41.9149119Z    Compiling librsvg-c v2.63.2 (/deps/rsvg/librsvg-c)"
+      ],
+      "packageId": null,
+      "gaps": [
+        "Workspace source archive identity; emitted Cargo package IDs unavailable"
+      ]
     },
     {
       "name": "librsvg-rebind",
       "version": "0.3.0",
       "sourceKind": "path",
-      "packageId": null,
-      "scopeDecision": "UNKNOWN",
+      "sourceArchiveUrl": "https://download.gnome.org/sources/librsvg/2.63/librsvg-2.63.2.tar.xz",
       "sourceArchiveSha256": "852b18e1a00b8605528825a27dc7748bff2a5dd254028f59dc22a34ea57e81b6",
-      "sourceIdentityDecision": "BLOCKED: generated post-patch tree and compiler package ID unavailable"
+      "target": "x86_64-unknown-linux-gnu",
+      "features": "UNKNOWN: resolved per-package features unavailable",
+      "dependencyKind": "UNKNOWN",
+      "scopeDecision": "UNKNOWN",
+      "evidenceLines": [],
+      "packageId": null,
+      "gaps": [
+        "Workspace source archive identity; emitted Cargo package IDs unavailable"
+      ]
     },
     {
       "name": "librsvg-rebind-sys",
       "version": "0.3.0",
       "sourceKind": "path",
-      "packageId": null,
-      "scopeDecision": "UNKNOWN",
+      "sourceArchiveUrl": "https://download.gnome.org/sources/librsvg/2.63/librsvg-2.63.2.tar.xz",
       "sourceArchiveSha256": "852b18e1a00b8605528825a27dc7748bff2a5dd254028f59dc22a34ea57e81b6",
-      "sourceIdentityDecision": "BLOCKED: generated post-patch tree and compiler package ID unavailable"
+      "target": "x86_64-unknown-linux-gnu",
+      "features": "UNKNOWN: resolved per-package features unavailable",
+      "dependencyKind": "UNKNOWN",
+      "scopeDecision": "UNKNOWN",
+      "evidenceLines": [],
+      "packageId": null,
+      "gaps": [
+        "Workspace source archive identity; emitted Cargo package IDs unavailable"
+      ]
     },
     {
       "name": "pixbufloader-svg",
       "version": "0.0.1",
       "sourceKind": "path",
-      "packageId": null,
-      "scopeDecision": "UNKNOWN",
+      "sourceArchiveUrl": "https://download.gnome.org/sources/librsvg/2.63/librsvg-2.63.2.tar.xz",
       "sourceArchiveSha256": "852b18e1a00b8605528825a27dc7748bff2a5dd254028f59dc22a34ea57e81b6",
-      "sourceIdentityDecision": "BLOCKED: generated post-patch tree and compiler package ID unavailable"
+      "target": "x86_64-unknown-linux-gnu",
+      "features": "UNKNOWN: resolved per-package features unavailable",
+      "dependencyKind": "UNKNOWN",
+      "scopeDecision": "UNKNOWN",
+      "evidenceLines": [],
+      "packageId": null,
+      "gaps": [
+        "Workspace source archive identity; emitted Cargo package IDs unavailable"
+      ]
     },
     {
       "name": "rsvg-bench",
       "version": "2.63.2",
       "sourceKind": "path",
-      "packageId": null,
-      "scopeDecision": "UNKNOWN",
+      "sourceArchiveUrl": "https://download.gnome.org/sources/librsvg/2.63/librsvg-2.63.2.tar.xz",
       "sourceArchiveSha256": "852b18e1a00b8605528825a27dc7748bff2a5dd254028f59dc22a34ea57e81b6",
-      "sourceIdentityDecision": "BLOCKED: generated post-patch tree and compiler package ID unavailable"
+      "target": "x86_64-unknown-linux-gnu",
+      "features": "UNKNOWN: resolved per-package features unavailable",
+      "dependencyKind": "UNKNOWN",
+      "scopeDecision": "UNKNOWN",
+      "evidenceLines": [],
+      "packageId": null,
+      "gaps": [
+        "Workspace source archive identity; emitted Cargo package IDs unavailable"
+      ]
     },
     {
       "name": "rsvg-fuzz",
       "version": "0.0.0",
       "sourceKind": "path",
-      "packageId": null,
-      "scopeDecision": "UNKNOWN",
+      "sourceArchiveUrl": "https://download.gnome.org/sources/librsvg/2.63/librsvg-2.63.2.tar.xz",
       "sourceArchiveSha256": "852b18e1a00b8605528825a27dc7748bff2a5dd254028f59dc22a34ea57e81b6",
-      "sourceIdentityDecision": "BLOCKED: generated post-patch tree and compiler package ID unavailable"
+      "target": "x86_64-unknown-linux-gnu",
+      "features": "UNKNOWN: resolved per-package features unavailable",
+      "dependencyKind": "UNKNOWN",
+      "scopeDecision": "UNKNOWN",
+      "evidenceLines": [],
+      "packageId": null,
+      "gaps": [
+        "Workspace source archive identity; emitted Cargo package IDs unavailable"
+      ]
     },
     {
       "name": "rsvg_convert",
       "version": "2.63.2",
       "sourceKind": "path",
-      "packageId": null,
-      "scopeDecision": "UNKNOWN",
+      "sourceArchiveUrl": "https://download.gnome.org/sources/librsvg/2.63/librsvg-2.63.2.tar.xz",
       "sourceArchiveSha256": "852b18e1a00b8605528825a27dc7748bff2a5dd254028f59dc22a34ea57e81b6",
-      "sourceIdentityDecision": "BLOCKED: generated post-patch tree and compiler package ID unavailable"
+      "target": "x86_64-unknown-linux-gnu",
+      "features": "UNKNOWN: resolved per-package features unavailable",
+      "dependencyKind": "UNKNOWN",
+      "scopeDecision": "UNKNOWN",
+      "evidenceLines": [],
+      "packageId": null,
+      "gaps": [
+        "Workspace source archive identity; emitted Cargo package IDs unavailable"
+      ]
     }
   ]
 }

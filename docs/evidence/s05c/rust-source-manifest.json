@@ -3213,7 +3213,7 @@
       "buildScripts": [],
       "archiveIntegrity": "PASS",
       "decision": "BLOCKED",
-      "reason": "Archive/notice acquisition only; compilation source checksum and distribution obligations are separate"
+      "reason": "Original crate has no recognized license/notice text or license declaration; upstream supplemental evidence required"
     },
     {
       "packageId": null,
@@ -4918,7 +4918,7 @@
       ],
       "archiveIntegrity": "PASS",
       "decision": "BLOCKED",
-      "reason": "Archive/notice acquisition only; compilation source checksum and distribution obligations are separate"
+      "reason": "Original crate has no recognized license/notice text or license declaration; upstream supplemental evidence required"
     },
     {
       "packageId": null,
@@ -7006,7 +7006,7 @@
       "buildScripts": [],
       "archiveIntegrity": "PASS",
       "decision": "BLOCKED",
-      "reason": "Archive/notice acquisition only; compilation source checksum and distribution obligations are separate"
+      "reason": "Original crate has no recognized license/notice text or license declaration; upstream supplemental evidence required"
     },
     {
       "packageId": null,
@@ -7525,7 +7525,7 @@
       "buildScripts": [],
       "archiveIntegrity": "PASS",
       "decision": "BLOCKED",
-      "reason": "Archive/notice acquisition only; compilation source checksum and distribution obligations are separate"
+      "reason": "Original crate has no recognized license/notice text or license declaration; upstream supplemental evidence required"
     },
     {
       "packageId": null,
@@ -8912,7 +8912,7 @@
       "buildScripts": [],
       "archiveIntegrity": "PASS",
       "decision": "BLOCKED",
-      "reason": "Archive/notice acquisition only; compilation source checksum and distribution obligations are separate"
+      "reason": "Original crate has no recognized license/notice text or license declaration; upstream supplemental evidence required"
     },
     {
       "packageId": null,
@@ -9024,7 +9024,7 @@
       "buildScripts": [],
       "archiveIntegrity": "PASS",
       "decision": "BLOCKED",
-      "reason": "Archive/notice acquisition only; compilation source checksum and distribution obligations are separate"
+      "reason": "Original crate has no recognized license/notice text or license declaration; upstream supplemental evidence required"
     },
     {
       "packageId": null,
@@ -10821,7 +10821,7 @@
       "buildScripts": [],
       "archiveIntegrity": "PASS",
       "decision": "BLOCKED",
-      "reason": "Archive/notice acquisition only; compilation source checksum and distribution obligations are separate"
+      "reason": "Original crate has no recognized license/notice text or license declaration; upstream supplemental evidence required"
     },
     {
       "packageId": null,
@@ -11195,7 +11195,7 @@
       "buildScripts": [],
       "archiveIntegrity": "PASS",
       "decision": "BLOCKED",
-      "reason": "Archive/notice acquisition only; compilation source checksum and distribution obligations are separate"
+      "reason": "Original crate has no recognized license/notice text or license declaration; upstream supplemental evidence required"
     },
     {
       "packageId": null,
@@ -11225,7 +11225,7 @@
       "buildScripts": [],
       "archiveIntegrity": "PASS",
       "decision": "BLOCKED",
-      "reason": "Archive/notice acquisition only; compilation source checksum and distribution obligations are separate"
+      "reason": "Original crate has no recognized license/notice text or license declaration; upstream supplemental evidence required"
     },
     {
       "packageId": null,
@@ -11978,7 +11978,7 @@
       "buildScripts": [],
       "archiveIntegrity": "PASS",
       "decision": "BLOCKED",
-      "reason": "Archive/notice acquisition only; compilation source checksum and distribution obligations are separate"
+      "reason": "Original crate has no recognized license/notice text or license declaration; upstream supplemental evidence required"
     },
     {
       "packageId": null,
@@ -12008,7 +12008,7 @@
       "buildScripts": [],
       "archiveIntegrity": "PASS",
       "decision": "BLOCKED",
-      "reason": "Archive/notice acquisition only; compilation source checksum and distribution obligations are separate"
+      "reason": "Original crate has no recognized license/notice text or license declaration; upstream supplemental evidence required"
     },
     {
       "packageId": null,
@@ -14026,7 +14026,7 @@
       ],
       "archiveIntegrity": "PASS",
       "decision": "BLOCKED",
-      "reason": "Archive/notice acquisition only; compilation source checksum and distribution obligations are separate"
+      "reason": "Original crate has no recognized license/notice text or license declaration; upstream supplemental evidence required"
     },
     {
       "packageId": null,
@@ -14099,7 +14099,7 @@
       ],
       "archiveIntegrity": "PASS",
       "decision": "BLOCKED",
-      "reason": "Archive/notice acquisition only; compilation source checksum and distribution obligations are separate"
+      "reason": "Original crate has no recognized license/notice text or license declaration; upstream supplemental evidence required"
     },
     {
       "packageId": null,

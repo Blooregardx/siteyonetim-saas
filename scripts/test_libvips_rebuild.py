@@ -63,6 +63,18 @@ class EvidenceTests(unittest.TestCase):
     def test_source_record_omission(self):
         s=copy.deepcopy(SOURCES);s['records'].pop()
         with self.assertRaises(ValueError):v.verify_sources(s,DATA)
+    def test_notice_checksum_tamper(self):
+        s=copy.deepcopy(SOURCES);r=next(r for r in s['records'] if r['decision']=='PASS');r['notices'][0]['sha256']='0'*64
+        with self.assertRaises(ValueError):v.verify_sources(s,DATA)
+    def test_empty_and_traversal_source_archive(self):
+        from research_rust_sources import inspect_rust_archive
+        with tempfile.TemporaryDirectory() as tmp:
+            p=Path(tmp)/'source.tar'
+            with tarfile.open(p,'w'):pass
+            with self.assertRaises(ValueError):inspect_rust_archive(p)
+            with tarfile.open(p,'w') as t:
+                item=tarfile.TarInfo('../LICENSE');item.size=1;t.addfile(item,io.BytesIO(b'x'))
+            with self.assertRaises(ValueError):inspect_rust_archive(p)
     def test_text_only_rebuild_fails(self):
         with tempfile.TemporaryDirectory() as tmp:
             with self.assertRaises((ValueError,KeyError,OSError)):v.verify_rebuild({'status':'PARTIAL','sourceCommit':v.COMMIT,'baseImage':SPEC['baseImage'],'target':SPEC['target']},Path(tmp),SPEC)
@@ -92,11 +104,12 @@ class BinaryEvidenceTests(unittest.TestCase):
         # Real PNG signature/IHDR dimensions are checked; this unit fixture is not a Sharp execution claim.
         def chunk(kind,data):return len(data).to_bytes(4,'big')+kind+data+(zlib.crc32(kind+data)&0xffffffff).to_bytes(4,'big')
         (self.root/'out/result.png').write_bytes(b'\x89PNG\r\n\x1a\n'+chunk(b'IHDR',struct.pack('>IIBBBBB',1,1,8,2,0,0,0))+chunk(b'IDAT',zlib.compress(b'\x00\x12\x34\x56'))+chunk(b'IEND',b''))
-        (self.root/'out/sharp-maps.txt').write_text('7000-8000 r-xp 00000000 00:00 42 out/modified/libvips.so\n')
+        (self.root/'out/sharp-maps.txt').write_text('7000-8000 r-xp 00000000 00:00 42 out/modified/libvips.so\n8000-9000 r-xp 00000000 00:00 43 /app/node_modules/@img/sharp-linux-x64/lib/fixture.node\n')
         self.image='sha256:'+'a'*64;sbom={'source':{'metadata':{'imageID':self.image}}};(self.root/'out/environment-sbom.syft.json').write_text(json.dumps(sbom));(self.root/'environment-config-id.txt').write_text(self.image)
         self.spec=copy.deepcopy(SPEC);self.spec['source']['sha256']=v.sha(self.root/'input/vips.tar');self.spec['distributedBinarySha256']=v.sha(self.root/'out/distributed-libvips.so')
         self.anchor=patch.object(v,'SOURCE_SHA',self.spec['source']['sha256']);self.anchor.start()
-        self.r={'sourceCommit':v.COMMIT,'baseImage':self.spec['baseImage'],'target':self.spec['target'],'status':'PARTIAL','profile':self.spec['profile'],'fullUpstreamRecipe':False,'buildFlags':{k:{'meson':v.FLAGS.copy()} for k in ['control','modified']},'toolchain':self.spec['expectedTools'],'imageID':self.image,'sbomSha256':v.sha(self.root/'out/environment-sbom.syft.json'),'sourceModification':{'file':'libvips/iofuncs/init.c','beforeSha256':hashlib.sha256(before).hexdigest(),'afterSha256':hashlib.sha256(after).hexdigest(),'patchSha256':v.sha(self.root/'out/source-change.patch'),'marker':'S05C_TEST_MARKER'},'binaries':{k:{'path':'out/'+k+'/libvips.so','sha256':v.sha(self.root/('out/'+k+'/libvips.so')),'soname':'libvips-cpp.so.8.18.7'} for k in ['control','modified']},'abi':{'controlVsModifiedEqual':True,'missingFromModified':[],'missingComparedWithDistributed':[]},'distributedBinarySha256':self.spec['distributedBinarySha256'],'sharp':{'exitCode':0,'newLoaded':True,'oldLoaded':False,'png':True,'width':1,'height':1,'loadedSha256':v.sha(self.root/'out/modified/libvips.so')}}
+        (self.root/'out/sharp-addon.node').write_bytes(b'synthetic-addon-fixture-only')
+        self.r={'packages':{'sharp':'0.35.5','@img/sharp-libvips-linux-x64':'1.3.4','@img/sharp-linux-x64':'0.35.5'},'nativeAddon':{'path':'/app/node_modules/@img/sharp-linux-x64/lib/fixture.node','sha256':v.sha(self.root/'out/sharp-addon.node')},'sourceCommit':v.COMMIT,'baseImage':self.spec['baseImage'],'target':self.spec['target'],'status':'PARTIAL','profile':self.spec['profile'],'fullUpstreamRecipe':False,'buildFlags':{k:{'meson':v.FLAGS.copy()} for k in ['control','modified']},'toolchain':self.spec['expectedTools'],'imageID':self.image,'sbomSha256':v.sha(self.root/'out/environment-sbom.syft.json'),'sourceModification':{'file':'libvips/iofuncs/init.c','beforeSha256':hashlib.sha256(before).hexdigest(),'afterSha256':hashlib.sha256(after).hexdigest(),'patchSha256':v.sha(self.root/'out/source-change.patch'),'marker':'S05C_TEST_MARKER'},'binaries':{k:{'path':'out/'+k+'/libvips.so','sha256':v.sha(self.root/('out/'+k+'/libvips.so')),'soname':'libvips-cpp.so.8.18.7'} for k in ['control','modified']},'abi':{'controlVsModifiedEqual':True,'missingFromModified':[],'missingComparedWithDistributed':[]},'distributedBinarySha256':self.spec['distributedBinarySha256'],'sharp':{'exitCode':0,'newLoaded':True,'oldLoaded':False,'png':True,'width':1,'height':1,'loadedSha256':v.sha(self.root/'out/modified/libvips.so')}}
 
     def tearDown(self):self.anchor.stop();self.tmp.cleanup()
     def test_physical_files_allow_partial_only(self):
@@ -128,6 +141,20 @@ class BinaryEvidenceTests(unittest.TestCase):
     def test_foreign_sbom(self):
         self.r['imageID']='sha256:'+'b'*64
         with self.assertRaises(ValueError):v.verify_rebuild(self.r,self.root,self.spec)
+    def test_actual_elf_abi_mismatch(self):
+        src=self.root/'work/extra.c';src.write_bytes((self.root/'work/modified/libvips/iofuncs/init.c').read_bytes()+b'int additional_export(void){return 1;}\n')
+        binary=self.root/'out/modified/libvips.so'
+        subprocess.run(['cc','-shared','-fPIC','-Wl,-soname,libvips-cpp.so.8.18.7',str(src),'-o',str(binary)],check=True,capture_output=True)
+        self.r['binaries']['modified']['sha256']=v.sha(binary)
+        self.r['sharp']['loadedSha256']=v.sha(binary)
+        with self.assertRaisesRegex(ValueError,'ACTUAL_ABI'):v.verify_rebuild(self.r,self.root,self.spec)
+    def test_actual_wrong_elf_platform(self):
+        binary=self.root/'out/modified/libvips.so';data=bytearray(binary.read_bytes());data[18:20]=(183).to_bytes(2,'little');binary.write_bytes(data)
+        self.r['binaries']['modified']['sha256']=v.sha(binary)
+        with self.assertRaisesRegex(ValueError,'ELF_PLATFORM'):v.verify_rebuild(self.r,self.root,self.spec)
+    def test_reported_runtime_toolchain_mismatch(self):
+        self.r['toolchain']={**self.r['toolchain'],'gcc':'99'}
+        with self.assertRaisesRegex(ValueError,'TOOLCHAIN'):v.verify_rebuild(self.r,self.root,self.spec)
     def test_raw_maps_required(self):
         (self.root/'out/sharp-maps.txt').write_text('old binary only')
         with self.assertRaises(ValueError):v.verify_rebuild(self.r,self.root,self.spec)

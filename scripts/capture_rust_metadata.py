@@ -19,7 +19,7 @@ if __name__=='__main__':
     for name in ['rsvg/Cargo.toml','librsvg-c/Cargo.toml']:
         path=source/name;lines=path.read_text().splitlines(True)
         path.write_text(''.join(l.replace(', "gif", "webp"','') if 'image = ' in l else l.replace(', "pdf", "ps"','') if 'cairo-rs = ' in l else l for l in lines))
-    image=spec['rustMetadataImage192'];container='s05c-cargo-'+os.environ['GITHUB_RUN_ID']
+    image=spec['rustMetadataImage'];container='s05c-cargo-'+os.environ['GITHUB_RUN_ID']
     common=['docker','run','--rm','--name',container,'--read-only','--cpus=2','--memory=3g','--user',str(os.getuid())+':'+str(os.getgid()),'--tmpfs','/tmp:size=160m,mode=1777','--cap-drop=ALL','--security-opt=no-new-privileges:true','--mount','type=bind,src='+str(base)+',dst=/work','-e','HOME=/work/home','-e','CARGO_HOME=/work/cargo','-w','/work/source',image]
     result={'image':image,'target':'x86_64-unknown-linux-gnu','inputLockSha256':before,'sourceArchiveSha256':record['sha256'],'scope':'controlled patched source manifests, original exact lock; not upstream generated post-update lock','compilation':'NOT_RUN'}
     for label,args in [('rustc',['rustc','-vV']),('metadata',['cargo','metadata','--locked','--format-version','1','--filter-platform','x86_64-unknown-linux-gnu']),('tree',['cargo','tree','--locked','--offline','--target','x86_64-unknown-linux-gnu','-p','librsvg-c','--edges','normal,build','--format','{p}|{f}'])]:
