@@ -4,6 +4,7 @@ import hashlib
 import json
 from pathlib import Path, PurePosixPath
 import re
+import posixpath
 import tarfile
 import tomllib
 
@@ -36,14 +37,22 @@ def physical(root, path, expected):
     return f
 
 
-def safe_members(path, max_file=128*1024**2, max_total=512*1024**2):
+def safe_members(path, max_file=128*1024**2, max_total=512*1024**2, allow_internal_links=False):
     result = []
     total = 0
     with tarfile.open(path) as archive:
         for i, e in enumerate(archive):
             p = PurePosixPath(e.name)
-            if p.is_absolute() or '..' in p.parts or e.issym() or e.islnk() or not (e.isfile() or e.isdir()):
+            if p.is_absolute() or '..' in p.parts:
                 raise ValueError('ARCHIVE_PATH_OR_LINK')
+            if e.issym() or e.islnk():
+                q=PurePosixPath(e.linkname)
+                target=posixpath.normpath(posixpath.join(str(p.parent),e.linkname) if e.issym() else e.linkname)
+                if not allow_internal_links or q.is_absolute() or target.split('/')[0]!=p.parts[0]:
+                    raise ValueError('ARCHIVE_PATH_OR_LINK')
+                continue  # Never create filesystem links; regular files only.
+            if not (e.isfile() or e.isdir()):
+                raise ValueError('ARCHIVE_SPECIAL_FILE')
             total += e.size
             if i >= 100000 or e.size > max_file or total > max_total:
                 raise ValueError('ARCHIVE_LIMIT')

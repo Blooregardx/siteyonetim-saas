@@ -184,5 +184,13 @@ jobs:
         with:
           name: s05d-source-evidence-${{ github.sha }}
           retention-days: 14
-          path: ${{ runner.temp }}/s05d-evidence
+          path: |
+            ${{ runner.temp }}/s05d-evidence/*.json
+            ${{ runner.temp }}/s05d-evidence/*.txt
+            ${{ runner.temp }}/s05d-evidence/*.stdout
+            ${{ runner.temp }}/s05d-evidence/*.stderr
+            ${{ runner.temp }}/s05d-evidence/*.toml
+            ${{ runner.temp }}/s05d-evidence/*.sha256
+            ${{ runner.temp }}/s05d-evidence/*.crate
+            ${{ runner.temp }}/s05d-evidence/generated-Cargo.lock
           if-no-files-found: error

@@ -48,7 +48,7 @@ def write(path, value):
 
 
 def extract_regular(path, destination, drop):
-    safe_members(path, max_file=768*1024**2, max_total=2*1024**3) if drop==2 else safe_members(path)
+    safe_members(path, max_file=768*1024**2, max_total=2*1024**3,allow_internal_links=True) if drop==2 else safe_members(path,allow_internal_links=True)
     with tarfile.open(path) as t:
         for e in t:
             if not e.isfile():continue
@@ -311,11 +311,16 @@ if __name__=='__main__':
     write(a.out/'rust-license-resolution.json',{'schemaVersion':1,'records':records,
          'counts':{s:sum(r['decision']==s for r in records) for s in ['PASS','BLOCKED','UNKNOWN','NOT_APPLICABLE']},
          'legalApproval':False,'binaryDistributionReadiness':'BLOCKED'})
-    full_preflight(a.out,cargo)
+    full=full_preflight(a.out,cargo)
+    from verify_s05d_evidence import verify_resolution, verify_scope, verify_full_bundle
+    scope=json.loads((a.out/'rust-compile-link-scope.json').read_text())
+    write(a.out/'technical-validation.json',{'resolution':verify_resolution(cargo,a.out),
+          'scope':verify_scope(scope),'full':verify_full_bundle(full)})
+
     print(json.dumps({'cargo':cargo['status'],'licenses':{s:sum(r['decision']==s for r in records) for s in ['PASS','BLOCKED','UNKNOWN']},
                       'fullBundle':'BLOCKED','binaryDistributionReadiness':'BLOCKED'}))
     # Only public source receipts/notices; never environment/config/credentials or binary archives.
-    wanted=['cargo-resolution.json','rust-compile-link-scope.json','rust-license-resolution.json','full-bundle-rebuild.json','static-relinking-inputs.json','generated-Cargo.lock','rustc.stdout','cargo.stdout']
+    wanted=['cargo-resolution.json','rust-compile-link-scope.json','rust-license-resolution.json','full-bundle-rebuild.json','static-relinking-inputs.json','technical-validation.json','generated-Cargo.lock','rustc.stdout','cargo.stdout']
     wanted += [p.name for p in a.out.glob('*-header-*.txt')]
     wanted += [p.name for p in a.out.glob('*-upstream-*.txt')]
     for name in wanted:
