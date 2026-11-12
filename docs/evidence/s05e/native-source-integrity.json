@@ -1,0 +1,254 @@
+[
+  {
+    "name": "proxy-libintl",
+    "version": "0.5",
+    "url": "https://github.com/frida/proxy-libintl/archive/0.5.tar.gz",
+    "expectedSha256": "f7a1cbd7579baaf575c66f9d99fb6295e9b0684a28b095967cfda17857595303",
+    "sha256": "f7a1cbd7579baaf575c66f9d99fb6295e9b0684a28b095967cfda17857595303",
+    "regularMembers": 5,
+    "decision": "PASS"
+  },
+  {
+    "name": "zlib-ng",
+    "version": "2.3.3",
+    "url": "https://github.com/zlib-ng/zlib-ng/archive/2.3.3.tar.gz",
+    "expectedSha256": "f9c65aa9c852eb8255b636fd9f07ce1c406f061ec19a2e7d508b318ca0c907d1",
+    "sha256": "f9c65aa9c852eb8255b636fd9f07ce1c406f061ec19a2e7d508b318ca0c907d1",
+    "regularMembers": 355,
+    "decision": "PASS"
+  },
+  {
+    "name": "ffi",
+    "version": "3.8.0",
+    "url": "https://github.com/libffi/libffi/releases/download/v3.8.0/libffi-3.8.0.tar.gz",
+    "expectedSha256": "7da3e2d9a171eb0a038f592ecad3ff2bb2550f3496d87b3b29ad0cf4430c0db4",
+    "sha256": "7da3e2d9a171eb0a038f592ecad3ff2bb2550f3496d87b3b29ad0cf4430c0db4",
+    "regularMembers": 481,
+    "decision": "PASS"
+  },
+  {
+    "name": "glib",
+    "version": "2.90.0",
+    "url": "https://download.gnome.org/sources/glib/2.90/glib-2.90.0.tar.xz",
+    "expectedSha256": "17d15cac2af80a33271127408e0abc2748eb297c595c2a26409e81e14e7d1b8f",
+    "sha256": "17d15cac2af80a33271127408e0abc2748eb297c595c2a26409e81e14e7d1b8f",
+    "regularMembers": 2392,
+    "decision": "PASS"
+  },
+  {
+    "name": "xml2",
+    "version": "2.15.4",
+    "url": "https://download.gnome.org/sources/libxml2/2.15/libxml2-2.15.4.tar.xz",
+    "expectedSha256": "98087fd181d9070724f3fbc65c7377db03038eb92bd882374daff44940138821",
+    "sha256": "98087fd181d9070724f3fbc65c7377db03038eb92bd882374daff44940138821",
+    "regularMembers": 4426,
+    "decision": "PASS"
+  },
+  {
+    "name": "exif",
+    "version": "0.6.26",
+    "url": "https://github.com/libexif/libexif/releases/download/v0.6.26/libexif-0.6.26.tar.xz",
+    "expectedSha256": "4a055ed6575e61ca46c3172be3c753cc16c9becd0f99ec71d58dd0e471476c0c",
+    "sha256": "4a055ed6575e61ca46c3172be3c753cc16c9becd0f99ec71d58dd0e471476c0c",
+    "regularMembers": 254,
+    "decision": "PASS"
+  },
+  {
+    "name": "lcms",
+    "version": "2.19.1",
+    "url": "https://github.com/mm2/Little-CMS/releases/download/lcms2.19.1/lcms2-2.19.1.tar.gz",
+    "expectedSha256": "bfc54f7bab59fbc921012014a8032e4cba4abd46db47d46b76416a8c0b2815c8",
+    "sha256": "bfc54f7bab59fbc921012014a8032e4cba4abd46db47d46b76416a8c0b2815c8",
+    "regularMembers": 340,
+    "decision": "PASS"
+  },
+  {
+    "name": "aom",
+    "version": "3.15.1",
+    "url": "https://storage.googleapis.com/aom-releases/libaom-3.15.1.tar.gz",
+    "expectedSha256": "8ca0c52746174603500f0adb6f2a215d69c9ca2aab2acb3caa06fb791d8d01bf",
+    "sha256": "8ca0c52746174603500f0adb6f2a215d69c9ca2aab2acb3caa06fb791d8d01bf",
+    "regularMembers": 1520,
+    "decision": "PASS"
+  },
+  {
+    "name": "heif",
+    "version": "1.23.5",
+    "url": "https://github.com/strukturag/libheif/releases/download/v1.23.5/libheif-1.23.5.tar.gz",
+    "expectedSha256": "fd9036064c4432f0550d15072ddf34956a248279ee9aeaff0fba3fa0f77d8f1a",
+    "sha256": "fd9036064c4432f0550d15072ddf34956a248279ee9aeaff0fba3fa0f77d8f1a",
+    "regularMembers": 768,
+    "decision": "PASS"
+  },
+  {
+    "name": "mozjpeg",
+    "version": "0826579",
+    "url": "https://github.com/mozilla/mozjpeg/archive/0826579.tar.gz",
+    "expectedSha256": "b680167bd5d9afebdd576a12f8c49d2c9066a3b92ef96a2b2c5f7829b8600fe5",
+    "sha256": "b680167bd5d9afebdd576a12f8c49d2c9066a3b92ef96a2b2c5f7829b8600fe5",
+    "regularMembers": 550,
+    "decision": "PASS"
+  },
+  {
+    "name": "png",
+    "version": "1.6.58",
+    "url": "https://github.com/pnggroup/libpng/archive/v1.6.58.tar.gz",
+    "expectedSha256": "a9d4df463d36a6e5f9c29bd6f4967312d17e996c1854f3511f833924eb1993cf",
+    "sha256": "a9d4df463d36a6e5f9c29bd6f4967312d17e996c1854f3511f833924eb1993cf",
+    "regularMembers": 610,
+    "decision": "PASS"
+  },
+  {
+    "name": "imagequant",
+    "version": "2.4.1",
+    "url": "https://github.com/lovell/libimagequant/archive/v2.4.1.tar.gz",
+    "expectedSha256": "47d2a84b7b1052975c9d50a3d4e3cacbf57b43d84a4c3131210848ead9964dfb",
+    "sha256": "47d2a84b7b1052975c9d50a3d4e3cacbf57b43d84a4c3131210848ead9964dfb",
+    "regularMembers": 29,
+    "decision": "PASS"
+  },
+  {
+    "name": "webp",
+    "version": "1.6.0",
+    "url": "https://storage.googleapis.com/downloads.webmproject.org/releases/webp/libwebp-1.6.0.tar.gz",
+    "expectedSha256": "e4ab7009bf0629fd11982d4c2aa83964cf244cffba7347ecd39019a9e38c4564",
+    "sha256": "e4ab7009bf0629fd11982d4c2aa83964cf244cffba7347ecd39019a9e38c4564",
+    "regularMembers": 367,
+    "decision": "PASS"
+  },
+  {
+    "name": "tiff",
+    "version": "4.7.2",
+    "url": "https://gitlab.com/libtiff/libtiff/-/archive/v4.7.2/libtiff-v4.7.2.tar.gz",
+    "expectedSha256": "62b15f44c10106065211efa22a2dc77937bd97ee1f6e3afd2c9659010de112eb",
+    "sha256": "62b15f44c10106065211efa22a2dc77937bd97ee1f6e3afd2c9659010de112eb",
+    "regularMembers": 657,
+    "decision": "PASS"
+  },
+  {
+    "name": "highway",
+    "version": "1.4.0",
+    "url": "https://github.com/google/highway/archive/1.4.0.tar.gz",
+    "expectedSha256": "e72241ac9524bb653ae52ced768b508045d4438726a303f10181a38f764a453c",
+    "sha256": "e72241ac9524bb653ae52ced768b508045d4438726a303f10181a38f764a453c",
+    "regularMembers": 278,
+    "decision": "PASS"
+  },
+  {
+    "name": "freetype",
+    "version": "2.14.3",
+    "url": "https://github.com/freetype/freetype/archive/VER-2-14-3.tar.gz",
+    "expectedSha256": "dc49de6b01a266eef4876a4dd34d9842c475d3e28ff2eff63bd2fb760ab56261",
+    "sha256": "dc49de6b01a266eef4876a4dd34d9842c475d3e28ff2eff63bd2fb760ab56261",
+    "regularMembers": 744,
+    "decision": "PASS"
+  },
+  {
+    "name": "expat",
+    "version": "2.8.5",
+    "url": "https://github.com/libexpat/libexpat/releases/download/R_2_8_5/expat-2.8.5.tar.xz",
+    "expectedSha256": "1e727b8933ec51a77a9a9d9afcf8e688bce45d907c13e36ab7393fe36e703182",
+    "sha256": "1e727b8933ec51a77a9a9d9afcf8e688bce45d907c13e36ab7393fe36e703182",
+    "regularMembers": 173,
+    "decision": "PASS"
+  },
+  {
+    "name": "archive",
+    "version": "3.8.9",
+    "url": "https://github.com/libarchive/libarchive/releases/download/v3.8.9/libarchive-3.8.9.tar.xz",
+    "expectedSha256": "888c934f9d95648ecb9163dc8e23ab80a476ecb81a8f1154704a227b5b676dde",
+    "sha256": "888c934f9d95648ecb9163dc8e23ab80a476ecb81a8f1154704a227b5b676dde",
+    "regularMembers": 1683,
+    "decision": "PASS"
+  },
+  {
+    "name": "fontconfig",
+    "version": "2.18.3",
+    "url": "https://gitlab.freedesktop.org/fontconfig/fontconfig/-/archive/2.18.3/fontconfig-2.18.3.tar.gz",
+    "expectedSha256": "9ae01e1d53acdef56010c5451cd34aa41d325b2faccd8606448d8fa01b2496b3",
+    "sha256": "9ae01e1d53acdef56010c5451cd34aa41d325b2faccd8606448d8fa01b2496b3",
+    "regularMembers": 712,
+    "decision": "PASS"
+  },
+  {
+    "name": "harfbuzz",
+    "version": "14.5.0",
+    "url": "https://github.com/harfbuzz/harfbuzz/archive/14.5.0.tar.gz",
+    "expectedSha256": "97ec7488a46b974e18e08ee774af93173e7e1dbf738424796eb315ebcb735ec5",
+    "sha256": "97ec7488a46b974e18e08ee774af93173e7e1dbf738424796eb315ebcb735ec5",
+    "regularMembers": 3850,
+    "decision": "PASS"
+  },
+  {
+    "name": "pixman",
+    "version": "0.46.4",
+    "url": "https://cairographics.org/releases/pixman-0.46.4.tar.gz",
+    "expectedSha256": "d09c44ebc3bd5bee7021c79f922fe8fb2fb57f7320f55e97ff9914d2346a591c",
+    "sha256": "d09c44ebc3bd5bee7021c79f922fe8fb2fb57f7320f55e97ff9914d2346a591c",
+    "regularMembers": 207,
+    "decision": "PASS"
+  },
+  {
+    "name": "cairo",
+    "version": "1.18.6",
+    "url": "https://cairographics.org/releases/cairo-1.18.6.tar.xz",
+    "expectedSha256": "1c767308174337a74694da0f3ec069c271452163a1ef4540964c50c301f157d4",
+    "sha256": "1c767308174337a74694da0f3ec069c271452163a1ef4540964c50c301f157d4",
+    "regularMembers": 4949,
+    "decision": "PASS"
+  },
+  {
+    "name": "fribidi",
+    "version": "1.0.17",
+    "url": "https://github.com/fribidi/fribidi/releases/download/v1.0.17/fribidi-1.0.17.tar.xz",
+    "expectedSha256": "6949dcde27d41cebad1fd741fcafc36d55a1020d2d872d4a6eb3914caabbada2",
+    "sha256": "6949dcde27d41cebad1fd741fcafc36d55a1020d2d872d4a6eb3914caabbada2",
+    "regularMembers": 189,
+    "decision": "PASS"
+  },
+  {
+    "name": "pango",
+    "version": "1.58.2",
+    "url": "https://download.gnome.org/sources/pango/1.58/pango-1.58.2.tar.xz",
+    "expectedSha256": "342385b6ca3b7c73455d7c80a13b7dbe4489e00bc3bd4c5bd6ed4dce421e374a",
+    "sha256": "342385b6ca3b7c73455d7c80a13b7dbe4489e00bc3bd4c5bd6ed4dce421e374a",
+    "regularMembers": 584,
+    "decision": "PASS"
+  },
+  {
+    "name": "rsvg",
+    "version": "2.63.2",
+    "url": "https://download.gnome.org/sources/librsvg/2.63/librsvg-2.63.2.tar.xz",
+    "expectedSha256": "852b18e1a00b8605528825a27dc7748bff2a5dd254028f59dc22a34ea57e81b6",
+    "sha256": "852b18e1a00b8605528825a27dc7748bff2a5dd254028f59dc22a34ea57e81b6",
+    "regularMembers": 2139,
+    "decision": "PASS"
+  },
+  {
+    "name": "cgif",
+    "version": "0.5.4",
+    "url": "https://github.com/dloebl/cgif/archive/v0.5.4.tar.gz",
+    "expectedSha256": "83a70a15bc2da41f081a44ebc58ee48e2e1d524a6d3fdb4a24064afa08d5ad4d",
+    "sha256": "83a70a15bc2da41f081a44ebc58ee48e2e1d524a6d3fdb4a24064afa08d5ad4d",
+    "regularMembers": 74,
+    "decision": "PASS"
+  },
+  {
+    "name": "uhdr",
+    "version": "2.0.2",
+    "url": "https://github.com/google/libultrahdr/archive/v2.0.2.tar.gz",
+    "expectedSha256": "aa8d193bb887c348c419780511dd03b374f4e07af8812b6d3f80c8537cf1ef2c",
+    "sha256": "aa8d193bb887c348c419780511dd03b374f4e07af8812b6d3f80c8537cf1ef2c",
+    "regularMembers": 230,
+    "decision": "PASS"
+  },
+  {
+    "name": "vips",
+    "version": "8.18.7",
+    "url": "https://github.com/libvips/libvips/releases/download/v8.18.7/vips-8.18.7.tar.xz",
+    "expectedSha256": "5baaead3b0bb20ffdb9e9ff09aa9fda08620923df77b63b436654cb5e0b3bf94",
+    "sha256": "5baaead3b0bb20ffdb9e9ff09aa9fda08620923df77b63b436654cb5e0b3bf94",
+    "regularMembers": 842,
+    "decision": "PASS"
+  }
+]

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "startCommit": "3f21f383bbf005f4b9e5ed877cb3491f82ecacd0",
+  "mainAtStart": "b93b0eeaaeabdf898a6a2f9bf35cc9c1016a3d54",
+  "pr29": "OPEN DRAFT, head 3f21f383bbf005f4b9e5ed877cb3491f82ecacd0; E stacked on its branch",
+  "alpha2TagCommit": "c20646fddbc8a7e3dcd45cbc01aacd531c225e4a",
+  "alpha2PublishedAt": "2026-11-03T16:22:11Z",
+  "alpha2Status": "PUBLISHED \u2014 UNCHANGED",
+  "upstreamRecipeCommit": "ebb95f8add54eee8bed840e3fb587e4cbec857d7",
+  "upstreamRun": 36315646015,
+  "upstreamJob": 108609814156,
+  "upstreamLogFile": "upstream-build-linux-x64.log",
+  "upstreamLogSha256": "f208c945f36bc4187b5ae28eb28940bc7fcaebcefff0a111682816bd3c640855",
+  "baseManifestDigest": "sha256:ae0813ccb1bb83f4e0220acdd1539f52831517de334368e960824db7e37ee210",
+  "baseConfigDigest": "sha256:98ab72cce29f004554c86e88d6789b7f8d09fe90aee099ec56e9b71a2a7e406c",
+  "epel8KeyFingerprint": "94E279EB8D8F25B21810ADF121EA45AB2F86D6A1",
+  "epel8KeySha256": "cd1db21a863185127f2e3b264c97fb1c6c44c316385707999041ea475c110d1c",
+  "notes": [
+    "Metadata-only online preparation separated from offline native builds",
+    "Never substitute current Rocky tag sha256:c69ad7... for recovered original base",
+    "241 historical RPM operations; 302 packages in prepared sysroot; no original RPM byte-hash attestation",
+    "Ninja rebuilt from verified matching source; original wheel compiler differs; no bitwise claim"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "files": [
+    {
+      "workspaceFile": "/workspace/s05e-native-work/full-experiment-5/control.sh.link-map",
+      "sha256": "77acc4636b94a6f875c5909ff62e6c471c80d406855a49cbc6c6ba66750d282a",
+      "size": 26382059,
+      "storage": "Codex Cloud development workspace; no durable availability guarantee"
+    },
+    {
+      "workspaceFile": "/workspace/s05e-native-work/full-experiment-6/modified.sh.link-map",
+      "sha256": "8426f8a7c1e1c8ba854d05e6a7c8661fb82acb7a3ae078b4fd8373f2b20603a8",
+      "size": 26382216,
+      "storage": "Codex Cloud development workspace; no durable availability guarantee"
+    },
+    {
+      "workspaceFile": "/workspace/s05e-native-work/full-experiment-6/control/vips/_build/compile_commands.json",
+      "sha256": "50944520e54a904b2e364f356f710c1f3e9e69192ab23a57c40c29c1678bc3d1",
+      "size": 465821,
+      "storage": "Codex Cloud development workspace; no durable availability guarantee"
+    },
+    {
+      "workspaceFile": "/workspace/s05e-native-work/full-experiment-6/modified/vips/_build/compile_commands.json",
+      "sha256": "50944520e54a904b2e364f356f710c1f3e9e69192ab23a57c40c29c1678bc3d1",
+      "size": 465821,
+      "storage": "Codex Cloud development workspace; no durable availability guarantee"
+    }
+  ],
+  "legalApproval": false,
+  "binaryDistributionReadiness": "BLOCKED"
+}

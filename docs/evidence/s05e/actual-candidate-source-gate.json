@@ -1,0 +1,8 @@
+{
+  "candidateArchiveSafe": true,
+  "regularFileCount": 821,
+  "completeSourcePackage": "BLOCKED",
+  "expectedRefusal": "RESTORE_INDEX_HASH \u2014 real candidate lacks reviewed complete OCI/SBOM/source index",
+  "legalApproval": false,
+  "binaryDistributionReadiness": "BLOCKED"
+}

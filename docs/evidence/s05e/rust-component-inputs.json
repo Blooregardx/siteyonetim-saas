@@ -1,0 +1,20 @@
+[
+  {
+    "name": "rustc",
+    "version": "1.101.0-nightly (75a75c3e0 2026-09-26)",
+    "url": "https://static.rust-lang.org/dist/2026-09-27/rustc-nightly-x86_64-unknown-linux-gnu.tar.xz",
+    "sha256": "a658e87aa721f0044e36adcf5b5fba0645bedd14bc5045ea11bf475d803da64a"
+  },
+  {
+    "name": "cargo",
+    "version": "0.101.0-nightly (3d7cf6e93 2026-09-25)",
+    "url": "https://static.rust-lang.org/dist/2026-09-27/cargo-nightly-x86_64-unknown-linux-gnu.tar.xz",
+    "sha256": "931952aaee9b6afb144a3e2bf74467e1cd407b7d0baa7c0cd3bf9e98abf94b2a"
+  },
+  {
+    "name": "rust-std",
+    "version": "1.101.0-nightly (75a75c3e0 2026-09-26)",
+    "url": "https://static.rust-lang.org/dist/2026-09-27/rust-std-nightly-x86_64-unknown-linux-gnu.tar.xz",
+    "sha256": "536dcdcf52d81508587f4411156f20c94800e26fc13b6ef9603bfdc4af9c4407"
+  }
+]

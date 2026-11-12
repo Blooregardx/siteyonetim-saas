@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "baseManifestDigest": "sha256:ae0813ccb1bb83f4e0220acdd1539f52831517de334368e960824db7e37ee210",
+  "preparedConfigDigest": "sha256:924c4c938b953ed41e2dce0bfc2066b43fec70583e46a9567b8f9634e2f9e857",
+  "preparedEngineImageID": "sha256:4db00fd2bdd802a0849f3e9ba18da7b884b57ada0c1d2c30284f0cea0336b84f",
+  "baseIdentity": {
+    "engineImageID": "sha256:ae0813ccb1bb83f4e0220acdd1539f52831517de334368e960824db7e37ee210",
+    "configDigest": "sha256:98ab72cce29f004554c86e88d6789b7f8d09fe90aee099ec56e9b71a2a7e406c",
+    "architecture": "amd64",
+    "os": "linux",
+    "rootfsDiffIDs": [
+      "sha256:09ad32fdf2848c9676fad3cbf219a704abb6f6743e8c3e5c95bf0ae3d61426a9",
+      "sha256:0f4a72ef67e5d2dc1f6c2540ff4a659f58e68727de33aa14e919eeb52f92493f"
+    ],
+    "engineDescriptor": {
+      "mediaType": "application/vnd.docker.distribution.manifest.list.v2+json",
+      "digest": "sha256:ae0813ccb1bb83f4e0220acdd1539f52831517de334368e960824db7e37ee210",
+      "size": 544
+    },
+    "scope": "Local engine reference bound to hashed docker-save config bytes; no registry push"
+  },
+  "preparedIdentity": {
+    "engineImageID": "sha256:4db00fd2bdd802a0849f3e9ba18da7b884b57ada0c1d2c30284f0cea0336b84f",
+    "configDigest": "sha256:924c4c938b953ed41e2dce0bfc2066b43fec70583e46a9567b8f9634e2f9e857",
+    "architecture": "amd64",
+    "os": "linux",
+    "rootfsDiffIDs": [
+      "sha256:09ad32fdf2848c9676fad3cbf219a704abb6f6743e8c3e5c95bf0ae3d61426a9",
+      "sha256:0f4a72ef67e5d2dc1f6c2540ff4a659f58e68727de33aa14e919eeb52f92493f",
+      "sha256:a5e74cc8b7ddee9e2a5ad61050b393be33f387bcd77331331abb6ea509bc487d",
+      "sha256:1edc75080cc435bf7d545c2c3b0221dcff35463725ce4f6868df4cfdc48221fa",
+      "sha256:10e7fc0c289af88162f9c845e8af32186c293ef94170b70d1467c46c8a425972",
+      "sha256:004a3a90db3e183bbedcc0d451115e69e0a1362a529e31f9602979679a6b01a9",
+      "sha256:cfeb3cc320e86628463461999f67574447469340e893c5bed6547e61904eb43a",
+      "sha256:676593b56e8ee21cbd295426d00141d27d2ab957541fd5a0b37279edebed5892",
+      "sha256:1bbb0ddafd72356eb593f813d32a087bbc7d644ab47e9d4f4ba508857b3a02fe",
+      "sha256:2c1c469ccb3ed864f41d05fae04fe4020291ab42e099f9d346285e8179bce361",
+      "sha256:54f0355c006e4bb509433399bea0c56d65e2d092c96cb72c89013cae946c7bb0"
+    ],
+    "engineDescriptor": {
+      "mediaType": "application/vnd.oci.image.index.v1+json",
+      "digest": "sha256:4db00fd2bdd802a0849f3e9ba18da7b884b57ada0c1d2c30284f0cea0336b84f",
+      "size": 856
+    },
+    "scope": "Local engine reference bound to hashed docker-save config bytes; no registry push"
+  },
+  "decision": "PARTIAL",
+  "historicalByteReproducibility": "NOT_PROVEN",
+  "historicalUpstreamPostUpdateCargoLock": "UNKNOWN; S05-D controlled lock used for new experiment",
+  "originalTransactionEvidence": "historical-transaction.json",
+  "rpmFiles": "historical-rpm-files.json",
+  "measuredToolsFile": "measured-tools.json",
+  "measuredToolsSha256": "924f1a7968865ff58d16ea6b0de5ca90f958eef7e15513227c85edc215b0ba6b",
+  "installedRpmsFile": "installed-rpms.tsv",
+  "installedRpmsSha256": "9dc5817af4124978b9db36829b78cd391dca377a8b43f00b37a4830cc4efbccf",
+  "cargoCBootstrap": {
+    "exitCode": 0,
+    "oomKilled": false,
+    "executables": [
+      {
+        "file": "cargo-c-historical-install/bin/cargo-capi",
+        "sha256": "433bfe34b58633a045299df2f4494824c8c0a94c2f9fae43a68bfabe93c9b083"
+      },
+      {
+        "file": "cargo-c-historical-install/bin/cargo-cbuild",
+        "sha256": "cb447812a81fd2af5a2b395aea2f38b5a8ee06712ca5b42c2a045aa7e81d1c27"
+      },
+      {
+        "file": "cargo-c-historical-install/bin/cargo-cinstall",
+        "sha256": "735b965375005ef8ebdf3bae693a5209caf5a30c5f68747a7938b94330328d48"
+      },
+      {
+        "file": "cargo-c-historical-install/bin/cargo-ctest",
+        "sha256": "8bb3ba55c878d4b50112bbe34d1a68b8b30361a03e9cd2bea62fdf4c9ab57af4"
+      }
+    ],
+    "version": "cargo-c 0.10.25+cargo-0.99.0",
+    "versionExitCode": 0
+  },
+  "legalApproval": false,
+  "binaryDistributionReadiness": "BLOCKED"
+}

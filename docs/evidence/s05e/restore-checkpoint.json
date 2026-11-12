@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "independentRunnerCopies": 2,
+  "successfulRestores": 2,
+  "scope": "SYNTHETIC_PROTOCOL_TEST only; one shared storage provider",
+  "protocolIntegrity": "PASS",
+  "durableSourceProvision": "PARTIAL",
+  "legalApproval": false,
+  "binaryDistributionReadiness": "BLOCKED",
+  "restores": [
+    {
+      "protocolIntegrity": "PASS",
+      "purpose": "SYNTHETIC_PROTOCOL_TEST",
+      "legalApproval": false,
+      "durableSourceProvision": "PARTIAL",
+      "binaryDistributionReadiness": "BLOCKED",
+      "sourceIndexSha256": "7de8060133be9b6536d9ac400baae1c164b928ba8d389f35a70e635591b31c01",
+      "corruptionRejected": true,
+      "missingCopyRejected": true,
+      "stage": "restore",
+      "copyLabel": "a",
+      "bundleSha256": "ca16e0aaf096b46c4d92b08d5153dac2e35f188fb3e3587ce1ee07a09acc8e1a",
+      "indexSha256": "7de8060133be9b6536d9ac400baae1c164b928ba8d389f35a70e635591b31c01",
+      "copyRunnerFingerprint": "324483fb0238e6b0f80985ff8ca8261e684795c0b6dc8c71781a60c4d1402de2",
+      "runnerFingerprint": "599a6d56e9bc33e9a871710e77d56d73eab2d557968d73ae6e28bed4887ab9b8",
+      "failureDomain": "shared GitHub artifact backend; NOT durable independence"
+    },
+    {
+      "protocolIntegrity": "PASS",
+      "purpose": "SYNTHETIC_PROTOCOL_TEST",
+      "legalApproval": false,
+      "durableSourceProvision": "PARTIAL",
+      "binaryDistributionReadiness": "BLOCKED",
+      "sourceIndexSha256": "7de8060133be9b6536d9ac400baae1c164b928ba8d389f35a70e635591b31c01",
+      "corruptionRejected": true,
+      "missingCopyRejected": true,
+      "stage": "restore",
+      "copyLabel": "b",
+      "bundleSha256": "ca16e0aaf096b46c4d92b08d5153dac2e35f188fb3e3587ce1ee07a09acc8e1a",
+      "indexSha256": "7de8060133be9b6536d9ac400baae1c164b928ba8d389f35a70e635591b31c01",
+      "copyRunnerFingerprint": "03086e35b70e64415ba26f1fc4d33ad94f875c5fdfd95e788ff08c675008de10",
+      "runnerFingerprint": "d8ea68e130609cc25213729a951fbe1a06db80c9c7a4c5f8bbfe3e4874fc165b",
+      "failureDomain": "shared GitHub artifact backend; NOT durable independence"
+    }
+  ],
+  "checkpointRunId": 43199079238,
+  "checkpointHeadSha": "0667a125d4a518b103e72ec3546b5133ecfbbcde",
+  "artifactId": 13934686436,
+  "artifactSha256": "fc39cc3c150f7dbfbdc7d6fb977152c63985e564115321e41cb1eaee639e6b2a",
+  "fourDistinctRunnerFingerprintsVerified": true
+}

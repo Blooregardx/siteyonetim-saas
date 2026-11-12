@@ -1,5 +1,22 @@
 # Güncel özellik durumu
 
+## S05-E — DEVELOPMENT native rebuild denetimi
+
+Gerçek tam-profile CONTROL/MODIFIED libvips 8.18.7 üretildi. 3500 export,
+558 versioned import ve Sharp 0.35.5 native PNG/JPEG/SVG doğrulandı. Yanlış
+library/WASM fallback, kirlenmiş ikinci build prefix'i ve engine/config kimlik
+karışıklığı fail-closed kontrollerle yakalanır. [Kanıt ve sınırlar](S05E-NATIVE-REBUILD-VALIDATION.md).
+
+Yeni 73 test, güvenli source/RPM/toolchain edinimi, source/archive bütünlüğü,
+OCI/SBOM bağlama ve iki sentetik runner copy/restore protokolünü kapsar.
+[Kaynak sunumu protokolü](S05E-SOURCE-PROVISION-PROTOCOL.md) hukuki onay veya
+kalıcı sunum değildir. Rust açık dokuz kaydın ikisi source/notice bakımından
+PASS, yedisi BLOCKED. Static LGPL/type ABI/source provision PARTIAL.
+
+BINARY DISTRIBUTION READINESS: BLOCKED. Normal uygulama davranışı ve Docker
+security değişmez. Alpha.2 PUBLISHED — UNCHANGED. INDEPENDENT INSTALLATION:
+PENDING HUMAN VALIDATION. Tarihsel kayıtlar aşağıda/depolarında korunur.
+
 ## S04-D güncel durum — kaynak dağıtımı adayı
 
 GitHub denetiminde [PR #20](https://github.com/Blooregardx/siteyonetim-saas/pull/20) (S03-F), [#21](https://github.com/Blooregardx/siteyonetim-saas/pull/21) (S04-A), [#22](https://github.com/Blooregardx/siteyonetim-saas/pull/22) (S04-B) ve [#23](https://github.com/Blooregardx/siteyonetim-saas/pull/23) main'e **birleşmiş** durumdadır (3 Kasım 2026). Aşağıdaki önceki taslak/açık ifadeleri yalnız tarihsel kontrol noktalarıdır; güncel PR durumu değildir.

@@ -1,0 +1,350 @@
+{
+  "schemaVersion": 1,
+  "decision": "PARTIAL",
+  "scope": "Actual newly rebuilt full-profile archive/object inputs; no claim of original npm bundle object recovery",
+  "components": [
+    {
+      "name": "glib",
+      "version": "2.90.0",
+      "staticArchives": [
+        {
+          "file": "target/lib/libgio-2.0.a",
+          "sha256": "d04ee4acf7a14ad36a4f5ef7c95dc60e54ad50d27bf77b57144c7ddb50110f2b",
+          "memberRecords": 247
+        },
+        {
+          "file": "target/lib/libgirepository-2.0.a",
+          "sha256": "77de966c6c0b668aefeff6e4a94d93c6b6bbc007edec1e5992546867a683cd3c",
+          "memberRecords": 56
+        },
+        {
+          "file": "target/lib/libglib-2.0.a",
+          "sha256": "7cb240a3020c30a9b7c685b604ffc4d4361b7356e8b665a678786f6e985c8f87",
+          "memberRecords": 98
+        },
+        {
+          "file": "target/lib/libgmodule-2.0.a",
+          "sha256": "dcc44a286f830375a5cced9d2b3eeec62a7d18fb756e664a88aed9a9152e9cf1",
+          "memberRecords": 4
+        },
+        {
+          "file": "target/lib/libgobject-2.0.a",
+          "sha256": "3c06902a43d0a265f2794c9c2ea441452fc71f0fe4938468f8c1d99866732d52",
+          "memberRecords": 23
+        },
+        {
+          "file": "target/lib/libgthread-2.0.a",
+          "sha256": "759446a34e4384209ce93008a02f83e7c6c9f56cb06553d5a84e8b2bf22072b1",
+          "memberRecords": 3
+        }
+      ],
+      "sourceArchiveSha256": "17d15cac2af80a33271127408e0abc2748eb297c595c2a26409e81e14e7d1b8f",
+      "originalLicenseEvidence": [
+        {
+          "archiveMember": "glib-2.90.0/LICENSES/AFL-2.0.txt",
+          "completeSourceFileSha256": "7ecc7db84298adb05d2cf10339c63a5315a1c5c270a68d97d7d40a53b508ccde",
+          "file": "licenses/glib/LICENSES/AFL-2.0.txt",
+          "sha256": "7ecc7db84298adb05d2cf10339c63a5315a1c5c270a68d97d7d40a53b508ccde",
+          "role": "original-license-text"
+        },
+        {
+          "archiveMember": "glib-2.90.0/LICENSES/Apache-2.0.txt",
+          "completeSourceFileSha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+          "file": "licenses/glib/LICENSES/Apache-2.0.txt",
+          "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+          "role": "original-license-text"
+        },
+        {
+          "archiveMember": "glib-2.90.0/LICENSES/CC-BY-SA-3.0.txt",
+          "completeSourceFileSha256": "3f941b3b89cf7b8370ceb83cc76d2120d471b58735d8ca60238a751a48d7f72f",
+          "file": "licenses/glib/LICENSES/CC-BY-SA-3.0.txt",
+          "sha256": "3f941b3b89cf7b8370ceb83cc76d2120d471b58735d8ca60238a751a48d7f72f",
+          "role": "original-license-text"
+        },
+        {
+          "archiveMember": "glib-2.90.0/LICENSES/CC0-1.0.txt",
+          "completeSourceFileSha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+          "file": "licenses/glib/LICENSES/CC0-1.0.txt",
+          "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+          "role": "original-license-text"
+        },
+        {
+          "archiveMember": "glib-2.90.0/LICENSES/GPL-2.0-or-later.txt",
+          "completeSourceFileSha256": "aaf135472f81c5b4a0dca9367e5bb5e9750032b5bebe5442b36e4c0a47430df3",
+          "file": "licenses/glib/LICENSES/GPL-2.0-or-later.txt",
+          "sha256": "aaf135472f81c5b4a0dca9367e5bb5e9750032b5bebe5442b36e4c0a47430df3",
+          "role": "original-license-text"
+        },
+        {
+          "archiveMember": "glib-2.90.0/LICENSES/LGPL-2.1-only.txt",
+          "completeSourceFileSha256": "fa6f36630bb1e0c571d34b2bbdf188d08495c9dbf58f28cac112f303fc1f58fb",
+          "file": "licenses/glib/LICENSES/LGPL-2.1-only.txt",
+          "sha256": "fa6f36630bb1e0c571d34b2bbdf188d08495c9dbf58f28cac112f303fc1f58fb",
+          "role": "original-license-text"
+        },
+        {
+          "archiveMember": "glib-2.90.0/LICENSES/LGPL-2.1-or-later.txt",
+          "completeSourceFileSha256": "fa6f36630bb1e0c571d34b2bbdf188d08495c9dbf58f28cac112f303fc1f58fb",
+          "file": "licenses/glib/LICENSES/LGPL-2.1-or-later.txt",
+          "sha256": "fa6f36630bb1e0c571d34b2bbdf188d08495c9dbf58f28cac112f303fc1f58fb",
+          "role": "original-license-text"
+        },
+        {
+          "archiveMember": "glib-2.90.0/LICENSES/LLVM-exception.txt",
+          "completeSourceFileSha256": "e34c58338bd89d43e709e226610d8f32b3e3c47f4ad9a99a8dc1d4ac7842488e",
+          "file": "licenses/glib/LICENSES/LLVM-exception.txt",
+          "sha256": "e34c58338bd89d43e709e226610d8f32b3e3c47f4ad9a99a8dc1d4ac7842488e",
+          "role": "original-license-text"
+        },
+        {
+          "archiveMember": "glib-2.90.0/LICENSES/LicenseRef-old-glib-tests.txt",
+          "completeSourceFileSha256": "fb261b2d5dbe76c4850f90da763210bc385e52428df6bbfd7b06295ac8a32914",
+          "file": "licenses/glib/LICENSES/LicenseRef-old-glib-tests.txt",
+          "sha256": "fb261b2d5dbe76c4850f90da763210bc385e52428df6bbfd7b06295ac8a32914",
+          "role": "original-license-text"
+        },
+        {
+          "archiveMember": "glib-2.90.0/LICENSES/MIT.txt",
+          "completeSourceFileSha256": "b85dcd3e453d05982552c52b5fc9e0bdd6d23c6f8e844b984a88af32570b0cc0",
+          "file": "licenses/glib/LICENSES/MIT.txt",
+          "sha256": "b85dcd3e453d05982552c52b5fc9e0bdd6d23c6f8e844b984a88af32570b0cc0",
+          "role": "original-license-text"
+        },
+        {
+          "archiveMember": "glib-2.90.0/LICENSES/MPL-1.1.txt",
+          "completeSourceFileSha256": "6214f8b1300bb9f37b16ebc146f8f61af0187e0025042ff95c8b3030744a8795",
+          "file": "licenses/glib/LICENSES/MPL-1.1.txt",
+          "sha256": "6214f8b1300bb9f37b16ebc146f8f61af0187e0025042ff95c8b3030744a8795",
+          "role": "original-license-text"
+        },
+        {
+          "archiveMember": "glib-2.90.0/glib/gmain.c",
+          "completeSourceFileSha256": "c8e3de300452cb3be4668fcf38a72c1ae825bd85824891427b804fda64faf344",
+          "file": "licenses/glib/glib/gmain.c.header.txt",
+          "sha256": "fda796a3f91d1bf0cc7810116060980d0b5561dbfeff9e5df2a464c49c9ef2ba",
+          "role": "original-source-header"
+        },
+        {
+          "archiveMember": "glib-2.90.0/gobject/gobject.c",
+          "completeSourceFileSha256": "963c30f787a93a4a9fc56d3fa35218e0fe069f1f70dbcc6ba7969919c0e28301",
+          "file": "licenses/glib/gobject/gobject.c.header.txt",
+          "sha256": "8c383693760c57ba0cb0eca16fbe719973f3b45529d633c062acbe26193a7412",
+          "role": "original-source-header"
+        }
+      ],
+      "upstreamBundleStatement": "LGPLv3",
+      "decision": "PARTIAL",
+      "legalReview": "REQUIRES LEGAL REVIEW \u2014 per-file selection, original bundle matching and durable source/relink provision remain open"
+    },
+    {
+      "name": "heif",
+      "version": "1.23.5",
+      "staticArchives": [
+        {
+          "file": "target/lib/libheif.a",
+          "sha256": "d8ed1edff1d8dbce5a40b40fe4bf20f6d049310acc18ffb0f52cf3bd44dc39f1",
+          "memberRecords": 100
+        }
+      ],
+      "sourceArchiveSha256": "fd9036064c4432f0550d15072ddf34956a248279ee9aeaff0fba3fa0f77d8f1a",
+      "originalLicenseEvidence": [
+        {
+          "archiveMember": "libheif-1.23.5/COPYING",
+          "completeSourceFileSha256": "fa81ce652315b013359d6e8e4744335f31a50c7c192907176d3632f78a3b4596",
+          "file": "licenses/heif/COPYING",
+          "sha256": "fa81ce652315b013359d6e8e4744335f31a50c7c192907176d3632f78a3b4596",
+          "role": "original-license-text"
+        },
+        {
+          "archiveMember": "libheif-1.23.5/libheif/api/libheif/heif.cc",
+          "completeSourceFileSha256": "d607c8984265b743e07dd7a659507751c39db164bccdd5c936195927789a64e2",
+          "file": "licenses/heif/libheif/api/libheif/heif.cc.header.txt",
+          "sha256": "d9beb84f657ec41229a300b975b1fd8bf00542c0ed3f94cedb35290c979c6da5",
+          "role": "original-source-header"
+        }
+      ],
+      "upstreamBundleStatement": "LGPLv3",
+      "decision": "PARTIAL",
+      "legalReview": "REQUIRES LEGAL REVIEW \u2014 per-file selection, original bundle matching and durable source/relink provision remain open"
+    },
+    {
+      "name": "cairo",
+      "version": "1.18.6",
+      "staticArchives": [
+        {
+          "file": "target/lib/libcairo-gobject.a",
+          "sha256": "f8bd180fdfe0145730132acf47bb6257c191b40a52e2d85f0b129e3968baebd8",
+          "memberRecords": 4
+        },
+        {
+          "file": "target/lib/libcairo.a",
+          "sha256": "617b1d32c6ad66e3629f90f1fa7751120fc37822448beacbc6a4b1a7ce42a64c",
+          "memberRecords": 124
+        }
+      ],
+      "sourceArchiveSha256": "1c767308174337a74694da0f3ec069c271452163a1ef4540964c50c301f157d4",
+      "originalLicenseEvidence": [
+        {
+          "archiveMember": "cairo-1.18.6/COPYING",
+          "completeSourceFileSha256": "67228a9f7c5f9b67c58f556f1be178f62da4d9e2e6285318d8c74d567255abdf",
+          "file": "licenses/cairo/COPYING",
+          "sha256": "67228a9f7c5f9b67c58f556f1be178f62da4d9e2e6285318d8c74d567255abdf",
+          "role": "original-license-text"
+        },
+        {
+          "archiveMember": "cairo-1.18.6/COPYING-LGPL-2.1",
+          "completeSourceFileSha256": "9e9e8608c4cdda51a78cc3a385f4ec9a2e4c96d5ecad74ac8bca5fca3e563b7d",
+          "file": "licenses/cairo/COPYING-LGPL-2.1",
+          "sha256": "9e9e8608c4cdda51a78cc3a385f4ec9a2e4c96d5ecad74ac8bca5fca3e563b7d",
+          "role": "original-license-text"
+        },
+        {
+          "archiveMember": "cairo-1.18.6/COPYING-MPL-1.1",
+          "completeSourceFileSha256": "53692a2ed6c6a2c6ec9b32dd0b820dfae91e0a1fcdf625ca9ed0bdf8705fcc4f",
+          "file": "licenses/cairo/COPYING-MPL-1.1",
+          "sha256": "53692a2ed6c6a2c6ec9b32dd0b820dfae91e0a1fcdf625ca9ed0bdf8705fcc4f",
+          "role": "original-license-text"
+        },
+        {
+          "archiveMember": "cairo-1.18.6/src/cairo.c",
+          "completeSourceFileSha256": "fc13a9f31ce80fa77947e7b1b8672e6ac57f42d4105d316077f3d2a462060931",
+          "file": "licenses/cairo/src/cairo.c.header.txt",
+          "sha256": "d41816f868c8f2b5768c40194aa14c04aa152e25d3f4d30dd8255ce7a9a52f40",
+          "role": "original-source-header"
+        }
+      ],
+      "upstreamBundleStatement": "Mozilla Public License 1.1",
+      "decision": "PARTIAL",
+      "legalReview": "REQUIRES LEGAL REVIEW \u2014 per-file selection, original bundle matching and durable source/relink provision remain open"
+    },
+    {
+      "name": "pango",
+      "version": "1.58.2",
+      "staticArchives": [
+        {
+          "file": "target/lib/libpango-1.0.a",
+          "sha256": "8f20734559c9687f5b7152941e2f4794747314da415b8b2eccdfc141cee5097c",
+          "memberRecords": 35
+        },
+        {
+          "file": "target/lib/libpangocairo-1.0.a",
+          "sha256": "a8e94504787f0ab649c2658a30191622cfb0915c0fa8d86fe94cc80b7a766c83",
+          "memberRecords": 8
+        },
+        {
+          "file": "target/lib/libpangoft2-1.0.a",
+          "sha256": "c763c8d4b93b8c5c3c5ffeda2ae19eeb7d2f8ee90128216575c9821b6f4530fb",
+          "memberRecords": 13
+        }
+      ],
+      "sourceArchiveSha256": "342385b6ca3b7c73455d7c80a13b7dbe4489e00bc3bd4c5bd6ed4dce421e374a",
+      "originalLicenseEvidence": [
+        {
+          "archiveMember": "pango-1.58.2/COPYING",
+          "completeSourceFileSha256": "d245807f90032872d1438d741ed21e2490e1175dc8aa3afa5ddb6c8e529b58e5",
+          "file": "licenses/pango/COPYING",
+          "sha256": "d245807f90032872d1438d741ed21e2490e1175dc8aa3afa5ddb6c8e529b58e5",
+          "role": "original-license-text"
+        },
+        {
+          "archiveMember": "pango-1.58.2/pango/pango-layout.c",
+          "completeSourceFileSha256": "bfdc9ffc57ebea066ce2675df39b0ee92b2f290e98fdc1155f58b9bfba705091",
+          "file": "licenses/pango/pango/pango-layout.c.header.txt",
+          "sha256": "e22d7352b03c301c99b1a03dcb89fe1e8caadcf9b044146f53e043693bfb1e17",
+          "role": "original-source-header"
+        }
+      ],
+      "upstreamBundleStatement": "LGPLv3",
+      "decision": "PARTIAL",
+      "legalReview": "REQUIRES LEGAL REVIEW \u2014 per-file selection, original bundle matching and durable source/relink provision remain open"
+    },
+    {
+      "name": "rsvg",
+      "version": "2.63.2",
+      "staticArchives": [
+        {
+          "file": "target/lib/librsvg-2.a",
+          "sha256": "a410d4f1f7e971a4aebc9ce6b4c215b5741512ebdcf2bc24183ce5143b88d0af",
+          "memberRecords": 3904
+        }
+      ],
+      "sourceArchiveSha256": "852b18e1a00b8605528825a27dc7748bff2a5dd254028f59dc22a34ea57e81b6",
+      "originalLicenseEvidence": [
+        {
+          "archiveMember": "librsvg-2.63.2/COPYING.LIB",
+          "completeSourceFileSha256": "dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551",
+          "file": "licenses/rsvg/COPYING.LIB",
+          "sha256": "dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551",
+          "role": "original-license-text"
+        },
+        {
+          "archiveMember": "librsvg-2.63.2/Cargo.toml",
+          "completeSourceFileSha256": "1ea7ee573fc75a7c18114b23f8710975defa62edada7a65c5f765c938d5fb2c0",
+          "file": "licenses/rsvg/Cargo.toml",
+          "sha256": "1ea7ee573fc75a7c18114b23f8710975defa62edada7a65c5f765c938d5fb2c0",
+          "role": "license-declaration-only"
+        }
+      ],
+      "upstreamBundleStatement": "LGPLv3",
+      "decision": "PARTIAL",
+      "legalReview": "REQUIRES LEGAL REVIEW \u2014 per-file selection, original bundle matching and durable source/relink provision remain open"
+    },
+    {
+      "name": "vips",
+      "version": "8.18.7",
+      "staticArchives": [
+        {
+          "file": "control/vips/_build/libvips/libvips.a",
+          "sha256": "9b82da9f55201b4091078b05de19919d09bdd744b8fb64fd2eecbd0a37fe4fba",
+          "memberRecords": 363
+        },
+        {
+          "file": "modified/vips/_build/libvips/libvips.a",
+          "sha256": "0eef4dd03680d7be2766d3ebbd7d2d6e3b40b0b32bd8439d46c239c91043d114",
+          "memberRecords": 363
+        },
+        {
+          "file": "target/lib/libvips.a",
+          "sha256": "0eef4dd03680d7be2766d3ebbd7d2d6e3b40b0b32bd8439d46c239c91043d114",
+          "memberRecords": 363
+        }
+      ],
+      "sourceArchiveSha256": "5baaead3b0bb20ffdb9e9ff09aa9fda08620923df77b63b436654cb5e0b3bf94",
+      "originalLicenseEvidence": [
+        {
+          "archiveMember": "vips-8.18.7/LICENSE",
+          "completeSourceFileSha256": "dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551",
+          "file": "licenses/vips/LICENSE",
+          "sha256": "dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551",
+          "role": "original-license-text"
+        },
+        {
+          "archiveMember": "vips-8.18.7/libvips/iofuncs/init.c",
+          "completeSourceFileSha256": "10f0201e4853d5d40b3b88f6b2c81616e9c474ab3c10b029b96014fe0d0c2f78",
+          "file": "licenses/vips/libvips/iofuncs/init.c.header.txt",
+          "sha256": "32470eedd1fa12438ef5bc0704f610abd2d29384f772e8b82ce7756de230f069",
+          "role": "original-source-header"
+        }
+      ],
+      "upstreamBundleStatement": "LGPLv3",
+      "decision": "PARTIAL",
+      "legalReview": "REQUIRES LEGAL REVIEW \u2014 per-file selection, original bundle matching and durable source/relink provision remain open"
+    }
+  ],
+  "staticIndexFile": "static-inputs.json",
+  "staticIndexSha256": "aa7a98f13eec3bcb9667e0f9714bca8833a6921fbf43e2fb1be2222da7b51e21",
+  "archiveFileRecords": 40,
+  "uniqueArchiveHashes": 39,
+  "archiveMemberRecords": 6908,
+  "coreObjectFileRecords": 732,
+  "memberCountIncludes": "ar symbol/string tables and duplicated installed/build archives; not 6908 distinct compiled components",
+  "knownGaps": [
+    "No complete per-file compiled-scope legal decision",
+    "No recovered original post-update Cargo.lock/object set",
+    "Full type ABI coverage unproven",
+    "Source package not bound to future runtime/migration image OCI/SBOM",
+    "No two independent durable copies of actual complete corresponding-source package"
+  ],
+  "legalApproval": false,
+  "binaryDistributionReadiness": "BLOCKED"
+}

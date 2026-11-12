@@ -1,5 +1,26 @@
 # Üçüncü taraf lisans incelemesi — OSS-02
 
+## S05-E — Exact source ve notice kanıtları; genel dağıtım BLOCKED
+
+[Native doğrulama](S05E-NATIVE-REBUILD-VALIDATION.md) gerçek tam-profile
+CONTROL/MODIFIED, archive/object/member hash'leri ve gerçek Sharp addon/maps
+kanıtlarını ekler. S05-A/B/C/D kayıtları değiştirilmez. Source/bit reproduction,
+export/type ABI, teknik relinking ve hukuki yeterlilik ayrı değerlendirilir.
+
+[Dokuz Rust kaydı](evidence/s05e/rust-notice-resolution.json): r-efi 5.3.0 ve
+6.0.0 özgün AUTHORS metinleriyle source/notice edinimi 2 PASS; kalan 7 BLOCKED,
+N/A 0. MIT metadata'sı veya platform/dev varsayımı yeterli sayılmaz.
+[Altı native kaynak grubunda](evidence/s05e/native-license-evidence.json)
+GLib REUSE LICENSES, GPL/LGPL/MPL özgün metinleri ve actual file header'ları
+korunur. Dosya/compiled-scope compliance kararları UNKNOWN / REQUIRES LEGAL REVIEW.
+
+Libvips core LICENSE ile npm platform aggregate LGPLv3 beyanı tek lisansa
+indirgenmez. Pango Library GPL v2+, Cairo LGPL-2.1/MPL-1.1 ve libheif LGPL-3.0+
+file terms kendi kapsamında değerlendirilir; üst paket koşulları alt bileşenlere
+otomatik uygulanmaz. Gerçek .a/.o bulunması, kaynak sağlama/notice/kurulum
+hakları veya kalıcı sunumun tamamlandığı anlamına gelmez. Node/Debian/Prisma
+kapıları açık, BINARY DISTRIBUTION READINESS: BLOCKED. Alpha.2 değiştirilmedi.
+
 ## S04-D dağıtım ayrımı
 
 **SOURCE RELEASE READINESS:** yalnız özgün kaynak/manifest/kilit/betik/belge arşivi için otomatik içerik ve AGPL kontrolleri; bakımcı incelemesi/yayımlama onayı ayrı kapıdır. **BINARY DISTRIBUTION READINESS: BLOCKED FOR BINARY DISTRIBUTION.** Yerel kullanıcı kaynak build'i, hazır imaj dağıtımıyla aynı işlem değildir. Bu çalışma lisans uyumunu bütünüyle tamamladı iddiası veya yeni kaynak sunumu yapmaz.

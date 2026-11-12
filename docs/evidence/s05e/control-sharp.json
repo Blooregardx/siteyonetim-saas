@@ -1,0 +1,43 @@
+{
+  "scope": "isolated synthetic Sharp probe",
+  "status": "PASS",
+  "node": "v24.19.0",
+  "platform": "linux",
+  "arch": "x64",
+  "tests": {
+    "png": {
+      "status": "PASS",
+      "sha256": "597117ad96f274269b217aebbb4fbc4c5f2915cf3c80a195692ace0ccb1f66a4"
+    },
+    "jpeg": {
+      "status": "PASS",
+      "sha256": "fd0ed49568b3671dfb8bce9293154e8f81356c2c59085818decf0d21df4ca21f"
+    },
+    "svg": {
+      "status": "PASS",
+      "sha256": "85b66875d2aa00fd60f39da8135b1b0d815dabf998e0bf820d8cac4264edb0de"
+    }
+  },
+  "loadedLibraries": [
+    {
+      "path": "/workspace/s05e-native-work/full-experiment-6/control/libvips-cpp.so.8.18.7",
+      "realPath": "/workspace/s05e-native-work/full-experiment-6/control/libvips-cpp.so.8.18.7",
+      "sha256": "9765d980f837f70c36ad2bb5096002117076dcf0f017dc9306d82cd06a4772d2"
+    }
+  ],
+  "processingPassed": true,
+  "maps": [
+    "7f8187fbb000-7f8188baf000 r-xp 00000000 00:1b 1631922                    /workspace/s05e-native-work/full-experiment-6/control/libvips-cpp.so.8.18.7",
+    "7f8188baf000-7f8189076000 r--p 00bf4000 00:1b 1631922                    /workspace/s05e-native-work/full-experiment-6/control/libvips-cpp.so.8.18.7",
+    "7f8189076000-7f8189126000 r--p 010ba000 00:1b 1631922                    /workspace/s05e-native-work/full-experiment-6/control/libvips-cpp.so.8.18.7",
+    "7f8189126000-7f8189191000 rw-p 0116a000 00:1b 1631922                    /workspace/s05e-native-work/full-experiment-6/control/libvips-cpp.so.8.18.7"
+  ],
+  "nativeAddons": [
+    {
+      "path": "/workspace/siteyonetim-saas/node_modules/@img/sharp-linux-x64/lib/sharp-linux-x64-0.35.5.node",
+      "sha256": "cf896cc1b7f3ae9c3e8eb3d7b2b198b8de2824ff7d0681d684bab5a825def335"
+    }
+  ],
+  "targetLoaded": true,
+  "originalLibraryLoaded": false
+}

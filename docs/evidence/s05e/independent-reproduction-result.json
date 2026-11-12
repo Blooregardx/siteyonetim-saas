@@ -1,0 +1,7 @@
+{
+  "toolBytesRepeat": true,
+  "mismatch": [],
+  "scope": "controlled toolchain binaries, not historical image byte identity",
+  "binaryDistributionReadiness": "BLOCKED",
+  "legalApproval": false
+}

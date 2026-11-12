@@ -1,0 +1,2422 @@
+{
+  "schemaVersion": 1,
+  "records": [
+    {
+      "stage": "update",
+      "file": "historical/update/acl-2.4.0-1.el8_10.x86_64.rpm",
+      "sha256": "62e5097c58fae9bc96b384da417c34a3fe75f03cc62435cb00c68f37fb6f53a5",
+      "size": 87352,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/a/acl-2.4.0-1.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/audit-libs-3.1.2-1.el8_10.1.x86_64.rpm",
+      "sha256": "80e99067d2ce6eb0fbb5b454a7984cbfe03440b8b526f1130c6efc76169087ba",
+      "size": 126852,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/a/audit-libs-3.1.2-1.el8_10.1.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/bash-4.4.20-6.el8_10.x86_64.rpm",
+      "sha256": "d8eeec92a3264b9d4671221441de603d7f622d61845ac2e16bbcdb2bb87a57fb",
+      "size": 1621652,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/b/bash-4.4.20-6.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/bzip2-libs-1.0.6-28.el8_10.x86_64.rpm",
+      "sha256": "14ecb4995555392bd45644630196b6f864d93dba9c56133bb96f199841852ad0",
+      "size": 48232,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/b/bzip2-libs-1.0.6-28.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/ca-certificates-2025.2.80_v9.0.304-80.2.el8_10.noarch.rpm",
+      "sha256": "a2ea363d0a733b4550d7401ee7fb81fd9b66124bf4955feee7ff605dfdec3c1b",
+      "size": 1047896,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/c/ca-certificates-2025.2.80_v9.0.304-80.2.el8_10.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/coreutils-single-8.30-21.el8_10.x86_64.rpm",
+      "sha256": "260cf4ff084690e1511a64ba90b896ad4d05d816cca24b7d5601adb902ad3147",
+      "size": 644308,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/c/coreutils-single-8.30-21.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/curl-7.61.1-34.el8_10.13.x86_64.rpm",
+      "sha256": "9d605a4c61a60a8090484475eb3aef01e87f01a347e2bd3a6422be4495086968",
+      "size": 363024,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/c/curl-7.61.1-34.el8_10.13.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/dbus-1.12.8-28.el8_10.x86_64.rpm",
+      "sha256": "6c483b6bcbe275c41851260059002d025de1c317041446140160ad8f696319c0",
+      "size": 42428,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/d/dbus-1.12.8-28.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/dbus-common-1.12.8-28.el8_10.noarch.rpm",
+      "sha256": "716073bcc3a07c99ddf13d6a3be16c389a5080b71f499e5c5dddb483445ae4a9",
+      "size": 47316,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/d/dbus-common-1.12.8-28.el8_10.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/dbus-daemon-1.12.8-28.el8_10.x86_64.rpm",
+      "sha256": "b8b5f09f63028662012d2ab78155fd5b0df537490c9a673ffaca26558c158c09",
+      "size": 246388,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/d/dbus-daemon-1.12.8-28.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/dbus-libs-1.12.8-28.el8_10.x86_64.rpm",
+      "sha256": "977bb6e46172b5db9e121a1406b9b30910e37141b77288b7e24490f159df6592",
+      "size": 188660,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/d/dbus-libs-1.12.8-28.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/dbus-tools-1.12.8-28.el8_10.x86_64.rpm",
+      "sha256": "f26f9ac2e60141d139e84d5535130cc0783ae4299081a850ec5b3050d743913c",
+      "size": 87696,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/d/dbus-tools-1.12.8-28.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/device-mapper-1.02.181-15.el8_10.3.x86_64.rpm",
+      "sha256": "332f6913dba5ef59532d00e2f0de345c824fd4f02fc80122380aed61e6a422c7",
+      "size": 387408,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/d/device-mapper-1.02.181-15.el8_10.3.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/device-mapper-libs-1.02.181-15.el8_10.3.x86_64.rpm",
+      "sha256": "be4701724b460649bceec24390f45c45514651621d04ca3d1b91348fe1f7c83f",
+      "size": 420488,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/d/device-mapper-libs-1.02.181-15.el8_10.3.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/dnf-4.7.0-21.el8_10.noarch.rpm",
+      "sha256": "12a3452adb0764a5193e3f07aa74791479ffbc4ca2a67eb7a0f2ee23329e1afa",
+      "size": 555228,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/d/dnf-4.7.0-21.el8_10.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/dnf-data-4.7.0-21.el8_10.noarch.rpm",
+      "sha256": "b83967cb5a3d140ba28e505406c215e56932308343f9e90fdbf2daafb6afa0cd",
+      "size": 160108,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/d/dnf-data-4.7.0-21.el8_10.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/elfutils-debuginfod-client-0.190-2.el8.x86_64.rpm",
+      "sha256": "80094878cfa0dd1cddb77655e67a8a53d9ab5b257223ae8498431c6c2e7d3f5c",
+      "size": 77404,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/e/elfutils-debuginfod-client-0.190-2.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/elfutils-default-yama-scope-0.190-2.el8.noarch.rpm",
+      "sha256": "f5e46bf54b40eb7feb74b42b4ea28f5dbe0e160199f35cf0e6d0e2c5a29f88d3",
+      "size": 52796,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/e/elfutils-default-yama-scope-0.190-2.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/elfutils-libelf-0.190-2.el8.x86_64.rpm",
+      "sha256": "0cd9636d64cd3bcc98b27c959d1e21ccf4e8696313801069611eb2306e9c9957",
+      "size": 237068,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/e/elfutils-libelf-0.190-2.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/elfutils-libs-0.190-2.el8.x86_64.rpm",
+      "sha256": "13ad1c673193d90641b92aa1f5aa46595919ad9bea0722600c87a7716a1357ee",
+      "size": 311248,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/e/elfutils-libs-0.190-2.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/expat-2.5.0-2.el8_10.2.x86_64.rpm",
+      "sha256": "65babca967d086703487d8fa5efb8ba27b2ccdb5af5d33a994cfccddbcc7c94a",
+      "size": 136036,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/e/expat-2.5.0-2.el8_10.2.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/file-libs-5.33-27.el8_10.x86_64.rpm",
+      "sha256": "462e93d64e1b0b4034abf8028b3535a4d3160ff02c3febd468e892b836032118",
+      "size": 556224,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/f/file-libs-5.33-27.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/findutils-4.6.0-24.el8_10.x86_64.rpm",
+      "sha256": "0f29b75b637baf402497a02001975f35cbadbb5afd8df8e4804c19a5055b2d26",
+      "size": 538940,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/f/findutils-4.6.0-24.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/glib2-2.56.4-178.el8_10.x86_64.rpm",
+      "sha256": "4de61005339df7500199c8a1b7f3201665363bdd7879a378783a7b78849baf7b",
+      "size": 2616576,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/g/glib2-2.56.4-178.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/glibc-2.28-251.el8_10.40.x86_64.rpm",
+      "sha256": "f9ee0ed8611d1b4421ac5f9b377ac238377e47466aaaf075822b2d811f01bbdf",
+      "size": 2308600,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/g/glibc-2.28-251.el8_10.40.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/glibc-common-2.28-251.el8_10.40.x86_64.rpm",
+      "sha256": "fef3b59c014ec8d288bbefaf343e74c225a9644813c2078eda53679825a8645e",
+      "size": 1054160,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/g/glibc-common-2.28-251.el8_10.40.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/glibc-gconv-extra-2.28-251.el8_10.40.x86_64.rpm",
+      "sha256": "cd50cbcfe233fd4e5deee406bfa275d37e2bee15d343e31d9d4f8d9871ba85b8",
+      "size": 1627304,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/g/glibc-gconv-extra-2.28-251.el8_10.40.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/glibc-langpack-en-2.28-251.el8_10.40.x86_64.rpm",
+      "sha256": "eeb2af8c4b4114f1a9af1f86870cbeb3f8b48fb6f49d4e80ed31794cc207642f",
+      "size": 854452,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/g/glibc-langpack-en-2.28-251.el8_10.40.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/glibc-minimal-langpack-2.28-251.el8_10.40.x86_64.rpm",
+      "sha256": "b55d62742dd81ae1b2a7641ce8e8da561b3831ea13a4db8abe066199dbb4dd4d",
+      "size": 74696,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/g/glibc-minimal-langpack-2.28-251.el8_10.40.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/gmp-6.1.2-12.el8.x86_64.rpm",
+      "sha256": "df8ebe29fce2c3e431bcb5fb169ff8d72cb952aabb945a8ddd0cfb1a7900078f",
+      "size": 324704,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/g/gmp-6.1.2-12.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/gnupg2-2.2.20-4.el8_10.x86_64.rpm",
+      "sha256": "e282995024511e1c5096fff4c68d9f240275d6864e9d53e67200540a675b7449",
+      "size": 2518468,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/g/gnupg2-2.2.20-4.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/gnupg2-smime-2.2.20-4.el8_10.x86_64.rpm",
+      "sha256": "42d8112daa8a9cdb0395ca52d9347519bb35b6ec33337e760c47a8ca00410b70",
+      "size": 288884,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/g/gnupg2-smime-2.2.20-4.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/gnutls-3.6.16-8.el8_10.6.x86_64.rpm",
+      "sha256": "767884dba7c0de979a7e896e068f4d6189db75f0f70a43a9e5d5eb2477500c4e",
+      "size": 1045768,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/g/gnutls-3.6.16-8.el8_10.6.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/gpgme-1.13.1-12.el8.x86_64.rpm",
+      "sha256": "ae13170d5249ae358f6581a9cb4770659a2f4464c2bbce6218590bd9c1cb57ff",
+      "size": 342648,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/g/gpgme-1.13.1-12.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/gzip-1.9-15.el8_10.x86_64.rpm",
+      "sha256": "97d8af776f802abfc3f1e6da147131c2f03f337fb027f563e262e7a567c514bc",
+      "size": 170304,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/g/gzip-1.9-15.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/kmod-libs-25-20.el8.x86_64.rpm",
+      "sha256": "a4e26848700d7b3d32cc27fde17a7c322e3b68e1d892240d45d6dd7876e4493e",
+      "size": 69080,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/k/kmod-libs-25-20.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/krb5-libs-1.18.2-34.el8_10.x86_64.rpm",
+      "sha256": "1d034db734b2c4c2db6558d386ad2c2a1618240dd1dcbaafd3e4624214f0cd4a",
+      "size": 863852,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/k/krb5-libs-1.18.2-34.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/libacl-2.4.0-1.el8_10.x86_64.rpm",
+      "sha256": "d5d163e4d617a6e158cd8b15e0f244082a4bf16cdabeae794fb8d9e079920868",
+      "size": 38420,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libacl-2.4.0-1.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/libarchive-3.3.3-7.el8_10.x86_64.rpm",
+      "sha256": "c0600cb7b99f184eee7c134320ef99c306338d6a3ee4b1de7b06aa3cf185ec59",
+      "size": 367916,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libarchive-3.3.3-7.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/libattr-2.6.0-1.el8_10.x86_64.rpm",
+      "sha256": "73fafe589b1ac81deff610fc0cb692da829fe7a32d6e19c266d4b911f291bed4",
+      "size": 26940,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libattr-2.6.0-1.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/libblkid-2.32.1-48.el8_10.x86_64.rpm",
+      "sha256": "20cb24aecca504c9581e245ace7380e1b51a88e732305b43a4c1bebea9a76935",
+      "size": 225436,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libblkid-2.32.1-48.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/libcap-2.48-6.el8_10.1.x86_64.rpm",
+      "sha256": "ad1acfa784efcf98d72f8eb268849805fe74d135d79d02384478421a87ffd024",
+      "size": 75496,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libcap-2.48-6.el8_10.1.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/libcom_err-1.45.6-7.el8_10.x86_64.rpm",
+      "sha256": "0eb2a80054bc7e421ac4eec9aebfc08d576d8bbe93ffb7237227d32a6f5172e7",
+      "size": 49712,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libcom_err-1.45.6-7.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/libcurl-minimal-7.61.1-34.el8_10.13.x86_64.rpm",
+      "sha256": "a066e158500eb5e1541741c0a5f1c93e5152ffc5cd64d4fb60800b921874472f",
+      "size": 300292,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libcurl-minimal-7.61.1-34.el8_10.13.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/libdnf-0.63.0-21.el8_10.x86_64.rpm",
+      "sha256": "0f11ea18a1430d9aae5409289553ad525bc798a3bbd5b0c2c5cdc52f9993eaba",
+      "size": 727808,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libdnf-0.63.0-21.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/libevent-2.1.8-11.el8_10.x86_64.rpm",
+      "sha256": "1704fc19e139b657f3e0d93d93da1c719452602876906e06c45b1a5fb428f10f",
+      "size": 259936,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libevent-2.1.8-11.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/libfdisk-2.32.1-48.el8_10.x86_64.rpm",
+      "sha256": "19a24ba3d0d05b2ba44b1f79e13150056dd4bcc50823cb689893cf0d64b3474e",
+      "size": 259368,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libfdisk-2.32.1-48.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/libgcc-8.5.0-28.el8_10.x86_64.rpm",
+      "sha256": "89f98cff56955f9dc4965dede3749c3b9cecd2d626b493112776c416c865c072",
+      "size": 83236,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libgcc-8.5.0-28.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/libgcrypt-1.8.5-8.el8_10.x86_64.rpm",
+      "sha256": "bd8bd915ab9e806a0d5b7af4ccef84b660b645bb56b1e4188ffc8596b1893df1",
+      "size": 472988,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libgcrypt-1.8.5-8.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/libmount-2.32.1-48.el8_10.x86_64.rpm",
+      "sha256": "b19ccc46a0d6e35ef50ae4613e3ab890b91fdd5b3c935a8e55273f3b77389bab",
+      "size": 241936,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libmount-2.32.1-48.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/libnghttp2-1.33.0-6.el8_10.3.x86_64.rpm",
+      "sha256": "f5c458969b125297ab48cbabb688805611233855960e79d556570d63259a00af",
+      "size": 79332,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libnghttp2-1.33.0-6.el8_10.3.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/librepo-1.14.2-5.el8.x86_64.rpm",
+      "sha256": "f881cdfd57a260828d4e4aa1119b87de01ba14b3305759b171008a6189bd3094",
+      "size": 94560,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/librepo-1.14.2-5.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/libsecret-0.18.6-1.el8.0.2.x86_64.rpm",
+      "sha256": "f065fafb786de923a4e3e055a3ba72e98ac1a3dfb1af440c45c61704ca56e4f1",
+      "size": 165716,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libsecret-0.18.6-1.el8.0.2.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/libselinux-2.9-11.el8_10.x86_64.rpm",
+      "sha256": "34356ec2bc643df7a2c0c1767db9207bce553bee694539cd60fc987ab3f65b8c",
+      "size": 169120,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libselinux-2.9-11.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/libsemanage-2.9-12.el8_10.x86_64.rpm",
+      "sha256": "ea6fe9111dda30a5cf809f58608d089cc6ebb27d0d6064505c1fd7b2f43acfb4",
+      "size": 171908,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libsemanage-2.9-12.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/libsmartcols-2.32.1-48.el8_10.x86_64.rpm",
+      "sha256": "a7c545a9ebbf04050c61caa04b2a612e4d2fd91d0837c1aae2d3fee9bbdd7022",
+      "size": 183284,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libsmartcols-2.32.1-48.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/libsolv-0.7.20-7.el8_10.x86_64.rpm",
+      "sha256": "bd5b9d715e1afbe0be184139bc3ba6fcf992b8ea7d08ee046d31c4caf27dc840",
+      "size": 384612,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libsolv-0.7.20-7.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/libstdc++-8.5.0-28.el8_10.x86_64.rpm",
+      "sha256": "85b013213afce80a5f22cae6f17aa00c6b18fcfe923839a4a1e31e92ed5b150f",
+      "size": 483944,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libstdc++-8.5.0-28.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/libtasn1-4.13-6.el8_10.x86_64.rpm",
+      "sha256": "4297cd64caf0652ce9403dd0383c8167a2410d31e1bd0f8f15556c2554490e28",
+      "size": 77552,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libtasn1-4.13-6.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/libtirpc-1.1.4-12.el8_10.x86_64.rpm",
+      "sha256": "acae165746e9b5c426a44cc4871966bcc5cba46182e464c193a2e8d94e391f3b",
+      "size": 115656,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libtirpc-1.1.4-12.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/libusbx-1.0.30-1.el8_10.x86_64.rpm",
+      "sha256": "649df0cf55b233db82edbd3c2ed5081e6a999574ad1e7c2726654d18687d682f",
+      "size": 84328,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libusbx-1.0.30-1.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/libuuid-2.32.1-48.el8_10.x86_64.rpm",
+      "sha256": "f1748e5d96d72bf941a19932ad90388fc733b38393e3bed8181715041bc42dae",
+      "size": 100980,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libuuid-2.32.1-48.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/libxml2-2.9.7-21.el8_10.9.x86_64.rpm",
+      "sha256": "98fedb231958d9414bee91948e7f41e7e3006169d8446e6a3d9300858c636f63",
+      "size": 714844,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libxml2-2.9.7-21.el8_10.9.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/lz4-libs-1.8.3-5.el8_10.x86_64.rpm",
+      "sha256": "d093c42b6784901b035d84394ef2bcab2ffd9c1b51ad5ee8cb62c2a14c0234ed",
+      "size": 66780,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/lz4-libs-1.8.3-5.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/openldap-2.4.46-21.el8_10.x86_64.rpm",
+      "sha256": "50d3e8b7ef70c516a86586e79d439257f6b3ba1e18d2e3dd46f9ace57066a4e5",
+      "size": 360964,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/o/openldap-2.4.46-21.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/openssl-1.1.1k-17.el8_10.x86_64.rpm",
+      "sha256": "457baff7bc35d6d97a7c3c0c82e9a9c53fee8388bb61e8eb1b29146b033b3b65",
+      "size": 727608,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/o/openssl-1.1.1k-17.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/openssl-libs-1.1.1k-17.el8_10.x86_64.rpm",
+      "sha256": "a60dfe74bc3f8f77ca94de4c3656119199286e20b1c990d2b1f804a12745fafb",
+      "size": 1542728,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/o/openssl-libs-1.1.1k-17.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/openssl-pkcs11-0.4.10-3.el8.x86_64.rpm",
+      "sha256": "8ddbd4dd99eb69705d849a5413e88997cbf05cea7570a7e2753529ccaf2c2f0a",
+      "size": 66616,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/o/openssl-pkcs11-0.4.10-3.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/p11-kit-0.23.22-2.el8.x86_64.rpm",
+      "sha256": "4dffa72079b4babbc6c7dec13408ce75da08bb18239e5e37c0861c39f48f33cd",
+      "size": 333700,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/p11-kit-0.23.22-2.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/p11-kit-trust-0.23.22-2.el8.x86_64.rpm",
+      "sha256": "d7f70ce7a4b467a717b6dc72f3fd1983e8aac9f04896ecc49696668ea3acedd2",
+      "size": 140080,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/p11-kit-trust-0.23.22-2.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/pam-1.3.1-40.el8_10.x86_64.rpm",
+      "sha256": "e09e209a760ee08d64b232d1b63efffdb6a1cd78009e10f5fa0e0861f7b15c5d",
+      "size": 767128,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/pam-1.3.1-40.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/pinentry-1.1.0-2.el8.x86_64.rpm",
+      "sha256": "7dadbbc1fa0c4db6507b7da251f057043a285b1cdb313827f57a15b3eb90b93e",
+      "size": 101348,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/p/pinentry-1.1.0-2.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/platform-python-3.6.8-78.el8_10.rocky.0.x86_64.rpm",
+      "sha256": "b932bc822aead50772c796e8bb117446cea08545216ded5552b0e4b10bf2695c",
+      "size": 90832,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/platform-python-3.6.8-78.el8_10.rocky.0.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/platform-python-pip-9.0.3-24.el8.rocky.0.noarch.rpm",
+      "sha256": "48027ea5f805c0edb218fe0f241d2b0c34e9f1be8e828997516766dbfe7f96e6",
+      "size": 1632380,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/platform-python-pip-9.0.3-24.el8.rocky.0.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/platform-python-setuptools-39.2.0-9.el8_10.noarch.rpm",
+      "sha256": "1f0a67a8989bc1028d717d701af6d7f2b79ab26534454739f728c04e158cd956",
+      "size": 646628,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/platform-python-setuptools-39.2.0-9.el8_10.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/python3-dnf-4.7.0-21.el8_10.noarch.rpm",
+      "sha256": "115d7df2b9ad7b762091b872a4800ff64580bb3c69370ddf9ddfb57d61700de0",
+      "size": 562696,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/python3-dnf-4.7.0-21.el8_10.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/python3-gpg-1.13.1-12.el8.x86_64.rpm",
+      "sha256": "8ec0203e71888d633be9fa5222a2b97cd3aac4444d916221985a7d5b444d6c42",
+      "size": 248640,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/python3-gpg-1.13.1-12.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/python3-hawkey-0.63.0-21.el8_10.x86_64.rpm",
+      "sha256": "24bdf3297d69a9aae9bfbb8d4e79ab6ecc8800b0ddb5f2e511deb1ee89ac1568",
+      "size": 120388,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/python3-hawkey-0.63.0-21.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/python3-libdnf-0.63.0-21.el8_10.x86_64.rpm",
+      "sha256": "23a7af175bb992fd45036f01073d36c71c3940f0e71d6ee0be0768949856c748",
+      "size": 797988,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/python3-libdnf-0.63.0-21.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/python3-libs-3.6.8-78.el8_10.rocky.0.x86_64.rpm",
+      "sha256": "caa2dc27d28c32ba5b0e7e47952dfa348c584e3ed1a1176e05aaeb9bc0e31cfa",
+      "size": 8216648,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/python3-libs-3.6.8-78.el8_10.rocky.0.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/python3-pip-wheel-9.0.3-24.el8.rocky.0.noarch.rpm",
+      "sha256": "ccc41a042fbfc423e7cac48dbf161f94d6da6196e1770d2e6bb00232bdfef2c0",
+      "size": 886216,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/python3-pip-wheel-9.0.3-24.el8.rocky.0.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/python3-rpm-4.14.3-32.el8_10.x86_64.rpm",
+      "sha256": "25b52c1e3324dc8741399ec8a8c188bfeef54033c7cfb9ffc545d8bad52960ce",
+      "size": 158188,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/python3-rpm-4.14.3-32.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/python3-setuptools-wheel-39.2.0-9.el8_10.noarch.rpm",
+      "sha256": "32b9fcb95afa24fbd24c5cc653847d2c235acade1423d1441f1658a83c8725f9",
+      "size": 295100,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/python3-setuptools-wheel-39.2.0-9.el8_10.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/python3-unbound-1.16.2-5.14.el8_10.4.x86_64.rpm",
+      "sha256": "2d59fc79d24cd4275a35d1a3303b1126e81e1e08c4d0e7c71c8f4ded49766566",
+      "size": 133528,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/p/python3-unbound-1.16.2-5.14.el8_10.4.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/rocky-gpg-keys-8.10-1.14.el8.noarch.rpm",
+      "sha256": "9b41ed3e64a569fd8da690ebc8373ab21343e8d67b5691a878b5ba5cd5b60f2c",
+      "size": 14716,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/r/rocky-gpg-keys-8.10-1.14.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/rocky-release-8.10-1.14.el8.noarch.rpm",
+      "sha256": "9586cfabb48f3893e95a2a328906644828067cb8c67071e47c9acf8a73cf5895",
+      "size": 23996,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/r/rocky-release-8.10-1.14.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/rocky-repos-8.10-1.14.el8.noarch.rpm",
+      "sha256": "62f242c59729a7700355be8620cf9998c5f8cb43e915789297c7ae4315306d03",
+      "size": 17032,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/r/rocky-repos-8.10-1.14.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/rpm-4.14.3-32.el8_10.x86_64.rpm",
+      "sha256": "3de59eb2a2850cf2c39d5940fb285cf7927941cb98e5e2cd623b425b367b1b98",
+      "size": 556488,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/r/rpm-4.14.3-32.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/rpm-build-libs-4.14.3-32.el8_10.x86_64.rpm",
+      "sha256": "6580b3ce3e28df8982bc46ea92c10e00832fcfc2b9c8d5f8778c23763bc2ef76",
+      "size": 160368,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/r/rpm-build-libs-4.14.3-32.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/rpm-libs-4.14.3-32.el8_10.x86_64.rpm",
+      "sha256": "231567e147e46a8a6d938086d4a4994a74cc04281ee149d9f89c99a3c098cc78",
+      "size": 355616,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/r/rpm-libs-4.14.3-32.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/rpm-plugin-systemd-inhibit-4.14.3-32.el8_10.x86_64.rpm",
+      "sha256": "fc141c30d4f77e93a04c60ef21a1d10e9d2494dd1d65054ee92bf3f086ed4f0c",
+      "size": 80344,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/r/rpm-plugin-systemd-inhibit-4.14.3-32.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/setup-2.12.2-11.el8.noarch.rpm",
+      "sha256": "2c6d7af42502a950d018bc6ff2287a1540ec0176a24fb27dc9d2cd9b10beb4c8",
+      "size": 184444,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/s/setup-2.12.2-11.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/shadow-utils-4.6-23.el8_10.x86_64.rpm",
+      "sha256": "43053cc0b61f94f9cfd5d247f753fde6fb6d5ac3e7098dc3879ce8d048e1a9e9",
+      "size": 1291980,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/s/shadow-utils-4.6-23.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/shared-mime-info-1.9-4.el8.x86_64.rpm",
+      "sha256": "3d6018477c7c8089f49b2276821c43659470f67b569c670d2f2d30ca5e308ac5",
+      "size": 335712,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/s/shared-mime-info-1.9-4.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/sqlite-libs-3.26.0-21.el8_10.x86_64.rpm",
+      "sha256": "db896e48ef74a6d7518be06f9c34fb6d39f1f1e81c8a4dd2390900c67e55db0a",
+      "size": 594244,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/s/sqlite-libs-3.26.0-21.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/systemd-239-82.el8_10.19.x86_64.rpm",
+      "sha256": "7924a877cd9ea9f5410dcc08c91314618dc7a7146197e467c9955f6e1d6c322c",
+      "size": 3833296,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/s/systemd-239-82.el8_10.19.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/systemd-libs-239-82.el8_10.19.x86_64.rpm",
+      "sha256": "4471691ef6ac446f602084bfd20bcdd7b3b60255b8146c6e7cfc220bfc50d11c",
+      "size": 1201656,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/s/systemd-libs-239-82.el8_10.19.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/systemd-pam-239-82.el8_10.19.x86_64.rpm",
+      "sha256": "cd2ac2a9484636a8937b10389781034c59b2a26ae448dd9894485d1d28a5090e",
+      "size": 531268,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/s/systemd-pam-239-82.el8_10.19.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/tar-1.30-13.el8_10.x86_64.rpm",
+      "sha256": "7e1eebf170f03b91522a5bea776978f1a64717b0d6da1ba836455797d9142f26",
+      "size": 865644,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/t/tar-1.30-13.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/tpm2-tss-2.3.2-6.el8.x86_64.rpm",
+      "sha256": "b1e62af9f2b0b18cbf06a5e6f6e874700b293bbcc8596d6970a9c00d2df2df0e",
+      "size": 280920,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/t/tpm2-tss-2.3.2-6.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/trousers-0.3.15-2.el8.x86_64.rpm",
+      "sha256": "5b2013e3caed8ec7d711d20171328599927401c5e2ed02b030071d786aa889db",
+      "size": 155176,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/t/trousers-0.3.15-2.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/trousers-lib-0.3.15-2.el8.x86_64.rpm",
+      "sha256": "32da7eb0aaa584cab9637509b9b1bb5b8ef23654968c578db90eb966008dd565",
+      "size": 170544,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/t/trousers-lib-0.3.15-2.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/tzdata-2026c-1.el8_10.noarch.rpm",
+      "sha256": "b1109ddf0fb59741e6d3795df9ea9d718a41bcf2374ec597ee68a10c957290e5",
+      "size": 562648,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/t/tzdata-2026c-1.el8_10.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/unbound-libs-1.16.2-5.14.el8_10.4.x86_64.rpm",
+      "sha256": "c600976d3df12962af08c6217c0025beb2bcd71ae9519961044a94266f0e5518",
+      "size": 594520,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/u/unbound-libs-1.16.2-5.14.el8_10.4.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/util-linux-2.32.1-48.el8_10.x86_64.rpm",
+      "sha256": "98f8e4012c187f6d5e14762692d5df196f5b6229fb0211d1040c4fa0b4a168b6",
+      "size": 2597084,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/u/util-linux-2.32.1-48.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/vim-minimal-8.0.1763-31.el8_10.7.x86_64.rpm",
+      "sha256": "d3d233a2e67e71cbf35c1332fc6f547935e8a9fd1e3d4e2e5b84bbf9696d061f",
+      "size": 591400,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/v/vim-minimal-8.0.1763-31.el8_10.7.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/which-2.21-21.el8_10.x86_64.rpm",
+      "sha256": "a593c4016ff04afe46b8498a606548687b079079112c08e2fc3f6809273b9658",
+      "size": 50120,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/w/which-2.21-21.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/yum-4.7.0-21.el8_10.noarch.rpm",
+      "sha256": "fac6c9bc54140b8c6657f60d8722f271ef9b473be808c785db47f8401d4fbbbd",
+      "size": 209948,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/y/yum-4.7.0-21.el8_10.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "update",
+      "file": "historical/update/zlib-1.2.11-26.el8.x86_64.rpm",
+      "sha256": "84465251ea8790b3d8a1c30bdfc8f11711ffe9060becb7335e1b50f4277c5162",
+      "size": 104888,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/z/zlib-1.2.11-26.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "epel",
+      "file": "historical/epel/dbus-glib-0.110-2.el8.x86_64.rpm",
+      "sha256": "2aeac8d5a37b2c7a98a0b5f749738473e7997ab20e44c8f2acad379402e498d7",
+      "size": 129248,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/d/dbus-glib-0.110-2.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "epel",
+      "file": "historical/epel/dnf-plugins-core-4.0.21-25.el8.noarch.rpm",
+      "sha256": "069c1e02fbed2d9fdee08d1b9bfb09f590d27b88da3b273f33cd9314a7f803a4",
+      "size": 77316,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/d/dnf-plugins-core-4.0.21-25.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "epel",
+      "file": "historical/epel/epel-release-8-22.el8.noarch.rpm",
+      "sha256": "f727d005418658bdb95d4d5ad766833cfd14be8fa28644a76913121ddc740543",
+      "size": 25268,
+      "metadataLocations": [
+        "https://cofractal-ewr.mm.fcix.net/epel/8/Everything/x86_64/Packages/e/epel-release-8-22.el8.noarch.rpm",
+        "https://us.mirrors.cicku.me/rocky/8.10/extras/x86_64/os/Packages/e/epel-release-8-22.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "epel",
+      "file": "historical/epel/python3-dateutil-2.6.1-6.el8.noarch.rpm",
+      "sha256": "2474b7c7d5d321289e6cab6cacb7f3534e666ac88f7cf0319581be1857388316",
+      "size": 255908,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/python3-dateutil-2.6.1-6.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "epel",
+      "file": "historical/epel/python3-dbus-1.2.4-15.el8.x86_64.rpm",
+      "sha256": "178e9fcb7cade5c6078c6992e1e101721f947e6355aa96046910e9c1d2d14a04",
+      "size": 136020,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/python3-dbus-1.2.4-15.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "epel",
+      "file": "historical/epel/python3-dnf-plugins-core-4.0.21-25.el8.noarch.rpm",
+      "sha256": "236c8eff4747c7391433cc2a447ac03ea95c39307de117a45a4d7bba298a20a9",
+      "size": 268476,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/python3-dnf-plugins-core-4.0.21-25.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "epel",
+      "file": "historical/epel/python3-six-1.11.0-8.el8.noarch.rpm",
+      "sha256": "2b32f67645b00d2670347ccb52b7ff15024b2c2fa3d512b9d00f1ee97f3b2ca4",
+      "size": 37468,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/python3-six-1.11.0-8.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "epel",
+      "file": "historical/epel/python3-systemd-234-8.el8.x86_64.rpm",
+      "sha256": "73c063deb7ab108a06ddfa255fda214973362963c2c9be5a53f49237d746ea13",
+      "size": 81892,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/python3-systemd-234-8.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/autoconf-2.69-29.el8_10.1.noarch.rpm",
+      "sha256": "06c9fef0b4d9166674e19097eb0d08d99cd6ee7eadf2eb73cbcb2113c7fd7664",
+      "size": 726628,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/a/autoconf-2.69-29.el8_10.1.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/automake-1.16.1-8.el8.noarch.rpm",
+      "sha256": "88d32e3c908a964f60a0118ef19f5fafe0031f11f64d65b03fbfef31ace14d6b",
+      "size": 729656,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/a/automake-1.16.1-8.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/bzip2-1.0.6-28.el8_10.x86_64.rpm",
+      "sha256": "df8552e87d82162ce371128a7736f3205990763257e3ead41fd4c422140c2437",
+      "size": 60740,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/b/bzip2-1.0.6-28.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/checkpolicy-2.9-1.el8.x86_64.rpm",
+      "sha256": "99298960b34764108eca6376d69cc572d1db3ef6a1720de07dfe388820d46318",
+      "size": 353512,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/c/checkpolicy-2.9-1.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/cmake-3.26.5-2.el8.x86_64.rpm",
+      "sha256": "3ffcaf1e3c42ec7dedb2a39c060ccabde3caf47d469c7a8616c1d9c185444b3b",
+      "size": 14286556,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/c/cmake-3.26.5-2.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/cmake-data-3.26.5-2.el8.noarch.rpm",
+      "sha256": "c9e57f4de28822e6c85bce0c640ba0fcad0fbec348811681dda45d0cd3c95636",
+      "size": 1995352,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/c/cmake-data-3.26.5-2.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/cmake-filesystem-3.26.5-2.el8.x86_64.rpm",
+      "sha256": "fcf37474b4db9fb53173a9c40aaa261eb76d8c07c703b8e5a6524f60ce20e656",
+      "size": 44948,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/c/cmake-filesystem-3.26.5-2.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/cmake-rpm-macros-3.26.5-2.el8.noarch.rpm",
+      "sha256": "26013614c3877a8671ee7341a46b0ab3cf7ada6c73f602496e5d51bc3620a78f",
+      "size": 44048,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/c/cmake-rpm-macros-3.26.5-2.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/emacs-filesystem-26.1-15.el8_10.noarch.rpm",
+      "sha256": "206c53ad11e5c2d26e959af4af07ba78fd4f67a6dbc8624ba90d1030f41aaf23",
+      "size": 71432,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/e/emacs-filesystem-26.1-15.el8_10.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/environment-modules-4.5.2-4.el8.x86_64.rpm",
+      "sha256": "e2721f84efd0785d8f507998b27ab12903e3c3d0150b846e3b019ec5e52d006d",
+      "size": 430864,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/e/environment-modules-4.5.2-4.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/gcc-toolset-15-binutils-2.44-3.el8.x86_64.rpm",
+      "sha256": "ca3677cb920aa8375b3926fea8179aa35e40510bda6a00e57dfd7aef00348b04",
+      "size": 7335656,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/g/gcc-toolset-15-binutils-2.44-3.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/gcc-toolset-15-gcc-15.2.1-7.1.el8_10.x86_64.rpm",
+      "sha256": "84a370699a90db689ae59c526f9240ad7ded35e2ef40aa53ea108986ecce9c75",
+      "size": 58032828,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/g/gcc-toolset-15-gcc-15.2.1-7.1.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/gcc-toolset-15-gcc-c++-15.2.1-7.1.el8_10.x86_64.rpm",
+      "sha256": "cc06115ce374c9ded2d1a3c71192fa448a61f2c01cef9e6eb2e063f8a76f81ed",
+      "size": 17630676,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/g/gcc-toolset-15-gcc-c++-15.2.1-7.1.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/gcc-toolset-15-libstdc++-devel-15.2.1-7.1.el8_10.x86_64.rpm",
+      "sha256": "81ac93b8c94a226191459991b97007a2fa1137b8893ec4a3d0d13a0cb70b2809",
+      "size": 4464888,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/g/gcc-toolset-15-libstdc++-devel-15.2.1-7.1.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/gcc-toolset-15-runtime-15.0-9.el8_10.x86_64.rpm",
+      "sha256": "990310b3e73023cec31669f2a34c981692ec4f3cc8c701716c1b737a038b4c84",
+      "size": 27028,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/g/gcc-toolset-15-runtime-15.0-9.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/gettext-0.19.8.1-17.el8.x86_64.rpm",
+      "sha256": "a797ddfcee732000b4e68ecffd7c50ef7cefe51af92246c01e248ab98c3ae3a7",
+      "size": 1114400,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/g/gettext-0.19.8.1-17.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/gettext-libs-0.19.8.1-17.el8.x86_64.rpm",
+      "sha256": "558bb32c2c9116a5aa14a745462972f0b8769118a6524aca2ab72bbde863b479",
+      "size": 316252,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/g/gettext-libs-0.19.8.1-17.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/git-2.43.7-1.el8_10.x86_64.rpm",
+      "sha256": "449c2f62f6570989ae6eec11dc37b55c382d55b6d7d6efeca27f5a6ae591074e",
+      "size": 93784,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/g/git-2.43.7-1.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/git-core-2.43.7-1.el8_10.x86_64.rpm",
+      "sha256": "e5ccf94ac50d48148c8a9f9b5f0b7db69fa0092943e300e65315cb7351acfa3f",
+      "size": 11629996,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/g/git-core-2.43.7-1.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/git-core-doc-2.43.7-1.el8_10.noarch.rpm",
+      "sha256": "6d1b881f8e7b738106eb46359dc17af601bff63b04cd0ff0924b98457f6f038b",
+      "size": 3215328,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/g/git-core-doc-2.43.7-1.el8_10.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/glibc-devel-2.28-251.el8_10.40.x86_64.rpm",
+      "sha256": "a362e73867c2151cdf19f6fe2fdc520d9b3414b9f922eac3de708669411c7e67",
+      "size": 93112,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/g/glibc-devel-2.28-251.el8_10.40.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/glibc-headers-2.28-251.el8_10.40.x86_64.rpm",
+      "sha256": "137c4b4bb4074fca3c51bb64f81b193557efd5f0e4aab9dafa88049c136b78da",
+      "size": 507792,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/g/glibc-headers-2.28-251.el8_10.40.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/gperf-3.1-5.el8.x86_64.rpm",
+      "sha256": "5c22357061e38c55ce8f5411eb3660d5a3ef806021a3b5226a8b300ceca6d4e5",
+      "size": 414376,
+      "metadataLocations": [
+        "https://pit.mirror.jurassicinnovations.com/rocky/8.10/PowerTools/x86_64/os/Packages/g/gperf-3.1-5.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/groff-base-1.22.3-18.el8.x86_64.rpm",
+      "sha256": "0dc4e1db26d990a5ce2cc354b74cd93364dfccba7ef45cd87741dcba9a2111a0",
+      "size": 1063940,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/g/groff-base-1.22.3-18.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/jansson-2.14-1.el8.x86_64.rpm",
+      "sha256": "ec4abca99b96acd29c05cb39c5eb15c7e01827c5e8aeda51f24bc8f93869cd20",
+      "size": 47432,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/j/jansson-2.14-1.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/jq-1.6-12.el8_10.x86_64.rpm",
+      "sha256": "5083c27faa7c8d6351333d02e8f6dbc8991b8ef3c872eecd392cef22e394f773",
+      "size": 207868,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/j/jq-1.6-12.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/kernel-headers-4.18.0-553.168.1.el8_10.x86_64.rpm",
+      "sha256": "d180497a5b92e9f9ffa1f686afa94f9fae42cbaab02706709b3599f898ab9283",
+      "size": 12559804,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/k/kernel-headers-4.18.0-553.168.1.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/keyutils-libs-devel-1.5.10-9.el8.x86_64.rpm",
+      "sha256": "fb29a6347fefd64bd276f37a7fd7e6bbea545648f6f07ad15f0acd94e8988b99",
+      "size": 48092,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/k/keyutils-libs-devel-1.5.10-9.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/krb5-devel-1.18.2-34.el8_10.x86_64.rpm",
+      "sha256": "cf32cb2e3004ab95d2a7d2dab8692583f5bc330641a562bea981dc129b32131a",
+      "size": 575944,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/k/krb5-devel-1.18.2-34.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/less-530-3.el8_10.x86_64.rpm",
+      "sha256": "2f847e766214535e598d71765a153f0e83dafbb30a2b2ad6146e6fdb4077c835",
+      "size": 167068,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/less-530-3.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/libcom_err-devel-1.45.6-7.el8_10.x86_64.rpm",
+      "sha256": "a792d7f7b3cb6bd532c8581e86d68c62b8e84a91ae8cbd0ae95ebe47b27686a1",
+      "size": 38804,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libcom_err-devel-1.45.6-7.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/libcroco-0.6.12-4.el8_2.1.x86_64.rpm",
+      "sha256": "2278152c40bd3053c1dbc8dbd00dd59883cd839dcc8c11738bbe26cc520d246f",
+      "size": 114212,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libcroco-0.6.12-4.el8_2.1.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/libcurl-devel-7.61.1-34.el8_10.13.x86_64.rpm",
+      "sha256": "dcea219e949331a8145b343144fe610dd7cac822de28e6967ada9f7fc8161b2a",
+      "size": 856536,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libcurl-devel-7.61.1-34.el8_10.13.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/libedit-3.1-23.20170329cvs.el8.x86_64.rpm",
+      "sha256": "fd5937ab58c0ee5baf0cf57143bf0d36ff13df73fdc28ebfcbb55cea86c53838",
+      "size": 104008,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libedit-3.1-23.20170329cvs.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/libgomp-8.5.0-28.el8_10.x86_64.rpm",
+      "sha256": "8869d50ff57a3e973edb5346e42ee961a607dfefd782b97d4db844f33b8dbb8d",
+      "size": 212804,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libgomp-8.5.0-28.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/libkadm5-1.18.2-34.el8_10.x86_64.rpm",
+      "sha256": "eb560d7608d8d88ecc8402e19a280292af5d421636157f11e4af1e11ad33905a",
+      "size": 192876,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libkadm5-1.18.2-34.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/libmpc-1.1.0-9.1.el8.x86_64.rpm",
+      "sha256": "4fbf751702394211896af9f253ad2f38c80f603e007a7c9ed2b9c8e5d97f2f95",
+      "size": 61316,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/l/libmpc-1.1.0-9.1.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/libpipeline-1.5.0-2.el8.x86_64.rpm",
+      "sha256": "407b3f41ebb271e49b9654fba6035ea2ad94ec1ff3480cc97b8bff85e3c9e8ea",
+      "size": 54484,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libpipeline-1.5.0-2.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/libpkgconf-1.4.2-1.el8.x86_64.rpm",
+      "sha256": "b57ad460a1037ebd1a49c66f72464d2635821912df29308f003e95d5cc071ccc",
+      "size": 34392,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libpkgconf-1.4.2-1.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/libselinux-devel-2.9-11.el8_10.x86_64.rpm",
+      "sha256": "39387cec3b2a47f1d81b7bdbe804d265414d82ef381c9b01031cf28559bedc2d",
+      "size": 204308,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libselinux-devel-2.9-11.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/libselinux-utils-2.9-11.el8_10.x86_64.rpm",
+      "sha256": "af50ab49c5ed8db1c5ec78db2d1722e563f48f7df8bc8c07ba7065fb55f0b63f",
+      "size": 248140,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libselinux-utils-2.9-11.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/libsepol-devel-2.9-3.el8.x86_64.rpm",
+      "sha256": "400722a407b15af596c530a7d7f83c429e2577337e56ca93c711ad94ca6155e6",
+      "size": 87924,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libsepol-devel-2.9-3.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/libuv-1.41.1-2.el8_10.x86_64.rpm",
+      "sha256": "0a6ef593bb74686e07ac69b4d42fe1d96ec35dcbd7590c17094474549b52af09",
+      "size": 158964,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/l/libuv-1.41.1-2.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/libverto-devel-0.3.2-2.el8.x86_64.rpm",
+      "sha256": "85586f38601b774aecc92dd4120d3ea30a3ebd76a6230d9d837b9a5568f8f683",
+      "size": 17360,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libverto-devel-0.3.2-2.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/libxcrypt-devel-4.1.1-6.el8.x86_64.rpm",
+      "sha256": "71242b7ce34cbadc0eb117e4608887ddd64236e7e808fb593f9b3d7cccdcbc40",
+      "size": 24716,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/l/libxcrypt-devel-4.1.1-6.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/m4-1.4.18-7.el8.x86_64.rpm",
+      "sha256": "d7881a93d82deb52eaf09ef9c71260050206e0c674a72dfa75d07ed9bcdcb489",
+      "size": 226028,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/m/m4-1.4.18-7.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/make-4.2.1-11.el8.x86_64.rpm",
+      "sha256": "4395686eb6662d9ce01e699cb55f34911f41fe6168437d47dc2c6f7738facb82",
+      "size": 508612,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/m/make-4.2.1-11.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/man-db-2.7.6.1-18.el8.x86_64.rpm",
+      "sha256": "8037a0a1e22a3558f4d1ed8d1fff0daba12f79bfb3935885957624e53def1c96",
+      "size": 907128,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/m/man-db-2.7.6.1-18.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/mpdecimal-2.5.1-3.el8.x86_64.rpm",
+      "sha256": "a8028c4e486e0df3c43a76a5dfef8089b8bd100b8a44c554ebbb8c860e197144",
+      "size": 94084,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/m/mpdecimal-2.5.1-3.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/nasm-2.15.03-3.el8.x86_64.rpm",
+      "sha256": "d28a16bdb76f372feecc0365ad71fefc14196c4b54421c0fe46133495509f972",
+      "size": 404828,
+      "metadataLocations": [
+        "https://pit.mirror.jurassicinnovations.com/rocky/8.10/PowerTools/x86_64/os/Packages/n/nasm-2.15.03-3.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/ncurses-6.1-10.20180224.el8.x86_64.rpm",
+      "sha256": "79e3d9ee3649713d81627308c76e487b6986e19cc6fafcb94d398a059796c31f",
+      "size": 395252,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/n/ncurses-6.1-10.20180224.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/oniguruma-6.8.2-3.el8.x86_64.rpm",
+      "sha256": "661946d2a100b128b7cefce61029fd514a8e472a8cbcfec5c5085d4f0e13bbbc",
+      "size": 191496,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/o/oniguruma-6.8.2-3.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/openssh-8.0p1-33.el8_10.x86_64.rpm",
+      "sha256": "faf1d334bb6b08ff0534b334b35d73e7e14d43075ed98a6312c78fc04f252f22",
+      "size": 514932,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/o/openssh-8.0p1-33.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/openssh-clients-8.0p1-33.el8_10.x86_64.rpm",
+      "sha256": "1b6e96e8fdcb7b303a8b800eb0a5b173241af0be17bbfa16efad8dde5173ff97",
+      "size": 717484,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/o/openssh-clients-8.0p1-33.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/openssl-devel-1.1.1k-17.el8_10.x86_64.rpm",
+      "sha256": "82d2063cc47022150ce82700f9a4c649589d76851dfd36372c36be7a41a26264",
+      "size": 2443360,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/o/openssl-devel-1.1.1k-17.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/patch-2.7.6-11.el8.x86_64.rpm",
+      "sha256": "2a9c37c04fdb645c14de1a32eb344cdc53f29c2da8c75267264f4b632630163b",
+      "size": 140216,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/patch-2.7.6-11.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/pcre2-devel-10.32-3.el8_6.x86_64.rpm",
+      "sha256": "d58c0c401b375e10407d9fcbebe8679e80b2516b7f908d6449918b7cb5438a8b",
+      "size": 618252,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/pcre2-devel-10.32-3.el8_6.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/pcre2-utf16-10.32-3.el8_6.x86_64.rpm",
+      "sha256": "c511a9117b37286f7ebd254274183db7767b0236aec16dffbd3f804817e6530e",
+      "size": 233384,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/pcre2-utf16-10.32-3.el8_6.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/pcre2-utf32-10.32-3.el8_6.x86_64.rpm",
+      "sha256": "1719080d13216247dae9316172cc19084bc72d380b2200a9ade012c10eb53ab1",
+      "size": 224656,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/pcre2-utf32-10.32-3.el8_6.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-Carp-1.42-396.el8.noarch.rpm",
+      "sha256": "d92465d16df1dd535e1d94ce8680cb90fc9f5af8ff1c6c6b7b411ddca7246e80",
+      "size": 29776,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-Carp-1.42-396.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-Data-Dumper-2.167-399.el8.x86_64.rpm",
+      "sha256": "09c3eea16f9843bfc86340cea0ada1d23f31c6d498ebff9e5c63fbbee6d9a136",
+      "size": 58268,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-Data-Dumper-2.167-399.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-Digest-1.17-395.el8.noarch.rpm",
+      "sha256": "bc6ecd0d2d3139ffbc4d85e917f58f550ddbcc4d122bd5160a34394d9ad1cf4c",
+      "size": 26448,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-Digest-1.17-395.el8.noarch.rpm",
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/p/perl-Digest-1.17-395.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-Digest-MD5-2.55-396.el8.x86_64.rpm",
+      "sha256": "1a337cfd633158edd2a49377b43363eefa8ca4af541cd48ef1c6018cc0047fc1",
+      "size": 36764,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-Digest-MD5-2.55-396.el8.x86_64.rpm",
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/p/perl-Digest-MD5-2.55-396.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-Encode-2.97-3.el8.x86_64.rpm",
+      "sha256": "80dc3a156a630b74695b0ebcfc9d23c81ea48ac6ac737dd417af2f08bc89437e",
+      "size": 1544068,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-Encode-2.97-3.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-Errno-1.28-423.el8_10.1.x86_64.rpm",
+      "sha256": "82d1c788489d8125a623259380c1bf76318494efe603478d203bafcf3c2c87a9",
+      "size": 77628,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-Errno-1.28-423.el8_10.1.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-Error-0.17025-2.el8.noarch.rpm",
+      "sha256": "ff40f354180347ac8eddc3a8a303be23bf376639f5c1c6216acc30cb3bffbaa7",
+      "size": 45988,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/p/perl-Error-0.17025-2.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-Exporter-5.72-396.el8.noarch.rpm",
+      "sha256": "8b284465f5989ea57358b07f5b51aefc88c9dd0d8cfef1cb5926e029611e8df6",
+      "size": 33664,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-Exporter-5.72-396.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-File-Path-2.15-2.el8.noarch.rpm",
+      "sha256": "c6286d5cf079a3a30452dc39c7b600cf35fe2b7e9aeae0ed4a4277c7314852fc",
+      "size": 37876,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-File-Path-2.15-2.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-File-Temp-0.230.600-1.el8.noarch.rpm",
+      "sha256": "88cac7b73525e603c47fbf8a80a6666d6905071785e5e628df85051ffda17280",
+      "size": 62996,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-File-Temp-0.230.600-1.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-Getopt-Long-2.50-4.el8.noarch.rpm",
+      "sha256": "6445ff7f8d206c7d98b947963225dfab1c91ad947e01a2e87f7af56e1a00553a",
+      "size": 63308,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-Getopt-Long-2.50-4.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-Git-2.43.7-1.el8_10.noarch.rpm",
+      "sha256": "d092a7a749c6aceb0b714dbebddda7abbb9b25e4c9f3837d66b396c9a1347202",
+      "size": 80060,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/p/perl-Git-2.43.7-1.el8_10.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-HTTP-Tiny-0.074-3.el8.noarch.rpm",
+      "sha256": "ce9e9ec3f33a863a4821fb6fdc872c1cef1f1fae0b63ded1bee3ea25bdd25e7f",
+      "size": 58936,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-HTTP-Tiny-0.074-3.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-IO-1.38-423.el8_10.1.x86_64.rpm",
+      "sha256": "dcdd49066677807e4112c85c616942c853f6f2824b43bef396dbcb40dd8e01b6",
+      "size": 144788,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-IO-1.38-423.el8_10.1.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-IO-Socket-IP-0.39-5.el8.noarch.rpm",
+      "sha256": "1d165c42a43fa1a32ce7e988cce88a9846cc54f5fd986d056557768cd57762b4",
+      "size": 46788,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-IO-Socket-IP-0.39-5.el8.noarch.rpm",
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/p/perl-IO-Socket-IP-0.39-5.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-IO-Socket-SSL-2.066-4.module+el8.9.0+1517+e71a7a62.noarch.rpm",
+      "sha256": "76592f32ad3a6e29bdfdbd54a75da1e1602eafcce2dad1e48574d2153664a0d9",
+      "size": 303718,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/p/perl-IO-Socket-SSL-2.066-4.module+el8.9.0+1517+e71a7a62.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-MIME-Base64-3.15-396.el8.x86_64.rpm",
+      "sha256": "82d0838648209cb59e0ecc0442563ef2b07cf33d61ab1edfd83299597e608456",
+      "size": 30296,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-MIME-Base64-3.15-396.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-Mozilla-CA-20160104-7.module+el8.9.0+1521+0101edce.noarch.rpm",
+      "sha256": "4674971dd7c42ed4cf2439b993c037fdc0f9eedd79e5719d44b11dfb7a6fedc4",
+      "size": 14619,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/p/perl-Mozilla-CA-20160104-7.module+el8.9.0+1521+0101edce.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-Net-SSLeay-1.88-2.module+el8.9.0+1517+e71a7a62.x86_64.rpm",
+      "sha256": "cce46a58b7ca6bb5dfadd3b38c5adefe5d5aa9d09836cb73b77750961a092f96",
+      "size": 387154,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/p/perl-Net-SSLeay-1.88-2.module+el8.9.0+1517+e71a7a62.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-PathTools-3.74-1.el8.x86_64.rpm",
+      "sha256": "24ea4147e9bdbf365c3e8ee10ddf931415c878f79163d7924770aec93c3187f1",
+      "size": 91060,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-PathTools-3.74-1.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-Pod-Escapes-1.07-395.el8.noarch.rpm",
+      "sha256": "cb5f816932030a3321de6de8009ede04b9b0ba011e2b4ac0444b45340c7331b1",
+      "size": 19824,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-Pod-Escapes-1.07-395.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-Pod-Perldoc-3.28-396.el8.noarch.rpm",
+      "sha256": "59bf89a6d70b6b69b3446f9c238b86ea72aa8f0971e9ad23a4cd071f19641130",
+      "size": 87380,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-Pod-Perldoc-3.28-396.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-Pod-Simple-3.35-395.el8.noarch.rpm",
+      "sha256": "8eb98201f6a088702561c8e346193d17e4c8bd677c297a0f3411316b3924cb6f",
+      "size": 216996,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-Pod-Simple-3.35-395.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-Pod-Usage-1.69-395.el8.noarch.rpm",
+      "sha256": "018e49a58a9281b709e69e3009ac5f34c3db436ea80052972b84c00ffd013c1c",
+      "size": 34104,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-Pod-Usage-1.69-395.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-Scalar-List-Utils-1.49-2.el8.x86_64.rpm",
+      "sha256": "5f9e4f7131eb903e928217fdac8bfad1422dbaca86f0fc931eb3663fffdeb4db",
+      "size": 68252,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-Scalar-List-Utils-1.49-2.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-Socket-2.027-3.el8.x86_64.rpm",
+      "sha256": "210f9c20fc35f0db23cc285fe01d48337951f38610e954cefd1bb75bb01a10b2",
+      "size": 59068,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-Socket-2.027-3.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-Storable-3.11-3.el8.x86_64.rpm",
+      "sha256": "cb4e02f3289b4edf2e5c8223d0eab939a25e1e28bf572a78c083866d66070675",
+      "size": 99440,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-Storable-3.11-3.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-Term-ANSIColor-4.06-396.el8.noarch.rpm",
+      "sha256": "58c7773045a89aaa4f00f0f54f27b44d461123993af3afd0e62a8a8b8a8e3e94",
+      "size": 45960,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-Term-ANSIColor-4.06-396.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-Term-Cap-1.17-395.el8.noarch.rpm",
+      "sha256": "0dd27729a427588d9f68f5f7acdffab2d0efce35f59ba428167da5a29a51138f",
+      "size": 22256,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-Term-Cap-1.17-395.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-TermReadKey-2.37-7.el8.x86_64.rpm",
+      "sha256": "ce69a9191f064058cc6479090c2cc6546e4118fe657044e0362132578dd8efc6",
+      "size": 40068,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/p/perl-TermReadKey-2.37-7.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-Text-ParseWords-3.30-395.el8.noarch.rpm",
+      "sha256": "0315887bfe70bebb33988cb25dea642f21b85782a4c63f512752e91d15af2877",
+      "size": 17252,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-Text-ParseWords-3.30-395.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-Text-Tabs+Wrap-2013.0523-395.el8.noarch.rpm",
+      "sha256": "65792c67f44bad6f100791b95b055bfe59ebc6a310aeb7d37698513fd91e0aed",
+      "size": 23524,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-Text-Tabs+Wrap-2013.0523-395.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-Thread-Queue-3.13-1.el8.noarch.rpm",
+      "sha256": "32c1922189747e386c25a2ca19da3dc4edccbf117959a65a103f315ba9ab961f",
+      "size": 23312,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/p/perl-Thread-Queue-3.13-1.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-Time-Local-1.280-1.el8.noarch.rpm",
+      "sha256": "a8051efdea7ee8c3613c1dd41d001061ac3c00760f04f475427184bad38f24a3",
+      "size": 33172,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-Time-Local-1.280-1.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-URI-1.73-3.el8.noarch.rpm",
+      "sha256": "98c39f4bb378291ba800a57ec3d6b44f85e5960c67eb9c5242515fa43d902048",
+      "size": 117820,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-URI-1.73-3.el8.noarch.rpm",
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/p/perl-URI-1.73-3.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-Unicode-Normalize-1.25-396.el8.x86_64.rpm",
+      "sha256": "6bbb8f3152cb1dacf1ceda11504436451ce67701f265df3106e248adf7817795",
+      "size": 82616,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-Unicode-Normalize-1.25-396.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-constant-1.33-396.el8.noarch.rpm",
+      "sha256": "33ce1ec3ef7015a750656f08b1e366e6d0b94616f9a39d1986a2016ec992923b",
+      "size": 24796,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-constant-1.33-396.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-interpreter-5.26.3-423.el8_10.1.x86_64.rpm",
+      "sha256": "53f0490672039493f0399e43480665f08815672454a8be29ca72f8c72310ac4a",
+      "size": 6620992,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-interpreter-5.26.3-423.el8_10.1.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-libnet-3.11-3.el8.noarch.rpm",
+      "sha256": "99bcae4c5cbecb5e660d19a6589c59ab103250458300959565b961919181803f",
+      "size": 122664,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-libnet-3.11-3.el8.noarch.rpm",
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/p/perl-libnet-3.11-3.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-libs-5.26.3-423.el8_10.1.x86_64.rpm",
+      "sha256": "a029c47b9c4488c1b21e33a37a1c22f7b0520582be96bf38c3ec916e6f3c52ee",
+      "size": 1632636,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-libs-5.26.3-423.el8_10.1.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-macros-5.26.3-423.el8_10.1.x86_64.rpm",
+      "sha256": "69b8ead6a49343482a897764e5f95279318828c6b873a80af3d8d55edc98f6c8",
+      "size": 73528,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-macros-5.26.3-423.el8_10.1.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-parent-0.237-1.el8.noarch.rpm",
+      "sha256": "bd309bb9b94d841e0240b8a8bd5742064a039857c1e648d475bc3681be80c738",
+      "size": 19356,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-parent-0.237-1.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-podlators-4.11-1.el8.noarch.rpm",
+      "sha256": "24067026003e450e87c9e74ae555d0c237f3a42bbdcf970b542509f8993193bc",
+      "size": 119660,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-podlators-4.11-1.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-threads-2.21-2.el8.x86_64.rpm",
+      "sha256": "cd75cb664d80b0afe3d538db5d67aec078c8322a8c51b2bbb270d42693d9379a",
+      "size": 61568,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-threads-2.21-2.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/perl-threads-shared-1.58-2.el8.x86_64.rpm",
+      "sha256": "be787ebce79bba1f2f06335f7dae5484d4f85c00483c5673a129dbba488ff3c1",
+      "size": 47728,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/perl-threads-shared-1.58-2.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/pkgconf-1.4.2-1.el8.x86_64.rpm",
+      "sha256": "e3820365e6a5007b1f1981d685ea4a0e1d15ab140259609d9f3f6239732f1d72",
+      "size": 37820,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/pkgconf-1.4.2-1.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/pkgconf-m4-1.4.2-1.el8.noarch.rpm",
+      "sha256": "89d0641195e4a4d2678b525771613037d2e4949ba6be2400aa74780bec5191a8",
+      "size": 16392,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/pkgconf-m4-1.4.2-1.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/pkgconf-pkg-config-1.4.2-1.el8.x86_64.rpm",
+      "sha256": "4d69087e73b4f9ce9c130ddc68e550613edfbd8653564f4cd738a8333eb7a065",
+      "size": 14504,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/pkgconf-pkg-config-1.4.2-1.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/policycoreutils-2.9-26.el8_10.x86_64.rpm",
+      "sha256": "6c3780f9d232b391a8ba8dd786ee96b2acf90cb66b4c9239d037e2b28d1c47c2",
+      "size": 384864,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/policycoreutils-2.9-26.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/policycoreutils-python-utils-2.9-26.el8_10.noarch.rpm",
+      "sha256": "577785eb952f28c76f6030da12f02d5d7baa50cb9f0b28ae9418fe631bab244f",
+      "size": 259008,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/policycoreutils-python-utils-2.9-26.el8_10.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/python3-audit-3.1.2-1.el8_10.1.x86_64.rpm",
+      "sha256": "942383978e758be9f348317c47d26d226d6671f2989370067ff9aa9776dba4ec",
+      "size": 89240,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/python3-audit-3.1.2-1.el8_10.1.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/python3-libselinux-2.9-11.el8_10.x86_64.rpm",
+      "sha256": "7f8f2ab0a431fd3a83b237e80aa813dafe06a090ec1147b283d9d1eff89bdf99",
+      "size": 289452,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/python3-libselinux-2.9-11.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/python3-libsemanage-2.9-12.el8_10.x86_64.rpm",
+      "sha256": "cf7590aa84bda1cb35d1bff5703619a5226500be001f7c8a72594250090be779",
+      "size": 130688,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/python3-libsemanage-2.9-12.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/python3-policycoreutils-2.9-26.el8_10.noarch.rpm",
+      "sha256": "308d52bb26f2ee3993cd0b8c766351b9ff7d7609d9e873fb531e4e6197f6bba6",
+      "size": 2360400,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/python3-policycoreutils-2.9-26.el8_10.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/python3-setools-4.3.0-5.el8.x86_64.rpm",
+      "sha256": "895f6d4f343779d1488e03d5f0c8b7793700f3e42a4d78f4c96bcd4a129966e7",
+      "size": 641120,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/p/python3-setools-4.3.0-5.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/python3.12-3.12.14-1.el8_10.x86_64.rpm",
+      "sha256": "5e525575a8d85a5df629a2792fcfcb1bf858adb38ef0c37def0d9ce4d6ece097",
+      "size": 32028,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/p/python3.12-3.12.14-1.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/python3.12-libs-3.12.14-1.el8_10.x86_64.rpm",
+      "sha256": "3d2a65cfdf5e434e43a4deeca907b173c531fe67e877ece49a2f541906468738",
+      "size": 10517920,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/p/python3.12-libs-3.12.14-1.el8_10.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/python3.12-pip-23.2.1-4.el8.noarch.rpm",
+      "sha256": "4dc7523ee3ab9bf311cadbbe604ce872076282fa163401d87d42da58f73835b6",
+      "size": 3363060,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/p/python3.12-pip-23.2.1-4.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/python3.12-pip-wheel-23.2.1-4.el8.noarch.rpm",
+      "sha256": "6baef4dc0e5e56b70610b3184f7f616f59f465c39bf5d586da39fb2a4acb443b",
+      "size": 1538684,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/p/python3.12-pip-wheel-23.2.1-4.el8.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/python3.12-setuptools-68.2.2-5.el8_10.noarch.rpm",
+      "sha256": "812004fe8e55bf556b8d73f4499d0c3b81f9efd584ae9dc98f4a604bed45d4ce",
+      "size": 1802272,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/p/python3.12-setuptools-68.2.2-5.el8_10.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/scl-utils-2.0.2-16.el8.x86_64.rpm",
+      "sha256": "5a05fb3002de373c0199aea106e5e34287909f8007fc4ee1e18f673739634188",
+      "size": 47296,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/s/scl-utils-2.0.2-16.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/tcl-8.6.8-2.el8.x86_64.rpm",
+      "sha256": "bd8f5e7b51055628b64fdfa3b8e369e4b9c71d9b6db2b3ca0e197fc265572dc8",
+      "size": 1163372,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/t/tcl-8.6.8-2.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/vim-filesystem-8.0.1763-31.el8_10.7.noarch.rpm",
+      "sha256": "909ac48b58d697f787f293a9596c356b67e4489e03ad7f640388a90824f0fb87",
+      "size": 54032,
+      "metadataLocations": [
+        "https://rocky-linux-us-south1.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/AppStream/x86_64/os/Packages/v/vim-filesystem-8.0.1763-31.el8_10.7.noarch.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/xz-5.2.4-4.el8_6.x86_64.rpm",
+      "sha256": "d9d31369563ebeb477fe0d66ebd23afee0699de3e75e36fb818627602bc0aec4",
+      "size": 155764,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/x/xz-5.2.4-4.el8_6.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    },
+    {
+      "stage": "build-dependencies",
+      "file": "historical/build-dependencies/zlib-devel-1.2.11-26.el8.x86_64.rpm",
+      "sha256": "0150c9915495849bbb1ac9d9d12a1716ce39c9a6dbbd458eb038ba8c218027cf",
+      "size": 59012,
+      "metadataLocations": [
+        "https://rocky-linux-us-east5.production.gcp.mirrors.ctrliq.cloud/pub/rocky//8.10/BaseOS/x86_64/os/Packages/z/zlib-devel-1.2.11-26.el8.x86_64.rpm"
+      ],
+      "urlEvidence": "dnf cached repository metadata; not a historical download URL attestation"
+    }
+  ],
+  "scope": "Exact historical NEVRA re-acquisition. Upstream build did not attest original RPM byte hashes."
+}

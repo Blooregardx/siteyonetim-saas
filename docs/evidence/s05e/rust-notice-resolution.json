@@ -1,0 +1,383 @@
+{
+  "schemaVersion": 1,
+  "scope": "Nine S05-D unresolved records only; historical evidence unchanged",
+  "records": [
+    {
+      "name": "block",
+      "version": "0.1.6",
+      "decision": "BLOCKED",
+      "cargoChecksum": "0d8c1fef690941d3e7788d328517591fecc684c084084702d6ff1641e993699a",
+      "archiveFile": "block-0.1.6.crate",
+      "archiveSha256": "0d8c1fef690941d3e7788d328517591fecc684c084084702d6ff1641e993699a",
+      "licenseDeclaration": "MIT",
+      "compileLinkScope": "UNKNOWN \u2014 this acquisition does not add compilation/link evidence",
+      "legalApproval": false,
+      "reason": "No sufficient original applicable notice yet verified",
+      "inspectedTextEvidence": [
+        {
+          "member": "block-0.1.6/Cargo.toml",
+          "sha256": "24df2f33b48c9e756a4f864f882c1ab07a159b6c2b790f45af2e8162499b6719",
+          "licenseLines": [
+            "license = \"MIT\""
+          ]
+        }
+      ]
+    },
+    {
+      "name": "difflib",
+      "version": "0.4.0",
+      "decision": "BLOCKED",
+      "cargoChecksum": "6184e33543162437515c2e2b48714794e37845ec9851711914eec9d308f6ebe8",
+      "archiveFile": "difflib-0.4.0.crate",
+      "archiveSha256": "6184e33543162437515c2e2b48714794e37845ec9851711914eec9d308f6ebe8",
+      "licenseDeclaration": "MIT",
+      "compileLinkScope": "UNKNOWN \u2014 this acquisition does not add compilation/link evidence",
+      "legalApproval": false,
+      "reason": "No sufficient original applicable notice yet verified",
+      "inspectedTextEvidence": [
+        {
+          "member": "difflib-0.4.0/Cargo.toml.orig",
+          "sha256": "d541194ec9dbbc63a8e371fcb0a20af128671a73bea0c4734e17e43ed6956e50",
+          "licenseLines": [
+            "license = \"MIT\""
+          ]
+        },
+        {
+          "member": "difflib-0.4.0/Cargo.toml",
+          "sha256": "aed0597f7b6014324ef49cb6502e541e45c35335785345d7d7a5cac46cc64c0f",
+          "licenseLines": [
+            "license = \"MIT\""
+          ]
+        }
+      ]
+    },
+    {
+      "name": "malloc_buf",
+      "version": "0.0.6",
+      "decision": "BLOCKED",
+      "cargoChecksum": "62bb907fe88d54d8d9ce32a3cceab4218ed2f6b7d35617cafe9adf84e43919cb",
+      "archiveFile": "malloc_buf-0.0.6.crate",
+      "archiveSha256": "62bb907fe88d54d8d9ce32a3cceab4218ed2f6b7d35617cafe9adf84e43919cb",
+      "licenseDeclaration": "MIT",
+      "compileLinkScope": "UNKNOWN \u2014 this acquisition does not add compilation/link evidence",
+      "legalApproval": false,
+      "reason": "No sufficient original applicable notice yet verified",
+      "inspectedTextEvidence": [
+        {
+          "member": "malloc_buf-0.0.6/Cargo.toml",
+          "sha256": "d87624d9d117489bd49dbaeb70077a0721e00ac2a76eb371faec818a92da5661",
+          "licenseLines": [
+            "license = \"MIT\""
+          ]
+        }
+      ]
+    },
+    {
+      "name": "objc-foundation",
+      "version": "0.1.1",
+      "decision": "BLOCKED",
+      "cargoChecksum": "1add1b659e36c9607c7aab864a76c7a4c2760cd0cd2e120f3fb8b952c7e22bf9",
+      "archiveFile": "objc-foundation-0.1.1.crate",
+      "archiveSha256": "1add1b659e36c9607c7aab864a76c7a4c2760cd0cd2e120f3fb8b952c7e22bf9",
+      "licenseDeclaration": "MIT",
+      "compileLinkScope": "UNKNOWN \u2014 this acquisition does not add compilation/link evidence",
+      "legalApproval": false,
+      "reason": "No sufficient original applicable notice yet verified",
+      "inspectedTextEvidence": [
+        {
+          "member": "objc-foundation-0.1.1/Cargo.toml",
+          "sha256": "27c851b122617cfbf263603bcf05d637aaddbc87c12c2e78f8f91675739928a8",
+          "licenseLines": [
+            "license = \"MIT\""
+          ]
+        }
+      ]
+    },
+    {
+      "name": "objc_id",
+      "version": "0.1.1",
+      "decision": "BLOCKED",
+      "cargoChecksum": "c92d4ddb4bd7b50d730c215ff871754d0da6b2178849f8a2a2ab69712d0c073b",
+      "archiveFile": "objc_id-0.1.1.crate",
+      "archiveSha256": "c92d4ddb4bd7b50d730c215ff871754d0da6b2178849f8a2a2ab69712d0c073b",
+      "licenseDeclaration": "MIT",
+      "compileLinkScope": "UNKNOWN \u2014 this acquisition does not add compilation/link evidence",
+      "legalApproval": false,
+      "reason": "No sufficient original applicable notice yet verified",
+      "inspectedTextEvidence": [
+        {
+          "member": "objc_id-0.1.1/Cargo.toml.orig",
+          "sha256": "8a219f5fdd84d366e0298e543d5a0c537d68ff2aceb0459698c047c4ffc082dc",
+          "licenseLines": [
+            "license = \"MIT\""
+          ]
+        },
+        {
+          "member": "objc_id-0.1.1/Cargo.toml",
+          "sha256": "7d444ee847aa9b34cbe6cddeaf4001b28be86b28c2855e09c2e7fbfa797a66dd",
+          "licenseLines": [
+            "license = \"MIT\""
+          ]
+        }
+      ]
+    },
+    {
+      "name": "r-efi",
+      "version": "5.3.0",
+      "decision": "PASS",
+      "cargoChecksum": "69cdb34c158ceb288df11e18b4bd39de994f6657d83847bdffdbd7f346754b0f",
+      "archiveFile": "r-efi-5.3.0.crate",
+      "archiveSha256": "69cdb34c158ceb288df11e18b4bd39de994f6657d83847bdffdbd7f346754b0f",
+      "licenseDeclaration": "MIT OR Apache-2.0 OR LGPL-2.1-or-later",
+      "compileLinkScope": "UNKNOWN \u2014 this acquisition does not add compilation/link evidence",
+      "legalApproval": false,
+      "reason": "Full original AUTHORS-MIT grant/disclaimer and copyright match exact crate; filename-only gap resolved",
+      "inspectedTextEvidence": [
+        {
+          "member": "r-efi-5.3.0/AUTHORS",
+          "sha256": "ff92bed461f50338dd703a9ba9aee496a425957873df1d91192776e4bdf5dda7",
+          "licenseLines": [
+            "LICENSE:",
+            "        This project is triple-licensed under the MIT License, the Apache",
+            "        License, Version 2.0, and the GNU Lesser General Public License,",
+            "        Permission is hereby granted, free of charge, to any person obtaining a",
+            "        distribute, sublicense, and/or sell copies of the Software, and to",
+            "        The above copyright notice and this permission notice shall be included",
+            "        IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY",
+            "        Licensed under the Apache License, Version 2.0 (the \"License\");",
+            "        you may not use this file except in compliance with the License.",
+            "        You may obtain a copy of the License at",
+            "                http://www.apache.org/licenses/LICENSE-2.0",
+            "        distributed under the License is distributed on an \"AS IS\" BASIS,",
+            "        See the License for the specific language governing permissions and",
+            "        limitations under the License.",
+            "        under the terms of the GNU Lesser General Public License as published",
+            "        by the Free Software Foundation; either version 2.1 of the License, or",
+            "        Lesser General Public License for more details.",
+            "        You should have received a copy of the GNU Lesser General Public License",
+            "        along with this program; If not, see <http://www.gnu.org/licenses/>.",
+            "COPYRIGHT: (ordered alphabetically)",
+            "        Copyright (C) 2017-2023 Red Hat, Inc.",
+            "        Copyright (C) 2019-2023 Microsoft Corporation",
+            "        Copyright (C) 2022-2023 David Rheinsberg"
+          ]
+        },
+        {
+          "member": "r-efi-5.3.0/Cargo.toml",
+          "sha256": "dba000c0173b09b1e3b69afa42a715b5ab64355e6502ce6d9d1767c7845cf402",
+          "licenseLines": [
+            "license = \"MIT OR Apache-2.0 OR LGPL-2.1-or-later\""
+          ]
+        },
+        {
+          "member": "r-efi-5.3.0/Cargo.toml.orig",
+          "sha256": "57b6d9b9a1b6524f6b4dcc1dd24970ac03e6959786a6cfedaec9ba52878b4d3e",
+          "licenseLines": [
+            "license = \"MIT OR Apache-2.0 OR LGPL-2.1-or-later\""
+          ]
+        },
+        {
+          "member": "r-efi-5.3.0/NEWS.md",
+          "sha256": "a8924309f9b5d8cf035b12ee47d4afe99c3ca57ea60061239263ac0b0e2161ba",
+          "licenseLines": [
+            "        * Adopt the MIT license as 3rd licensing option to allow for"
+          ]
+        },
+        {
+          "member": "r-efi-5.3.0/README.md",
+          "sha256": "420f65fec3ba2e89d49da51b222d2881d26959037a7b7d3794143db4bd4627b1",
+          "licenseLines": [
+            "### License:"
+          ]
+        }
+      ],
+      "notice": {
+        "file": "r-efi-5.3.0-AUTHORS.txt",
+        "member": "r-efi-5.3.0/AUTHORS",
+        "sha256": "ff92bed461f50338dd703a9ba9aee496a425957873df1d91192776e4bdf5dda7"
+      },
+      "selectedLicenseForNoticeReview": "MIT"
+    },
+    {
+      "name": "r-efi",
+      "version": "6.0.0",
+      "decision": "PASS",
+      "cargoChecksum": "f8dcc9c7d52a811697d2151c701e0d08956f92b0e24136cf4cf27b57a6a0d9bf",
+      "archiveFile": "r-efi-6.0.0.crate",
+      "archiveSha256": "f8dcc9c7d52a811697d2151c701e0d08956f92b0e24136cf4cf27b57a6a0d9bf",
+      "licenseDeclaration": "MIT OR Apache-2.0 OR LGPL-2.1-or-later",
+      "compileLinkScope": "UNKNOWN \u2014 this acquisition does not add compilation/link evidence",
+      "legalApproval": false,
+      "reason": "Full original AUTHORS-MIT grant/disclaimer and copyright match exact crate; filename-only gap resolved",
+      "inspectedTextEvidence": [
+        {
+          "member": "r-efi-6.0.0/AUTHORS",
+          "sha256": "d027e91dbc9cdbb2f1190068e498bd6b61cff022b6a032b191021ba658d96111",
+          "licenseLines": [
+            "LICENSE:",
+            "        This project is triple-licensed under the MIT License, the Apache",
+            "        License, Version 2.0, and the GNU Lesser General Public License,",
+            "        Permission is hereby granted, free of charge, to any person obtaining a",
+            "        distribute, sublicense, and/or sell copies of the Software, and to",
+            "        The above copyright notice and this permission notice shall be included",
+            "        IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY",
+            "        Licensed under the Apache License, Version 2.0 (the \"License\");",
+            "        you may not use this file except in compliance with the License.",
+            "        You may obtain a copy of the License at",
+            "                http://www.apache.org/licenses/LICENSE-2.0",
+            "        distributed under the License is distributed on an \"AS IS\" BASIS,",
+            "        See the License for the specific language governing permissions and",
+            "        limitations under the License.",
+            "        under the terms of the GNU Lesser General Public License as published",
+            "        by the Free Software Foundation; either version 2.1 of the License, or",
+            "        Lesser General Public License for more details.",
+            "        You should have received a copy of the GNU Lesser General Public License",
+            "        along with this program; If not, see <http://www.gnu.org/licenses/>.",
+            "COPYRIGHT: (ordered alphabetically)",
+            "        Copyright (C) 2017-2023 Red Hat, Inc.",
+            "        Copyright (C) 2019-2023 Microsoft Corporation",
+            "        Copyright (C) 2022-2023 David Rheinsberg"
+          ]
+        },
+        {
+          "member": "r-efi-6.0.0/Cargo.toml",
+          "sha256": "a021f9fb0645cc5de5770cf7f41594c1deff4b388eca933b289752aa52666829",
+          "licenseLines": [
+            "license = \"MIT OR Apache-2.0 OR LGPL-2.1-or-later\""
+          ]
+        },
+        {
+          "member": "r-efi-6.0.0/Cargo.toml.orig",
+          "sha256": "b8e89c393831c2161b6d390bd40422910ac34f02903ad39edd85ec38d4513fef",
+          "licenseLines": [
+            "license = \"MIT OR Apache-2.0 OR LGPL-2.1-or-later\""
+          ]
+        },
+        {
+          "member": "r-efi-6.0.0/NEWS.md",
+          "sha256": "e815ccc6fb453ed64d5e1b73fb4ca6204a3f8f65e3ab0afdb86da65b5209e33d",
+          "licenseLines": [
+            "        * Adopt the MIT license as 3rd licensing option to allow for"
+          ]
+        },
+        {
+          "member": "r-efi-6.0.0/README.md",
+          "sha256": "420f65fec3ba2e89d49da51b222d2881d26959037a7b7d3794143db4bd4627b1",
+          "licenseLines": [
+            "### License:"
+          ]
+        }
+      ],
+      "notice": {
+        "file": "r-efi-6.0.0-AUTHORS.txt",
+        "member": "r-efi-6.0.0/AUTHORS",
+        "sha256": "d027e91dbc9cdbb2f1190068e498bd6b61cff022b6a032b191021ba658d96111"
+      },
+      "selectedLicenseForNoticeReview": "MIT"
+    },
+    {
+      "name": "winapi-i686-pc-windows-gnu",
+      "version": "0.4.0",
+      "decision": "BLOCKED",
+      "cargoChecksum": "ac3b87c63620426dd9b991e5ce0329eff545bccbbb34f3be09ff6fb6ab51b7b6",
+      "archiveFile": "winapi-i686-pc-windows-gnu-0.4.0.crate",
+      "archiveSha256": "ac3b87c63620426dd9b991e5ce0329eff545bccbbb34f3be09ff6fb6ab51b7b6",
+      "licenseDeclaration": "MIT/Apache-2.0",
+      "compileLinkScope": "UNKNOWN \u2014 this acquisition does not add compilation/link evidence",
+      "legalApproval": false,
+      "reason": "No sufficient original applicable notice yet verified",
+      "inspectedTextEvidence": [
+        {
+          "member": "winapi-i686-pc-windows-gnu-0.4.0/Cargo.toml.orig",
+          "sha256": "5257d6f5283ab052b6af51f578a8c74e14c31deb53a7c6cd9e6fa16135d57eb3",
+          "licenseLines": [
+            "license = \"MIT/Apache-2.0\""
+          ]
+        },
+        {
+          "member": "winapi-i686-pc-windows-gnu-0.4.0/Cargo.toml",
+          "sha256": "9652222664ffc7e2a26fdcdebdce0917a455b39d8fbcbf451bf0b011a3067bf7",
+          "licenseLines": [
+            "license = \"MIT/Apache-2.0\""
+          ]
+        },
+        {
+          "member": "winapi-i686-pc-windows-gnu-0.4.0/build.rs",
+          "sha256": "4344ce95f51197e1377429cd9ef7a8e3f97d39546776705857991f2f9416f545",
+          "licenseLines": [
+            "// Copyright \u00a9 2016-2018 winapi-rs developers",
+            "// Licensed under the Apache License, Version 2.0",
+            "// <LICENSE-APACHE or http://www.apache.org/licenses/LICENSE-2.0> or the MIT license",
+            "// <LICENSE-MIT or http://opensource.org/licenses/MIT>, at your option."
+          ]
+        },
+        {
+          "member": "winapi-i686-pc-windows-gnu-0.4.0/src/lib.rs",
+          "sha256": "79212a91f610f8a77aa6ed4cc77212c2531eeb35630388bf07323cc328fcca42",
+          "licenseLines": [
+            "// Copyright \u00a9 2016 winapi-rs developers",
+            "// Licensed under the Apache License, Version 2.0",
+            "// <LICENSE-APACHE or http://www.apache.org/licenses/LICENSE-2.0> or the MIT license",
+            "// <LICENSE-MIT or http://opensource.org/licenses/MIT>, at your option."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "winapi-x86_64-pc-windows-gnu",
+      "version": "0.4.0",
+      "decision": "BLOCKED",
+      "cargoChecksum": "712e227841d057c1ee1cd2fb22fa7e5a5461ae8e48fa2ca79ec42cfc1931183f",
+      "archiveFile": "winapi-x86_64-pc-windows-gnu-0.4.0.crate",
+      "archiveSha256": "712e227841d057c1ee1cd2fb22fa7e5a5461ae8e48fa2ca79ec42cfc1931183f",
+      "licenseDeclaration": "MIT/Apache-2.0",
+      "compileLinkScope": "UNKNOWN \u2014 this acquisition does not add compilation/link evidence",
+      "legalApproval": false,
+      "reason": "No sufficient original applicable notice yet verified",
+      "inspectedTextEvidence": [
+        {
+          "member": "winapi-x86_64-pc-windows-gnu-0.4.0/Cargo.toml.orig",
+          "sha256": "d158846cdb1259d606bfbeb050e386484cb18f14db41478568114eddb76ec43e",
+          "licenseLines": [
+            "license = \"MIT/Apache-2.0\""
+          ]
+        },
+        {
+          "member": "winapi-x86_64-pc-windows-gnu-0.4.0/Cargo.toml",
+          "sha256": "a88605a11db5def9b6cf73398e83b3edb72228cb43ea935729fac5cd33cec22c",
+          "licenseLines": [
+            "license = \"MIT/Apache-2.0\""
+          ]
+        },
+        {
+          "member": "winapi-x86_64-pc-windows-gnu-0.4.0/build.rs",
+          "sha256": "b4ab421e1dc98159dd4440813cdaf7d9ea98278324bc6118d0f7cf378933f371",
+          "licenseLines": [
+            "// Copyright \u00a9 2016-2018 winapi-rs developers",
+            "// Licensed under the Apache License, Version 2.0",
+            "// <LICENSE-APACHE or http://www.apache.org/licenses/LICENSE-2.0> or the MIT license",
+            "// <LICENSE-MIT or http://opensource.org/licenses/MIT>, at your option."
+          ]
+        },
+        {
+          "member": "winapi-x86_64-pc-windows-gnu-0.4.0/src/lib.rs",
+          "sha256": "79212a91f610f8a77aa6ed4cc77212c2531eeb35630388bf07323cc328fcca42",
+          "licenseLines": [
+            "// Copyright \u00a9 2016 winapi-rs developers",
+            "// Licensed under the Apache License, Version 2.0",
+            "// <LICENSE-APACHE or http://www.apache.org/licenses/LICENSE-2.0> or the MIT license",
+            "// <LICENSE-MIT or http://opensource.org/licenses/MIT>, at your option."
+          ]
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "PASS": 2,
+    "BLOCKED": 7,
+    "UNKNOWN": 0,
+    "NOT_APPLICABLE": 0
+  },
+  "legalApproval": false,
+  "binaryDistributionReadiness": "BLOCKED"
+}

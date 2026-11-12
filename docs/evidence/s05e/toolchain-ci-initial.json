@@ -1,0 +1,34 @@
+{
+  "runId": 43188044093,
+  "jobId": 131080073227,
+  "headSha": "70344fcdcdbe54a1c12a0c67257635e3ea2ead81",
+  "conclusion": "failure",
+  "failure": "BuildKit FROM existed in builder cache but not daemon local image store; base-inspection failed. Signature, offline sysroot build and cargo-c bootstrap steps succeeded.",
+  "artifactId": 13930125997,
+  "artifactSha256": "8bebf0f4aa24e754ed552d4e04ab470b043e89a667870e43b1b8f93fb3c84af8",
+  "artifactBytes": 58007980,
+  "artifactExpiresAt": "2026-11-26T09:10:12Z",
+  "artifactDigestPhysicallyVerified": true,
+  "independentCargoCExecutableHashes": {
+    "cargo-capi": {
+      "sha256": "433bfe34b58633a045299df2f4494824c8c0a94c2f9fae43a68bfabe93c9b083",
+      "matchesCloud": true
+    },
+    "cargo-cbuild": {
+      "sha256": "cb447812a81fd2af5a2b395aea2f38b5a8ee06712ca5b42c2a045aa7e81d1c27",
+      "matchesCloud": true
+    },
+    "cargo-cinstall": {
+      "sha256": "735b965375005ef8ebdf3bae693a5209caf5a30c5f68747a7938b94330328d48",
+      "matchesCloud": true
+    },
+    "cargo-ctest": {
+      "sha256": "8bb3ba55c878d4b50112bbe34d1a68b8b30361a03e9cd2bea62fdf4c9ab57af4",
+      "matchesCloud": true
+    }
+  },
+  "allCargoCExecutablesMatchCloud": true,
+  "fullToolchainMeasurement": "BLOCKED in this run; not inferred from metadata",
+  "legalApproval": false,
+  "binaryDistributionReadiness": "BLOCKED"
+}

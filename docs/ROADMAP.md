@@ -1,5 +1,23 @@
 # Güncel yol haritası
 
+## S05-E — Full native teknik kanıt ve kalan S05-F işleri
+
+[Full native rebuild](S05E-NATIVE-REBUILD-VALIDATION.md) CONTROL/MODIFIED ve
+gerçek addon/maps kanıtlarını tamamladı; original bundle byte reproduction
+ve tam type ABI iddiası yoktur. Static dosyalar ve exact native notice'lar
+korunur. Dokuz açık Rust kaydında source/notice edinimi 2 PASS / 7 BLOCKED.
+
+S05-F önerisi: debug/type ABI kapsamını tamamlamak; actual compile/link graph'ı
+üzerinden tüm uygulanabilir Rust/per-file notice kararlarını kapatmak; tam
+source/relink paketini gerçek runtime/migration digest/SBOM'larıyla bağlamak;
+gerçek paketi iki bağımsız kalıcı kopyadan restore etmek. Node/Debian/Prisma
+kaynak ve notice yükümlülükleri ayrıca kapanmalıdır. Bakımcı/hukuki inceleme
+source sunumu yöntemi/süresini ve kurulum/değiştirme haklarını değerlendirmelidir.
+
+BINARY DISTRIBUTION READINESS: BLOCKED. Alpha.2 PUBLISHED — UNCHANGED;
+bağımsız insan kurulum testi PENDING HUMAN VALIDATION. Yeni release, tag,
+registry push, merge veya deploy yapılmaz. Tarihsel S05-A/B/C/D kayıtları korunur.
+
 ## S04-D güncel durum — kaynak dağıtımı adayı
 
 GitHub denetiminde [PR #20](https://github.com/Blooregardx/siteyonetim-saas/pull/20) (S03-F), [#21](https://github.com/Blooregardx/siteyonetim-saas/pull/21) (S04-A), [#22](https://github.com/Blooregardx/siteyonetim-saas/pull/22) (S04-B) ve [#23](https://github.com/Blooregardx/siteyonetim-saas/pull/23) main'e **birleşmiş** durumdadır (3 Kasım 2026). Aşağıdaki önceki taslak/açık ifadeleri yalnız tarihsel kontrol noktalarıdır; güncel PR durumu değildir.

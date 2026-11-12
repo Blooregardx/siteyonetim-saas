@@ -1,0 +1,11 @@
+{
+  "workspaceFile": "/workspace/s05e-native-work/s05e-development-relink-candidate.tar.gz",
+  "sha256": "abcd910ea882a1c733949ac177723a1d84bf5cefc5deb7f36425cab865cfe2a4",
+  "size": 64937820,
+  "regularFileCount": 821,
+  "scope": "DEVELOPMENT ONLY \u2014 incomplete relinking review artifact, not corresponding-source offer",
+  "retention": "Codex workspace lifetime unspecified; not durable source provision",
+  "sourcePackageReadiness": "BLOCKED \u2014 no complete source-index/OCI/SBOM package",
+  "legalApproval": false,
+  "binaryDistributionReadiness": "BLOCKED"
+}

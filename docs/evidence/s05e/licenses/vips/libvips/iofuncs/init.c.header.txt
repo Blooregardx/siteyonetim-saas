@@ -1,0 +1,74 @@
+/* Start up the world of vips.
+ *
+ * 7/1/04 JC
+ *	- 1st version
+ * 7/6/05
+ * 	- g_type_init() too, so we can use gobject
+ * 2/9/06
+ * 	- also set g_prg_name() and load plugins
+ * 8/12/06
+ * 	- add liboil support
+ * 5/2/07
+ * 	- stop a loop if we're called recursively during VIPS startup ... it
+ * 	  can happen if (for example) vips_guess_prefix() fails and tries to
+ * 	  i18n an error message (thanks Christian)
+ * 8/6/07
+ * 	- just warn if plugins fail to load correctly: too annoying to have
+ * 	  VIPS refuse to start because of a dodgy plugin
+ * 7/11/07
+ * 	- progress feedback option
+ * 5/8/08
+ * 	- load plugins from libdir/vips-x.x
+ * 5/10/09
+ * 	- gtkdoc comments
+ * 14/3/10
+ * 	- init image and region before we start, we need all types to be fully
+ * 	  constructed before we go parallel
+ * 18/9/16
+ * 	- call _setmaxstdio() on win32
+ * 4/8/17
+ * 	- hide warnings is VIPS_WARNING is set
+ * 20/4/19
+ * 	- set the min stack, if we can
+ * 17/9/21
+ * 	- don't use atexit for cleanup, it's too unreliable ... users should
+ * 	  call vips_shutdown explicitly if they want a clean exit, though a
+ * 	  dirty exit is fine
+ */
+
+/*
+
+	This file is part of VIPS.
+
+	VIPS is free software; you can redistribute it and/or modify
+	it under the terms of the GNU Lesser General Public License as published by
+	the Free Software Foundation; either version 2 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU Lesser General Public License for more details.
+
+	You should have received a copy of the GNU Lesser General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+	02110-1301  USA
+
+ */
+
+/*
+
+	These files are distributed with VIPS - http://www.vips.ecs.soton.ac.uk
+
+ */
+
+/*
+#define DEBUG
+ */
+
+/* pthread_setattr_default_np() is a non-portable GNU extension.
+ */
+#define _GNU_SOURCE
+
+#ifdef HAVE_CONFIG_H
