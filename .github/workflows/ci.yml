@@ -50,7 +50,7 @@ jobs:
       - run: npx prisma migrate diff --from-url "$DATABASE_URL" --to-schema-datamodel prisma/schema.prisma --exit-code
       - run: python3 scripts/verify-source-readiness.py
       - name: Read-only preflight and source archive policy tests
-        run: python3 scripts/test_preflight.py && python3 scripts/test_distribution.py && python3 scripts/test_distribution_gate.py && python3 scripts/test_libvips_sources.py && python3 scripts/test_libvips_rebuild.py && python3 scripts/test_s05d_evidence.py
+        run: python3 scripts/test_preflight.py && python3 scripts/test_distribution.py && python3 scripts/test_distribution_gate.py && python3 scripts/test_libvips_sources.py && python3 scripts/test_libvips_rebuild.py && python3 scripts/test_s05d_evidence.py && python3 scripts/test_s05e_protocol.py && python3 scripts/test_s05e_native.py
       - run: npm audit --audit-level=high
       - run: npm audit --omit=dev
       - run: npm run test:integration
@@ -107,6 +107,103 @@ jobs:
         with:
           name: s05a-image-evidence-${{ github.event_name }}
           path: ${{ runner.temp }}/s05a-evidence
+          if-no-files-found: error
+
+  s05e-source-seed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      bundle: ${{ steps.seed.outputs.bundle }}
+      index: ${{ steps.seed.outputs.index }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - id: seed
+        name: Create only a small explicitly synthetic source protocol fixture
+        run: python3 scripts/s05e_restore_drill.py seed --out "$RUNNER_TEMP/seed"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: s05e-synthetic-seed-${{ github.event_name }}
+          path: ${{ runner.temp }}/seed
+          retention-days: 14
+          if-no-files-found: error
+
+  s05e-source-copy:
+    needs: s05e-source-seed
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      matrix:
+        copy: [a, b]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: s05e-synthetic-seed-${{ github.event_name }}
+          path: ${{ runner.temp }}/seed
+      - name: Verify and retain own copy on a separate runner filesystem
+        env:
+          BUNDLE: ${{ needs.s05e-source-seed.outputs.bundle }}
+          INDEX: ${{ needs.s05e-source-seed.outputs.index }}
+          COPY: ${{ matrix.copy }}
+        run: python3 scripts/s05e_restore_drill.py copy --source "$RUNNER_TEMP/seed" --out "$RUNNER_TEMP/copy" --bundle "$BUNDLE" --index "$INDEX" --label "$COPY"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: s05e-copy-${{ matrix.copy }}-${{ github.event_name }}
+          path: ${{ runner.temp }}/copy
+          retention-days: 14
+          if-no-files-found: error
+
+  s05e-source-restore:
+    needs: [s05e-source-seed, s05e-source-copy]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      matrix:
+        copy: [a, b]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: s05e-copy-${{ matrix.copy }}-${{ github.event_name }}
+          path: ${{ runner.temp }}/own-copy
+      - name: Restore own copy without seed, second copy or network fallback
+        env:
+          BUNDLE: ${{ needs.s05e-source-seed.outputs.bundle }}
+          INDEX: ${{ needs.s05e-source-seed.outputs.index }}
+          COPY: ${{ matrix.copy }}
+        run: python3 scripts/s05e_restore_drill.py restore --source "$RUNNER_TEMP/own-copy" --out "$RUNNER_TEMP/restore" --bundle "$BUNDLE" --index "$INDEX" --label "$COPY"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: s05e-restore-${{ matrix.copy }}-${{ github.event_name }}
+          path: ${{ runner.temp }}/restore/restore-receipt.json
+          retention-days: 14
+          if-no-files-found: error
+
+  s05e-source-protocol:
+    needs: s05e-source-restore
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          pattern: s05e-restore-*-${{ github.event_name }}
+          path: ${{ runner.temp }}/receipts
+      - name: Check two independent runner copies and two fresh restore runners
+        run: python3 scripts/s05e_restore_drill.py summary --out "$RUNNER_TEMP/receipts"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: s05e-restore-summary-${{ github.event_name }}
+          path: ${{ runner.temp }}/receipts/restore-summary.json
+          retention-days: 14
           if-no-files-found: error
 
   rebuild-experiment:

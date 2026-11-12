@@ -36,6 +36,9 @@ def evaluate(sbom, image_id, evidence):
             rebuild_manifest=Path(__file__).resolve().parents[1]/'docs/evidence/s05c/rebuild-manifest.json'
             full_manifest=Path(__file__).resolve().parents[1]/'docs/evidence/s05d/full-bundle-rebuild.json'
             native_trace={'s05dFullBundleManifestSha256':hashlib.sha256(full_manifest.read_bytes()).hexdigest() if full_manifest.is_file() else None,'s05dGeneralDistribution':'BLOCKED','s05cManifestSha256':hashlib.sha256(rebuild_manifest.read_bytes()).hexdigest() if rebuild_manifest.is_file() else None,'s05cGeneralDistribution':'BLOCKED','sourceManifest':'docs/evidence/s05b/libvips-source-manifest.json','sourceManifestSha256':hashlib.sha256(manifest.read_bytes()).hexdigest() if manifest.is_file() else None,'sourceDecision':'BLOCKED','maintainerApprovalRequired':True}
+            s05e=Path(__file__).resolve().parents[1]/'docs/evidence/s05e/full-rebuild.json'
+            native_trace.update(s05eFullNativeManifestSha256=hashlib.sha256(s05e.read_bytes()).hexdigest() if s05e.is_file() else None,
+                                s05eGeneralDistribution='BLOCKED',s05eTechnicalEvidenceDoesNotGrantLegalApproval=True)
         rows.append({**native_trace,'id': key, 'name': item.get('name'), 'version': item.get('version'), 'status': status})
     return {'imageID': image_id, 'readiness': 'PASS' if all(r['status'] == 'PASS' for r in rows) else 'BLOCKED', 'counts': {s: sum(r['status'] == s for r in rows) for s in ['PASS', 'BLOCKED', 'UNKNOWN', 'NOT_APPLICABLE']}, 'components': rows}
 

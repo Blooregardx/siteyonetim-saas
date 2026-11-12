@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "baseManifestDigest": "sha256:ae0813ccb1bb83f4e0220acdd1539f52831517de334368e960824db7e37ee210",
+  "preparedConfigDigest": "sha256:aed21cee6ad62af8dcfe3fbe8abb19f0158f3b0f2847e63978e866c5f6953152",
+  "decision": "PARTIAL",
+  "historicalByteReproducibility": "NOT_PROVEN",
+  "historicalUpstreamPostUpdateCargoLock": "UNKNOWN; S05-D controlled lock used for new experiment",
+  "originalTransactionEvidence": "historical-transaction.json",
+  "rpmFiles": "historical-rpm-files.json",
+  "measuredToolsFile": "measured-tools.json",
+  "measuredToolsSha256": "834532aa6c2fbe9eb6340a14455c4abf69ee0e980f6ad2e7dc2c72c0566969a0",
+  "installedRpmsFile": "installed-rpms.tsv",
+  "installedRpmsSha256": "9dc5817af4124978b9db36829b78cd391dca377a8b43f00b37a4830cc4efbccf",
+  "cargoCBootstrap": {
+    "exitCode": 0,
+    "oomKilled": false,
+    "executables": [
+      {
+        "file": "cargo-c-historical-install/bin/cargo-capi",
+        "sha256": "433bfe34b58633a045299df2f4494824c8c0a94c2f9fae43a68bfabe93c9b083"
+      },
+      {
+        "file": "cargo-c-historical-install/bin/cargo-cbuild",
+        "sha256": "cb447812a81fd2af5a2b395aea2f38b5a8ee06712ca5b42c2a045aa7e81d1c27"
+      },
+      {
+        "file": "cargo-c-historical-install/bin/cargo-cinstall",
+        "sha256": "735b965375005ef8ebdf3bae693a5209caf5a30c5f68747a7938b94330328d48"
+      },
+      {
+        "file": "cargo-c-historical-install/bin/cargo-ctest",
+        "sha256": "8bb3ba55c878d4b50112bbe34d1a68b8b30361a03e9cd2bea62fdf4c9ab57af4"
+      }
+    ],
+    "version": "cargo-c 0.10.25+cargo-0.99.0",
+    "versionExitCode": 0
+  },
+  "legalApproval": false,
+  "binaryDistributionReadiness": "BLOCKED"
+}
