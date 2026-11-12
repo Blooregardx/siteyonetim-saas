@@ -14,7 +14,7 @@ import tomllib
 import urllib.error
 import urllib.parse
 import urllib.request
-from verify_s05d_evidence import LOCK_SHA, RECIPE, TARGET, RUST_MANIFEST_SHA, digest, safe_members, lock_changes, mpl_header
+from verify_s05d_evidence import LOCK_SHA, RECIPE, TARGET, RUST_MANIFEST_SHA, digest, safe_members, lock_changes, mpl_header, archive_members, compiled_shape
 
 ROOT=Path(__file__).resolve().parents[1]
 BASE='node:24-bookworm-slim@sha256:c86ecead9e55a5210ac1727de38a4ca840bf03dcaf34dc9749addbf383b1920c'
@@ -206,11 +206,11 @@ def capture_cargo(root):
                     if not local.is_file() or local.is_symlink() or not local.resolve().is_relative_to(root.resolve()):continue
                     if retained+local.stat().st_size>32*1024**2:continue
                     data=local.read_bytes()
-                    if not (data.startswith(b'!<arch>\n') or data.startswith(b'\x7fELF')):continue
+                    if not compiled_shape(data):continue
                     name='compiled-'+digest(data)+'.bin';(root/name).write_bytes(data);retained+=len(data)
-                    evidence.append({'file':name,'sha256':digest(data),'originalFilename':filename})
+                    evidence.append({'file':name,'sha256':digest(data),'originalFilename':filename,'archiveMembers':archive_members(data)})
                 if evidence:
-                    package['status']='COMPILED'
+                    package['status']='COMPILED';package['compiledFeatures']=message.get('features',[])
                     package['compilerEvidence']={'message':message,'files':evidence}
                     package['reason']='One compiler-artifact target physically retained; target kind may be build-script, not final library; not LINKED evidence'
 

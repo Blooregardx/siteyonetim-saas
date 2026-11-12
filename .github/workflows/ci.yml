@@ -162,8 +162,28 @@ jobs:
             docs/evidence/s05c/rust-source-manifest.json
           if-no-files-found: error
 
-  s05d-source-experiment:
+  s05d-change-scope:
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/codex/s05-d-')
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    outputs:
+      run: ${{ steps.scope.outputs.run }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+      - id: scope
+        run: |
+          if git diff --quiet HEAD^ HEAD -- scripts/collect_s05d_evidence.py scripts/verify_s05d_evidence.py scripts/test_s05d_evidence.py .github/workflows/ci.yml; then
+            echo 'run=false' >> "$GITHUB_OUTPUT"
+          else
+            echo 'run=true' >> "$GITHUB_OUTPUT"
+          fi
+
+  s05d-source-experiment:
+    needs: s05d-change-scope
+    if: needs.s05d-change-scope.outputs.run == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 25
     continue-on-error: true

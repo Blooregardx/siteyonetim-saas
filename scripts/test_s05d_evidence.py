@@ -128,6 +128,19 @@ class EvidenceTests(unittest.TestCase):
         self.assertEqual(v.verify_scope(scope,self.root)['scope'],'PARTIAL')
         scope['records'][0]['features']=['fake']
         with self.assertRaises(ValueError):v.verify_scope(scope,self.root)
+    def test_invalid_compiled_archive(self):
+        with self.assertRaises(ValueError):v.compiled_shape(b'!<arch>\n')
+        self.assertFalse(v.compiled_shape(b'\x7fELF'))
+    def test_archive_member_inventory(self):
+        payload=b'fixture'
+        header=b'fixture.o/'.ljust(16)+b'0'.ljust(12)+b'0'.ljust(6)+b'0'.ljust(6)+b'100644'.ljust(8)+str(len(payload)).encode().ljust(10)+bytes([96,10])
+        raw=b'!<arch>\n'+header+payload+b'\n'
+        self.assertTrue(v.compiled_shape(raw))
+        self.assertEqual(v.archive_members(raw)[0]['sha256'],v.digest(payload))
+    def test_fabricated_compiler_record_without_physical_metadata(self):
+        s={'schemaVersion':1,'target':v.TARGET,'records':[{'status':'COMPILED','packageId':'made-up','features':[]}],
+           'counts':{k:int(k=='COMPILED') for k in ['RESOLVED','COMPILED','LINKED — EVIDENCED','NOT SELECTED — EVIDENCED','UNKNOWN']}}
+        with self.assertRaises(ValueError):v.verify_scope(s,self.root)
     def test_fake_notice(self):
         archive=self.m['sources'][0]
         r={'archiveFile':archive['file'],'archiveSha256':archive['sha256'],'cargoChecksum':archive['sha256'],

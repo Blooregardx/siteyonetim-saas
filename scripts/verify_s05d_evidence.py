@@ -63,6 +63,30 @@ def safe_members(path, max_file=128*1024**2, max_total=512*1024**2, allow_intern
     return result
 
 
+def archive_members(data):
+    if not data.startswith(b'!<arch>\n'):
+        return []
+    pos=8;members=[]
+    while pos<len(data):
+        if pos+60>len(data) or data[pos+58:pos+60]!=bytes([96,10]):
+            raise ValueError('INVALID_AR_HEADER')
+        try:size=int(data[pos+48:pos+58])
+        except ValueError:raise ValueError('INVALID_AR_SIZE')
+        if size<0 or pos+60+size>len(data):raise ValueError('TRUNCATED_AR')
+        raw=data[pos+60:pos+60+size]
+        members.append({'name':data[pos:pos+16].decode('ascii').strip(),'size':size,'sha256':digest(raw)})
+        if len(members)>10000:raise ValueError('AR_MEMBER_LIMIT')
+        pos+=60+size+(size%2)
+    if pos!=len(data) or not members:raise ValueError('EMPTY_AR')
+    return members
+
+
+def compiled_shape(data):
+    if data.startswith(b'!<arch>\n'):
+        return bool(archive_members(data))
+    return len(data)>=64 and data[:6]==b'\x7fELF\x02\x01' and int.from_bytes(data[18:20],'little')==62
+
+
 def lock_changes(before, after):
     def entries(data):
         return {(p['name'], p['version'], p.get('source', 'path')): p for p in tomllib.loads(data)['package']}
@@ -166,8 +190,10 @@ def verify_scope(scope, root=None):
                 raise ValueError('FAKE_COMPILER_ARTIFACT')
             for f in e['files']:
                 data=physical(root,f['file'],f['sha256']).read_bytes()
-                if f['originalFilename'] not in message['filenames'] or not data.startswith((b'!<arch>\n',b'\x7fELF')):
+                if f['originalFilename'] not in message['filenames'] or not compiled_shape(data):
                     raise ValueError('MISSING_COMPILED_BYTES')
+                if 'archiveMembers' in f and f['archiveMembers']!=archive_members(data):raise ValueError('AR_MEMBER_INVENTORY')
+            if r.get('compiledFeatures',message.get('features',[]))!=message.get('features',[]):raise ValueError('COMPILED_FEATURES')
         if r['status'] == 'RESOLVED' and (not r.get('packageId') or not isinstance(r.get('features'), list) or not scope.get('metadataSha256')):
             raise ValueError('RESOLUTION_FIELDS')
     return {'scope': 'PARTIAL' if resolved else 'BLOCKED', 'counts': counts,
