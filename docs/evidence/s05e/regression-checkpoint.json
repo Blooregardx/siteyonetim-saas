@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "headSha": "0667a125d4a518b103e72ec3546b5133ecfbbcde",
+  "scope": "Code/evidence regression checkpoint before final documentation-only delivery commit",
+  "push": {
+    "runId": 43199079238,
+    "url": "https://github.com/Blooregardx/siteyonetim-saas/actions/runs/43199079238",
+    "conclusion": "success"
+  },
+  "pullRequest": {
+    "runId": 43199090106,
+    "url": "https://github.com/Blooregardx/siteyonetim-saas/actions/runs/43199090106",
+    "conclusion": "success"
+  },
+  "checks": {
+    "eslint": "PASS",
+    "strictTypeScript": "PASS",
+    "unit": {
+      "passed": 25,
+      "failed": 0
+    },
+    "postgresIntegration": {
+      "passed": 36,
+      "failed": 0
+    },
+    "playwrightE2E": {
+      "passed": 19,
+      "failed": 0
+    },
+    "productionBuild": "PASS",
+    "prismaValidateGenerate": "PASS",
+    "migrationCount": 11,
+    "schemaDiff": "No difference detected",
+    "dashboardQueryPlan": "PASS",
+    "sourceArchivePreflight": "PASS",
+    "streamingBackup": "PASS",
+    "encryptedRecoverySeparateCluster": "PASS",
+    "selfhostCleanRestartPersistence": "PASS",
+    "failedMigrationWritersStopped": "PASS",
+    "s05aGateTests": 7,
+    "s05bSourceTests": 14,
+    "s05cRebuildTests": 31,
+    "s05dEvidenceTests": 33,
+    "s05eProtocolTests": 29,
+    "s05eNativeTests": 43,
+    "nodeNoticeElfTests": 3
+  },
+  "expectedSkips": [
+    "S05-C heavy experiment branch scope",
+    "S05-D change scope/heavy experiment branch scope"
+  ],
+  "legalApproval": false,
+  "binaryDistributionReadiness": "BLOCKED",
+  "independentInstallation": "PENDING HUMAN VALIDATION"
+}

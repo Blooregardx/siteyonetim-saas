@@ -11,7 +11,7 @@ migration/auth/tenant/finans/audit davranışları korunur. Merge/yayın/deploy 
 
 | Karar | Sonuç | Kanıt ve sınır |
 |---|---|---|
-| DEVELOPMENT | PARTIAL — son HEAD teslim CI kontrolü beklenir | Güncel push/PR sonuçları PR checks ve nihai teslim raporunda |
+| DEVELOPMENT | PASS — kod/regresyon checkpoint’i | 0667a12 push ve PR CI başarılı; son dokümantasyon HEAD’i teslimde ayrıca doğrulanır |
 | NATIVE TOOLCHAIN REPRODUCIBILITY | PASS — kontrollü tool/input kapsamı | [Bağımsız CI](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/43196106551): 17 tool ve 4 cargo-c hash eşleşti; historical image byte eşitliği değil |
 | FULL CONTROL/MODIFIED REBUILD | PASS | Tam native profil, aynı toolchain/38 archive yolu/366 compile command; farklı kaynak ve binary |
 | ABI/SHARP COMPATIBILITY | PARTIAL | Export/import ve gerçek native PNG/JPEG/SVG PASS; eksiksiz type ABI kanıtı yok |
@@ -175,8 +175,8 @@ iddiası yoktur. Statik LGPL yeniden bağlama girdileri bu yüzden PARTIAL'dır.
 
 [Yayın öncesi protokol](S05E-SOURCE-PROVISION-PROTOCOL.md) immutable OCI
 manifest/config/layer, gerçek binary bytes'ı, image SBOM'u, source/patch/notice,
-compiler/linker/relink girdilerini bağlar. Sentetik CI iki ayrı copy runner ve
-iki yeni restore runner kullanır; bozuk/kayıp kopya fallback olmadan reddedilir.
+compiler/linker/relink girdilerini bağlar. [Gerçek sentetik CI checkpoint’i](evidence/s05e/restore-checkpoint.json),
+ikisi copy ikisi restore olmak üzere dört farklı runner fingerprint’i doğrular; bozuk/kayıp kopya fallback olmadan reddedilir.
 Tek GitHub artifact backend'i, iki bağımsız kalıcı sağlayıcı veya uzun dönem
 source offer değildir. 14 günlük saklama ve source sunum yöntemi/süresi ayrı kalır.
 
@@ -191,6 +191,14 @@ Yeni .so'lar runtime/migration imajına eklenmedi. Toolchain config kimliği bir
 uygulama image/SBOM kimliği olarak kullanılmaz. Mevcut selfhost CI'ın gerçek
 imaj SBOM'ları ayrı kalır. Node/Debian, Prisma, diğer notice/source kapsamı,
 hukuki inceleme ve uzun dönem kaynak sunumu genel BLOCKED kapısını korur.
+
+[0667a12 regresyon checkpoint’i](evidence/s05e/regression-checkpoint.json):
+25 birim, 36 PostgreSQL entegrasyon, 19 Playwright E2E; lint/strict TypeScript,
+production build, Prisma generate/validate, 11 migration/schema diff, tenant/
+finans/audit güvenliği, query-plan, source archive/preflight, temiz selfhost,
+restart/kalıcılık, streaming/encrypted backup, ayrı cluster recovery ve migration
+hatasında writers-stopped başarılı. Push ve PR CI ayrı doğrulandı. S05-C/S05-D
+ağır işleri eski branch koşullarıyla atlandı; regresyon testleri çalıştı.
 
 Mevcut uygulama/selfhost/recovery ve S05-A/B/C/D regresyonları korunur. Yeni
 **72 S05-E testi**, gerçek pozitif/negatif native deneylerden ayrıdır. Son HEAD
