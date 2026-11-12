@@ -51,6 +51,10 @@ class NativeTests(unittest.TestCase):
         self.blocked.update(status='PASS',binaryDistributionReadiness='PASS')
         with self.assertRaises(ValueError):verify_outcome(self.blocked,self.root)
 
+    def test_filled_legal_approval_is_rejected(self):
+        self.blocked['legalApproval']=True
+        with self.assertRaisesRegex(ValueError,'LEGAL_APPROVAL'):verify_outcome(self.blocked,self.root)
+
     def test_build_claim_without_files(self):
         self.blocked.update(executed=True,status='PARTIAL',exitCode=0)
         with self.assertRaises(ValueError):verify_outcome(self.blocked,self.root)

@@ -12,6 +12,8 @@ def verify_outcome(record,root):
         raise ValueError('UNREVIEWED_FULL_COMPLIANCE_CLAIM')
     if record.get('binaryDistributionReadiness')!='BLOCKED':
         raise ValueError('GENERAL_DISTRIBUTION_MUST_REMAIN_BLOCKED')
+    if record.get('legalApproval',False) is not False:
+        raise ValueError('AUTOMATIC_LEGAL_APPROVAL_FORBIDDEN')
     if record.get('executed'):
         if record.get('recipeCommit')!='ebb95f8add54eee8bed840e3fb587e4cbec857d7' or record.get('sourceLockSha256')!=LOCK_SHA:
             raise ValueError('RECIPE_OR_LOCK')

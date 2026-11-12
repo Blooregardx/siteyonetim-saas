@@ -1,0 +1,16 @@
+{
+  "engineImageID": "sha256:ae0813ccb1bb83f4e0220acdd1539f52831517de334368e960824db7e37ee210",
+  "configDigest": "sha256:98ab72cce29f004554c86e88d6789b7f8d09fe90aee099ec56e9b71a2a7e406c",
+  "architecture": "amd64",
+  "os": "linux",
+  "rootfsDiffIDs": [
+    "sha256:09ad32fdf2848c9676fad3cbf219a704abb6f6743e8c3e5c95bf0ae3d61426a9",
+    "sha256:0f4a72ef67e5d2dc1f6c2540ff4a659f58e68727de33aa14e919eeb52f92493f"
+  ],
+  "engineDescriptor": {
+    "mediaType": "application/vnd.docker.distribution.manifest.list.v2+json",
+    "digest": "sha256:ae0813ccb1bb83f4e0220acdd1539f52831517de334368e960824db7e37ee210",
+    "size": 544
+  },
+  "scope": "Local engine reference bound to hashed docker-save config bytes; no registry push"
+}

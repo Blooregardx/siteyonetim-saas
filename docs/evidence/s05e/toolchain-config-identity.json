@@ -1,0 +1,21 @@
+{
+  "engineImageID": "sha256:aed21cee6ad62af8dcfe3fbe8abb19f0158f3b0f2847e63978e866c5f6953152",
+  "configDigest": "sha256:aed21cee6ad62af8dcfe3fbe8abb19f0158f3b0f2847e63978e866c5f6953152",
+  "architecture": "amd64",
+  "os": "linux",
+  "rootfsDiffIDs": [
+    "sha256:09ad32fdf2848c9676fad3cbf219a704abb6f6743e8c3e5c95bf0ae3d61426a9",
+    "sha256:0f4a72ef67e5d2dc1f6c2540ff4a659f58e68727de33aa14e919eeb52f92493f",
+    "sha256:36718a7149571dbdd48a9d6c7669702783c34cdf622090a4208f7c928b82c6e7",
+    "sha256:dbdb049b36279d4f90aa6f02747b909d39770a983fb27e9e359bbc1e7dd0a024",
+    "sha256:4e1fddadd153f9a69413f4d07f50d8652b9843e02360ba5e6554147115678685",
+    "sha256:1005a7c7d38cf50568491bf70c2a688bf377def55a22e8266c936ef6dcaf4ea0",
+    "sha256:1d878c5b5170ef3cf97dda8956f9d8e17bd8e3c4be349502764eaf92578f6292",
+    "sha256:df828d35da969250d188a936492141131f68fac7e3340daa8dec9d2908b1f88c",
+    "sha256:8ecdcb8c62fdf67a7a5953f5fa7436755161f652b7b99ec1ce744d5904ee0970",
+    "sha256:17b10a8c848993fac0a1e63019a8b77de3609d08b1db4cac9359825beb9c1b78",
+    "sha256:d5b81b6e27b24dae2a5fe6a232023275ce63d5f2f3e3ecd890d9a599ce91d920"
+  ],
+  "engineDescriptor": null,
+  "scope": "Local engine reference bound to hashed docker-save config bytes; no registry push"
+}

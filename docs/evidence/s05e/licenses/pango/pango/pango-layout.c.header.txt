@@ -1,0 +1,75 @@
+/* Pango
+ * pango-layout.c: High-level layout driver
+ *
+ * Copyright (C) 2000, 2001, 2006 Red Hat Software
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ */
+
+/**
+ * PangoLayout:
+ *
+ * A `PangoLayout` structure represents an entire paragraph of text.
+ *
+ * While complete access to the layout capabilities of Pango is provided
+ * using the detailed interfaces for itemization and shaping, using
+ * that functionality directly involves writing a fairly large amount
+ * of code. `PangoLayout` provides a high-level driver for formatting
+ * entire paragraphs of text at once. This includes paragraph-level
+ * functionality such as line breaking, justification, alignment and
+ * ellipsization.
+ *
+ * A `PangoLayout` is initialized with a `PangoContext`, UTF-8 string
+ * and set of attributes for that string. Once that is done, the set of
+ * formatted lines can be extracted from the object, the layout can be
+ * rendered, and conversion between logical character positions within
+ * the layout's text, and the physical position of the resulting glyphs
+ * can be made.
+ *
+ * There are a number of parameters to adjust the formatting of a
+ * `PangoLayout`. The following image shows adjustable parameters
+ * (on the left) and font metrics (on the right):
+ *
+ * <picture>
+ *   <source srcset="layout-dark.png" media="(prefers-color-scheme: dark)">
+ *   <img alt="Pango Layout Parameters" src="layout-light.png">
+ * </picture>
+ *
+ * The following images demonstrate the effect of alignment and
+ * justification on the layout of text:
+ *
+ * | | |
+ * | --- | --- |
+ * | ![align=left](align-left.png) | ![align=left, justify](align-left-justify.png) |
+ * | ![align=center](align-center.png) | ![align=center, justify](align-center-justify.png) |
+ * | ![align=right](align-right.png) | ![align=right, justify](align-right-justify.png) |
+ *
+ *
+ * It is possible, as well, to ignore the 2-D setup,
+ * and simply treat the results of a `PangoLayout` as a list of lines.
+ */
+
+/**
+ * PangoLayoutIter:
+ *
+ * A `PangoLayoutIter` can be used to iterate over the visual
+ * extents of a `PangoLayout`.
+ *
+ * To obtain a `PangoLayoutIter`, use [method@Pango.Layout.get_iter].
+ *
+ * The `PangoLayoutIter` structure is opaque, and has no user-visible fields.
+ */
+

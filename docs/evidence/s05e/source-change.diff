@@ -1,0 +1,9 @@
+--- control/init.c
++++ modified/init.c
+@@ -1360,3 +1360,6 @@
+ 	TerminateProcess(GetCurrentProcess(), ret);
+ #endif /*G_OS_WIN32*/
+ }
++
++/* S05-E: private retained marker, no public API or image algorithm change. */
++static const char s05e_native_rebuild_marker[] __attribute__((used, retain)) = "S05E_MODIFIED_SOURCE_EVIDENCE";

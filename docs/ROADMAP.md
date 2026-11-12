@@ -1,19 +1,22 @@
 # Güncel yol haritası
 
-## S05-E güncel DEVELOPMENT çalışması
+## S05-E — Full native teknik kanıt ve kalan S05-F işleri
 
-[Full native doğrulama](S05E-NATIVE-REBUILD-VALIDATION.md),
-[tekrar üretim](S05E-NATIVE-REBUILD-REPRODUCTION.md) ve
-[kaynak sunumu protokolü](S05E-SOURCE-PROVISION-PROTOCOL.md) eklendi.
-Özgün Rocky base digest ve 241 tarihsel RPM işlemi geri kazanıldı; 28 native
-kaynak yeniden doğrulandı. r-efi exact AUTHORS kanıtlarıyla dokuz açık Rust
-kaydından ikisi kaynak/bildirim edinimi bakımından PASS, yedisi BLOCKED.
-Native deney ve son HEAD CI sonuçları ayrıca değerlendirilir. İki runner
-kopyası/restore provası sentetiktir; kalıcı kaynak sunumu veya hukuki onay değildir.
-BINARY DISTRIBUTION READINESS: BLOCKED. Alpha.2 PUBLISHED — UNCHANGED.
-INDEPENDENT INSTALLATION: PENDING HUMAN VALIDATION. Tarihsel S05-A/B/C/D
-kanıtları aşağıda/depolarında korunur; bunlar yeni deneyin sonucu olarak kullanılmaz.
+[Full native rebuild](S05E-NATIVE-REBUILD-VALIDATION.md) CONTROL/MODIFIED ve
+gerçek addon/maps kanıtlarını tamamladı; original bundle byte reproduction
+ve tam type ABI iddiası yoktur. Static dosyalar ve exact native notice'lar
+korunur. Dokuz açık Rust kaydında source/notice edinimi 2 PASS / 7 BLOCKED.
 
+S05-F önerisi: debug/type ABI kapsamını tamamlamak; actual compile/link graph'ı
+üzerinden tüm uygulanabilir Rust/per-file notice kararlarını kapatmak; tam
+source/relink paketini gerçek runtime/migration digest/SBOM'larıyla bağlamak;
+gerçek paketi iki bağımsız kalıcı kopyadan restore etmek. Node/Debian/Prisma
+kaynak ve notice yükümlülükleri ayrıca kapanmalıdır. Bakımcı/hukuki inceleme
+source sunumu yöntemi/süresini ve kurulum/değiştirme haklarını değerlendirmelidir.
+
+BINARY DISTRIBUTION READINESS: BLOCKED. Alpha.2 PUBLISHED — UNCHANGED;
+bağımsız insan kurulum testi PENDING HUMAN VALIDATION. Yeni release, tag,
+registry push, merge veya deploy yapılmaz. Tarihsel S05-A/B/C/D kayıtları korunur.
 
 ## S04-D güncel durum — kaynak dağıtımı adayı
 

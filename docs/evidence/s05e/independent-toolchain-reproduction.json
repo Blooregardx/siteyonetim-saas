@@ -1,0 +1,16 @@
+{
+  "runId": 43196106551,
+  "url": "https://github.com/Blooregardx/siteyonetim-saas/actions/runs/43196106551",
+  "headSha": "0f5cd8d0faa8c70af131b4010bcd524a53d92422",
+  "conclusion": "success",
+  "artifactId": 13932828473,
+  "artifactSha256": "0b0fc3410fc7d37c11b17e07fb448561d2710a839d9d4a7a13538c36fb79e39d",
+  "artifactBytes": 58029794,
+  "artifactExpiresAt": "2026-11-26T10:05:54Z",
+  "artifactDigestPhysicallyVerified": true,
+  "matchedExpectedToolBinaries": 17,
+  "matchedCargoCExecutables": 4,
+  "decision": "PASS \u2014 controlled tool/input reproducibility, not historical image bit identity",
+  "binaryDistributionReadiness": "BLOCKED",
+  "legalApproval": false
+}

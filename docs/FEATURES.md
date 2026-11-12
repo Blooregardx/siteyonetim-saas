@@ -1,19 +1,21 @@
 # Güncel özellik durumu
 
-## S05-E güncel DEVELOPMENT çalışması
+## S05-E — DEVELOPMENT native rebuild denetimi
 
-[Full native doğrulama](S05E-NATIVE-REBUILD-VALIDATION.md),
-[tekrar üretim](S05E-NATIVE-REBUILD-REPRODUCTION.md) ve
-[kaynak sunumu protokolü](S05E-SOURCE-PROVISION-PROTOCOL.md) eklendi.
-Özgün Rocky base digest ve 241 tarihsel RPM işlemi geri kazanıldı; 28 native
-kaynak yeniden doğrulandı. r-efi exact AUTHORS kanıtlarıyla dokuz açık Rust
-kaydından ikisi kaynak/bildirim edinimi bakımından PASS, yedisi BLOCKED.
-Native deney ve son HEAD CI sonuçları ayrıca değerlendirilir. İki runner
-kopyası/restore provası sentetiktir; kalıcı kaynak sunumu veya hukuki onay değildir.
-BINARY DISTRIBUTION READINESS: BLOCKED. Alpha.2 PUBLISHED — UNCHANGED.
-INDEPENDENT INSTALLATION: PENDING HUMAN VALIDATION. Tarihsel S05-A/B/C/D
-kanıtları aşağıda/depolarında korunur; bunlar yeni deneyin sonucu olarak kullanılmaz.
+Gerçek tam-profile CONTROL/MODIFIED libvips 8.18.7 üretildi. 3500 export,
+558 versioned import ve Sharp 0.35.5 native PNG/JPEG/SVG doğrulandı. Yanlış
+library/WASM fallback, kirlenmiş ikinci build prefix'i ve engine/config kimlik
+karışıklığı fail-closed kontrollerle yakalanır. [Kanıt ve sınırlar](S05E-NATIVE-REBUILD-VALIDATION.md).
 
+Yeni 72 test, güvenli source/RPM/toolchain edinimi, source/archive bütünlüğü,
+OCI/SBOM bağlama ve iki sentetik runner copy/restore protokolünü kapsar.
+[Kaynak sunumu protokolü](S05E-SOURCE-PROVISION-PROTOCOL.md) hukuki onay veya
+kalıcı sunum değildir. Rust açık dokuz kaydın ikisi source/notice bakımından
+PASS, yedisi BLOCKED. Static LGPL/type ABI/source provision PARTIAL.
+
+BINARY DISTRIBUTION READINESS: BLOCKED. Normal uygulama davranışı ve Docker
+security değişmez. Alpha.2 PUBLISHED — UNCHANGED. INDEPENDENT INSTALLATION:
+PENDING HUMAN VALIDATION. Tarihsel kayıtlar aşağıda/depolarında korunur.
 
 ## S04-D güncel durum — kaynak dağıtımı adayı
 

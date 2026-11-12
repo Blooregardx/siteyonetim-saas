@@ -1,0 +1,22 @@
+{
+  "exportCounts": {
+    "original": 3500,
+    "control": 3500,
+    "modified": 3500
+  },
+  "originalControlMissing": [],
+  "originalControlAdded": [],
+  "controlModifiedMissing": [],
+  "controlModifiedAdded": [],
+  "versionedMissing": [],
+  "versionedAdded": [],
+  "historicalS05CReducedMissing": 1946,
+  "typeAbiConclusion": "PARTIAL; exported names are not a type-level ABI proof",
+  "versionedImportCounts": {
+    "original": 558,
+    "control": 558,
+    "modified": 558
+  },
+  "versionedImportMissing": [],
+  "versionedImportAdded": []
+}

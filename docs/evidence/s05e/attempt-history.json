@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "attempts": [
+    {
+      "attempt": "full-experiment",
+      "executed": false,
+      "decision": "BLOCKED",
+      "reason": "toolchain measurement record was missing; preflight refused native execution",
+      "controlSha256": null,
+      "modifiedSha256": null
+    },
+    {
+      "attempt": "full-experiment-2",
+      "executed": true,
+      "exitCode": 2,
+      "decision": "BLOCKED",
+      "phase": "mozjpeg ar",
+      "reason": "/tmp was a 4.9 GiB tmpfs and filled; host ar diagnostic also returned ENOSPC",
+      "log": "/workspace/s05e-native-work/full-experiment-2/control.log",
+      "logSha256": "f7d26c7fd263e249830da40f7776209cf626838a36fb5a7c9af3d31c88d20019",
+      "controlSha256": null,
+      "modifiedSha256": null
+    },
+    {
+      "attempt": "scratch-migration",
+      "decision": "PASS \u2014 byte-preserving transfer only",
+      "detail": {
+        "cause": "/tmp tmpfs ENOSPC; root disk had 36 GiB free",
+        "from": "/tmp/s05e-native",
+        "to": "/workspace/s05e-native-work",
+        "filesAndLinksCompared": 64773,
+        "regularBytes": 5188697189,
+        "allHashesMatched": true,
+        "inventorySha256": "815ca67e32d415196949a8fbb42c26dc65625a2c1c5e2e45c6891216acf0d0c9"
+      }
+    },
+    {
+      "attempt": "full-experiment-3",
+      "executed": true,
+      "exitCode": 2,
+      "decision": "BLOCKED",
+      "phase": "webp Autotools",
+      "reason": "Safe source extractor initially did not preserve mtimes; unwanted aclocal-1.17 regeneration. Original archive mtimes restored without changing pinned Automake.",
+      "log": "/workspace/s05e-native-work/full-experiment-3/control.log",
+      "logSha256": "ecf51b97a9c5117f2e72c4c6513852e3689ea124d2569b3791dd19a64ca82cb3",
+      "controlSha256": null,
+      "modifiedSha256": null
+    },
+    {
+      "attempt": "full-experiment-4",
+      "executed": true,
+      "exitCode": 1,
+      "decision": "BLOCKED",
+      "reason": "Incorrect PNG checkpoint reached already-existing imagequant directory; no successful new full build",
+      "log": "/workspace/s05e-native-work/full-experiment-4/control.log",
+      "logSha256": "beb9781a3b6eaf2a2fbe6e127d5ab97a8a78fb483cf81a64cc7f35be3ca7a8a5",
+      "controlSha256": null,
+      "modifiedSha256": null
+    },
+    {
+      "attempt": "full-experiment-5",
+      "executed": true,
+      "exitCode": 0,
+      "decision": "PARTIAL \u2014 CONTROL accepted, initial MODIFIED rejected",
+      "controlSha256": "9765d980f837f70c36ad2bb5096002117076dcf0f017dc9306d82cd06a4772d2",
+      "modifiedSha256": "85deb6f21833b7c381f6b385a746670739eed3c9a54de928187af0d1a4f25fd3",
+      "reason": "Installed libvips.a polluted second --exclude-libs list; 1073 exports missing. Real addon absent, Sharp fell back to WASM despite PNG/JPEG/SVG success. Binding gate rejected.",
+      "failedProbe": "/workspace/s05e-native-work/full-experiment-5/modified-sharp.json",
+      "failedProbeSha256": "55d0e832d8bc72c1cef6ac461fe21ae8f1aeef4a7d9d4eca37e280fcffd7e801"
+    },
+    {
+      "attempt": "full-experiment-6",
+      "executed": true,
+      "exitCode": 0,
+      "decision": "PASS \u2014 controlled technical rebuild and native binding only",
+      "reason": "Only prior Vips install outputs sequestered. All 38 dependency archives and 366 compile commands match; one private source marker change.",
+      "controlSha256": "9765d980f837f70c36ad2bb5096002117076dcf0f017dc9306d82cd06a4772d2",
+      "modifiedSha256": "4dfa8a4e9a7b287249c08bb4dcfb06c30f70ad28c75a87cfb3ad3246a69f6db1"
+    },
+    {
+      "attempt": "probe-harness-initials",
+      "decision": "BLOCKED \u2014 retained and corrected",
+      "reason": "First probe used non-exported sharp/package.json, then a non-versioned addon filename. These were harness failures, not claimed native test successes."
+    },
+    {
+      "attempt": "toolchain-ci-43188044093",
+      "decision": "BLOCKED",
+      "reason": "BuildKit base absent from daemon store during inspection; offline source build/bootstrap succeeded, measurement failed"
+    },
+    {
+      "attempt": "toolchain-ci-43192105049",
+      "decision": "BLOCKED",
+      "reason": "Docker containerd inspect.Id was a manifest-list digest; incorrect config-ID assumption rejected before measurement"
+    },
+    {
+      "attempt": "toolchain-ci-43194957048",
+      "decision": "BLOCKED \u2014 early diagnostic only",
+      "reason": "Confirmed containerd engineId ae081... differs from canonical config 98ab...; no further compiler bootstrap in this run"
+    },
+    {
+      "attempt": "toolchain-ci-43196106551",
+      "decision": "PASS \u2014 controlled binary tool hash reproduction",
+      "reason": "Canonical config bound to docker-save bytes; 17 expected tool hashes and four cargo-c executables match Cloud. Overall binary distribution remains BLOCKED."
+    }
+  ],
+  "legalApproval": false,
+  "binaryDistributionReadiness": "BLOCKED"
+}

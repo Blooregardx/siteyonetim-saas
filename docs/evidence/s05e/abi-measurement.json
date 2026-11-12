@@ -1,0 +1,69 @@
+{
+  "status": "PARTIAL",
+  "toolVerification": [
+    {
+      "command": [
+        "rpmkeys",
+        "--checksig",
+        "/abi-tool.rpm"
+      ],
+      "exitCode": 0,
+      "stdout": "/abi-tool.rpm: digests signatures OK\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "rpm",
+        "-V",
+        "libabigail"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "rpm",
+        "-V",
+        "gcc-toolset-15-binutils"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "version": "abidiff: 2.10.0",
+  "toolSha256": "ba5f5604fd719c5eff5cf4218428be6971565280f47319dbd4f2ce0816826281",
+  "commands": [
+    {
+      "label": "control-modified",
+      "command": [
+        "abidiff",
+        "/evidence/control/libvips-cpp.so.8.18.7",
+        "/evidence/modified/libvips-cpp.so.8.18.7"
+      ],
+      "exitCode": 0
+    },
+    {
+      "label": "original-control",
+      "command": [
+        "abidiff",
+        "/original.so",
+        "/evidence/control/libvips-cpp.so.8.18.7"
+      ],
+      "exitCode": 0
+    },
+    {
+      "label": "typed-control-modified",
+      "command": [
+        "abidiff",
+        "--fail-no-debug-info",
+        "/evidence/control/libvips-cpp.so.8.18.7",
+        "/evidence/modified/libvips-cpp.so.8.18.7"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "typeCoverage": "No full type ABI claim without DWARF",
+  "legalApproval": false
+}

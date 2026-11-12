@@ -1,0 +1,193 @@
+[
+  {
+    "name": "gcc",
+    "path": "/opt/rh/gcc-toolset-15/root/usr/bin/gcc",
+    "sha256": "cdc39bc02b11c8b933633ca22e0092c9dc2f8d7ff5b2e0865b21c30b37db9755",
+    "command": [
+      "/opt/rh/gcc-toolset-15/root/usr/bin/gcc",
+      "-v"
+    ],
+    "exitCode": 0,
+    "versionOutput": "Using built-in specs.\nCOLLECT_GCC=/opt/rh/gcc-toolset-15/root/usr/bin/gcc\nCOLLECT_LTO_WRAPPER=/opt/rh/gcc-toolset-15/root/usr/libexec/gcc/x86_64-redhat-linux/15/lto-wrapper\nOFFLOAD_TARGET_NAMES=nvptx-none\nOFFLOAD_TARGET_DEFAULT=1\nTarget: x86_64-redhat-linux\nConfigured with: ../configure --enable-bootstrap --enable-languages=c,c++,fortran,lto --prefix=/opt/rh/gcc-toolset-15/root/usr --mandir=/opt/rh/gcc-toolset-15/root/usr/share/man --infodir=/opt/rh/gcc-toolset-15/root/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-shared --enable-threads=posix --enable-checking=release --enable-multilib --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-gcc-major-version-only --enable-libstdcxx-backtrace --with-libstdcxx-zoneinfo=/usr/share/zoneinfo --with-linker-hash-style=gnu --enable-plugin --enable-initfini-array --with-isl=/builddir/build/BUILD/gcc-15.2.1-20260123/obj-x86_64-redhat-linux/isl-install --enable-offload-targets=nvptx-none --enable-offload-defaulted --without-cuda-driver --enable-gnu-indirect-function --enable-cet --with-tune=generic --with-arch_32=x86-64 --build=x86_64-redhat-linux --enable-host-pie --enable-host-bind-now\nThread model: posix\nSupported LTO compression algorithms: zlib zstd\ngcc version 15.2.1 20260123 (Red Hat 15.2.1-7) (GCC) \n"
+  },
+  {
+    "name": "g++",
+    "path": "/opt/rh/gcc-toolset-15/root/usr/bin/g++",
+    "sha256": "233ec05003ff1874265ff58be4cf692af4f1313329c4f3bc66ad504c478b79a7",
+    "command": [
+      "/opt/rh/gcc-toolset-15/root/usr/bin/g++",
+      "--version"
+    ],
+    "exitCode": 0,
+    "versionOutput": "g++ (GCC) 15.2.1 20260123 (Red Hat 15.2.1-7)\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+  },
+  {
+    "name": "cc",
+    "path": "/opt/rh/gcc-toolset-15/root/usr/bin/gcc",
+    "sha256": "cdc39bc02b11c8b933633ca22e0092c9dc2f8d7ff5b2e0865b21c30b37db9755",
+    "command": [
+      "/opt/rh/gcc-toolset-15/root/usr/bin/gcc",
+      "--version"
+    ],
+    "exitCode": 0,
+    "versionOutput": "gcc (GCC) 15.2.1 20260123 (Red Hat 15.2.1-7)\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+  },
+  {
+    "name": "c++",
+    "path": "/opt/rh/gcc-toolset-15/root/usr/bin/c++",
+    "sha256": "233ec05003ff1874265ff58be4cf692af4f1313329c4f3bc66ad504c478b79a7",
+    "command": [
+      "/opt/rh/gcc-toolset-15/root/usr/bin/c++",
+      "--version"
+    ],
+    "exitCode": 0,
+    "versionOutput": "c++ (GCC) 15.2.1 20260123 (Red Hat 15.2.1-7)\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+  },
+  {
+    "name": "ld",
+    "path": "/opt/rh/gcc-toolset-15/root/usr/bin/ld.bfd",
+    "sha256": "bff3f41c7efd1f2a873215e5d71934e3edd7a766cd079dbc9b593f67e03726c6",
+    "command": [
+      "/opt/rh/gcc-toolset-15/root/usr/bin/ld.bfd",
+      "--version"
+    ],
+    "exitCode": 0,
+    "versionOutput": "GNU ld version 2.44-3.el8\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or (at your option) a later version.\nThis program has absolutely no warranty.\n"
+  },
+  {
+    "name": "as",
+    "path": "/opt/rh/gcc-toolset-15/root/usr/bin/as",
+    "sha256": "d3abf2394cb7fc461a8f37100c7416c5363e5f5860f779a8e21d4459c8d385dc",
+    "command": [
+      "/opt/rh/gcc-toolset-15/root/usr/bin/as",
+      "--version"
+    ],
+    "exitCode": 0,
+    "versionOutput": "GNU assembler version 2.44-3.el8\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or later.\nThis program has absolutely no warranty.\nThis assembler was configured for a target of `x86_64-redhat-linux'.\n"
+  },
+  {
+    "name": "ar",
+    "path": "/opt/rh/gcc-toolset-15/root/usr/bin/ar",
+    "sha256": "46a1837a2fd18c444c07e85fcc35077b62579df17e954d82cd32cb0102e3577d",
+    "command": [
+      "/opt/rh/gcc-toolset-15/root/usr/bin/ar",
+      "--version"
+    ],
+    "exitCode": 0,
+    "versionOutput": "GNU ar version 2.44-3.el8\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or (at your option) any later version.\nThis program has absolutely no warranty.\n"
+  },
+  {
+    "name": "ranlib",
+    "path": "/opt/rh/gcc-toolset-15/root/usr/bin/ranlib",
+    "sha256": "a3890ad89614db9b71a5c088e1cf8bdc7d2306ee3cd53ce10ed14d64e3a86575",
+    "command": [
+      "/opt/rh/gcc-toolset-15/root/usr/bin/ranlib",
+      "--version"
+    ],
+    "exitCode": 0,
+    "versionOutput": "GNU ranlib version 2.44-3.el8\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or (at your option) any later version.\nThis program has absolutely no warranty.\n"
+  },
+  {
+    "name": "strip",
+    "path": "/opt/rh/gcc-toolset-15/root/usr/bin/strip",
+    "sha256": "cc86acedad8c2b88d42e45f8814c2493b1742ff4b50dbee0852f6ce56a926718",
+    "command": [
+      "/opt/rh/gcc-toolset-15/root/usr/bin/strip",
+      "--version"
+    ],
+    "exitCode": 0,
+    "versionOutput": "GNU strip version 2.44-3.el8\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or (at your option) any later version.\nThis program has absolutely no warranty.\n"
+  },
+  {
+    "name": "cmake",
+    "path": "/usr/bin/cmake",
+    "sha256": "4fa637a1dafc403b26c89c39277699ec0cd17c88959f8c51a43a6c0600c5c62b",
+    "command": [
+      "/usr/bin/cmake",
+      "--version"
+    ],
+    "exitCode": 0,
+    "versionOutput": "cmake version 3.26.5\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).\n"
+  },
+  {
+    "name": "make",
+    "path": "/usr/bin/make",
+    "sha256": "e6874317e0f2fc2b7e6c5abdcd64a8b63b08606997196b40f922730731db4dfd",
+    "command": [
+      "/usr/bin/make",
+      "--version"
+    ],
+    "exitCode": 0,
+    "versionOutput": "GNU Make 4.2.1\nBuilt for x86_64-redhat-linux-gnu\nCopyright (C) 1988-2016 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n"
+  },
+  {
+    "name": "nasm",
+    "path": "/usr/bin/nasm",
+    "sha256": "85a4a2a6ca67c4d01a0921823e3dba275063e651017c500ec14e7b513f269d0e",
+    "command": [
+      "/usr/bin/nasm",
+      "--version"
+    ],
+    "exitCode": 0,
+    "versionOutput": "NASM version 2.15.03 compiled on Jun  1 2021\n"
+  },
+  {
+    "name": "pkgconf",
+    "path": "/usr/bin/pkgconf",
+    "sha256": "eac5d54c8fb608b095cb743f2b8d1b25d597805897a503673f057b6009c5a7d6",
+    "command": [
+      "/usr/bin/pkgconf",
+      "--version"
+    ],
+    "exitCode": 0,
+    "versionOutput": "1.4.2\n"
+  },
+  {
+    "name": "python3.12",
+    "path": "/usr/bin/python3.12",
+    "sha256": "42658d6f0fec5172d6ec91e227daedee1a07c7599181f4d7c534e60d62bd9729",
+    "command": [
+      "/usr/bin/python3.12",
+      "--version"
+    ],
+    "exitCode": 0,
+    "versionOutput": "Python 3.12.14\n"
+  },
+  {
+    "name": "meson",
+    "path": "/usr/local/bin/meson",
+    "sha256": "f60e4c3e8171120a5ff1f89939390b5575ecb35119dfac06a61a7776a6bd6eec",
+    "command": [
+      "/usr/local/bin/meson",
+      "--version"
+    ],
+    "exitCode": 0,
+    "versionOutput": "1.12.1\n"
+  },
+  {
+    "name": "ninja",
+    "path": "/opt/s05e/bin/ninja",
+    "sha256": "172517ddc3d863b5ba328bdbafc25b76e066fe9adbbd63df958134c7e5db5566",
+    "command": [
+      "/opt/s05e/bin/ninja",
+      "--version"
+    ],
+    "exitCode": 0,
+    "versionOutput": "1.13.2.git.kitware.jobserver-pipe-1\n"
+  },
+  {
+    "name": "cc1",
+    "path": "/opt/rh/gcc-toolset-15/root/usr/libexec/gcc/x86_64-redhat-linux/15/cc1",
+    "sha256": "86331a93594ca7103ab39fd2091fae5a87cb5be43f8a7e6228fe057b070ab4ae"
+  },
+  {
+    "name": "cc1plus",
+    "path": "/opt/rh/gcc-toolset-15/root/usr/libexec/gcc/x86_64-redhat-linux/15/cc1plus",
+    "sha256": "6b1517bc30c2d303692a4db1e4ff2a64e09eb89e21a4dd25bc599f7e390a12fd"
+  },
+  {
+    "name": "collect2",
+    "path": "/opt/rh/gcc-toolset-15/root/usr/libexec/gcc/x86_64-redhat-linux/15/collect2",
+    "sha256": "9870071a2d03f6ad59749654b7af282b491e8e39afb72f699b31307e7a393901"
+  }
+]

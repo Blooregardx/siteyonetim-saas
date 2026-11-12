@@ -1,0 +1,3170 @@
+{
+  "schemaVersion": 1,
+  "status": "PARTIAL",
+  "executed": true,
+  "exitCode": 0,
+  "technicalFullRebuild": "PASS",
+  "recipeCommit": "ebb95f8add54eee8bed840e3fb587e4cbec857d7",
+  "libvipsCommit": "24ad4d042940e6bf99a68871ba886ca8847c9c82",
+  "sourceLockSha256": "5723e14ce316e9058c76257848e18ab52624c98d16f758b5f8a73b5007b2ab8b",
+  "profile": "CONTROLLED_FULL_NATIVE_WITH_S05D_LOCK",
+  "target": "x86_64-unknown-linux-gnu",
+  "baseManifestDigest": "sha256:ae0813ccb1bb83f4e0220acdd1539f52831517de334368e960824db7e37ee210",
+  "toolchainConfigDigest": "sha256:aed21cee6ad62af8dcfe3fbe8abb19f0158f3b0f2847e63978e866c5f6953152",
+  "controlSha256": "9765d980f837f70c36ad2bb5096002117076dcf0f017dc9306d82cd06a4772d2",
+  "modifiedSha256": "4dfa8a4e9a7b287249c08bb4dcfb06c30f70ad28c75a87cfb3ad3246a69f6db1",
+  "binaryFiles": {
+    "control": "control/libvips-cpp.so.8.18.7",
+    "modified": "modified/libvips-cpp.so.8.18.7"
+  },
+  "sourceChange": {
+    "beforeFile": "control/vips/libvips/iofuncs/init.c",
+    "beforeSha256": "10f0201e4853d5d40b3b88f6b2c81616e9c474ab3c10b029b96014fe0d0c2f78",
+    "afterFile": "modified/vips/libvips/iofuncs/init.c",
+    "afterSha256": "9308a5118e7f4519eebfb3d442679a0ef200b4d0b2972bc4bb4be6501817a1ad"
+  },
+  "abiComparison": {
+    "status": "PARTIAL",
+    "exports": [
+      3500,
+      3500,
+      3500
+    ],
+    "versionedImports": [
+      558,
+      558,
+      558
+    ],
+    "missingOriginalExports": 0,
+    "controlModifiedSymbolChanges": 0,
+    "abidiffExitCodes": [
+      0,
+      0,
+      0
+    ],
+    "debugInfoPresent": false,
+    "note": "abidiff including --fail-no-debug-info returned 0, but none of these ELFs contains .debug_info; no complete type-level ABI conclusion is inferred"
+  },
+  "sharpTests": {
+    "status": "PASS",
+    "version": "0.35.5",
+    "control": [
+      "PNG",
+      "JPEG",
+      "SVG"
+    ],
+    "modified": [
+      "PNG",
+      "JPEG",
+      "SVG"
+    ],
+    "targetLibraryMappedAndHashed": true,
+    "originalLibraryAlsoLoaded": false,
+    "oldLibraryNegativeTest": "BLOCKED \u2014 expected",
+    "actualAddonSha256": "cf896cc1b7f3ae9c3e8eb3d7b2b198b8de2824ff7d0681d684bab5a825def335",
+    "nodeVersion": "v24.19.0",
+    "hostGlibc": "2.41"
+  },
+  "staticInputs": [
+    {
+      "file": "control/vips/_build/libvips/libvips.a",
+      "sha256": "9b82da9f55201b4091078b05de19919d09bdd744b8fb64fd2eecbd0a37fe4fba"
+    },
+    {
+      "file": "modified/vips/_build/libvips/libvips.a",
+      "sha256": "0eef4dd03680d7be2766d3ebbd7d2d6e3b40b0b32bd8439d46c239c91043d114"
+    },
+    {
+      "file": "target/lib/libaom.a",
+      "sha256": "e09a2df239abb4ae1d2db9bf27566b51b95b80e2df0056b6d9a0f5bb2b716ef0"
+    },
+    {
+      "file": "target/lib/libarchive.a",
+      "sha256": "1fa96e0c8886a55b82d4f677891d8730f6d7a5bcbe6ea6dec9295b14ea5c412f"
+    },
+    {
+      "file": "target/lib/libcairo-gobject.a",
+      "sha256": "f8bd180fdfe0145730132acf47bb6257c191b40a52e2d85f0b129e3968baebd8"
+    },
+    {
+      "file": "target/lib/libcairo.a",
+      "sha256": "617b1d32c6ad66e3629f90f1fa7751120fc37822448beacbc6a4b1a7ce42a64c"
+    },
+    {
+      "file": "target/lib/libcgif.a",
+      "sha256": "49ddb778385dc9457982e43a21b61719941d2760518f346e054a8676f4a498cb"
+    },
+    {
+      "file": "target/lib/libexif.a",
+      "sha256": "b5b1d1c6477e568225dbe53c0d6b1d142f0eb0db9ca16e0f5e51bad67b468efb"
+    },
+    {
+      "file": "target/lib/libexpat.a",
+      "sha256": "3f6124f2df17571d36ca151ae91267d0d92a991d602bd88c89c30c99e8096065"
+    },
+    {
+      "file": "target/lib/libffi.a",
+      "sha256": "16f68419e2d906d39d034a4564bfa00c5503e7c879d17093e072bb88bd5d8793"
+    },
+    {
+      "file": "target/lib/libfontconfig.a",
+      "sha256": "38399c5a2dd4555b389fc09a44fd81af461bf0f455312c72fabf099c98f00d48"
+    },
+    {
+      "file": "target/lib/libfreetype.a",
+      "sha256": "620598abed198eb04aa7de84ca64351155b40f77bc6c44637a3d863dde67a52f"
+    },
+    {
+      "file": "target/lib/libfribidi.a",
+      "sha256": "e461278701dc942507f809425cefe2ee87b2f9e87e207f24f65445523ed98e6a"
+    },
+    {
+      "file": "target/lib/libgio-2.0.a",
+      "sha256": "d04ee4acf7a14ad36a4f5ef7c95dc60e54ad50d27bf77b57144c7ddb50110f2b"
+    },
+    {
+      "file": "target/lib/libgirepository-2.0.a",
+      "sha256": "77de966c6c0b668aefeff6e4a94d93c6b6bbc007edec1e5992546867a683cd3c"
+    },
+    {
+      "file": "target/lib/libglib-2.0.a",
+      "sha256": "7cb240a3020c30a9b7c685b604ffc4d4361b7356e8b665a678786f6e985c8f87"
+    },
+    {
+      "file": "target/lib/libgmodule-2.0.a",
+      "sha256": "dcc44a286f830375a5cced9d2b3eeec62a7d18fb756e664a88aed9a9152e9cf1"
+    },
+    {
+      "file": "target/lib/libgobject-2.0.a",
+      "sha256": "3c06902a43d0a265f2794c9c2ea441452fc71f0fe4938468f8c1d99866732d52"
+    },
+    {
+      "file": "target/lib/libgthread-2.0.a",
+      "sha256": "759446a34e4384209ce93008a02f83e7c6c9f56cb06553d5a84e8b2bf22072b1"
+    },
+    {
+      "file": "target/lib/libharfbuzz.a",
+      "sha256": "40e29a6f7c3b507a47658b0aefcdfa5dfb05740abbce5dea47dc065120d3b4ff"
+    },
+    {
+      "file": "target/lib/libheif.a",
+      "sha256": "d8ed1edff1d8dbce5a40b40fe4bf20f6d049310acc18ffb0f52cf3bd44dc39f1"
+    },
+    {
+      "file": "target/lib/libhwy.a",
+      "sha256": "9e036b6b8a0a7ac4fbed0de604fbb3713cc837ad58d41ad308b1d15787f28a83"
+    },
+    {
+      "file": "target/lib/libimagequant.a",
+      "sha256": "27c700da7c17ce601485bda2adbca48c4ddff3b974096e89968d65c3033d4171"
+    },
+    {
+      "file": "target/lib/libjpeg.a",
+      "sha256": "075d07e7e2245447fbb2c5a5bd994793794b4c59e812c9399df78ce4b074faa0"
+    },
+    {
+      "file": "target/lib/liblcms2.a",
+      "sha256": "0d6eb755802ea370a058de081475482156f315bbbcc65dd8bb1006fc4923f428"
+    },
+    {
+      "file": "target/lib/libpango-1.0.a",
+      "sha256": "8f20734559c9687f5b7152941e2f4794747314da415b8b2eccdfc141cee5097c"
+    },
+    {
+      "file": "target/lib/libpangocairo-1.0.a",
+      "sha256": "a8e94504787f0ab649c2658a30191622cfb0915c0fa8d86fe94cc80b7a766c83"
+    },
+    {
+      "file": "target/lib/libpangoft2-1.0.a",
+      "sha256": "c763c8d4b93b8c5c3c5ffeda2ae19eeb7d2f8ee90128216575c9821b6f4530fb"
+    },
+    {
+      "file": "target/lib/libpixman-1.a",
+      "sha256": "d21a13f5de10659f7a11661104bffcf3e7275530ab49efe8c1c7c07e1f451c2b"
+    },
+    {
+      "file": "target/lib/libpng16.a",
+      "sha256": "1d1d9de9f027efa0906b8ec05e770970ca44c60f81585cdb968d5f9e6f66971f"
+    },
+    {
+      "file": "target/lib/librsvg-2.a",
+      "sha256": "a410d4f1f7e971a4aebc9ce6b4c215b5741512ebdcf2bc24183ce5143b88d0af"
+    },
+    {
+      "file": "target/lib/libsharpyuv.a",
+      "sha256": "39ac8c7c1cc532152a8476624500d3b239b00d295118985bf8c72df309d7ae17"
+    },
+    {
+      "file": "target/lib/libtiff.a",
+      "sha256": "1fb227d0c5e52b3a077b5c36770b982898cd105684308a9a0b4741539bf8a9ee"
+    },
+    {
+      "file": "target/lib/libuhdr.a",
+      "sha256": "b73232a004861dc5584d41b784ffaf5e66a9cfa76eca9e046ec8800a6a9043c7"
+    },
+    {
+      "file": "target/lib/libvips.a",
+      "sha256": "0eef4dd03680d7be2766d3ebbd7d2d6e3b40b0b32bd8439d46c239c91043d114"
+    },
+    {
+      "file": "target/lib/libwebp.a",
+      "sha256": "b8ef944902d0d8bd82ccf10461e5314334a45c3cdddc9948d218545ed2811b12"
+    },
+    {
+      "file": "target/lib/libwebpdemux.a",
+      "sha256": "2bed50c488465cadf1cf08a9a8b673ad42a283ffb4f08202d21d62ab1a3175c6"
+    },
+    {
+      "file": "target/lib/libwebpmux.a",
+      "sha256": "e750a8303d04a004975b2bc4782485a1e83a3f69984013cabc8dfc2705e8d711"
+    },
+    {
+      "file": "target/lib/libxml2.a",
+      "sha256": "6b1bef07d0751e040c401fbf99a781acf31801d6776e348ab27ab2e17bf30485"
+    },
+    {
+      "file": "target/lib/libz.a",
+      "sha256": "80c35cd91e34f84b0b543eac1a3aba727e66085885d2c717b0edb313f403f9eb"
+    },
+    {
+      "file": "control/vips/_build/cplusplus/libvips-cpp.so.8.18.7.p/VConnection.cpp.o",
+      "sha256": "37b33611d576545ccaf3197f91be9af69eb4769127b9cdea677f6ae0f132da6f"
+    },
+    {
+      "file": "control/vips/_build/cplusplus/libvips-cpp.so.8.18.7.p/VError.cpp.o",
+      "sha256": "9818e457f1a21d917c63793a852dbcd633b0bd65a81b5863d2e013e9644d4b8a"
+    },
+    {
+      "file": "control/vips/_build/cplusplus/libvips-cpp.so.8.18.7.p/VImage.cpp.o",
+      "sha256": "5fda0ef6648b60c06ebc4a261f39ca20868fa237d575384be444efbcc1e3781a"
+    },
+    {
+      "file": "control/vips/_build/cplusplus/libvips-cpp.so.8.18.7.p/VInterpolate.cpp.o",
+      "sha256": "ddd79034436b8c63cf7f9a164c754a96f9c9440981e3198a168d00b956b0b535"
+    },
+    {
+      "file": "control/vips/_build/cplusplus/libvips-cpp.so.8.18.7.p/VRegion.cpp.o",
+      "sha256": "b5536d357579f4edb5a4c0a7b3de8f7e11a991146da13e055e720d5f9be4ae09"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/abs.c.o",
+      "sha256": "0f7574a5674fa86688b41856c8df7e5b2a1561d86ee1ffdec4ec47c472bd2598"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/add.c.o",
+      "sha256": "a645cd0782d85921c1a9e0f884ba22ec834627367487724438f17cf75168f77d"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/arithmetic.c.o",
+      "sha256": "f02cd19a85c837dd46eef699679a554e7eb9ed0056a974daa20ea720d3176b02"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/avg.c.o",
+      "sha256": "e1f475af02a91de0dfa8e18f8e6c1049fd12274d98627cab79b48540aed5ed72"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/binary.c.o",
+      "sha256": "ae77a4fb86e5b7950eedb5bfac6f68e0b1762ebce6a17fa665ffab07b3eef731"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/boolean.c.o",
+      "sha256": "ae1398331f3af3bf0ba6dde5fd871c4eb2c41b0b38b8a08e60c11dd0c8fb1d62"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/clamp.c.o",
+      "sha256": "ef405bcc1b1e89811d17e80173ff1e6a05019db01f1251867a04e4a5d07cea47"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/complex.c.o",
+      "sha256": "992b9d2320dcf0453b5fad18e35409520ebdc852049a7caeed0dc1d7adc4724a"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/deviate.c.o",
+      "sha256": "622956150297f97348e14d0c5002e985ac5b0c92a62b1b2530b7644ad1b89238"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/divide.c.o",
+      "sha256": "0d483dc1515ac89336faf04fd9e7e524ef8eb572174218eb7f4cae2fe48255d7"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/find_trim.c.o",
+      "sha256": "ef836bdc1513a6e1945cd38ce9d5dd584ba5e4276ce76a203daccb3ca9f177a1"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/getpoint.c.o",
+      "sha256": "c196116c79a71509cace36f0affc2e98eed1e6af2afd669cba680618edbabc24"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/hist_find.c.o",
+      "sha256": "e0d5106d2a77bd0df3e5e79095742e7506ef9fc18c733526c04d00ea77ed36a7"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/hist_find_indexed.c.o",
+      "sha256": "4d0850ef109e1c3aad31f4433442be60919deb254db5fd1fd7a578b0c535fcb9"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/hist_find_ndim.c.o",
+      "sha256": "18588e4d40e293de3f1a8fa5d6a3b3c2fd02c40cf5b60814ecaa93c8f66272ce"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/hough.c.o",
+      "sha256": "85f19f075744c666847d34ec5d3981f99791f83aa4f6a329dd81c159ee4b149e"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/hough_circle.c.o",
+      "sha256": "432bc0ef50b0c24bcb3091aaf77d5ce14a2532f878dcb58d16dd742fa9b55e33"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/hough_line.c.o",
+      "sha256": "d199ae17e1cc2d9cdff6f075d788c4243e8b3df7d9873834ded788830d6179b2"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/invert.c.o",
+      "sha256": "d65142cc4bd7104d0fca08c73d24c1f986af84a4f362b96c5ed2dc4c3af4a404"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/linear.c.o",
+      "sha256": "50a6f17bbc8801245a06597e7d3ed81501999b1787a9d679cc0604429fb3dd38"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/math.c.o",
+      "sha256": "a2e766b8605df502fcb3168552088809ff111ef5156ad4b7d7c4897015d54b23"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/math2.c.o",
+      "sha256": "f33310ef583b31735ce2dd3fc005150e472ff056932d5726c977b5ea38d72865"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/max.c.o",
+      "sha256": "437c077550b1ba437f0b575e149091f621925706bc0f099921058d1045c0ef1d"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/maxpair.c.o",
+      "sha256": "dfcdcf39545d39fe9d44976fff61c89002b23f84dc45ef6ace30cb837a9e9657"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/measure.c.o",
+      "sha256": "b4f9f5064a0cc40da6873f778992a5e8535fde47f9b3eb92cafe2ee29fbbfb60"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/min.c.o",
+      "sha256": "8a8545893bac382b37354f53dea20080c5ac2aec3b6fc59d4d7b9eb54d61239f"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/minpair.c.o",
+      "sha256": "a816c5d4e40cf846a275e47328abb791defbcf8c72d7515218585b319892cc52"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/multiply.c.o",
+      "sha256": "634ea70a3e6f558dcd6f0f2e296b46701c9989155f53beddd3315ab83698f50a"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/nary.c.o",
+      "sha256": "0794841b469dde2b41803cec297f4588d4fd6ddad136340f4a5bf3545c116dbc"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/profile.c.o",
+      "sha256": "5b3dfe787dec0e3d20ee7a61af3357563e90de66070c74647e6b82409f32414f"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/project.c.o",
+      "sha256": "a5c8a3452d5d982b7bd037f0e2bf20668f4f6a2651d46c3530112dbf25e1ac8d"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/relational.c.o",
+      "sha256": "4ddb5ee5cb46dc242423e775e60355c50dd4792c31b8235ca5189a1751c2de03"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/remainder.c.o",
+      "sha256": "71555c00ced8bc955a6c4992428c5ec7297e5540b155844fa0d750874462c0e8"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/round.c.o",
+      "sha256": "63ded6eb30ee969e78222601d49dcfb9add9e8709c81f8b3780ad3f85dc9d9ec"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/sign.c.o",
+      "sha256": "90c8475bde69d1527ed72a55d6ab5ad42d999bb8af1fd4c0447ba77ad9e76cc1"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/statistic.c.o",
+      "sha256": "8d1a9d228531cb02778700aa09a934c6732dbd25272c6364f48ee81f148f331d"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/stats.c.o",
+      "sha256": "2926388a536e9ca60dc063cb778c218deec55c740b67876f34592628b5f772c8"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/subtract.c.o",
+      "sha256": "dd513cedb24c6899cdc6b20c9d9138a4e6e159ba6223ce71c03d39b883b0d80f"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/sum.c.o",
+      "sha256": "ebfe8ba473ac2d376d56069eceefdad9ffd0fac4501de9cd84ce9f9cd689aa15"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/unary.c.o",
+      "sha256": "78a432d55e4195e72f261ae136d34ea7ef17a5627f3578b5b20ed418de01dde8"
+    },
+    {
+      "file": "control/vips/_build/libvips/arithmetic/libarithmetic.a.p/unaryconst.c.o",
+      "sha256": "51cfe454c7874889621f4a9c5da2a4acf3aa7059644de90fd695d17c4d1295c8"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/CMYK2XYZ.c.o",
+      "sha256": "fc694bb095068dc6041611be8de098a41f8ec7df7a5ab9910966d10d99c88ccd"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/HSV2sRGB.c.o",
+      "sha256": "94dcaa722cc8957e69f829b60f7a95fa52843edc898dabda9584078b829cb664"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/LCh2Lab.c.o",
+      "sha256": "bf5e8fcb0bab378846e7ad53adf3ca55719611b0b4e4c5ff2bf0023d11f4db1b"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/LCh2UCS.c.o",
+      "sha256": "944f63f0452b2a4b2f9fe7dcb8ac9f024449f9a65353af7fccc436c4dcc5f497"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/Lab2LCh.c.o",
+      "sha256": "09bb7d4fdfd6954c17cc579b49494f6288105981262957cb18d8deb76a1641e9"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/Lab2LabQ.c.o",
+      "sha256": "bac5907e981edfaf42d38fdc1b13c356f9abc8719c59ce8cae76f23b4ed15a3d"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/Lab2LabS.c.o",
+      "sha256": "55d97d66a76a4e3de698ebafac255494bad0b352a9189bead725a3eb82c028d5"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/Lab2XYZ.c.o",
+      "sha256": "6e3dbb894114552055635e8541ec53dce00b13b902ea3455f88349896e10ba0c"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/LabQ2Lab.c.o",
+      "sha256": "d51fd21cecdf7755d62dba8c8ebb37dab4ef2e8e309a3465fdf67f726a4eb44a"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/LabQ2LabS.c.o",
+      "sha256": "c467012c85054f7bc6335b179d314e211b780858f6eba04dacdb78541a82f8c1"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/LabQ2sRGB.c.o",
+      "sha256": "a2d1837e5cd7872dfc4e769390b7951ad4c37180c22df56c9d259e6ad0d48a8b"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/LabS2Lab.c.o",
+      "sha256": "c403f675eb4600805355c7645b53303d112f46991e311a9db822236cda486675"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/LabS2LabQ.c.o",
+      "sha256": "4a07992d100dcd71ab5ac06d9b58f8888dc8e316761b02bc235050e59617d21a"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/Oklab2Oklch.c.o",
+      "sha256": "ca8d440107a60fe36651302301b4027f6fb898020bddcc8447c7df6cf6335cf2"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/Oklab2XYZ.c.o",
+      "sha256": "2031edb033830f895f32bdf41b4ecc24f65949c8e2828e8f0dd9901b7b55a0fd"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/Oklch2Oklab.c.o",
+      "sha256": "830776c8d02f19ade5b0a9c0500e8570a360e67a77edd52d8f9bb01a3fcb7021"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/UCS2LCh.c.o",
+      "sha256": "3c854817d6f7135f7200f84a54e1600cbc9cb0571ffcad37790ee7d56ba5e285"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/XYZ2CMYK.c.o",
+      "sha256": "90b2bc281380a6c1b0f5a0bb4f9b56924ba4ad3c7abc9ba30d8c5dc524684107"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/XYZ2Lab.c.o",
+      "sha256": "ff1034c1eacae0c9c30c4cacf3e665291a429dd0c4f61554abbd1e486cf535b6"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/XYZ2Oklab.c.o",
+      "sha256": "dac4e47b130f7c4a791b658e4aa9adb5c9e547ecd4fbccc5d14e8957dd2943ef"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/XYZ2Yxy.c.o",
+      "sha256": "0e72bf905ad17d09918b5c6a1a0de49ac997861481986e610c37ab8f8cd5e42a"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/XYZ2scRGB.c.o",
+      "sha256": "81e30dd9349859658ddfca975307394d94b1adc0e59c553b073439e34ab276c2"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/Yxy2XYZ.c.o",
+      "sha256": "97db5f68e954a4110dfca4a8215f8713fcc896148638a825852b8ca1ad086a65"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/colour.c.o",
+      "sha256": "ca0f6f569d6eb45680b778fdec68df292d5dd3046dee95d89e679e8a6d05fe58"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/colourspace.c.o",
+      "sha256": "33bd178dd94075b3d02083c74e96824c8827dfa544a41bb9a13b883abba91f1a"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/dE00.c.o",
+      "sha256": "165f6c284d939de365489cb2bb17868c1e45f567dec8c291dc0ec5e00bc5fec9"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/dE76.c.o",
+      "sha256": "840d75540f3f22082a68b78d35657d9f1e9099c05c5c27f6ec247b7152a6b0a7"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/dECMC.c.o",
+      "sha256": "ac757cfcccb9a6f558ad080c0dc860c0a1c60de945015521c068897c9f3a4bfc"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/float2rad.c.o",
+      "sha256": "4dfee1966d5a647025579a7692039cc25acb5733edeca7aa1e37b99c00bc4602"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/icc_transform.c.o",
+      "sha256": "474331990995cd06a83caa01f1f5d0d3806b5a72a465f1d6a939a6ee58421073"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/profile_load.c.o",
+      "sha256": "fd99f91d6d42f5e5b8208e36ac04db55fe6c878391ab393f2a8f341dadc4da9e"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/profiles.c.o",
+      "sha256": "6f89fb00aeeedf0e3a357f918bf771b93886f46896ee876735e437a475054b88"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/rad2float.c.o",
+      "sha256": "18fbce0234ead7f1a48a366a3396a70f826cb81b0ae5827f694c40ec11a0a958"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/sRGB2HSV.c.o",
+      "sha256": "5af6535d15eecaba17228dd5af60f8f1a8c8473b50e7ef24f979e86c6429d419"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/sRGB2scRGB.c.o",
+      "sha256": "32b6882ddb27357edb39f022948425c30d410269487879d52ac2603f343f0b91"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/scRGB2BW.c.o",
+      "sha256": "b3f3fc809ac5d5509cb034670fd3fa66f0404e2d5d99e180139ca8bb16cd84e9"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/scRGB2XYZ.c.o",
+      "sha256": "9ac645ffd02a255d7f3877ef47493644906d7686aec7a4de446eb10d692c63ff"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/scRGB2sRGB.c.o",
+      "sha256": "f5bfcfb3c79a6601a566620c4e233b27be9d9a5589001be6c885d7ff1ab0eae3"
+    },
+    {
+      "file": "control/vips/_build/libvips/colour/libcolour.a.p/uhdr2scRGB.c.o",
+      "sha256": "f7d32dfa3237497b31cf028e22134dea4fcd6f037b7433bfff86f3bbd37da4f2"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/addalpha.c.o",
+      "sha256": "33606ae0e80ce7a90e1cbee9665316f678ff97d6b6c500ec4823b57725c65021"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/arrayjoin.c.o",
+      "sha256": "527a7c7995bbc44bc11816cec4759c3fbe6be7c28d5302440c4d7b78cebf3507"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/autorot.c.o",
+      "sha256": "d9f81c05b6ef9e2a6eb72829b8ff0c2c003c4e755014b73bf5e52a2aca4f1e3c"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/bandary.c.o",
+      "sha256": "f483416ff75e66223237fc573d053131945b425c74e7abc935fdf363f9db9fa3"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/bandbool.c.o",
+      "sha256": "51bccd7bad788b59c0e668ccd8456edaf365d4499c86e71b97698a1534c237dd"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/bandfold.c.o",
+      "sha256": "a79e81217ee5d0cbbc471f53b6424097634432a4d4ab680733d229e0458fda65"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/bandjoin.c.o",
+      "sha256": "9e481f5985a00c2c6dd5caf0bead187e0a4aa70ec2c29f206c053e01f14fbe37"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/bandmean.c.o",
+      "sha256": "03a1737e0ba223b7de0a39e7dcec1ed1a73c928d7c06310b5e4942d01b2d8537"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/bandrank.c.o",
+      "sha256": "d2ad031da4fd2592c24d22e3b52da03ee5e864c817f73fc170ef2f53f4b584ad"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/bandunfold.c.o",
+      "sha256": "fd2dc7a01d5f30452f3071ab5d3b4343b97e2e5c7c06660e0632524f59f1b2ef"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/byteswap.c.o",
+      "sha256": "54056eed32e9ff667597413eccb2890fe4015518e4ad57df09916067b9fb8912"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/cache.c.o",
+      "sha256": "d715466b52e753322c46f53ac97deac30a5e27db3c492e2887d17e8bc3f281f9"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/cast.c.o",
+      "sha256": "2cd88722923d61673f442213643979a872dc1f01cf375458ea1200c0a2289499"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/composite.cpp.o",
+      "sha256": "985096be7d022fb45f6468a8570294a3fa89792d2016118cea4ed9e7e7f26ddf"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/conversion.c.o",
+      "sha256": "db70a2cbcd29f6c0d48a5a4daa3265c69e626f57fb87cde3d730bfa3a6783075"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/copy.c.o",
+      "sha256": "773b665f2a89e46a5a1060fb10a372505a918db3efe805274130aafb34df43c3"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/embed.c.o",
+      "sha256": "1fc5e700ac7c48a09c8c28006c3a980817ef5f2db3fe98208c8d549fd034845d"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/extract.c.o",
+      "sha256": "e78e1224556f90c568070de7283ccb43f03092920a2ae54055fa142b4d6ee31a"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/falsecolour.c.o",
+      "sha256": "444f3bf5a2908147fd5e99baf4119236dbfdfed1a7829621da68bcb3e9cee220"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/flatten.c.o",
+      "sha256": "2fc1dcba2d95204aca88a03446ca72774c3f322125def900f569e7e8dbaa94fd"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/flip.c.o",
+      "sha256": "4058109c31be179b0305bc125895e68998b8db3d6df842272c7aecb1c85dbdca"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/gamma.c.o",
+      "sha256": "d1f4bdcc36f183528eac0d15c2214ea18b950160f2ccbb26932fb838c366a1d2"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/grid.c.o",
+      "sha256": "23d8e34a4ae7ab349e25fc9714cf460b45f81dab1e26126c320ff98424b255b5"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/ifthenelse.c.o",
+      "sha256": "3da8c585d4f4d049f5cc8da57e60fc2c38c903901928843dde0440363f7a060a"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/insert.c.o",
+      "sha256": "a673b9074cc60efcb6b0ed616a179a8373d0df1b682367afbe4838afc09a290f"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/join.c.o",
+      "sha256": "57914dbdfc02f5113c7eff718b90761c193ceff75de229d56e0926b2a2c50d78"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/msb.c.o",
+      "sha256": "e647f4f36b0d01c23e49688f038cb69d388d0f6f353cdd11b68d439783d00d63"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/premultiply.c.o",
+      "sha256": "fa98788208414643e75bed653d004e5a9018352bc879d49b3e562b3c0a05878e"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/recomb.c.o",
+      "sha256": "446400f1bca9461f17f7e66bfcf6ad79bb777b3a73bad3a256be041a559c76dd"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/replicate.c.o",
+      "sha256": "38ffa7804f5ed5391293bdcca72a4caaf424b15a10fbf93271573b111e540413"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/rot.c.o",
+      "sha256": "f6b2288eb8fd79d2bf0ea67d7fcd947388f9485bb0a42ced58fcc93f798b43e6"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/rot45.c.o",
+      "sha256": "ed055fa2722c6161a4a2e32c5997129cf67ed7e0799517cb94479d33dd7dcc67"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/scale.c.o",
+      "sha256": "0d877050ae7416a09f7ddebf71670b056459a8c1b7c9d6847368ada22539630a"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/sequential.c.o",
+      "sha256": "ff8251d97cde5549cb3ae7cc92e98badbb10d79f4136df98db87293b5586b830"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/smartcrop.c.o",
+      "sha256": "a7d7236957d91e24afd9156de7b16fb9007649191d468f2debc8520c0925a571"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/subsample.c.o",
+      "sha256": "4cf80bc6fe79fef3a4a572eb29320d1baabcb80f253b37d1fb49a55384f30755"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/switch.c.o",
+      "sha256": "e7f95fad10cb72f6debbe0e7ccd68c6ea9cdfe60677b8f93ef9289fd1b67357b"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/tilecache.c.o",
+      "sha256": "ffc27142d3001f3d6328ee96bee7c2075db5faf3da7a0954a33d3582bc21d1b3"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/transpose3d.c.o",
+      "sha256": "82e5a7750d11ff5738a1c2f046788e9ae8b7b394806b1e21dfb4dd63c266afbf"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/unpremultiply.c.o",
+      "sha256": "fa7c48531987a5651d303e7450373e41f189a3f150849661f58e7922a3c326e5"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/wrap.c.o",
+      "sha256": "cf5ff6de82fed075e4098bb78dd5a364e3fd7869eb0b910244c579b909d20f7d"
+    },
+    {
+      "file": "control/vips/_build/libvips/conversion/libconversion.a.p/zoom.c.o",
+      "sha256": "7c7675d104e86e077fefb13ca8a7b009dfdb4b65f599c3a233644530a818f23f"
+    },
+    {
+      "file": "control/vips/_build/libvips/convolution/libconvolution.a.p/canny.c.o",
+      "sha256": "9c136314e1e139cf65d0c2e9b6359bff825068b3630fefe7503089023a54944d"
+    },
+    {
+      "file": "control/vips/_build/libvips/convolution/libconvolution.a.p/compass.c.o",
+      "sha256": "1e2dfba212681a755fddeed5c45bd6b04cfeaa7399649651bef887b3740c42a7"
+    },
+    {
+      "file": "control/vips/_build/libvips/convolution/libconvolution.a.p/conv.c.o",
+      "sha256": "b66885447a44dbbc5ac93f207c0ad7aa2a7a55cca41fc88bc75325e5efdd8ac1"
+    },
+    {
+      "file": "control/vips/_build/libvips/convolution/libconvolution.a.p/conva.c.o",
+      "sha256": "8cc0b0e5e89aad9e9ea5760a7b6254f77d3a3e6af3a830b6b1f0aeea31117e4a"
+    },
+    {
+      "file": "control/vips/_build/libvips/convolution/libconvolution.a.p/convasep.c.o",
+      "sha256": "c2bbb2f5f953c8816d47d13ec9c19fd8b749c051c4feeaf2483eac2e805daf83"
+    },
+    {
+      "file": "control/vips/_build/libvips/convolution/libconvolution.a.p/convf.c.o",
+      "sha256": "8e1b841f78b29d3077f287ddc3cdaa533515a2be17c444cb1e8deb88634a6438"
+    },
+    {
+      "file": "control/vips/_build/libvips/convolution/libconvolution.a.p/convi.c.o",
+      "sha256": "22ea8ed0532fb5e7c709c3168c5874e3095586e644099067a45c68c951767fa8"
+    },
+    {
+      "file": "control/vips/_build/libvips/convolution/libconvolution.a.p/convi_hwy.cpp.o",
+      "sha256": "162060a6976d645a3a96b9c924dae6284196696e869e03118a0931741dc8988c"
+    },
+    {
+      "file": "control/vips/_build/libvips/convolution/libconvolution.a.p/convolution.c.o",
+      "sha256": "8c874be9c5925501c70fd048140abee2048db0b3491c42ff67c0273b0889fdb4"
+    },
+    {
+      "file": "control/vips/_build/libvips/convolution/libconvolution.a.p/convsep.c.o",
+      "sha256": "dc94112cca75fb0a83c609e8af601708294a6b1ecb3c6ececd0ca4d077d28cc5"
+    },
+    {
+      "file": "control/vips/_build/libvips/convolution/libconvolution.a.p/correlation.c.o",
+      "sha256": "f73766effe40b0494b9f548136eca267bdfc566dec5315aab40c54f74829cf6e"
+    },
+    {
+      "file": "control/vips/_build/libvips/convolution/libconvolution.a.p/edge.c.o",
+      "sha256": "44cd1759cd386fcec153e1cc5eec43786ef74070a56ad2efe9b8f04805d4652e"
+    },
+    {
+      "file": "control/vips/_build/libvips/convolution/libconvolution.a.p/fastcor.c.o",
+      "sha256": "04379daaeca7d1d73b0e4743ab95f14ac92e02b7bb5b7aad40ed9465ad897421"
+    },
+    {
+      "file": "control/vips/_build/libvips/convolution/libconvolution.a.p/gaussblur.c.o",
+      "sha256": "c60b241014173a15a936db1acb0306e3b4ddb76441f73a3f2ac1c3474a392594"
+    },
+    {
+      "file": "control/vips/_build/libvips/convolution/libconvolution.a.p/sharpen.c.o",
+      "sha256": "1e75e98f39c5f3e0e0df1e8c69a7f936153f6a6344c42c1916fc92031a5b5c4a"
+    },
+    {
+      "file": "control/vips/_build/libvips/convolution/libconvolution.a.p/spcor.c.o",
+      "sha256": "0fab4ce7887864255a769202d2d21ea7326195f5d2791001348dca5f87aa77c1"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/black.c.o",
+      "sha256": "61661ace902fa21682763f29a30b523fdce8f7e79b57ef0a88f3c87039a90294"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/buildlut.c.o",
+      "sha256": "aa1b8a0b6f92933dc53a8223f5b4e1d8f6e756546756f854314d0fee4859cae2"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/create.c.o",
+      "sha256": "92b70535b6b503ab47df0e3d67ab942dfefcd3111c25cd1963abd1f887b9957d"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/eye.c.o",
+      "sha256": "636b5c7fc6d3664e7249203df73ca39d53122c3a233605a1015d5052c2db4090"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/fractsurf.c.o",
+      "sha256": "f0117ae234c82eed1a8a006e68a8455de4a6d675cffb2736855801f5c34a0995"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/gaussmat.c.o",
+      "sha256": "52cf641c46d134871f4dd9306d69f9709695c0497808903ba058cd59d74b78da"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/gaussnoise.c.o",
+      "sha256": "eab6efd40ec53f212fbc34aac3505034e74f140c7b5c758f74bae1e204a82d97"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/grey.c.o",
+      "sha256": "9f859faf7457958fbe542927841df58b60e27abc4c7f25b56f4e80aa3a540f0a"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/identity.c.o",
+      "sha256": "7d8d79237d5706c716f26ecd6add5b1f92c17edc812f49e87ae8f9fd4458d9d6"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/invertlut.c.o",
+      "sha256": "4c5c18e47751316ba282cb41e0fd6502f45aa66665e0d6c383988b42c14f2cf5"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/logmat.c.o",
+      "sha256": "76bcba67240446993e9efdf53a7f2c4b42bd06cdd5633362e1cf1b1c472cd85a"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/mask.c.o",
+      "sha256": "f8bea1746fa221839ac83c5b26c26295e27a62c9451895adbe8c2d99cc641f46"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/mask_butterworth.c.o",
+      "sha256": "1c4749b96a0c336da310bc83cef76d5182e2bf0fff777b9932066c3ef7c6821d"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/mask_butterworth_band.c.o",
+      "sha256": "2bf16cb5782673dcf30f7c13e6bf31ec16b3b679c26762edf53714c47e4461a5"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/mask_butterworth_ring.c.o",
+      "sha256": "faaaa5dcc11c77f01a896eae398705a34e3fdf9af8fcfa12dc1e7a5ced1dd6a6"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/mask_fractal.c.o",
+      "sha256": "b6754d23d0e56d9eecc3757f8b464f48a86cda99252e12a3eb26ee0ac41984a4"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/mask_gaussian.c.o",
+      "sha256": "28067080ec0546ecce645f89d00d13b55caf52c1b5babb49690e00e631e766d2"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/mask_gaussian_band.c.o",
+      "sha256": "f61c14872440bbdd56b8fc74867a2fa21a54df7bf6fa596442ca64c4542980b5"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/mask_gaussian_ring.c.o",
+      "sha256": "5eeb8630cd241aad0670b6677757d52d740316cd3cb8bbe918aeef9b74f9e29a"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/mask_ideal.c.o",
+      "sha256": "3f08da4c387b614802cd4980be3aeedd8da9f76df1d2f78e8948038a1eb1c8bd"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/mask_ideal_band.c.o",
+      "sha256": "8e2d60bf940965ef9b8f56280637b816613a18c99820293cf8a993bb93cd05ad"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/mask_ideal_ring.c.o",
+      "sha256": "7117cb0cf59ba31e093f048175972dea2b8c1b04ad6163ba926fc3de8f0ee3ad"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/perlin.c.o",
+      "sha256": "53abc992330d3b03eade19778f57cc33bc5bd5a6c06beac3d67fb4047903478c"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/point.c.o",
+      "sha256": "bbb39d1c1ac33755500c3e5551d6bb2eb22b4fc81b572e00b2fb744ee7989376"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/sdf.c.o",
+      "sha256": "bb7e4b1fd1e20f9974711f5fa0ae32da596f4b2dc13b47f37dcf5028c9bc7a07"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/sines.c.o",
+      "sha256": "f5da260dff701fe3f2d086638fe15cdb41d08389d30470bef5aa64d4e3b61d70"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/text.c.o",
+      "sha256": "00baf333f7b9d04b2b5a00ff8ce8bd5a3ea7daf0d72a43710803b7892420e68b"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/tonelut.c.o",
+      "sha256": "f2f4c0058de876ce35ba1eac80da1c0eb30a0610dd44411719cf458863177505"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/worley.c.o",
+      "sha256": "0a0df4843d59b26b81c5e762bfa8953ffb6e167e8557d629ed5431ce04b367b0"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/xyz.c.o",
+      "sha256": "cf0db01b7d29de88693f6453c904961acf40799d719e2a7915518d42f046c6dc"
+    },
+    {
+      "file": "control/vips/_build/libvips/create/libcreate.a.p/zone.c.o",
+      "sha256": "a43831f6fb2187d14da2a9c6dc31626f037c53625437163e11827b63cfdf8019"
+    },
+    {
+      "file": "control/vips/_build/libvips/draw/libdraw.a.p/draw.c.o",
+      "sha256": "285be550f19df57fd57d4be22adc3869346667921c91e6830916fb4ea2cb3048"
+    },
+    {
+      "file": "control/vips/_build/libvips/draw/libdraw.a.p/draw_circle.c.o",
+      "sha256": "c3757c8112e6a29f2aa8475cd16d3b2ee8ac54fcca21253d69a5ad4dff36b620"
+    },
+    {
+      "file": "control/vips/_build/libvips/draw/libdraw.a.p/draw_flood.c.o",
+      "sha256": "fd6c80cf6a75284518d7b6094d46e1f61cfe9c22f5a1faa45e588240def10bb7"
+    },
+    {
+      "file": "control/vips/_build/libvips/draw/libdraw.a.p/draw_image.c.o",
+      "sha256": "1d2147e3997fe35477f08498ba3dd6ac1226e1eebb14934c26fdbe403dc31a7b"
+    },
+    {
+      "file": "control/vips/_build/libvips/draw/libdraw.a.p/draw_line.c.o",
+      "sha256": "39979f9e6ea86b95d62268ea0958c5acec5b9c4167f1f096793231e451a45dca"
+    },
+    {
+      "file": "control/vips/_build/libvips/draw/libdraw.a.p/draw_mask.c.o",
+      "sha256": "17807360bb484c1b7e421ac9349884880a5ecd03baf4811ff7739dc72878e80a"
+    },
+    {
+      "file": "control/vips/_build/libvips/draw/libdraw.a.p/draw_rect.c.o",
+      "sha256": "46e182f50d9c4d3adb22fee65faace66fcadf38c5b96e199740ab1e81cca5077"
+    },
+    {
+      "file": "control/vips/_build/libvips/draw/libdraw.a.p/draw_smudge.c.o",
+      "sha256": "ec27fc74f3edec38cf3ff56d6dd6dc06ca1b4b8670b544105dc446217a58f791"
+    },
+    {
+      "file": "control/vips/_build/libvips/draw/libdraw.a.p/drawink.c.o",
+      "sha256": "0391b24fa8b9b43b8af1a07e34e5d8941110f1815cdf9a0bc926dba37f973680"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/analyze2vips.c.o",
+      "sha256": "e7e8d3ace52cc4832f50042b017b1a74659e9730354a6074860b509a4dca9118"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/analyzeload.c.o",
+      "sha256": "316ed3482b111d6316ed0950f2d978ee5a2955c2d5c819ac53944ebc819c78a1"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/archive.c.o",
+      "sha256": "e086ec0594e1ca944ac2ac0333a951fc63bbcd198a57aeb97e80339443de8d1a"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/cairo.c.o",
+      "sha256": "cd85bfd0dc6ef20639610e00365b0282257327db04d1b9826dbca6e36250e660"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/cgifsave.c.o",
+      "sha256": "93b01992414ef14da01fb95e362121448131b46ab30e5962c61ee28fcfe07933"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/csvload.c.o",
+      "sha256": "058cc92715f5bcefb2543f67439825375f644011a452f60afed7d602fd2e5971"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/csvsave.c.o",
+      "sha256": "796d6b46e343d99fa7c2d645a390065ed3006165863572161eb7d40617107a96"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/dcrawload.c.o",
+      "sha256": "2dce420723c498e3ff611a7206e89c8bb29138a0d09c0e47af00b77626d47cc4"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/dzsave.c.o",
+      "sha256": "ac53b7996ca32ae58bad7f4be0bbab7b066d90f41a632aadd0eb23aa264406c5"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/exif.c.o",
+      "sha256": "b04e9ab55ae48e2798d7d3bba301979524b3518f8ce9249b0f4e7ef5762124b6"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/fits.c.o",
+      "sha256": "d1a8dc60e79094d76096d48528014211134ec2c87304693657687432057a2f7e"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/fitsload.c.o",
+      "sha256": "fbe987f38dc64b72f1dd6bccbc2cacca3542fcd61e74c585418f08fc2a404357"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/fitssave.c.o",
+      "sha256": "8718a535d85270baa34eeba8de8a13e30b5216f6457ba849600f2627399bbb35"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/foreign.c.o",
+      "sha256": "1e304b70be9622bd1275327bc96b74836fa1a2e0b1875e27a2ccb1c956e70242"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/heifload.c.o",
+      "sha256": "a1dcf530c0b0e3bbf19afba60c1b2d07190c2be0bee1a3d23e8d2a93062696ad"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/heifsave.c.o",
+      "sha256": "b77827c1c7a6d377699ae8059cc0f34e004d40d84cc97c70571d663f229f8269"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/jp2kload.c.o",
+      "sha256": "07f79f4cabbb0cc81af3f72b803ea8cb9cf50792d0ee21a68ab2690873a3bd3c"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/jp2ksave.c.o",
+      "sha256": "a23edc13d121254555aa6bc500aaf308fa71f0b126bd075187e47b8f68fbd83b"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/jpeg2vips.c.o",
+      "sha256": "6a66b236925f5eeb43b0f6d06787135dd97cb50d532c21317f001d812cd09e17"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/jpegload.c.o",
+      "sha256": "5d1e0647a9efea9c9ba0b1566299667e1e1b8fc86ecfc992772aa59f4772c5e8"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/jpegsave.c.o",
+      "sha256": "33d8422db70e75702fd869643418d9b10fe79637b4b562813ed5d38b16ba09c5"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/jxlload.c.o",
+      "sha256": "c0f763be5f691e767c7cb4a9fee119799092457e52ed995a8c635dfee72213c6"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/jxlsave.c.o",
+      "sha256": "214123e64a830bfc81a36e8084ca1e8de3c8cd0fdb04a717ddeb3c98e03a7c85"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/magick.c.o",
+      "sha256": "3810967b88d53f0cfecd65a46a78c7f2b6507b3511bc417f809b9b5d6b8df3d9"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/magick6load.c.o",
+      "sha256": "9d9a6ebd7dfe5fd2acb2d7f3d534953f51084b5108fd118ff9b8801b276e8871"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/magick7load.c.o",
+      "sha256": "95f0cfb7057337f9e762fac5230b8f57d92a7e24fffc7abc20e9fe8e65e4b96f"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/magickload.c.o",
+      "sha256": "9b908a0cfa84fcfb0bfba61eca00998aa099db79ddfb05f54058ebac59548087"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/magicksave.c.o",
+      "sha256": "31111f0ebdd25cfd0987251482aadc98b437c94b026ca18e47ca53a55ea367dd"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/matlab.c.o",
+      "sha256": "27dfa4ba83616d7406e13d9438d787a3e45d883f3d2387fe1ef2e8c5aaea1f50"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/matload.c.o",
+      "sha256": "c89f951ce1c9f09a9d46e623dd860afb25c980bb46fc3bb3b0a6dab50a14002d"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/matrixload.c.o",
+      "sha256": "21fb002b6211a1041793ed5fbbb5dabeb0c47385953ef9e98a2f94959aec6ce8"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/matrixsave.c.o",
+      "sha256": "5cb2e1a91637d5d520f011cfd90739ff9c4b3f8cb8fbc20d6271a1baa24d64e9"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/niftiload.c.o",
+      "sha256": "05ee59cb0089ae8dcbfd072e355115a67d5c56c598a2e00664191687f9e62020"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/niftisave.c.o",
+      "sha256": "2de184a4353dd2e5002a83fdd29fb03f2a68ee053fb06a7a487b2e45365729cc"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/nsgifload.c.o",
+      "sha256": "3f8dbd30b4395c44e83479015f5e8384474d48d5171013eea99cb331f176dc65"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/openexr2vips.c.o",
+      "sha256": "5f2d7c26bcd0ea50f7211e2c61e3a792d528860ee2f6b4dbef17c0fe12d567de"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/openexrload.c.o",
+      "sha256": "42fa28151c47ce2c7bf643acf56c58b7b2cb9d4f379634993df9a2b3de897a63"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/openslideconnection.c.o",
+      "sha256": "f613016ef76f33b10800bac9fca7e4d8cfdd9e1bd4d0ea7c464480a13760e042"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/openslideload.c.o",
+      "sha256": "1425d3a6060914281cd563288f5f0a23923065d9814dba5663f5cfe435f0c45e"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/pdf.c.o",
+      "sha256": "f6a69463bc3c9df3af622611fc5622be7b42e436aa67225d5e8feaafaab44caa"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/pdfiumload.c.o",
+      "sha256": "0b628598dddf0a50781acb93f82cf375496c20111c6df3699ebfebae1fd0f85e"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/pngload.c.o",
+      "sha256": "e9c666cc1591bfd6b030f271eb8c0fa60413661bbba997b215a2b7ee17c2206f"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/pngsave.c.o",
+      "sha256": "9942783b5ccc1fbb10ed3046baebf823713f00344ad069083247fbe8ee5c2230"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/popplerload.c.o",
+      "sha256": "0316f069f4517df49501ce0e0f4d45ea3c883bf887ccf4119a7e89edcae4e5f9"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/ppmload.c.o",
+      "sha256": "ab404ebb2660bdfb5edc752e3ec611d26a4766f10083f983158f148cf9782885"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/ppmsave.c.o",
+      "sha256": "34daae2e9565c9471c3b23883e21fc725b34743ea7d727e99b6e8a4586d399e1"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/quantise.c.o",
+      "sha256": "8421db966fd6e8b20623ce3347c7e1b5f7ee624719d061e006dbdd0195af650c"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/radiance.c.o",
+      "sha256": "71e29ae7a076571a29f79415844934efc3db80dee8d0b090e2b4eb5b6338da4d"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/radload.c.o",
+      "sha256": "913c035a0cd747f2c9d7cfe4759502852134ad7a7bdb99578d14cce81b3116f6"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/radsave.c.o",
+      "sha256": "c4b7ad6a7cf75a672cbb82a70d61bf515357e6db856272768d69aea84251a5df"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/rawload.c.o",
+      "sha256": "cbe54616f5669af74332bee797261ebb9e9c424baeeae6891a018054a04a1f80"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/rawsave.c.o",
+      "sha256": "b9a281ac6cf4e51091b25ed9017f26e5d7c0ce819a190bc38ce67f38a2fbbcb4"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/spngload.c.o",
+      "sha256": "9895a55deebbc35adae02dda10d124dee117ad59fa85f4566dda7b7b2f01ac44"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/spngsave.c.o",
+      "sha256": "18c83f5dc1542e19982ff75546e112e5a29907706d54e9682f2e92911638d1c0"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/svgload.c.o",
+      "sha256": "7db236b13874e81968ad154f73df9859c9eb4e9f35d43079583a68f8eca56898"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/tiff.c.o",
+      "sha256": "af722346e55c35eb41f20381b1ad5378147299e486adacd3901bffbd6300587f"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/tiff2vips.c.o",
+      "sha256": "cdf19316d5cdaa3c00d391c7bae1b2f0ac9e89c8913ae83626ce451f307b54da"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/tiffload.c.o",
+      "sha256": "9b6ec554157b84259f49a5991a4ad191f624cc564f8c286879f8b2e5d79a3a96"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/tiffsave.c.o",
+      "sha256": "dd23bfa3747b97886509b292d7e401192bd49458714be6328e045a76c923a126"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/uhdrload.c.o",
+      "sha256": "059016c77377d440d30ee8253c4316ebd97767e024ebaf229f5a463a7b54c4b4"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/uhdrsave.c.o",
+      "sha256": "1a49142e62ffc19631d337d9d2717fc8fb238f7eebd37db39552e2a275582e97"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/vips2jpeg.c.o",
+      "sha256": "256dd6413be1ce1e87f85c4fc7b92536550086c96cb058bf245703d74bf11bea"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/vips2magick.c.o",
+      "sha256": "20adbb6f9c212cb52fba4fb57681a0f6510561143f7daf2171cd3e5c28e972c5"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/vips2tiff.c.o",
+      "sha256": "4394777c7ccedb610199bd25810086a45fac039ef0f733a17a482113400ae119"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/vipsload.c.o",
+      "sha256": "adecf948c135f232ce5538a2ac1a4b757fb86ec2e426a4bc3933b9b8e1dfdc2f"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/vipspng.c.o",
+      "sha256": "e1ca3f317ed00c7fa6c2da21efbaa63c5f0af0e71d8addd72a70888b30c7956a"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/vipssave.c.o",
+      "sha256": "cde3872b3af99bbb71f613133365f96f486145ef9e0de539ff665c95f4673adf"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/webp2vips.c.o",
+      "sha256": "d2764f539748f397532f20a13149c3e1373f79aac8c3f7bebfbd3261b8b810bd"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/webpload.c.o",
+      "sha256": "45a819efad47fbcbc3a0aaaef171e37f85f31347a6681d1fc411ee8114e5d9bc"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libforeign.a.p/webpsave.c.o",
+      "sha256": "ef044613217c9a04ab8a69e84edcf6d845eff5b63bc90a1ea7377de6580470f0"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libnsgif/libnsgif.a.p/gif.c.o",
+      "sha256": "49bc3a05c1b6d7356cc29d2308674837c4a667f3e346f2ca37e7ee5afdd08216"
+    },
+    {
+      "file": "control/vips/_build/libvips/foreign/libnsgif/libnsgif.a.p/lzw.c.o",
+      "sha256": "5b8c119b45e98dcb9288bb7cdf223cc7b1cc16b3622c97b8e5a11fbe9185aa38"
+    },
+    {
+      "file": "control/vips/_build/libvips/freqfilt/libfreqfilt.a.p/freqfilt.c.o",
+      "sha256": "586627777a123d105593339e402e7d4d1acaa1d58bbc738661d7855e9670caac"
+    },
+    {
+      "file": "control/vips/_build/libvips/freqfilt/libfreqfilt.a.p/freqmult.c.o",
+      "sha256": "487b249a4f2968f95b96afe4a7170bc504f701fa00c8b0d485db7287bdf866c8"
+    },
+    {
+      "file": "control/vips/_build/libvips/freqfilt/libfreqfilt.a.p/fwfft.c.o",
+      "sha256": "383e73d3ee1f53ac1e98d9b41a26974b0ed79733d9f2e055257c3be1e477192a"
+    },
+    {
+      "file": "control/vips/_build/libvips/freqfilt/libfreqfilt.a.p/invfft.c.o",
+      "sha256": "9a14c405098fb582b65442550e431ac3ec7db92e92e2eab94b6fb9a62effaae1"
+    },
+    {
+      "file": "control/vips/_build/libvips/freqfilt/libfreqfilt.a.p/phasecor.c.o",
+      "sha256": "e3183f0a3899d1e4db746b524f65a659c10cf999088fbdff623a7a0806759f0f"
+    },
+    {
+      "file": "control/vips/_build/libvips/freqfilt/libfreqfilt.a.p/spectrum.c.o",
+      "sha256": "01e3444437d32d74478c9d466802641155becd968b5ee2ed6c3c7891d3c911a7"
+    },
+    {
+      "file": "control/vips/_build/libvips/histogram/libhistogram.a.p/case.c.o",
+      "sha256": "7f4285f7afa332417a0d7893109c0afdb66a7b069e5b0b49c90f44e2236f7ff9"
+    },
+    {
+      "file": "control/vips/_build/libvips/histogram/libhistogram.a.p/hist_cum.c.o",
+      "sha256": "5037f0ee0d290c088cd96fec695ed2b23d75df224bde61da6b7c6f59b6693255"
+    },
+    {
+      "file": "control/vips/_build/libvips/histogram/libhistogram.a.p/hist_entropy.c.o",
+      "sha256": "7d6b42d5faa95461b15b9cf9db4ccfcc0868708cae4238f0149ad557c37ecb6e"
+    },
+    {
+      "file": "control/vips/_build/libvips/histogram/libhistogram.a.p/hist_equal.c.o",
+      "sha256": "df23302ad09dde16917c2ba3461c8b3dc34de6d6854494084e641a9e277a10de"
+    },
+    {
+      "file": "control/vips/_build/libvips/histogram/libhistogram.a.p/hist_ismonotonic.c.o",
+      "sha256": "eaf2c9da138ab1d9c7f0af311d39e626cdc02656446e20c90db5ec9f52d69ba3"
+    },
+    {
+      "file": "control/vips/_build/libvips/histogram/libhistogram.a.p/hist_local.c.o",
+      "sha256": "4b6e2492515e9fc276e8449c3b97d7e8c2c9eb3a24d58c3dc144e7e3b87be940"
+    },
+    {
+      "file": "control/vips/_build/libvips/histogram/libhistogram.a.p/hist_match.c.o",
+      "sha256": "993609e1e3f2339a184cf1bfca89a86f286f8477159cc083521d642f375cecc8"
+    },
+    {
+      "file": "control/vips/_build/libvips/histogram/libhistogram.a.p/hist_norm.c.o",
+      "sha256": "78180b73b48c7028c5906923ee2926904db30006c2e186f49ff0c512f9991213"
+    },
+    {
+      "file": "control/vips/_build/libvips/histogram/libhistogram.a.p/hist_plot.c.o",
+      "sha256": "81b76044e351aa25a7b91250db84abfa20c5d2a17bab629c89be68b48c98f769"
+    },
+    {
+      "file": "control/vips/_build/libvips/histogram/libhistogram.a.p/hist_unary.c.o",
+      "sha256": "6ba69dd319f743ff8966ef163637d236d23af3fa2e74ead5f9dd4cf002d73a0f"
+    },
+    {
+      "file": "control/vips/_build/libvips/histogram/libhistogram.a.p/histogram.c.o",
+      "sha256": "13feabcbd2c92f9868eb7fbf17525b31f0bf019fd0df0c325dccce9f8375ee92"
+    },
+    {
+      "file": "control/vips/_build/libvips/histogram/libhistogram.a.p/maplut.c.o",
+      "sha256": "fae59808059dc241271333978bb050b76735cb91f917c27867755d85d4317dff"
+    },
+    {
+      "file": "control/vips/_build/libvips/histogram/libhistogram.a.p/percent.c.o",
+      "sha256": "1451cfbfbfdb4b7972cf9d93641afe61fcb4c821aaa30718fe408f0120d8266f"
+    },
+    {
+      "file": "control/vips/_build/libvips/histogram/libhistogram.a.p/stdif.c.o",
+      "sha256": "5d8f958c31228615f2072747371f5e1c846dfb6707c127833ab847d28cbd62f8"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/buf.c.o",
+      "sha256": "dcc56bd266a8a9318f9cd1499179b3d7fe1d0f7353a7f69703c3e536207c24d8"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/buffer.c.o",
+      "sha256": "afdb68acf562f7b173c3c06cef80bfc0c07582b06314957458dbec1e4010632b"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/cache.c.o",
+      "sha256": "0cedda2ae0973233b0aaa92f35acaf36391d42c2262e3c764423a9c12c370ff1"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/connection.c.o",
+      "sha256": "6cd086119ea4cc271559119769d8cb16b677f49600a7f59997ebcaf021de0a74"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/dbuf.c.o",
+      "sha256": "ca70862015366df78da389d17ef8afc30a8f2183ebf6a4a64b7d9fb66324deca"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/error.c.o",
+      "sha256": "82707b2e1e93bfa9fd03a05c3e904055e563a64d91a0e91acc282a34237a2b05"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/gate.c.o",
+      "sha256": "5130593f56ad53600a7896b81c2442535931db954df81918d5d4aa66c323cc52"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/generate.c.o",
+      "sha256": "2682eff347918ede0e9884ea7a3088232a3b2d9c85a0888f71b44f2fc95857de"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/ginputsource.c.o",
+      "sha256": "9fb398b48cbdc707eeaa6342727a4a1ea8eb433bd9959823e16bb04fc158eea4"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/header.c.o",
+      "sha256": "0b18c00803c4f633ee1709349d58b4506589e66c479dad1bc24e7b1a848757b9"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/image.c.o",
+      "sha256": "1b88908e1e5f9f8fff6fd23de77459140b71ad073eb67c7869530af2db8c9744"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/init.c.o",
+      "sha256": "057bb71af4d15172b08eb4fac9482cb78a6081d9795f9fe6145bba685266f01a"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/mapfile.c.o",
+      "sha256": "3cb17b8fb2b2efb5c82e19b59e7e25e151ef52e300a82db2ce59f63e8b74d1ca"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/memory.c.o",
+      "sha256": "84e9c7354231208c39fa87089b23dae85633b6733009eb7c863e156bd4bc738b"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/meson-generated_.._vipsmarshal.c.o",
+      "sha256": "622306fd6fc39471a7e05d10f0848bd8421e3c6cec154183cb4bee86d3b6df8c"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/object.c.o",
+      "sha256": "1dd4c8c7fae370f9a66b5a481f7fd4c85f26c9710da0a5da0782003686514810"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/operation.c.o",
+      "sha256": "13b11680cfdbabd3c76f73a65b9c570385e97806fb8e0554dc31a8e396e1748c"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/rect.c.o",
+      "sha256": "dcabe24fc5527bfde1c1014d4b1932ccb0e424e79aba8b8e897cfe05eb9d679e"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/region.c.o",
+      "sha256": "659988878359000f4d07ded4a1afc7ddc74d5985b92c50fe66f52d1c0aae9480"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/reorder.c.o",
+      "sha256": "c068bcdf2834caad08a069d858d27d16100582e18c173bac14a4228cf5d3518d"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/sbuf.c.o",
+      "sha256": "d550b0b6abcfba6b0f616b9cb763b60eb433b986123d5e61e3b68cddb34bf65a"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/semaphore.c.o",
+      "sha256": "804e8dafbe36f98af955081d46cd951917b615b153e7d170787d474c243559af"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/sink.c.o",
+      "sha256": "adb5b77f6bff22266a4f25c378aa0fd4a33261c7cff564b7f93c150b21b2ac5e"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/sinkdisc.c.o",
+      "sha256": "b84fc74ae602e499e421f041db3cded9a7f3ba1d09786cbc68725320820ac3de"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/sinkmemory.c.o",
+      "sha256": "3ca9966182c072cce8999dcca9eb225a464f40cb2b22a54afe38130cd6b4d068"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/sinkscreen.c.o",
+      "sha256": "3a798722f086665e275d0d8a137123b67c26e3a6473cee2be36fba3017962d87"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/source.c.o",
+      "sha256": "96a4f7482665b50b38512ba09708330f480eebac4818f3a185ae78c9bd76ed4f"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/sourcecustom.c.o",
+      "sha256": "c1e0d82afbcc3578595db979d63baadf662d3488fe97a152a0797ff304ea77fe"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/sourceginput.c.o",
+      "sha256": "224668251b1067b6616467444f3f9ac6753e0a9a344978f69599d22494f9de4d"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/system.c.o",
+      "sha256": "b4425a6fa542c271aff1b667a2cfbd044bccda8e71fce7c4a218c6f0fe98eccf"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/target.c.o",
+      "sha256": "5f2935f1a96599177cbdf32e383d50a1cc411850d2d769753a06bf4289536413"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/targetcustom.c.o",
+      "sha256": "476930440bd5e0734e53526b09960499acba011723c6bddfeea5dacfc10c3abd"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/thread.c.o",
+      "sha256": "4472809f3e557faec9af4e9c7bc540dcda63fc0da85a1534a3d9a784eb3da840"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/threadpool.c.o",
+      "sha256": "9b118c43a70cda93bc82ddfd24416561844ea13b2022f922a7acbf2abf4cd842"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/threadset.c.o",
+      "sha256": "1bfcbf8ec66ab3d5ae12a6a3764142922bede858aafae1016bfb0d6cdb2a2c05"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/type.c.o",
+      "sha256": "b22600af9a094ff73e9c54a8388a4804e120a4a2e12415431909ec211ab681b4"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/util.c.o",
+      "sha256": "9e6201be364a2fadc8ffa0fdf63a2a06a106bf8ea09531c72bc6b38b8158bca0"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/vector.cpp.o",
+      "sha256": "192f5332e5b59d079846c719eb26009a6b7903cadabd5e485bb33137ca8ba0d4"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/vips.c.o",
+      "sha256": "2d28d5b878d05999f49a33bac6c51d7e117200ed0c4cd1312c0dfb5404423e0d"
+    },
+    {
+      "file": "control/vips/_build/libvips/iofuncs/libiofuncs.a.p/window.c.o",
+      "sha256": "1a3e7f77b9a032b1def7e1ec5552e47d69c937d7f963c41f5ed499beac643ff0"
+    },
+    {
+      "file": "control/vips/_build/libvips/libvips.a.p/meson-generated_.._include_vips_enumtypes.c.o",
+      "sha256": "a179a4927cac2a1be8a29b93fb576b8ac78b6bbffcabdec4d3506ad9d86bbd3a"
+    },
+    {
+      "file": "control/vips/_build/libvips/morphology/libmorphology.a.p/countlines.c.o",
+      "sha256": "21c460dbb3c03f450c55f0ab6648fe184e633490b2e49942aa2357b3c1bd77dd"
+    },
+    {
+      "file": "control/vips/_build/libvips/morphology/libmorphology.a.p/labelregions.c.o",
+      "sha256": "9186b281b35a3e462349e272c9bb4aaffb9abbeecfe55686c252887287e6c56a"
+    },
+    {
+      "file": "control/vips/_build/libvips/morphology/libmorphology.a.p/morph.c.o",
+      "sha256": "e27c332383bb1dc8bacf4911a1b02c29e082bfc2941ec103c588cba9766df089"
+    },
+    {
+      "file": "control/vips/_build/libvips/morphology/libmorphology.a.p/morph_hwy.cpp.o",
+      "sha256": "45ec3f23f829519efe9a92353319abb9c5b6972981cbb673f8c56f067d2aca99"
+    },
+    {
+      "file": "control/vips/_build/libvips/morphology/libmorphology.a.p/morphology.c.o",
+      "sha256": "5d6fe67da1f098695dad6418d5d6b0fe40cc4bb61ce31c82b9985433a583fd9f"
+    },
+    {
+      "file": "control/vips/_build/libvips/morphology/libmorphology.a.p/nearest.c.o",
+      "sha256": "77d2b3549f8b8fa14b0398f87b638a7b9deb998a2ffb8f0402aec261ad1f0795"
+    },
+    {
+      "file": "control/vips/_build/libvips/morphology/libmorphology.a.p/rank.c.o",
+      "sha256": "1c918941e78b3bbfbeb00898cbed72a87d9a796377444336c230c2574b7d1a4b"
+    },
+    {
+      "file": "control/vips/_build/libvips/mosaicing/libmosaicing.a.p/chkpair.c.o",
+      "sha256": "4ba34c00797bd7ffd2d5610c2118506751dd86f71362826da976ef2a4afffe2e"
+    },
+    {
+      "file": "control/vips/_build/libvips/mosaicing/libmosaicing.a.p/global_balance.c.o",
+      "sha256": "c072342dc15713b087095383d0833d91f399076935cc3bf4f3682bc47893dffe"
+    },
+    {
+      "file": "control/vips/_build/libvips/mosaicing/libmosaicing.a.p/im_avgdxdy.c.o",
+      "sha256": "a11e479ee7e0738c4c8c867da81a1021622340588862620e0c5bae3b19bedc7b"
+    },
+    {
+      "file": "control/vips/_build/libvips/mosaicing/libmosaicing.a.p/im_clinear.c.o",
+      "sha256": "6b85e0544d8fdee40c90f28598fb9190317f0d76adfb2383d2a61591b0ad3bb3"
+    },
+    {
+      "file": "control/vips/_build/libvips/mosaicing/libmosaicing.a.p/im_improve.c.o",
+      "sha256": "6cc0e9469a5f424737ba13c4ab271e11ee7a2e286500eceba14f718d30b25861"
+    },
+    {
+      "file": "control/vips/_build/libvips/mosaicing/libmosaicing.a.p/im_initialize.c.o",
+      "sha256": "3bf79fdf4c8df9690828547d251de4b1146c746fd0743e8209a6600375fd2f07"
+    },
+    {
+      "file": "control/vips/_build/libvips/mosaicing/libmosaicing.a.p/im_lrcalcon.c.o",
+      "sha256": "fdac53110959bcd5cf742722c729f4aa61bb876e4aaf330a9ceafeb74e0a3d75"
+    },
+    {
+      "file": "control/vips/_build/libvips/mosaicing/libmosaicing.a.p/im_tbcalcon.c.o",
+      "sha256": "402ad4c6577f22be3c7e7a79465198d7eaaef411041889cb014ca24a93588b99"
+    },
+    {
+      "file": "control/vips/_build/libvips/mosaicing/libmosaicing.a.p/lrmerge.c.o",
+      "sha256": "0aea3a6015fd7a83c0c17e90718f34d3872d9587d7cdbc86ed1a2126cd9bee8a"
+    },
+    {
+      "file": "control/vips/_build/libvips/mosaicing/libmosaicing.a.p/lrmosaic.c.o",
+      "sha256": "7a930d20d6cd0e175bb37a9b6170543041da8e8a3d769679927d097008bc7185"
+    },
+    {
+      "file": "control/vips/_build/libvips/mosaicing/libmosaicing.a.p/match.c.o",
+      "sha256": "9ef499b1b53f777df6f883f7c55f523540449004738f7f3fd5ef31e892b2a7ed"
+    },
+    {
+      "file": "control/vips/_build/libvips/mosaicing/libmosaicing.a.p/matrixinvert.c.o",
+      "sha256": "b5db1f82c72fe6ff0476d22d7eb27a8557777bec4937720a18fe389abec40d4c"
+    },
+    {
+      "file": "control/vips/_build/libvips/mosaicing/libmosaicing.a.p/matrixmultiply.c.o",
+      "sha256": "0bc596662eead4d58add1c16a7dfb813f001e1a1b30770de154e9df727e3facb"
+    },
+    {
+      "file": "control/vips/_build/libvips/mosaicing/libmosaicing.a.p/merge.c.o",
+      "sha256": "6134fea7e261e7fc79a0dd2fbb1f2da55ea722af67b26b5785762340b0e04ec2"
+    },
+    {
+      "file": "control/vips/_build/libvips/mosaicing/libmosaicing.a.p/mosaic.c.o",
+      "sha256": "41b645511083828a04faac1e9cf5739fa2706e17ad59d546bf1fc1554ba32c47"
+    },
+    {
+      "file": "control/vips/_build/libvips/mosaicing/libmosaicing.a.p/mosaic1.c.o",
+      "sha256": "075ef8bdb4148a173823571a02e44bf18fc690a9f2d9d1a07345159472b10a11"
+    },
+    {
+      "file": "control/vips/_build/libvips/mosaicing/libmosaicing.a.p/mosaicing.c.o",
+      "sha256": "b188330bf59b078a151e8fe752bb58c8699ea061c80f73b24bec5216e8d10a65"
+    },
+    {
+      "file": "control/vips/_build/libvips/mosaicing/libmosaicing.a.p/remosaic.c.o",
+      "sha256": "84ffb3153c014b02c8adec859c1ef6d76b1ac2d0be19bbac882608254f9634c2"
+    },
+    {
+      "file": "control/vips/_build/libvips/mosaicing/libmosaicing.a.p/tbmerge.c.o",
+      "sha256": "4d5304741ec8495787e3993bea474daa1f93df6dd74ffb015f42fa4cdb0aa32b"
+    },
+    {
+      "file": "control/vips/_build/libvips/mosaicing/libmosaicing.a.p/tbmosaic.c.o",
+      "sha256": "cc33c788f20a32ab7111bc07ff29d0c62ebecc068ed1df04fa5f2e3411713dfa"
+    },
+    {
+      "file": "control/vips/_build/libvips/resample/libresample.a.p/affine.c.o",
+      "sha256": "b51d6a037c4b387bcb6c404d54c21b920f0d9e80b7a8faa5efc49b6c759213fb"
+    },
+    {
+      "file": "control/vips/_build/libvips/resample/libresample.a.p/bicubic.cpp.o",
+      "sha256": "cf5f20e4fac32c16ff658ec81f9dc209fe7e8ac130a9082a4cf0bb72fc4a3701"
+    },
+    {
+      "file": "control/vips/_build/libvips/resample/libresample.a.p/interpolate.c.o",
+      "sha256": "73637305623e39dc763a039e3cbdf77de5241a43fe136cd3a369eec725b76203"
+    },
+    {
+      "file": "control/vips/_build/libvips/resample/libresample.a.p/lbb.cpp.o",
+      "sha256": "bf4bee9234ea5d6a13c16fe555f157b598638fa243aba3eefec10ba434fc691c"
+    },
+    {
+      "file": "control/vips/_build/libvips/resample/libresample.a.p/mapim.c.o",
+      "sha256": "bc74a4a7b40ada4bce8a366da6f47b64b47b4d4f0b89ae6ca8d8fef0ef0f3787"
+    },
+    {
+      "file": "control/vips/_build/libvips/resample/libresample.a.p/nohalo.cpp.o",
+      "sha256": "1b07531ab763794a7500594bdccedd12fc5ca8e4c0ede017fa620519087368b6"
+    },
+    {
+      "file": "control/vips/_build/libvips/resample/libresample.a.p/quadratic.c.o",
+      "sha256": "b2c83ae70661d534ac9ebfb5fd7e3739ba4520d2f307d9debcda5716c1bfc0ff"
+    },
+    {
+      "file": "control/vips/_build/libvips/resample/libresample.a.p/reduce.c.o",
+      "sha256": "44de9442a05df15560aadab9f82a3e13e87fb7f51ad14ce6298120b38bb80e91"
+    },
+    {
+      "file": "control/vips/_build/libvips/resample/libresample.a.p/reduceh.cpp.o",
+      "sha256": "6368902fd82da340f868d3242f996556593b2f8f6c89bade7ecd6d65c0d87afa"
+    },
+    {
+      "file": "control/vips/_build/libvips/resample/libresample.a.p/reduceh_hwy.cpp.o",
+      "sha256": "fa70277c4202e755ab80bf8379a742a529c76729dd28764e24b993267853af47"
+    },
+    {
+      "file": "control/vips/_build/libvips/resample/libresample.a.p/reducev.cpp.o",
+      "sha256": "fa23e75223ec6d2c68ac6f97d14cb119076c18cfdb48149e1782738bea1e974b"
+    },
+    {
+      "file": "control/vips/_build/libvips/resample/libresample.a.p/reducev_hwy.cpp.o",
+      "sha256": "53c1aafa455e09b55e7141fed0f819b3f95e38379b58510af5c71f26246f94cc"
+    },
+    {
+      "file": "control/vips/_build/libvips/resample/libresample.a.p/resample.c.o",
+      "sha256": "bb56a76f8e89538a4fdd29214b8cef92d56fe1fe67e7098bad4da7348a4dd5d3"
+    },
+    {
+      "file": "control/vips/_build/libvips/resample/libresample.a.p/resize.c.o",
+      "sha256": "c54425caad3cb0f8d9c5aaab6233dbf27d34456e1eb87fc6ff8763d05de080f5"
+    },
+    {
+      "file": "control/vips/_build/libvips/resample/libresample.a.p/shrink.c.o",
+      "sha256": "f18be53f2dd5a571b8e0af975c5978c85472cbcacaa00b1de1d3ccdddd6819cf"
+    },
+    {
+      "file": "control/vips/_build/libvips/resample/libresample.a.p/shrinkh.c.o",
+      "sha256": "78d0717bac0e96462e4117f3245470ca9444bb0c3f1d8eb70db130ccb6940167"
+    },
+    {
+      "file": "control/vips/_build/libvips/resample/libresample.a.p/shrinkh_hwy.cpp.o",
+      "sha256": "a8afa73458cccfd287586777fefb303975fa688d3ea712ae5a7bbc94ba20a2e6"
+    },
+    {
+      "file": "control/vips/_build/libvips/resample/libresample.a.p/shrinkv.c.o",
+      "sha256": "bfb531af07fe45284b0a17b6a19e00023c6d01b146b1ade3c45c4e188a6a2555"
+    },
+    {
+      "file": "control/vips/_build/libvips/resample/libresample.a.p/shrinkv_hwy.cpp.o",
+      "sha256": "df272b426dd4f45932c0749a19e739312222d393f5ef24c28512d5173a6bdc88"
+    },
+    {
+      "file": "control/vips/_build/libvips/resample/libresample.a.p/similarity.c.o",
+      "sha256": "6d9c17592e87d368c0d7c651ca9bd8c0c763fe25e3ff04a7f0054e49ad1d8311"
+    },
+    {
+      "file": "control/vips/_build/libvips/resample/libresample.a.p/thumbnail.c.o",
+      "sha256": "99f403b0e831cc835836f620a770aa35fae28eb4333448b28c13c3d72d306d9d"
+    },
+    {
+      "file": "control/vips/_build/libvips/resample/libresample.a.p/transform.c.o",
+      "sha256": "d80675f5b323a7b083ea4a4cf06472a988d007321c1cf6e586f53eb30bd6d855"
+    },
+    {
+      "file": "control/vips/_build/libvips/resample/libresample.a.p/vsqbs.cpp.o",
+      "sha256": "ddb6c4e8637f543cfcc7f7aee2c0650a844ad560242d786e17ae4094a3af235d"
+    },
+    {
+      "file": "modified/vips/_build/cplusplus/libvips-cpp.so.8.18.7.p/VConnection.cpp.o",
+      "sha256": "37b33611d576545ccaf3197f91be9af69eb4769127b9cdea677f6ae0f132da6f"
+    },
+    {
+      "file": "modified/vips/_build/cplusplus/libvips-cpp.so.8.18.7.p/VError.cpp.o",
+      "sha256": "9818e457f1a21d917c63793a852dbcd633b0bd65a81b5863d2e013e9644d4b8a"
+    },
+    {
+      "file": "modified/vips/_build/cplusplus/libvips-cpp.so.8.18.7.p/VImage.cpp.o",
+      "sha256": "5fda0ef6648b60c06ebc4a261f39ca20868fa237d575384be444efbcc1e3781a"
+    },
+    {
+      "file": "modified/vips/_build/cplusplus/libvips-cpp.so.8.18.7.p/VInterpolate.cpp.o",
+      "sha256": "ddd79034436b8c63cf7f9a164c754a96f9c9440981e3198a168d00b956b0b535"
+    },
+    {
+      "file": "modified/vips/_build/cplusplus/libvips-cpp.so.8.18.7.p/VRegion.cpp.o",
+      "sha256": "b5536d357579f4edb5a4c0a7b3de8f7e11a991146da13e055e720d5f9be4ae09"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/abs.c.o",
+      "sha256": "0f7574a5674fa86688b41856c8df7e5b2a1561d86ee1ffdec4ec47c472bd2598"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/add.c.o",
+      "sha256": "a645cd0782d85921c1a9e0f884ba22ec834627367487724438f17cf75168f77d"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/arithmetic.c.o",
+      "sha256": "f02cd19a85c837dd46eef699679a554e7eb9ed0056a974daa20ea720d3176b02"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/avg.c.o",
+      "sha256": "e1f475af02a91de0dfa8e18f8e6c1049fd12274d98627cab79b48540aed5ed72"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/binary.c.o",
+      "sha256": "ae77a4fb86e5b7950eedb5bfac6f68e0b1762ebce6a17fa665ffab07b3eef731"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/boolean.c.o",
+      "sha256": "ae1398331f3af3bf0ba6dde5fd871c4eb2c41b0b38b8a08e60c11dd0c8fb1d62"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/clamp.c.o",
+      "sha256": "ef405bcc1b1e89811d17e80173ff1e6a05019db01f1251867a04e4a5d07cea47"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/complex.c.o",
+      "sha256": "992b9d2320dcf0453b5fad18e35409520ebdc852049a7caeed0dc1d7adc4724a"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/deviate.c.o",
+      "sha256": "622956150297f97348e14d0c5002e985ac5b0c92a62b1b2530b7644ad1b89238"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/divide.c.o",
+      "sha256": "0d483dc1515ac89336faf04fd9e7e524ef8eb572174218eb7f4cae2fe48255d7"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/find_trim.c.o",
+      "sha256": "ef836bdc1513a6e1945cd38ce9d5dd584ba5e4276ce76a203daccb3ca9f177a1"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/getpoint.c.o",
+      "sha256": "c196116c79a71509cace36f0affc2e98eed1e6af2afd669cba680618edbabc24"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/hist_find.c.o",
+      "sha256": "e0d5106d2a77bd0df3e5e79095742e7506ef9fc18c733526c04d00ea77ed36a7"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/hist_find_indexed.c.o",
+      "sha256": "4d0850ef109e1c3aad31f4433442be60919deb254db5fd1fd7a578b0c535fcb9"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/hist_find_ndim.c.o",
+      "sha256": "18588e4d40e293de3f1a8fa5d6a3b3c2fd02c40cf5b60814ecaa93c8f66272ce"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/hough.c.o",
+      "sha256": "85f19f075744c666847d34ec5d3981f99791f83aa4f6a329dd81c159ee4b149e"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/hough_circle.c.o",
+      "sha256": "432bc0ef50b0c24bcb3091aaf77d5ce14a2532f878dcb58d16dd742fa9b55e33"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/hough_line.c.o",
+      "sha256": "d199ae17e1cc2d9cdff6f075d788c4243e8b3df7d9873834ded788830d6179b2"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/invert.c.o",
+      "sha256": "d65142cc4bd7104d0fca08c73d24c1f986af84a4f362b96c5ed2dc4c3af4a404"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/linear.c.o",
+      "sha256": "50a6f17bbc8801245a06597e7d3ed81501999b1787a9d679cc0604429fb3dd38"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/math.c.o",
+      "sha256": "a2e766b8605df502fcb3168552088809ff111ef5156ad4b7d7c4897015d54b23"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/math2.c.o",
+      "sha256": "f33310ef583b31735ce2dd3fc005150e472ff056932d5726c977b5ea38d72865"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/max.c.o",
+      "sha256": "437c077550b1ba437f0b575e149091f621925706bc0f099921058d1045c0ef1d"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/maxpair.c.o",
+      "sha256": "dfcdcf39545d39fe9d44976fff61c89002b23f84dc45ef6ace30cb837a9e9657"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/measure.c.o",
+      "sha256": "b4f9f5064a0cc40da6873f778992a5e8535fde47f9b3eb92cafe2ee29fbbfb60"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/min.c.o",
+      "sha256": "8a8545893bac382b37354f53dea20080c5ac2aec3b6fc59d4d7b9eb54d61239f"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/minpair.c.o",
+      "sha256": "a816c5d4e40cf846a275e47328abb791defbcf8c72d7515218585b319892cc52"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/multiply.c.o",
+      "sha256": "634ea70a3e6f558dcd6f0f2e296b46701c9989155f53beddd3315ab83698f50a"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/nary.c.o",
+      "sha256": "0794841b469dde2b41803cec297f4588d4fd6ddad136340f4a5bf3545c116dbc"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/profile.c.o",
+      "sha256": "5b3dfe787dec0e3d20ee7a61af3357563e90de66070c74647e6b82409f32414f"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/project.c.o",
+      "sha256": "a5c8a3452d5d982b7bd037f0e2bf20668f4f6a2651d46c3530112dbf25e1ac8d"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/relational.c.o",
+      "sha256": "4ddb5ee5cb46dc242423e775e60355c50dd4792c31b8235ca5189a1751c2de03"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/remainder.c.o",
+      "sha256": "71555c00ced8bc955a6c4992428c5ec7297e5540b155844fa0d750874462c0e8"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/round.c.o",
+      "sha256": "63ded6eb30ee969e78222601d49dcfb9add9e8709c81f8b3780ad3f85dc9d9ec"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/sign.c.o",
+      "sha256": "90c8475bde69d1527ed72a55d6ab5ad42d999bb8af1fd4c0447ba77ad9e76cc1"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/statistic.c.o",
+      "sha256": "8d1a9d228531cb02778700aa09a934c6732dbd25272c6364f48ee81f148f331d"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/stats.c.o",
+      "sha256": "2926388a536e9ca60dc063cb778c218deec55c740b67876f34592628b5f772c8"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/subtract.c.o",
+      "sha256": "dd513cedb24c6899cdc6b20c9d9138a4e6e159ba6223ce71c03d39b883b0d80f"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/sum.c.o",
+      "sha256": "ebfe8ba473ac2d376d56069eceefdad9ffd0fac4501de9cd84ce9f9cd689aa15"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/unary.c.o",
+      "sha256": "78a432d55e4195e72f261ae136d34ea7ef17a5627f3578b5b20ed418de01dde8"
+    },
+    {
+      "file": "modified/vips/_build/libvips/arithmetic/libarithmetic.a.p/unaryconst.c.o",
+      "sha256": "51cfe454c7874889621f4a9c5da2a4acf3aa7059644de90fd695d17c4d1295c8"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/CMYK2XYZ.c.o",
+      "sha256": "fc694bb095068dc6041611be8de098a41f8ec7df7a5ab9910966d10d99c88ccd"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/HSV2sRGB.c.o",
+      "sha256": "94dcaa722cc8957e69f829b60f7a95fa52843edc898dabda9584078b829cb664"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/LCh2Lab.c.o",
+      "sha256": "bf5e8fcb0bab378846e7ad53adf3ca55719611b0b4e4c5ff2bf0023d11f4db1b"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/LCh2UCS.c.o",
+      "sha256": "944f63f0452b2a4b2f9fe7dcb8ac9f024449f9a65353af7fccc436c4dcc5f497"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/Lab2LCh.c.o",
+      "sha256": "09bb7d4fdfd6954c17cc579b49494f6288105981262957cb18d8deb76a1641e9"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/Lab2LabQ.c.o",
+      "sha256": "bac5907e981edfaf42d38fdc1b13c356f9abc8719c59ce8cae76f23b4ed15a3d"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/Lab2LabS.c.o",
+      "sha256": "55d97d66a76a4e3de698ebafac255494bad0b352a9189bead725a3eb82c028d5"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/Lab2XYZ.c.o",
+      "sha256": "6e3dbb894114552055635e8541ec53dce00b13b902ea3455f88349896e10ba0c"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/LabQ2Lab.c.o",
+      "sha256": "d51fd21cecdf7755d62dba8c8ebb37dab4ef2e8e309a3465fdf67f726a4eb44a"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/LabQ2LabS.c.o",
+      "sha256": "c467012c85054f7bc6335b179d314e211b780858f6eba04dacdb78541a82f8c1"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/LabQ2sRGB.c.o",
+      "sha256": "a2d1837e5cd7872dfc4e769390b7951ad4c37180c22df56c9d259e6ad0d48a8b"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/LabS2Lab.c.o",
+      "sha256": "c403f675eb4600805355c7645b53303d112f46991e311a9db822236cda486675"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/LabS2LabQ.c.o",
+      "sha256": "4a07992d100dcd71ab5ac06d9b58f8888dc8e316761b02bc235050e59617d21a"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/Oklab2Oklch.c.o",
+      "sha256": "ca8d440107a60fe36651302301b4027f6fb898020bddcc8447c7df6cf6335cf2"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/Oklab2XYZ.c.o",
+      "sha256": "2031edb033830f895f32bdf41b4ecc24f65949c8e2828e8f0dd9901b7b55a0fd"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/Oklch2Oklab.c.o",
+      "sha256": "830776c8d02f19ade5b0a9c0500e8570a360e67a77edd52d8f9bb01a3fcb7021"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/UCS2LCh.c.o",
+      "sha256": "3c854817d6f7135f7200f84a54e1600cbc9cb0571ffcad37790ee7d56ba5e285"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/XYZ2CMYK.c.o",
+      "sha256": "90b2bc281380a6c1b0f5a0bb4f9b56924ba4ad3c7abc9ba30d8c5dc524684107"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/XYZ2Lab.c.o",
+      "sha256": "ff1034c1eacae0c9c30c4cacf3e665291a429dd0c4f61554abbd1e486cf535b6"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/XYZ2Oklab.c.o",
+      "sha256": "dac4e47b130f7c4a791b658e4aa9adb5c9e547ecd4fbccc5d14e8957dd2943ef"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/XYZ2Yxy.c.o",
+      "sha256": "0e72bf905ad17d09918b5c6a1a0de49ac997861481986e610c37ab8f8cd5e42a"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/XYZ2scRGB.c.o",
+      "sha256": "81e30dd9349859658ddfca975307394d94b1adc0e59c553b073439e34ab276c2"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/Yxy2XYZ.c.o",
+      "sha256": "97db5f68e954a4110dfca4a8215f8713fcc896148638a825852b8ca1ad086a65"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/colour.c.o",
+      "sha256": "ca0f6f569d6eb45680b778fdec68df292d5dd3046dee95d89e679e8a6d05fe58"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/colourspace.c.o",
+      "sha256": "33bd178dd94075b3d02083c74e96824c8827dfa544a41bb9a13b883abba91f1a"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/dE00.c.o",
+      "sha256": "165f6c284d939de365489cb2bb17868c1e45f567dec8c291dc0ec5e00bc5fec9"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/dE76.c.o",
+      "sha256": "840d75540f3f22082a68b78d35657d9f1e9099c05c5c27f6ec247b7152a6b0a7"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/dECMC.c.o",
+      "sha256": "ac757cfcccb9a6f558ad080c0dc860c0a1c60de945015521c068897c9f3a4bfc"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/float2rad.c.o",
+      "sha256": "4dfee1966d5a647025579a7692039cc25acb5733edeca7aa1e37b99c00bc4602"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/icc_transform.c.o",
+      "sha256": "474331990995cd06a83caa01f1f5d0d3806b5a72a465f1d6a939a6ee58421073"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/profile_load.c.o",
+      "sha256": "fd99f91d6d42f5e5b8208e36ac04db55fe6c878391ab393f2a8f341dadc4da9e"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/profiles.c.o",
+      "sha256": "6f89fb00aeeedf0e3a357f918bf771b93886f46896ee876735e437a475054b88"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/rad2float.c.o",
+      "sha256": "18fbce0234ead7f1a48a366a3396a70f826cb81b0ae5827f694c40ec11a0a958"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/sRGB2HSV.c.o",
+      "sha256": "5af6535d15eecaba17228dd5af60f8f1a8c8473b50e7ef24f979e86c6429d419"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/sRGB2scRGB.c.o",
+      "sha256": "32b6882ddb27357edb39f022948425c30d410269487879d52ac2603f343f0b91"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/scRGB2BW.c.o",
+      "sha256": "b3f3fc809ac5d5509cb034670fd3fa66f0404e2d5d99e180139ca8bb16cd84e9"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/scRGB2XYZ.c.o",
+      "sha256": "9ac645ffd02a255d7f3877ef47493644906d7686aec7a4de446eb10d692c63ff"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/scRGB2sRGB.c.o",
+      "sha256": "f5bfcfb3c79a6601a566620c4e233b27be9d9a5589001be6c885d7ff1ab0eae3"
+    },
+    {
+      "file": "modified/vips/_build/libvips/colour/libcolour.a.p/uhdr2scRGB.c.o",
+      "sha256": "f7d32dfa3237497b31cf028e22134dea4fcd6f037b7433bfff86f3bbd37da4f2"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/addalpha.c.o",
+      "sha256": "33606ae0e80ce7a90e1cbee9665316f678ff97d6b6c500ec4823b57725c65021"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/arrayjoin.c.o",
+      "sha256": "527a7c7995bbc44bc11816cec4759c3fbe6be7c28d5302440c4d7b78cebf3507"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/autorot.c.o",
+      "sha256": "d9f81c05b6ef9e2a6eb72829b8ff0c2c003c4e755014b73bf5e52a2aca4f1e3c"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/bandary.c.o",
+      "sha256": "f483416ff75e66223237fc573d053131945b425c74e7abc935fdf363f9db9fa3"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/bandbool.c.o",
+      "sha256": "51bccd7bad788b59c0e668ccd8456edaf365d4499c86e71b97698a1534c237dd"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/bandfold.c.o",
+      "sha256": "a79e81217ee5d0cbbc471f53b6424097634432a4d4ab680733d229e0458fda65"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/bandjoin.c.o",
+      "sha256": "9e481f5985a00c2c6dd5caf0bead187e0a4aa70ec2c29f206c053e01f14fbe37"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/bandmean.c.o",
+      "sha256": "03a1737e0ba223b7de0a39e7dcec1ed1a73c928d7c06310b5e4942d01b2d8537"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/bandrank.c.o",
+      "sha256": "d2ad031da4fd2592c24d22e3b52da03ee5e864c817f73fc170ef2f53f4b584ad"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/bandunfold.c.o",
+      "sha256": "fd2dc7a01d5f30452f3071ab5d3b4343b97e2e5c7c06660e0632524f59f1b2ef"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/byteswap.c.o",
+      "sha256": "54056eed32e9ff667597413eccb2890fe4015518e4ad57df09916067b9fb8912"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/cache.c.o",
+      "sha256": "d715466b52e753322c46f53ac97deac30a5e27db3c492e2887d17e8bc3f281f9"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/cast.c.o",
+      "sha256": "2cd88722923d61673f442213643979a872dc1f01cf375458ea1200c0a2289499"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/composite.cpp.o",
+      "sha256": "985096be7d022fb45f6468a8570294a3fa89792d2016118cea4ed9e7e7f26ddf"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/conversion.c.o",
+      "sha256": "db70a2cbcd29f6c0d48a5a4daa3265c69e626f57fb87cde3d730bfa3a6783075"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/copy.c.o",
+      "sha256": "773b665f2a89e46a5a1060fb10a372505a918db3efe805274130aafb34df43c3"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/embed.c.o",
+      "sha256": "1fc5e700ac7c48a09c8c28006c3a980817ef5f2db3fe98208c8d549fd034845d"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/extract.c.o",
+      "sha256": "e78e1224556f90c568070de7283ccb43f03092920a2ae54055fa142b4d6ee31a"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/falsecolour.c.o",
+      "sha256": "444f3bf5a2908147fd5e99baf4119236dbfdfed1a7829621da68bcb3e9cee220"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/flatten.c.o",
+      "sha256": "2fc1dcba2d95204aca88a03446ca72774c3f322125def900f569e7e8dbaa94fd"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/flip.c.o",
+      "sha256": "4058109c31be179b0305bc125895e68998b8db3d6df842272c7aecb1c85dbdca"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/gamma.c.o",
+      "sha256": "d1f4bdcc36f183528eac0d15c2214ea18b950160f2ccbb26932fb838c366a1d2"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/grid.c.o",
+      "sha256": "23d8e34a4ae7ab349e25fc9714cf460b45f81dab1e26126c320ff98424b255b5"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/ifthenelse.c.o",
+      "sha256": "3da8c585d4f4d049f5cc8da57e60fc2c38c903901928843dde0440363f7a060a"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/insert.c.o",
+      "sha256": "a673b9074cc60efcb6b0ed616a179a8373d0df1b682367afbe4838afc09a290f"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/join.c.o",
+      "sha256": "57914dbdfc02f5113c7eff718b90761c193ceff75de229d56e0926b2a2c50d78"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/msb.c.o",
+      "sha256": "e647f4f36b0d01c23e49688f038cb69d388d0f6f353cdd11b68d439783d00d63"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/premultiply.c.o",
+      "sha256": "fa98788208414643e75bed653d004e5a9018352bc879d49b3e562b3c0a05878e"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/recomb.c.o",
+      "sha256": "446400f1bca9461f17f7e66bfcf6ad79bb777b3a73bad3a256be041a559c76dd"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/replicate.c.o",
+      "sha256": "38ffa7804f5ed5391293bdcca72a4caaf424b15a10fbf93271573b111e540413"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/rot.c.o",
+      "sha256": "f6b2288eb8fd79d2bf0ea67d7fcd947388f9485bb0a42ced58fcc93f798b43e6"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/rot45.c.o",
+      "sha256": "ed055fa2722c6161a4a2e32c5997129cf67ed7e0799517cb94479d33dd7dcc67"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/scale.c.o",
+      "sha256": "0d877050ae7416a09f7ddebf71670b056459a8c1b7c9d6847368ada22539630a"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/sequential.c.o",
+      "sha256": "ff8251d97cde5549cb3ae7cc92e98badbb10d79f4136df98db87293b5586b830"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/smartcrop.c.o",
+      "sha256": "a7d7236957d91e24afd9156de7b16fb9007649191d468f2debc8520c0925a571"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/subsample.c.o",
+      "sha256": "4cf80bc6fe79fef3a4a572eb29320d1baabcb80f253b37d1fb49a55384f30755"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/switch.c.o",
+      "sha256": "e7f95fad10cb72f6debbe0e7ccd68c6ea9cdfe60677b8f93ef9289fd1b67357b"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/tilecache.c.o",
+      "sha256": "ffc27142d3001f3d6328ee96bee7c2075db5faf3da7a0954a33d3582bc21d1b3"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/transpose3d.c.o",
+      "sha256": "82e5a7750d11ff5738a1c2f046788e9ae8b7b394806b1e21dfb4dd63c266afbf"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/unpremultiply.c.o",
+      "sha256": "fa7c48531987a5651d303e7450373e41f189a3f150849661f58e7922a3c326e5"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/wrap.c.o",
+      "sha256": "cf5ff6de82fed075e4098bb78dd5a364e3fd7869eb0b910244c579b909d20f7d"
+    },
+    {
+      "file": "modified/vips/_build/libvips/conversion/libconversion.a.p/zoom.c.o",
+      "sha256": "7c7675d104e86e077fefb13ca8a7b009dfdb4b65f599c3a233644530a818f23f"
+    },
+    {
+      "file": "modified/vips/_build/libvips/convolution/libconvolution.a.p/canny.c.o",
+      "sha256": "9c136314e1e139cf65d0c2e9b6359bff825068b3630fefe7503089023a54944d"
+    },
+    {
+      "file": "modified/vips/_build/libvips/convolution/libconvolution.a.p/compass.c.o",
+      "sha256": "1e2dfba212681a755fddeed5c45bd6b04cfeaa7399649651bef887b3740c42a7"
+    },
+    {
+      "file": "modified/vips/_build/libvips/convolution/libconvolution.a.p/conv.c.o",
+      "sha256": "b66885447a44dbbc5ac93f207c0ad7aa2a7a55cca41fc88bc75325e5efdd8ac1"
+    },
+    {
+      "file": "modified/vips/_build/libvips/convolution/libconvolution.a.p/conva.c.o",
+      "sha256": "8cc0b0e5e89aad9e9ea5760a7b6254f77d3a3e6af3a830b6b1f0aeea31117e4a"
+    },
+    {
+      "file": "modified/vips/_build/libvips/convolution/libconvolution.a.p/convasep.c.o",
+      "sha256": "c2bbb2f5f953c8816d47d13ec9c19fd8b749c051c4feeaf2483eac2e805daf83"
+    },
+    {
+      "file": "modified/vips/_build/libvips/convolution/libconvolution.a.p/convf.c.o",
+      "sha256": "8e1b841f78b29d3077f287ddc3cdaa533515a2be17c444cb1e8deb88634a6438"
+    },
+    {
+      "file": "modified/vips/_build/libvips/convolution/libconvolution.a.p/convi.c.o",
+      "sha256": "22ea8ed0532fb5e7c709c3168c5874e3095586e644099067a45c68c951767fa8"
+    },
+    {
+      "file": "modified/vips/_build/libvips/convolution/libconvolution.a.p/convi_hwy.cpp.o",
+      "sha256": "162060a6976d645a3a96b9c924dae6284196696e869e03118a0931741dc8988c"
+    },
+    {
+      "file": "modified/vips/_build/libvips/convolution/libconvolution.a.p/convolution.c.o",
+      "sha256": "8c874be9c5925501c70fd048140abee2048db0b3491c42ff67c0273b0889fdb4"
+    },
+    {
+      "file": "modified/vips/_build/libvips/convolution/libconvolution.a.p/convsep.c.o",
+      "sha256": "dc94112cca75fb0a83c609e8af601708294a6b1ecb3c6ececd0ca4d077d28cc5"
+    },
+    {
+      "file": "modified/vips/_build/libvips/convolution/libconvolution.a.p/correlation.c.o",
+      "sha256": "f73766effe40b0494b9f548136eca267bdfc566dec5315aab40c54f74829cf6e"
+    },
+    {
+      "file": "modified/vips/_build/libvips/convolution/libconvolution.a.p/edge.c.o",
+      "sha256": "44cd1759cd386fcec153e1cc5eec43786ef74070a56ad2efe9b8f04805d4652e"
+    },
+    {
+      "file": "modified/vips/_build/libvips/convolution/libconvolution.a.p/fastcor.c.o",
+      "sha256": "04379daaeca7d1d73b0e4743ab95f14ac92e02b7bb5b7aad40ed9465ad897421"
+    },
+    {
+      "file": "modified/vips/_build/libvips/convolution/libconvolution.a.p/gaussblur.c.o",
+      "sha256": "c60b241014173a15a936db1acb0306e3b4ddb76441f73a3f2ac1c3474a392594"
+    },
+    {
+      "file": "modified/vips/_build/libvips/convolution/libconvolution.a.p/sharpen.c.o",
+      "sha256": "1e75e98f39c5f3e0e0df1e8c69a7f936153f6a6344c42c1916fc92031a5b5c4a"
+    },
+    {
+      "file": "modified/vips/_build/libvips/convolution/libconvolution.a.p/spcor.c.o",
+      "sha256": "0fab4ce7887864255a769202d2d21ea7326195f5d2791001348dca5f87aa77c1"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/black.c.o",
+      "sha256": "61661ace902fa21682763f29a30b523fdce8f7e79b57ef0a88f3c87039a90294"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/buildlut.c.o",
+      "sha256": "aa1b8a0b6f92933dc53a8223f5b4e1d8f6e756546756f854314d0fee4859cae2"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/create.c.o",
+      "sha256": "92b70535b6b503ab47df0e3d67ab942dfefcd3111c25cd1963abd1f887b9957d"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/eye.c.o",
+      "sha256": "636b5c7fc6d3664e7249203df73ca39d53122c3a233605a1015d5052c2db4090"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/fractsurf.c.o",
+      "sha256": "f0117ae234c82eed1a8a006e68a8455de4a6d675cffb2736855801f5c34a0995"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/gaussmat.c.o",
+      "sha256": "52cf641c46d134871f4dd9306d69f9709695c0497808903ba058cd59d74b78da"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/gaussnoise.c.o",
+      "sha256": "eab6efd40ec53f212fbc34aac3505034e74f140c7b5c758f74bae1e204a82d97"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/grey.c.o",
+      "sha256": "9f859faf7457958fbe542927841df58b60e27abc4c7f25b56f4e80aa3a540f0a"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/identity.c.o",
+      "sha256": "7d8d79237d5706c716f26ecd6add5b1f92c17edc812f49e87ae8f9fd4458d9d6"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/invertlut.c.o",
+      "sha256": "4c5c18e47751316ba282cb41e0fd6502f45aa66665e0d6c383988b42c14f2cf5"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/logmat.c.o",
+      "sha256": "76bcba67240446993e9efdf53a7f2c4b42bd06cdd5633362e1cf1b1c472cd85a"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/mask.c.o",
+      "sha256": "f8bea1746fa221839ac83c5b26c26295e27a62c9451895adbe8c2d99cc641f46"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/mask_butterworth.c.o",
+      "sha256": "1c4749b96a0c336da310bc83cef76d5182e2bf0fff777b9932066c3ef7c6821d"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/mask_butterworth_band.c.o",
+      "sha256": "2bf16cb5782673dcf30f7c13e6bf31ec16b3b679c26762edf53714c47e4461a5"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/mask_butterworth_ring.c.o",
+      "sha256": "faaaa5dcc11c77f01a896eae398705a34e3fdf9af8fcfa12dc1e7a5ced1dd6a6"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/mask_fractal.c.o",
+      "sha256": "b6754d23d0e56d9eecc3757f8b464f48a86cda99252e12a3eb26ee0ac41984a4"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/mask_gaussian.c.o",
+      "sha256": "28067080ec0546ecce645f89d00d13b55caf52c1b5babb49690e00e631e766d2"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/mask_gaussian_band.c.o",
+      "sha256": "f61c14872440bbdd56b8fc74867a2fa21a54df7bf6fa596442ca64c4542980b5"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/mask_gaussian_ring.c.o",
+      "sha256": "5eeb8630cd241aad0670b6677757d52d740316cd3cb8bbe918aeef9b74f9e29a"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/mask_ideal.c.o",
+      "sha256": "3f08da4c387b614802cd4980be3aeedd8da9f76df1d2f78e8948038a1eb1c8bd"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/mask_ideal_band.c.o",
+      "sha256": "8e2d60bf940965ef9b8f56280637b816613a18c99820293cf8a993bb93cd05ad"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/mask_ideal_ring.c.o",
+      "sha256": "7117cb0cf59ba31e093f048175972dea2b8c1b04ad6163ba926fc3de8f0ee3ad"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/perlin.c.o",
+      "sha256": "53abc992330d3b03eade19778f57cc33bc5bd5a6c06beac3d67fb4047903478c"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/point.c.o",
+      "sha256": "bbb39d1c1ac33755500c3e5551d6bb2eb22b4fc81b572e00b2fb744ee7989376"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/sdf.c.o",
+      "sha256": "bb7e4b1fd1e20f9974711f5fa0ae32da596f4b2dc13b47f37dcf5028c9bc7a07"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/sines.c.o",
+      "sha256": "f5da260dff701fe3f2d086638fe15cdb41d08389d30470bef5aa64d4e3b61d70"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/text.c.o",
+      "sha256": "00baf333f7b9d04b2b5a00ff8ce8bd5a3ea7daf0d72a43710803b7892420e68b"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/tonelut.c.o",
+      "sha256": "f2f4c0058de876ce35ba1eac80da1c0eb30a0610dd44411719cf458863177505"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/worley.c.o",
+      "sha256": "0a0df4843d59b26b81c5e762bfa8953ffb6e167e8557d629ed5431ce04b367b0"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/xyz.c.o",
+      "sha256": "cf0db01b7d29de88693f6453c904961acf40799d719e2a7915518d42f046c6dc"
+    },
+    {
+      "file": "modified/vips/_build/libvips/create/libcreate.a.p/zone.c.o",
+      "sha256": "a43831f6fb2187d14da2a9c6dc31626f037c53625437163e11827b63cfdf8019"
+    },
+    {
+      "file": "modified/vips/_build/libvips/draw/libdraw.a.p/draw.c.o",
+      "sha256": "285be550f19df57fd57d4be22adc3869346667921c91e6830916fb4ea2cb3048"
+    },
+    {
+      "file": "modified/vips/_build/libvips/draw/libdraw.a.p/draw_circle.c.o",
+      "sha256": "c3757c8112e6a29f2aa8475cd16d3b2ee8ac54fcca21253d69a5ad4dff36b620"
+    },
+    {
+      "file": "modified/vips/_build/libvips/draw/libdraw.a.p/draw_flood.c.o",
+      "sha256": "fd6c80cf6a75284518d7b6094d46e1f61cfe9c22f5a1faa45e588240def10bb7"
+    },
+    {
+      "file": "modified/vips/_build/libvips/draw/libdraw.a.p/draw_image.c.o",
+      "sha256": "1d2147e3997fe35477f08498ba3dd6ac1226e1eebb14934c26fdbe403dc31a7b"
+    },
+    {
+      "file": "modified/vips/_build/libvips/draw/libdraw.a.p/draw_line.c.o",
+      "sha256": "39979f9e6ea86b95d62268ea0958c5acec5b9c4167f1f096793231e451a45dca"
+    },
+    {
+      "file": "modified/vips/_build/libvips/draw/libdraw.a.p/draw_mask.c.o",
+      "sha256": "17807360bb484c1b7e421ac9349884880a5ecd03baf4811ff7739dc72878e80a"
+    },
+    {
+      "file": "modified/vips/_build/libvips/draw/libdraw.a.p/draw_rect.c.o",
+      "sha256": "46e182f50d9c4d3adb22fee65faace66fcadf38c5b96e199740ab1e81cca5077"
+    },
+    {
+      "file": "modified/vips/_build/libvips/draw/libdraw.a.p/draw_smudge.c.o",
+      "sha256": "ec27fc74f3edec38cf3ff56d6dd6dc06ca1b4b8670b544105dc446217a58f791"
+    },
+    {
+      "file": "modified/vips/_build/libvips/draw/libdraw.a.p/drawink.c.o",
+      "sha256": "0391b24fa8b9b43b8af1a07e34e5d8941110f1815cdf9a0bc926dba37f973680"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/analyze2vips.c.o",
+      "sha256": "e7e8d3ace52cc4832f50042b017b1a74659e9730354a6074860b509a4dca9118"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/analyzeload.c.o",
+      "sha256": "316ed3482b111d6316ed0950f2d978ee5a2955c2d5c819ac53944ebc819c78a1"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/archive.c.o",
+      "sha256": "e086ec0594e1ca944ac2ac0333a951fc63bbcd198a57aeb97e80339443de8d1a"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/cairo.c.o",
+      "sha256": "cd85bfd0dc6ef20639610e00365b0282257327db04d1b9826dbca6e36250e660"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/cgifsave.c.o",
+      "sha256": "93b01992414ef14da01fb95e362121448131b46ab30e5962c61ee28fcfe07933"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/csvload.c.o",
+      "sha256": "058cc92715f5bcefb2543f67439825375f644011a452f60afed7d602fd2e5971"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/csvsave.c.o",
+      "sha256": "796d6b46e343d99fa7c2d645a390065ed3006165863572161eb7d40617107a96"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/dcrawload.c.o",
+      "sha256": "2dce420723c498e3ff611a7206e89c8bb29138a0d09c0e47af00b77626d47cc4"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/dzsave.c.o",
+      "sha256": "ac53b7996ca32ae58bad7f4be0bbab7b066d90f41a632aadd0eb23aa264406c5"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/exif.c.o",
+      "sha256": "b04e9ab55ae48e2798d7d3bba301979524b3518f8ce9249b0f4e7ef5762124b6"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/fits.c.o",
+      "sha256": "d1a8dc60e79094d76096d48528014211134ec2c87304693657687432057a2f7e"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/fitsload.c.o",
+      "sha256": "fbe987f38dc64b72f1dd6bccbc2cacca3542fcd61e74c585418f08fc2a404357"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/fitssave.c.o",
+      "sha256": "8718a535d85270baa34eeba8de8a13e30b5216f6457ba849600f2627399bbb35"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/foreign.c.o",
+      "sha256": "1e304b70be9622bd1275327bc96b74836fa1a2e0b1875e27a2ccb1c956e70242"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/heifload.c.o",
+      "sha256": "a1dcf530c0b0e3bbf19afba60c1b2d07190c2be0bee1a3d23e8d2a93062696ad"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/heifsave.c.o",
+      "sha256": "b77827c1c7a6d377699ae8059cc0f34e004d40d84cc97c70571d663f229f8269"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/jp2kload.c.o",
+      "sha256": "07f79f4cabbb0cc81af3f72b803ea8cb9cf50792d0ee21a68ab2690873a3bd3c"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/jp2ksave.c.o",
+      "sha256": "a23edc13d121254555aa6bc500aaf308fa71f0b126bd075187e47b8f68fbd83b"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/jpeg2vips.c.o",
+      "sha256": "6a66b236925f5eeb43b0f6d06787135dd97cb50d532c21317f001d812cd09e17"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/jpegload.c.o",
+      "sha256": "5d1e0647a9efea9c9ba0b1566299667e1e1b8fc86ecfc992772aa59f4772c5e8"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/jpegsave.c.o",
+      "sha256": "33d8422db70e75702fd869643418d9b10fe79637b4b562813ed5d38b16ba09c5"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/jxlload.c.o",
+      "sha256": "c0f763be5f691e767c7cb4a9fee119799092457e52ed995a8c635dfee72213c6"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/jxlsave.c.o",
+      "sha256": "214123e64a830bfc81a36e8084ca1e8de3c8cd0fdb04a717ddeb3c98e03a7c85"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/magick.c.o",
+      "sha256": "3810967b88d53f0cfecd65a46a78c7f2b6507b3511bc417f809b9b5d6b8df3d9"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/magick6load.c.o",
+      "sha256": "9d9a6ebd7dfe5fd2acb2d7f3d534953f51084b5108fd118ff9b8801b276e8871"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/magick7load.c.o",
+      "sha256": "95f0cfb7057337f9e762fac5230b8f57d92a7e24fffc7abc20e9fe8e65e4b96f"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/magickload.c.o",
+      "sha256": "9b908a0cfa84fcfb0bfba61eca00998aa099db79ddfb05f54058ebac59548087"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/magicksave.c.o",
+      "sha256": "31111f0ebdd25cfd0987251482aadc98b437c94b026ca18e47ca53a55ea367dd"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/matlab.c.o",
+      "sha256": "27dfa4ba83616d7406e13d9438d787a3e45d883f3d2387fe1ef2e8c5aaea1f50"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/matload.c.o",
+      "sha256": "c89f951ce1c9f09a9d46e623dd860afb25c980bb46fc3bb3b0a6dab50a14002d"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/matrixload.c.o",
+      "sha256": "21fb002b6211a1041793ed5fbbb5dabeb0c47385953ef9e98a2f94959aec6ce8"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/matrixsave.c.o",
+      "sha256": "5cb2e1a91637d5d520f011cfd90739ff9c4b3f8cb8fbc20d6271a1baa24d64e9"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/niftiload.c.o",
+      "sha256": "05ee59cb0089ae8dcbfd072e355115a67d5c56c598a2e00664191687f9e62020"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/niftisave.c.o",
+      "sha256": "2de184a4353dd2e5002a83fdd29fb03f2a68ee053fb06a7a487b2e45365729cc"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/nsgifload.c.o",
+      "sha256": "3f8dbd30b4395c44e83479015f5e8384474d48d5171013eea99cb331f176dc65"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/openexr2vips.c.o",
+      "sha256": "5f2d7c26bcd0ea50f7211e2c61e3a792d528860ee2f6b4dbef17c0fe12d567de"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/openexrload.c.o",
+      "sha256": "42fa28151c47ce2c7bf643acf56c58b7b2cb9d4f379634993df9a2b3de897a63"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/openslideconnection.c.o",
+      "sha256": "f613016ef76f33b10800bac9fca7e4d8cfdd9e1bd4d0ea7c464480a13760e042"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/openslideload.c.o",
+      "sha256": "1425d3a6060914281cd563288f5f0a23923065d9814dba5663f5cfe435f0c45e"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/pdf.c.o",
+      "sha256": "f6a69463bc3c9df3af622611fc5622be7b42e436aa67225d5e8feaafaab44caa"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/pdfiumload.c.o",
+      "sha256": "0b628598dddf0a50781acb93f82cf375496c20111c6df3699ebfebae1fd0f85e"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/pngload.c.o",
+      "sha256": "e9c666cc1591bfd6b030f271eb8c0fa60413661bbba997b215a2b7ee17c2206f"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/pngsave.c.o",
+      "sha256": "9942783b5ccc1fbb10ed3046baebf823713f00344ad069083247fbe8ee5c2230"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/popplerload.c.o",
+      "sha256": "0316f069f4517df49501ce0e0f4d45ea3c883bf887ccf4119a7e89edcae4e5f9"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/ppmload.c.o",
+      "sha256": "ab404ebb2660bdfb5edc752e3ec611d26a4766f10083f983158f148cf9782885"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/ppmsave.c.o",
+      "sha256": "34daae2e9565c9471c3b23883e21fc725b34743ea7d727e99b6e8a4586d399e1"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/quantise.c.o",
+      "sha256": "8421db966fd6e8b20623ce3347c7e1b5f7ee624719d061e006dbdd0195af650c"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/radiance.c.o",
+      "sha256": "71e29ae7a076571a29f79415844934efc3db80dee8d0b090e2b4eb5b6338da4d"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/radload.c.o",
+      "sha256": "913c035a0cd747f2c9d7cfe4759502852134ad7a7bdb99578d14cce81b3116f6"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/radsave.c.o",
+      "sha256": "c4b7ad6a7cf75a672cbb82a70d61bf515357e6db856272768d69aea84251a5df"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/rawload.c.o",
+      "sha256": "cbe54616f5669af74332bee797261ebb9e9c424baeeae6891a018054a04a1f80"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/rawsave.c.o",
+      "sha256": "b9a281ac6cf4e51091b25ed9017f26e5d7c0ce819a190bc38ce67f38a2fbbcb4"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/spngload.c.o",
+      "sha256": "9895a55deebbc35adae02dda10d124dee117ad59fa85f4566dda7b7b2f01ac44"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/spngsave.c.o",
+      "sha256": "18c83f5dc1542e19982ff75546e112e5a29907706d54e9682f2e92911638d1c0"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/svgload.c.o",
+      "sha256": "7db236b13874e81968ad154f73df9859c9eb4e9f35d43079583a68f8eca56898"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/tiff.c.o",
+      "sha256": "af722346e55c35eb41f20381b1ad5378147299e486adacd3901bffbd6300587f"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/tiff2vips.c.o",
+      "sha256": "cdf19316d5cdaa3c00d391c7bae1b2f0ac9e89c8913ae83626ce451f307b54da"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/tiffload.c.o",
+      "sha256": "9b6ec554157b84259f49a5991a4ad191f624cc564f8c286879f8b2e5d79a3a96"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/tiffsave.c.o",
+      "sha256": "dd23bfa3747b97886509b292d7e401192bd49458714be6328e045a76c923a126"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/uhdrload.c.o",
+      "sha256": "059016c77377d440d30ee8253c4316ebd97767e024ebaf229f5a463a7b54c4b4"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/uhdrsave.c.o",
+      "sha256": "1a49142e62ffc19631d337d9d2717fc8fb238f7eebd37db39552e2a275582e97"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/vips2jpeg.c.o",
+      "sha256": "256dd6413be1ce1e87f85c4fc7b92536550086c96cb058bf245703d74bf11bea"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/vips2magick.c.o",
+      "sha256": "20adbb6f9c212cb52fba4fb57681a0f6510561143f7daf2171cd3e5c28e972c5"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/vips2tiff.c.o",
+      "sha256": "4394777c7ccedb610199bd25810086a45fac039ef0f733a17a482113400ae119"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/vipsload.c.o",
+      "sha256": "adecf948c135f232ce5538a2ac1a4b757fb86ec2e426a4bc3933b9b8e1dfdc2f"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/vipspng.c.o",
+      "sha256": "e1ca3f317ed00c7fa6c2da21efbaa63c5f0af0e71d8addd72a70888b30c7956a"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/vipssave.c.o",
+      "sha256": "cde3872b3af99bbb71f613133365f96f486145ef9e0de539ff665c95f4673adf"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/webp2vips.c.o",
+      "sha256": "d2764f539748f397532f20a13149c3e1373f79aac8c3f7bebfbd3261b8b810bd"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/webpload.c.o",
+      "sha256": "45a819efad47fbcbc3a0aaaef171e37f85f31347a6681d1fc411ee8114e5d9bc"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libforeign.a.p/webpsave.c.o",
+      "sha256": "ef044613217c9a04ab8a69e84edcf6d845eff5b63bc90a1ea7377de6580470f0"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libnsgif/libnsgif.a.p/gif.c.o",
+      "sha256": "49bc3a05c1b6d7356cc29d2308674837c4a667f3e346f2ca37e7ee5afdd08216"
+    },
+    {
+      "file": "modified/vips/_build/libvips/foreign/libnsgif/libnsgif.a.p/lzw.c.o",
+      "sha256": "5b8c119b45e98dcb9288bb7cdf223cc7b1cc16b3622c97b8e5a11fbe9185aa38"
+    },
+    {
+      "file": "modified/vips/_build/libvips/freqfilt/libfreqfilt.a.p/freqfilt.c.o",
+      "sha256": "586627777a123d105593339e402e7d4d1acaa1d58bbc738661d7855e9670caac"
+    },
+    {
+      "file": "modified/vips/_build/libvips/freqfilt/libfreqfilt.a.p/freqmult.c.o",
+      "sha256": "487b249a4f2968f95b96afe4a7170bc504f701fa00c8b0d485db7287bdf866c8"
+    },
+    {
+      "file": "modified/vips/_build/libvips/freqfilt/libfreqfilt.a.p/fwfft.c.o",
+      "sha256": "383e73d3ee1f53ac1e98d9b41a26974b0ed79733d9f2e055257c3be1e477192a"
+    },
+    {
+      "file": "modified/vips/_build/libvips/freqfilt/libfreqfilt.a.p/invfft.c.o",
+      "sha256": "9a14c405098fb582b65442550e431ac3ec7db92e92e2eab94b6fb9a62effaae1"
+    },
+    {
+      "file": "modified/vips/_build/libvips/freqfilt/libfreqfilt.a.p/phasecor.c.o",
+      "sha256": "e3183f0a3899d1e4db746b524f65a659c10cf999088fbdff623a7a0806759f0f"
+    },
+    {
+      "file": "modified/vips/_build/libvips/freqfilt/libfreqfilt.a.p/spectrum.c.o",
+      "sha256": "01e3444437d32d74478c9d466802641155becd968b5ee2ed6c3c7891d3c911a7"
+    },
+    {
+      "file": "modified/vips/_build/libvips/histogram/libhistogram.a.p/case.c.o",
+      "sha256": "7f4285f7afa332417a0d7893109c0afdb66a7b069e5b0b49c90f44e2236f7ff9"
+    },
+    {
+      "file": "modified/vips/_build/libvips/histogram/libhistogram.a.p/hist_cum.c.o",
+      "sha256": "5037f0ee0d290c088cd96fec695ed2b23d75df224bde61da6b7c6f59b6693255"
+    },
+    {
+      "file": "modified/vips/_build/libvips/histogram/libhistogram.a.p/hist_entropy.c.o",
+      "sha256": "7d6b42d5faa95461b15b9cf9db4ccfcc0868708cae4238f0149ad557c37ecb6e"
+    },
+    {
+      "file": "modified/vips/_build/libvips/histogram/libhistogram.a.p/hist_equal.c.o",
+      "sha256": "df23302ad09dde16917c2ba3461c8b3dc34de6d6854494084e641a9e277a10de"
+    },
+    {
+      "file": "modified/vips/_build/libvips/histogram/libhistogram.a.p/hist_ismonotonic.c.o",
+      "sha256": "eaf2c9da138ab1d9c7f0af311d39e626cdc02656446e20c90db5ec9f52d69ba3"
+    },
+    {
+      "file": "modified/vips/_build/libvips/histogram/libhistogram.a.p/hist_local.c.o",
+      "sha256": "4b6e2492515e9fc276e8449c3b97d7e8c2c9eb3a24d58c3dc144e7e3b87be940"
+    },
+    {
+      "file": "modified/vips/_build/libvips/histogram/libhistogram.a.p/hist_match.c.o",
+      "sha256": "993609e1e3f2339a184cf1bfca89a86f286f8477159cc083521d642f375cecc8"
+    },
+    {
+      "file": "modified/vips/_build/libvips/histogram/libhistogram.a.p/hist_norm.c.o",
+      "sha256": "78180b73b48c7028c5906923ee2926904db30006c2e186f49ff0c512f9991213"
+    },
+    {
+      "file": "modified/vips/_build/libvips/histogram/libhistogram.a.p/hist_plot.c.o",
+      "sha256": "81b76044e351aa25a7b91250db84abfa20c5d2a17bab629c89be68b48c98f769"
+    },
+    {
+      "file": "modified/vips/_build/libvips/histogram/libhistogram.a.p/hist_unary.c.o",
+      "sha256": "6ba69dd319f743ff8966ef163637d236d23af3fa2e74ead5f9dd4cf002d73a0f"
+    },
+    {
+      "file": "modified/vips/_build/libvips/histogram/libhistogram.a.p/histogram.c.o",
+      "sha256": "13feabcbd2c92f9868eb7fbf17525b31f0bf019fd0df0c325dccce9f8375ee92"
+    },
+    {
+      "file": "modified/vips/_build/libvips/histogram/libhistogram.a.p/maplut.c.o",
+      "sha256": "fae59808059dc241271333978bb050b76735cb91f917c27867755d85d4317dff"
+    },
+    {
+      "file": "modified/vips/_build/libvips/histogram/libhistogram.a.p/percent.c.o",
+      "sha256": "1451cfbfbfdb4b7972cf9d93641afe61fcb4c821aaa30718fe408f0120d8266f"
+    },
+    {
+      "file": "modified/vips/_build/libvips/histogram/libhistogram.a.p/stdif.c.o",
+      "sha256": "5d8f958c31228615f2072747371f5e1c846dfb6707c127833ab847d28cbd62f8"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/buf.c.o",
+      "sha256": "dcc56bd266a8a9318f9cd1499179b3d7fe1d0f7353a7f69703c3e536207c24d8"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/buffer.c.o",
+      "sha256": "afdb68acf562f7b173c3c06cef80bfc0c07582b06314957458dbec1e4010632b"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/cache.c.o",
+      "sha256": "0cedda2ae0973233b0aaa92f35acaf36391d42c2262e3c764423a9c12c370ff1"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/connection.c.o",
+      "sha256": "6cd086119ea4cc271559119769d8cb16b677f49600a7f59997ebcaf021de0a74"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/dbuf.c.o",
+      "sha256": "ca70862015366df78da389d17ef8afc30a8f2183ebf6a4a64b7d9fb66324deca"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/error.c.o",
+      "sha256": "82707b2e1e93bfa9fd03a05c3e904055e563a64d91a0e91acc282a34237a2b05"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/gate.c.o",
+      "sha256": "5130593f56ad53600a7896b81c2442535931db954df81918d5d4aa66c323cc52"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/generate.c.o",
+      "sha256": "2682eff347918ede0e9884ea7a3088232a3b2d9c85a0888f71b44f2fc95857de"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/ginputsource.c.o",
+      "sha256": "9fb398b48cbdc707eeaa6342727a4a1ea8eb433bd9959823e16bb04fc158eea4"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/header.c.o",
+      "sha256": "0b18c00803c4f633ee1709349d58b4506589e66c479dad1bc24e7b1a848757b9"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/image.c.o",
+      "sha256": "1b88908e1e5f9f8fff6fd23de77459140b71ad073eb67c7869530af2db8c9744"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/init.c.o",
+      "sha256": "d0795b4f131827bda4c2570467a4fcacd404d6786d86b1ef8818c90168ff3a2d"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/mapfile.c.o",
+      "sha256": "3cb17b8fb2b2efb5c82e19b59e7e25e151ef52e300a82db2ce59f63e8b74d1ca"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/memory.c.o",
+      "sha256": "84e9c7354231208c39fa87089b23dae85633b6733009eb7c863e156bd4bc738b"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/meson-generated_.._vipsmarshal.c.o",
+      "sha256": "622306fd6fc39471a7e05d10f0848bd8421e3c6cec154183cb4bee86d3b6df8c"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/object.c.o",
+      "sha256": "1dd4c8c7fae370f9a66b5a481f7fd4c85f26c9710da0a5da0782003686514810"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/operation.c.o",
+      "sha256": "13b11680cfdbabd3c76f73a65b9c570385e97806fb8e0554dc31a8e396e1748c"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/rect.c.o",
+      "sha256": "dcabe24fc5527bfde1c1014d4b1932ccb0e424e79aba8b8e897cfe05eb9d679e"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/region.c.o",
+      "sha256": "659988878359000f4d07ded4a1afc7ddc74d5985b92c50fe66f52d1c0aae9480"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/reorder.c.o",
+      "sha256": "c068bcdf2834caad08a069d858d27d16100582e18c173bac14a4228cf5d3518d"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/sbuf.c.o",
+      "sha256": "d550b0b6abcfba6b0f616b9cb763b60eb433b986123d5e61e3b68cddb34bf65a"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/semaphore.c.o",
+      "sha256": "804e8dafbe36f98af955081d46cd951917b615b153e7d170787d474c243559af"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/sink.c.o",
+      "sha256": "adb5b77f6bff22266a4f25c378aa0fd4a33261c7cff564b7f93c150b21b2ac5e"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/sinkdisc.c.o",
+      "sha256": "b84fc74ae602e499e421f041db3cded9a7f3ba1d09786cbc68725320820ac3de"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/sinkmemory.c.o",
+      "sha256": "3ca9966182c072cce8999dcca9eb225a464f40cb2b22a54afe38130cd6b4d068"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/sinkscreen.c.o",
+      "sha256": "3a798722f086665e275d0d8a137123b67c26e3a6473cee2be36fba3017962d87"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/source.c.o",
+      "sha256": "96a4f7482665b50b38512ba09708330f480eebac4818f3a185ae78c9bd76ed4f"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/sourcecustom.c.o",
+      "sha256": "c1e0d82afbcc3578595db979d63baadf662d3488fe97a152a0797ff304ea77fe"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/sourceginput.c.o",
+      "sha256": "224668251b1067b6616467444f3f9ac6753e0a9a344978f69599d22494f9de4d"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/system.c.o",
+      "sha256": "b4425a6fa542c271aff1b667a2cfbd044bccda8e71fce7c4a218c6f0fe98eccf"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/target.c.o",
+      "sha256": "5f2935f1a96599177cbdf32e383d50a1cc411850d2d769753a06bf4289536413"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/targetcustom.c.o",
+      "sha256": "476930440bd5e0734e53526b09960499acba011723c6bddfeea5dacfc10c3abd"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/thread.c.o",
+      "sha256": "4472809f3e557faec9af4e9c7bc540dcda63fc0da85a1534a3d9a784eb3da840"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/threadpool.c.o",
+      "sha256": "9b118c43a70cda93bc82ddfd24416561844ea13b2022f922a7acbf2abf4cd842"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/threadset.c.o",
+      "sha256": "1bfcbf8ec66ab3d5ae12a6a3764142922bede858aafae1016bfb0d6cdb2a2c05"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/type.c.o",
+      "sha256": "b22600af9a094ff73e9c54a8388a4804e120a4a2e12415431909ec211ab681b4"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/util.c.o",
+      "sha256": "9e6201be364a2fadc8ffa0fdf63a2a06a106bf8ea09531c72bc6b38b8158bca0"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/vector.cpp.o",
+      "sha256": "192f5332e5b59d079846c719eb26009a6b7903cadabd5e485bb33137ca8ba0d4"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/vips.c.o",
+      "sha256": "2d28d5b878d05999f49a33bac6c51d7e117200ed0c4cd1312c0dfb5404423e0d"
+    },
+    {
+      "file": "modified/vips/_build/libvips/iofuncs/libiofuncs.a.p/window.c.o",
+      "sha256": "1a3e7f77b9a032b1def7e1ec5552e47d69c937d7f963c41f5ed499beac643ff0"
+    },
+    {
+      "file": "modified/vips/_build/libvips/libvips.a.p/meson-generated_.._include_vips_enumtypes.c.o",
+      "sha256": "a179a4927cac2a1be8a29b93fb576b8ac78b6bbffcabdec4d3506ad9d86bbd3a"
+    },
+    {
+      "file": "modified/vips/_build/libvips/morphology/libmorphology.a.p/countlines.c.o",
+      "sha256": "21c460dbb3c03f450c55f0ab6648fe184e633490b2e49942aa2357b3c1bd77dd"
+    },
+    {
+      "file": "modified/vips/_build/libvips/morphology/libmorphology.a.p/labelregions.c.o",
+      "sha256": "9186b281b35a3e462349e272c9bb4aaffb9abbeecfe55686c252887287e6c56a"
+    },
+    {
+      "file": "modified/vips/_build/libvips/morphology/libmorphology.a.p/morph.c.o",
+      "sha256": "e27c332383bb1dc8bacf4911a1b02c29e082bfc2941ec103c588cba9766df089"
+    },
+    {
+      "file": "modified/vips/_build/libvips/morphology/libmorphology.a.p/morph_hwy.cpp.o",
+      "sha256": "45ec3f23f829519efe9a92353319abb9c5b6972981cbb673f8c56f067d2aca99"
+    },
+    {
+      "file": "modified/vips/_build/libvips/morphology/libmorphology.a.p/morphology.c.o",
+      "sha256": "5d6fe67da1f098695dad6418d5d6b0fe40cc4bb61ce31c82b9985433a583fd9f"
+    },
+    {
+      "file": "modified/vips/_build/libvips/morphology/libmorphology.a.p/nearest.c.o",
+      "sha256": "77d2b3549f8b8fa14b0398f87b638a7b9deb998a2ffb8f0402aec261ad1f0795"
+    },
+    {
+      "file": "modified/vips/_build/libvips/morphology/libmorphology.a.p/rank.c.o",
+      "sha256": "1c918941e78b3bbfbeb00898cbed72a87d9a796377444336c230c2574b7d1a4b"
+    },
+    {
+      "file": "modified/vips/_build/libvips/mosaicing/libmosaicing.a.p/chkpair.c.o",
+      "sha256": "4ba34c00797bd7ffd2d5610c2118506751dd86f71362826da976ef2a4afffe2e"
+    },
+    {
+      "file": "modified/vips/_build/libvips/mosaicing/libmosaicing.a.p/global_balance.c.o",
+      "sha256": "c072342dc15713b087095383d0833d91f399076935cc3bf4f3682bc47893dffe"
+    },
+    {
+      "file": "modified/vips/_build/libvips/mosaicing/libmosaicing.a.p/im_avgdxdy.c.o",
+      "sha256": "a11e479ee7e0738c4c8c867da81a1021622340588862620e0c5bae3b19bedc7b"
+    },
+    {
+      "file": "modified/vips/_build/libvips/mosaicing/libmosaicing.a.p/im_clinear.c.o",
+      "sha256": "6b85e0544d8fdee40c90f28598fb9190317f0d76adfb2383d2a61591b0ad3bb3"
+    },
+    {
+      "file": "modified/vips/_build/libvips/mosaicing/libmosaicing.a.p/im_improve.c.o",
+      "sha256": "6cc0e9469a5f424737ba13c4ab271e11ee7a2e286500eceba14f718d30b25861"
+    },
+    {
+      "file": "modified/vips/_build/libvips/mosaicing/libmosaicing.a.p/im_initialize.c.o",
+      "sha256": "3bf79fdf4c8df9690828547d251de4b1146c746fd0743e8209a6600375fd2f07"
+    },
+    {
+      "file": "modified/vips/_build/libvips/mosaicing/libmosaicing.a.p/im_lrcalcon.c.o",
+      "sha256": "fdac53110959bcd5cf742722c729f4aa61bb876e4aaf330a9ceafeb74e0a3d75"
+    },
+    {
+      "file": "modified/vips/_build/libvips/mosaicing/libmosaicing.a.p/im_tbcalcon.c.o",
+      "sha256": "402ad4c6577f22be3c7e7a79465198d7eaaef411041889cb014ca24a93588b99"
+    },
+    {
+      "file": "modified/vips/_build/libvips/mosaicing/libmosaicing.a.p/lrmerge.c.o",
+      "sha256": "0aea3a6015fd7a83c0c17e90718f34d3872d9587d7cdbc86ed1a2126cd9bee8a"
+    },
+    {
+      "file": "modified/vips/_build/libvips/mosaicing/libmosaicing.a.p/lrmosaic.c.o",
+      "sha256": "7a930d20d6cd0e175bb37a9b6170543041da8e8a3d769679927d097008bc7185"
+    },
+    {
+      "file": "modified/vips/_build/libvips/mosaicing/libmosaicing.a.p/match.c.o",
+      "sha256": "9ef499b1b53f777df6f883f7c55f523540449004738f7f3fd5ef31e892b2a7ed"
+    },
+    {
+      "file": "modified/vips/_build/libvips/mosaicing/libmosaicing.a.p/matrixinvert.c.o",
+      "sha256": "b5db1f82c72fe6ff0476d22d7eb27a8557777bec4937720a18fe389abec40d4c"
+    },
+    {
+      "file": "modified/vips/_build/libvips/mosaicing/libmosaicing.a.p/matrixmultiply.c.o",
+      "sha256": "0bc596662eead4d58add1c16a7dfb813f001e1a1b30770de154e9df727e3facb"
+    },
+    {
+      "file": "modified/vips/_build/libvips/mosaicing/libmosaicing.a.p/merge.c.o",
+      "sha256": "6134fea7e261e7fc79a0dd2fbb1f2da55ea722af67b26b5785762340b0e04ec2"
+    },
+    {
+      "file": "modified/vips/_build/libvips/mosaicing/libmosaicing.a.p/mosaic.c.o",
+      "sha256": "41b645511083828a04faac1e9cf5739fa2706e17ad59d546bf1fc1554ba32c47"
+    },
+    {
+      "file": "modified/vips/_build/libvips/mosaicing/libmosaicing.a.p/mosaic1.c.o",
+      "sha256": "075ef8bdb4148a173823571a02e44bf18fc690a9f2d9d1a07345159472b10a11"
+    },
+    {
+      "file": "modified/vips/_build/libvips/mosaicing/libmosaicing.a.p/mosaicing.c.o",
+      "sha256": "b188330bf59b078a151e8fe752bb58c8699ea061c80f73b24bec5216e8d10a65"
+    },
+    {
+      "file": "modified/vips/_build/libvips/mosaicing/libmosaicing.a.p/remosaic.c.o",
+      "sha256": "84ffb3153c014b02c8adec859c1ef6d76b1ac2d0be19bbac882608254f9634c2"
+    },
+    {
+      "file": "modified/vips/_build/libvips/mosaicing/libmosaicing.a.p/tbmerge.c.o",
+      "sha256": "4d5304741ec8495787e3993bea474daa1f93df6dd74ffb015f42fa4cdb0aa32b"
+    },
+    {
+      "file": "modified/vips/_build/libvips/mosaicing/libmosaicing.a.p/tbmosaic.c.o",
+      "sha256": "cc33c788f20a32ab7111bc07ff29d0c62ebecc068ed1df04fa5f2e3411713dfa"
+    },
+    {
+      "file": "modified/vips/_build/libvips/resample/libresample.a.p/affine.c.o",
+      "sha256": "b51d6a037c4b387bcb6c404d54c21b920f0d9e80b7a8faa5efc49b6c759213fb"
+    },
+    {
+      "file": "modified/vips/_build/libvips/resample/libresample.a.p/bicubic.cpp.o",
+      "sha256": "cf5f20e4fac32c16ff658ec81f9dc209fe7e8ac130a9082a4cf0bb72fc4a3701"
+    },
+    {
+      "file": "modified/vips/_build/libvips/resample/libresample.a.p/interpolate.c.o",
+      "sha256": "73637305623e39dc763a039e3cbdf77de5241a43fe136cd3a369eec725b76203"
+    },
+    {
+      "file": "modified/vips/_build/libvips/resample/libresample.a.p/lbb.cpp.o",
+      "sha256": "bf4bee9234ea5d6a13c16fe555f157b598638fa243aba3eefec10ba434fc691c"
+    },
+    {
+      "file": "modified/vips/_build/libvips/resample/libresample.a.p/mapim.c.o",
+      "sha256": "bc74a4a7b40ada4bce8a366da6f47b64b47b4d4f0b89ae6ca8d8fef0ef0f3787"
+    },
+    {
+      "file": "modified/vips/_build/libvips/resample/libresample.a.p/nohalo.cpp.o",
+      "sha256": "1b07531ab763794a7500594bdccedd12fc5ca8e4c0ede017fa620519087368b6"
+    },
+    {
+      "file": "modified/vips/_build/libvips/resample/libresample.a.p/quadratic.c.o",
+      "sha256": "b2c83ae70661d534ac9ebfb5fd7e3739ba4520d2f307d9debcda5716c1bfc0ff"
+    },
+    {
+      "file": "modified/vips/_build/libvips/resample/libresample.a.p/reduce.c.o",
+      "sha256": "44de9442a05df15560aadab9f82a3e13e87fb7f51ad14ce6298120b38bb80e91"
+    },
+    {
+      "file": "modified/vips/_build/libvips/resample/libresample.a.p/reduceh.cpp.o",
+      "sha256": "6368902fd82da340f868d3242f996556593b2f8f6c89bade7ecd6d65c0d87afa"
+    },
+    {
+      "file": "modified/vips/_build/libvips/resample/libresample.a.p/reduceh_hwy.cpp.o",
+      "sha256": "fa70277c4202e755ab80bf8379a742a529c76729dd28764e24b993267853af47"
+    },
+    {
+      "file": "modified/vips/_build/libvips/resample/libresample.a.p/reducev.cpp.o",
+      "sha256": "fa23e75223ec6d2c68ac6f97d14cb119076c18cfdb48149e1782738bea1e974b"
+    },
+    {
+      "file": "modified/vips/_build/libvips/resample/libresample.a.p/reducev_hwy.cpp.o",
+      "sha256": "53c1aafa455e09b55e7141fed0f819b3f95e38379b58510af5c71f26246f94cc"
+    },
+    {
+      "file": "modified/vips/_build/libvips/resample/libresample.a.p/resample.c.o",
+      "sha256": "bb56a76f8e89538a4fdd29214b8cef92d56fe1fe67e7098bad4da7348a4dd5d3"
+    },
+    {
+      "file": "modified/vips/_build/libvips/resample/libresample.a.p/resize.c.o",
+      "sha256": "c54425caad3cb0f8d9c5aaab6233dbf27d34456e1eb87fc6ff8763d05de080f5"
+    },
+    {
+      "file": "modified/vips/_build/libvips/resample/libresample.a.p/shrink.c.o",
+      "sha256": "f18be53f2dd5a571b8e0af975c5978c85472cbcacaa00b1de1d3ccdddd6819cf"
+    },
+    {
+      "file": "modified/vips/_build/libvips/resample/libresample.a.p/shrinkh.c.o",
+      "sha256": "78d0717bac0e96462e4117f3245470ca9444bb0c3f1d8eb70db130ccb6940167"
+    },
+    {
+      "file": "modified/vips/_build/libvips/resample/libresample.a.p/shrinkh_hwy.cpp.o",
+      "sha256": "a8afa73458cccfd287586777fefb303975fa688d3ea712ae5a7bbc94ba20a2e6"
+    },
+    {
+      "file": "modified/vips/_build/libvips/resample/libresample.a.p/shrinkv.c.o",
+      "sha256": "bfb531af07fe45284b0a17b6a19e00023c6d01b146b1ade3c45c4e188a6a2555"
+    },
+    {
+      "file": "modified/vips/_build/libvips/resample/libresample.a.p/shrinkv_hwy.cpp.o",
+      "sha256": "df272b426dd4f45932c0749a19e739312222d393f5ef24c28512d5173a6bdc88"
+    },
+    {
+      "file": "modified/vips/_build/libvips/resample/libresample.a.p/similarity.c.o",
+      "sha256": "6d9c17592e87d368c0d7c651ca9bd8c0c763fe25e3ff04a7f0054e49ad1d8311"
+    },
+    {
+      "file": "modified/vips/_build/libvips/resample/libresample.a.p/thumbnail.c.o",
+      "sha256": "99f403b0e831cc835836f620a770aa35fae28eb4333448b28c13c3d72d306d9d"
+    },
+    {
+      "file": "modified/vips/_build/libvips/resample/libresample.a.p/transform.c.o",
+      "sha256": "d80675f5b323a7b083ea4a4cf06472a988d007321c1cf6e586f53eb30bd6d855"
+    },
+    {
+      "file": "modified/vips/_build/libvips/resample/libresample.a.p/vsqbs.cpp.o",
+      "sha256": "ddb6c4e8637f543cfcc7f7aee2c0650a844ad560242d786e17ae4094a3af235d"
+    }
+  ],
+  "staticArchiveFileRecords": 40,
+  "uniqueArchiveHashes": 39,
+  "archiveMemberRecords": 6908,
+  "coreObjectFileRecords": 732,
+  "originalHistoricalPostUpdateLock": "UNKNOWN \u2014 no historical byte-reproducible claim",
+  "applicationImageBinding": "NOT PERFORMED \u2014 these are local experiment libraries, not runtime/migration image SBOM identities",
+  "staticLgplRelinkingInputs": "PARTIAL",
+  "durableSourceProvision": "PARTIAL",
+  "legalApproval": false,
+  "binaryDistributionReadiness": "BLOCKED",
+  "sourceRelease": "ALPHA.2 PUBLISHED \u2014 UNCHANGED",
+  "independentInstallation": "PENDING HUMAN VALIDATION"
+}

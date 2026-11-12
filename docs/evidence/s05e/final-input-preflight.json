@@ -1,0 +1,322 @@
+{
+  "schemaVersion": 1,
+  "checks": [
+    {
+      "name": "controlled-lock",
+      "decision": "PASS",
+      "detail": "5723e14ce316e9058c76257848e18ab52624c98d16f758b5f8a73b5007b2ab8b"
+    },
+    {
+      "name": "native-source:proxy-libintl",
+      "decision": "PASS",
+      "detail": {
+        "sha256": "f7a1cbd7579baaf575c66f9d99fb6295e9b0684a28b095967cfda17857595303",
+        "version": "0.5"
+      }
+    },
+    {
+      "name": "native-source:zlib-ng",
+      "decision": "PASS",
+      "detail": {
+        "sha256": "f9c65aa9c852eb8255b636fd9f07ce1c406f061ec19a2e7d508b318ca0c907d1",
+        "version": "2.3.3"
+      }
+    },
+    {
+      "name": "native-source:ffi",
+      "decision": "PASS",
+      "detail": {
+        "sha256": "7da3e2d9a171eb0a038f592ecad3ff2bb2550f3496d87b3b29ad0cf4430c0db4",
+        "version": "3.8.0"
+      }
+    },
+    {
+      "name": "native-source:glib",
+      "decision": "PASS",
+      "detail": {
+        "sha256": "17d15cac2af80a33271127408e0abc2748eb297c595c2a26409e81e14e7d1b8f",
+        "version": "2.90.0"
+      }
+    },
+    {
+      "name": "native-source:xml2",
+      "decision": "PASS",
+      "detail": {
+        "sha256": "98087fd181d9070724f3fbc65c7377db03038eb92bd882374daff44940138821",
+        "version": "2.15.4"
+      }
+    },
+    {
+      "name": "native-source:exif",
+      "decision": "PASS",
+      "detail": {
+        "sha256": "4a055ed6575e61ca46c3172be3c753cc16c9becd0f99ec71d58dd0e471476c0c",
+        "version": "0.6.26"
+      }
+    },
+    {
+      "name": "native-source:lcms",
+      "decision": "PASS",
+      "detail": {
+        "sha256": "bfc54f7bab59fbc921012014a8032e4cba4abd46db47d46b76416a8c0b2815c8",
+        "version": "2.19.1"
+      }
+    },
+    {
+      "name": "native-source:aom",
+      "decision": "PASS",
+      "detail": {
+        "sha256": "8ca0c52746174603500f0adb6f2a215d69c9ca2aab2acb3caa06fb791d8d01bf",
+        "version": "3.15.1"
+      }
+    },
+    {
+      "name": "native-source:heif",
+      "decision": "PASS",
+      "detail": {
+        "sha256": "fd9036064c4432f0550d15072ddf34956a248279ee9aeaff0fba3fa0f77d8f1a",
+        "version": "1.23.5"
+      }
+    },
+    {
+      "name": "native-source:mozjpeg",
+      "decision": "PASS",
+      "detail": {
+        "sha256": "b680167bd5d9afebdd576a12f8c49d2c9066a3b92ef96a2b2c5f7829b8600fe5",
+        "version": "0826579"
+      }
+    },
+    {
+      "name": "native-source:png",
+      "decision": "PASS",
+      "detail": {
+        "sha256": "a9d4df463d36a6e5f9c29bd6f4967312d17e996c1854f3511f833924eb1993cf",
+        "version": "1.6.58"
+      }
+    },
+    {
+      "name": "native-source:imagequant",
+      "decision": "PASS",
+      "detail": {
+        "sha256": "47d2a84b7b1052975c9d50a3d4e3cacbf57b43d84a4c3131210848ead9964dfb",
+        "version": "2.4.1"
+      }
+    },
+    {
+      "name": "native-source:webp",
+      "decision": "PASS",
+      "detail": {
+        "sha256": "e4ab7009bf0629fd11982d4c2aa83964cf244cffba7347ecd39019a9e38c4564",
+        "version": "1.6.0"
+      }
+    },
+    {
+      "name": "native-source:tiff",
+      "decision": "PASS",
+      "detail": {
+        "sha256": "62b15f44c10106065211efa22a2dc77937bd97ee1f6e3afd2c9659010de112eb",
+        "version": "4.7.2"
+      }
+    },
+    {
+      "name": "native-source:highway",
+      "decision": "PASS",
+      "detail": {
+        "sha256": "e72241ac9524bb653ae52ced768b508045d4438726a303f10181a38f764a453c",
+        "version": "1.4.0"
+      }
+    },
+    {
+      "name": "native-source:freetype",
+      "decision": "PASS",
+      "detail": {
+        "sha256": "dc49de6b01a266eef4876a4dd34d9842c475d3e28ff2eff63bd2fb760ab56261",
+        "version": "2.14.3"
+      }
+    },
+    {
+      "name": "native-source:expat",
+      "decision": "PASS",
+      "detail": {
+        "sha256": "1e727b8933ec51a77a9a9d9afcf8e688bce45d907c13e36ab7393fe36e703182",
+        "version": "2.8.5"
+      }
+    },
+    {
+      "name": "native-source:archive",
+      "decision": "PASS",
+      "detail": {
+        "sha256": "888c934f9d95648ecb9163dc8e23ab80a476ecb81a8f1154704a227b5b676dde",
+        "version": "3.8.9"
+      }
+    },
+    {
+      "name": "native-source:fontconfig",
+      "decision": "PASS",
+      "detail": {
+        "sha256": "9ae01e1d53acdef56010c5451cd34aa41d325b2faccd8606448d8fa01b2496b3",
+        "version": "2.18.3"
+      }
+    },
+    {
+      "name": "native-source:harfbuzz",
+      "decision": "PASS",
+      "detail": {
+        "sha256": "97ec7488a46b974e18e08ee774af93173e7e1dbf738424796eb315ebcb735ec5",
+        "version": "14.5.0"
+      }
+    },
+    {
+      "name": "native-source:pixman",
+      "decision": "PASS",
+      "detail": {
+        "sha256": "d09c44ebc3bd5bee7021c79f922fe8fb2fb57f7320f55e97ff9914d2346a591c",
+        "version": "0.46.4"
+      }
+    },
+    {
+      "name": "native-source:cairo",
+      "decision": "PASS",
+      "detail": {
+        "sha256": "1c767308174337a74694da0f3ec069c271452163a1ef4540964c50c301f157d4",
+        "version": "1.18.6"
+      }
+    },
+    {
+      "name": "native-source:fribidi",
+      "decision": "PASS",
+      "detail": {
+        "sha256": "6949dcde27d41cebad1fd741fcafc36d55a1020d2d872d4a6eb3914caabbada2",
+        "version": "1.0.17"
+      }
+    },
+    {
+      "name": "native-source:pango",
+      "decision": "PASS",
+      "detail": {
+        "sha256": "342385b6ca3b7c73455d7c80a13b7dbe4489e00bc3bd4c5bd6ed4dce421e374a",
+        "version": "1.58.2"
+      }
+    },
+    {
+      "name": "native-source:rsvg",
+      "decision": "PASS",
+      "detail": {
+        "sha256": "852b18e1a00b8605528825a27dc7748bff2a5dd254028f59dc22a34ea57e81b6",
+        "version": "2.63.2"
+      }
+    },
+    {
+      "name": "native-source:cgif",
+      "decision": "PASS",
+      "detail": {
+        "sha256": "83a70a15bc2da41f081a44ebc58ee48e2e1d524a6d3fdb4a24064afa08d5ad4d",
+        "version": "0.5.4"
+      }
+    },
+    {
+      "name": "native-source:uhdr",
+      "decision": "PASS",
+      "detail": {
+        "sha256": "aa8d193bb887c348c419780511dd03b374f4e07af8812b6d3f80c8537cf1ef2c",
+        "version": "2.0.2"
+      }
+    },
+    {
+      "name": "native-source:vips",
+      "decision": "PASS",
+      "detail": {
+        "sha256": "5baaead3b0bb20ffdb9e9ff09aa9fda08620923df77b63b436654cb5e0b3bf94",
+        "version": "8.18.7"
+      }
+    },
+    {
+      "name": "patch:0",
+      "decision": "PASS",
+      "detail": "b1f2930a11292e529de137c7eb723850e0cc0969b1a2b0358196389312acd272"
+    },
+    {
+      "name": "patch:1",
+      "decision": "PASS",
+      "detail": "a65f87cadf3a6052e44d6314c906f6e2891352f82646b8a6f0b8fcf2c1891e7c"
+    },
+    {
+      "name": "patch:2",
+      "decision": "PASS",
+      "detail": "8b841d2ec8feb964fa76859075e0e0c41b69136ba143cf0d26469d9bebc19231"
+    },
+    {
+      "name": "patch:3",
+      "decision": "PASS",
+      "detail": "57658db2a11ae964755e513b01db21bcfa408c350b11b3a6ef9bc8576fb749ba"
+    },
+    {
+      "name": "patch:4",
+      "decision": "PASS",
+      "detail": "256b7d6f8c973bb53b20cff5171c7117d6b35d3aa4e72d22cb906f4fe1e2c890"
+    },
+    {
+      "name": "rust-component:rustc",
+      "decision": "PASS",
+      "detail": "a658e87aa721f0044e36adcf5b5fba0645bedd14bc5045ea11bf475d803da64a"
+    },
+    {
+      "name": "rust-component:cargo",
+      "decision": "PASS",
+      "detail": "931952aaee9b6afb144a3e2bf74467e1cd407b7d0baa7c0cd3bf9e98abf94b2a"
+    },
+    {
+      "name": "rust-component:rust-std",
+      "decision": "PASS",
+      "detail": "536dcdcf52d81508587f4411156f20c94800e26fc13b6ef9603bfdc4af9c4407"
+    },
+    {
+      "name": "installed-rust-bytes:rustc",
+      "decision": "PASS",
+      "detail": 42
+    },
+    {
+      "name": "installed-rust-bytes:cargo",
+      "decision": "PASS",
+      "detail": 44
+    },
+    {
+      "name": "installed-rust-bytes:rust-std",
+      "decision": "PASS",
+      "detail": 63
+    },
+    {
+      "name": "cargo-c-expanded-source",
+      "decision": "PASS",
+      "detail": 31
+    },
+    {
+      "name": "librsvg-registry-inputs",
+      "decision": "PASS",
+      "detail": 353
+    },
+    {
+      "name": "cargo-c-registry-inputs",
+      "decision": "PASS",
+      "detail": 410
+    },
+    {
+      "name": "historical-rpm-bytes",
+      "decision": "PASS",
+      "detail": 241
+    },
+    {
+      "name": "immutable-toolchain",
+      "decision": "PASS",
+      "detail": "sha256:aed21cee6ad62af8dcfe3fbe8abb19f0158f3b0f2847e63978e866c5f6953152"
+    },
+    {
+      "name": "cargo-c-bootstrap",
+      "decision": "PASS",
+      "detail": "cargo-c 0.10.25+cargo-0.99.0"
+    }
+  ],
+  "decision": "PASS",
+  "binaryDistributionReadiness": "BLOCKED",
+  "legalApproval": false
+}

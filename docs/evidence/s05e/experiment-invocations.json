@@ -1,0 +1,203 @@
+[
+  {
+    "label": "control-and-initial-modified",
+    "invocation": {
+      "command": [
+        "docker",
+        "run",
+        "--detach",
+        "--name",
+        "s05e-full-native-resume-webp",
+        "--network=none",
+        "--read-only",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges",
+        "--user",
+        "1000:1000",
+        "--memory=6g",
+        "--cpus=2",
+        "--pids-limit=512",
+        "--tmpfs",
+        "/tmp:rw,nosuid,nodev,size=1g",
+        "-v",
+        "/workspace/s05e-native-work:/inputs:ro",
+        "-v",
+        "/workspace/s05e-native-work/full-experiment-5/config:/config:ro",
+        "-v",
+        "/workspace/s05e-native-work/full-experiment-5/config:/packaging:ro",
+        "-v",
+        "/workspace/s05e-native-work/full-experiment-5/deps:/deps:rw",
+        "-v",
+        "/workspace/s05e-native-work/full-experiment-5/target:/target:rw",
+        "-v",
+        "/workspace/s05e-native-work/full-experiment-5:/evidence:rw",
+        "-v",
+        "/workspace/s05e-native-work/cargo-cache:/cargo:rw",
+        "-e",
+        "PATH=/inputs/cargo-c-historical-install/bin:/inputs/rust/toolchain/bin:/opt/rh/gcc-toolset-15/root/usr/bin:/opt/s05e/bin:/usr/local/bin:/usr/bin:/bin:/config",
+        "-e",
+        "CARGO_HOME=/cargo",
+        "-e",
+        "CARGO_NET_OFFLINE=true",
+        "-e",
+        "CARGO_BUILD_JOBS=2",
+        "-e",
+        "HOME=/evidence/home",
+        "-e",
+        "PLATFORM=linux-x64",
+        "-e",
+        "FLAGS=-march=nehalem",
+        "-e",
+        "RUSTFLAGS=-Zlocation-detail=none -Zfmt-debug=none",
+        "-e",
+        "PKG_CONFIG=x86_64-linux-gnu-pkgconf --static",
+        "-e",
+        "MESON=--cross-file=/config/meson.ini",
+        "sha256:aed21cee6ad62af8dcfe3fbe8abb19f0158f3b0f2847e63978e866c5f6953152",
+        "timeout",
+        "--signal=TERM",
+        "--kill-after=10s",
+        "4500",
+        "bash",
+        "-xc",
+        "bash -x /config/control.sh > /evidence/control.log 2>&1 && cp -a /deps/vips /evidence/control/vips && cp -L /target/lib/libvips-cpp.so.8.18.7 /evidence/control/libvips-cpp.so.8.18.7 && rm -rf /deps/vips && bash -x /config/modified.sh > /evidence/modified.log 2>&1 && cp -a /deps/vips /evidence/modified/vips && cp -L /target/lib/libvips-cpp.so.8.18.7 /evidence/modified/libvips-cpp.so.8.18.7"
+      ],
+      "timeoutSeconds": 4500,
+      "profile": "CONTROLLED_FULL_NATIVE_WITH_S05D_LOCK",
+      "legalApproval": false
+    },
+    "invocationSha256": "b88bee648d60638015debe7d737f29da8bfbb0b31afbc004e17c586932f69acd",
+    "scripts": [
+      {
+        "file": "Toolchain.cmake",
+        "sha256": "eaf601b65260c4ff1991063f248346d51fe6751e84f7dc83b7fcd3fd4658cad6"
+      },
+      {
+        "file": "control.sh",
+        "sha256": "bbd829aa72aeead4319c9561682f0ea356aa7727446a6bc83e01972d76a66433"
+      },
+      {
+        "file": "meson.ini",
+        "sha256": "f78f4bbbd4a5c83140af9c95f908f438c58807d414a6f2c486898e03a52219f7"
+      },
+      {
+        "file": "modified.sh",
+        "sha256": "50c186908f7a6af8ba1cd05ba4714ae698b4fbf5da3876f3613c6deef6d873e7"
+      },
+      {
+        "file": "s05e_extract.py",
+        "sha256": "80d4e81177d4e3de83639219eac496450ae8500c09bd0eec825108814dc932b5"
+      },
+      {
+        "file": "versions.properties",
+        "sha256": "c0ad634f7c2ac8994f831dd0bcb5c60043db7ba4ddd9cc2dbc3703b15f4ec7e5"
+      },
+      {
+        "file": "x86_64-linux-gnu-pkgconf",
+        "sha256": "c256bf8fcad1bcee36872c22c007d41980ace7cfe74072af130d336ddd92f61e"
+      }
+    ]
+  },
+  {
+    "label": "corrected-modified",
+    "invocation": {
+      "command": [
+        "docker",
+        "run",
+        "--detach",
+        "--name",
+        "s05e-modified-corrected",
+        "--network=none",
+        "--read-only",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges",
+        "--user",
+        "1000:1000",
+        "--memory=6g",
+        "--cpus=2",
+        "--pids-limit=512",
+        "--tmpfs",
+        "/tmp:rw,nosuid,nodev,size=1g",
+        "-v",
+        "/workspace/s05e-native-work:/inputs:ro",
+        "-v",
+        "/workspace/s05e-native-work/full-experiment-6/config:/config:ro",
+        "-v",
+        "/workspace/s05e-native-work/full-experiment-6/config:/packaging:ro",
+        "-v",
+        "/workspace/s05e-native-work/full-experiment-6/deps:/deps:rw",
+        "-v",
+        "/workspace/s05e-native-work/full-experiment-6/target:/target:rw",
+        "-v",
+        "/workspace/s05e-native-work/full-experiment-6:/evidence:rw",
+        "-v",
+        "/workspace/s05e-native-work/cargo-cache:/cargo:rw",
+        "-e",
+        "PATH=/inputs/cargo-c-historical-install/bin:/inputs/rust/toolchain/bin:/opt/rh/gcc-toolset-15/root/usr/bin:/opt/s05e/bin:/usr/local/bin:/usr/bin:/bin:/config",
+        "-e",
+        "CARGO_HOME=/cargo",
+        "-e",
+        "CARGO_NET_OFFLINE=true",
+        "-e",
+        "CARGO_BUILD_JOBS=2",
+        "-e",
+        "HOME=/evidence/home",
+        "-e",
+        "PLATFORM=linux-x64",
+        "-e",
+        "FLAGS=-march=nehalem",
+        "-e",
+        "RUSTFLAGS=-Zlocation-detail=none -Zfmt-debug=none",
+        "-e",
+        "PKG_CONFIG=x86_64-linux-gnu-pkgconf --static",
+        "-e",
+        "MESON=--cross-file=/config/meson.ini",
+        "sha256:aed21cee6ad62af8dcfe3fbe8abb19f0158f3b0f2847e63978e866c5f6953152",
+        "timeout",
+        "--signal=TERM",
+        "--kill-after=10s",
+        "900",
+        "bash",
+        "-xc",
+        "bash -x /config/modified.sh > /evidence/modified.log 2>&1 && cp -a /deps/vips /evidence/modified/vips && cp -L /target/lib/libvips-cpp.so.8.18.7 /evidence/modified/libvips-cpp.so.8.18.7"
+      ],
+      "scope": "Only corrected MODIFIED; byte-identical CONTROL and unchanged native dependency prefix reused",
+      "timeoutSeconds": 900
+    },
+    "invocationSha256": "c1f44a2b00bd0356055c252416b0efc5cdc9ceca6080cbd4f997f71993135b4f",
+    "scripts": [
+      {
+        "file": "Toolchain.cmake",
+        "sha256": "eaf601b65260c4ff1991063f248346d51fe6751e84f7dc83b7fcd3fd4658cad6"
+      },
+      {
+        "file": "control.sh",
+        "sha256": "66c81376720122502f127894f0929b29c4d163ecfb73ce634400ba53f3c3ae93"
+      },
+      {
+        "file": "meson.ini",
+        "sha256": "f78f4bbbd4a5c83140af9c95f908f438c58807d414a6f2c486898e03a52219f7"
+      },
+      {
+        "file": "modified.sh",
+        "sha256": "50c186908f7a6af8ba1cd05ba4714ae698b4fbf5da3876f3613c6deef6d873e7"
+      },
+      {
+        "file": "s05e_clean_prefix.py",
+        "sha256": "7acf1e434a4caaf12d1f5b1449fc5a790ebf7603947302d06008054e67bf6a8d"
+      },
+      {
+        "file": "s05e_extract.py",
+        "sha256": "80d4e81177d4e3de83639219eac496450ae8500c09bd0eec825108814dc932b5"
+      },
+      {
+        "file": "versions.properties",
+        "sha256": "c0ad634f7c2ac8994f831dd0bcb5c60043db7ba4ddd9cc2dbc3703b15f4ec7e5"
+      },
+      {
+        "file": "x86_64-linux-gnu-pkgconf",
+        "sha256": "c256bf8fcad1bcee36872c22c007d41980ace7cfe74072af130d336ddd92f61e"
+      }
+    ]
+  }
+]

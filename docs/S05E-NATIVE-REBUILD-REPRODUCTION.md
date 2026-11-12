@@ -2,8 +2,11 @@
 
 Yalnız izole Linux x86-64 DEVELOPMENT ortamı. Registry push, release/tag,
 deploy, gerçek veritabanı veya SMTP yoktur. En az 2 CPU, 8 GiB toplam RAM ve
-40 GiB boş disk önerilir; deney 6 GiB/2 CPU ile sınırlandırılır. Docker vfs
+40 GiB gerçek disk boşluğu önerilir; deney 6 GiB/2 CPU ile sınırlandırılır. Docker vfs
 katmanları ek disk tüketir. Kaynak/cache doğrulaması atlanmaz.
+
+Scratch için /tmp kullanmadan önce mount/df kontrol edin: Cloud /tmp bir tmpfs olabilir.
+Kaynak/object/cache için ayrı disk dizini kullanın; ENOSPC kanıtları korunur.
 
 ## Girdiler
 
@@ -21,18 +24,22 @@ doğrulanır. `s05e_prepare_rpms.sh` ilk araştırmadaki **güncel aday** transa
 toplar; tarihsel sysroot'un yerine geçmez. Tarihsel işlem sırası update 109,
 epel 8, build-dependencies 124 RPM'dir. Ek provider/i686 paketleri kurulmaz.
 
-`docker/s05e-toolchain.Dockerfile` için boş context hazırlayın: üç stage dizini,
+Otomatik edinim `python3 scripts/prepare_s05e_toolchain.py --out /isolated/inputs`
+ile frozen SHA/RPM listesine bağlıdır; remote installer çalıştırmaz.
+`docker/s05e-toolchain.Dockerfile` için boş context girdileri: üç stage dizini,
 bu dosyaların `rpm-hashes.json` haritası, fingerprint/hash'i kayıtlı EPEL-8
 public key, dört doğrulanmış PyPI girdisi ve `python-hashes.json`. Ninja sdist
 önceden güvenli arşiv kontrolünden geçmelidir; pinned hash'ten farklı içerik
 kullanılmaz. Base digest manifesti exact Rocky ae0813... olmalıdır.
 
 ```sh
-docker build --network=none -f docker/s05e-toolchain.Dockerfile -t s05e-toolchain-historical /isolated/context
+docker pull --platform=linux/amd64 rockylinux/rockylinux@sha256:ae0813ccb1bb83f4e0220acdd1539f52831517de334368e960824db7e37ee210
+docker build --network=none -f docker/s05e-toolchain.Dockerfile -t s05e-toolchain-historical /isolated/inputs/context
 ```
 
-Bu yalnız yerel tag'dir; publish yoktur. Çalıştırmadan önce gerçek image config
-digest'ini kaydedin. Tarihsel RPM sürüm eşleştirmesi byte-reproducible image
+Bu yalnız yerel tag'dir; publish yoktur. Çalıştırmadan önce engine image ID ve gerçek config digest'ini ayrı kaydedin. `docker_identity.py`
+local docker-save config bytes'ını hash'ler; containerd inspect.Id bir
+manifest-list olabilir. Salt isim değişikliğiyle config olduğu varsayılmaz. Tarihsel RPM sürüm eşleştirmesi byte-reproducible image
 iddiası değildir; layer/config timestamp'leri değişebilir.
 
 ## Rust, cargo-c ve registry cache
@@ -66,8 +73,8 @@ Girdi kökü `sources/*.tar`, `patches/{0..4}.patch`, `rust/{rustc,cargo,rust-st
 dosyaları yeniden doğrular; eksikte full build başlatmaz.
 
 ```sh
-python3 scripts/capture_s05e_toolchain.py --inputs /isolated/inputs --out docs/evidence/s05e --image sha256:LOCAL_CONFIG_DIGEST
-python3 scripts/run_s05e_native.py --inputs /isolated/inputs --out /isolated/new-run --image sha256:LOCAL_CONFIG_DIGEST --minutes 75
+python3 scripts/capture_s05e_toolchain.py --inputs /isolated/inputs --out docs/evidence/s05e --image sha256:LOCAL_ENGINE_IMAGE_ID
+python3 scripts/run_s05e_native.py --inputs /isolated/inputs --out /isolated/new-run --image sha256:LOCAL_ENGINE_IMAGE_ID --minutes 75
 ```
 
 Yukarıdaki capture yalnız **yeni** S05-E çalışma kopyasında kullanılmalıdır;
@@ -80,7 +87,11 @@ sınırlandırılır. Başarısız aşama/loglar tutulur; source/profile değiş
 reduced build'e düşürülmez.
 
 CONTROL ve MODIFIED aynı native statik prefix'i kullanır; bağımlılık arşivleri
-tekrar derlenip farklı koşullarla değiştirilmez. Her iki libvips build directory,
+tekrar derlenip farklı koşullarla değiştirilmez. CONTROL kurulumunun eklediği libvips.a ikinci --exclude-libs listesine
+girmemelidir. `s05e_clean_prefix.py` yalnız kaydedilmiş Vips çıktısını prefix
+dışında korur, native dependency arşivlerini değiştirmez. Aksi durumda Sharp
+WASM fallback ile başarılı görsel üretse bile native bağlama testi reddeder.
+Her iki libvips build directory,
 .o/.a, compiler output ve link map'i ayrı korunur. Kaynak marker diff'i yalnız
 MODIFIED init.c'ye uygulanır. `--strip`, optimizasyon ve static symbol exclusion
 upstream profilindedir. ABI, DWARF/type coverage ve Sharp PNG/JPEG/SVG/proc maps
@@ -94,3 +105,21 @@ oturum sonrasında kalacağı garanti değildir; CI artifact'ları da uzun döne
 source provision yerine geçmez. Her artifact için hash, kapsam ve retention
 ayrı kaydedilmelidir. Gerçek source bundle ve iki bağımsız kalıcı kopya eksikse
 STATIC LGPL RELINKING INPUTS / DURABLE SOURCE PROVISION en fazla PARTIAL kalır.
+
+## Fiziksel sonuç doğrulaması
+
+```sh
+python3 scripts/capture_s05e_native_result.py --run /isolated/new-run --inputs /isolated/inputs
+```
+
+Aynı kontrollü prefix/CONTROL yeniden kullanıldıysa `--control-run` actual
+önceki run dizinini gösterir. Captured invocation ve Docker runtime kimlikleri,
+archive/input hash'leri ve source-tree farkı yeniden kontrol edilir. ABI ölçümü
+için imzalı libabigail 2.10.0 diagnostic image'ı ayrı tutulur; compile sysroot
+yerine kullanılmaz. Full type coverage, symbol/Sharp başarısından çıkarılmaz.
+
+[Gerçek DEVELOPMENT artifact](evidence/s05e/development-artifact.json) yaklaşık
+62 MiB'dir ve yerel workspace'te tutulur; Git'e binary eklenmez. Bu incomplete
+review paketi complete-source/OCI/SBOM gate'inden beklenen biçimde geçmez.
+Protokolün iki bağımsız runner copy/restore deneyi sentetiktir. Alpha.2 veya
+registry/release artifact'ı yayımlanmaz.

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "fullRebuild": "PASS",
+  "binaryPair": {
+    "controlSha256": "9765d980f837f70c36ad2bb5096002117076dcf0f017dc9306d82cd06a4772d2",
+    "modifiedSha256": "4dfa8a4e9a7b287249c08bb4dcfb06c30f70ad28c75a87cfb3ad3246a69f6db1",
+    "markerInControl": false,
+    "markerInModified": true
+  },
+  "sharpSyntheticCompatibility": "PASS",
+  "abiCompatibility": "PARTIAL",
+  "staticRelinkingInputs": "PARTIAL",
+  "durableSourceProvision": "PARTIAL",
+  "symbolComparison": {
+    "exportCounts": {
+      "original": 3500,
+      "control": 3500,
+      "modified": 3500
+    },
+    "originalControlMissing": [],
+    "originalControlAdded": [],
+    "controlModifiedMissing": [],
+    "controlModifiedAdded": [],
+    "versionedMissing": [],
+    "versionedAdded": [],
+    "historicalS05CReducedMissing": 1946,
+    "typeAbiConclusion": "PARTIAL; exported names are not a type-level ABI proof",
+    "versionedImportCounts": {
+      "original": 558,
+      "control": 558,
+      "modified": 558
+    },
+    "versionedImportMissing": [],
+    "versionedImportAdded": []
+  },
+  "archiveCount": 40,
+  "objectCount": 732,
+  "archiveMemberCount": 6908,
+  "abiToolImage": "sha256:49cad6a30bbe7deedc40da7b06f9de69836e726cf467e105c8c8e20f02be4e9c",
+  "abiToolRpmSha256": "0058c785b12f0eed33d1c9db8225b5ab712825820d4fa3e7215746a45a7949a4",
+  "legalApproval": false,
+  "binaryDistributionReadiness": "BLOCKED",
+  "sourceBuildProvenanceSha256": "757ffe9aa67281a68b230534be78ed61594a144e548bb3e6142cbc76dd22ddd4",
+  "sourceBuildProvenance": "PASS",
+  "debugInfoSections": {
+    "original": false,
+    "control": false,
+    "modified": false
+  },
+  "abiTypeCoverageNote": "abidiff including --fail-no-debug-info returned 0, but none of these ELFs contains .debug_info; no complete type-level ABI conclusion is inferred"
+}
