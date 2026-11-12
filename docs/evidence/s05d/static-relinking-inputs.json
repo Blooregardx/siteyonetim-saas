@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "status": "BLOCKED",
+  "archives": [],
+  "objects": [],
+  "originalBundleComplete": false,
+  "reason": "NOT RUN: no S05-D full build; S05-C reduced artifacts are not full-profile inputs"
+}

@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "recipeCommit": "ebb95f8add54eee8bed840e3fb587e4cbec857d7",
+  "target": "x86_64-unknown-linux-gnu",
+  "inputLockSha256": "e79e2a2735a0b5b151bb4133becd3008223fabedd34a8b787a872edab9854941",
+  "status": "BLOCKED",
+  "stage": "NOT_RUN",
+  "generatedLockFile": null,
+  "generatedLockSha256": null,
+  "attempts": [],
+  "binaryDistributionReadiness": "BLOCKED"
+}

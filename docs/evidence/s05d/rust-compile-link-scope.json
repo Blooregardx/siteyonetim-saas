@@ -1,0 +1,3675 @@
+{
+  "schemaVersion": 1,
+  "target": "x86_64-unknown-linux-gnu",
+  "records": [
+    {
+      "name": "adler2",
+      "version": "2.0.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "aes",
+      "version": "0.9.3",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "ahash",
+      "version": "0.8.12",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "aho-corasick",
+      "version": "1.1.5",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "alloca",
+      "version": "0.4.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "android_system_properties",
+      "version": "0.1.6",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "anes",
+      "version": "0.1.6",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "anstream",
+      "version": "1.0.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "anstyle",
+      "version": "1.0.14",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "anstyle-parse",
+      "version": "1.0.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "anstyle-query",
+      "version": "1.1.5",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "anstyle-wincon",
+      "version": "3.0.11",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "approx",
+      "version": "0.5.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "arbitrary",
+      "version": "1.4.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "assert_cmd",
+      "version": "2.2.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "autocfg",
+      "version": "1.5.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "av-data",
+      "version": "0.4.4",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "bit-set",
+      "version": "0.8.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "bit-vec",
+      "version": "0.8.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "bitflags",
+      "version": "1.3.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "bitflags",
+      "version": "2.13.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "bitreader",
+      "version": "0.3.11",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "block",
+      "version": "0.1.6",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "block-buffer",
+      "version": "0.12.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "block-padding",
+      "version": "0.4.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "bstr",
+      "version": "1.13.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "bumpalo",
+      "version": "3.20.3",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "byte-slice-cast",
+      "version": "1.2.3",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "bytemuck",
+      "version": "1.25.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "byteorder",
+      "version": "1.5.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "byteorder-lite",
+      "version": "0.1.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "bytes",
+      "version": "1.12.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "cairo-rs",
+      "version": "0.22.9",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "cairo-sys-rs",
+      "version": "0.22.9",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "cast",
+      "version": "0.3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "cbc",
+      "version": "0.2.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "cc",
+      "version": "1.4.7",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "cfg-expr",
+      "version": "0.20.9",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "cfg-if",
+      "version": "1.0.5",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "chacha20",
+      "version": "0.10.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "chrono",
+      "version": "0.4.45",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "ciborium",
+      "version": "0.2.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "ciborium-io",
+      "version": "0.2.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "ciborium-ll",
+      "version": "0.2.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "cipher",
+      "version": "0.5.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "clap",
+      "version": "4.6.7",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "clap_builder",
+      "version": "4.6.7",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "clap_complete",
+      "version": "4.6.11",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "clap_derive",
+      "version": "4.6.7",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "clap_lex",
+      "version": "1.1.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "color_quant",
+      "version": "1.1.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "colorchoice",
+      "version": "1.0.5",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "const-oid",
+      "version": "0.10.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "core-foundation-sys",
+      "version": "0.8.7",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "core_detect",
+      "version": "1.0.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "cpubits",
+      "version": "0.1.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "cpufeatures",
+      "version": "0.3.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "crc32fast",
+      "version": "1.5.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "criterion",
+      "version": "0.8.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "criterion-plot",
+      "version": "0.8.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "crossbeam-deque",
+      "version": "0.8.8",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "crossbeam-epoch",
+      "version": "0.9.21",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "crossbeam-utils",
+      "version": "0.8.23",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "crunchy",
+      "version": "0.2.4",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "crypto-common",
+      "version": "0.2.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "cssparser",
+      "version": "0.37.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "cssparser-color",
+      "version": "0.5.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "cssparser-macros",
+      "version": "0.7.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "data-url",
+      "version": "0.3.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "dav1d",
+      "version": "0.11.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "dav1d-sys",
+      "version": "0.8.3",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "defmt",
+      "version": "1.1.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "defmt-macros",
+      "version": "1.1.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "defmt-parser",
+      "version": "1.0.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "deranged",
+      "version": "0.5.8",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "derive_more",
+      "version": "2.1.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "derive_more-impl",
+      "version": "2.1.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "diff",
+      "version": "0.1.13",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "difflib",
+      "version": "0.4.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "digest",
+      "version": "0.11.3",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "displaydoc",
+      "version": "0.2.7",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "dlib",
+      "version": "0.5.3",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "dtoa",
+      "version": "1.0.11",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "dtoa-short",
+      "version": "0.3.5",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "ecb",
+      "version": "0.2.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "either",
+      "version": "1.18.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "encoding_rs",
+      "version": "0.8.41",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "equivalent",
+      "version": "1.0.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "errno",
+      "version": "0.3.14",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "fallible_collections",
+      "version": "0.4.9",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "fastrand",
+      "version": "2.5.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "fdeflate",
+      "version": "0.3.7",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "find-msvc-tools",
+      "version": "0.1.13",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "flate2",
+      "version": "1.1.10",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "float-cmp",
+      "version": "0.10.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "fnv",
+      "version": "1.0.7",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "form_urlencoded",
+      "version": "1.2.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "futures-channel",
+      "version": "0.3.34",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "futures-core",
+      "version": "0.3.34",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "futures-executor",
+      "version": "0.3.34",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "futures-io",
+      "version": "0.3.34",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "futures-macro",
+      "version": "0.3.34",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "futures-task",
+      "version": "0.3.34",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "futures-util",
+      "version": "0.3.34",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "gdk-pixbuf",
+      "version": "0.22.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "gdk-pixbuf-sys",
+      "version": "0.22.9",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "getrandom",
+      "version": "0.3.4",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "getrandom",
+      "version": "0.4.3",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "gif",
+      "version": "0.14.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "gio",
+      "version": "0.22.9",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "gio-sys",
+      "version": "0.22.9",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "gio-unix",
+      "version": "0.22.8",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "gio-unix-sys",
+      "version": "0.22.9",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "gio-win32",
+      "version": "0.22.8",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "gio-win32-sys",
+      "version": "0.22.9",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "glam",
+      "version": "0.30.10",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "glam",
+      "version": "0.31.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "glam",
+      "version": "0.32.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "glam",
+      "version": "0.33.7",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "glib",
+      "version": "0.22.9",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "glib-macros",
+      "version": "0.22.9",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "glib-sys",
+      "version": "0.22.9",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "gobject-sys",
+      "version": "0.22.9",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "half",
+      "version": "2.7.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "hashbrown",
+      "version": "0.13.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "hashbrown",
+      "version": "0.17.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "heck",
+      "version": "0.5.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "hybrid-array",
+      "version": "0.4.15",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "iana-time-zone",
+      "version": "0.1.65",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "iana-time-zone-haiku",
+      "version": "0.1.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "icu_collections",
+      "version": "2.3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "icu_locale_core",
+      "version": "2.3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "icu_normalizer",
+      "version": "2.3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "icu_normalizer_data",
+      "version": "2.3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "icu_properties",
+      "version": "2.3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "icu_properties_data",
+      "version": "2.3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "icu_provider",
+      "version": "2.3.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "idna",
+      "version": "1.1.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "idna_adapter",
+      "version": "1.2.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "image",
+      "version": "0.25.10",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "image-webp",
+      "version": "0.2.4",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "indexmap",
+      "version": "2.14.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "inout",
+      "version": "0.2.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "is_terminal_polyfill",
+      "version": "1.70.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "itertools",
+      "version": "0.13.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "itertools",
+      "version": "0.15.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "itoa",
+      "version": "1.0.18",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "jiff",
+      "version": "0.2.37",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "jiff-core",
+      "version": "0.1.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "jiff-static",
+      "version": "0.2.37",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "jiff-tzdb",
+      "version": "0.1.8",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "jiff-tzdb-platform",
+      "version": "0.1.3",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "jobserver",
+      "version": "0.1.35",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "js-sys",
+      "version": "0.3.105",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "language-tags",
+      "version": "0.3.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "lazy_static",
+      "version": "1.5.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "libc",
+      "version": "0.2.189",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "libfuzzer-sys",
+      "version": "0.4.13",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "libloading",
+      "version": "0.8.9",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "linux-raw-sys",
+      "version": "0.12.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "litemap",
+      "version": "0.8.3",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "locale_config",
+      "version": "0.3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "lock_api",
+      "version": "0.4.14",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "log",
+      "version": "0.4.34",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "lopdf",
+      "version": "0.44.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "malloc_buf",
+      "version": "0.0.6",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "markup5ever",
+      "version": "0.39.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "matches",
+      "version": "0.1.10",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "matrixmultiply",
+      "version": "0.3.11",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "md-5",
+      "version": "0.11.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "memchr",
+      "version": "2.8.3",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "miniz_oxide",
+      "version": "0.8.9",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "miniz_oxide",
+      "version": "0.9.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "moxcms",
+      "version": "0.8.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "mp4parse",
+      "version": "0.17.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "multiversion",
+      "version": "0.9.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "multiversion-macros",
+      "version": "0.9.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "multiversion_no_op",
+      "version": "1.0.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "mutants",
+      "version": "0.0.4",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "nalgebra",
+      "version": "0.35.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "nalgebra-macros",
+      "version": "0.3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "new_debug_unreachable",
+      "version": "1.0.6",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "nom",
+      "version": "8.0.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "normalize-line-endings",
+      "version": "0.3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "num-bigint",
+      "version": "0.4.8",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "num-complex",
+      "version": "0.4.6",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "num-conv",
+      "version": "0.2.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "num-derive",
+      "version": "0.4.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "num-integer",
+      "version": "0.1.47",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "num-rational",
+      "version": "0.4.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "num-traits",
+      "version": "0.2.19",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "objc",
+      "version": "0.2.7",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "objc-foundation",
+      "version": "0.1.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "objc_id",
+      "version": "0.1.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "once_cell",
+      "version": "1.21.4",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "once_cell_polyfill",
+      "version": "1.70.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "oorandom",
+      "version": "11.1.5",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "page_size",
+      "version": "0.6.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "pango",
+      "version": "0.22.9",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "pango-sys",
+      "version": "0.22.9",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "pangocairo",
+      "version": "0.22.9",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "pangocairo-sys",
+      "version": "0.22.9",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "parking_lot",
+      "version": "0.12.5",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "parking_lot_core",
+      "version": "0.9.12",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "percent-encoding",
+      "version": "2.3.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "phf",
+      "version": "0.13.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "phf_codegen",
+      "version": "0.13.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "phf_generator",
+      "version": "0.13.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "phf_macros",
+      "version": "0.13.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "phf_shared",
+      "version": "0.13.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "phf_shared",
+      "version": "0.14.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "pin-project-lite",
+      "version": "0.2.17",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "pkg-config",
+      "version": "0.3.34",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "plotters",
+      "version": "0.3.7",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "plotters-backend",
+      "version": "0.3.7",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "plotters-svg",
+      "version": "0.3.7",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "png",
+      "version": "0.18.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "portable-atomic",
+      "version": "1.15.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "portable-atomic-util",
+      "version": "0.2.8",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "potential_utf",
+      "version": "0.1.6",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "powerfmt",
+      "version": "0.2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "ppv-lite86",
+      "version": "0.2.21",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "precomputed-hash",
+      "version": "0.1.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "predicates",
+      "version": "3.1.4",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "predicates-core",
+      "version": "1.0.10",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "predicates-tree",
+      "version": "1.0.13",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "pretty_assertions",
+      "version": "1.4.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "proc-macro2",
+      "version": "1.0.107",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "proptest",
+      "version": "1.11.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "pxfm",
+      "version": "0.1.30",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "quick-error",
+      "version": "1.2.3",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "quick-error",
+      "version": "2.0.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "quote",
+      "version": "1.0.47",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "r-efi",
+      "version": "5.3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "r-efi",
+      "version": "6.0.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "rand",
+      "version": "0.9.5",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "rand",
+      "version": "0.10.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "rand_chacha",
+      "version": "0.9.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "rand_core",
+      "version": "0.9.5",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "rand_core",
+      "version": "0.10.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "rand_xorshift",
+      "version": "0.4.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "rangemap",
+      "version": "1.8.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "rawpointer",
+      "version": "0.2.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "rayon",
+      "version": "1.12.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "rayon-core",
+      "version": "1.13.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "rctree",
+      "version": "0.6.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "redox_syscall",
+      "version": "0.5.18",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "regex",
+      "version": "1.13.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "regex-automata",
+      "version": "0.4.18",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "regex-syntax",
+      "version": "0.8.11",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "rgb",
+      "version": "0.8.53",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "rustc-hash",
+      "version": "2.1.3",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "rustc_version",
+      "version": "0.4.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "rustix",
+      "version": "1.1.5",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "rustversion",
+      "version": "1.0.23",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "rusty-fork",
+      "version": "0.3.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "safe_arch",
+      "version": "1.2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "same-file",
+      "version": "1.0.6",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "scopeguard",
+      "version": "1.2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "selectors",
+      "version": "0.40.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "semver",
+      "version": "1.0.28",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "serde",
+      "version": "1.0.229",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "serde_core",
+      "version": "1.0.229",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "serde_derive",
+      "version": "1.0.229",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "serde_json",
+      "version": "1.0.151",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "serde_spanned",
+      "version": "1.1.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "servo_arc",
+      "version": "0.4.3",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "sha2",
+      "version": "0.11.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "shell-words",
+      "version": "1.1.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "shlex",
+      "version": "2.0.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "simba",
+      "version": "0.10.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "simd-adler32",
+      "version": "0.3.10",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "simdutf8",
+      "version": "0.1.5",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "siphasher",
+      "version": "1.0.3",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "slab",
+      "version": "0.4.12",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "smallvec",
+      "version": "1.16.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "stable_deref_trait",
+      "version": "1.2.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "static_assertions",
+      "version": "1.1.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "string_cache",
+      "version": "0.9.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "string_cache",
+      "version": "0.10.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "string_cache_codegen",
+      "version": "0.6.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "stringprep",
+      "version": "0.1.5",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "strsim",
+      "version": "0.11.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "syn",
+      "version": "2.0.119",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "syn",
+      "version": "3.0.6",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "synstructure",
+      "version": "0.14.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "system-deps",
+      "version": "7.0.8",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "system-deps",
+      "version": "9.0.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "target-lexicon",
+      "version": "0.13.5",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "tempfile",
+      "version": "3.27.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "tendril",
+      "version": "0.5.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "termtree",
+      "version": "0.5.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "thiserror",
+      "version": "2.0.20",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "thiserror-impl",
+      "version": "2.0.20",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "time",
+      "version": "0.3.55",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "time-core",
+      "version": "0.1.9",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "time-macros",
+      "version": "0.2.32",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "tinystr",
+      "version": "0.8.4",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "tinytemplate",
+      "version": "1.2.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "tinyvec",
+      "version": "1.13.3",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "toml",
+      "version": "1.1.6+spec-1.1.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "toml_datetime",
+      "version": "1.1.1+spec-1.1.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "toml_parser",
+      "version": "1.1.3+spec-1.1.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "toml_writer",
+      "version": "1.1.2+spec-1.1.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "typenum",
+      "version": "1.20.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "unarray",
+      "version": "0.1.4",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "unicode-bidi",
+      "version": "0.3.18",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "unicode-ident",
+      "version": "1.0.26",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "unicode-normalization",
+      "version": "0.1.25",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "unicode-properties",
+      "version": "0.1.4",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "url",
+      "version": "2.5.8",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "utf8_iter",
+      "version": "1.0.4",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "utf8parse",
+      "version": "0.2.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "version-compare",
+      "version": "0.2.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "version_check",
+      "version": "0.9.5",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "wait-timeout",
+      "version": "0.2.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "walkdir",
+      "version": "2.5.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "wasip2",
+      "version": "1.0.4+wasi-0.2.12",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "wasm-bindgen",
+      "version": "0.2.128",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "wasm-bindgen-macro",
+      "version": "0.2.128",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "wasm-bindgen-macro-support",
+      "version": "0.2.128",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "wasm-bindgen-shared",
+      "version": "0.2.128",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "web-sys",
+      "version": "0.3.105",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "web_atoms",
+      "version": "0.2.6",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "weezl",
+      "version": "0.1.12",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "weezl",
+      "version": "0.2.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "wide",
+      "version": "1.7.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "winapi",
+      "version": "0.3.9",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "winapi-i686-pc-windows-gnu",
+      "version": "0.4.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "winapi-util",
+      "version": "0.1.11",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "winapi-x86_64-pc-windows-gnu",
+      "version": "0.4.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "windows-core",
+      "version": "0.62.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "windows-implement",
+      "version": "0.60.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "windows-interface",
+      "version": "0.59.3",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "windows-link",
+      "version": "0.2.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "windows-result",
+      "version": "0.4.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "windows-strings",
+      "version": "0.5.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "windows-sys",
+      "version": "0.61.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "winnow",
+      "version": "1.0.4",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "wit-bindgen",
+      "version": "0.57.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "writeable",
+      "version": "0.6.4",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "xml5ever",
+      "version": "0.39.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "yansi",
+      "version": "1.0.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "yeslogic-fontconfig-sys",
+      "version": "6.0.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "yoke",
+      "version": "0.8.3",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "yoke-derive",
+      "version": "0.8.3",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "zerocopy",
+      "version": "0.8.57",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "zerocopy-derive",
+      "version": "0.8.57",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "zerofrom",
+      "version": "0.1.8",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "zerofrom-derive",
+      "version": "0.1.8",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "zerotrie",
+      "version": "0.2.5",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "zerovec",
+      "version": "0.11.8",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "zerovec-derive",
+      "version": "0.11.6",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "zlib-rs",
+      "version": "0.6.8",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "zmij",
+      "version": "1.0.23",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "zune-core",
+      "version": "0.5.3",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "zune-jpeg",
+      "version": "0.5.15",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "ci",
+      "version": "0.0.0",
+      "source": "path",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "librsvg",
+      "version": "2.63.2",
+      "source": "path",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "librsvg-c",
+      "version": "2.63.2",
+      "source": "path",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "librsvg-rebind",
+      "version": "0.3.0",
+      "source": "path",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "librsvg-rebind-sys",
+      "version": "0.3.0",
+      "source": "path",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "pixbufloader-svg",
+      "version": "0.0.1",
+      "source": "path",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "rsvg-bench",
+      "version": "2.63.2",
+      "source": "path",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "rsvg-fuzz",
+      "version": "0.0.0",
+      "source": "path",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    },
+    {
+      "name": "rsvg_convert",
+      "version": "2.63.2",
+      "source": "path",
+      "packageId": null,
+      "features": null,
+      "dependencyRole": "UNKNOWN",
+      "status": "UNKNOWN",
+      "reason": "S05-D experiment not run; S05-C historical compilation observations retained separately"
+    }
+  ],
+  "counts": {
+    "RESOLVED": 0,
+    "COMPILED": 0,
+    "LINKED — EVIDENCED": 0,
+    "NOT SELECTED — EVIDENCED": 0,
+    "UNKNOWN": 366
+  },
+  "status": "BLOCKED",
+  "stage": "NOT_RUN"
+}

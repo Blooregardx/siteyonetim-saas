@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "status": "BLOCKED",
+  "stage": "NOT_RUN",
+  "executed": false,
+  "recipeCommit": "ebb95f8add54eee8bed840e3fb587e4cbec857d7",
+  "profile": null,
+  "intendedProfile": "original sharp-libvips 1.3.4 Linux x64 static native/Rust bundle",
+  "controlSha256": null,
+  "modifiedSha256": null,
+  "blockers": [
+    "Exact full native compiler/base/package and cargo-c toolchain not verified",
+    "S05-D Rust prerequisite investigation pending"
+  ],
+  "binaryDistributionReadiness": "BLOCKED"
+}

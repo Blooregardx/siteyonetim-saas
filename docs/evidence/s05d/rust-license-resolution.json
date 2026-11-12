@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "stage": "NOT_RUN",
+  "records": [
+    {
+      "name": "mutants",
+      "version": "0.0.4",
+      "decision": "BLOCKED",
+      "cargoChecksum": "add0ac067452ff1aca8c5002111bd6b1c895baee6e45fcbc44e0193aea17be56",
+      "reason": "S05-C historical blocked record; S05-D acquisition pending"
+    },
+    {
+      "name": "selectors",
+      "version": "0.40.0",
+      "decision": "BLOCKED",
+      "cargoChecksum": "eeee001a77567bb05e71652718d3ff76d8697c151ac523e68e9513194eb2b75a",
+      "reason": "S05-C historical blocked record; S05-D acquisition pending"
+    },
+    {
+      "name": "anes",
+      "version": "0.1.6",
+      "decision": "BLOCKED",
+      "cargoChecksum": "4b46cbb362ab8752921c97e041f5e366ee6297bd428a31275b9fcf1e380f7299",
+      "reason": "S05-C historical blocked record; S05-D acquisition pending"
+    },
+    {
+      "name": "block",
+      "version": "0.1.6",
+      "decision": "BLOCKED",
+      "cargoChecksum": "0d8c1fef690941d3e7788d328517591fecc684c084084702d6ff1641e993699a",
+      "reason": "S05-C historical blocked record; S05-D acquisition pending"
+    },
+    {
+      "name": "defmt-parser",
+      "version": "1.0.0",
+      "decision": "BLOCKED",
+      "cargoChecksum": "10d60334b3b2e7c9d91ef8150abfb6fa4c1c39ebbcf4a81c2e346aad939fee3e",
+      "reason": "S05-C historical blocked record; S05-D acquisition pending"
+    },
+    {
+      "name": "difflib",
+      "version": "0.4.0",
+      "decision": "BLOCKED",
+      "cargoChecksum": "6184e33543162437515c2e2b48714794e37845ec9851711914eec9d308f6ebe8",
+      "reason": "S05-C historical blocked record; S05-D acquisition pending"
+    },
+    {
+      "name": "malloc_buf",
+      "version": "0.0.6",
+      "decision": "BLOCKED",
+      "cargoChecksum": "62bb907fe88d54d8d9ce32a3cceab4218ed2f6b7d35617cafe9adf84e43919cb",
+      "reason": "S05-C historical blocked record; S05-D acquisition pending"
+    },
+    {
+      "name": "objc-foundation",
+      "version": "0.1.1",
+      "decision": "BLOCKED",
+      "cargoChecksum": "1add1b659e36c9607c7aab864a76c7a4c2760cd0cd2e120f3fb8b952c7e22bf9",
+      "reason": "S05-C historical blocked record; S05-D acquisition pending"
+    },
+    {
+      "name": "objc_id",
+      "version": "0.1.1",
+      "decision": "BLOCKED",
+      "cargoChecksum": "c92d4ddb4bd7b50d730c215ff871754d0da6b2178849f8a2a2ab69712d0c073b",
+      "reason": "S05-C historical blocked record; S05-D acquisition pending"
+    },
+    {
+      "name": "r-efi",
+      "version": "5.3.0",
+      "decision": "BLOCKED",
+      "cargoChecksum": "69cdb34c158ceb288df11e18b4bd39de994f6657d83847bdffdbd7f346754b0f",
+      "reason": "S05-C historical blocked record; S05-D acquisition pending"
+    },
+    {
+      "name": "r-efi",
+      "version": "6.0.0",
+      "decision": "BLOCKED",
+      "cargoChecksum": "f8dcc9c7d52a811697d2151c701e0d08956f92b0e24136cf4cf27b57a6a0d9bf",
+      "reason": "S05-C historical blocked record; S05-D acquisition pending"
+    },
+    {
+      "name": "winapi-i686-pc-windows-gnu",
+      "version": "0.4.0",
+      "decision": "BLOCKED",
+      "cargoChecksum": "ac3b87c63620426dd9b991e5ce0329eff545bccbbb34f3be09ff6fb6ab51b7b6",
+      "reason": "S05-C historical blocked record; S05-D acquisition pending"
+    },
+    {
+      "name": "winapi-x86_64-pc-windows-gnu",
+      "version": "0.4.0",
+      "decision": "BLOCKED",
+      "cargoChecksum": "712e227841d057c1ee1cd2fb22fa7e5a5461ae8e48fa2ca79ec42cfc1931183f",
+      "reason": "S05-C historical blocked record; S05-D acquisition pending"
+    }
+  ],
+  "counts": {
+    "PASS": 0,
+    "BLOCKED": 13,
+    "UNKNOWN": 0,
+    "NOT_APPLICABLE": 0
+  },
+  "legalApproval": false,
+  "binaryDistributionReadiness": "BLOCKED"
+}
