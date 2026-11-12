@@ -118,6 +118,16 @@ class EvidenceTests(unittest.TestCase):
             self.assertEqual(v.verify_notice(r,self.root)['notice'],'PASS')
             (self.root/'header.txt').write_bytes(b'Mozilla Public License fake mozilla.org/MPL/2.0')
             with self.assertRaises(ValueError):v.verify_notice(r,self.root)
+    def test_physical_metadata_feature_binding(self):
+        metadata={'packages':[{'id':'fixture@1','name':'fixture','version':'1'}],
+                  'resolve':{'nodes':[{'id':'fixture@1','features':['default']}]}}
+        proof=self.file('metadata.json',json.dumps(metadata).encode())
+        scope={'schemaVersion':1,'target':v.TARGET,'featureMode':'workspace-default','metadataFile':proof['file'],
+               'metadataSha256':proof['sha256'],'records':[{'name':'fixture','version':'1','packageId':'fixture@1','features':['default'],'status':'RESOLVED'}],
+               'counts':{s:int(s=='RESOLVED') for s in ['RESOLVED','COMPILED','LINKED — EVIDENCED','NOT SELECTED — EVIDENCED','UNKNOWN']}}
+        self.assertEqual(v.verify_scope(scope,self.root)['scope'],'PARTIAL')
+        scope['records'][0]['features']=['fake']
+        with self.assertRaises(ValueError):v.verify_scope(scope,self.root)
     def test_fake_notice(self):
         archive=self.m['sources'][0]
         r={'archiveFile':archive['file'],'archiveSha256':archive['sha256'],'cargoChecksum':archive['sha256'],

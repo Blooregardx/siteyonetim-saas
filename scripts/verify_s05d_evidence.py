@@ -116,6 +116,12 @@ def verify_resolution(r, root):
         lock = physical(root, a['lockFile'], a['afterSha256'])
         if a['changes'] != lock_changes(original.read_text(), lock.read_text()):
             raise ValueError('LOCK_DIFF')
+        feature_expected=[
+            {'file':'rsvg/Cargo.toml','beforeSha256':'25bb5f80b855c6047069d252e410b8e68538190402707f396607229cfc3318a6','afterSha256':'376ee5f94eb923ca47bdc68780dcc47f8e15fd77df13ae2fa0e0efbf0caf79ba'},
+            {'file':'librsvg-c/Cargo.toml','beforeSha256':'0b55c706b9f9c8a4515941cdef12ff130242a4f44ed4d0f7703c07b18095d570','afterSha256':'d4f8674203b075fc2f69f552d13672d5c8f23e3d4e40f2d5153ea9d13616b7a3'}]
+        if a.get('featureChanges')!=feature_expected:raise ValueError('UPSTREAM_FEATURE_CHANGES')
+        for feature in feature_expected:
+            physical(root,str(Path(a['lockFile']).parent/feature['file']),feature['afterSha256'])
         hashes.append(a['afterSha256'])
     if hashes[0] != hashes[1] or hashes[0] != r['generatedLockSha256']:
         raise ValueError('NONMATCHING_RESOLUTIONS')
@@ -124,7 +130,7 @@ def verify_resolution(r, root):
             'binaryDistributionReadiness': 'BLOCKED'}
 
 
-def verify_scope(scope):
+def verify_scope(scope, root=None):
     if scope.get('schemaVersion') != 1 or scope.get('target') != TARGET:
         raise ValueError('SCOPE_TARGET')
     allowed = {'RESOLVED', 'COMPILED', 'LINKED — EVIDENCED', 'NOT SELECTED — EVIDENCED', 'UNKNOWN'}
@@ -133,13 +139,38 @@ def verify_scope(scope):
     counts = {s: sum(r['status'] == s for r in scope['records']) for s in sorted(allowed)}
     if counts != scope['counts']:
         raise ValueError('SCOPE_COUNTS')
-    # This collector has no authenticated compiler-artifact/link-map capture.
-    if any(counts[s] for s in ['COMPILED', 'LINKED — EVIDENCED', 'NOT SELECTED — EVIDENCED']):
+    # Link-map and NOT SELECTED proof protocols are not implemented.
+    if any(counts[s] for s in ['LINKED — EVIDENCED', 'NOT SELECTED — EVIDENCED']):
         raise ValueError('UNIMPLEMENTED_COMPILE_LINK_PROOF')
+    resolved=counts['RESOLVED']+counts['COMPILED']
+    nodes={};packages={};messages=[]
+    if resolved:
+        if root is None or scope.get('featureMode')!='workspace-default':raise ValueError('MISSING_METADATA_OR_FEATURE_MODE')
+        metadata=json.loads(physical(root,scope['metadataFile'],scope['metadataSha256']).read_text())
+        nodes={n['id']:n for n in metadata['resolve']['nodes']}
+        packages={p['id']:p for p in metadata['packages']}
+    if counts['COMPILED']:
+        capture=scope['compilerCapture']
+        if capture.get('network')!='none':raise ValueError('COMPILER_NETWORK')
+        for line in physical(root,capture['file'],capture['sha256']).read_text().splitlines():
+            try:messages.append(json.loads(line))
+            except json.JSONDecodeError:pass
     for r in scope['records']:
+        if r['status'] in ['RESOLVED','COMPILED']:
+            node=nodes.get(r.get('packageId'));package=packages.get(r.get('packageId'))
+            if not node or not package or package['name']!=r['name'] or package['version']!=r['version'] or sorted(node['features'])!=sorted(r['features']):
+                raise ValueError('PACKAGE_ID_FEATURE_BINDING')
+        if r['status']=='COMPILED':
+            e=r['compilerEvidence'];message=e['message']
+            if message not in messages or message.get('reason')!='compiler-artifact' or message.get('fresh') is not False or message.get('package_id')!=r['packageId'] or not e.get('files'):
+                raise ValueError('FAKE_COMPILER_ARTIFACT')
+            for f in e['files']:
+                data=physical(root,f['file'],f['sha256']).read_bytes()
+                if f['originalFilename'] not in message['filenames'] or not data.startswith((b'!<arch>\n',b'\x7fELF')):
+                    raise ValueError('MISSING_COMPILED_BYTES')
         if r['status'] == 'RESOLVED' and (not r.get('packageId') or not isinstance(r.get('features'), list) or not scope.get('metadataSha256')):
             raise ValueError('RESOLUTION_FIELDS')
-    return {'scope': 'PARTIAL' if counts['RESOLVED'] else 'BLOCKED', 'counts': counts,
+    return {'scope': 'PARTIAL' if resolved else 'BLOCKED', 'counts': counts,
             'binaryDistributionReadiness': 'BLOCKED'}
 
 

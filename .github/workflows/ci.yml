@@ -192,5 +192,9 @@ jobs:
             ${{ runner.temp }}/s05d-evidence/*.toml
             ${{ runner.temp }}/s05d-evidence/*.sha256
             ${{ runner.temp }}/s05d-evidence/*.crate
+            ${{ runner.temp }}/s05d-evidence/compiled-*.bin
+            ${{ runner.temp }}/s05d-evidence/resolution-*/Cargo.lock
+            ${{ runner.temp }}/s05d-evidence/resolution-*/rsvg/Cargo.toml
+            ${{ runner.temp }}/s05d-evidence/resolution-*/librsvg-c/Cargo.toml
             ${{ runner.temp }}/s05d-evidence/generated-Cargo.lock
           if-no-files-found: error

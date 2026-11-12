@@ -155,15 +155,65 @@ def capture_cargo(root):
         if a['exitCode']==0:
             raw=(root/a['stdout']).read_bytes();metadata=json.loads(raw)
             nodes={n['id']:n for n in metadata['resolve']['nodes']}
-            scope['metadataSha256']=digest(raw);scope['metadataFile']=a['stdout'];scope['records']=[]
+            scope['metadataSha256']=digest(raw);scope['metadataFile']=a['stdout'];scope['featureMode']='workspace-default';scope['records']=[]
+            lock_entries={(p['name'],p['version'],p.get('source','path')):p for p in tomllib.loads((root/'generated-Cargo.lock').read_text())['package']}
+            incoming={}
+            for node in metadata['resolve']['nodes']:
+                for dep in node.get('deps',[]):
+                    incoming.setdefault(dep['pkg'],[]).extend({'fromPackageId':node['id'],'kind':k.get('kind') or 'normal','target':k.get('target')} for k in dep.get('dep_kinds',[]))
             for package in metadata['packages']:
                 node=nodes.get(package['id'])
                 scope['records'].append({'name':package['name'],'version':package['version'],'source':package.get('source') or 'path',
                                         'packageId':package['id'],'features':node['features'] if node else None,
-                                        'dependencyRoles':sorted({d.get('kind') or 'normal' for d in package['dependencies']}),
+                                        'outgoingDependencyKinds':sorted({d.get('kind') or 'normal' for d in package['dependencies']}),
+                                        'incomingDependencyRoles':incoming.get(package['id'],[]),
+                                        'checksum':lock_entries.get((package['name'],package['version'],package.get('source') or 'path'),{}).get('checksum'),
                                         'status':'RESOLVED' if node else 'UNKNOWN',
                                         'reason':'Metadata resolution only, no compiler-artifact or linker proof'})
             r['tree']=command(root,'tree',common+['-w','/work/resolution-1',BASE,'/work/toolchain/bin/cargo','tree','--locked','--target',TARGET,'-p','librsvg-c','--edges','normal,build','--format','{p}|{f}'],180)
+            covered={(p['name'],p['version'],p['source']) for p in scope['records']}
+            for key,entry in lock_entries.items():
+                if key not in covered:
+                    scope['records'].append({'name':key[0],'version':key[1],'source':key[2],'checksum':entry.get('checksum'),
+                        'packageId':None,'features':None,'incomingDependencyRoles':[],'status':'UNKNOWN',
+                        'reason':'Not represented in filtered metadata; absence alone is not NOT SELECTED evidence'})
+            scope['generatedLockSha256']=r['generatedLockSha256']
+            # A bounded diagnostic Rust build is distinct from the unavailable full cbuild/native sysroot.
+            build_common=common[:]
+            for key,value in {'CARGO_BUILD_JOBS':'2','CARGO_PROFILE_RELEASE_DEBUG':'false',
+                              'CARGO_PROFILE_RELEASE_CODEGEN_UNITS':'1','CARGO_PROFILE_RELEASE_INCREMENTAL':'false',
+                              'CARGO_PROFILE_RELEASE_LTO':'true','CARGO_PROFILE_RELEASE_OPT_LEVEL':'z',
+                              'CARGO_PROFILE_RELEASE_PANIC':'abort','RUSTFLAGS':'-Zlocation-detail=none -Zfmt-debug=none --remap-path-prefix=/work/cargo/registry/='}.items():
+                build_common+=['-e',key+'='+value]
+            build=command(root,'compiler',build_common+['--network=none','-w','/work/resolution-1',BASE,
+                 '/work/toolchain/bin/cargo','build','--locked','--offline','--release','-p','librsvg-c','--message-format=json-render-diagnostics','-vv'],240)
+            r['diagnosticRustBuild']=build
+            scope['compilerCapture']={**build,'file':build['stdout'],'sha256':digest((root/build['stdout']).read_bytes()),
+                                      'network':'none','profile':'release librsvg-c default; no native sysroot/cargo-c'}
+            by_id={p['packageId']:p for p in scope['records'] if p['packageId']}
+            retained=0
+            for line in (root/build['stdout']).read_text().splitlines():
+                try:message=json.loads(line)
+                except json.JSONDecodeError:continue
+                if message.get('reason')!='compiler-artifact' or message.get('fresh') is not False:continue
+                package=by_id.get(message.get('package_id'))
+                if package is None:continue
+                evidence=[]
+                for filename in message.get('filenames',[]):
+                    path=PurePosixPath(filename)
+                    if not str(path).startswith('/work/') or '..' in path.parts:continue
+                    local=root.joinpath(*path.parts[2:])
+                    if not local.is_file() or local.is_symlink() or not local.resolve().is_relative_to(root.resolve()):continue
+                    if retained+local.stat().st_size>32*1024**2:continue
+                    data=local.read_bytes()
+                    if not (data.startswith(b'!<arch>\n') or data.startswith(b'\x7fELF')):continue
+                    name='compiled-'+digest(data)+'.bin';(root/name).write_bytes(data);retained+=len(data)
+                    evidence.append({'file':name,'sha256':digest(data),'originalFilename':filename})
+                if evidence:
+                    package['status']='COMPILED'
+                    package['compilerEvidence']={'message':message,'files':evidence}
+                    package['reason']='One compiler-artifact target physically retained; target kind may be build-script, not final library; not LINKED evidence'
+
         r['stage']='controlled-resolution-completed'
         r['limitations']=['Not the recovered historical upstream lock/index state','No full native sysroot, cargo-c, compiler-artifact or linker-map capture','librsvg code patch occurs after upstream update and is not applied in metadata-only phase']
     except (OSError,ValueError,KeyError,urllib.error.URLError,tarfile.TarError,subprocess.SubprocessError) as e:
@@ -315,12 +365,12 @@ if __name__=='__main__':
     from verify_s05d_evidence import verify_resolution, verify_scope, verify_full_bundle
     scope=json.loads((a.out/'rust-compile-link-scope.json').read_text())
     write(a.out/'technical-validation.json',{'resolution':verify_resolution(cargo,a.out),
-          'scope':verify_scope(scope),'full':verify_full_bundle(full)})
+          'scope':verify_scope(scope,a.out),'full':verify_full_bundle(full)})
 
     print(json.dumps({'cargo':cargo['status'],'licenses':{s:sum(r['decision']==s for r in records) for s in ['PASS','BLOCKED','UNKNOWN']},
                       'fullBundle':'BLOCKED','binaryDistributionReadiness':'BLOCKED'}))
     # Only public source receipts/notices; never environment/config/credentials or binary archives.
-    wanted=['cargo-resolution.json','rust-compile-link-scope.json','rust-license-resolution.json','full-bundle-rebuild.json','static-relinking-inputs.json','technical-validation.json','generated-Cargo.lock','rustc.stdout','cargo.stdout']
+    wanted=['cargo-resolution.json','rust-compile-link-scope.json','rust-license-resolution.json','full-bundle-rebuild.json','static-relinking-inputs.json','technical-validation.json','generated-Cargo.lock','rustc.stdout','cargo.stdout','compiler.stderr']
     wanted += [p.name for p in a.out.glob('*-header-*.txt')]
     wanted += [p.name for p in a.out.glob('*-upstream-*.txt')]
     for name in wanted:
