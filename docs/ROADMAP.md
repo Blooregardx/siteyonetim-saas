@@ -92,3 +92,7 @@ SOURCE RELEASE STATUS: ALPHA.2 PUBLISHED — UNCHANGED. Hazır imaj dağıtımı
 ## S05-C kaynak ve rebuild kontrolü
 
 S05-C upstream derleme kapsamını 162 dış crate + 2 workspace olarak ayırdı; 195 dış kayıt UNKNOWN. Azaltılmış değiştirilmiş libvips/Sharp PNG deneyi başarılı, genel karar PARTIAL/BLOCKED. S05-D: generated Cargo.lock, exact feature/role/link subset, eksik crate bildirimleri, özgün statik girdiler ve tam bundle rebuild; Node/Debian/Prisma ile kalıcı kaynak sunumu açık. [Kanıt ve sınırlar](S05C-REBUILD-VALIDATION.md); [tekrar tarifi](LIBVIPS-REBUILD-REPRODUCTION.md).
+
+## S05-D ve sonraki teknik çalışma
+
+S05-D generated lock, exact Rust/Cargo ve source notice kanıtlarını geliştirdi. Full Rocky/GCC15/cargo-c statik bundle ve değiştirilmiş native relinking BLOCKED. S05-E: native sysroot/toolchain pinleri, full compile/link/object/ABI/Sharp provası, kalan 9 notice ve kalıcı source sunumu kapasitesi. [Gerçek sonuç ve sınırlar](S05D-FULL-BUNDLE-VALIDATION.md); [kalıcı kaynak planı](CORRESPONDING-SOURCE-DISTRIBUTION-PLAN.md).

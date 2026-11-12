@@ -69,3 +69,7 @@ SOURCE RELEASE STATUS: ALPHA.2 PUBLISHED — UNCHANGED. Hazır imaj dağıtımı
 ## S05-C kaynak ve rebuild kontrolü
 
 357 Rust adayının arşiv checksum'ları ölçüldü; özgün bildirim edinimi 344 PASS/13 BLOCKED. Derleme log'unda gözlenen 162 dış kaydın mutants 0.0.4 ve selectors 0.40.0 bildirimleri eksiktir. Dokuz LGPL/MPL native örnek için per-file koşullar ayrı kayıtlıdır: REQUIRES LEGAL REVIEW. Genel binary dağıtımı BLOCKED kalır. [Kanıt ve sınırlar](S05C-REBUILD-VALIDATION.md); [tekrar tarifi](LIBVIPS-REBUILD-REPRODUCTION.md).
+
+## S05-D Rust kaynak/bildirim araştırması
+
+mutants/selectors/anes/defmt-parser için exact crate ve source/notice kanıtları edinildi. MPL source başlığındaki satır kırılması desteklendi; genel LICENSE dosyası muafiyeti eklenmedi. Diğer 9 kayıt BLOCKED; kaynak edinimi PASS hukuki/binary dağıtım onayı değildir. [Gerçek sonuç ve sınırlar](S05D-FULL-BUNDLE-VALIDATION.md); [kalıcı kaynak planı](CORRESPONDING-SOURCE-DISTRIBUTION-PLAN.md).

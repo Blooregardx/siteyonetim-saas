@@ -1,0 +1,23 @@
+{
+  "resolution": {
+    "generatedLock": "PARTIAL",
+    "reason": "Repeatable controlled resolution, not recovered original upstream lock",
+    "binaryDistributionReadiness": "BLOCKED"
+  },
+  "scope": {
+    "scope": "PARTIAL",
+    "counts": {
+      "COMPILED": 1,
+      "LINKED \u2014 EVIDENCED": 0,
+      "NOT SELECTED \u2014 EVIDENCED": 0,
+      "RESOLVED": 307,
+      "UNKNOWN": 54
+    },
+    "binaryDistributionReadiness": "BLOCKED"
+  },
+  "full": {
+    "fullBundle": "BLOCKED",
+    "staticInputs": "BLOCKED",
+    "binaryDistributionReadiness": "BLOCKED"
+  }
+}
