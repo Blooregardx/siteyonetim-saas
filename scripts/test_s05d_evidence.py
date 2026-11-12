@@ -6,6 +6,7 @@ from pathlib import Path
 import tarfile
 import tempfile
 import unittest
+from unittest.mock import patch
 import verify_s05d_evidence as v
 
 
@@ -104,6 +105,19 @@ class EvidenceTests(unittest.TestCase):
     def test_empty_compiler_text_not_evidence(self):
         self.r.update(status='PARTIAL',historicalUpstreamLock=False,toolchain={'verified':True,'components':[]})
         with self.assertRaises(ValueError):v.verify_resolution(self.r,self.root)
+    def test_wrapped_mpl_header_is_original_notice(self):
+        header=b'/* This Source Code Form is subject to the terms of the Mozilla Public\n * License, v. 2.0. If a copy of the MPL was not distributed with this\n * file, You can obtain one at https://mozilla.org/MPL/2.0/. */\n'
+        source=header+b'pub fn fixture() {}\n'
+        with tarfile.open(self.root/'mpl.crate','w') as a:
+            e=tarfile.TarInfo('fixture/src/lib.rs');e.size=len(source);a.addfile(e,io.BytesIO(source))
+        h=self.file('header.txt',header);h.update(kind='source-header',archiveMember='fixture/src/lib.rs',completeSourceSha256=v.digest(source))
+        sha=v.digest((self.root/'mpl.crate').read_bytes())
+        r={'name':'fixture','version':'1','archiveFile':'mpl.crate','archiveSha256':sha,'cargoChecksum':sha,
+           'decision':'PASS','licenseDeclaration':'MPL-2.0','evidence':[h]}
+        with patch.dict(v.TRUSTED_CRATES,{('fixture','1'):sha}):
+            self.assertEqual(v.verify_notice(r,self.root)['notice'],'PASS')
+            (self.root/'header.txt').write_bytes(b'Mozilla Public License fake mozilla.org/MPL/2.0')
+            with self.assertRaises(ValueError):v.verify_notice(r,self.root)
     def test_fake_notice(self):
         archive=self.m['sources'][0]
         r={'archiveFile':archive['file'],'archiveSha256':archive['sha256'],'cargoChecksum':archive['sha256'],

@@ -11,6 +11,13 @@ LOCK_SHA = 'e79e2a2735a0b5b151bb4133becd3008223fabedd34a8b787a872edab9854941'
 RECIPE = 'ebb95f8add54eee8bed840e3fb587e4cbec857d7'
 TARGET = 'x86_64-unknown-linux-gnu'
 ROOT = Path(__file__).resolve().parents[1]
+RUST_MANIFEST_SHA = 'ad7c5ca64d80a5c7771089f741ab90c9eb5dcbc766ce81f2c90af8fc295b40cc'
+TRUSTED_CRATES = {(r['name'],r['version']):r['lockChecksum'] for r in json.loads((ROOT/'docs/evidence/s05c/rust-source-manifest.json').read_text())['records'] if r['decision']=='BLOCKED'}
+
+
+def mpl_header(raw):
+    normalized=b' '.join(re.sub(rb'(?m)^\s*\*\s?',b'',raw).split())
+    return b'Mozilla Public License' in normalized and b'mozilla.org/MPL/2.0' in normalized
 
 
 def digest(data):
@@ -29,7 +36,7 @@ def physical(root, path, expected):
     return f
 
 
-def safe_members(path):
+def safe_members(path, max_file=128*1024**2, max_total=512*1024**2):
     result = []
     total = 0
     with tarfile.open(path) as archive:
@@ -38,7 +45,7 @@ def safe_members(path):
             if p.is_absolute() or '..' in p.parts or e.issym() or e.islnk() or not (e.isfile() or e.isdir()):
                 raise ValueError('ARCHIVE_PATH_OR_LINK')
             total += e.size
-            if i >= 100000 or e.size > 128*1024**2 or total > 512*1024**2:
+            if i >= 100000 or e.size > max_file or total > max_total:
                 raise ValueError('ARCHIVE_LIMIT')
             if e.isfile():
                 result.append((e.name, e.size))
@@ -77,7 +84,12 @@ def verify_resolution(r, root):
     toolchain = r['toolchain']
     if not toolchain.get('verified') or not toolchain.get('components'):
         raise ValueError('UNVERIFIED_TOOLCHAIN')
+    mf=physical(root, 'rust-2026-09-27.toml', RUST_MANIFEST_SHA)
+    manifest=tomllib.loads(mf.read_text())
+    if {c['name'] for c in toolchain['components']}!={'rustc','cargo','rust-std'}:raise ValueError('TOOLCHAIN_COMPONENT_SET')
     for c in toolchain['components']:
+        expected=manifest['pkg'][c['name']]['target'][TARGET]
+        if c['sha256']!=expected['xz_hash'] or c['url']!=expected['xz_url']:raise ValueError('OFFICIAL_TOOLCHAIN_HASH')
         physical(root, c['file'], c['sha256'])
     for label in ['rustc', 'cargo']:
         f = physical(root, toolchain[label+'Log'], toolchain[label+'LogSha256'])
@@ -123,6 +135,8 @@ def verify_scope(scope):
 
 
 def verify_notice(record, root):
+    if TRUSTED_CRATES.get((record.get('name'),record.get('version')))!=record.get('cargoChecksum') or not record.get('cargoChecksum'):
+        raise ValueError('UNTRUSTED_CRATE_IDENTITY')
     archive = physical(root, record['archiveFile'], record['archiveSha256'])
     if record['archiveSha256'] != record['cargoChecksum']:
         raise ValueError('CRATE_CHECKSUM')
@@ -138,7 +152,7 @@ def verify_notice(record, root):
                 member=archived.get(e.get('archiveMember',''))
                 if member is None or not member.startswith(raw) or digest(member)!=e.get('completeSourceSha256'):
                     raise ValueError('HEADER_NOT_IN_EXACT_CRATE')
-                if record['licenseDeclaration'] != 'MPL-2.0' or b'Mozilla Public License' not in raw or b'mozilla.org/MPL/2.0' not in raw:
+                if record['licenseDeclaration'] != 'MPL-2.0' or not mpl_header(raw):
                     raise ValueError('INVALID_MPL_HEADER')
             elif e['kind'] == 'upstream-notice':
                 if not record.get('repositoryCommit') or not re.fullmatch('[a-f0-9]{40}', record['repositoryCommit']) or not record.get('matchedSourceFiles'):

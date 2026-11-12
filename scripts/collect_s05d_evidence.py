@@ -14,7 +14,7 @@ import tomllib
 import urllib.error
 import urllib.parse
 import urllib.request
-from verify_s05d_evidence import LOCK_SHA, RECIPE, TARGET, digest, safe_members, lock_changes
+from verify_s05d_evidence import LOCK_SHA, RECIPE, TARGET, RUST_MANIFEST_SHA, digest, safe_members, lock_changes, mpl_header
 
 ROOT=Path(__file__).resolve().parents[1]
 BASE='node:24-bookworm-slim@sha256:c86ecead9e55a5210ac1727de38a4ca840bf03dcaf34dc9749addbf383b1920c'
@@ -48,7 +48,7 @@ def write(path, value):
 
 
 def extract_regular(path, destination, drop):
-    safe_members(path)
+    safe_members(path, max_file=768*1024**2, max_total=2*1024**3) if drop==2 else safe_members(path)
     with tarfile.open(path) as t:
         for e in t:
             if not e.isfile():continue
@@ -88,6 +88,7 @@ def capture_cargo(root):
             try:
                 checksum=fetch(url+'.sha256',root/('rust-'+date+'.sha256'),maximum=4096).decode().split()[0]
                 if not re.fullmatch('[a-f0-9]{64}',checksum):raise ValueError('MANIFEST_CHECKSUM_FORMAT')
+                if date!='2026-09-27' or checksum!=RUST_MANIFEST_SHA:raise ValueError('UNREVIEWED_DIST_MANIFEST')
                 data=fetch(url,root/('rust-'+date+'.toml'),checksum,5*1024**2)
                 manifest=tomllib.loads(data.decode())
                 version=manifest['pkg']['rustc']['version']
@@ -195,11 +196,27 @@ def license_record(root, old):
         for name,data in regular.items():
             if name.endswith('.rs') and p.get('license')=='MPL-2.0':
                 header=data[:3000]
-                if b'Mozilla Public License' in header and b'mozilla.org/MPL/2.0' in header:
+                if mpl_header(header):
                     name_out=key+'-header-'+digest(header)[:16]+'.txt';(root/name_out).write_bytes(header)
                     r['evidence'].append({'kind':'source-header','file':name_out,'sha256':digest(header),'archiveMember':name,
                                           'completeSourceSha256':digest(data)})
         match=re.match(r'https?://github.com/([^/]+)/([^/#]+)',repository)
+        if match and not commit:
+            repo=match.group(1)+'/'+match.group(2).removesuffix('.git')
+            r['tagProbes']=[]
+            for tag in ['v'+r['version'],r['version']]:
+                tagurl='https://api.github.com/repos/'+repo+'/git/ref/tags/'+urllib.parse.quote(tag,safe='')
+                try:
+                    ref=json.loads(fetch(tagurl,root/(key+'-tag.json'),maximum=1024*1024))
+                    obj=ref['object']
+                    if obj['type']=='tag':
+                        annotated=json.loads(fetch(obj['url'],root/(key+'-annotated-tag.json'),maximum=1024*1024))
+                        obj=annotated['object']
+                    if obj['type']=='commit' and re.fullmatch('[a-f0-9]{40}',obj['sha']):
+                        commit=obj['sha'];r['repositoryCommit']=commit;r['revisionBasis']='exact version tag candidate; only accepted with source-byte matches'
+                        break
+                except (urllib.error.URLError,ValueError,KeyError) as e:
+                    r['tagProbes'].append({'url':tagurl,'failure':type(e).__name__,'httpStatus':getattr(e,'code',None)})
         if match and re.fullmatch('[a-f0-9]{40}',commit or ''):
             repo=match.group(1)+'/'+match.group(2).removesuffix('.git')
             url='https://api.github.com/repos/'+repo+'/git/trees/'+commit+'?recursive=1'
@@ -208,6 +225,18 @@ def license_record(root, old):
             if tree.get('truncated'):raise ValueError('TRUNCATED_UPSTREAM_TREE')
             entries={e['path']:e for e in tree['tree'] if e['type']=='blob'}
             prefix=vcs.get('path_in_vcs','').strip('/')
+            # Old Cargo versions omitted path_in_vcs. Infer only a unique prefix shared by all exact Rust file blobs.
+            if not prefix:
+                candidates=None
+                for archive_name,raw in regular.items():
+                    relative=archive_name[len(key)+1:]
+                    if not relative.endswith('.rs'):continue
+                    blob=hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()
+                    found={name[:-len(relative)].rstrip('/') for name,e in entries.items()
+                           if name.endswith(relative) and (name==relative or name.endswith('/'+relative)) and e['sha']==blob}
+                    candidates=found if candidates is None else candidates & found
+                if candidates and len(candidates)==1:
+                    prefix=next(iter(candidates));r['inferredPathInVcs']=prefix
             matched=[];mismatched=[]
             for name,data in regular.items():
                 relative=name[len(key)+1:]
