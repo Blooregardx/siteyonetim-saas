@@ -7,10 +7,10 @@
   "scope": {
     "scope": "PARTIAL",
     "counts": {
-      "COMPILED": 0,
+      "COMPILED": 1,
       "LINKED \u2014 EVIDENCED": 0,
       "NOT SELECTED \u2014 EVIDENCED": 0,
-      "RESOLVED": 308,
+      "RESOLVED": 307,
       "UNKNOWN": 54
     },
     "binaryDistributionReadiness": "BLOCKED"

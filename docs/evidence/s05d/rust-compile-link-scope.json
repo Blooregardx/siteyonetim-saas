@@ -8180,8 +8180,78 @@
         }
       ],
       "checksum": "d245f478577f809a851594d02313b640fb437e0bb33866753cff937863096954",
-      "status": "RESOLVED",
-      "reason": "Metadata resolution only, no compiler-artifact or linker proof"
+      "status": "COMPILED",
+      "reason": "One compiler-artifact target physically retained; target kind may be build-script, not final library; not LINKED evidence",
+      "compiledFeatures": [],
+      "compilerEvidence": {
+        "message": {
+          "reason": "compiler-artifact",
+          "package_id": "registry+https://github.com/rust-lang/crates.io-index#unicode-ident@1.0.26",
+          "manifest_path": "/work/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/unicode-ident-1.0.26/Cargo.toml",
+          "target": {
+            "kind": [
+              "lib"
+            ],
+            "crate_types": [
+              "lib"
+            ],
+            "name": "unicode_ident",
+            "src_path": "/work/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/unicode-ident-1.0.26/src/lib.rs",
+            "edition": "2021",
+            "doc": true,
+            "doctest": true,
+            "test": true
+          },
+          "profile": {
+            "opt_level": "0",
+            "debuginfo": 0,
+            "debug_assertions": false,
+            "overflow_checks": false,
+            "test": false
+          },
+          "features": [],
+          "filenames": [
+            "/work/resolution-1/target/release/build/unicode-ident/c1d0ee74372cfb7a/out/libunicode_ident-c1d0ee74372cfb7a.rlib",
+            "/work/resolution-1/target/release/build/unicode-ident/c1d0ee74372cfb7a/out/libunicode_ident-c1d0ee74372cfb7a.rmeta"
+          ],
+          "executable": null,
+          "fresh": false
+        },
+        "files": [
+          {
+            "file": "compiled-5d817c54f08432159bce7321923b6a298b3278aadee81c02c99b23fbf61e054a.bin",
+            "sha256": "5d817c54f08432159bce7321923b6a298b3278aadee81c02c99b23fbf61e054a",
+            "originalFilename": "/work/resolution-1/target/release/build/unicode-ident/c1d0ee74372cfb7a/out/libunicode_ident-c1d0ee74372cfb7a.rlib",
+            "archiveMembers": [
+              {
+                "name": "/",
+                "size": 582,
+                "sha256": "2497da52d32e533e2a8b9151155a3a49980e93d14258e951706113887e49d3ff"
+              },
+              {
+                "name": "//",
+                "size": 76,
+                "sha256": "861e4f8e0ff26d0cce49d02d14109e10c5a6f34ddb0f0361f750e0151d30a916"
+              },
+              {
+                "name": "lib.rmeta/",
+                "size": 704,
+                "sha256": "1c56a809241acfa0e756d8a2f87dae1d204054d90d3134e6385ed67283090903"
+              },
+              {
+                "name": "lib.rmeta-link/",
+                "size": 664,
+                "sha256": "bcfd5dd608d8fb61922a624246d9aeee46a2527af759bd4474cea6f875578811"
+              },
+              {
+                "name": "/0",
+                "size": 15392,
+                "sha256": "c120c0c96d82da59ecf6f480e8e06e5158efd8b084776df1563c4b928d874401"
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "name": "unicode-normalization",
@@ -9549,7 +9619,7 @@
       "run",
       "--rm",
       "--name",
-      "s05d-cargo-43147512037",
+      "s05d-cargo-43148233821",
       "--read-only",
       "--cpus=2",
       "--memory=3g",
@@ -9607,13 +9677,13 @@
     "stdout": "compiler.stdout",
     "stderr": "compiler.stderr",
     "file": "compiler.stdout",
-    "sha256": "7c4af99fd1ea2a26d5425d34c5279d692c40dff9303bccfa457c8b1058299ee8",
+    "sha256": "df2168c1b8de9198dea515e2f29e6b9443993503e5d3df3a90a21b2dd5340508",
     "network": "none",
     "profile": "release librsvg-c default; no native sysroot/cargo-c"
   },
   "counts": {
-    "RESOLVED": 308,
-    "COMPILED": 0,
+    "RESOLVED": 307,
+    "COMPILED": 1,
     "LINKED \u2014 EVIDENCED": 0,
     "NOT SELECTED \u2014 EVIDENCED": 0,
     "UNKNOWN": 54

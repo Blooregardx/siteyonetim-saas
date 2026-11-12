@@ -52,7 +52,7 @@ Yeni offline testler zorunlu checks'e eklenir; mevcut tüm uygulama/selfhost ve 
 
 ## Ölçülen S05-D sonuçları
 
-Kaynak deney commit'i 7c9ba9da485a61a3eb9402f7702fdee39406c701, [run 43147512037](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/43147512037), job 130948736774. İş beklenen exit 1 ile failure kaydetti; bu tam build başarısı değildir. [Artifact](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/43147512037/artifacts/13911559407) 6514993 byte, ZIP SHA-256 72635541e561f6bb6afc175a6dc988b5323ea57cadc46085946ea86efd157869. [Receipt](evidence/s05d/experiment-receipt.json), exact collector/verifier SHA-256 ve aktarılmış dosya hash'lerini bağlar. Sonraki belge/test commit'i bu deney kodunu değiştirmez; son HEAD zorunlu push/PR CI sonuçları ayrıca PR gövdesine ve nihai rapora yazılır.
+Kaynak deney commit'i acb6f2aea7bec9630559514b69a7147f2a8e4a21, [run 43148233821](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/43148233821), job 130951054438. İş beklenen exit 1 ile failure kaydetti; bu tam build başarısı değildir. [Artifact](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/43148233821/artifacts/13912292674) 6520902 byte, ZIP SHA-256 a6b53d07235faff89ec291fa70d30094c37e2b11b9f419dd15461da1bbfb7853. [Receipt](evidence/s05d/experiment-receipt.json), exact collector/verifier SHA-256 ve aktarılmış dosya hash'lerini bağlar. Sonraki belge/test commit'i bu deney kodunu değiştirmez; son HEAD zorunlu push/PR CI sonuçları ayrıca PR gövdesine ve nihai rapora yazılır.
 
 |Alan|Gerçek sonuç|
 |---|---|
@@ -61,7 +61,7 @@ Kaynak deney commit'i 7c9ba9da485a61a3eb9402f7702fdee39406c701, [run 43147512037
 |İki cargo update|Exit 0 / 0; output hash'leri eşit|
 |Lock farkı|0 eklenen, 4 silinen: color_quant 1.1.0, gif 0.14.2, image-webp 0.2.4, weezl 0.1.12; 2 dependency-list değişikliği; 0 checksum değişikliği|
 |Metadata/tree|Exit 0 / 0; workspace-default çözümleme, final compile/link kanıtı değil|
-|Son diagnostic kapsam|308 RESOLVED, 0 COMPILED, 0 LINKED, 0 NOT SELECTED, 54 UNKNOWN|
+|Son diagnostic kapsam|307 RESOLVED, 1 COMPILED, 0 LINKED, 0 NOT SELECTED, 54 UNKNOWN|
 |Önceki diagnostic kapsam|307 RESOLVED, 1 COMPILED (unicode-ident 1.0.26), 54 UNKNOWN; final binary'ye LINKED değil|
 |Diagnostic cargo build|Exit 101: linker cc not found; proc-macro2/quote build-script link aşaması durdu|
 |Full native CONTROL/MODIFIED|NOT RUN/BLOCKED; SHA/ABI/export/Sharp alanları null/NOT_RUN|
@@ -73,7 +73,7 @@ Kaynak deney commit'i 7c9ba9da485a61a3eb9402f7702fdee39406c701, [run 43147512037
 
 2026-09-27 resmî dist manifest SHA-256 ad7c5ca64d80a5c7771089f741ab90c9eb5dcbc766ce81f2c90af8fc295b40cc pinned; rustc/cargo/std arşivleri bu manifest hash zinciriyle doğrulandı, installer çalıştırılmadı. [rustc çıktısı](evidence/s05d/rustc.stdout): 1.101.0-nightly, commit 75a75c3e0a67d3fa3d03982775f5bb0356e7b510, LLVM 23.1.1. [Cargo çıktısı](evidence/s05d/cargo.stdout): 1.101.0-nightly, commit 3d7cf6e937d6127d0f49881bf689c560b36d35c4 (2026-09-25). Actual rustc binary SHA 22723c9886eec654945230d0f865f6ddc52c91b4831a027dea6d650ecbc81002; cargo binary SHA 96c2dd303135a1fd8735145997192ff59a4ea1af9c94f9b656b30a7728a9b60f. Pinned execution base node:24-bookworm-slim@sha256:c86ecead9e55a5210ac1727de38a4ca840bf03dcaf34dc9749addbf383b1920c; özgün Rocky/GCC15 native builder değildir.
 
-Önceki [compile scope](evidence/s05d/runs/43146675005/rust-compile-link-scope.json) ve [compiler stderr](evidence/s05d/runs/43146675005/compiler.stderr) ayrı tutulur. unicode-ident rlib SHA 5d817c54f08432159bce7321923b6a298b3278aadee81c02c99b23fbf61e054a, [önceki artifact](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/43146675005/artifacts/13912111602). Tekrarda erken linker hatası nedeniyle compiler-artifact oluşmaması, bu paketin derlenmediğinin kanıtı değildir; önceki gerçek kanıt silinmez.
+Önceki [compile scope](evidence/s05d/runs/43146675005/rust-compile-link-scope.json) ve [compiler stderr](evidence/s05d/runs/43146675005/compiler.stderr) ayrı tutulur. unicode-ident rlib SHA 5d817c54f08432159bce7321923b6a298b3278aadee81c02c99b23fbf61e054a, [önceki artifact](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/43146675005/artifacts/13912111602). Aradaki [43147512037 snapshot'ında](evidence/s05d/runs/43147512037/rust-compile-link-scope.json) erken linker hatasında COMPILED kaydı oluşmadı; son tekrar yine unicode-ident rlib'ini üretti. Eksik compiler-artifact satırı derlenmediğinin kanıtı sayılmadı; her iki tarihsel kanıt ayrı tutuldu.
 
 ### 13 eski BLOCKED kaydın sonucu
 
@@ -100,3 +100,12 @@ Bu kararlar lisans ihlali iddiası veya hukuki PASS değildir. Source-form MPL b
 Full Rocky/GCC15/cargo-c native builder pin/RPM kaydı, 28 native source'un yeni build'de fiziksel edinimi, full linker map/object/archive seti, CONTROL/MODIFIED libvips ve Sharp testleri tamamlanmadı. Eski S05-C hash'leri yeni full build hash'i diye doldurulmadı. Geçici 14 gün artifact kaynak sunumu değildir; Node/Debian/Prisma genel kapıları ve bağımsız insan kurulumu açık kalır.
 
 S05-E önerisi: exact Rocky/GCC15/cargo-c/Meson/Ninja sysroot ve bütün source/patch/toolchain girdilerini sabitlemek; full static CONTROL/MODIFIED build ve linker/ABI/Sharp prova protokolünü tamamlamak; 9 eksik notice ve kalıcı sunum planının operasyonel kapasitesini manuel incelemek.
+
+
+## Geliştirme regresyonu ve son belge aktarımı
+
+Deney commit acb6f2ae için [push checks+selfhost](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/43148233821) ve [PR checks+selfhost](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/43148239523) başarılı. 33 yeni S05-D testi; S05-A 7, S05-B 14, S05-C 31 kontrolü; 25 unit, 36 PostgreSQL integration ve 19 E2E testi geçti. Prisma validate/generate, 11 migration/schema diff, strict TypeScript/ESLint, production build, query-plan, preflight/source archive ve backup/recovery kontrolleri başarılı. Production npm audit 0; mevcut dev dependency advisory sayısı 7 moderate. Finans/auth/tenant/audit ve dependency sürümleri değiştirilmedi.
+
+Source experiment job sonucu failure olarak korunur: kolektör PARTIAL/BLOCKED için exit 1, diagnostic Cargo build exit 101. Bu bir full upstream build başarısı değildir. PR'de ağır kaynak işi atlandı. Bu son belge/veri aktarımı collector/verifier kodunu değiştirmez; receipt codeSha256 offline testlerle doğrulanır. Son aktarım HEAD'inin push/PR zorunlu CI sonucu PR gövdesi ve nihai teslimde ayrıca doğrulanır; bu belge başındaki INCOMPLETE satırı CI öncesi kayıt anını gösterir.
+
+Full native builder pinleri ve derleme/relink kanıtı eksik olsa da başarılı zorunlu geliştirme testleri ayrı değerlendirilir. Genel dağıtım, source sunumu ve hukuki onay bu testlerle açılmaz. Bakımcı incelemesi dışında merge/tag/release/registry/npm/deploy işlemi yoktur.
