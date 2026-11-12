@@ -20,6 +20,17 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           persist-credentials: false
+      - name: Verify immutable base identity before compiler bootstrap
+        run: |
+          docker pull --platform=linux/amd64 rockylinux/rockylinux@sha256:ae0813ccb1bb83f4e0220acdd1539f52831517de334368e960824db7e37ee210
+          docker image inspect rockylinux/rockylinux@sha256:ae0813ccb1bb83f4e0220acdd1539f52831517de334368e960824db7e37ee210 > "$RUNNER_TEMP/base-inspect.json"
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          i=json.loads((Path(os.environ['RUNNER_TEMP'])/'base-inspect.json').read_text())[0]
+          print(json.dumps({k:i.get(k) for k in ['Id','RepoDigests','Architecture','Os','Descriptor','RootFS']}))
+          if i['Id']!='sha256:98ab72cce29f004554c86e88d6789b7f8d09fe90aee099ec56e9b71a2a7e406c':raise SystemExit('BLOCKED: inspect exact base descriptor/config semantics before bootstrap')
+          PY
       - name: Acquire frozen signed RPM and hash-pinned Python/Rust/Cargo source inputs
         run: python3 scripts/prepare_s05e_toolchain.py --out "$RUNNER_TEMP/s05e-inputs"
       - name: Reacquire nine sources and verify exact original AUTHORS notices
@@ -73,6 +84,7 @@ jobs:
           if-no-files-found: error
           path: |
             ${{ runner.temp }}/toolchain-build.log
+            ${{ runner.temp }}/base-inspect.json
             ${{ runner.temp }}/cargo-c-build.log
             ${{ runner.temp }}/config-id.txt
             ${{ runner.temp }}/s05e-evidence
