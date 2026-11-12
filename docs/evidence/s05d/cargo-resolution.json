@@ -3,10 +3,549 @@
   "recipeCommit": "ebb95f8add54eee8bed840e3fb587e4cbec857d7",
   "target": "x86_64-unknown-linux-gnu",
   "inputLockSha256": "e79e2a2735a0b5b151bb4133becd3008223fabedd34a8b787a872edab9854941",
-  "status": "BLOCKED",
-  "stage": "NOT_RUN",
-  "generatedLockFile": null,
-  "generatedLockSha256": null,
-  "attempts": [],
-  "binaryDistributionReadiness": "BLOCKED"
+  "status": "PARTIAL",
+  "historicalUpstreamLock": false,
+  "generatedLockFile": "generated-Cargo.lock",
+  "generatedLockSha256": "5723e14ce316e9058c76257848e18ab52624c98d16f758b5f8a73b5007b2ab8b",
+  "attempts": [
+    {
+      "command": [
+        "cargo",
+        "update",
+        "--workspace"
+      ],
+      "exitCode": 0,
+      "stdout": "update-1.stdout",
+      "stderr": "update-1.stderr",
+      "beforeSha256": "e79e2a2735a0b5b151bb4133becd3008223fabedd34a8b787a872edab9854941",
+      "afterSha256": "5723e14ce316e9058c76257848e18ab52624c98d16f758b5f8a73b5007b2ab8b",
+      "lockFile": "resolution-1/Cargo.lock",
+      "changes": {
+        "added": [],
+        "removed": [
+          {
+            "name": "color_quant",
+            "version": "1.1.0",
+            "source": "registry+https://github.com/rust-lang/crates.io-index",
+            "checksum": "3d7b894f5411737b7867f4827955924d7c254fc9f4d91a6aad6b097804b1018b"
+          },
+          {
+            "name": "gif",
+            "version": "0.14.2",
+            "source": "registry+https://github.com/rust-lang/crates.io-index",
+            "checksum": "ee8cfcc411d9adbbaba82fb72661cc1bcca13e8bba98b364e62b2dba8f960159",
+            "dependencies": [
+              "color_quant",
+              "weezl 0.1.12"
+            ]
+          },
+          {
+            "name": "image-webp",
+            "version": "0.2.4",
+            "source": "registry+https://github.com/rust-lang/crates.io-index",
+            "checksum": "525e9ff3e1a4be2fbea1fdf0e98686a6d98b4d8f937e1bf7402245af1909e8c3",
+            "dependencies": [
+              "byteorder-lite",
+              "quick-error 2.0.1"
+            ]
+          },
+          {
+            "name": "weezl",
+            "version": "0.1.12",
+            "source": "registry+https://github.com/rust-lang/crates.io-index",
+            "checksum": "a28ac98ddc8b9274cb41bb4d9d4d5c425b6020c50c46f25559911905610b4a88"
+          }
+        ],
+        "changed": [
+          {
+            "before": {
+              "name": "image",
+              "version": "0.25.10",
+              "source": "registry+https://github.com/rust-lang/crates.io-index",
+              "checksum": "85ab80394333c02fe689eaf900ab500fbd0c2213da414687ebf995a65d5a6104",
+              "dependencies": [
+                "bytemuck",
+                "byteorder-lite",
+                "color_quant",
+                "dav1d",
+                "gif",
+                "image-webp",
+                "moxcms",
+                "mp4parse",
+                "num-traits",
+                "png",
+                "zune-core",
+                "zune-jpeg"
+              ]
+            },
+            "after": {
+              "name": "image",
+              "version": "0.25.10",
+              "source": "registry+https://github.com/rust-lang/crates.io-index",
+              "checksum": "85ab80394333c02fe689eaf900ab500fbd0c2213da414687ebf995a65d5a6104",
+              "dependencies": [
+                "bytemuck",
+                "byteorder-lite",
+                "dav1d",
+                "moxcms",
+                "mp4parse",
+                "num-traits",
+                "png",
+                "zune-core",
+                "zune-jpeg"
+              ]
+            }
+          },
+          {
+            "before": {
+              "name": "lopdf",
+              "version": "0.44.0",
+              "source": "registry+https://github.com/rust-lang/crates.io-index",
+              "checksum": "5e2ec995d822e05cabc3f06d196ee43650af3fe4fe38012cacb35e0c3d113b68",
+              "dependencies": [
+                "aes",
+                "bitflags 2.13.2",
+                "cbc",
+                "chrono",
+                "ecb",
+                "encoding_rs",
+                "flate2",
+                "getrandom 0.4.3",
+                "indexmap",
+                "itoa",
+                "jiff",
+                "log",
+                "md-5",
+                "nom",
+                "rand 0.10.2",
+                "rangemap",
+                "rayon",
+                "sha2",
+                "stringprep",
+                "thiserror",
+                "time",
+                "weezl 0.2.1"
+              ]
+            },
+            "after": {
+              "name": "lopdf",
+              "version": "0.44.0",
+              "source": "registry+https://github.com/rust-lang/crates.io-index",
+              "checksum": "5e2ec995d822e05cabc3f06d196ee43650af3fe4fe38012cacb35e0c3d113b68",
+              "dependencies": [
+                "aes",
+                "bitflags 2.13.2",
+                "cbc",
+                "chrono",
+                "ecb",
+                "encoding_rs",
+                "flate2",
+                "getrandom 0.4.3",
+                "indexmap",
+                "itoa",
+                "jiff",
+                "log",
+                "md-5",
+                "nom",
+                "rand 0.10.2",
+                "rangemap",
+                "rayon",
+                "sha2",
+                "stringprep",
+                "thiserror",
+                "time",
+                "weezl"
+              ]
+            }
+          }
+        ],
+        "checksumChanges": []
+      },
+      "featureChanges": [
+        {
+          "file": "rsvg/Cargo.toml",
+          "beforeSha256": "25bb5f80b855c6047069d252e410b8e68538190402707f396607229cfc3318a6",
+          "afterSha256": "376ee5f94eb923ca47bdc68780dcc47f8e15fd77df13ae2fa0e0efbf0caf79ba"
+        },
+        {
+          "file": "librsvg-c/Cargo.toml",
+          "beforeSha256": "0b55c706b9f9c8a4515941cdef12ff130242a4f44ed4d0f7703c07b18095d570",
+          "afterSha256": "d4f8674203b075fc2f69f552d13672d5c8f23e3d4e40f2d5153ea9d13616b7a3"
+        }
+      ]
+    },
+    {
+      "command": [
+        "cargo",
+        "update",
+        "--workspace"
+      ],
+      "exitCode": 0,
+      "stdout": "update-2.stdout",
+      "stderr": "update-2.stderr",
+      "beforeSha256": "e79e2a2735a0b5b151bb4133becd3008223fabedd34a8b787a872edab9854941",
+      "afterSha256": "5723e14ce316e9058c76257848e18ab52624c98d16f758b5f8a73b5007b2ab8b",
+      "lockFile": "resolution-2/Cargo.lock",
+      "changes": {
+        "added": [],
+        "removed": [
+          {
+            "name": "color_quant",
+            "version": "1.1.0",
+            "source": "registry+https://github.com/rust-lang/crates.io-index",
+            "checksum": "3d7b894f5411737b7867f4827955924d7c254fc9f4d91a6aad6b097804b1018b"
+          },
+          {
+            "name": "gif",
+            "version": "0.14.2",
+            "source": "registry+https://github.com/rust-lang/crates.io-index",
+            "checksum": "ee8cfcc411d9adbbaba82fb72661cc1bcca13e8bba98b364e62b2dba8f960159",
+            "dependencies": [
+              "color_quant",
+              "weezl 0.1.12"
+            ]
+          },
+          {
+            "name": "image-webp",
+            "version": "0.2.4",
+            "source": "registry+https://github.com/rust-lang/crates.io-index",
+            "checksum": "525e9ff3e1a4be2fbea1fdf0e98686a6d98b4d8f937e1bf7402245af1909e8c3",
+            "dependencies": [
+              "byteorder-lite",
+              "quick-error 2.0.1"
+            ]
+          },
+          {
+            "name": "weezl",
+            "version": "0.1.12",
+            "source": "registry+https://github.com/rust-lang/crates.io-index",
+            "checksum": "a28ac98ddc8b9274cb41bb4d9d4d5c425b6020c50c46f25559911905610b4a88"
+          }
+        ],
+        "changed": [
+          {
+            "before": {
+              "name": "image",
+              "version": "0.25.10",
+              "source": "registry+https://github.com/rust-lang/crates.io-index",
+              "checksum": "85ab80394333c02fe689eaf900ab500fbd0c2213da414687ebf995a65d5a6104",
+              "dependencies": [
+                "bytemuck",
+                "byteorder-lite",
+                "color_quant",
+                "dav1d",
+                "gif",
+                "image-webp",
+                "moxcms",
+                "mp4parse",
+                "num-traits",
+                "png",
+                "zune-core",
+                "zune-jpeg"
+              ]
+            },
+            "after": {
+              "name": "image",
+              "version": "0.25.10",
+              "source": "registry+https://github.com/rust-lang/crates.io-index",
+              "checksum": "85ab80394333c02fe689eaf900ab500fbd0c2213da414687ebf995a65d5a6104",
+              "dependencies": [
+                "bytemuck",
+                "byteorder-lite",
+                "dav1d",
+                "moxcms",
+                "mp4parse",
+                "num-traits",
+                "png",
+                "zune-core",
+                "zune-jpeg"
+              ]
+            }
+          },
+          {
+            "before": {
+              "name": "lopdf",
+              "version": "0.44.0",
+              "source": "registry+https://github.com/rust-lang/crates.io-index",
+              "checksum": "5e2ec995d822e05cabc3f06d196ee43650af3fe4fe38012cacb35e0c3d113b68",
+              "dependencies": [
+                "aes",
+                "bitflags 2.13.2",
+                "cbc",
+                "chrono",
+                "ecb",
+                "encoding_rs",
+                "flate2",
+                "getrandom 0.4.3",
+                "indexmap",
+                "itoa",
+                "jiff",
+                "log",
+                "md-5",
+                "nom",
+                "rand 0.10.2",
+                "rangemap",
+                "rayon",
+                "sha2",
+                "stringprep",
+                "thiserror",
+                "time",
+                "weezl 0.2.1"
+              ]
+            },
+            "after": {
+              "name": "lopdf",
+              "version": "0.44.0",
+              "source": "registry+https://github.com/rust-lang/crates.io-index",
+              "checksum": "5e2ec995d822e05cabc3f06d196ee43650af3fe4fe38012cacb35e0c3d113b68",
+              "dependencies": [
+                "aes",
+                "bitflags 2.13.2",
+                "cbc",
+                "chrono",
+                "ecb",
+                "encoding_rs",
+                "flate2",
+                "getrandom 0.4.3",
+                "indexmap",
+                "itoa",
+                "jiff",
+                "log",
+                "md-5",
+                "nom",
+                "rand 0.10.2",
+                "rangemap",
+                "rayon",
+                "sha2",
+                "stringprep",
+                "thiserror",
+                "time",
+                "weezl"
+              ]
+            }
+          }
+        ],
+        "checksumChanges": []
+      },
+      "featureChanges": [
+        {
+          "file": "rsvg/Cargo.toml",
+          "beforeSha256": "25bb5f80b855c6047069d252e410b8e68538190402707f396607229cfc3318a6",
+          "afterSha256": "376ee5f94eb923ca47bdc68780dcc47f8e15fd77df13ae2fa0e0efbf0caf79ba"
+        },
+        {
+          "file": "librsvg-c/Cargo.toml",
+          "beforeSha256": "0b55c706b9f9c8a4515941cdef12ff130242a4f44ed4d0f7703c07b18095d570",
+          "afterSha256": "d4f8674203b075fc2f69f552d13672d5c8f23e3d4e40f2d5153ea9d13616b7a3"
+        }
+      ]
+    }
+  ],
+  "toolchain": {
+    "verified": true,
+    "probes": [],
+    "distributionDate": "2026-09-27",
+    "manifestSha256": "ad7c5ca64d80a5c7771089f741ab90c9eb5dcbc766ce81f2c90af8fc295b40cc",
+    "components": [
+      {
+        "name": "rustc",
+        "url": "https://static.rust-lang.org/dist/2026-09-27/rustc-nightly-x86_64-unknown-linux-gnu.tar.xz",
+        "sha256": "a658e87aa721f0044e36adcf5b5fba0645bedd14bc5045ea11bf475d803da64a",
+        "file": "rustc.tar.xz"
+      },
+      {
+        "name": "cargo",
+        "url": "https://static.rust-lang.org/dist/2026-09-27/cargo-nightly-x86_64-unknown-linux-gnu.tar.xz",
+        "sha256": "931952aaee9b6afb144a3e2bf74467e1cd407b7d0baa7c0cd3bf9e98abf94b2a",
+        "file": "cargo.tar.xz"
+      },
+      {
+        "name": "rust-std",
+        "url": "https://static.rust-lang.org/dist/2026-09-27/rust-std-nightly-x86_64-unknown-linux-gnu.tar.xz",
+        "sha256": "536dcdcf52d81508587f4411156f20c94800e26fc13b6ef9603bfdc4af9c4407",
+        "file": "rust-std.tar.xz"
+      }
+    ],
+    "rustcLog": "rustc.stdout",
+    "rustcLogSha256": "7dfe4523af406dae940a14820efeb5549e7897f42b2037d514148697ad62ba57",
+    "cargoLog": "cargo.stdout",
+    "cargoLogSha256": "534ae43c51da30dccb9548294d8a2e4dbe996cada940c0b303ac7d779ca6da53",
+    "binaryHashes": {
+      "toolchain/bin/rustdoc": "01c409c59c087271d43d103d8a341ce61e77894e14942b92c1677582fa6e31e2",
+      "toolchain/bin/rust-gdb": "7054a508ece38b5bb81860e8ddbcd62021fab6432026789970ebbba8b84f6163",
+      "toolchain/bin/cargo": "96c2dd303135a1fd8735145997192ff59a4ea1af9c94f9b656b30a7728a9b60f",
+      "toolchain/bin/rust-lldb": "f9c40edb1b5943ce8dc18d1d1e9fc62e49486a0229bf655affee52e968c19168",
+      "toolchain/bin/rustc": "22723c9886eec654945230d0f865f6ddc52c91b4831a027dea6d650ecbc81002",
+      "toolchain/bin/rust-gdbgui": "bc60613775a098e59b49fa4584cea73631697fe1456c44284c337d6700340315"
+    }
+  },
+  "stage": "controlled-resolution-completed",
+  "binaryDistributionReadiness": "BLOCKED",
+  "sourceArchive": {
+    "url": "https://download.gnome.org/sources/librsvg/2.63/librsvg-2.63.2.tar.xz",
+    "sha256": "852b18e1a00b8605528825a27dc7748bff2a5dd254028f59dc22a34ea57e81b6"
+  },
+  "metadata": {
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "--name",
+      "s05d-cargo-43147512037",
+      "--read-only",
+      "--cpus=2",
+      "--memory=3g",
+      "--user",
+      "1001:1001",
+      "--cap-drop=ALL",
+      "--security-opt=no-new-privileges:true",
+      "--tmpfs",
+      "/tmp:size=160m,mode=1777",
+      "--mount",
+      "type=bind,src=/home/runner/work/_temp/s05d-evidence,dst=/work",
+      "--mount",
+      "type=bind,src=/etc/ssl/certs/ca-certificates.crt,dst=/ca.pem,readonly",
+      "-e",
+      "SSL_CERT_FILE=/ca.pem",
+      "-e",
+      "CARGO_HTTP_CAINFO=/ca.pem",
+      "-e",
+      "HOME=/work/home",
+      "-e",
+      "CARGO_HOME=/work/cargo",
+      "-e",
+      "PATH=/work/toolchain/bin:/usr/local/bin:/usr/bin:/bin",
+      "-w",
+      "/work/resolution-1",
+      "node:24-bookworm-slim@sha256:c86ecead9e55a5210ac1727de38a4ca840bf03dcaf34dc9749addbf383b1920c",
+      "/work/toolchain/bin/cargo",
+      "metadata",
+      "--locked",
+      "--format-version",
+      "1",
+      "--filter-platform",
+      "x86_64-unknown-linux-gnu"
+    ],
+    "exitCode": 0,
+    "stdout": "metadata.stdout",
+    "stderr": "metadata.stderr"
+  },
+  "tree": {
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "--name",
+      "s05d-cargo-43147512037",
+      "--read-only",
+      "--cpus=2",
+      "--memory=3g",
+      "--user",
+      "1001:1001",
+      "--cap-drop=ALL",
+      "--security-opt=no-new-privileges:true",
+      "--tmpfs",
+      "/tmp:size=160m,mode=1777",
+      "--mount",
+      "type=bind,src=/home/runner/work/_temp/s05d-evidence,dst=/work",
+      "--mount",
+      "type=bind,src=/etc/ssl/certs/ca-certificates.crt,dst=/ca.pem,readonly",
+      "-e",
+      "SSL_CERT_FILE=/ca.pem",
+      "-e",
+      "CARGO_HTTP_CAINFO=/ca.pem",
+      "-e",
+      "HOME=/work/home",
+      "-e",
+      "CARGO_HOME=/work/cargo",
+      "-e",
+      "PATH=/work/toolchain/bin:/usr/local/bin:/usr/bin:/bin",
+      "-w",
+      "/work/resolution-1",
+      "node:24-bookworm-slim@sha256:c86ecead9e55a5210ac1727de38a4ca840bf03dcaf34dc9749addbf383b1920c",
+      "/work/toolchain/bin/cargo",
+      "tree",
+      "--locked",
+      "--target",
+      "x86_64-unknown-linux-gnu",
+      "-p",
+      "librsvg-c",
+      "--edges",
+      "normal,build",
+      "--format",
+      "{p}|{f}"
+    ],
+    "exitCode": 0,
+    "stdout": "tree.stdout",
+    "stderr": "tree.stderr"
+  },
+  "diagnosticRustBuild": {
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "--name",
+      "s05d-cargo-43147512037",
+      "--read-only",
+      "--cpus=2",
+      "--memory=3g",
+      "--user",
+      "1001:1001",
+      "--cap-drop=ALL",
+      "--security-opt=no-new-privileges:true",
+      "--tmpfs",
+      "/tmp:size=160m,mode=1777",
+      "--mount",
+      "type=bind,src=/home/runner/work/_temp/s05d-evidence,dst=/work",
+      "--mount",
+      "type=bind,src=/etc/ssl/certs/ca-certificates.crt,dst=/ca.pem,readonly",
+      "-e",
+      "SSL_CERT_FILE=/ca.pem",
+      "-e",
+      "CARGO_HTTP_CAINFO=/ca.pem",
+      "-e",
+      "HOME=/work/home",
+      "-e",
+      "CARGO_HOME=/work/cargo",
+      "-e",
+      "PATH=/work/toolchain/bin:/usr/local/bin:/usr/bin:/bin",
+      "-e",
+      "CARGO_BUILD_JOBS=2",
+      "-e",
+      "CARGO_PROFILE_RELEASE_DEBUG=false",
+      "-e",
+      "CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1",
+      "-e",
+      "CARGO_PROFILE_RELEASE_INCREMENTAL=false",
+      "-e",
+      "CARGO_PROFILE_RELEASE_LTO=true",
+      "-e",
+      "CARGO_PROFILE_RELEASE_OPT_LEVEL=z",
+      "-e",
+      "CARGO_PROFILE_RELEASE_PANIC=abort",
+      "-e",
+      "RUSTFLAGS=-Zlocation-detail=none -Zfmt-debug=none --remap-path-prefix=/work/cargo/registry/=",
+      "--network=none",
+      "-w",
+      "/work/resolution-1",
+      "node:24-bookworm-slim@sha256:c86ecead9e55a5210ac1727de38a4ca840bf03dcaf34dc9749addbf383b1920c",
+      "/work/toolchain/bin/cargo",
+      "build",
+      "--locked",
+      "--offline",
+      "--release",
+      "-p",
+      "librsvg-c",
+      "--message-format=json-render-diagnostics",
+      "-vv"
+    ],
+    "exitCode": 101,
+    "stdout": "compiler.stdout",
+    "stderr": "compiler.stderr"
+  },
+  "limitations": [
+    "Not the recovered historical upstream lock/index state",
+    "No full native sysroot, cargo-c, compiler-artifact or linker-map capture",
+    "librsvg code patch occurs after upstream update and is not applied in metadata-only phase"
+  ]
 }

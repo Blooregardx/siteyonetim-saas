@@ -107,3 +107,7 @@ SOURCE RELEASE STATUS: ALPHA.2 PUBLISHED — UNCHANGED. Hazır imaj dağıtımı
 ## S05-C kaynak ve rebuild kontrolü
 
 Rust kaynak/scope ve gerçek ELF/ABI/maps/PNG negatif testleri eklendi. Gerçek değiştirilmiş libvips, Sharp PNG yolunda doğrulandı; profil özgün statik bundle ile eşdeğer değildir. DEVELOPMENT son HEAD push/PR kontrollerine bağlıdır; genel binary dağıtımı BLOCKED, bağımsız insan kurulumu PENDING HUMAN VALIDATION. [Kanıt ve sınırlar](S05C-REBUILD-VALIDATION.md); [tekrar tarifi](LIBVIPS-REBUILD-REPRODUCTION.md).
+
+## S05-D geliştirme kontrolleri
+
+Kontrollü iki Cargo çözümlemesi, offline bounded Rust compile tanısı, source-header/exact-commit notice araştırması ve kalıcı source planı eklendi. Full native build uygulanmadı; genel binary dağıtımı BLOCKED. Bağımsız insan kurulumu PENDING HUMAN VALIDATION. [Gerçek sonuç ve sınırlar](S05D-FULL-BUNDLE-VALIDATION.md); [kalıcı kaynak planı](CORRESPONDING-SOURCE-DISTRIBUTION-PLAN.md).

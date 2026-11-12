@@ -1,12 +1,12 @@
 # S05-D tam kaynak zinciri doğrulaması
 
 DEVELOPMENT: INCOMPLETE — son HEAD push/PR CI kararı taslak PR ve nihai teslimde kaydedilir.
-GENERATED CARGO.LOCK: BLOCKED
-RUST COMPILE-LINK SCOPE: BLOCKED
-RUST SOURCE/NOTICE EVIDENCE: BLOCKED — S05-D araştırma işi henüz çalışmadı.
+GENERATED CARGO.LOCK: PARTIAL
+RUST COMPILE-LINK SCOPE: PARTIAL
+RUST SOURCE/NOTICE EVIDENCE: PARTIAL — 4 PASS / 9 BLOCKED.
 FULL LIBVIPS BUNDLE REBUILD: BLOCKED
 STATIC LGPL RELINKING INPUTS: BLOCKED
-DURABLE SOURCE PROVISION: PARTIAL — tasarım/test sonucu bekleniyor.
+DURABLE SOURCE PROVISION: DESIGN READY — offline tasarım ve inceleme paketi; gerçek saklama/sunum henüz uygulanmadı.
 SOURCE RELEASE: ALPHA.2 PUBLISHED — UNCHANGED
 BINARY DISTRIBUTION READINESS: BLOCKED
 INDEPENDENT INSTALLATION: PENDING HUMAN VALIDATION
@@ -27,7 +27,7 @@ Kolektör yalnız gözlenen rustc 1.101.0-nightly 75a75c3e0 sürümüne karşıl
 
 İki ayrı kaynak kopyasında aynı cargo update --workspace komutu, önce/sonra lock hash'leri, eklenen/silinen/değişen kayıtlar ve checksum farkları kaydedilir. Eşleşen iki yeni çözüm bile tarihsel upstream index/lock kanıtı değildir; en fazla PARTIAL. Generated lock gerçekten oluşmadıysa generated-Cargo.lock dosyası oluşturulmaz. Metadata/tree yalnız RESOLVED verir. Sınırlı ağsız cargo build denemesi, gerçek compiler-artifact JSON ve fiziksel rlib/ELF hash/member girdileriyle COMPILED kaydedebilir. Bu tek target'ın derlenmesidir; final library/binary link kanıtı değildir. Metadata ile compiled feature listeleri ayrı tutulur. Link-map ve NOT SELECTED protokolü tamamlanmadığından bu iki iddia reddedilir.
 
-[Cargo sonucu](evidence/s05d/cargo-resolution.json) ve [scope](evidence/s05d/rust-compile-link-scope.json) başlangıçta NOT_RUN/BLOCKED kaydıdır; gerçek CI çıktısı ayrı artifact'tır ve inceleme sonrası S05-D'ye aktarılır.
+[Cargo sonucu](evidence/s05d/cargo-resolution.json) ve [scope](evidence/s05d/rust-compile-link-scope.json) gerçek CI çıktısından aktarıldı. İlk prepared NOT_RUN kayıtları Git geçmişindedir; boş/uydurma generated lock üretilmedi.
 
 ## B — Eksik bildirimler
 
@@ -48,3 +48,55 @@ S05-C reduced PNG/JPEG build'i full profile yerine kullanılmaz. Full build çal
 [Kalıcı kaynak planı](CORRESPONDING-SOURCE-DISTRIBUTION-PLAN.md) sürüm/digest/SBOM/kaynak/patch/bildirim/toolchain/static girdiler zincirini, lisansa göre yöntem/süreyi, kopyalama/erişim kontrolünü ve manuel kararları tanımlar. GitHub Release/Pages/artifact kalıcılık garantisi değildir. Hiçbir gerçek source bundle veya binary yayımlanmaz.
 
 Yeni offline testler zorunlu checks'e eklenir; mevcut tüm uygulama/selfhost ve S05-A/B/C testleri korunur. Ağ/toolchain/source deneyi yalnız S05-D push'ında ve deney kodu/CI değiştiğinde ayrı, 25 dakika sınırlı non-gating job'dır. Yalnız belge/kanıt aktarım commit'inde tekrar Rust indirip build yapılmaz; önceki exact deney commit'i/artifact'ı ve değişmeyen betik blob'ları bağlanır. Kolektör PARTIAL/BLOCKED için exit 1 verir; job/step failure gizlenmez. PR'de ağır iş tekrar edilmez. Artifact 14 gün saklanır ve kalıcı sunum sayılmaz. Tekrarlanan yüzlerce MB toolchain/cache kopyası yüklenmez: küçük receipt/notice/metadata ve 13 crate arşivi tutulur, exact toolchain URL/hash ve yeniden edinim bilgisi manifesttedir. Rust component binary arşivleri ve expanded toolchain artifact'a dahil değildir; bu eksiklik tam relinking/source paketi sağlandı diye sunulmaz. Ağır full build önkoşulları yoksa native build'in atlandığı ayrıca raporlanır. Son HEAD mandatory testleri bitmeden DEVELOPMENT READY denmez.
+
+
+## Ölçülen S05-D sonuçları
+
+Kaynak deney commit'i 7c9ba9da485a61a3eb9402f7702fdee39406c701, [run 43147512037](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/43147512037), job 130948736774. İş beklenen exit 1 ile failure kaydetti; bu tam build başarısı değildir. [Artifact](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/43147512037/artifacts/13911559407) 6514993 byte, ZIP SHA-256 72635541e561f6bb6afc175a6dc988b5323ea57cadc46085946ea86efd157869. [Receipt](evidence/s05d/experiment-receipt.json), exact collector/verifier SHA-256 ve aktarılmış dosya hash'lerini bağlar. Sonraki belge/test commit'i bu deney kodunu değiştirmez; son HEAD zorunlu push/PR CI sonuçları ayrıca PR gövdesine ve nihai rapora yazılır.
+
+|Alan|Gerçek sonuç|
+|---|---|
+|Özgün lock|366 package, 357 dış + 9 workspace; SHA e79e2a2735a0b5b151bb4133becd3008223fabedd34a8b787a872edab9854941|
+|Generated lock|362 package, 353 dış + 9 workspace; SHA 5723e14ce316e9058c76257848e18ab52624c98d16f758b5f8a73b5007b2ab8b|
+|İki cargo update|Exit 0 / 0; output hash'leri eşit|
+|Lock farkı|0 eklenen, 4 silinen: color_quant 1.1.0, gif 0.14.2, image-webp 0.2.4, weezl 0.1.12; 2 dependency-list değişikliği; 0 checksum değişikliği|
+|Metadata/tree|Exit 0 / 0; workspace-default çözümleme, final compile/link kanıtı değil|
+|Son diagnostic kapsam|308 RESOLVED, 0 COMPILED, 0 LINKED, 0 NOT SELECTED, 54 UNKNOWN|
+|Önceki diagnostic kapsam|307 RESOLVED, 1 COMPILED (unicode-ident 1.0.26), 54 UNKNOWN; final binary'ye LINKED değil|
+|Diagnostic cargo build|Exit 101: linker cc not found; proc-macro2/quote build-script link aşaması durdu|
+|Full native CONTROL/MODIFIED|NOT RUN/BLOCKED; SHA/ABI/export/Sharp alanları null/NOT_RUN|
+|Full static LGPL object/archive|BLOCKED; diagnostic rlib full .a/.o setinin yerine geçmez|
+
+[Gerçek generated lockfile](evidence/s05d/generated-Cargo.lock) saklandı. İki ayrı source kopyası aynı binary/komut/ortam ile, ortak Cargo registry cache'i kullanılarak çözüldü; bağımsız tarihsel registry snapshot'ı sağlanmadı. Bu yüzden GENERATED CARGO.LOCK PARTIAL; tarihsel upstream lock kurtarıldı denmez. Generated lock ve bütün PASS notice text hash'leri aktarım sırasında bağımsız JavaScript SHA-256 hesaplamasıyla tekrar eşleştirildi.
+
+### Exact toolchain
+
+2026-09-27 resmî dist manifest SHA-256 ad7c5ca64d80a5c7771089f741ab90c9eb5dcbc766ce81f2c90af8fc295b40cc pinned; rustc/cargo/std arşivleri bu manifest hash zinciriyle doğrulandı, installer çalıştırılmadı. [rustc çıktısı](evidence/s05d/rustc.stdout): 1.101.0-nightly, commit 75a75c3e0a67d3fa3d03982775f5bb0356e7b510, LLVM 23.1.1. [Cargo çıktısı](evidence/s05d/cargo.stdout): 1.101.0-nightly, commit 3d7cf6e937d6127d0f49881bf689c560b36d35c4 (2026-09-25). Actual rustc binary SHA 22723c9886eec654945230d0f865f6ddc52c91b4831a027dea6d650ecbc81002; cargo binary SHA 96c2dd303135a1fd8735145997192ff59a4ea1af9c94f9b656b30a7728a9b60f. Pinned execution base node:24-bookworm-slim@sha256:c86ecead9e55a5210ac1727de38a4ca840bf03dcaf34dc9749addbf383b1920c; özgün Rocky/GCC15 native builder değildir.
+
+Önceki [compile scope](evidence/s05d/runs/43146675005/rust-compile-link-scope.json) ve [compiler stderr](evidence/s05d/runs/43146675005/compiler.stderr) ayrı tutulur. unicode-ident rlib SHA 5d817c54f08432159bce7321923b6a298b3278aadee81c02c99b23fbf61e054a, [önceki artifact](https://github.com/Blooregardx/siteyonetim-saas/actions/runs/43146675005/artifacts/13912111602). Tekrarda erken linker hatası nedeniyle compiler-artifact oluşmaması, bu paketin derlenmediğinin kanıtı değildir; önceki gerçek kanıt silinmez.
+
+### 13 eski BLOCKED kaydın sonucu
+
+|Paket|S05-D kaynak/bildirim edinimi|Kanıt/eksik|
+|---|---|---|
+|mutants 0.0.4|PASS|14011d08c42a7cd368698fe28f77eb4cd0b65bf0 exact commit; Rust source blob eşleşmesi ve özgün Martin Pool MIT metni|
+|selectors 0.40.0|PASS|67faaab3ff7aa66780ec1d0f51ca47e177b812d3; 16 Rust dosyası eşleşti; satıra bölünmüş özgün MPL Exhibit-A başlıkları mevcut|
+|anes 0.1.6|PASS|378ac7461ecac29fde9e10df7b08359d1315a9ad; unique path prefix exact source blob'larıyla çıkarıldı; 28 Rust dosyası + MIT/Apache metinleri|
+|defmt-parser 1.0.0|PASS|4a8cdb44891ed57b8ff5a023b6bec7137c48708f; 4 source dosyası + özgün MIT/Apache metinleri|
+|block 0.1.6|BLOCKED|Exact 0.1.6 tag/source eşleşti; yeterli özgün bildirim edinilmedi|
+|difflib 0.4.0|BLOCKED|VCS revision yok; v0.4.0 ve 0.4.0 tag sorguları 404|
+|malloc_buf 0.0.6|BLOCKED|Exact tag ve source eşleşti; yeterli özgün bildirim edinilmedi|
+|objc-foundation 0.1.1|BLOCKED|Exact tag ve source eşleşti; yeterli özgün bildirim edinilmedi|
+|objc_id 0.1.1|BLOCKED|Exact tag ve source eşleşti; yeterli özgün bildirim edinilmedi|
+|r-efi 5.3.0 / 6.0.0|BLOCKED|Her exact commit'te 58 Rust source blob eşleşti; yeterli uygulanabilir bildirim metni edinilmedi|
+|winapi-i686-pc-windows-gnu / winapi-x86_64-pc-windows-gnu 0.4.0|BLOCKED|VCS revision yok; v0.4.0 ve 0.4.0 tag sorguları 404|
+
+Bu kararlar lisans ihlali iddiası veya hukuki PASS değildir. Source-form MPL başlığı dosya adı kuralının sınırlamasını giderir; binary Source Code Form sağlama ve alıcıya bildirim yükümlülüğü açık kalır. Bazı crate'lerin başka platformlara ait olması, dağıtılmadığının kanıtı sayılmadı; N/A eklenmedi.
+
+### Başarısız/atlanmış işler ve açık kaynak sunumu
+
+İlk shallow checkout baseline guard'ı eksik parent object nedeniyle durdu; explicit exact baseline fetch ile düzeltildi. İlk toolchain incelemesi sıkı 128 MiB member sınırında durdu; yalnız hash-pinned toolchain için 768 MiB/file ve 2 GiB toplam sınırı tanımlandı. İç symlink kaynak fixture'ları arşiv kökü doğrulanarak oluşturulmadan atlandı. Bu düzeltmeler kontrolleri devre dışı bırakmaz; crate/default archive sınırları sıkı kalır.
+
+Full Rocky/GCC15/cargo-c native builder pin/RPM kaydı, 28 native source'un yeni build'de fiziksel edinimi, full linker map/object/archive seti, CONTROL/MODIFIED libvips ve Sharp testleri tamamlanmadı. Eski S05-C hash'leri yeni full build hash'i diye doldurulmadı. Geçici 14 gün artifact kaynak sunumu değildir; Node/Debian/Prisma genel kapıları ve bağımsız insan kurulumu açık kalır.
+
+S05-E önerisi: exact Rocky/GCC15/cargo-c/Meson/Ninja sysroot ve bütün source/patch/toolchain girdilerini sabitlemek; full static CONTROL/MODIFIED build ve linker/ABI/Sharp prova protokolünü tamamlamak; 9 eksik notice ve kalıcı sunum planının operasyonel kapasitesini manuel incelemek.

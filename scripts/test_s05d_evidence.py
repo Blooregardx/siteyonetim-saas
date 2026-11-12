@@ -141,6 +141,34 @@ class EvidenceTests(unittest.TestCase):
         s={'schemaVersion':1,'target':v.TARGET,'records':[{'status':'COMPILED','packageId':'made-up','features':[]}],
            'counts':{k:int(k=='COMPILED') for k in ['RESOLVED','COMPILED','LINKED — EVIDENCED','NOT SELECTED — EVIDENCED','UNKNOWN']}}
         with self.assertRaises(ValueError):v.verify_scope(s,self.root)
+    def test_recorded_generated_lock_and_scope(self):
+        import tomllib
+        base=v.ROOT/'docs/evidence/s05d'
+        r=json.loads((base/'cargo-resolution.json').read_text())
+        data=(base/'generated-Cargo.lock').read_bytes()
+        self.assertEqual(v.digest(data),r['generatedLockSha256'])
+        before=(v.ROOT/'docs/evidence/s05b/upstream/librsvg-Cargo.lock').read_text()
+        for attempt in r['attempts']:
+            self.assertEqual(attempt['exitCode'],0)
+            self.assertEqual(attempt['afterSha256'],v.digest(data))
+            self.assertEqual(attempt['changes'],v.lock_changes(before,data.decode()))
+        lock=tomllib.loads(data.decode())['package']
+        scope=json.loads((base/'rust-compile-link-scope.json').read_text())
+        self.assertEqual({(p['name'],p['version'],p.get('source','path')) for p in lock},
+                         {(p['name'],p['version'],p['source']) for p in scope['records']})
+        self.assertEqual(sum(scope['counts'].values()),len(lock))
+    def test_recorded_notice_and_collector_hashes(self):
+        base=v.ROOT/'docs/evidence/s05d'
+        manifest=json.loads((base/'rust-license-resolution.json').read_text())
+        self.assertEqual(len(manifest['records']),13)
+        self.assertEqual(manifest['counts'],{s:sum(r['decision']==s for r in manifest['records']) for s in ['PASS','BLOCKED','UNKNOWN','NOT_APPLICABLE']})
+        for r in manifest['records']:
+            self.assertEqual(r['cargoChecksum'],v.TRUSTED_CRATES[(r['name'],r['version'])])
+            if r['decision']=='PASS':
+                self.assertTrue(r['evidence'])
+                for e in r['evidence']:v.physical(base,e['file'],e['sha256'])
+        receipt=json.loads((base/'experiment-receipt.json').read_text())
+        for name,sha in receipt['codeSha256'].items():v.physical(v.ROOT,name,sha)
     def test_fake_notice(self):
         archive=self.m['sources'][0]
         r={'archiveFile':archive['file'],'archiveSha256':archive['sha256'],'cargoChecksum':archive['sha256'],

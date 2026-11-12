@@ -1,0 +1,86 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+
+/// Bloom filter for relative selectors.
+use rustc_hash::FxHashMap;
+
+use crate::bloom::BloomFilter;
+use crate::context::QuirksMode;
+use crate::parser::{collect_selector_hashes, RelativeSelector, RelativeSelectorMatchHint};
+use crate::tree::{Element, OpaqueElement};
+use crate::SelectorImpl;
+
+enum Entry {
+    /// Filter lookup happened once. Construction of the filter is expensive,
+    /// so this is set when the element for subtree traversal is encountered.
+    Lookup,
+    /// Filter lookup happened more than once, and the filter for this element's
+    /// subtree traversal is constructed. Could use special handlings for pseudo-classes
+    /// such as `:hover` and `:focus`, see Bug 1845503.
+    HasFilter(Box<BloomFilter>),
+}
+
+#[derive(Clone, Copy, Hash, Eq, PartialEq)]
+enum TraversalKind {
+    Children,
+    Descendants,
+}
+
+fn add_to_filter<E: Element>(element: &E, filter: &mut BloomFilter, kind: TraversalKind) -> bool {
+    let mut child = element.first_element_child();
+    while let Some(e) = child {
+        if !e.add_element_unique_hashes(filter) {
+            return false;
+        }
+        if kind == TraversalKind::Descendants {
+            if !add_to_filter(&e, filter, kind) {
+                return false;
+            }
+        }
+        child = e.next_sibling_element();
+    }
+    true
+}
+
+#[derive(Clone, Copy, Hash, Eq, PartialEq)]
+struct Key(OpaqueElement, TraversalKind);
+
+/// Map of bloom filters for fast-rejecting relative selectors.
+#[derive(Default)]
+pub struct RelativeSelectorFilterMap {
+    map: FxHashMap<Key, Entry>,
+}
+
+fn fast_reject<Impl: SelectorImpl>(
+    selector: &RelativeSelector<Impl>,
+    quirks_mode: QuirksMode,
+    filter: &BloomFilter,
+) -> bool {
+    let mut hashes = [0u32; 4];
+    let mut len = 0;
+    // For inner selectors, we only collect from the single rightmost compound.
+    // This is because inner selectors can cause breakouts: e.g. `.anchor:has(:is(.a .b) .c)`
+    // can match when `.a` is the ancestor of `.anchor`. Including `.a` would possibly fast
+    // reject the subtree for not having `.a`, even if the selector would match.
+    // Technically, if the selector's traversal is non-sibling subtree, we can traverse
+    // inner selectors up to the point where a descendant/child combinator is encountered
+    // (e.g. In `.anchor:has(:is(.a ~ .b) .c)`, `.a` is guaranteed to be the a descendant
+    // of `.anchor`). While that can be separately handled, well, this is simpler.
+    collect_selector_hashes(
+        selector.selector.iter(),
+        quirks_mode,
+        &mut hashes,
+        &mut len,
+        |s| s.iter(),
+    );
+    for i in 0..len {
+        if !filter.might_contain_hash(hashes[i]) {
+            // Definitely rejected.
+            return true;
+        }
+    }
+    false
+}
+
+impl RelativeSelectorFilter

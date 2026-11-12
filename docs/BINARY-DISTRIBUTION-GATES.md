@@ -22,3 +22,7 @@ Docker containerd store index ID / config ID ayrımı: özgün inspect ID `docke
 ## S05-C kaynak ve rebuild kontrolü
 
 357 dış Cargo kaydından 162 COMPILED, 195 UNKNOWN; kaynak edinimi 344 PASS/13 BLOCKED. Değiştirilmiş PNG/JPEG profili gerçek Sharp PNG yolunda başarılıdır; özgün bundle ABI ve statik girdiler eksiktir. Gate her durumda BLOCKED kalır; S05-C receipt hash'i yalnız izleme bağıdır, hukuki onay değildir. [Kanıt ve sınırlar](S05C-REBUILD-VALIDATION.md); [tekrar tarifi](LIBVIPS-REBUILD-REPRODUCTION.md).
+
+## S05-D denetimi
+
+Generated lock iki kontrollü çözümlemede aynı hash'i verdi; tarihsel upstream lock olarak onaylanmadı. Metadata, compiler-artifact ve LINKED kararları ayrıdır. 13 eski notice kaydında 4 PASS/9 BLOCKED yalnız kaynak/bildirim edinimidir. Native kayıtlardaki s05dFullBundleManifestSha256 salt kanıt izidir; genel dağıtımı açmaz. [Gerçek sonuç ve sınırlar](S05D-FULL-BUNDLE-VALIDATION.md); [kalıcı kaynak planı](CORRESPONDING-SOURCE-DISTRIBUTION-PLAN.md).
