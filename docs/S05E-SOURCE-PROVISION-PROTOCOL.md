@@ -15,7 +15,9 @@ BINARY DISTRIBUTION READINESS: BLOCKED.
    eşleşmelidir. Layer'lar sırayla taranır; whiteout/opaque silme uygulanır.
    Binary doğru regular path'te bulunmalı ve ELF/hash eşleşmelidir.
 3. Gerçek filesystem Syft SBOM'u imageID ile eşleşmelidir. package-lock veya
-   directory taraması gerçek imaj SBOM'u olarak kabul edilmez. Mevcut okuyucu
+   directory taraması gerçek imaj SBOM'u olarak kabul edilmez. PREPUBLICATION_CANDIDATE
+   için boş artifact listesi reddedilir; sentetik boş fixture etiketi değiştirilerek
+   gerçek paket gibi geçirilemez. Mevcut okuyucu
    yalnız uncompressed OCI layer kabul eder; compressed/alias path veya
    desteklenmeyen durum fail-closed reddedilir, tahminle geçmez.
 4. Source, patch, özgün notice, build script, toolchain source, exact Cargo.lock,

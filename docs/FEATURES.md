@@ -7,7 +7,7 @@ Gerçek tam-profile CONTROL/MODIFIED libvips 8.18.7 üretildi. 3500 export,
 library/WASM fallback, kirlenmiş ikinci build prefix'i ve engine/config kimlik
 karışıklığı fail-closed kontrollerle yakalanır. [Kanıt ve sınırlar](S05E-NATIVE-REBUILD-VALIDATION.md).
 
-Yeni 72 test, güvenli source/RPM/toolchain edinimi, source/archive bütünlüğü,
+Yeni 73 test, güvenli source/RPM/toolchain edinimi, source/archive bütünlüğü,
 OCI/SBOM bağlama ve iki sentetik runner copy/restore protokolünü kapsar.
 [Kaynak sunumu protokolü](S05E-SOURCE-PROVISION-PROTOCOL.md) hukuki onay veya
 kalıcı sunum değildir. Rust açık dokuz kaydın ikisi source/notice bakımından

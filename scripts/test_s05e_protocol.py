@@ -108,6 +108,11 @@ class ProtocolTests(unittest.TestCase):
             m['sbom']['sha256'] = p.sha(raw)
         self.rejected(edit)
 
+    def test_synthetic_empty_sbom_cannot_be_promoted_to_real_candidate(self):
+        h=self.mutate(lambda m:m.update(purpose='PREPUBLICATION_CANDIDATE'))
+        with self.assertRaisesRegex(ValueError,'EMPTY_IMAGE_SBOM'):
+            p.verify(self.root,h)
+
     def test_tampered_physical_blob(self):
         f = next((self.root/'oci/blobs/sha256').iterdir())
         f.write_bytes(b'tampered')

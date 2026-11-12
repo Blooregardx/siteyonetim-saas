@@ -190,6 +190,8 @@ def verify(root, expected_index):
     sbom = read_json(physical(root, m['sbom']['file'], m['sbom']['sha256']))
     if sbom['source']['type'] != 'image' or sbom['source']['metadata']['imageID'] != m['imageConfigDigest']:
         raise ValueError('FOREIGN_SBOM')
+    if m['purpose']=='PREPUBLICATION_CANDIDATE' and not sbom.get('artifacts'):
+        raise ValueError('EMPTY_IMAGE_SBOM')
     inventory = m['inventory']
     if {r['role'] for r in inventory} != ROLES or len({r['file'] for r in inventory}) != len(inventory):
         raise ValueError('MISSING_OR_DUPLICATE_INPUTS')

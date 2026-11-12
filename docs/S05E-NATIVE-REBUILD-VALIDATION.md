@@ -201,7 +201,7 @@ hatasında writers-stopped başarılı. Push ve PR CI ayrı doğrulandı. S05-C/
 ağır işleri eski branch koşullarıyla atlandı; regresyon testleri çalıştı.
 
 Mevcut uygulama/selfhost/recovery ve S05-A/B/C/D regresyonları korunur. Yeni
-**72 S05-E testi**, gerçek pozitif/negatif native deneylerden ayrıdır. Son HEAD
+**73 S05-E testi**, gerçek pozitif/negatif native deneylerden ayrıdır. Son HEAD
 push/PR CI sonucu tamamlanmadan bakımcı incelemesine hazır teslim ilan edilmez.
 [Tekrar üretim](S05E-NATIVE-REBUILD-REPRODUCTION.md) ve PR checks güncel teslim
 koşuludur. Önerilen S05-F: debug/type ABI kapsamı, actual crate/link/notice
