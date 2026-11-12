@@ -15,7 +15,7 @@ const result = { scope: 'isolated synthetic Sharp probe', status: 'BLOCKED', nod
 try {
   if (!/^[a-f0-9]{64}$/.test(expected || '') || hash(readFileSync(target)) !== expected) throw new Error('TARGET_BINARY_HASH');
   const sharp = require('sharp');
-  if (require('sharp/package.json').version !== '0.35.5') throw new Error('SHARP_VERSION');
+  if (sharp.versions.sharp !== '0.35.5') throw new Error('SHARP_VERSION');
   const png = await sharp({ create: { width: 8, height: 8, channels: 4, background: { r: 30, g: 120, b: 200, alpha: 1 } } }).png().toBuffer();
   const pngMeta = await sharp(png).metadata();
   if (pngMeta.width !== 8 || pngMeta.height !== 8 || pngMeta.format !== 'png') throw new Error('PNG_RESULT');
@@ -29,18 +29,28 @@ try {
   const svgMeta = await sharp(svgPng).metadata();
   if (svgMeta.width !== 6 || svgMeta.height !== 5) throw new Error('SVG_RESULT');
   result.tests.svg = { status: 'PASS', sha256: hash(svgPng) };
+  result.processingPassed = true;
+} catch (error) {
+  // Only controlled diagnostic labels; never dump environment or arbitrary exceptions.
+  const allowed = ['TARGET_BINARY_HASH', 'SHARP_VERSION', 'PNG_RESULT', 'JPEG_RESULT', 'SVG_RESULT'];
+  result.failure = allowed.includes(error.message) ? error.message : 'NATIVE_PROBE_FAILED';
+}
+try {
   const lines = readFileSync('/proc/self/maps', 'utf8').split('\n').filter(line => line.includes('libvips'));
   result.maps = lines;
+  const addonLines = readFileSync('/proc/self/maps', 'utf8').split('\n').filter(line => line.trim().endsWith('/sharp-linux-x64-0.35.5.node'));
+  result.nativeAddons = [...new Set(addonLines.map(line => line.trim().split(/\s+/).slice(5).join(' ')))].map(path => ({ path, sha256: hash(readFileSync(path)) }));
   const paths = [...new Set(lines.map(line => line.trim().split(/\s+/).slice(5).join(' ').replaceAll('\\040', ' ')))];
   for (const path of paths) result.loadedLibraries.push({ path, realPath: realpathSync(path), sha256: hash(readFileSync(path)) });
   result.targetLoaded = result.loadedLibraries.some(r => r.realPath === target && r.sha256 === expected);
   result.originalLibraryLoaded = result.loadedLibraries.some(r => r.sha256 === oldHash);
-  if (!result.targetLoaded || result.originalLibraryLoaded) throw new Error('ACTUAL_LIBRARY_BINDING');
-  result.status = 'PASS';
-} catch (error) {
-  // Only controlled diagnostic labels; never dump environment or arbitrary exceptions.
-  const allowed = ['TARGET_BINARY_HASH', 'SHARP_VERSION', 'PNG_RESULT', 'JPEG_RESULT', 'SVG_RESULT', 'ACTUAL_LIBRARY_BINDING'];
-  result.failure = allowed.includes(error.message) ? error.message : 'NATIVE_PROBE_FAILED';
+  if (!result.failure && result.processingPassed) {
+    if (result.nativeAddons.length !== 1) result.failure = 'ACTUAL_ADDON_BINDING';
+    else if (!result.targetLoaded || result.originalLibraryLoaded) result.failure = 'ACTUAL_LIBRARY_BINDING';
+    else result.status = 'PASS';
+  }
+} catch {
+  result.failure = 'NATIVE_MAPS_VERIFICATION_FAILED';
 }
 console.log(JSON.stringify(result, null, 2));
 process.exitCode = result.status === 'PASS' ? 0 : 1;
