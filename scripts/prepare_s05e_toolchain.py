@@ -8,6 +8,7 @@ import concurrent.futures
 import hashlib
 import json
 import os
+import re
 from pathlib import Path
 import shutil
 import subprocess
@@ -28,9 +29,10 @@ class HTTPSRedirect(urllib.request.HTTPRedirectHandler):
 
 
 def download(url,path,expected,maximum=256*1024**2):
+    if urllib.parse.urlparse(url).scheme!='https':raise ValueError('HTTPS_REQUIRED')
+    if not re.fullmatch('[a-f0-9]{64}',expected):raise ValueError('CHECKSUM_FORMAT')
     if path.is_symlink():raise ValueError('SYMLINK_CACHE')
     if path.is_file() and file_sha(path)==expected:return
-    if urllib.parse.urlparse(url).scheme!='https':raise ValueError('HTTPS_REQUIRED')
     path.parent.mkdir(parents=True,exist_ok=True)
     temporary=path.with_name(path.name+'.incomplete')
     if temporary.exists():raise ValueError('STALE_DOWNLOAD_REQUIRES_REVIEW')
@@ -53,6 +55,9 @@ def prepare(out):
     out.mkdir(parents=True,exist_ok=True);context=out/'context';context.mkdir(exist_ok=False)
     rpm_manifest=json.loads((evidence/'historical-rpm-files.json').read_text())
     def rpm(r):
+        p=Path(r['file'])
+        if r['stage'] not in {'update','epel','build-dependencies'} or p.parts!=('historical',r['stage'],p.name) or not p.name.endswith('.rpm'):
+            raise ValueError('RPM_INPUT_PATH')
         target=out/r['file']
         locations=r.get('metadataLocations',[])
         if not locations:raise ValueError('RPM_LOCATION_MISSING')

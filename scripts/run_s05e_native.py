@@ -127,7 +127,7 @@ def prepare(inputs,out):
     # Writable experiment-only install directories; no changes to application
     # Dockerfile/Compose. Preserve original file and explicit derived config.
     p=config/'meson.ini';p.write_text(p.read_text().replace("'/usr/share'","'/target/share'").replace("'/usr/share/locale'","'/target/share/locale'").replace("'/etc'","'/target/etc'").replace("'/var'","'/target/var'"))
-    for n in ['s05e_extract.py']:shutil.copy(ROOT/'scripts'/n,config/n)
+    for n in ['s05e_extract.py','s05e_clean_prefix.py']:shutil.copy(ROOT/'scripts'/n,config/n)
     recipe=render()
     (config/'control.sh').write_text(recipe)
     head=recipe.split('# Download and build dependencies from source')[0]
@@ -215,6 +215,7 @@ def execute(inputs,out,image,minutes,resume=None,resume_webp=False):
              'bash -x /config/control.sh > /evidence/control.log 2>&1 && '
              'cp -a /deps/vips /evidence/control/vips && '
              'cp -L /target/lib/libvips-cpp.so.8.18.7 /evidence/control/libvips-cpp.so.8.18.7 && '
+             'python3.12 /config/s05e_clean_prefix.py /target /deps/vips/_build/meson-logs/install-log.txt /evidence/control-installed-outputs && '
              'rm -rf /deps/vips && '
              'bash -x /config/modified.sh > /evidence/modified.log 2>&1 && '
              'cp -a /deps/vips /evidence/modified/vips && '

@@ -35,6 +35,9 @@ jobs:
           PY
       - name: Recreate original sysroot offline
         run: |
+          # BuildKit may retain FROM only in its own cache. The independent
+          # base/config/layer check needs the immutable base in the local store.
+          docker pull rockylinux/rockylinux@sha256:ae0813ccb1bb83f4e0220acdd1539f52831517de334368e960824db7e37ee210
           docker build --network=none -t s05e-toolchain-historical "$RUNNER_TEMP/s05e-inputs/context" > "$RUNNER_TEMP/toolchain-build.log" 2>&1
           docker image inspect s05e-toolchain-historical --format '{{.Id}}' > "$RUNNER_TEMP/config-id.txt"
       - name: Bootstrap exact cargo-c offline with bounded resources
@@ -58,6 +61,7 @@ jobs:
           if {Path(r['file']).name:r['sha256'] for r in old['executables']}!={Path(r['file']).name:r['sha256'] for r in new['executables']}:mismatch.append('cargo-c executables')
           result={'toolBytesRepeat':not mismatch,'mismatch':mismatch,'scope':'controlled toolchain binaries, not historical image byte identity','binaryDistributionReadiness':'BLOCKED','legalApproval':False}
           (root/'reproduction-result.json').write_text(json.dumps(result,indent=2)+'\n')
+          print(json.dumps(result))
           if mismatch:raise SystemExit(1)
           PY
       - name: Retain actual successful or failed experiment (development evidence only)

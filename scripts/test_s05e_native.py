@@ -6,11 +6,14 @@ from pathlib import Path
 import tarfile
 import tempfile
 import unittest
+from unittest.mock import patch,MagicMock
 
 from s05e_extract import extract
 from s05e_native_recipe import render
 from s05e_source_protocol import sha, file_sha
 from s05e_rust_notices import verify_authors
+from s05e_clean_prefix import sequester
+from prepare_s05e_toolchain import download,HTTPSRedirect
 from verify_s05e_evidence import verify_outcome
 from s05e_native_recipe import LOCK_SHA
 
@@ -160,6 +163,79 @@ class NativeTests(unittest.TestCase):
         self.assertEqual(len(r['records']),9)
         self.assertEqual(r['counts'],{'PASS':2,'BLOCKED':7,'UNKNOWN':0,'NOT_APPLICABLE':0})
         self.assertFalse(r['legalApproval'])
+
+
+class PrefixTests(unittest.TestCase):
+    def setUp(self):
+        self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup)
+        self.root=Path(self.tmp.name);self.prefix=self.root/'target';(self.prefix/'lib').mkdir(parents=True)
+        for n in ['libvips.a','libvips-cpp.so.8.18.7','libglib-2.0.a']:(self.prefix/'lib'/n).write_bytes(n.encode())
+        self.log=self.root/'install-log.txt';self.log.write_text('/target/lib/libvips.a\n/target/lib/libvips-cpp.so.8.18.7\n')
+
+    def test_vips_outputs_preserved_native_dependencies_untouched(self):
+        r=sequester(self.prefix,self.log,self.root/'backup')
+        self.assertEqual(len(r['files']),2)
+        self.assertFalse((self.prefix/'lib/libvips.a').exists())
+        self.assertEqual((self.root/'backup/lib/libvips.a').read_bytes(),b'libvips.a')
+        self.assertEqual((self.prefix/'lib/libglib-2.0.a').read_bytes(),b'libglib-2.0.a')
+
+    def test_cannot_reintroduce_core_via_backup_under_prefix(self):
+        with self.assertRaises(ValueError):sequester(self.prefix,self.log,self.prefix/'backup')
+
+    def test_unknown_dependency_is_not_removed(self):
+        self.log.write_text(self.log.read_text()+'/target/lib/libglib-2.0.a\n')
+        with self.assertRaises(ValueError):sequester(self.prefix,self.log,self.root/'backup')
+        self.assertTrue((self.prefix/'lib/libvips.a').exists())
+
+    def test_path_escape_before_mutation(self):
+        self.log.write_text(self.log.read_text()+'/target/../outside\n')
+        with self.assertRaises(ValueError):sequester(self.prefix,self.log,self.root/'backup')
+        self.assertTrue((self.prefix/'lib/libvips.a').exists())
+
+    def test_missing_install_output(self):
+        (self.prefix/'lib/libvips.a').unlink()
+        with self.assertRaises(ValueError):sequester(self.prefix,self.log,self.root/'backup')
+
+    def test_unrecorded_header_not_silently_deleted(self):
+        (self.prefix/'include/vips').mkdir(parents=True)
+        (self.prefix/'include/vips/unknown.h').write_text('retain')
+        self.log.write_text(self.log.read_text()+'/target/include/vips\n')
+        with self.assertRaises(ValueError):sequester(self.prefix,self.log,self.root/'backup')
+
+
+class AcquisitionTests(unittest.TestCase):
+    def setUp(self):
+        self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup)
+        self.path=Path(self.tmp.name)/'input';self.good=b'authentic';self.expected=sha(self.good)
+
+    def test_verified_cache_never_needs_network(self):
+        self.path.write_bytes(self.good)
+        with patch('urllib.request.build_opener') as opener:
+            download('https://example.invalid/input',self.path,self.expected)
+            opener.assert_not_called()
+
+    def test_bad_download_never_promoted(self):
+        opener=MagicMock();opener.open.return_value=io.BytesIO(b'corrupt')
+        with patch('urllib.request.build_opener',return_value=opener):
+            with self.assertRaisesRegex(ValueError,'DOWNLOAD_HASH'):download('https://example.invalid/input',self.path,self.expected)
+        self.assertFalse(self.path.exists());self.assertFalse(self.path.with_name('input.incomplete').exists())
+
+    def test_archive_size_bound(self):
+        opener=MagicMock();opener.open.return_value=io.BytesIO(self.good)
+        with patch('urllib.request.build_opener',return_value=opener):
+            with self.assertRaisesRegex(ValueError,'DOWNLOAD_LIMIT'):download('https://example.invalid/input',self.path,self.expected,maximum=1)
+        self.assertFalse(self.path.exists())
+
+    def test_invalid_origin_rejected_even_on_cache_hit(self):
+        self.path.write_bytes(self.good)
+        with self.assertRaisesRegex(ValueError,'HTTPS_REQUIRED'):download('http://example.invalid/input',self.path,self.expected)
+
+    def test_downgrade_redirect_rejected(self):
+        with self.assertRaisesRegex(ValueError,'NON_HTTPS_REDIRECT'):HTTPSRedirect().redirect_request(None,None,302,'',{},'http://example.invalid/file')
+
+    def test_symlink_cache_rejected(self):
+        target=self.path.with_name('actual');target.write_bytes(self.good);self.path.symlink_to(target)
+        with self.assertRaisesRegex(ValueError,'SYMLINK_CACHE'):download('https://example.invalid/input',self.path,self.expected)
 
 
 if __name__=='__main__':unittest.main()
