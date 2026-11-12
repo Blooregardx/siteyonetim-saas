@@ -285,4 +285,14 @@ if __name__=='__main__':
     full_preflight(a.out,cargo)
     print(json.dumps({'cargo':cargo['status'],'licenses':{s:sum(r['decision']==s for r in records) for s in ['PASS','BLOCKED','UNKNOWN']},
                       'fullBundle':'BLOCKED','binaryDistributionReadiness':'BLOCKED'}))
+    # Only public source receipts/notices; never environment/config/credentials or binary archives.
+    wanted=['cargo-resolution.json','rust-compile-link-scope.json','rust-license-resolution.json','full-bundle-rebuild.json','static-relinking-inputs.json','generated-Cargo.lock','rustc.stdout','cargo.stdout']
+    wanted += [p.name for p in a.out.glob('*-header-*.txt')]
+    wanted += [p.name for p in a.out.glob('*-upstream-*.txt')]
+    for name in wanted:
+        p=a.out/name
+        if p.is_file() and p.stat().st_size<=1024*1024:
+            data=p.read_text()
+            for offset in range(0,len(data),5000):
+                print('S05D_FILE '+json.dumps({'path':name,'offset':offset,'data':data[offset:offset+5000]}))
     raise SystemExit(1)  # Honest partial/blocked experiment, never a successful full build.
