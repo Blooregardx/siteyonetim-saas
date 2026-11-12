@@ -54,7 +54,8 @@ def exports(text):
 def provenance(run,control_run,inputs,control_container,modified_container):
     from run_s05e_native import preflight
     spec=json.loads((ROOT/'docs/evidence/s05e/toolchain.json').read_text())
-    check=preflight(inputs,spec['preparedConfigDigest'])
+    expected_engine=spec.get('preparedEngineImageID',spec['preparedConfigDigest'])
+    check=preflight(inputs,expected_engine)
     (run/'final-input-preflight.json').write_text(json.dumps(check,indent=2)+'\n')
     if check['decision']!='PASS':raise ValueError('PHYSICAL_INPUT_PREFLIGHT')
     runtime=[]
@@ -62,10 +63,10 @@ def provenance(run,control_run,inputs,control_container,modified_container):
         if not re.fullmatch('s05e-[a-z-]+',name):raise ValueError('EXPERIMENT_CONTAINER_NAME')
         i=json.loads(subprocess.check_output(['docker','inspect',name],timeout=30))[0]
         h=i['HostConfig'];c=i['Config'];s=i['State']
-        item={'name':name,'configDigest':i['Image'],'network':h['NetworkMode'],'readOnlyRootfs':h['ReadonlyRootfs'],
+        item={'name':name,'engineImageID':i['Image'],'configDigest':spec['preparedConfigDigest'],'network':h['NetworkMode'],'readOnlyRootfs':h['ReadonlyRootfs'],
               'capDrop':h['CapDrop'],'securityOptions':h['SecurityOpt'],'user':c['User'],
               'memoryBytes':h['Memory'],'nanoCpus':h['NanoCpus'],'exitCode':s['ExitCode'],'running':s['Running'],'oomKilled':s['OOMKilled']}
-        if i['Image']!=spec['preparedConfigDigest'] or h['NetworkMode']!='none' or not h['ReadonlyRootfs'] or 'ALL' not in h['CapDrop'] or not any('no-new-privileges' in x for x in h['SecurityOpt']):
+        if i['Image']!=expected_engine or h['NetworkMode']!='none' or not h['ReadonlyRootfs'] or 'ALL' not in h['CapDrop'] or not any('no-new-privileges' in x for x in h['SecurityOpt']):
             raise ValueError('RUNTIME_SECURITY_OR_IDENTITY')
         if int(c['User'].split(':')[0])<=0 or s['Running'] or s['ExitCode']!=0 or s['OOMKilled'] or h['Memory']!=6*1024**3 or h['NanoCpus']!=2*10**9:
             raise ValueError('RUNTIME_EXECUTION_OR_LIMITS')

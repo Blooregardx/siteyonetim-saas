@@ -7,6 +7,7 @@ on:
       - .github/workflows/s05e-toolchain.yml
       - scripts/prepare_s05e_toolchain.py
       - scripts/capture_s05e_toolchain.py
+      - scripts/docker_identity.py
       - docker/s05e-toolchain.Dockerfile
       - docs/evidence/s05e/historical-rpm-files.json
       - docs/evidence/s05e/python-input-hashes.json
@@ -23,14 +24,7 @@ jobs:
       - name: Verify immutable base identity before compiler bootstrap
         run: |
           docker pull --platform=linux/amd64 rockylinux/rockylinux@sha256:ae0813ccb1bb83f4e0220acdd1539f52831517de334368e960824db7e37ee210
-          docker image inspect rockylinux/rockylinux@sha256:ae0813ccb1bb83f4e0220acdd1539f52831517de334368e960824db7e37ee210 > "$RUNNER_TEMP/base-inspect.json"
-          python3 - <<'PY'
-          import json,os
-          from pathlib import Path
-          i=json.loads((Path(os.environ['RUNNER_TEMP'])/'base-inspect.json').read_text())[0]
-          print(json.dumps({k:i.get(k) for k in ['Id','RepoDigests','Architecture','Os','Descriptor','RootFS']}))
-          if i['Id']!='sha256:98ab72cce29f004554c86e88d6789b7f8d09fe90aee099ec56e9b71a2a7e406c':raise SystemExit('BLOCKED: inspect exact base descriptor/config semantics before bootstrap')
-          PY
+          python3 scripts/docker_identity.py --image rockylinux/rockylinux@sha256:ae0813ccb1bb83f4e0220acdd1539f52831517de334368e960824db7e37ee210 --expected-config sha256:98ab72cce29f004554c86e88d6789b7f8d09fe90aee099ec56e9b71a2a7e406c --out "$RUNNER_TEMP/base-inspect.json"
       - name: Acquire frozen signed RPM and hash-pinned Python/Rust/Cargo source inputs
         run: python3 scripts/prepare_s05e_toolchain.py --out "$RUNNER_TEMP/s05e-inputs"
       - name: Reacquire nine sources and verify exact original AUTHORS notices
@@ -50,7 +44,7 @@ jobs:
           # base/config/layer check needs the immutable base in the local store.
           docker pull rockylinux/rockylinux@sha256:ae0813ccb1bb83f4e0220acdd1539f52831517de334368e960824db7e37ee210
           docker build --network=none -t s05e-toolchain-historical "$RUNNER_TEMP/s05e-inputs/context" > "$RUNNER_TEMP/toolchain-build.log" 2>&1
-          docker image inspect s05e-toolchain-historical --format '{{.Id}}' > "$RUNNER_TEMP/config-id.txt"
+          docker image inspect s05e-toolchain-historical --format '{{.Id}}' > "$RUNNER_TEMP/engine-id.txt"
       - name: Bootstrap exact cargo-c offline with bounded resources
         run: |
           docker run --name s05e-cargo-c-historical --network=none --read-only --cap-drop=ALL --security-opt=no-new-privileges --user "$(id -u):$(id -g)" --memory=6g --cpus=2 --pids-limit=512 --tmpfs /tmp:rw,nosuid,nodev,size=1g \
@@ -59,7 +53,7 @@ jobs:
             s05e-toolchain-historical timeout --signal=TERM --kill-after=10s 1500 cargo install --offline --locked --path /source --root /out/cargo-c-historical-install > "$RUNNER_TEMP/cargo-c-build.log" 2>&1
       - name: Measure actual tools and compare with Cloud source experiment inputs
         run: |
-          python3 scripts/capture_s05e_toolchain.py --inputs "$RUNNER_TEMP/s05e-inputs" --out "$RUNNER_TEMP/s05e-evidence" --image "$(cat "$RUNNER_TEMP/config-id.txt")"
+          python3 scripts/capture_s05e_toolchain.py --inputs "$RUNNER_TEMP/s05e-inputs" --out "$RUNNER_TEMP/s05e-evidence" --image "$(cat "$RUNNER_TEMP/engine-id.txt")"
           python3 - <<'PY'
           import json,os
           from pathlib import Path
@@ -86,7 +80,7 @@ jobs:
             ${{ runner.temp }}/toolchain-build.log
             ${{ runner.temp }}/base-inspect.json
             ${{ runner.temp }}/cargo-c-build.log
-            ${{ runner.temp }}/config-id.txt
+            ${{ runner.temp }}/engine-id.txt
             ${{ runner.temp }}/s05e-evidence
             ${{ runner.temp }}/s05e-inputs/input-acquisition.json
             ${{ runner.temp }}/s05e-inputs/cargo-fetch.log

@@ -14,6 +14,7 @@ from s05e_source_protocol import sha, file_sha
 from s05e_rust_notices import verify_authors
 from s05e_clean_prefix import sequester
 from prepare_s05e_toolchain import download,HTTPSRedirect
+from docker_identity import saved_config
 from verify_s05e_evidence import verify_outcome
 from s05e_native_recipe import LOCK_SHA
 
@@ -201,6 +202,39 @@ class PrefixTests(unittest.TestCase):
         (self.prefix/'include/vips/unknown.h').write_text('retain')
         self.log.write_text(self.log.read_text()+'/target/include/vips\n')
         with self.assertRaises(ValueError):sequester(self.prefix,self.log,self.root/'backup')
+
+
+class DockerIdentityTests(unittest.TestCase):
+    def archive(self,architecture='amd64',wrong_hash=False,missing=False,duplicate=False,unsafe=False):
+        config=json.dumps({'architecture':architecture,'os':'linux','rootfs':{'type':'layers','diff_ids':['sha256:'+'1'*64]}}).encode()
+        name=('0'*64 if wrong_hash else sha(config))+'.json'
+        manifest=json.dumps([{'Config':name,'Layers':[]}]).encode()
+        output=io.BytesIO()
+        with tarfile.open(fileobj=output,mode='w') as t:
+            entries=[('../escape' if unsafe else name,config)]
+            if not missing:entries.append(('manifest.json',manifest))
+            if duplicate:entries.append((name,config))
+            for n,raw in entries:
+                e=tarfile.TarInfo(n);e.size=len(raw);t.addfile(e,io.BytesIO(raw))
+        output.seek(0);return output,sha(config)
+
+    def test_real_config_bytes_determine_digest(self):
+        archive,expected=self.archive()
+        actual,config=saved_config(archive)
+        self.assertEqual(actual,expected);self.assertEqual(config['architecture'],'amd64')
+
+    def test_wrong_config_filename_hash(self):
+        with self.assertRaisesRegex(ValueError,'CONFIG_FILENAME_HASH'):saved_config(self.archive(wrong_hash=True)[0])
+
+    def test_wrong_platform(self):
+        with self.assertRaisesRegex(ValueError,'WRONG_PLATFORM'):saved_config(self.archive(architecture='arm64')[0])
+
+    def test_missing_manifest(self):
+        with self.assertRaisesRegex(ValueError,'MANIFEST_REQUIRED'):saved_config(self.archive(missing=True)[0])
+
+    def test_duplicate_or_escape(self):
+        for kwargs in [{'duplicate':True},{'unsafe':True}]:
+            with self.assertRaisesRegex(ValueError,'UNSAFE_DOCKER_SAVE_MEMBER'):saved_config(self.archive(**kwargs)[0])
 
 
 class AcquisitionTests(unittest.TestCase):

@@ -6,6 +6,7 @@ from pathlib import Path
 import subprocess
 
 from s05e_source_protocol import file_sha
+from docker_identity import identity
 
 BASE='sha256:ae0813ccb1bb83f4e0220acdd1539f52831517de334368e960824db7e37ee210'
 MEASURE=r'''
@@ -30,7 +31,9 @@ def capture(inputs,out,image):
     image=info['Id']
     if not image.startswith('sha256:'):raise ValueError('IMMUTABLE_IMAGE')
     base=json.loads(subprocess.check_output(['docker','image','inspect','rockylinux/rockylinux@'+BASE],timeout=30))[0]
-    if base['Id']!='sha256:98ab72cce29f004554c86e88d6789b7f8d09fe90aee099ec56e9b71a2a7e406c':
+    base_identity=identity('rockylinux/rockylinux@'+BASE)
+    image_identity=identity(image)
+    if base_identity['configDigest']!='sha256:98ab72cce29f004554c86e88d6789b7f8d09fe90aee099ec56e9b71a2a7e406c':
         raise ValueError('ORIGINAL_BASE_CONFIG')
     if info['RootFS']['Layers'][:len(base['RootFS']['Layers'])]!=base['RootFS']['Layers']:
         raise ValueError('FOREIGN_BASE_IMAGE')
@@ -52,7 +55,8 @@ def capture(inputs,out,image):
         bootstrap.update(version=r.stdout.decode().strip(),versionExitCode=r.returncode)
         if r.returncode or '0.10.25+cargo-0.99.0' not in bootstrap['version']:
             raise ValueError('CARGO_C_VERSION')
-    result={'schemaVersion':1,'baseManifestDigest':BASE,'preparedConfigDigest':image,
+    result={'schemaVersion':1,'baseManifestDigest':BASE,'preparedConfigDigest':image_identity['configDigest'],
+            'preparedEngineImageID':image,'baseIdentity':base_identity,'preparedIdentity':image_identity,
             'decision':'PARTIAL','historicalByteReproducibility':'NOT_PROVEN',
             'historicalUpstreamPostUpdateCargoLock':'UNKNOWN; S05-D controlled lock used for new experiment',
             'originalTransactionEvidence':'historical-transaction.json','rpmFiles':'historical-rpm-files.json',

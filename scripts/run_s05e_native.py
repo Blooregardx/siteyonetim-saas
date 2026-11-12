@@ -96,13 +96,15 @@ def preflight(inputs,image):
         return len(r['records'])
     check('historical-rpm-bytes',rpms)
     def toolchain():
+        from docker_identity import identity
         if not image.startswith('sha256:') or len(image)!=71:raise ValueError('IMMUTABLE_CONFIG_REQUIRED')
         spec=json.loads((ROOT/'docs/evidence/s05e/toolchain.json').read_text())
-        if spec['preparedConfigDigest']!=image or spec['baseManifestDigest']!=BASE:
+        if spec.get('preparedEngineImageID',spec['preparedConfigDigest'])!=image or spec['baseManifestDigest']!=BASE:
             raise ValueError('FOREIGN_TOOLCHAIN_IMAGE')
         # Exact local config ID, no registry access. Re-exec measured tools in it.
         got=json.loads(subprocess.check_output(['docker','image','inspect',image],timeout=30))[0]
         if got['Id']!=image:raise ValueError('CONFIG_ID')
+        if identity(image)['configDigest']!=spec['preparedConfigDigest']:raise ValueError('CANONICAL_CONFIG_ID')
         base=json.loads(subprocess.check_output(['docker','image','inspect','rockylinux/rockylinux@'+BASE],timeout=30))[0]
         layers=base['RootFS']['Layers']
         if got['RootFS']['Layers'][:len(layers)]!=layers:raise ValueError('FOREIGN_BASE_LAYERS')
